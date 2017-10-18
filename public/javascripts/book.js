@@ -52,33 +52,19 @@ window.addEventListener('load', function() {
 		}, false);
 		
 		
+		//SWIPE - forward, backward on swipe left and right (hammer.js)
+		// small devices
 		var swipeContainer = new Hammer(bookContainer.querySelector('[data-wb-text-container]'));
-		// forward, backward on swipe left and right (hammer.js)
-		swipeContainer.on("swiperight swipeleft", function(ev) {
-			if(ev.type==="swipeleft") {
-				console.log(ev.type);
+		swipeContainer.on("swiperight swipeleft", function(event) {
+			if(event.type==="swipeleft") {
 				book.forward();
-			} else if(ev.type==="swiperight") {
-				console.log(ev.type);
+			} else if(event.type==="swiperight") {
 				book.backward();
 			}
 		});
 		
-		
-		
+			
 		//BUTTONS
-		//small
-		//var forward = bookContainer.querySelector('#forward');
-		//var backward = bookContainer.querySelector('#backward');
-		
-		//forward.addEventListener('click', function(event) {
-			//book.forward();
-		//}, false);
-
-		//backward.addEventListener('click', function(event) {
-			//book.backward();
-		//}, false);
-		
 		//large
 		var forwardLarge = bookContainer.querySelector('#forward-large');
 		var backwardLarge = bookContainer.querySelector('#backward-large');
@@ -179,7 +165,6 @@ window.addEventListener('load', function() {
 	.then (function(resolve) {
 		
 		init();
-		
 	});
 	
 		
