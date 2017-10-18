@@ -9,7 +9,7 @@ block content
       each book in books
         li
           span #{book.author}&ensp;&ndash;&ensp;
-          a(href=book.path)=book.title
+          a(href=book.path) !{book.title}
 
 block javascript
   script(src='/javascripts/main.js')

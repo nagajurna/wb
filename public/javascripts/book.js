@@ -52,19 +52,32 @@ window.addEventListener('load', function() {
 		}, false);
 		
 		
+		var swipeContainer = new Hammer(bookContainer.querySelector('[data-wb-text-container]'));
+		// forward, backward on swipe left and right (hammer.js)
+		swipeContainer.on("swiperight swipeleft", function(ev) {
+			if(ev.type==="swipeleft") {
+				console.log(ev.type);
+				book.forward();
+			} else if(ev.type==="swiperight") {
+				console.log(ev.type);
+				book.backward();
+			}
+		});
+		
+		
 		
 		//BUTTONS
 		//small
-		var forward = bookContainer.querySelector('#forward');
-		var backward = bookContainer.querySelector('#backward');
+		//var forward = bookContainer.querySelector('#forward');
+		//var backward = bookContainer.querySelector('#backward');
 		
-		forward.addEventListener('click', function(event) {
-			book.forward();
-		}, false);
+		//forward.addEventListener('click', function(event) {
+			//book.forward();
+		//}, false);
 
-		backward.addEventListener('click', function(event) {
-			book.backward();
-		}, false);
+		//backward.addEventListener('click', function(event) {
+			//book.backward();
+		//}, false);
 		
 		//large
 		var forwardLarge = bookContainer.querySelector('#forward-large');
@@ -125,12 +138,12 @@ window.addEventListener('load', function() {
 	
 	
 	var ajax = function(options) {
-		var promise = new Promise( (resolve,reject) => {
+		var promise = new Promise( function(resolve,reject) {
 			var method = options.method;
 			var url = options.url;
 			var data = options.data;
 			var xmlhttp = new XMLHttpRequest();
-			xmlhttp.onreadystatechange = () => {
+			xmlhttp.onreadystatechange = function() {
 				if(xmlhttp.readyState===4) {
 					if(xmlhttp.status===200) {
 						resolve(xmlhttp.responseText);
@@ -157,8 +170,16 @@ window.addEventListener('load', function() {
 	var text = bookContainer.querySelector('[data-wb-text]');
 	ajax(options)
 	.then( function(response) {
-		text.innerHTML = response;
+		
+		return new Promise( function(resolve) {
+			text.innerHTML = response;
+			resolve(response);
+		});
+	})
+	.then (function(resolve) {
+		
 		init();
+		
 	});
 	
 		
