@@ -4,7 +4,7 @@ window.addEventListener('load', function() {
 	
 	var init = function() {
 		//DIMENSIONS
-		var h, w, marginY;
+		var h, w, marginY, lineHeight;
 		
 		//width (responsive)
 		if(window.innerWidth >= 768) {
@@ -17,8 +17,8 @@ window.addEventListener('load', function() {
 			 fontSize = 14;
 		 }
 		 
+		 //marginY is relative to line-height
 		 lineHeight = fontSize*1.25;
-		 //marginY - relative to font size
 		 marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*3;
 		
 		//new Book
@@ -49,8 +49,8 @@ window.addEventListener('load', function() {
 				document.querySelector("#toc-large-device div").style.maxHeight = h-30 + "px";
 			}
 			
+			//marginY is relative to line-height
 			lineHeight = fontSize*1.25;
-			//marginY - relative to font size
 			 marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*3;
 			
 			//set new dimensions
