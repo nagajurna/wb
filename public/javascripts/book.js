@@ -4,22 +4,27 @@ window.addEventListener('load', function() {
 	
 	var init = function() {
 		//DIMENSIONS
-		var h, w;
+		var h, w, marginY, fontSize;
 		
 		//width (responsive)
 		if(window.innerWidth >= 768) {
 			h = window.innerHeight-88-60;//navBars height *2 (2*44) + textContainer top * 2 (2*30)
 			w = 640;
+			fontSize = 16;
 		 } else {
 			 h = window.innerHeight;
 			 w = window.innerWidth;
+			 fontSize = 14;
 		 }
+		 
+		 //marginY - relative to font size
+		 marginY = h%fontSize!==0 ? (fontSize)*3+((h%fontSize)/2) : fontSize*3;
 		
 		//new Book
 		var book = new WebBook(bookContainer, {
 			 height: h,
 			 maxWidth: w,
-			 marginY: 45});
+			 marginY: marginY});
 		
 		if(window.innerWidth >= 1366) {
 			//Toc-large height
@@ -41,9 +46,13 @@ window.addEventListener('load', function() {
 				document.querySelector("#toc-large-device div").style.maxHeight = h-30 + "px";
 			}
 			
+			//marginY - relative to font size
+			 marginY = h%fontSize!==0 ? (fontSize)*3+((h%fontSize)/2) : fontSize*3;
+			
 			//set new dimensions
 			book.setHeight(h);
 			book.setMaxWidth(w);
+			book.setMarginY(marginY);
 			
 			if(book.col===true) {
 				book.toBook();
