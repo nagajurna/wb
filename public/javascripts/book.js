@@ -95,7 +95,7 @@ window.addEventListener('load', function() {
 		var toc = bookContainer.querySelector('#toc');
 		var openToc = bookContainer.querySelectorAll('.open-toc');
 		
-		for(var i=0; i<openToc.length-1; i++) {
+		for(var i=0; i<openToc.length; i++) {
 			openToc[i].addEventListener('click', function() {
 				toc.className = toc.className === "open" ? "" : "open";
 			}, false);
