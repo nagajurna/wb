@@ -94,7 +94,7 @@ window.addEventListener('load', function() {
 		//TOC		
 		var toc = bookContainer.querySelector('#toc');
 		
-		bookContainer.querySelectorAll('.open-toc').forEach( val => {
+		bookContainer.querySelectorAll('.open-toc').forEach( function(val) {
 				val.addEventListener('click', function() {
 					toc.className = toc.className === "open" ? "" : "open";
 				}, false);
