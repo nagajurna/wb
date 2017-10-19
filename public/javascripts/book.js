@@ -136,47 +136,33 @@ window.addEventListener('load', function() {
 	}
 	
 	
-	var ajax = function(options) {
-		var promise = new Promise( function(resolve,reject) {
-			var method = options.method;
-			var url = options.url;
-			var data = options.data;
-			var xmlhttp = new XMLHttpRequest();
-			xmlhttp.onreadystatechange = function() {
-				if(xmlhttp.readyState===4) {
-					if(xmlhttp.status===200) {
-						resolve(xmlhttp.responseText);
-					} else {
-						reject(Error(xmlhttp.statusText));
-					}
-				}
-			}
-			
-			xmlhttp.open(method,url,true);
-			xmlhttp.setRequestHeader("Content-type", "application/json");
-			if(data) {
-				xmlhttp.send(data);
-			} else {
-				xmlhttp.send();
-			}
-		});
+	
+	
+	var ajax = function(options, callback) {
+		var method = options.method;
+		var url = options.url;
 		
-		return promise;
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function() {
+			if(this.readyState===4 && this.status===200) {
+				callback(this.responseText);
+			}
+		}
+		xmlhttp.open(method,url,true);
+		xmlhttp.setRequestHeader("Content-type", "application/json");
+		if(data) {
+			xmlhttp.send(data);
+		} else {
+			xmlhttp.send();
+		}
 	}
 	
 	var url = location.pathname.replace(/\/books\//,'');
 	var options = { method: 'GET', url: url + '.html' };
 	var text = bookContainer.querySelector('[data-wb-text]');
-	ajax(options)
-	.then( function(response) {
-		
-		return new Promise( function(resolve) {
-			text.innerHTML = response;
-			resolve(response);
-		});
-	})
-	.then (function(resolve) {
-		
+	
+	ajax(options, function(response) {
+		text.innerHTML = response;
 		init();
 	});
 	
