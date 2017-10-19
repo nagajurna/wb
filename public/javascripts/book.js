@@ -93,12 +93,13 @@ window.addEventListener('load', function() {
 		
 		//TOC		
 		var toc = bookContainer.querySelector('#toc');
+		var openToc = bookContainer.querySelectorAll('.open-toc');
 		
-		bookContainer.querySelectorAll('.open-toc').forEach( function(val) {
-				val.addEventListener('click', function() {
-					toc.className = toc.className === "open" ? "" : "open";
-				}, false);
-		});
+		for(var i=0; i<openToc.length-1; i++) {
+			openToc[i].addEventListener('click', function() {
+				toc.className = toc.className === "open" ? "" : "open";
+			}, false);
+		}
 		
 		toc.querySelector("#close-toc").addEventListener('click', function() {
 			toc.className = "";
