@@ -62,14 +62,19 @@ a.wb-link:hover {
 BOOKCONTAINER
 */
 #bookContainer {
+/*
 	opacity: 0.0;
+*/
 	margin: auto;
+/*
 	transition: opacity 1s;
+*/
 }
-
+/*
 #bookContainer.show {
 	opacity: 1.0;
 }
+*/
 
 /*
 TEXTCONTAINER
