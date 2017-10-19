@@ -4,7 +4,7 @@ window.addEventListener('load', function() {
 	
 	var init = function() {
 		//DIMENSIONS
-		var h, w, marginY, fontSize, lineHeight;
+		var h, w, marginY;
 		
 		//width (responsive)
 		if(window.innerWidth >= 768) {
@@ -19,13 +19,13 @@ window.addEventListener('load', function() {
 		 
 		 lineHeight = fontSize*1.25;
 		 //marginY - relative to font size
-		 marginY = h%lineHeight!==0 ? (lineHeight)*2+((h%lineHeight)/2) : lineHeight*2;
+		 marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*3;
 		
 		//new Book
 		var book = new WebBook(bookContainer, {
 			 height: h,
 			 maxWidth: w,
-			 marginY: marginY});
+			 marginY: 45});
 		
 		if(window.innerWidth >= 1366) {
 			//Toc-large height
@@ -51,7 +51,7 @@ window.addEventListener('load', function() {
 			
 			lineHeight = fontSize*1.25;
 			//marginY - relative to font size
-			marginY = h%lineHeight!==0 ? (lineHeight)*2+((h%lineHeight)/2) : lineHeight*2;
+			 marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*3;
 			
 			//set new dimensions
 			book.setHeight(h);

@@ -360,11 +360,13 @@ TEXT
 @media screen and (min-width: 768px) {
     [data-wb-text] {
         font-size: 15px;
+        line-height: 1.25em;
     }
 }
 
 [data-wb-text] p {
 	margin-bottom: 0px;
+	margin-top: 1.25em;
 }
 
 /*
@@ -376,11 +378,11 @@ TITLES
 .section-title, .note-title, .table-title, .wb-toc-title {
 	border-bottom: 1px solid black;
 	font-size: 1.25em;
-	line-height: 1.5em;
+	line-height: 1.25em;
 }
 
-.section-title {
-	padding-top: 3.5em;
+p.section-title {
+	padding-top: 3.75em;
 	margin-top: 0px;
 }
 
