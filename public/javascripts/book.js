@@ -141,7 +141,7 @@ window.addEventListener('load', function() {
 	var ajax = function(options, callback) {
 		var method = options.method;
 		var url = options.url;
-		
+		var data = options.data;
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.onreadystatechange = function() {
 			if(this.readyState===4 && this.status===200) {
