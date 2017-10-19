@@ -4,7 +4,7 @@ window.addEventListener('load', function() {
 	
 	var init = function() {
 		//DIMENSIONS
-		var h, w, marginY, fontSize;
+		var h, w, marginY, fontSize, lineHeight;
 		
 		//width (responsive)
 		if(window.innerWidth >= 768) {
@@ -17,8 +17,9 @@ window.addEventListener('load', function() {
 			 fontSize = 14;
 		 }
 		 
+		 lineHeight = fontSize*1.25;
 		 //marginY - relative to font size
-		 marginY = h%fontSize!==0 ? (fontSize)*3+((h%fontSize)/2) : fontSize*3;
+		 marginY = h%lineHeight!==0 ? (lineHeight)*2+((h%lineHeight)/2) : lineHeight*2;
 		
 		//new Book
 		var book = new WebBook(bookContainer, {
@@ -36,9 +37,11 @@ window.addEventListener('load', function() {
 			if(window.innerWidth >= 768) {
 				h = window.innerHeight-88-60;
 				w = 640;
+				fontSize = 16;
 			} else {
 				h = window.innerHeight;
 				w = window.innerWidth;
+				fontSize = 14;
 			}
 			
 			if(window.innerWidth >= 1366) {
@@ -46,8 +49,9 @@ window.addEventListener('load', function() {
 				document.querySelector("#toc-large-device div").style.maxHeight = h-30 + "px";
 			}
 			
+			lineHeight = fontSize*1.25;
 			//marginY - relative to font size
-			 marginY = h%fontSize!==0 ? (fontSize)*3+((h%fontSize)/2) : fontSize*3;
+			marginY = h%lineHeight!==0 ? (lineHeight)*2+((h%lineHeight)/2) : lineHeight*2;
 			
 			//set new dimensions
 			book.setHeight(h);
