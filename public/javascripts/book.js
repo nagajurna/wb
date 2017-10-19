@@ -163,7 +163,6 @@ window.addEventListener('load', function() {
 	var text = bookContainer.querySelector('[data-wb-text]');
 	
 	ajax(options, function(response) {
-		console.log(response);
 		var div = document.createElement('div');
 		div.innerHTML = response;
 		text.appendChild(div);
