@@ -18,7 +18,7 @@ window.addEventListener('load', function() {
 		 }
 		 
 		 //marginY is relative to line-height
-		 lineHeight = fontSize*1.25;
+		 lineHeight = fontSize*1.5;
 		 marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*3;
 		
 		//new Book
@@ -50,8 +50,8 @@ window.addEventListener('load', function() {
 			}
 			
 			//marginY is relative to line-height
-			lineHeight = fontSize*1.25;
-			 marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*3;
+			lineHeight = fontSize*1.5;
+			marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*3;
 			
 			//set new dimensions
 			book.setHeight(h);
