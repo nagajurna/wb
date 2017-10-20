@@ -65,6 +65,8 @@ BOOKCONTAINER
 	opacity: 0.0;
 	margin: auto;
 	transition: opacity 1s;
+	-webkit-transition : opacity 1s;
+	-o-transition: opacity 1s;
 }
 
 #bookContainer.show {
@@ -96,6 +98,8 @@ TOC-LARGE-DEVICE
   width: 33%;
   margin-top: 30px;
   transition: left 0.4s;
+  -webkit-transition : left 0.4s;
+  -o-transition: left 0.4s;
   display: none;
 }
 
@@ -122,6 +126,7 @@ TOC-LARGE-DEVICE
 	background-color: #fff;
 	position: relative;
 	height: 100%;
+	width: -webkit-calc(100%-20px);
 	width: calc(100%-20px);
 }
 
@@ -130,6 +135,7 @@ toggle toc-large-device, swing-container, swing-bar
 */
 #toggle-toc-large-device {
 	position: absolute;
+	left: -webkit-calc(100% + 6px);
 	left: calc(100% + 6px);
 	top: 0px;
 	outline: none;
@@ -143,6 +149,9 @@ if toc-large-device.open : swing-container to left
 #swing-container {
 	margin-left: 0px;
 	transition: margin-left 0.6s;
+	-webkit-transition : margin-left 0.6s;
+    -o-transition: margin-left 0.6s;
+	
 }
 
 #swing-container.left {
@@ -161,6 +170,8 @@ if toc-large-device.open : swing-bar to left
 #swing-bar {
 	margin-left: 0px;
 	transition: margin-left 0.9s;
+	-webkit-transition : margin-left 0.9s;
+    -o-transition: margin-left 0.9s;
 }
 
 #swing-bar.left {
@@ -184,6 +195,8 @@ TOC
 	z-index: 1000;
 	overflow-y: auto;
 	transition: top 0.4s;
+	-webkit-transition : top 0.4s;
+    -o-transition: top 0.4s;
 	padding: 15px;
 
 }
@@ -272,6 +285,7 @@ TOP
 	position: absolute;
 	top: 0px;
 	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
 	padding-top: 8px;
 	text-align: center;
 	width: 100%;
