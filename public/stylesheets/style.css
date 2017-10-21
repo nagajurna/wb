@@ -397,13 +397,11 @@ TITLES
 */
 .section-title, .note-title, .table-title, .wb-toc-title {
 	font-size: 1.25em;
-	line-height: 1.5em;
 	text-align: left;
 }
 
 .section-subtitle {
 	font-size: 1em;
-	line-height: 1em;
 }
 
 p.section-title {
