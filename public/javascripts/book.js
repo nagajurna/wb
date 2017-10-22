@@ -4,7 +4,7 @@ window.addEventListener('load', function() {
 	
 	var init = function() {
 		//DIMENSIONS
-		var h, w, marginY, lineHeight;
+		var h, w, marginY, fontSize, lineHeight;
 		
 		//width (responsive)
 		if(window.innerWidth >= 768) {

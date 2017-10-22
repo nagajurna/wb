@@ -7,15 +7,15 @@ block content
     // NAVBAR-TOP : width >= 768
     div(id='book-nav-bar-top' class='w3-bar w3-white w3-border-bottom w3-large w3-display-container')
       a(href='/', class='w3-bar-item w3-btn')=title
-      span(class='w3-bar-item w3-display-middle w3-small') #{book.author} &ndash; !{book.title}
+      span(class='w3-bar-item w3-display-middle w3-small text-uppercase') #{book.author} &ndash; !{book.title}
     
     // TOC-LARGE-DEVICE (outside textContainer) : width >= 1366
     div(id='toc-large-device' class='w3-card-4')
       button(id='toggle-toc-large-device' type='button' class='w3-btn w3-card-4 w3-white') &colone;
       div(id='toc-large-device-container')
         p(class='w3-center') #{book.author}
-        p(class='w3-center') !{book.title}
-        div(data-wb-toc='Sommaire' class='w3-container')
+        p(class='w3-center text-uppercase') !{book.title}
+        div(data-wb-toc='' class='w3-container')
       
     // START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN
     div(id='swing-container')
@@ -25,11 +25,11 @@ block content
       
         // TOC (inside textContainer) : width < 1366
         div(id='toc')
-          div(data-wb-toc='Sommaire' class='w3-container w3-card-4')
+          div(data-wb-toc='' class='w3-container')
             button(id='close-toc' type='button') &times;
             div(id='toc-title')
               p(class='w3-center')=book.author
-              p(class='w3-center') !{book.title}
+              p(class='w3-center w3-small text-uppercase') !{book.title}
             
         // TOP (inside textContainer)
         div(id='top')
