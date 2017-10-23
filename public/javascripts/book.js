@@ -166,7 +166,8 @@ window.addEventListener('load', function() {
 		var div = document.createElement('div');
 		div.innerHTML = response;
 		text.appendChild(div);
-		init();
+		setTimeout(init,500);
+		//init();
 	});
 	
 		
