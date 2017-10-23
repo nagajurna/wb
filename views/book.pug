@@ -5,9 +5,9 @@ block content
   // BOOK-CONTAINER
   div(id='bookContainer')
     // NAVBAR-TOP : width >= 768
-    div(id='book-nav-bar-top' class='w3-bar w3-white w3-border-bottom w3-large w3-display-container')
+    div(id='book-nav-bar-top' class='w3-bar w3-white w3-border-bottom w3-large')
       a(href='/', class='w3-bar-item w3-btn')=title
-      span(class='w3-bar-item w3-display-middle w3-small text-uppercase') #{book.author} &ndash; !{book.title}
+      span(class='w3-bar-item w3-small text-uppercase') #{book.author} &ndash; !{book.title}
     
     // TOC-LARGE-DEVICE (outside textContainer) : width >= 1366
     div(id='toc-large-device' class='w3-card-4')
