@@ -67,7 +67,9 @@ BOOKCONTAINER
 */
 #bookContainer {
 	opacity: 0.0;
+/*
 	margin: auto;
+*/
 	transition: opacity 1s;
 	-webkit-transition : opacity 1s;
 	-moz-transition : opacity 1s;
@@ -82,7 +84,9 @@ BOOKCONTAINER
 TEXTCONTAINER
 */
 [data-wb-text-container] {
+/*
 	margin: auto;
+*/
 	background-color: #fff;
 	top: 0px;
 }
