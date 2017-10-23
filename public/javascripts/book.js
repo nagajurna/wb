@@ -163,12 +163,10 @@ window.addEventListener('load', function() {
 	var text = bookContainer.querySelector('[data-wb-text]');
 	
 	ajax(options, function(response) {
-		//var div = document.createElement('div');
-		//div.innerHTML = response;
-		//text.appendChild(div);
-		text.innerHTML = response;
-		setTimeout(init,500);
-		//init();
+		var div = document.createElement('div');
+		div.innerHTML = response;
+		text.appendChild(div);
+		init();
 	});
 	
 		
