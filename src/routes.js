@@ -8,12 +8,16 @@
 	window.addEventListener('DOMContentLoaded', () => {
 			newhash = location.hash;
 			router(oldhash, newhash);
+			//active link
+			utils.activeLink();
 		}, false);
 
 	window.addEventListener('hashchange', () => {
 			oldhash = newhash;
 			newhash = location.hash;
 			router(oldhash, newhash);
+			//active link
+			utils.activeLink();
 		}, false);
 
 
@@ -37,8 +41,6 @@
 			location.hash = '#/';
 		}
 		
-		//active link
-		utils.activeLink();
 	};
 
 })();

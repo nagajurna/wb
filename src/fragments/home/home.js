@@ -2,10 +2,10 @@
 const home = function() {
 	'use strict';
 	//rootElement
-	let root = document.querySelector("#home.content");
+	const root = document.querySelector("#home.content");
 	w3.hide("#books-list");
 	//get books
-	let options = { method: 'GET', url: '/books' };
+	let options = { method: 'GET', url: '/books/' };
 	utils.ajax(options)
 	.then( response => {
 		let books = JSON.parse(response);
