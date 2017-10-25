@@ -50,7 +50,16 @@ NAV-BAR-TOP
 }
 
 #brand {
-	font-family: Georgia, serif;
+/*
+	:::font-family: Georgia, serif;
+*/
+	font-size: 0.8em;
+}
+
+@media screen and (min-width: 768px) {
+	#brand {
+		font-size: 1em;
+	}
 }
 
 #top-title {
@@ -441,7 +450,7 @@ BOTTOM
 	text-decoration: none;
 	margin-top: 6px;
 	font-size: 0.9em;
-	font-family: Verdana, sans-serif;
+	font-family: 'Roboto', sans-serif;
 }
 
 #bottom span {
