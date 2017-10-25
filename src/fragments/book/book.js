@@ -33,7 +33,7 @@ const book = function() {
 			
 			if(window.innerWidth >= 1366) {
 				//Toc-large height
-				document.querySelector("#toc-large-device div").style.maxHeight = h-30 + "px";
+				bookContainer.querySelector("#toc-large-device div").style.maxHeight = h-30 + "px";
 			}
 							 
 			//on resize
@@ -50,7 +50,7 @@ const book = function() {
 				
 				if(window.innerWidth >= 1366) {
 					//Toc-large height
-					document.querySelector("#toc-large-device div").style.maxHeight = h-30 + "px";
+					bookContainer.querySelector("#toc-large-device div").style.maxHeight = h-30 + "px";
 				}
 				
 				//marginY is relative to line-height
