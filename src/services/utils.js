@@ -33,6 +33,7 @@ const utils = {
 	//get HTML fragment, container, controller	
 	getFragment: (template, container, controller) => {
 		'use strict';
+		container.innerHTML = "";
 		let options = { method: 'GET', url: template }
 		return utils.ajax(options).then( response => {
 			return new Promise( (resolve) => {
