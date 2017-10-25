@@ -1,0 +1,27 @@
+<div id="book"><!--
+		STARTBOOK-CONTAINER
+	--><div id="bookContainer"><!--
+			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366
+		--><div id="toc-large-device" class="w3-card-4"><button id="toggle-toc-large-device" type="button" class="w3-btn w3-card-4 w3-white">&colone;</button><div id="toc-large-device-container"><p class="w3-center"></p><p class="w3-center text-uppercase"></p><div data-wb-toc class="w3-container"></div></div></div><!--
+			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN
+		--><div id="swing-container"><!--
+				START TEXT-CONTAINER
+			--><div data-wb-text-container class="w3-card-4"><!--
+					TOC (inside textContainer) : width < 1366
+				--><div id="toc"><div data-wb-toc class="w3-container"><button id="close-toc" type="button">&times;</button><div id="toc-title"><p class="w3-center"></p><p class="w3-center text-uppercase"></p></div></div></div><!--
+					TOP (inside textContainer)
+				--><div id="top"><span class="wb-current-section-title"></span></div><!--
+					TEXT
+				--><div data-wb-text></div><!--
+					BOTTOM (inside textContainer) : width < 768
+				--><div id="bottom"><a id="home" href="/#/" class="w3-btn w3-text-dark-grey">WB</a> <span class="wb-currentByTotal-pages"></span> <button type="button" class="open-toc w3-btn w3-text-dark-grey">&colone;</button></div><!--
+					BOTTOM-LARGE (inside textContainer) : width >= 768:::
+				--><div id="bottom-large"><span class="wb-currentByTotal-pages"></span></div><!--
+				END TEXT-CONTAINER
+			--></div><!--
+			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN
+		--></div><!--
+			NAVBAR-BOTTOM (outside textContainer) : width >= 768
+		--><div id="book-nav-bar-bottom" class="w3-bottom"><div class="w3-bar w3-large"><div id="swing-bar"><div id="book-nav-bar-bottom-controls"><button id="backward-large" type="button" class="w3-btn w3-margin-right">&lt;</button> <button id="forward-large" type="button" class="w3-btn w3-margin-left">&gt;</button> <button id="open-toc-large" type="button" class="open-toc w3-btn"><span>&colone;</span></button></div></div></div></div><!--
+		END BOOK-CONTAINER
+	--></div></div>

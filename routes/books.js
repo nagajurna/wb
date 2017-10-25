@@ -2,12 +2,10 @@ const express = require('express');
 const router = express.Router();
 const Books = require('../Books');
 
-/* GET books listing. */
-//router.get('/', function(req, res, next) {
-  
-  //res.send('respond with a resource');
-//});
-
+/* GET books */
+router.get('/', function(req, res, next) {
+	res.json({ books: Books });
+});
 
 /* GET book. */
 router.get('/:path', function(req, res, next) {
@@ -20,7 +18,7 @@ router.get('/:path', function(req, res, next) {
 	  }
   }
  
-  res.render('book', { title: 'WB', book: book });
+  res.json({ book: book });
 });
 
 module.exports = router;
