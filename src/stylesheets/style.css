@@ -34,6 +34,11 @@ a:hover {
 	color: #000;
 }
 
+.left {
+	
+	float: left;
+}
+
 
 /*
 NAV-BAR-TOP
@@ -42,6 +47,8 @@ NAV-BAR-TOP
 	display: block;
 	position: relative;
 	top: 0px;
+	text-align: center;
+	height: 48px;
 }
 
 #nav-bar-top.hidden {
@@ -50,9 +57,6 @@ NAV-BAR-TOP
 }
 
 #brand {
-/*
-	:::font-family: Georgia, serif;
-*/
 	font-size: 0.8em;
 }
 
@@ -64,6 +68,10 @@ NAV-BAR-TOP
 
 #top-title {
 	font-family: Georgia, serif;
+	padding: 8px 16px 8px 16px;
+	line-height: 27px;
+	max-width: 640px;
+	margin: auto;
 }
 
 /*

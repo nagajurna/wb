@@ -33,13 +33,10 @@ const utils = {
 	//get HTML fragment, container, controller	
 	getFragment: (template, container, controller) => {
 		'use strict';
-		if(container.childNodes[0]) {
-			container.removeChild(container.childNodes[0]);
-		}
-		//container.innerHTML = "";
 		let options = { method: 'GET', url: template }
 		return utils.ajax(options).then( response => {
 			return new Promise( (resolve) => {
+				container.innerHTML = "";
 				let div = document.createElement('div');
 				div.innerHTML = response;
 				container.appendChild(div);
