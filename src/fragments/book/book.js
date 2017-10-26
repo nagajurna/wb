@@ -139,13 +139,13 @@ const book = function() {
 		//Toggle toc-large-device, swing-container, swing-bar
 		bookContainer.querySelector('#toggle-toc-large-device').addEventListener('click', event => {
 			if(!tocLarge.className.match(/open/)) {
-				tocLarge.className += " open";
-				swingContainer.className += " left";
-				swingBar.className += " left";
+				utils.addClass('#toc-large-device','open');
+				utils.addClass('#swing-container','left');
+				utils.addClass('#swing-bar','left');
 			} else {
-				tocLarge.className = tocLarge.className.replace(/ open/,'');
-				swingContainer.className = swingContainer.className.replace(/ left/,'');
-				swingBar.className = swingContainer.className.replace(/ left/,'');
+				utils.removeClass('#toc-large-device','open');
+				utils.removeClass('#swing-container','left');
+				utils.removeClass('#swing-bar','left');
 			}
 		}, false);
 		

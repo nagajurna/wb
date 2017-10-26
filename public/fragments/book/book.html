@@ -2,13 +2,13 @@
 		STARTBOOK-CONTAINER
 	--><div id="bookContainer"><!--
 			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366
-		--><div id="toc-large-device" class="w3-card-4"><button id="toggle-toc-large-device" type="button" class="w3-btn w3-card-4 w3-white">&colone;</button><div id="toc-large-device-container" class="toc-content"><p class="w3-center" data-jin-bind="{{ author }}"></p><p class="w3-center text-uppercase" data-jin-bind="{{ title }}"></p><div data-wb-toc class="w3-container"></div></div></div><!--
+		--><div id="toc-large-device" class="w3-card-4"><button id="toggle-toc-large-device" type="button" class="w3-btn w3-card-4 w3-white">&colone;</button><div id="toc-large-device-container" class="toc-content"><p class="w3-center" data-utils-bind="{{ author }}"></p><p class="w3-center text-uppercase" data-utils-bind="{{ title }}"></p><div data-wb-toc class="w3-container"></div></div></div><!--
 			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN
 		--><div id="swing-container"><!--
 				START TEXT-CONTAINER
 			--><div data-wb-text-container class="w3-card-4"><!--
 					TOC (inside textContainer) : width < 1366
-				--><div id="toc"><div data-wb-toc class="w3-container"><button id="close-toc" type="button">&times;</button><div id="toc-title" class="toc-content"><p class="w3-center" data-jin-bind="{{ author }}"></p><p class="w3-center text-uppercase" data-jin-bind="{{ title }}"></p></div></div></div><!--
+				--><div id="toc"><div data-wb-toc class="w3-container"><button id="close-toc" type="button">&times;</button><div id="toc-title" class="toc-content"><p class="w3-center" data-utils-bind="{{ author }}"></p><p class="w3-center text-uppercase" data-utils-bind="{{ title }}"></p></div></div></div><!--
 					TOP (inside textContainer)
 				--><div id="top"><span class="wb-current-section-title"></span></div><!--
 					TEXT

@@ -105,11 +105,11 @@ const utils = {
 			element.parentElement.removeChild(element);
 		}
 		//get template and props for each repeat element
-		let elements = document.querySelectorAll('[data-jin-repeat]');
+		let elements = document.querySelectorAll('[data-utils-repeat]');
 		for(let i=0; i< elements.length; i++) {
 			let brackets = [];
 			let props = [];
-			let content = elements[i].getAttribute('data-jin-repeat');
+			let content = elements[i].getAttribute('data-utils-repeat');
 			
 			if(content.match(/{{[^{]+}}/g)) {
 				brackets = content.match(/{{[^{]+}}/g);
@@ -125,12 +125,12 @@ const utils = {
 	},
 	
 	bind: (object) => {
-		let elements = document.querySelectorAll('[data-jin-bind]');
+		let elements = document.querySelectorAll('[data-utils-bind]');
 		//get template and props for each repeat element
 		for(let i=0; i< elements.length; i++) {
 			let brackets = [];
 			let props = [];
-			let content = elements[i].getAttribute('data-jin-bind');
+			let content = elements[i].getAttribute('data-utils-bind');
 			let newContent = '';
 			
 			if(content.match(/{{[^{]+}}/g)) {
