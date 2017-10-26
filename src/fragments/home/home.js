@@ -2,6 +2,7 @@
 const home = function() {
 	'use strict';
 	//rootElement
+	//let books;
 	const root = document.querySelector("#home.content");
 	w3.hide("#books-list");
 	//get books

@@ -16,6 +16,7 @@ app.use(logger('dev'));
 //express.static
 let oneDay = 86400000;
 app.use(express.static('public', { maxAge: 0 }));
+app.use('/hammerjs', express.static(__dirname + '/node_modules/hammerjs'));
 //body-parser
 app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }));
 app.use(bodyParser.json());

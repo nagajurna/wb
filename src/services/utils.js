@@ -37,7 +37,9 @@ const utils = {
 		let options = { method: 'GET', url: template }
 		return utils.ajax(options).then( response => {
 			return new Promise( (resolve) => {
-				container.innerHTML = response;
+				let div = document.createElement('div');
+				div.innerHTML = response;
+				container.appendChild(div);
 				resolve(controller);
 			});
 		});
