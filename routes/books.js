@@ -5,7 +5,7 @@ const Books = require('../Books');
 /* GET books */
 router.get('/', function(req, res, next) {
 	res.status(200);
-	res.json({ books: Books });
+	res.json(Books);
 });
 
 /* GET book. */

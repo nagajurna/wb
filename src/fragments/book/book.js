@@ -160,12 +160,7 @@ const book = function() {
 	
 	utils.ajax(options).then( response => {
 		let meta = JSON.parse(response).book;
-		let content = meta.author + '&ensp;&mdash;&ensp;' + meta.title;
-		utils.setHTML("#top-title", content);
-		utils.setHTML("#toc-title p:nth-child(1)", meta.author);
-		utils.setHTML("#toc-title p:nth-child(2)", meta.title);
-		utils.setHTML("#toc-large-device p:nth-child(1)", meta.author);
-		utils.setHTML("#toc-large-device p:nth-child(2)", meta.title);
+		utils.bind(meta);
 		return utils.ajax({ method: 'GET', url: meta.path + '.html' })
 	}).then( book => {
 		let div = document.createElement('div');
