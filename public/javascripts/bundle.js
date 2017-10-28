@@ -290,6 +290,7 @@ var index = function () {
 		_utils2.default.ajax(options).then(function (response) {
 			var books = JSON.parse(response);
 			(0, _router2.default)(books);
+			location.hash = location.hash === "#/" ? '#/books/' : location.hash;
 		});
 	}, false);
 
@@ -361,14 +362,12 @@ var bookTemplate = __webpack_require__(10);
 var router = function router(data) {
 	'use strict';
 
-	//ROUTES
-
 	var routes = function routes(oldhash, newhash, data) {
 
 		var container = document.querySelector('#container');
 
 		//ROUTES
-		if (newhash === '#/') {
+		if (newhash === '#/books/') {
 			//HOME
 			_utils2.default.getTemplate(container, homeTemplate, _home2.default).then(function (controller) {
 				controller(data);
@@ -13745,7 +13744,7 @@ module.exports = "<div id=home class=content> <div class=\"w3-container w3-paddi
 /* 10 */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=book> <div id=bookContainer> <div id=toc-large-device class=w3-card-4> <button id=toggle-toc-large-device type=button class=\"w3-btn w3-card-4 w3-white\">&colone;</button> <div id=toc-large-device-container class=toc-content> <p class=w3-center data-utils-bind=\"{{ author }}\"></p> <p class=\"w3-center text-uppercase\" data-utils-bind=\"{{ title }}\"></p> <div data-wb-toc class=w3-container></div> </div> </div> <div id=swing-container> <div data-wb-text-container class=w3-card-4> <div id=toc> <div data-wb-toc class=w3-container> <button id=close-toc type=button>&times;</button> <div id=toc-title class=toc-content> <p class=w3-center data-utils-bind=\"{{ author }}\"></p> <p class=\"w3-center text-uppercase\" data-utils-bind=\"{{ title }}\"></p> </div> </div> </div> <div id=top> <span class=wb-current-section-title></span> </div> <div data-wb-text></div> <div id=bottom> <a id=home href=/#/ class=\"w3-btn w3-text-dark-grey\">Liber</a> <span class=wb-currentByTotal-pages></span> <button type=button class=\"open-toc w3-btn w3-text-dark-grey\">&colone;</button> </div> <div id=bottom-large> <span class=wb-currentByTotal-pages></span> </div> </div> </div> <div id=book-nav-bar-bottom class=w3-bottom> <div class=\"w3-bar w3-large\"> <div id=swing-bar> <div id=book-nav-bar-bottom-controls> <button id=backward-large type=button class=\"w3-btn w3-margin-right\">&lt;</button> <button id=forward-large type=button class=\"w3-btn w3-margin-left\">&gt;</button> <button id=open-toc-large type=button class=\"open-toc w3-btn\"><span>&colone;</span></button> </div> </div> </div> </div> </div> </div> ";
+module.exports = "<div id=book> <div id=bookContainer> <div id=toc-large-device class=w3-card-4> <button id=toggle-toc-large-device type=button class=\"w3-btn w3-card-4 w3-white\">&colone;</button> <div id=toc-large-device-container class=toc-content> <p class=w3-center data-utils-bind=\"{{ author }}\"></p> <p class=\"w3-center text-uppercase\" data-utils-bind=\"{{ title }}\"></p> <div data-wb-toc class=w3-container></div> </div> </div> <div id=swing-container> <div data-wb-text-container class=w3-card-4> <div id=toc> <div data-wb-toc class=w3-container> <button id=close-toc type=button>&times;</button> <div id=toc-title class=toc-content> <p class=w3-center data-utils-bind=\"{{ author }}\"></p> <p class=\"w3-center text-uppercase\" data-utils-bind=\"{{ title }}\"></p> </div> </div> </div> <div id=top> <span class=wb-current-section-title></span> </div> <div data-wb-text></div> <div id=bottom> <a id=home href=/#/books/ class=\"w3-btn w3-text-dark-grey\">Liber</a> <span class=wb-currentByTotal-pages></span> <button type=button class=\"open-toc w3-btn w3-text-dark-grey\">&colone;</button> </div> <div id=bottom-large> <span class=wb-currentByTotal-pages></span> </div> </div> </div> <div id=book-nav-bar-bottom class=w3-bottom> <div class=\"w3-bar w3-large\"> <div id=swing-bar> <div id=book-nav-bar-bottom-controls> <button id=backward-large type=button class=\"w3-btn w3-margin-right\">&lt;</button> <button id=forward-large type=button class=\"w3-btn w3-margin-left\">&gt;</button> <button id=open-toc-large type=button class=\"open-toc w3-btn\"><span>&colone;</span></button> </div> </div> </div> </div> </div> </div> ";
 
 /***/ }),
 /* 11 */

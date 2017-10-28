@@ -10,13 +10,12 @@ var  bookTemplate = require('./components/book/book.html');
 const router  = function(data) {
 	'use strict';
 	
-	//ROUTES
 	let routes = (oldhash, newhash, data) => {
 		
 		var container = document.querySelector('#container');
 		
 		//ROUTES
-		if(newhash === '#/') {
+		if(newhash === '#/books/') {
 			//HOME
 			utils.getTemplate(container, homeTemplate, home)
 			.then( controller => { controller(data); });

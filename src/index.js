@@ -11,6 +11,7 @@ const index = (function() {
 		.then( response => {
 			let books = JSON.parse(response);
 			router(books);
+			location.hash = location.hash === "#/" ? '#/books/' : location.hash;
 		});
 	}, false);
 	
