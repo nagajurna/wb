@@ -15,7 +15,7 @@ const app = express();
 app.use(logger('dev'));
 //express.static
 let oneDay = 86400000;
-app.use(express.static('public', { maxAge: 0 }));
+app.use(express.static('public', { maxAge: oneDay }));
 //body-parser
 app.use(bodyParser.json());
 //serve-favicon
