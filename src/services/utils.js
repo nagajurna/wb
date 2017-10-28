@@ -19,8 +19,10 @@ const utils = {
 			}
 			
 			xmlhttp.open(method,url,true);
-			xmlhttp.setRequestHeader("Content-type", "application/json");
+			xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+			xmlhttp.setRequestHeader("Accept", "text/json");
 			if(data) {
+				xmlhttp.setRequestHeader("Content-type", "application/json");
 				xmlhttp.send(data);
 			} else {
 				xmlhttp.send();
@@ -30,19 +32,17 @@ const utils = {
 		return promise;
 	},
 		
-	//get HTML fragment, container, controller	
-	getFragment: (template, container, controller) => {
+	getTemplate: (container, template, controller) => {
 		'use strict';
-		let options = { method: 'GET', url: template }
-		return utils.ajax(options).then( response => {
-			return new Promise( (resolve) => {
-				container.innerHTML = "";
-				let div = document.createElement('div');
-				div.innerHTML = response;
-				container.appendChild(div);
-				resolve(controller);
-			});
+		let promise = new Promise( (resolve,reject) => {
+			container.innerHTML = "";//empty
+			let div = document.createElement('div');
+			div.innerHTML = template;
+			container.appendChild(div);
+			resolve(controller);
 		});
+		
+		return promise;
 	},
 	
 	//active link : change class
@@ -178,3 +178,5 @@ const utils = {
 		}
 	}
 }
+
+export default utils;

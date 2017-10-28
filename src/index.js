@@ -1,7 +1,20 @@
+import router from './router';
+import utils from './services/utils';
+import css from './stylesheets/style.css';
+
 //index.js
-(function() {
+const index = (function() {
 	'use strict';
+	window.addEventListener('load', function() {
+		let options = { method: 'GET', url: '/books/' };
+		utils.ajax(options)
+		.then( response => {
+			let books = JSON.parse(response);
+			router(books);
+		});
+	}, false);
 	
+
 	window.addEventListener('hashchange', () => {
 		if(location.hash.match(/#\/books\/.+[^\/]$/)) {
 			if(window.innerWidth < 768) {
@@ -15,7 +28,7 @@
 			utils.setHTML("#top-title", "");
 		}
 	}, false);
-	
+
 	window.addEventListener('load', (e) => {
 		if(location.hash.match(/#\/books\/.+[^\/]$/)) {
 			if(window.innerWidth < 768) {
@@ -24,7 +37,7 @@
 			utils.addClass('body', 'book');
 		}
 	}, false);
-	
+
 	window.addEventListener('resize', () => {
 		if(location.hash.match(/#\/books\/.+[^\/]$/) && window.innerWidth < 768) {
 			utils.addClass("#nav-bar-top", "hidden");
@@ -32,5 +45,5 @@
 			utils.removeClass("#nav-bar-top", "hidden");
 		}
 	}, false);
-	
-})();
+
+})()

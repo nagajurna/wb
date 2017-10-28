@@ -1,11 +1,17 @@
+import utils from '../../services/utils';
+import WebBook from '../../../lib/wb/WebBook';
+import Hammer from 'hammerjs';
 //book.js
-const book = function() {
+const book = function(data) {
 	'use strict';
 	
+	//books
+	if(!data) { return; }
+	let books = data;
 	//rootElement
-	const root = document.querySelector("#home.content");
-
-	const bookContainer = document.querySelector('#bookContainer');
+	const root = document.querySelector("#book");
+	//bookContainer
+	const bookContainer = root.querySelector('#bookContainer');
 	
 	let init = function() {
 		//DIMENSIONS
@@ -151,23 +157,36 @@ const book = function() {
 		
 		//end loader
 		bookContainer.className = 'show';
+		
 	
 	}
 	
-	let url = location.hash.replace(/#/,'');
-	let options = { method: 'GET', url: url };
-	let text = bookContainer.querySelector('[data-wb-text]');
+	//GET BOOK
+	let book;
+	let loc = location.hash.replace(/(#|\/read)/g,'');
+	console.log(loc);
+	for(let i = 0; i < books.length; i++) {
+	  if(books[i].path===loc) {
+		 book = books[i];
+		 break;
+	  }
+	}
 	
-	utils.ajax(options).then( response => {
-		let meta = JSON.parse(response).book;
-		utils.bind(meta);
-		return utils.ajax({ method: 'GET', url: meta.path + '.html' })
-	}).then( book => {
+	//DISPLAY METADATA
+	utils.bind(book);
+	
+	//GET TEXT CONTENT
+	let text = bookContainer.querySelector('[data-wb-text]');
+	let options = { method: 'GET', url: book.path + '.html' };
+	
+	utils.ajax(options).then( content => {
 		let div = document.createElement('div');
-		div.innerHTML = book;
+		div.innerHTML = content;
 		text.appendChild(div);
 		init();
-	})
+	});
 	
 
 };
+
+export default book;
