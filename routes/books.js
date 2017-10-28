@@ -4,8 +4,8 @@ const Books = require('../Books');
 
 /* GET books */
 router.get('/', function(req, res, next) {
-	//1 day = 86400000ms;
-	res.set('Cache-Control', 'public, max-age=86400000, must-revalidate');
+	//1 day = 86400s;
+	res.set('Cache-Control', 'public, max-age=86400, must-revalidate');
 	res.json(Books);
 });
 

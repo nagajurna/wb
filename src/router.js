@@ -22,7 +22,7 @@ const router  = function(data) {
 			.then( controller => { controller(data); });
 			
 		} else if(newhash.match(/#\/books\/.+[^\/]\/read$/)) {
-			//BOOK
+			//BOOK READ
 			utils.getTemplate(container, bookTemplate, book)
 			.then( controller => { controller(data); });
 		

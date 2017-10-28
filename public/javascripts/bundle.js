@@ -97,6 +97,7 @@ var utils = {
 			xmlhttp.open(method, url, true);
 			xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 			xmlhttp.setRequestHeader("Accept", "text/json");
+			xmlhttp.setRequestHeader("Cache-Control", "public, max-age=86400, must-revalidate"); //1 day = 86400s
 			if (data) {
 				xmlhttp.setRequestHeader("Content-type", "application/json");
 				xmlhttp.send(data);
@@ -373,7 +374,7 @@ var router = function router(data) {
 				controller(data);
 			});
 		} else if (newhash.match(/#\/books\/.+[^\/]\/read$/)) {
-			//BOOK
+			//BOOK READ
 			_utils2.default.getTemplate(container, bookTemplate, _book2.default).then(function (controller) {
 				controller(data);
 			});
@@ -626,7 +627,6 @@ var book = function book(data) {
 	//GET BOOK
 	var book = void 0;
 	var loc = location.hash.replace(/(#|\/read)/g, '');
-	console.log(loc);
 	for (var i = 0; i < books.length; i++) {
 		if (books[i].path === loc) {
 			book = books[i];

@@ -164,7 +164,6 @@ const book = function(data) {
 	//GET BOOK
 	let book;
 	let loc = location.hash.replace(/(#|\/read)/g,'');
-	console.log(loc);
 	for(let i = 0; i < books.length; i++) {
 	  if(books[i].path===loc) {
 		 book = books[i];
