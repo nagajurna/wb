@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -251,8 +251,8 @@ var utils = {
 		}
 	},
 
-	bind: function bind(object) {
-		var elements = document.querySelectorAll('[data-utils-bind]');
+	bind: function bind(container, object) {
+		var elements = container.querySelectorAll('[data-utils-bind]');
 		//get template and props for each repeat element
 		for (var i = 0; i < elements.length; i++) {
 			var brackets = [];
@@ -309,15 +309,47 @@ exports.default = utils;
 "use strict";
 
 
-var _router = __webpack_require__(2);
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+//dataStore.js
+var dataStore = {
+	//data
+	store: {},
+
+	setData: function setData(prop, data) {
+		dataStore.store[prop] = data;
+		console.log(dataStore.store);
+	},
+
+	getData: function getData() {
+		return dataStore.store;
+	}
+
+};
+
+exports.default = dataStore;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _router = __webpack_require__(3);
 
 var _router2 = _interopRequireDefault(_router);
+
+var _dataStore = __webpack_require__(1);
+
+var _dataStore2 = _interopRequireDefault(_dataStore);
 
 var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _style = __webpack_require__(19);
+var _style = __webpack_require__(20);
 
 var _style2 = _interopRequireDefault(_style);
 
@@ -330,24 +362,32 @@ var index = function () {
 	window.addEventListener('load', function () {
 		//redirect to /books/ or location.hash
 		location.hash = location.hash === "#/" ? '#/books/' : location.hash;
+
 		//ajax get books
-		var books = void 0,
-		    user = void 0;
 		var options = { method: 'GET', url: '/books/' };
 		_utils2.default.ajax(options).then(function (response) {
-			books = JSON.parse(response).books;
-			//call router and pass data
-			(0, _router2.default)(books);
+			var books = JSON.parse(response).books;
+			//pass books to store
+			_dataStore2.default.setData('books', books);
+
+			//ajax get currentUser
 			var options = { method: 'GET', url: '/users/currentuser' };
 			return _utils2.default.ajax(options);
 		}).then(function (response) {
-			user = JSON.parse(response).user;
+			var user = JSON.parse(response).user;
+			//pass currentUser to store
+			_dataStore2.default.setData('currentUser', user);
+			//check role : if admin => admin-link
 			if (user.admin && user.admin === true) {
-				console.log(user);
 				_utils2.default.addClass('#admin-link', 'visible');
 			} else {
 				_utils2.default.removeClass('#admin-link', 'visible');
 			}
+
+			return 'done';
+		}).then(function (resolve) {
+			//call router
+			(0, _router2.default)();
 		});
 	}, false);
 
@@ -384,7 +424,7 @@ var index = function () {
 }();
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -398,56 +438,56 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _home = __webpack_require__(3);
+var _home = __webpack_require__(4);
 
 var _home2 = _interopRequireDefault(_home);
 
-var _book = __webpack_require__(4);
+var _book = __webpack_require__(5);
 
 var _book2 = _interopRequireDefault(_book);
 
-var _adminLogin = __webpack_require__(9);
+var _adminLogin = __webpack_require__(10);
 
 var _adminLogin2 = _interopRequireDefault(_adminLogin);
 
-var _admin = __webpack_require__(10);
+var _admin = __webpack_require__(11);
 
 var _admin2 = _interopRequireDefault(_admin);
 
-var _adminHome = __webpack_require__(11);
+var _adminHome = __webpack_require__(12);
 
 var _adminHome2 = _interopRequireDefault(_adminHome);
 
-var _adminUsers = __webpack_require__(12);
+var _adminUsers = __webpack_require__(13);
 
 var _adminUsers2 = _interopRequireDefault(_adminUsers);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var homeTemplate = __webpack_require__(13);
+var homeTemplate = __webpack_require__(14);
 //book
 
 //home
 
-var bookTemplate = __webpack_require__(14);
+var bookTemplate = __webpack_require__(15);
 //adminLogin
 
-var adminLoginTemplate = __webpack_require__(15);
+var adminLoginTemplate = __webpack_require__(16);
 //admin
 
-var adminTemplate = __webpack_require__(16);
+var adminTemplate = __webpack_require__(17);
 //admin home
 
-var adminHomeTemplate = __webpack_require__(17);
+var adminHomeTemplate = __webpack_require__(18);
 //admin users
 
-var adminUsersTemplate = __webpack_require__(18);
+var adminUsersTemplate = __webpack_require__(19);
 
 //routes.js
-var router = function router(data) {
+var router = function router() {
 	'use strict';
 
-	var routes = function routes(newhash, data) {
+	var routes = function routes(oldhash, newhash) {
 
 		var container = document.querySelector('#container');
 
@@ -455,18 +495,18 @@ var router = function router(data) {
 		if (newhash === '#/books/') {
 			//HOME
 			_utils2.default.getTemplate(container, homeTemplate, _home2.default).then(function (controller) {
-				controller(data);
+				controller();
 			});
 		} else if (newhash.match(/#\/books\/.+[^\/]\/read$/)) {
 			//BOOK READ
 			_utils2.default.getTemplate(container, bookTemplate, _book2.default).then(function (controller) {
-				controller(data);
+				controller();
 			});
 		} else if (newhash.match(/#\/admin/) && newhash !== '#/admin/login/') {
 			//ADMIN LOGIN : if admin not connected, redirect to /admin/login
 			var user = void 0;
-			_utils2.default.checkRole().then(function (user) {
-				user = user;
+			_utils2.default.checkRole().then(function (response) {
+				user = response;
 				return _utils2.default.getTemplate(container, adminTemplate, _admin2.default);
 			}).then(function (controller) {
 				_utils2.default.activeLink(); //for admin links
@@ -478,7 +518,7 @@ var router = function router(data) {
 				if (newhash === '#/admin/') {
 					//ADMIN HOME
 					_utils2.default.getTemplate(adminContainer, adminHomeTemplate, _adminHome2.default).then(function (controller) {
-						controller();
+						controller(user);
 					});
 				} else if (newhash === '#/admin/users/') {
 					//ADMIN USERS
@@ -514,54 +554,22 @@ var router = function router(data) {
 
 	var oldhash = void 0,
 	    newhash = void 0;
-	var routerData = data ? data : null;
 
 	newhash = location.hash;
-	routes(newhash, routerData);
+	routes(oldhash, newhash);
 	//active link
 	_utils2.default.activeLink();
 
 	window.addEventListener('hashchange', function () {
 		oldhash = newhash;
 		newhash = location.hash;
-		routes(newhash, routerData);
+		routes(oldhash, newhash);
 		//active link
 		_utils2.default.activeLink();
 	}, false);
 };
 
 exports.default = router;
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _utils = __webpack_require__(0);
-
-var _utils2 = _interopRequireDefault(_utils);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//home.js
-var home = function home(data) {
-	'use strict';
-	//rootElement
-
-	if (!data) {
-		return;
-	}
-	var books = data;
-	_utils2.default.repeat(books);
-};
-
-exports.default = home;
 
 /***/ }),
 /* 4 */
@@ -578,27 +586,58 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _WebBook = __webpack_require__(5);
+var _dataStore = __webpack_require__(1);
+
+var _dataStore2 = _interopRequireDefault(_dataStore);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//home.js
+var home = function home() {
+	'use strict';
+	//rootElement
+
+	var books = _dataStore2.default.getData().books;
+	_utils2.default.repeat(books);
+};
+
+exports.default = home;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _utils = __webpack_require__(0);
+
+var _utils2 = _interopRequireDefault(_utils);
+
+var _dataStore = __webpack_require__(1);
+
+var _dataStore2 = _interopRequireDefault(_dataStore);
+
+var _WebBook = __webpack_require__(6);
 
 var _WebBook2 = _interopRequireDefault(_WebBook);
 
-var _hammerjs = __webpack_require__(8);
+var _hammerjs = __webpack_require__(9);
 
 var _hammerjs2 = _interopRequireDefault(_hammerjs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //book.js
-var book = function book(data) {
+var book = function book() {
 	'use strict';
 
-	//books
-
-	if (!data) {
-		return;
-	}
-	var books = data;
 	//rootElement
+
 	var root = document.querySelector("#book");
 	//bookContainer
 	var bookContainer = root.querySelector('#bookContainer');
@@ -749,6 +788,7 @@ var book = function book(data) {
 	};
 
 	//GET BOOK
+	var books = _dataStore2.default.getData().books;
 	var book = void 0;
 	var loc = location.hash.replace(/(#|\/read)/g, '');
 	for (var i = 0; i < books.length; i++) {
@@ -759,7 +799,7 @@ var book = function book(data) {
 	}
 
 	//DISPLAY METADATA
-	_utils2.default.bind(book);
+	_utils2.default.bind(document.body, book);
 
 	//GET TEXT CONTENT
 	var text = bookContainer.querySelector('[data-wb-text]');
@@ -776,7 +816,7 @@ var book = function book(data) {
 exports.default = book;
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -788,7 +828,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _jquery = __webpack_require__(6);
+var _jquery = __webpack_require__(7);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -1354,7 +1394,7 @@ var WebBook = function () {
 exports.default = WebBook;
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11187,10 +11227,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 	return jQuery;
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)(module)))
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11220,7 +11260,7 @@ module.exports = function (module) {
 };
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13860,7 +13900,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 })(window, document, 'Hammer');
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13873,6 +13913,10 @@ Object.defineProperty(exports, "__esModule", {
 var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
+
+var _dataStore = __webpack_require__(1);
+
+var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -13917,6 +13961,7 @@ var adminLogin = function adminLogin() {
 				_utils2.default.setHTML('#email .error', response.errors.email);
 				_utils2.default.setHTML('#password .error', response.errors.password);
 			} else {
+				_dataStore2.default.setData('currentUser', response.user);
 				if (response.user.admin === true) {
 					location.hash = '#/admin/';
 				} else {
@@ -13932,7 +13977,7 @@ var adminLogin = function adminLogin() {
 exports.default = adminLogin;
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13960,7 +14005,7 @@ var admin = function admin(user) {
 exports.default = admin;
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13981,16 +14026,18 @@ var adminHome = function adminHome(data) {
 	'use strict';
 	//rootElement
 
+	var root = document.querySelector("#adminHome");
 	if (!data) {
 		return;
 	}
 	var user = data;
+	_utils2.default.bind(root, user);
 };
 
 exports.default = adminHome;
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14015,49 +14062,49 @@ var adminUsers = function adminUsers() {
 exports.default = adminUsers;
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports) {
 
 module.exports = "<div id=home class=content> <div class=\"w3-container w3-padding-24\"> <ul id=books-list class=w3-ul> <li data-utils-repeat=\"\n\t\t\t\t<span>{{ author }} &ndash; </span>\n\t\t\t\t<a href='/#{{ path }}/read' class='w3-text-gray w3-hover-none w3-hover-text-black'>{{ title }}</a>\"> </li> </ul> </div> </div> ";
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports) {
 
 module.exports = "<div id=book> <div id=bookContainer> <div id=toc-large-device class=w3-card-4> <button id=toggle-toc-large-device type=button class=\"w3-btn w3-card-4 w3-white\">&colone;</button> <div id=toc-large-device-container class=toc-content> <p class=w3-center data-utils-bind=\"{{ author }}\"></p> <p class=\"w3-center text-uppercase\" data-utils-bind=\"{{ title }}\"></p> <div data-wb-toc class=w3-container></div> </div> </div> <div id=swing-container> <div data-wb-text-container class=w3-card-4> <div id=toc> <div data-wb-toc class=w3-container> <button id=close-toc type=button>&times;</button> <div id=toc-title class=toc-content> <p class=w3-center data-utils-bind=\"{{ author }}\"></p> <p class=\"w3-center text-uppercase\" data-utils-bind=\"{{ title }}\"></p> </div> </div> </div> <div id=top> <span class=wb-current-section-title></span> </div> <div data-wb-text></div> <div id=bottom> <a id=home href=/#/books/ class=\"w3-btn w3-text-dark-grey\">Liber</a> <span class=wb-currentByTotal-pages></span> <button type=button class=\"open-toc w3-btn w3-text-dark-grey\">&colone;</button> </div> <div id=bottom-large> <span class=wb-currentByTotal-pages></span> </div> </div> </div> <div id=book-nav-bar-bottom class=w3-bottom> <div class=\"w3-bar w3-large\"> <div id=swing-bar> <div id=book-nav-bar-bottom-controls> <button id=backward-large type=button class=\"w3-btn w3-margin-right\">&lt;</button> <button id=forward-large type=button class=\"w3-btn w3-margin-left\">&gt;</button> <button id=open-toc-large type=button class=\"open-toc w3-btn\"><span>&colone;</span></button> </div> </div> </div> </div> </div> </div> ";
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports) {
 
 module.exports = "<div id=adminLogin class=content> <div class=\"w3-container w3-padding-24\"> <h4 class=w3-container>Espace administration&ensp;&ndash;&ensp;connexion</h4> <form id=adminLoginForm class=w3-container> <span class=error id=form-error></span> <p id=email> <label>Identifiant : </label> <input type=text name=email class=\"w3-input w3-border\"> <span class=error></span> </p> <p id=password> <label>Mot de passe : </label> <input type=password name=password class=\"w3-input w3-border\"> <span class=error></span> </p> <p> <button type=submit id=loginButton class=\"w3-btn w3-border\">Valider</button> </p> </form> </div> </div> ";
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports) {
 
 module.exports = "<div id=admin class=content> <div class=\"w3-container w3-padding-24\"> <h4 class=w3-container>Espace administration</h4> <nav id=admin-nav-bar-top class=\"w3-bar w3-white w3-border-top w3-border-bottom\"> <a id=admin-home href=/#/admin/ class=\"w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black\">Accueil</a> <a id=admin-users href=/#/admin/users/ class=\"w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black\">Utilisateurs</a> <a id=admin-books href=/#/admin/books/ class=\"w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black\">Ouvrages</a> </nav> <div id=admin-container></div> </div> </div> ";
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=home class=content> <div class=\"w3-container w3-padding-24\"> <p>Accueil</p> </div> </div> ";
+module.exports = "<div id=adminHome class=content> <div class=\"w3-container w3-padding-24\"> <p data-utils-bind=\"{{ name }}\"></p> <p data-utils-bind=\"{{ email }}\"></p> </div> </div> ";
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports) {
 
 module.exports = "<div id=home class=content> <div class=\"w3-container w3-padding-24\"> <p>Users</p> </div> </div> ";
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(20);
+var content = __webpack_require__(21);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -14065,7 +14112,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(22)(content, options);
+var update = __webpack_require__(23)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -14082,10 +14129,10 @@ if(false) {
 }
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(21)(undefined);
+exports = module.exports = __webpack_require__(22)(undefined);
 // imports
 
 
@@ -14096,7 +14143,7 @@ exports.push([module.i, "* {\n\tbox-sizing: border-box;\n}\n\nhtml {\n\twidth: 1
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14178,7 +14225,7 @@ function toComment(sourceMap) {
 }
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -14234,7 +14281,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(23);
+var	fixUrls = __webpack_require__(24);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -14550,7 +14597,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

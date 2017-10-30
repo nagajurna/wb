@@ -3,8 +3,10 @@ import utils from '../../../../services/utils';
 const adminHome = function(data) {
 	'use strict';
 	//rootElement
+	const root = document.querySelector("#adminHome");
 	if(!data) { return; }
 	let user = data;
+	utils.bind(root, user);
 	
 };
 

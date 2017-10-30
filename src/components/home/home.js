@@ -1,10 +1,10 @@
 import utils from '../../services/utils';
+import dataStore from '../../services/dataStore';
 //home.js
-const home = function(data) {
+const home = function() {
 	'use strict';
 	//rootElement
-	if(!data) { return; }
-	let books = data;
+	let books = dataStore.getData().books;
 	utils.repeat(books);
 	
 };

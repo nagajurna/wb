@@ -172,8 +172,8 @@ const utils = {
 		}
 	},
 	
-	bind: (object) => {
-		let elements = document.querySelectorAll('[data-utils-bind]');
+	bind: (container, object) => {
+		let elements = container.querySelectorAll('[data-utils-bind]');
 		//get template and props for each repeat element
 		for(let i=0; i< elements.length; i++) {
 			let brackets = [];

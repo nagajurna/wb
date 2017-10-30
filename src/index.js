@@ -1,4 +1,5 @@
 import router from './router';
+import dataStore from './services/dataStore';
 import utils from './services/utils';
 import css from './stylesheets/style.css';
 
@@ -8,25 +9,37 @@ const index = (function() {
 	window.addEventListener('load', function() {
 		//redirect to /books/ or location.hash
 		location.hash = location.hash === "#/" ? '#/books/' : location.hash;
+		
 		//ajax get books
-		let books, user;
 		let options = { method: 'GET', url: '/books/' };
 		utils.ajax(options)
 		.then( response => {
-			books = JSON.parse(response).books;
-			//call router and pass data
-			router(books);
+			let books = JSON.parse(response).books;
+			//pass books to store
+			dataStore.setData('books', books);
+			
+			//ajax get currentUser
 			let options = { method: 'GET', url: '/users/currentuser' };
 			return utils.ajax(options)
+			
 		}).then ( response => {
-			user = JSON.parse(response).user;
+			let user = JSON.parse(response).user;
+			//pass currentUser to store
+			dataStore.setData('currentUser', user);
+			//check role : if admin => admin-link
 			if(user.admin && user.admin===true) {
-				console.log(user);
 				utils.addClass('#admin-link', 'visible');
 			} else {
 				utils.removeClass('#admin-link', 'visible');
 			}
+			
+			return 'done';
+		})
+		.then ( resolve => {
+			//call router
+			router();
 		});
+		
 	}, false);
 	
 

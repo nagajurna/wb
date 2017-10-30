@@ -1,13 +1,11 @@
 import utils from '../../services/utils';
+import dataStore from '../../services/dataStore';
 import WebBook from '../../../lib/wb/WebBook';
 import Hammer from 'hammerjs';
 //book.js
-const book = function(data) {
+const book = function() {
 	'use strict';
 	
-	//books
-	if(!data) { return; }
-	let books = data;
 	//rootElement
 	const root = document.querySelector("#book");
 	//bookContainer
@@ -162,6 +160,7 @@ const book = function(data) {
 	}
 	
 	//GET BOOK
+	let books = dataStore.getData().books;
 	let book;
 	let loc = location.hash.replace(/(#|\/read)/g,'');
 	for(let i = 0; i < books.length; i++) {
@@ -172,7 +171,7 @@ const book = function(data) {
 	}
 	
 	//DISPLAY METADATA
-	utils.bind(book);
+	utils.bind(document.body,book);
 	
 	//GET TEXT CONTENT
 	let text = bookContainer.querySelector('[data-wb-text]');

@@ -1,4 +1,5 @@
 import utils from '../../services/utils';
+import dataStore from '../../services/dataStore';
 //home.js
 const adminLogin = function() {
 	'use strict';
@@ -41,6 +42,7 @@ const adminLogin = function() {
 				utils.setHTML('#email .error', response.errors.email);
 				utils.setHTML('#password .error', response.errors.password);
 			} else {
+				dataStore.setData('currentUser', response.user);
 				if(response.user.admin===true) {
 					location.hash = '#/admin/';
 				} else {

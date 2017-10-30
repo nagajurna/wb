@@ -19,10 +19,10 @@ import adminUsers from './components/admin/components/adminUsers/adminUsers';
 var adminUsersTemplate = require('./components/admin/components/adminUsers/adminUsers.html');
 
 //routes.js
-const router  = function(data) {
+const router  = function() {
 	'use strict';
 	
-	let routes = (newhash, data) => {
+	let routes = (oldhash, newhash) => {
 		
 		let container = document.querySelector('#container');
 		
@@ -30,19 +30,19 @@ const router  = function(data) {
 		if(newhash === '#/books/') {
 			//HOME
 			utils.getTemplate(container, homeTemplate, home)
-			.then( controller => { controller(data); });
+			.then( controller => { controller(); });
 			
 		} else if(newhash.match(/#\/books\/.+[^\/]\/read$/)) {
 			//BOOK READ
 			utils.getTemplate(container, bookTemplate, book)
-			.then( controller => { controller(data); });
+			.then( controller => { controller(); });
 			
 		} else if(newhash.match(/#\/admin/) && newhash !== '#/admin/login/') {
 			//ADMIN LOGIN : if admin not connected, redirect to /admin/login
 			let user;
 			utils.checkRole()
-			.then ( user => {
-				user = user;
+			.then ( response => {
+				user = response;
 				return utils.getTemplate(container, adminTemplate, admin)
 			})
 			.then( controller => { 
@@ -56,7 +56,7 @@ const router  = function(data) {
 				if(newhash === '#/admin/') {
 					//ADMIN HOME
 					utils.getTemplate(adminContainer, adminHomeTemplate, adminHome)
-					.then( controller => { controller(); });					
+					.then( controller => { controller(user); });					
 				
 				} else if(newhash === '#/admin/users/') {
 					//ADMIN USERS
@@ -96,10 +96,9 @@ const router  = function(data) {
 	if(location.hash === "") { location.hash = "#/"; }
 	
 	let oldhash, newhash;
-	let routerData = data ? data : null;
 	
 	newhash = location.hash;
-	routes(newhash, routerData);
+	routes(oldhash, newhash);
 	//active link
 	utils.activeLink();
 		
@@ -107,7 +106,7 @@ const router  = function(data) {
 	window.addEventListener('hashchange', function() {
 		oldhash = newhash;
 		newhash = location.hash;
-		routes(newhash, routerData);
+		routes(oldhash, newhash);
 		//active link
 		utils.activeLink();
 	}, false);
