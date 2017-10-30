@@ -1,10 +1,16 @@
 'use strict';
+//db
+const db = require( './db' );
+//packages
 const bodyParser = require('body-parser');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const express = require('express');
+var session = require('express-session');
+var FileStore = require('session-file-store')(session);
 //router
 const index = require('./routes/index');
+const users = require('./routes/users');
 const books = require('./routes/books');
 
 //app
@@ -13,6 +19,15 @@ const app = express();
 //APP SETUP
 //logger
 app.use(logger('dev'));
+//session
+app.use(session({
+	name: '_liber.sid',
+    store: new FileStore,
+    secret: 'malicious fork',
+    httpOnly: false,
+    resave: false,
+	saveUninitialized: false,
+}));
 //express.static
 let oneDay = 86400000;
 app.use(express.static('public', { maxAge: oneDay }));
@@ -22,6 +37,7 @@ app.use(bodyParser.json());
 app.use(favicon(__dirname + '/public/favicon.ico'));
 //routes
 app.use('/',index);
+app.use('/users', users);
 app.use('/books', books);
 
 

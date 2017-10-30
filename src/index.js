@@ -6,12 +6,26 @@ import css from './stylesheets/style.css';
 const index = (function() {
 	'use strict';
 	window.addEventListener('load', function() {
+		//redirect to /books/ or location.hash
+		location.hash = location.hash === "#/" ? '#/books/' : location.hash;
+		//ajax get books
+		let books, user;
 		let options = { method: 'GET', url: '/books/' };
 		utils.ajax(options)
 		.then( response => {
-			let books = JSON.parse(response);
+			books = JSON.parse(response).books;
+			//call router and pass data
 			router(books);
-			location.hash = location.hash === "#/" ? '#/books/' : location.hash;
+			let options = { method: 'GET', url: '/users/currentuser' };
+			return utils.ajax(options)
+		}).then ( response => {
+			user = JSON.parse(response).user;
+			if(user.admin && user.admin===true) {
+				console.log(user);
+				utils.addClass('#admin-link', 'visible');
+			} else {
+				utils.removeClass('#admin-link', 'visible');
+			}
 		});
 	}, false);
 	
@@ -28,6 +42,7 @@ const index = (function() {
 			utils.removeClass('body', 'book');
 			utils.setHTML("#top-title", "");
 		}
+		
 	}, false);
 
 	window.addEventListener('load', (e) => {
@@ -37,6 +52,7 @@ const index = (function() {
 			}
 			utils.addClass('body', 'book');
 		}
+		
 	}, false);
 
 	window.addEventListener('resize', () => {

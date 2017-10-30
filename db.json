@@ -1,0 +1,13 @@
+{
+  "users": [
+    {
+      "name": "Paul",
+      "email": "paul@gmail.com",
+      "password": "machin",
+      "admin": true,
+      "id": "c88af0d3-9be6-4e88-b925-7f8d1c73b3a5"
+    }
+  ],
+  "books": [],
+  "authors": []
+}

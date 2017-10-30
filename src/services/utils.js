@@ -21,7 +21,7 @@ const utils = {
 			xmlhttp.open(method,url,true);
 			xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 			xmlhttp.setRequestHeader("Accept", "text/json");
-			xmlhttp.setRequestHeader("Cache-Control", "public, max-age=86400, must-revalidate");//1 day = 86400s
+			//xmlhttp.setRequestHeader("Cache-Control", "public, max-age=86400, must-revalidate");//1 day = 86400s
 			if(data) {
 				xmlhttp.setRequestHeader("Content-type", "application/json");
 				xmlhttp.send(data);
@@ -31,6 +31,22 @@ const utils = {
 		});
 		
 		return promise;
+	},
+	
+	//check role admin			
+	checkRole: () => {
+		'use strict';
+		let options = {method: 'GET', url: '/users/currentuser' }
+		return utils.ajax(options).then( response => {
+			let user = JSON.parse(response).user;
+			return new Promise( (resolve, reject) => {
+				if(user && user.admin===true) {
+					resolve(user);
+				} else {
+					reject(Error('error'));
+				}
+			});
+		});
 	},
 		
 	getTemplate: (container, template, controller) => {
@@ -59,13 +75,44 @@ const utils = {
 				utils.addClass("#" + links[i].id, "w3-text-gray");
 				utils.removeClass("#" + links[i].id, "w3-text-black");
 			}
+			
+			if(location.hash.match(/#\/admin/)) {
+				if(links[i].href.match(/#\/admin/)) {
+					utils.addClass("#" + links[i].id, "w3-text-black");
+					utils.removeClass("#" + links[i].id, "w3-text-gray");
+				} else {
+					utils.addClass("#" + links[i].id, "w3-text-gray");
+					utils.removeClass("#" + links[i].id, "w3-text-black");
+				}
+			}
 		}
+		
+		
+		if(!document.querySelector("#admin-nav-bar-top")) { return; }
+		let adminRoot = document.querySelector("#admin-nav-bar-top");
+		let adminLinks = adminRoot.querySelectorAll("a");
+		for(let i=0; i<adminLinks.length; i++) {
+			if(location.href===adminLinks[i].href) {
+				utils.addClass("#" + adminLinks[i].id, "w3-text-black");
+				utils.removeClass("#" + adminLinks[i].id, "w3-text-gray");
+			} else {
+				utils.addClass("#" + adminLinks[i].id, "w3-text-gray");
+				utils.removeClass("#" + adminLinks[i].id, "w3-text-black");
+			}
+		}
+		
+		
 	},
 	
 	setHTML: (selector,content) => {
 		let elements = document.querySelectorAll(selector);
+		if(!elements) { return; }
 		for(let i=0; i< elements.length; i++) {
-			elements[i].innerHTML = content;
+			if(content) {
+				elements[i].innerHTML = content;
+			} else {
+				elements[i].innerHTML = '';
+			}
 		}
 	},
 	
@@ -169,13 +216,6 @@ const utils = {
 			name = className;
 			let pattern = new RegExp(className, 'g');
 			elements[i].className = elements[i].className.replace(pattern, "");
-		}
-	},
-		
-	hide: (selector) => {
-		let elements = document.querySelectorAll(selector);
-		for(let i=0; i< elements.length; i++) {
-			elements[i].style.display = 'none';
 		}
 	}
 }

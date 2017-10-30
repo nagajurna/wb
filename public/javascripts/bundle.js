@@ -97,7 +97,7 @@ var utils = {
 			xmlhttp.open(method, url, true);
 			xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 			xmlhttp.setRequestHeader("Accept", "text/json");
-			xmlhttp.setRequestHeader("Cache-Control", "public, max-age=86400, must-revalidate"); //1 day = 86400s
+			//xmlhttp.setRequestHeader("Cache-Control", "public, max-age=86400, must-revalidate");//1 day = 86400s
 			if (data) {
 				xmlhttp.setRequestHeader("Content-type", "application/json");
 				xmlhttp.send(data);
@@ -107,6 +107,23 @@ var utils = {
 		});
 
 		return promise;
+	},
+
+	//check role admin			
+	checkRole: function checkRole() {
+		'use strict';
+
+		var options = { method: 'GET', url: '/users/currentuser' };
+		return utils.ajax(options).then(function (response) {
+			var user = JSON.parse(response).user;
+			return new Promise(function (resolve, reject) {
+				if (user && user.admin === true) {
+					resolve(user);
+				} else {
+					reject(Error('error'));
+				}
+			});
+		});
 	},
 
 	getTemplate: function getTemplate(container, template, controller) {
@@ -137,13 +154,45 @@ var utils = {
 				utils.addClass("#" + links[i].id, "w3-text-gray");
 				utils.removeClass("#" + links[i].id, "w3-text-black");
 			}
+
+			if (location.hash.match(/#\/admin/)) {
+				if (links[i].href.match(/#\/admin/)) {
+					utils.addClass("#" + links[i].id, "w3-text-black");
+					utils.removeClass("#" + links[i].id, "w3-text-gray");
+				} else {
+					utils.addClass("#" + links[i].id, "w3-text-gray");
+					utils.removeClass("#" + links[i].id, "w3-text-black");
+				}
+			}
+		}
+
+		if (!document.querySelector("#admin-nav-bar-top")) {
+			return;
+		}
+		var adminRoot = document.querySelector("#admin-nav-bar-top");
+		var adminLinks = adminRoot.querySelectorAll("a");
+		for (var _i = 0; _i < adminLinks.length; _i++) {
+			if (location.href === adminLinks[_i].href) {
+				utils.addClass("#" + adminLinks[_i].id, "w3-text-black");
+				utils.removeClass("#" + adminLinks[_i].id, "w3-text-gray");
+			} else {
+				utils.addClass("#" + adminLinks[_i].id, "w3-text-gray");
+				utils.removeClass("#" + adminLinks[_i].id, "w3-text-black");
+			}
 		}
 	},
 
 	setHTML: function setHTML(selector, content) {
 		var elements = document.querySelectorAll(selector);
+		if (!elements) {
+			return;
+		}
 		for (var i = 0; i < elements.length; i++) {
-			elements[i].innerHTML = content;
+			if (content) {
+				elements[i].innerHTML = content;
+			} else {
+				elements[i].innerHTML = '';
+			}
 		}
 	},
 
@@ -248,13 +297,6 @@ var utils = {
 			var pattern = new RegExp(className, 'g');
 			elements[i].className = elements[i].className.replace(pattern, "");
 		}
-	},
-
-	hide: function hide(selector) {
-		var elements = document.querySelectorAll(selector);
-		for (var i = 0; i < elements.length; i++) {
-			elements[i].style.display = 'none';
-		}
 	}
 };
 
@@ -275,7 +317,7 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _style = __webpack_require__(11);
+var _style = __webpack_require__(19);
 
 var _style2 = _interopRequireDefault(_style);
 
@@ -286,11 +328,26 @@ var index = function () {
 	'use strict';
 
 	window.addEventListener('load', function () {
+		//redirect to /books/ or location.hash
+		location.hash = location.hash === "#/" ? '#/books/' : location.hash;
+		//ajax get books
+		var books = void 0,
+		    user = void 0;
 		var options = { method: 'GET', url: '/books/' };
 		_utils2.default.ajax(options).then(function (response) {
-			var books = JSON.parse(response);
+			books = JSON.parse(response).books;
+			//call router and pass data
 			(0, _router2.default)(books);
-			location.hash = location.hash === "#/" ? '#/books/' : location.hash;
+			var options = { method: 'GET', url: '/users/currentuser' };
+			return _utils2.default.ajax(options);
+		}).then(function (response) {
+			user = JSON.parse(response).user;
+			if (user.admin && user.admin === true) {
+				console.log(user);
+				_utils2.default.addClass('#admin-link', 'visible');
+			} else {
+				_utils2.default.removeClass('#admin-link', 'visible');
+			}
 		});
 	}, false);
 
@@ -349,20 +406,48 @@ var _book = __webpack_require__(4);
 
 var _book2 = _interopRequireDefault(_book);
 
+var _adminLogin = __webpack_require__(9);
+
+var _adminLogin2 = _interopRequireDefault(_adminLogin);
+
+var _admin = __webpack_require__(10);
+
+var _admin2 = _interopRequireDefault(_admin);
+
+var _adminHome = __webpack_require__(11);
+
+var _adminHome2 = _interopRequireDefault(_adminHome);
+
+var _adminUsers = __webpack_require__(12);
+
+var _adminUsers2 = _interopRequireDefault(_adminUsers);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var homeTemplate = __webpack_require__(9);
+var homeTemplate = __webpack_require__(13);
 //book
 
 //home
 
-var bookTemplate = __webpack_require__(10);
+var bookTemplate = __webpack_require__(14);
+//adminLogin
+
+var adminLoginTemplate = __webpack_require__(15);
+//admin
+
+var adminTemplate = __webpack_require__(16);
+//admin home
+
+var adminHomeTemplate = __webpack_require__(17);
+//admin users
+
+var adminUsersTemplate = __webpack_require__(18);
 
 //routes.js
 var router = function router(data) {
 	'use strict';
 
-	var routes = function routes(oldhash, newhash, data) {
+	var routes = function routes(newhash, data) {
 
 		var container = document.querySelector('#container');
 
@@ -377,9 +462,49 @@ var router = function router(data) {
 			_utils2.default.getTemplate(container, bookTemplate, _book2.default).then(function (controller) {
 				controller(data);
 			});
+		} else if (newhash.match(/#\/admin/) && newhash !== '#/admin/login/') {
+			//ADMIN LOGIN : if admin not connected, redirect to /admin/login
+			var user = void 0;
+			_utils2.default.checkRole().then(function (user) {
+				user = user;
+				return _utils2.default.getTemplate(container, adminTemplate, _admin2.default);
+			}).then(function (controller) {
+				_utils2.default.activeLink(); //for admin links
+				controller(user);
+			}).then(function (resolve) {
+				//ADMIN ROUTES
+				var adminContainer = document.querySelector('#admin-container');
+
+				if (newhash === '#/admin/') {
+					//ADMIN HOME
+					_utils2.default.getTemplate(adminContainer, adminHomeTemplate, _adminHome2.default).then(function (controller) {
+						controller();
+					});
+				} else if (newhash === '#/admin/users/') {
+					//ADMIN USERS
+					_utils2.default.getTemplate(adminContainer, adminUsersTemplate, _adminUsers2.default).then(function (controller) {
+						controller();
+					});
+				} else {
+					//FALLBACK
+					location.hash = '#/admin/';
+				}
+			}).catch(function (error) {
+				location.hash = '#/admin/login/';
+			});
+		} else if (newhash === '#/admin/login/') {
+			//ADMIN HOME : if admin not connected, redirect to /books
+			var _user = void 0;
+			_utils2.default.checkRole().then(function (user) {
+				location.hash = '#/admin/';
+			}).catch(function (error) {
+				_utils2.default.getTemplate(container, adminLoginTemplate, _adminLogin2.default).then(function (controller) {
+					controller();
+				});
+			});
 		} else {
 			//FALLBACK
-			location.hash = '#/';
+			location.hash = '#/books/';
 		}
 	};
 
@@ -389,17 +514,17 @@ var router = function router(data) {
 
 	var oldhash = void 0,
 	    newhash = void 0;
-	var books = data ? data : null;
+	var routerData = data ? data : null;
 
 	newhash = location.hash;
-	routes(oldhash, newhash, books);
+	routes(newhash, routerData);
 	//active link
 	_utils2.default.activeLink();
 
 	window.addEventListener('hashchange', function () {
 		oldhash = newhash;
 		newhash = location.hash;
-		routes(oldhash, newhash, books);
+		routes(newhash, routerData);
 		//active link
 		_utils2.default.activeLink();
 	}, false);
@@ -13736,24 +13861,203 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 /***/ }),
 /* 9 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<div id=home class=content> <div class=\"w3-container w3-padding-24\"> <ul id=books-list class=w3-ul> <li data-utils-repeat=\"\n\t\t\t\t<span>{{ author }} &ndash; </span>\n\t\t\t\t<a href='/#{{ path }}/read' class='w3-text-gray w3-hover-none w3-hover-text-black'>{{ title }}</a>\"> </li> </ul> </div> </div> ";
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _utils = __webpack_require__(0);
+
+var _utils2 = _interopRequireDefault(_utils);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//home.js
+var adminLogin = function adminLogin() {
+	'use strict';
+	//rootElement
+
+	var root = document.querySelector('#adminLogin');
+	//form
+	var form = root.querySelector('#adminLoginForm');
+	var inputs = form.querySelectorAll('input');
+
+	//clear errors on input
+	function onInput(event) {
+		_utils2.default.setHTML('#form-error', "");
+		if (event.target.name === 'email') {
+			_utils2.default.setHTML('#email .error', "");
+		} else if (event.target.name === 'password') {
+			_utils2.default.setHTML('#password .error', "");
+		}
+	}
+
+	for (var i = 0; i < inputs.length; i++) {
+		inputs[i].addEventListener('input', onInput, false);
+	}
+
+	//submit
+	function onSubmit(event) {
+		event.preventDefault();
+		_utils2.default.setHTML('#form-error', "");
+		_utils2.default.setHTML('#email .error', "");
+		_utils2.default.setHTML('#password .error', "");
+		var user = {};
+		user.email = form.querySelector('[name=email]').value;
+		user.password = form.querySelector('[name=password]').value;
+		var options = { method: 'POST', url: '/users/login', data: JSON.stringify(user) };
+		_utils2.default.ajax(options).then(function (res) {
+			var response = JSON.parse(res);
+			if (response.errors) {
+				_utils2.default.setHTML('#form-error', response.errors.form);
+				_utils2.default.setHTML('#email .error', response.errors.email);
+				_utils2.default.setHTML('#password .error', response.errors.password);
+			} else {
+				if (response.user.admin === true) {
+					location.hash = '#/admin/';
+				} else {
+					_utils2.default.setHTML('#form-error', "Vous n'avez pas le droit d'accéder à l'espace administration.");
+				}
+			}
+		});
+	}
+
+	form.addEventListener('submit', onSubmit, false);
+};
+
+exports.default = adminLogin;
 
 /***/ }),
 /* 10 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<div id=book> <div id=bookContainer> <div id=toc-large-device class=w3-card-4> <button id=toggle-toc-large-device type=button class=\"w3-btn w3-card-4 w3-white\">&colone;</button> <div id=toc-large-device-container class=toc-content> <p class=w3-center data-utils-bind=\"{{ author }}\"></p> <p class=\"w3-center text-uppercase\" data-utils-bind=\"{{ title }}\"></p> <div data-wb-toc class=w3-container></div> </div> </div> <div id=swing-container> <div data-wb-text-container class=w3-card-4> <div id=toc> <div data-wb-toc class=w3-container> <button id=close-toc type=button>&times;</button> <div id=toc-title class=toc-content> <p class=w3-center data-utils-bind=\"{{ author }}\"></p> <p class=\"w3-center text-uppercase\" data-utils-bind=\"{{ title }}\"></p> </div> </div> </div> <div id=top> <span class=wb-current-section-title></span> </div> <div data-wb-text></div> <div id=bottom> <a id=home href=/#/books/ class=\"w3-btn w3-text-dark-grey\">Liber</a> <span class=wb-currentByTotal-pages></span> <button type=button class=\"open-toc w3-btn w3-text-dark-grey\">&colone;</button> </div> <div id=bottom-large> <span class=wb-currentByTotal-pages></span> </div> </div> </div> <div id=book-nav-bar-bottom class=w3-bottom> <div class=\"w3-bar w3-large\"> <div id=swing-bar> <div id=book-nav-bar-bottom-controls> <button id=backward-large type=button class=\"w3-btn w3-margin-right\">&lt;</button> <button id=forward-large type=button class=\"w3-btn w3-margin-left\">&gt;</button> <button id=open-toc-large type=button class=\"open-toc w3-btn\"><span>&colone;</span></button> </div> </div> </div> </div> </div> </div> ";
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _utils = __webpack_require__(0);
+
+var _utils2 = _interopRequireDefault(_utils);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//home.js
+var admin = function admin(user) {
+	'use strict';
+	//rootElement
+
+	var root = document.querySelector('#admin');
+	_utils2.default.addClass('#admin-link', 'visible');
+};
+
+exports.default = admin;
 
 /***/ }),
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _utils = __webpack_require__(0);
+
+var _utils2 = _interopRequireDefault(_utils);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//home.js
+var adminHome = function adminHome(data) {
+	'use strict';
+	//rootElement
+
+	if (!data) {
+		return;
+	}
+	var user = data;
+};
+
+exports.default = adminHome;
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _utils = __webpack_require__(0);
+
+var _utils2 = _interopRequireDefault(_utils);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//home.js
+var adminUsers = function adminUsers() {
+	'use strict';
+	//rootElement
+};
+
+exports.default = adminUsers;
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=home class=content> <div class=\"w3-container w3-padding-24\"> <ul id=books-list class=w3-ul> <li data-utils-repeat=\"\n\t\t\t\t<span>{{ author }} &ndash; </span>\n\t\t\t\t<a href='/#{{ path }}/read' class='w3-text-gray w3-hover-none w3-hover-text-black'>{{ title }}</a>\"> </li> </ul> </div> </div> ";
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=book> <div id=bookContainer> <div id=toc-large-device class=w3-card-4> <button id=toggle-toc-large-device type=button class=\"w3-btn w3-card-4 w3-white\">&colone;</button> <div id=toc-large-device-container class=toc-content> <p class=w3-center data-utils-bind=\"{{ author }}\"></p> <p class=\"w3-center text-uppercase\" data-utils-bind=\"{{ title }}\"></p> <div data-wb-toc class=w3-container></div> </div> </div> <div id=swing-container> <div data-wb-text-container class=w3-card-4> <div id=toc> <div data-wb-toc class=w3-container> <button id=close-toc type=button>&times;</button> <div id=toc-title class=toc-content> <p class=w3-center data-utils-bind=\"{{ author }}\"></p> <p class=\"w3-center text-uppercase\" data-utils-bind=\"{{ title }}\"></p> </div> </div> </div> <div id=top> <span class=wb-current-section-title></span> </div> <div data-wb-text></div> <div id=bottom> <a id=home href=/#/books/ class=\"w3-btn w3-text-dark-grey\">Liber</a> <span class=wb-currentByTotal-pages></span> <button type=button class=\"open-toc w3-btn w3-text-dark-grey\">&colone;</button> </div> <div id=bottom-large> <span class=wb-currentByTotal-pages></span> </div> </div> </div> <div id=book-nav-bar-bottom class=w3-bottom> <div class=\"w3-bar w3-large\"> <div id=swing-bar> <div id=book-nav-bar-bottom-controls> <button id=backward-large type=button class=\"w3-btn w3-margin-right\">&lt;</button> <button id=forward-large type=button class=\"w3-btn w3-margin-left\">&gt;</button> <button id=open-toc-large type=button class=\"open-toc w3-btn\"><span>&colone;</span></button> </div> </div> </div> </div> </div> </div> ";
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=adminLogin class=content> <div class=\"w3-container w3-padding-24\"> <h4 class=w3-container>Espace administration&ensp;&ndash;&ensp;connexion</h4> <form id=adminLoginForm class=w3-container> <span class=error id=form-error></span> <p id=email> <label>Identifiant : </label> <input type=text name=email class=\"w3-input w3-border\"> <span class=error></span> </p> <p id=password> <label>Mot de passe : </label> <input type=password name=password class=\"w3-input w3-border\"> <span class=error></span> </p> <p> <button type=submit id=loginButton class=\"w3-btn w3-border\">Valider</button> </p> </form> </div> </div> ";
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=admin class=content> <div class=\"w3-container w3-padding-24\"> <h4 class=w3-container>Espace administration</h4> <nav id=admin-nav-bar-top class=\"w3-bar w3-white w3-border-top w3-border-bottom\"> <a id=admin-home href=/#/admin/ class=\"w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black\">Accueil</a> <a id=admin-users href=/#/admin/users/ class=\"w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black\">Utilisateurs</a> <a id=admin-books href=/#/admin/books/ class=\"w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black\">Ouvrages</a> </nav> <div id=admin-container></div> </div> </div> ";
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=home class=content> <div class=\"w3-container w3-padding-24\"> <p>Accueil</p> </div> </div> ";
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=home class=content> <div class=\"w3-container w3-padding-24\"> <p>Users</p> </div> </div> ";
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(12);
+var content = __webpack_require__(20);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -13761,7 +14065,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(14)(content, options);
+var update = __webpack_require__(22)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -13778,21 +14082,21 @@ if(false) {
 }
 
 /***/ }),
-/* 12 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(13)(undefined);
+exports = module.exports = __webpack_require__(21)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, "* {\n\tbox-sizing: border-box;\n}\n\nhtml {\n\twidth: 100%;\n\tpadding: 0px;\n\tmargin: 0px;\n\tborder: none;\n}\n\nbody {\n\twidth: 100%;\n\tpadding: 0px;\n\tmargin: 0px;\n\tborder: none;\n\tbackground-color: #fff;\n\tfont-family: 'Roboto', sans-serif;\n}\n\nbody.book {\n\tbackground-color: #f5f5f5;\n}\n\nh1, h2, h3 {\n\tfont-family: 'Roboto Slab', serif;\n}\n\n.text-uppercase {\n\ttext-transform:uppercase;\n}\n\n/*\nLINKS\n*/\na {\n\ttext-decoration: none;\n}\n\na:hover {\n\tcolor: #000;\n}\n\n.align-left {\n\tfloat: left;\n}\n\n\n/*\nNAV-BAR-TOP\n*/\n#nav-bar-top {\n\tdisplay: block;\n\tposition: relative;\n\ttop: 0px;\n\ttext-align: center;\n\theight: 48px;\n}\n\n#nav-bar-top.hidden {\n\tposition: fixed;\n\ttop: -1000px;\n}\n\n#brand {\n\tline-height: 27px;\n\tfont-size: 1em;\n}\n\n@media screen and (min-width: 768px) {\n\t#brand {\n\t\tfont-size: 1em;\n\t}\n}\n\n#top-title {\n\tfont-family: Georgia, serif;\n\tpadding: 8px 16px 8px 16px;\n\tline-height: 27px;\n\tmax-width: 640px;\n\tmargin: auto;\n}\n\n/*\nBOOK NAVBAR BOTTOM\n*/\n#book-nav-bar-bottom {\n\tdisplay: none;\n}\n\n@media screen and (min-width: 768px) {\n\t#book-nav-bar-bottom {\n\t\tdisplay: block;\n\t}\n}\n\n#book-nav-bar-bottom-controls {\n\tdisplay: block;\n\tposition: relative;\n\twidth: 640px;\n\tmargin: auto;\n\theight: 44px;\n\ttext-align: center;\n}\n\n#nav-bar-bottom-controls button {\n\toutline: none;\n\theight: 100%;\n}\n\n#book-nav-bar-bottom-controls button#open-toc-large.w3-btn span {\n\tdisplay: inline-block;\n\tpadding-bottom: 10px;\n}\n\n/*\na\n*/\n\na {\n\ttext-decoration: none;\n}\n\n\n/*\na.active {\n\tcolor: #000;\n}\n*/\n\n/*\nbutton\n*/\n\nbutton {\n/*\n\tpadding: 5px;\n*/\n}\n\n\n/*\ncontainer\n*/\n#container {\n\twidth: 100%;\n}\n\n/*\ncontent\n*/\n.content {\n\twidth: 100%;\n}\n\n@media only screen and (min-width: 768px) {\n\n\t.content {\n\t\tmax-width: 900px;\n\t\tmargin: auto;\n\t}\n}\n\n/*\nBOOKCONTAINER\n*/\n#bookContainer {\n\tposition: relative;\n\tfont-family: 'Georgia', serif;\n\topacity: 0.0;\n\tmargin: auto;\n\ttransition: opacity 0.5s;\n\t-webkit-transition : opacity 0.5s;\n\t-moz-transition : opacity 0.5s;\n\t-o-transition: opacity 0.5s;\n}\n\n#bookContainer.show {\n\topacity: 1.0;\n}\n\n/*\nTEXTCONTAINER\n*/\n[data-wb-text-container] {\n\tmargin: auto;\n\tbackground-color: #fff;\n\ttop: 0px;\n}\n\n@media screen and (min-width: 768px) {\n\t[data-wb-text-container] {\n\t\ttop: 30px;\n\t}\n}\n\n/*\nTOC-LARGE-DEVICE\n*/\n\n#toc-large-device {\n  position: absolute;\n  left: -33%;\n  width: 33%;\n  margin-top: 30px;\n  transition: left 0.4s;\n  -webkit-transition : left 0.4s;\n  -moz-transition : left 0.4s;\n  -o-transition: left 0.4s;\n  display: none;\n}\n\n@media screen and (min-width: 1366px) {\n\n\t#toc-large-device {\n\t\tdisplay: inline-block\n\t}\n\n}\n\n#toc-large-device.open {\n\tleft: 0px;\n}\n\n#toc-large-device-container {\n\twidth: 100%;\n\tbackground-color: #fff;\n\tz-index: 1000;\n\toverflow-y: auto;\n}\n\n#toc-large-device-container > div {\n\tbackground-color: #fff;\n\tposition: relative;\n\theight: 100%;\n\twidth: 100%;\n}\n\n/*\ntoggle toc-large-device, swing-container, swing-bar\n*/\n\n#toggle-toc-large-device {\n    position: absolute;\n\tleft: 100%;\n\ttop: 0px;\n\tmargin-left: 6px;\n\toutline: none;\n\tbackground: #fff;\n\tfont-size: 1.5em;\n}\n\n/*\nif toc-large-device.open : swing-container to left\n*/\n#swing-container {\n\tmargin-left: 0px;\n\ttransition: margin-left 0.6s;\n\t-webkit-transition : margin-left 0.6s;\n\t-moz-transition : margin-left 0.6s;\n    -o-transition: margin-left 0.6s;\n\t\n}\n\n#swing-container.left {\n\t\tmargin-left: 0px;\n\t}\n\n@media screen and (min-width: 1366px) {\n\t#swing-container.left {\n\t\tmargin-left: 33%;\n\t}\n}\n\n/*\nif toc-large-device.open : swing-bar to left\n*/\n#swing-bar {\n\tmargin-left: 0px;\n\ttransition: margin-left 0.9s;\n\t-webkit-transition : margin-left 0.9s;\n\t-moz-transition : margin-left 0.9s;\n    -o-transition: margin-left 0.9s;\n}\n\n#swing-bar.left {\n\tmargin-left: 0px;\n}\n\n@media screen and (min-width: 1366px) {\n\t#swing-bar.left {\n\t\tmargin-left: 33%;\n\t}\n}\n\n/*\nTOC\n*/\n#toc {\n\tposition: absolute;\n\ttop: -1000px;\n\twidth: 100%;\n\theight: 100%;\n\tz-index: 1000;\n\toverflow-y: auto;\n\ttransition: top 0.4s;\n\t-webkit-transition : top 0.4s;\n\t-moz-transition : top 0.4s;\n    -o-transition: top 0.4s;\n\tpadding: 0px;\n\tbackground-color: #fff;\n}\n\n#toc.open {\n\ttop: 0px;\n}\n\n#toc > div {\n\tposition: relative;\n\tbackground-color: #fff;\n}\n\n.open-toc {\n\tfloat: right;\n\tfont-size: 1.4em;\n}\n\n#open-toc-large {\n\tdisplay: inline-block;\n}\n\n@media screen and (min-width: 1366px) {\n\t#open-toc-large {\n\t\tdisplay: none;\n\t}\n}\n\n#close-toc {\n\tposition: absolute;\n\tright: 15px;\n\ttop: 5px;\n\tmin-width: 25px;\n\tpadding: 0;\n\tborder: none;\n\tbackground-color: transparent;\n\tfont-family: 'Helvetica', sans-serif;\n\tfont-size: 1.2em;\n\tcolor: #424242;\n}\n\n#toc-title {\n\tmargin-bottom: 30px;\n\tmargin-top: 20px\n}\n\n#toc-title p {\n\tmargin: 0px;\n}\n/*\ntoc list\n*/\n#toc ul, #toc-large-device ul {\n\tpadding: 0px;\n}\n\n#toc li, #toc-large-device li {\n\tlist-style-type: none;\n\tpadding: .5em .5em;\n}\n\n#toc a.wb-link, #toc-large-device a.wb-link {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: gray;\n}\n\n#toc a.wb-link:hover, #toc-large-device a.wb-link:hover {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: #000;\n}\n\n#toc li.current a.wb-link, #toc-large-device li.current a.wb-link {\n\tcolor: #000;\n\toutline: none;\n\tfont-style: italic;\n}\n\n#toc [data-wb-element-page-number], #toc-large-device [data-wb-element-page-number] {\n\tfloat: right;\n}\n\n/*\nTOP\n*/\n#top {\n\tposition: absolute;\n\ttop: 0px;\n\tbox-sizing: border-box;\n\t-webkit-box-sizing: border-box;\n\t-moz-box-sizing: border-box;\n\tpadding-top: 8px;\n\ttext-align: center;\n\twidth: 100%;\n\theight: 30px;\n}\n\n#top .wb-current-section-title {\n\tfont-size: 0.8em;\n}\n\n/*\nBOTTOM\n*/\n#bottom {\n\tposition: absolute;\n\tbottom: 5px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tz-index: 500;\n}\n\n#bottom-large {\n\tposition: absolute;\n\tbottom: -9999px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tz-index: 500;\n}\n\n@media screen and (min-width: 768px) {\n\t\t\n\t#bottom {\n\t\tbottom: -9999px\n\t}\n\t\n\t#bottom-large {\n\t\tbottom: 5px;\n\t}\n}\n\n#bottom button, #bottom a, #bottom span {\n\tdisplay: inline-block;\n\tborder: none;\n\tbackground-color: transparent;\n\tmargin-right: 10px;\n\tmargin-left: 10px;\n\tmin-width: 25px;\n\theight: 100%;\n\tpadding: 0;\n\tfont-size: 1.2em;\n}\n\n#bottom button.open-toc {\n\tfont-size: 1.5em;\n}\n\n#bottom a#home {\n\tfloat: left;\n\ttext-decoration: none;\n\tmargin-top: 6px;\n\tfont-size: 0.9em;\n\tfont-family: 'Roboto', sans-serif;\n}\n\n#bottom span {\n\tmin-width: 42px;\n\tmargin: 0px;\n\tmargin-top: 6px;\n\tfont-size: 1em;\n}\n\n/*\nTEXT\n*/\n[data-wb-text] {\n\tfont-size: 14px;\n\tline-height: 1.5em;\n\ttext-align: justify;\n\ttext-justify: inter-word;\n}\n\n@media screen and (min-width: 768px) {\n    [data-wb-text] {\n        font-size: 16px;\n        line-height: 1.5em;\n    }\n}\n\n[data-wb-text] p {\n\tmargin-bottom: 0px;\n\tmargin-top: 1.5em;\n}\n\n[data-wb-text] a.wb-link {\n\tborder-bottom: 1px dotted black;\n}\n\n/*\nINSIDE TEXT\n*/\n/*\nTITLES\n*/\n.section-title, .note-title, .table-title, .wb-toc-title {\n\tfont-size: 1.25em;\n\ttext-align: left;\n}\n\n.section-subtitle {\n\tfont-size: 1em;\n}\n\np.section-title {\n\tpadding-top: 3.5em;\n\tmargin-top: 0px;\n}\n\n#titre.wb-section {\n\ttext-align: center;\n\tline-height: 1.8em;\n}\n\n.book-title {\n\tfont-size: 1.25em;\n\tpadding-top: 5%;\n\ttext-transform:uppercase;\n}\n\n.book-subtitle, .book-author {\n\tfont-size: 1.1em;\n}\n\n/*\nTABLE DES MATIÈRES\n*/\n#table ul {\n\tpadding: 0px;\n}\n\n#table li {\n\tlist-style-type: none;\n\tpadding: .5em .5em;\n}\n\n#table a.wb-link {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n}\n\n#table [data-wb-element-page-number] {\n\tfloat: right;\n}\n\n#fin {\n\ttext-align: center;\n\t\n}\n\n#fin p {\n\tpadding-top: 20%;\n}\n\n\n\n\n\n/*\nerror messages\n*/\n.error {\n\tcolor: #ff0000;\n\tfont-size: 0.85em;\n}\n\n.hidden {\n\tdisplay: none;\n}\n\n.visible {\n\tdisplay: block;\n}\n", ""]);
+exports.push([module.i, "* {\n\tbox-sizing: border-box;\n}\n\nhtml {\n\twidth: 100%;\n\tpadding: 0px;\n\tmargin: 0px;\n\tborder: none;\n}\n\nbody {\n\twidth: 100%;\n\tpadding: 0px;\n\tmargin: 0px;\n\tborder: none;\n\tbackground-color: #fff;\n\tfont-family: 'Roboto', sans-serif;\n}\n\nbody.book {\n\tbackground-color: #f5f5f5;\n}\n\n.text-uppercase {\n\ttext-transform:uppercase;\n}\n\n/*\nLINKS\n*/\na {\n\ttext-decoration: none;\n}\n\na:hover {\n\tcolor: #000;\n}\n\n.align-left {\n\tfloat: left;\n}\n\n.align-right {\n\tfloat: right;\n}\n\n\n/*\nNAV-BAR-TOP\n*/\n#nav-bar-top {\n\tdisplay: block;\n\tposition: relative;\n\ttop: 0px;\n\ttext-align: center;\n\theight: 48px;\n}\n\n#nav-bar-top.hidden {\n\tposition: fixed;\n\ttop: -1000px;\n}\n\n#home-link {\n\tline-height: 27px;\n\tfont-size: 1em;\n}\n\n#admin-link {\n\tline-height: 27px;\n\tfont-size: 1em;\n\tdisplay: none\n}\n\n#admin-link.visible {\n\tdisplay: inline-block;\n}\n\n#top-title {\n\tfont-family: Georgia, serif;\n\tpadding: 8px 16px 8px 16px;\n\tline-height: 27px;\n\tmax-width: 640px;\n\tmargin: auto;\n}\n\n\n\n/*\nBOOK NAVBAR BOTTOM\n*/\n#book-nav-bar-bottom {\n\tdisplay: none;\n}\n\n@media screen and (min-width: 768px) {\n\t#book-nav-bar-bottom {\n\t\tdisplay: block;\n\t}\n}\n\n#book-nav-bar-bottom-controls {\n\tdisplay: block;\n\tposition: relative;\n\twidth: 640px;\n\tmargin: auto;\n\theight: 44px;\n\ttext-align: center;\n}\n\n#nav-bar-bottom-controls button {\n\toutline: none;\n\theight: 100%;\n}\n\n#book-nav-bar-bottom-controls button#open-toc-large.w3-btn span {\n\tdisplay: inline-block;\n\tpadding-bottom: 10px;\n}\n\n/*\na\n*/\n\na {\n\ttext-decoration: none;\n}\n\n\n/*\na.active {\n\tcolor: #000;\n}\n*/\n\n/*\nbutton\n*/\n\nbutton {\n/*\n\tpadding: 5px;\n*/\n}\n\n\n/*\ncontainer\n*/\n#container, #admin-container {\n\twidth: 100%;\n}\n\n/*\ncontent\n*/\n.content {\n\twidth: 100%;\n}\n\n@media only screen and (min-width: 768px) {\n\n\t.content {\n\t\tmax-width: 900px;\n\t\tmargin: auto;\n\t}\n}\n\n/*\nBOOKCONTAINER\n*/\n#bookContainer {\n\tposition: relative;\n\tfont-family: 'Georgia', serif;\n\topacity: 0.0;\n\tmargin: auto;\n\ttransition: opacity 0.5s;\n\t-webkit-transition : opacity 0.5s;\n\t-moz-transition : opacity 0.5s;\n\t-o-transition: opacity 0.5s;\n}\n\n#bookContainer.show {\n\topacity: 1.0;\n}\n\n/*\nTEXTCONTAINER\n*/\n[data-wb-text-container] {\n\tmargin: auto;\n\tbackground-color: #fff;\n\ttop: 0px;\n}\n\n@media screen and (min-width: 768px) {\n\t[data-wb-text-container] {\n\t\ttop: 30px;\n\t}\n}\n\n/*\nTOC-LARGE-DEVICE\n*/\n\n#toc-large-device {\n  position: absolute;\n  left: -33%;\n  width: 33%;\n  margin-top: 30px;\n  transition: left 0.4s;\n  -webkit-transition : left 0.4s;\n  -moz-transition : left 0.4s;\n  -o-transition: left 0.4s;\n  display: none;\n}\n\n@media screen and (min-width: 1366px) {\n\n\t#toc-large-device {\n\t\tdisplay: inline-block\n\t}\n\n}\n\n#toc-large-device.open {\n\tleft: 0px;\n}\n\n#toc-large-device-container {\n\twidth: 100%;\n\tbackground-color: #fff;\n\tz-index: 1000;\n\toverflow-y: auto;\n}\n\n#toc-large-device-container > div {\n\tbackground-color: #fff;\n\tposition: relative;\n\theight: 100%;\n\twidth: 100%;\n}\n\n/*\ntoggle toc-large-device, swing-container, swing-bar\n*/\n\n#toggle-toc-large-device {\n    position: absolute;\n\tleft: 100%;\n\ttop: 0px;\n\tmargin-left: 6px;\n\toutline: none;\n\tbackground: #fff;\n\tfont-size: 1.5em;\n}\n\n/*\nif toc-large-device.open : swing-container to left\n*/\n#swing-container {\n\tmargin-left: 0px;\n\ttransition: margin-left 0.6s;\n\t-webkit-transition : margin-left 0.6s;\n\t-moz-transition : margin-left 0.6s;\n    -o-transition: margin-left 0.6s;\n\t\n}\n\n#swing-container.left {\n\t\tmargin-left: 0px;\n\t}\n\n@media screen and (min-width: 1366px) {\n\t#swing-container.left {\n\t\tmargin-left: 33%;\n\t}\n}\n\n/*\nif toc-large-device.open : swing-bar to left\n*/\n#swing-bar {\n\tmargin-left: 0px;\n\ttransition: margin-left 0.9s;\n\t-webkit-transition : margin-left 0.9s;\n\t-moz-transition : margin-left 0.9s;\n    -o-transition: margin-left 0.9s;\n}\n\n#swing-bar.left {\n\tmargin-left: 0px;\n}\n\n@media screen and (min-width: 1366px) {\n\t#swing-bar.left {\n\t\tmargin-left: 33%;\n\t}\n}\n\n/*\nTOC\n*/\n#toc {\n\tposition: absolute;\n\ttop: -1000px;\n\twidth: 100%;\n\theight: 100%;\n\tz-index: 1000;\n\toverflow-y: auto;\n\ttransition: top 0.4s;\n\t-webkit-transition : top 0.4s;\n\t-moz-transition : top 0.4s;\n    -o-transition: top 0.4s;\n\tpadding: 0px;\n\tbackground-color: #fff;\n}\n\n#toc.open {\n\ttop: 0px;\n}\n\n#toc > div {\n\tposition: relative;\n\tbackground-color: #fff;\n}\n\n.open-toc {\n\tfloat: right;\n\tfont-size: 1.4em;\n}\n\n#open-toc-large {\n\tdisplay: inline-block;\n}\n\n@media screen and (min-width: 1366px) {\n\t#open-toc-large {\n\t\tdisplay: none;\n\t}\n}\n\n#close-toc {\n\tposition: absolute;\n\tright: 15px;\n\ttop: 5px;\n\tmin-width: 25px;\n\tpadding: 0;\n\tborder: none;\n\tbackground-color: transparent;\n\tfont-family: 'Helvetica', sans-serif;\n\tfont-size: 1.2em;\n\tcolor: #424242;\n}\n\n#toc-title {\n\tmargin-bottom: 30px;\n\tmargin-top: 20px\n}\n\n#toc-title p {\n\tmargin: 0px;\n}\n/*\ntoc list\n*/\n#toc ul, #toc-large-device ul {\n\tpadding: 0px;\n}\n\n#toc li, #toc-large-device li {\n\tlist-style-type: none;\n\tpadding: .5em .5em;\n}\n\n#toc a.wb-link, #toc-large-device a.wb-link {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: gray;\n}\n\n#toc a.wb-link:hover, #toc-large-device a.wb-link:hover {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: #000;\n}\n\n#toc li.current a.wb-link, #toc-large-device li.current a.wb-link {\n\tcolor: #000;\n\toutline: none;\n\tfont-style: italic;\n}\n\n#toc [data-wb-element-page-number], #toc-large-device [data-wb-element-page-number] {\n\tfloat: right;\n}\n\n/*\nTOP\n*/\n#top {\n\tposition: absolute;\n\ttop: 0px;\n\tbox-sizing: border-box;\n\t-webkit-box-sizing: border-box;\n\t-moz-box-sizing: border-box;\n\tpadding-top: 8px;\n\ttext-align: center;\n\twidth: 100%;\n\theight: 30px;\n}\n\n#top .wb-current-section-title {\n\tfont-size: 0.8em;\n}\n\n/*\nBOTTOM\n*/\n#bottom {\n\tposition: absolute;\n\tbottom: 5px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tz-index: 500;\n}\n\n#bottom-large {\n\tposition: absolute;\n\tbottom: -9999px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tz-index: 500;\n}\n\n@media screen and (min-width: 768px) {\n\t\t\n\t#bottom {\n\t\tbottom: -9999px\n\t}\n\t\n\t#bottom-large {\n\t\tbottom: 5px;\n\t}\n}\n\n#bottom button, #bottom a, #bottom span {\n\tdisplay: inline-block;\n\tborder: none;\n\tbackground-color: transparent;\n\tmargin-right: 10px;\n\tmargin-left: 10px;\n\tmin-width: 25px;\n\theight: 100%;\n\tpadding: 0;\n\tfont-size: 1.2em;\n}\n\n#bottom button.open-toc {\n\tfont-size: 1.5em;\n}\n\n#bottom a#home {\n\tfloat: left;\n\ttext-decoration: none;\n\tmargin-top: 6px;\n\tfont-size: 0.9em;\n\tfont-family: 'Roboto', sans-serif;\n}\n\n#bottom span {\n\tmin-width: 42px;\n\tmargin: 0px;\n\tmargin-top: 6px;\n\tfont-size: 1em;\n}\n\n/*\nTEXT\n*/\n[data-wb-text] {\n\tfont-size: 14px;\n\tline-height: 1.5em;\n\ttext-align: justify;\n\ttext-justify: inter-word;\n}\n\n@media screen and (min-width: 768px) {\n    [data-wb-text] {\n        font-size: 16px;\n        line-height: 1.5em;\n    }\n}\n\n[data-wb-text] p {\n\tmargin-bottom: 0px;\n\tmargin-top: 1.5em;\n}\n\n[data-wb-text] a.wb-link {\n\tborder-bottom: 1px dotted black;\n}\n\n/*\nINSIDE TEXT\n*/\n/*\nTITLES\n*/\n.section-title, .note-title, .table-title, .wb-toc-title {\n\tfont-size: 1.25em;\n\ttext-align: left;\n}\n\n.section-subtitle {\n\tfont-size: 1em;\n}\n\np.section-title {\n\tpadding-top: 3.5em;\n\tmargin-top: 0px;\n}\n\n#titre.wb-section {\n\ttext-align: center;\n\tline-height: 1.8em;\n}\n\n.book-title {\n\tfont-size: 1.25em;\n\tpadding-top: 5%;\n\ttext-transform:uppercase;\n}\n\n.book-subtitle, .book-author {\n\tfont-size: 1.1em;\n}\n\n/*\nTABLE DES MATIÈRES\n*/\n#table ul {\n\tpadding: 0px;\n}\n\n#table li {\n\tlist-style-type: none;\n\tpadding: .5em .5em;\n}\n\n#table a.wb-link {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n}\n\n#table [data-wb-element-page-number] {\n\tfloat: right;\n}\n\n#fin {\n\ttext-align: center;\n\t\n}\n\n#fin p {\n\tpadding-top: 20%;\n}\n\n\n\n\n\n/*\nerror messages\n*/\n.error {\n\tdisplay: inline-block;\n\tline-height: 0.85em;\n\tcolor: #ff0000;\n\tfont-size: 0.85em;\n}\n\n.hidden {\n\tdisplay: none;\n}\n\n.visible {\n\tdisplay: block;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 13 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13874,7 +14178,7 @@ function toComment(sourceMap) {
 }
 
 /***/ }),
-/* 14 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -13930,7 +14234,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(15);
+var	fixUrls = __webpack_require__(23);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -14246,7 +14550,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 15 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
