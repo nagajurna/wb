@@ -65,6 +65,7 @@ const utils = {
 	//active link : change class
 	activeLink: () => {
 		'use strict';
+		//index (nav-bar-top) links
 		let root = document.querySelector("#nav-bar-top");
 		let links = root.querySelectorAll("a");
 		for(let i=0; i<links.length; i++) {
@@ -76,6 +77,7 @@ const utils = {
 				utils.removeClass("#" + links[i].id, "w3-text-black");
 			}
 			
+			//admin-link
 			if(location.hash.match(/#\/admin/)) {
 				if(links[i].href.match(/#\/admin/)) {
 					utils.addClass("#" + links[i].id, "w3-text-black");
@@ -87,7 +89,7 @@ const utils = {
 			}
 		}
 		
-		
+		//admin (admin-nav-bar-top) links
 		if(!document.querySelector("#admin-nav-bar-top")) { return; }
 		let adminRoot = document.querySelector("#admin-nav-bar-top");
 		let adminLinks = adminRoot.querySelectorAll("a");

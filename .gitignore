@@ -7,9 +7,6 @@ npm-debug.log
 *.dev
 .DS_Store
 
-# Sessions
-sessions
-
 # Docker
 Dockerfile
 docker-compose.yml

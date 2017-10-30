@@ -1,4 +1,5 @@
 import utils from './services/utils';
+import dataStore from './services/dataStore';
 //home
 import home from './components/home/home';
 var homeTemplate = require('./components/home/home.html');
@@ -17,6 +18,9 @@ var adminHomeTemplate = require('./components/admin/components/adminHome/adminHo
 //admin users
 import adminUsers from './components/admin/components/adminUsers/adminUsers';
 var adminUsersTemplate = require('./components/admin/components/adminUsers/adminUsers.html');
+//admin books
+import adminBooks from './components/admin/components/adminBooks/adminBooks';
+var adminBooksTemplate = require('./components/admin/components/adminBooks/adminBooks.html');
 
 //routes.js
 const router  = function() {
@@ -46,8 +50,8 @@ const router  = function() {
 				return utils.getTemplate(container, adminTemplate, admin)
 			})
 			.then( controller => { 
-					utils.activeLink();//for admin links
-					controller(user);
+				utils.activeLink();//for admin links
+				controller(user); 
 			})
 			.then ( resolve => {
 				//ADMIN ROUTES
@@ -62,6 +66,12 @@ const router  = function() {
 					//ADMIN USERS
 					utils.getTemplate(adminContainer, adminUsersTemplate, adminUsers)
 					.then( controller => { controller(); });
+					
+				} else if(newhash === '#/admin/books/') {
+					//ADMIN USERS
+					utils.getTemplate(adminContainer, adminBooksTemplate, adminBooks)
+					.then( controller => { controller(); });
+						
 				} else {
 					//FALLBACK
 					location.hash = '#/admin/';
@@ -98,6 +108,7 @@ const router  = function() {
 	let oldhash, newhash;
 	
 	newhash = location.hash;
+	dataStore.setData('location', { prevLocation: oldhash, newLocation: newhash });
 	routes(oldhash, newhash);
 	//active link
 	utils.activeLink();
@@ -106,6 +117,7 @@ const router  = function() {
 	window.addEventListener('hashchange', function() {
 		oldhash = newhash;
 		newhash = location.hash;
+		dataStore.setData('location', { prevLocation: oldhash, newLocation: newhash });
 		routes(oldhash, newhash);
 		//active link
 		utils.activeLink();

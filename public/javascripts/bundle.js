@@ -143,6 +143,7 @@ var utils = {
 	//active link : change class
 	activeLink: function activeLink() {
 		'use strict';
+		//index (nav-bar-top) links
 
 		var root = document.querySelector("#nav-bar-top");
 		var links = root.querySelectorAll("a");
@@ -155,6 +156,7 @@ var utils = {
 				utils.removeClass("#" + links[i].id, "w3-text-black");
 			}
 
+			//admin-link
 			if (location.hash.match(/#\/admin/)) {
 				if (links[i].href.match(/#\/admin/)) {
 					utils.addClass("#" + links[i].id, "w3-text-black");
@@ -166,6 +168,7 @@ var utils = {
 			}
 		}
 
+		//admin (admin-nav-bar-top) links
 		if (!document.querySelector("#admin-nav-bar-top")) {
 			return;
 		}
@@ -349,7 +352,7 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _style = __webpack_require__(20);
+var _style = __webpack_require__(22);
 
 var _style2 = _interopRequireDefault(_style);
 
@@ -363,17 +366,9 @@ var index = function () {
 		//redirect to /books/ or location.hash
 		location.hash = location.hash === "#/" ? '#/books/' : location.hash;
 
-		//ajax get books
-		var options = { method: 'GET', url: '/books/' };
+		//ajax get currentUser
+		var options = { method: 'GET', url: '/users/currentuser' };
 		_utils2.default.ajax(options).then(function (response) {
-			var books = JSON.parse(response).books;
-			//pass books to store
-			_dataStore2.default.setData('books', books);
-
-			//ajax get currentUser
-			var options = { method: 'GET', url: '/users/currentuser' };
-			return _utils2.default.ajax(options);
-		}).then(function (response) {
 			var user = JSON.parse(response).user;
 			//pass currentUser to store
 			_dataStore2.default.setData('currentUser', user);
@@ -383,6 +378,22 @@ var index = function () {
 			} else {
 				_utils2.default.removeClass('#admin-link', 'visible');
 			}
+
+			//ajax get books
+			var options = { method: 'GET', url: '/books/' };
+			return _utils2.default.ajax(options);
+		}).then(function (response) {
+			var books = JSON.parse(response).books;
+			//pass books to store
+			_dataStore2.default.setData('books', books);
+
+			//ajax get books
+			var options = { method: 'GET', url: '/users/' };
+			return _utils2.default.ajax(options);
+		}).then(function (response) {
+			var users = JSON.parse(response).users;
+			//pass users to store
+			_dataStore2.default.setData('users', users);
 
 			return 'done';
 		}).then(function (resolve) {
@@ -438,6 +449,10 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
+var _dataStore = __webpack_require__(1);
+
+var _dataStore2 = _interopRequireDefault(_dataStore);
+
 var _home = __webpack_require__(4);
 
 var _home2 = _interopRequireDefault(_home);
@@ -462,26 +477,33 @@ var _adminUsers = __webpack_require__(13);
 
 var _adminUsers2 = _interopRequireDefault(_adminUsers);
 
+var _adminBooks = __webpack_require__(14);
+
+var _adminBooks2 = _interopRequireDefault(_adminBooks);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var homeTemplate = __webpack_require__(14);
+var homeTemplate = __webpack_require__(15);
 //book
 
 //home
 
-var bookTemplate = __webpack_require__(15);
+var bookTemplate = __webpack_require__(16);
 //adminLogin
 
-var adminLoginTemplate = __webpack_require__(16);
+var adminLoginTemplate = __webpack_require__(17);
 //admin
 
-var adminTemplate = __webpack_require__(17);
+var adminTemplate = __webpack_require__(18);
 //admin home
 
-var adminHomeTemplate = __webpack_require__(18);
+var adminHomeTemplate = __webpack_require__(19);
 //admin users
 
-var adminUsersTemplate = __webpack_require__(19);
+var adminUsersTemplate = __webpack_require__(20);
+//admin books
+
+var adminBooksTemplate = __webpack_require__(21);
 
 //routes.js
 var router = function router() {
@@ -525,6 +547,11 @@ var router = function router() {
 					_utils2.default.getTemplate(adminContainer, adminUsersTemplate, _adminUsers2.default).then(function (controller) {
 						controller();
 					});
+				} else if (newhash === '#/admin/books/') {
+					//ADMIN USERS
+					_utils2.default.getTemplate(adminContainer, adminBooksTemplate, _adminBooks2.default).then(function (controller) {
+						controller();
+					});
 				} else {
 					//FALLBACK
 					location.hash = '#/admin/';
@@ -556,6 +583,7 @@ var router = function router() {
 	    newhash = void 0;
 
 	newhash = location.hash;
+	_dataStore2.default.setData('location', { prevLocation: oldhash, newLocation: newhash });
 	routes(oldhash, newhash);
 	//active link
 	_utils2.default.activeLink();
@@ -563,6 +591,7 @@ var router = function router() {
 	window.addEventListener('hashchange', function () {
 		oldhash = newhash;
 		newhash = location.hash;
+		_dataStore2.default.setData('location', { prevLocation: oldhash, newLocation: newhash });
 		routes(oldhash, newhash);
 		//active link
 		_utils2.default.activeLink();
@@ -13963,6 +13992,7 @@ var adminLogin = function adminLogin() {
 			} else {
 				_dataStore2.default.setData('currentUser', response.user);
 				if (response.user.admin === true) {
+					_utils2.default.addClass('#admin-link', 'visible');
 					location.hash = '#/admin/';
 				} else {
 					_utils2.default.setHTML('#form-error', "Vous n'avez pas le droit d'accéder à l'espace administration.");
@@ -13999,7 +14029,6 @@ var admin = function admin(user) {
 	//rootElement
 
 	var root = document.querySelector('#admin');
-	_utils2.default.addClass('#admin-link', 'visible');
 };
 
 exports.default = admin;
@@ -14019,6 +14048,10 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
+var _dataStore = __webpack_require__(1);
+
+var _dataStore2 = _interopRequireDefault(_dataStore);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //home.js
@@ -14032,6 +14065,17 @@ var adminHome = function adminHome(data) {
 	}
 	var user = data;
 	_utils2.default.bind(root, user);
+
+	function logout() {
+		var options = { method: 'GET', url: '/users/logout' };
+		_utils2.default.ajax(options).then(function (response) {
+			_dataStore2.default.setData('currentUser', JSON.parse(response).user);
+			_utils2.default.removeClass('#admin-link', 'visible');
+			location.hash = '#/books/';
+		});
+	}
+
+	root.querySelector('#logout-btn').addEventListener('click', logout, false);
 };
 
 exports.default = adminHome;
@@ -14063,48 +14107,79 @@ exports.default = adminUsers;
 
 /***/ }),
 /* 14 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<div id=home class=content> <div class=\"w3-container w3-padding-24\"> <ul id=books-list class=w3-ul> <li data-utils-repeat=\"\n\t\t\t\t<span>{{ author }} &ndash; </span>\n\t\t\t\t<a href='/#{{ path }}/read' class='w3-text-gray w3-hover-none w3-hover-text-black'>{{ title }}</a>\"> </li> </ul> </div> </div> ";
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _utils = __webpack_require__(0);
+
+var _utils2 = _interopRequireDefault(_utils);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//home.js
+var adminBooks = function adminBooks() {
+	'use strict';
+	//rootElement
+};
+
+exports.default = adminBooks;
 
 /***/ }),
 /* 15 */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=book> <div id=bookContainer> <div id=toc-large-device class=w3-card-4> <button id=toggle-toc-large-device type=button class=\"w3-btn w3-card-4 w3-white\">&colone;</button> <div id=toc-large-device-container class=toc-content> <p class=w3-center data-utils-bind=\"{{ author }}\"></p> <p class=\"w3-center text-uppercase\" data-utils-bind=\"{{ title }}\"></p> <div data-wb-toc class=w3-container></div> </div> </div> <div id=swing-container> <div data-wb-text-container class=w3-card-4> <div id=toc> <div data-wb-toc class=w3-container> <button id=close-toc type=button>&times;</button> <div id=toc-title class=toc-content> <p class=w3-center data-utils-bind=\"{{ author }}\"></p> <p class=\"w3-center text-uppercase\" data-utils-bind=\"{{ title }}\"></p> </div> </div> </div> <div id=top> <span class=wb-current-section-title></span> </div> <div data-wb-text></div> <div id=bottom> <a id=home href=/#/books/ class=\"w3-btn w3-text-dark-grey\">Liber</a> <span class=wb-currentByTotal-pages></span> <button type=button class=\"open-toc w3-btn w3-text-dark-grey\">&colone;</button> </div> <div id=bottom-large> <span class=wb-currentByTotal-pages></span> </div> </div> </div> <div id=book-nav-bar-bottom class=w3-bottom> <div class=\"w3-bar w3-large\"> <div id=swing-bar> <div id=book-nav-bar-bottom-controls> <button id=backward-large type=button class=\"w3-btn w3-margin-right\">&lt;</button> <button id=forward-large type=button class=\"w3-btn w3-margin-left\">&gt;</button> <button id=open-toc-large type=button class=\"open-toc w3-btn\"><span>&colone;</span></button> </div> </div> </div> </div> </div> </div> ";
+module.exports = "<div id=home class=content> <div class=\"w3-container w3-padding-24\"> <ul id=books-list class=w3-ul> <li data-utils-repeat=\"\n\t\t\t\t<span>{{ author }} &ndash; </span>\n\t\t\t\t<a href='/#{{ path }}/read' class='w3-text-gray w3-hover-none w3-hover-text-black'>{{ title }}</a>\"> </li> </ul> </div> </div> ";
 
 /***/ }),
 /* 16 */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=adminLogin class=content> <div class=\"w3-container w3-padding-24\"> <h4 class=w3-container>Espace administration&ensp;&ndash;&ensp;connexion</h4> <form id=adminLoginForm class=w3-container> <span class=error id=form-error></span> <p id=email> <label>Identifiant : </label> <input type=text name=email class=\"w3-input w3-border\"> <span class=error></span> </p> <p id=password> <label>Mot de passe : </label> <input type=password name=password class=\"w3-input w3-border\"> <span class=error></span> </p> <p> <button type=submit id=loginButton class=\"w3-btn w3-border\">Valider</button> </p> </form> </div> </div> ";
+module.exports = "<div id=book> <div id=bookContainer> <div id=toc-large-device class=w3-card-4> <button id=toggle-toc-large-device type=button class=\"w3-btn w3-card-4 w3-white\">&colone;</button> <div id=toc-large-device-container class=toc-content> <p class=w3-center data-utils-bind=\"{{ author }}\"></p> <p class=\"w3-center text-uppercase\" data-utils-bind=\"{{ title }}\"></p> <div data-wb-toc class=w3-container></div> </div> </div> <div id=swing-container> <div data-wb-text-container class=w3-card-4> <div id=toc> <div data-wb-toc class=w3-container> <button id=close-toc type=button>&times;</button> <div id=toc-title class=toc-content> <p class=w3-center data-utils-bind=\"{{ author }}\"></p> <p class=\"w3-center text-uppercase\" data-utils-bind=\"{{ title }}\"></p> </div> </div> </div> <div id=top> <span class=wb-current-section-title></span> </div> <div data-wb-text></div> <div id=bottom> <a id=home href=/#/books/ class=\"w3-btn w3-text-dark-grey\">Liber</a> <span class=wb-currentByTotal-pages></span> <button type=button class=\"open-toc w3-btn w3-text-dark-grey\">&colone;</button> </div> <div id=bottom-large> <span class=wb-currentByTotal-pages></span> </div> </div> </div> <div id=book-nav-bar-bottom class=w3-bottom> <div class=\"w3-bar w3-large\"> <div id=swing-bar> <div id=book-nav-bar-bottom-controls> <button id=backward-large type=button class=\"w3-btn w3-margin-right\">&lt;</button> <button id=forward-large type=button class=\"w3-btn w3-margin-left\">&gt;</button> <button id=open-toc-large type=button class=\"open-toc w3-btn\"><span>&colone;</span></button> </div> </div> </div> </div> </div> </div> ";
 
 /***/ }),
 /* 17 */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=admin class=content> <div class=\"w3-container w3-padding-24\"> <h4 class=w3-container>Espace administration</h4> <nav id=admin-nav-bar-top class=\"w3-bar w3-white w3-border-top w3-border-bottom\"> <a id=admin-home href=/#/admin/ class=\"w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black\">Accueil</a> <a id=admin-users href=/#/admin/users/ class=\"w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black\">Utilisateurs</a> <a id=admin-books href=/#/admin/books/ class=\"w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black\">Ouvrages</a> </nav> <div id=admin-container></div> </div> </div> ";
+module.exports = "<div id=adminLogin class=content> <div class=\"w3-container w3-padding-24\"> <h4 class=w3-container>Espace administration&ensp;&ndash;&ensp;connexion</h4> <form id=adminLoginForm class=w3-container> <span class=error id=form-error></span> <p id=email> <label>Identifiant : </label> <input type=text name=email class=\"w3-input w3-border\"> <span class=error></span> </p> <p id=password> <label>Mot de passe : </label> <input type=password name=password class=\"w3-input w3-border\"> <span class=error></span> </p> <p> <button type=submit id=loginButton class=\"w3-btn w3-border\">Valider</button> </p> </form> </div> </div> ";
 
 /***/ }),
 /* 18 */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=adminHome class=content> <div class=\"w3-container w3-padding-24\"> <p data-utils-bind=\"{{ name }}\"></p> <p data-utils-bind=\"{{ email }}\"></p> </div> </div> ";
+module.exports = "<div id=admin class=content> <div class=\"w3-container w3-padding-24\"> <h4 class=w3-container>Espace administration</h4> <nav id=admin-nav-bar-top class=\"w3-bar w3-white w3-border-top w3-border-bottom\"> <a id=admin-home href=/#/admin/ class=\"w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black\">Accueil</a> <a id=admin-users href=/#/admin/users/ class=\"w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black\">Utilisateurs</a> <a id=admin-books href=/#/admin/books/ class=\"w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black\">Ouvrages</a> </nav> <div id=admin-container></div> </div> </div> ";
 
 /***/ }),
 /* 19 */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=home class=content> <div class=\"w3-container w3-padding-24\"> <p>Users</p> </div> </div> ";
+module.exports = "<div id=adminHome class=content> <div class=\"w3-container w3-padding-24\"> <p><button id=logout-btn type=button class=\"w3-button w3-button w3-text-gray w3-hover-none w3-hover-text-black align-right\" style=vertical-align:top;margin-top:-8px>Déconnexion</button></p> <p data-utils-bind=\"{{ name }}\"></p> <p data-utils-bind=\"{{ email }}\"></p> </div> </div> ";
 
 /***/ }),
 /* 20 */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=adminUsers class=content> <div class=\"w3-container w3-padding-24\"> <p>Users</p> </div> </div> ";
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=adminBooks class=content> <div class=\"w3-container w3-padding-24\"> <p>Books</p> </div> </div> ";
+
+/***/ }),
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(21);
+var content = __webpack_require__(23);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -14112,7 +14187,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(23)(content, options);
+var update = __webpack_require__(25)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -14129,10 +14204,10 @@ if(false) {
 }
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(22)(undefined);
+exports = module.exports = __webpack_require__(24)(undefined);
 // imports
 
 
@@ -14143,7 +14218,7 @@ exports.push([module.i, "/*\nBOOK NAVBAR BOTTOM\n*/\n#book-nav-bar-bottom {\n\td
 
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14225,7 +14300,7 @@ function toComment(sourceMap) {
 }
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -14281,7 +14356,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(24);
+var	fixUrls = __webpack_require__(26);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -14597,7 +14672,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

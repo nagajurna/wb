@@ -10,19 +10,10 @@ const index = (function() {
 		//redirect to /books/ or location.hash
 		location.hash = location.hash === "#/" ? '#/books/' : location.hash;
 		
-		//ajax get books
-		let options = { method: 'GET', url: '/books/' };
+		//ajax get currentUser
+		let options = { method: 'GET', url: '/users/currentuser' };
 		utils.ajax(options)
 		.then( response => {
-			let books = JSON.parse(response).books;
-			//pass books to store
-			dataStore.setData('books', books);
-			
-			//ajax get currentUser
-			let options = { method: 'GET', url: '/users/currentuser' };
-			return utils.ajax(options)
-			
-		}).then ( response => {
 			let user = JSON.parse(response).user;
 			//pass currentUser to store
 			dataStore.setData('currentUser', user);
@@ -31,7 +22,25 @@ const index = (function() {
 				utils.addClass('#admin-link', 'visible');
 			} else {
 				utils.removeClass('#admin-link', 'visible');
-			}
+			}		
+			
+			//ajax get books
+			let options = { method: 'GET', url: '/books/' };
+			return utils.ajax(options)
+		})
+		.then ( response => {
+			let books = JSON.parse(response).books;
+			//pass books to store
+			dataStore.setData('books', books);
+
+			//ajax get books
+			let options = { method: 'GET', url: '/users/' };
+			return utils.ajax(options)
+		})
+		.then( response => {
+			let users = JSON.parse(response).users;
+			//pass users to store
+			dataStore.setData('users', users);
 			
 			return 'done';
 		})
