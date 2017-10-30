@@ -1,0 +1,130 @@
+* {
+	box-sizing: border-box;
+}
+
+html {
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+	border: none;
+}
+
+body {
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+	border: none;
+	background-color: #fff;
+	font-family: 'Roboto', sans-serif;
+}
+
+body.book {
+	background-color: #f5f5f5;
+}
+
+/*
+HELPERS
+*/
+
+.text-uppercase {
+	text-transform:uppercase;
+}
+
+.hidden {
+	display: none;
+}
+
+.visible {
+	display: block;
+}
+
+/*
+LINKS
+*/
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	color: #000;
+}
+
+.align-left {
+	float: left;
+}
+
+.align-right {
+	float: right;
+}
+
+/*
+NAV-BAR-TOP
+*/
+#nav-bar-top {
+	display: block;
+	position: relative;
+	top: 0px;
+	text-align: center;
+	height: 48px;
+}
+
+#nav-bar-top.hidden {
+	position: fixed;
+	top: -1000px;
+}
+
+#home-link {
+	line-height: 27px;
+	font-size: 1em;
+}
+
+#admin-link {
+	line-height: 27px;
+	font-size: 1em;
+	display: none
+}
+
+#admin-link.visible {
+	display: inline-block;
+}
+
+#top-title {
+	font-family: Georgia, serif;
+	padding: 8px 16px 8px 16px;
+	line-height: 27px;
+	max-width: 640px;
+	margin: auto;
+}
+
+/*
+CONTAINER, ADMIN-CONTAINER
+*/
+#container, #admin-container {
+	width: 100%;
+}
+
+/*
+CONTENT
+*/
+.content {
+	width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+
+	.content {
+		max-width: 900px;
+		margin: auto;
+	}
+}
+
+/*
+ERROR MESSAGES
+*/
+.error {
+	display: inline-block;
+	line-height: 0.85em;
+	color: #ff0000;
+	font-size: 0.85em;
+}
+
