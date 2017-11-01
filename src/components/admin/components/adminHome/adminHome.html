@@ -1,7 +1,15 @@
 <div id="adminHome" class="content">
-	<div class="w3-container w3-padding-24">
-		<p><button id="logout-btn" type="button" class="w3-button w3-button w3-text-gray w3-hover-none w3-hover-text-black align-right" style="vertical-align:top;margin-top:-8px">Déconnexion</button></p>
-		<p data-utils-bind="{{ name }}"></p>
-		<p data-utils-bind="{{ email }}"></p>
+	<h4 class="w3-container w3-padding-16">Accueil</h4>
+	<div class="w3-container">
+		<div class="w3-border-bottom">
+			<p data-utils-bind="{{ name }}"></p>
+			<p data-utils-bind="{{ email }}"></p>
+		</div>
+		<div  class="w3-border-bottom">
+			<p><a id="update-user-btn" href="/#/admin/edit/" class="w3-text-gray w3-hover-none w3-hover-text-black">Modifier profil</a></p>
+			<p><a id="update-password-btn" href="/#/admin/edit/password" class="w3-text-gray w3-hover-none w3-hover-text-black">Modifier mot de passe</a></p>
+		</div>
+		<p><a id="new-btn" href="/#/admin/new" class="w3-text-gray w3-hover-none w3-hover-text-black">Nouveau compte administrateur</a></p>
+		<p><button id="logout-btn" type="button" class="w3-button w3-text-gray w3-hover-none w3-hover-text-black" style="padding-left:0px;padding-right:0px">Déconnexion</button></p>
 	</div>
 </div>

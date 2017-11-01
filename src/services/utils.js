@@ -56,6 +56,7 @@ const utils = {
 			let div = document.createElement('div');
 			div.innerHTML = template;
 			container.appendChild(div);
+			container.style.visibility = "visible";
 			resolve(controller);
 		});
 		
@@ -101,6 +102,46 @@ const utils = {
 				utils.addClass("#" + adminLinks[i].id, "w3-text-gray");
 				utils.removeClass("#" + adminLinks[i].id, "w3-text-black");
 			}
+			
+			//admin-books
+			if(location.hash.match(/#\/admin\/books\//)) {
+				if(adminLinks[i].href.match(/#\/admin\/books\//)) {
+					utils.addClass("#" + adminLinks[i].id, "w3-text-black");
+					utils.removeClass("#" + adminLinks[i].id, "w3-text-gray");
+				} else {
+					utils.addClass("#" + adminLinks[i].id, "w3-text-gray");
+					utils.removeClass("#" + adminLinks[i].id, "w3-text-black");
+				}
+				
+			//admin-authors	
+			} else if(location.hash.match(/#\/admin\/authors\//)) {
+				if(adminLinks[i].href.match(/#\/admin\/authors\//)) {
+					utils.addClass("#" + adminLinks[i].id, "w3-text-black");
+					utils.removeClass("#" + adminLinks[i].id, "w3-text-gray");
+				} else {
+					utils.addClass("#" + adminLinks[i].id, "w3-text-gray");
+					utils.removeClass("#" + adminLinks[i].id, "w3-text-black");
+				}
+			//admin-users	
+			} else if(location.hash.match(/#\/admin\/users\//)) {
+				if(adminLinks[i].href.match(/#\/admin\/users\//)) {
+					utils.addClass("#" + adminLinks[i].id, "w3-text-black");
+					utils.removeClass("#" + adminLinks[i].id, "w3-text-gray");
+				} else {
+					utils.addClass("#" + adminLinks[i].id, "w3-text-gray");
+					utils.removeClass("#" + adminLinks[i].id, "w3-text-black");
+				}
+			//admin-home	
+			} else if(location.hash.match(/#\/admin\/.+/)) {
+				if(adminLinks[i].hash==='#/admin/') {
+					utils.addClass("#" + adminLinks[i].id, "w3-text-black");
+					utils.removeClass("#" + adminLinks[i].id, "w3-text-gray");
+				} else {
+					utils.addClass("#" + adminLinks[i].id, "w3-text-gray");
+					utils.removeClass("#" + adminLinks[i].id, "w3-text-black");
+				}
+			}
+			
 		}
 		
 		
@@ -118,7 +159,7 @@ const utils = {
 		}
 	},
 	
-	repeat: (array) => {
+	repeat: (container, array) => {
 		//replace each prop of array item
 		let rpc = (content,brackets,props,item,index) => {
 			if(props.length===0) {
@@ -147,6 +188,7 @@ const utils = {
 			for(let i=0; i<array.length; i++) {
 				let newContent = rpc(content,brackets,props,array[i],i)
 				let el = document.createElement(element.nodeName);
+				el.className = element.className;
 				el.innerHTML = newContent;
 				element.parentElement.insertBefore(el,element);
 			}
@@ -155,7 +197,7 @@ const utils = {
 			element.parentElement.removeChild(element);
 		}
 		//get template and props for each repeat element
-		let elements = document.querySelectorAll('[data-utils-repeat]');
+		let elements = container.querySelectorAll('[data-utils-repeat]');
 		for(let i=0; i< elements.length; i++) {
 			let brackets = [];
 			let props = [];
@@ -174,8 +216,13 @@ const utils = {
 		}
 	},
 	
-	bind: (container, object) => {
-		let elements = container.querySelectorAll('[data-utils-bind]');
+	bind: (container, object, className) => {
+		let elements;
+		if(className) {
+			elements = container.querySelectorAll('[data-utils-bind].' + className);
+		} else {
+			elements = container.querySelectorAll('[data-utils-bind]');
+		}
 		//get template and props for each repeat element
 		for(let i=0; i< elements.length; i++) {
 			let brackets = [];
@@ -186,16 +233,26 @@ const utils = {
 			if(content.match(/{{[^{]+}}/g)) {
 				brackets = content.match(/{{[^{]+}}/g);
 			}
+			
 			//replace each bracket of element
 			for(let j=0; j<brackets.length; j++) {
 				let prop = brackets[j].replace(/({|})/g,'').trim();
 				props.push(prop);
 				let pattern = new RegExp(brackets[j], 'g');
-				newContent = content.replace(pattern,object[prop]);
-				content = newContent;
+				if(object[prop]) {
+					newContent = content.replace(pattern,object[prop]);
+					content = newContent;
+				} else {
+					newContent = content.replace(pattern,'');
+					content = newContent;
+				}
 			}
 			
-			elements[i].innerHTML = content;
+			if(elements[i].nodeName==='INPUT' || elements[i].nodeName==='TEXTAREA') {
+				elements[i].value = content;
+			} else {
+				elements[i].innerHTML = content;
+			}
 		}
 	},
 	

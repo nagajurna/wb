@@ -11,7 +11,5 @@ const db = low(adapter)
 	return db;
 })
 
-
-
 module.exports = db;
 

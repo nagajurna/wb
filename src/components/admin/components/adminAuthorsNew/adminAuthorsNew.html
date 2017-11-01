@@ -1,0 +1,88 @@
+<div id="adminAuthorsNew" class="content">
+<!--
+	MODAL
+-->
+	<div id="modal" class="w3-modal w3-card-4">
+		<div class="w3-modal-content w3-animate-top">
+			<header class="w3-container w3-black"> 
+				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>
+				<h4>Rechercher un ouvrage</h4>
+			</header>
+			<div  class="w3-container">
+				<p id="search">
+				<input type="text" name="search" class="w3-input w3-border">
+				<span class="error" data-utils-bind="{{ error }}"></span>
+				</p>
+				<ul id="results" style="min-height:200px" class="w3-ul"></ul>
+			</div>
+			
+		</div>
+	</div>
+
+<!--
+	MAIN
+-->
+	<h4 class="w3-container align-left w3-padding-16">Ajouter un auteur</h4>
+	<p class="align-right w3-padding-16"><a href="/#/admin/authors/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>
+	<div class="w3-container">
+		<form id="adminAuthorsNewForm">
+			
+			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>
+			
+			<p id="name">
+				<label>Nom : </label>
+				<input type="text" name="name" class="w3-input w3-border">
+				<span class="error" data-utils-bind="{{ name }}"></span>
+			</p>
+			
+			<p id="firstName">
+				<label>Prénom : </label>
+				<input type="text" name="firstName" class="w3-input w3-border">
+				<span class="error" data-utils-bind="{{ firstname }}"></span>
+			</p>
+			
+			<p id="nameAlpha">
+				<label>Nom alphabétique : </label>
+				<input type="text" name="nameAlpha" class="w3-input w3-border">
+				<span class="error" data-utils-bind="{{ nameAlpha }}"></span>
+			</p>
+			
+			<p id="birth">
+				<label>Date de naissance : </label>
+				<input type="text" name="birth" class="w3-input w3-border">
+				<span class="error" data-utils-bind="{{ birth }}"></span>
+			</p>
+			
+			<p id="death">
+				<label>Date de décès : </label>
+				<input type="text" name="death" class="w3-input w3-border">
+				<span class="error" data-utils-bind="{{ death }}"></span>
+			</p>
+			
+			<p id="description">
+				<label>Description : </label>
+				<textarea type="text" name="description" class="w3-input w3-border"></textarea>
+				<span class="error" data-utils-bind="{{ description }}"></span>
+			</p>
+			
+			<div class="w3-margin-bottom w3-border-bottom">
+				<div class="w3-margin-bottom" style="min-height:100px">
+					<p>
+						<label class="align-left">Ouvrages : </label>
+						<a href="/#/admin/authors/new" id="open-modal-btn" class="align-right w3-text-gray w3-hover-none w3-hover-text-black">Rechercher</a>
+					</p>
+					
+					<ul id="booksContainer" class="w3-ul w3-padding-32"></ul>
+				</div>
+				
+			</div>
+			
+			
+			
+			<p>
+				<button type="submit" class="w3-btn w3-border">Valider</button>
+			</p>
+			
+		</form>
+	</div>
+</div>

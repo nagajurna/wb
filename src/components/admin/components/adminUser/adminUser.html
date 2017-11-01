@@ -1,0 +1,37 @@
+<div id="adminUser" class="content">
+<!--
+	MODAL
+-->
+	<div id="modal" class="w3-modal w3-card-4">
+		<div class="w3-modal-content w3-animate-top">
+			<header class="w3-container w3-black"> 
+				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>
+				<h4>Supprimer un utilisateur</h4>
+			</header>
+			<div  class="w3-container">
+				<p>Voulez-vous vraiment supprimer cet utilisateur ?</p>
+				<p data-utils-bind="{{ email }}"></p>
+				<p class="w3-right"><button type="button" id="delete-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black">Supprimer</button></p>
+			</div>
+			
+		</div>
+	</div>
+<!--
+	MAIN
+-->
+	<h4 class="w3-container align-left w3-padding-16">Utilisateur</h4>
+	<p class="align-right w3-padding-16"><a href="/#/admin/users/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>
+	<div id="user" class="w3-container">
+		<span class='error' data-utils-bind="{{ error }}"></span>
+		<div class="w3-border-bottom" 
+			data-utils-bind="
+			<p><b>Nom : </b>{{ name }}</p>
+			<p><b>Email : </b>{{ email }}</p>
+			<p><b>Admin : </b>{{ admin }}</p>
+			<p><b>Créé le : </b>{{ created_at }}</p>
+			<p><b>Mis à jour le : </b>{{ updated_at }}</p>
+			">
+		</div>
+		<p><button type="button" id="open-modal-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-right">Supprimer</button></p>
+	</div>
+</div>

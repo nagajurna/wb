@@ -1,0 +1,39 @@
+<div id="adminNew" class="content">
+	<h4 class="w3-container align-left w3-padding-16">Nouveau compte administrateur</h4>
+	<p class="align-right w3-padding-16"><a href="/#/admin/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>
+	<div class="w3-container">
+		<form id="adminRegisterForm">
+			
+			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>
+			
+			<p id="name">
+				<label>Nom : </label>
+				<input type="text" name="name" class="w3-input w3-border">
+				<span class="error" data-utils-bind="{{ name }}"></span>
+			</p>
+			
+			<p id="email">
+				<label>Email : </label>
+				<input type="text" name="email" class="w3-input w3-border">
+				<span class="error" data-utils-bind="{{ email }}"></span>
+			</p>
+			
+			<p id="password">
+				<label>Mot de passe : </label>
+				<input type="password" name="password" class="w3-input w3-border">
+				<span class="error" data-utils-bind="{{ password }}"></span>
+			</p>
+			
+			<p id="password_confirm">
+				<label>Confirmation : </label>
+				<input type="password" name="password_confirm" class="w3-input w3-border">
+				<span class="error" data-utils-bind="{{ password_confirm }}"></span>
+			</p>
+			
+			<p>
+				<button type="submit" class="w3-btn w3-border">Valider</button>
+			</p>
+			
+		</form>
+	</div>
+</div>

@@ -160,7 +160,7 @@ const book = function() {
 	}
 	
 	//GET BOOK
-	let books = dataStore.getData().books;
+	let books = dataStore.getData('books');
 	let book;
 	let loc = location.hash.replace(/(#|\/read)/g,'');
 	for(let i = 0; i < books.length; i++) {

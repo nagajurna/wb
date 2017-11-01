@@ -12,15 +12,8 @@ var adminLoginTemplate = require('./components/adminLogin/adminLogin.html');
 //admin
 import admin from './components/admin/admin';
 var adminTemplate = require('./components/admin/admin.html');
-//admin home
-import adminHome from './components/admin/components/adminHome/adminHome';
-var adminHomeTemplate = require('./components/admin/components/adminHome/adminHome.html');
-//admin users
-import adminUsers from './components/admin/components/adminUsers/adminUsers';
-var adminUsersTemplate = require('./components/admin/components/adminUsers/adminUsers.html');
-//admin books
-import adminBooks from './components/admin/components/adminBooks/adminBooks';
-var adminBooksTemplate = require('./components/admin/components/adminBooks/adminBooks.html');
+//adminRouter
+import adminRouter from './components/admin/adminRouter';
 
 //routes.js
 const router  = function() {
@@ -36,7 +29,7 @@ const router  = function() {
 			utils.getTemplate(container, homeTemplate, home)
 			.then( controller => { controller(); });
 			
-		} else if(newhash.match(/#\/books\/.+[^\/]\/read$/)) {
+		} else if(newhash.match(/#\/books\/[^\/]+\/read$/)) {
 			//BOOK READ
 			utils.getTemplate(container, bookTemplate, book)
 			.then( controller => { controller(); });
@@ -54,29 +47,10 @@ const router  = function() {
 				controller(user); 
 			})
 			.then ( resolve => {
+				
 				//ADMIN ROUTES
-				let adminContainer = document.querySelector('#admin-container');
-				
-				if(newhash === '#/admin/') {
-					//ADMIN HOME
-					utils.getTemplate(adminContainer, adminHomeTemplate, adminHome)
-					.then( controller => { controller(user); });					
-				
-				} else if(newhash === '#/admin/users/') {
-					//ADMIN USERS
-					utils.getTemplate(adminContainer, adminUsersTemplate, adminUsers)
-					.then( controller => { controller(); });
-					
-				} else if(newhash === '#/admin/books/') {
-					//ADMIN USERS
-					utils.getTemplate(adminContainer, adminBooksTemplate, adminBooks)
-					.then( controller => { controller(); });
-						
-				} else {
-					//FALLBACK
-					location.hash = '#/admin/';
-				}
-				
+				adminRouter(oldhash, newhash, user);
+								
 			})
 			.catch( error => {
 				location.hash = '#/admin/login/';

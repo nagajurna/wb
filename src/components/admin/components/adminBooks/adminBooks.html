@@ -1,5 +1,14 @@
 <div id="adminBooks" class="content">
-	<div class="w3-container w3-padding-24">
-		<p>Books</p>
+	<h4 class="w3-container w3-padding-16">Ouvrages</h4>
+	<div>
+		<ul id="books-list" class='w3-ul'>
+			<li class="w3-display-container"
+				data-utils-repeat="
+				<p>{{ author }}</p>
+				<p><span><a href='/#/admin/books/{{ id }}' class='w3-text-gray w3-hover-none w3-hover-text-black'>{{ title }}</a></span>
+				<span class='w3-display-right'><a id='delete-link' href='/#/admin/books/' class='w3-text-gray w3-hover-none w3-hover-text-black'>Supprimer</a></span></p>
+				">
+			</li>
+		</ul>
 	</div>
 </div>

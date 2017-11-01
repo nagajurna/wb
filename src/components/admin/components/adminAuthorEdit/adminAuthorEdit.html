@@ -1,0 +1,51 @@
+<div id="adminAuthorEdit" class="content">
+	<h4 class="w3-container align-left w3-padding-16">Modifier un auteur</h4>
+	<p class="align-right w3-padding-16"><a href="/#/admin/authors/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>
+	<div class="w3-container">
+		<form id="adminAuthorEditForm">
+			
+			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>
+			
+			<p id="name">
+				<label>Nom : </label>
+				<input type="text" name="name" class="w3-input w3-border author" data-utils-bind="{{ name }}">
+				<span class="error" data-utils-bind="{{ name }}"></span>
+			</p>
+			
+			<p id="firstName">
+				<label>Prénom : </label>
+				<input type="text" name="firstName" class="w3-input w3-border author" data-utils-bind="{{ firstName }}">
+				<span class="error" data-utils-bind="{{ firstName }}"></span>
+			</p>
+			
+			<p id="nameAlpha">
+				<label>Nom alphabétique : </label>
+				<input type="text" name="nameAlpha" class="w3-input w3-border author" data-utils-bind="{{ nameAlpha }}">
+				<span class="error" data-utils-bind="{{ nameAlpha }}"></span>
+			</p>
+			
+			<p id="birth">
+				<label>Date de naissance : </label>
+				<input type="text" name="birth" class="w3-input w3-border author" data-utils-bind="{{ birth }}">
+				<span class="error" data-utils-bind="{{ birth }}"></span>
+			</p>
+			
+			<p id="death">
+				<label>Date de décès : </label>
+				<input type="text" name="death" class="w3-input w3-border author" data-utils-bind="{{ death }}">
+				<span class="error" data-utils-bind="{{ death }}"></span>
+			</p>
+			
+			<p id="description">
+				<label>Description : </label>
+				<textarea type="text" name="description" class="w3-input w3-border author" data-utils-bind="{{ description }}"></textarea>
+				<span class="error" data-utils-bind="{{ description }}"></span>
+			</p>
+			
+			<p>
+				<button type="submit" class="w3-btn w3-border">Valider</button>
+			</p>
+			
+		</form>
+	</div>
+</div>

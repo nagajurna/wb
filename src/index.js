@@ -4,9 +4,14 @@ import utils from './services/utils';
 import css from './stylesheets/style.css';
 
 //index.js
-const index = (function() {
+var index = function() {
 	'use strict';
-	window.addEventListener('load', function() {
+	//VARIABLES
+	let currentUser;
+	let books;
+	
+	//GET DATA
+	window.addEventListener('load', () => {
 		//redirect to /books/ or location.hash
 		location.hash = location.hash === "#/" ? '#/books/' : location.hash;
 		
@@ -14,40 +19,31 @@ const index = (function() {
 		let options = { method: 'GET', url: '/users/currentuser' };
 		utils.ajax(options)
 		.then( response => {
-			let user = JSON.parse(response).user;
+			currentUser = JSON.parse(response).user;
 			//pass currentUser to store
-			dataStore.setData('currentUser', user);
+			dataStore.setData('currentUser', currentUser);
 			//check role : if admin => admin-link
-			if(user.admin && user.admin===true) {
+			if(currentUser.admin && currentUser.admin===true) {
 				utils.addClass('#admin-link', 'visible');
 			} else {
 				utils.removeClass('#admin-link', 'visible');
-			}		
+			}
 			
 			//ajax get books
 			let options = { method: 'GET', url: '/books/' };
 			return utils.ajax(options)
 		})
 		.then ( response => {
-			let books = JSON.parse(response).books;
+			books = JSON.parse(response).books;
 			//pass books to store
 			dataStore.setData('books', books);
-
-			//ajax get books
-			let options = { method: 'GET', url: '/users/' };
-			return utils.ajax(options)
-		})
-		.then( response => {
-			let users = JSON.parse(response).users;
-			//pass users to store
-			dataStore.setData('users', users);
-			
 			return 'done';
 		})
 		.then ( resolve => {
 			//call router
 			router();
 		});
+		
 		
 	}, false);
 	
@@ -85,4 +81,6 @@ const index = (function() {
 		}
 	}, false);
 
-})()
+};
+
+index.call();

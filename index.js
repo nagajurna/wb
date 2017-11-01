@@ -12,6 +12,7 @@ var FileStore = require('session-file-store')(session);
 const index = require('./routes/index');
 const users = require('./routes/users');
 const books = require('./routes/books');
+const authors = require('./routes/authors');
 
 //app
 const app = express();
@@ -39,6 +40,7 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use('/',index);
 app.use('/users', users);
 app.use('/books', books);
+app.use('/authors', authors);
 
 
 let port = process.env.PORT || '4000';

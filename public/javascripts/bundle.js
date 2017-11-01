@@ -134,6 +134,7 @@ var utils = {
 			var div = document.createElement('div');
 			div.innerHTML = template;
 			container.appendChild(div);
+			container.style.visibility = "visible";
 			resolve(controller);
 		});
 
@@ -182,6 +183,45 @@ var utils = {
 				utils.addClass("#" + adminLinks[_i].id, "w3-text-gray");
 				utils.removeClass("#" + adminLinks[_i].id, "w3-text-black");
 			}
+
+			//admin-books
+			if (location.hash.match(/#\/admin\/books\//)) {
+				if (adminLinks[_i].href.match(/#\/admin\/books\//)) {
+					utils.addClass("#" + adminLinks[_i].id, "w3-text-black");
+					utils.removeClass("#" + adminLinks[_i].id, "w3-text-gray");
+				} else {
+					utils.addClass("#" + adminLinks[_i].id, "w3-text-gray");
+					utils.removeClass("#" + adminLinks[_i].id, "w3-text-black");
+				}
+
+				//admin-authors	
+			} else if (location.hash.match(/#\/admin\/authors\//)) {
+				if (adminLinks[_i].href.match(/#\/admin\/authors\//)) {
+					utils.addClass("#" + adminLinks[_i].id, "w3-text-black");
+					utils.removeClass("#" + adminLinks[_i].id, "w3-text-gray");
+				} else {
+					utils.addClass("#" + adminLinks[_i].id, "w3-text-gray");
+					utils.removeClass("#" + adminLinks[_i].id, "w3-text-black");
+				}
+				//admin-users	
+			} else if (location.hash.match(/#\/admin\/users\//)) {
+				if (adminLinks[_i].href.match(/#\/admin\/users\//)) {
+					utils.addClass("#" + adminLinks[_i].id, "w3-text-black");
+					utils.removeClass("#" + adminLinks[_i].id, "w3-text-gray");
+				} else {
+					utils.addClass("#" + adminLinks[_i].id, "w3-text-gray");
+					utils.removeClass("#" + adminLinks[_i].id, "w3-text-black");
+				}
+				//admin-home	
+			} else if (location.hash.match(/#\/admin\/.+/)) {
+				if (adminLinks[_i].hash === '#/admin/') {
+					utils.addClass("#" + adminLinks[_i].id, "w3-text-black");
+					utils.removeClass("#" + adminLinks[_i].id, "w3-text-gray");
+				} else {
+					utils.addClass("#" + adminLinks[_i].id, "w3-text-gray");
+					utils.removeClass("#" + adminLinks[_i].id, "w3-text-black");
+				}
+			}
 		}
 	},
 
@@ -199,7 +239,7 @@ var utils = {
 		}
 	},
 
-	repeat: function repeat(array) {
+	repeat: function repeat(container, array) {
 		//replace each prop of array item
 		var rpc = function rpc(content, brackets, props, item, index) {
 			if (props.length === 0) {
@@ -228,6 +268,7 @@ var utils = {
 			for (var i = 0; i < array.length; i++) {
 				var newContent = rpc(content, brackets, props, array[i], i);
 				var el = document.createElement(element.nodeName);
+				el.className = element.className;
 				el.innerHTML = newContent;
 				element.parentElement.insertBefore(el, element);
 			}
@@ -236,7 +277,7 @@ var utils = {
 			element.parentElement.removeChild(element);
 		};
 		//get template and props for each repeat element
-		var elements = document.querySelectorAll('[data-utils-repeat]');
+		var elements = container.querySelectorAll('[data-utils-repeat]');
 		for (var i = 0; i < elements.length; i++) {
 			var brackets = [];
 			var props = [];
@@ -254,8 +295,13 @@ var utils = {
 		}
 	},
 
-	bind: function bind(container, object) {
-		var elements = container.querySelectorAll('[data-utils-bind]');
+	bind: function bind(container, object, className) {
+		var elements = void 0;
+		if (className) {
+			elements = container.querySelectorAll('[data-utils-bind].' + className);
+		} else {
+			elements = container.querySelectorAll('[data-utils-bind]');
+		}
 		//get template and props for each repeat element
 		for (var i = 0; i < elements.length; i++) {
 			var brackets = [];
@@ -266,16 +312,26 @@ var utils = {
 			if (content.match(/{{[^{]+}}/g)) {
 				brackets = content.match(/{{[^{]+}}/g);
 			}
+
 			//replace each bracket of element
 			for (var j = 0; j < brackets.length; j++) {
 				var prop = brackets[j].replace(/({|})/g, '').trim();
 				props.push(prop);
 				var pattern = new RegExp(brackets[j], 'g');
-				newContent = content.replace(pattern, object[prop]);
-				content = newContent;
+				if (object[prop]) {
+					newContent = content.replace(pattern, object[prop]);
+					content = newContent;
+				} else {
+					newContent = content.replace(pattern, '');
+					content = newContent;
+				}
 			}
 
-			elements[i].innerHTML = content;
+			if (elements[i].nodeName === 'INPUT' || elements[i].nodeName === 'TEXTAREA') {
+				elements[i].value = content;
+			} else {
+				elements[i].innerHTML = content;
+			}
 		}
 	},
 
@@ -317,16 +373,30 @@ Object.defineProperty(exports, "__esModule", {
 });
 //dataStore.js
 var dataStore = {
-	//data
+
 	store: {},
 
-	setData: function setData(prop, data) {
-		dataStore.store[prop] = data;
-		console.log(dataStore.store);
+	setData: function setData(collection, data) {
+		dataStore.store[collection] = data;
 	},
 
-	getData: function getData() {
-		return dataStore.store;
+	getData: function getData(collection, id) {
+		if (collection && id) {
+			var array = dataStore.store[collection];
+			var itemId = id;
+			var item = void 0;
+			for (var i = 0; i < array.length; i++) {
+				if (array[i].id === itemId) {
+					item = array[i];
+					break;
+				}
+			}
+			return item;
+		} else if (collection && !id) {
+			return dataStore.store[collection];
+		} else if (!collection && !id) {
+			return dataStore.store;
+		}
 	}
 
 };
@@ -352,16 +422,21 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _style = __webpack_require__(22);
+var _style = __webpack_require__(41);
 
 var _style2 = _interopRequireDefault(_style);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //index.js
-var index = function () {
+var index = function index() {
 	'use strict';
+	//VARIABLES
 
+	var currentUser = void 0;
+	var books = void 0;
+
+	//GET DATA
 	window.addEventListener('load', function () {
 		//redirect to /books/ or location.hash
 		location.hash = location.hash === "#/" ? '#/books/' : location.hash;
@@ -369,11 +444,11 @@ var index = function () {
 		//ajax get currentUser
 		var options = { method: 'GET', url: '/users/currentuser' };
 		_utils2.default.ajax(options).then(function (response) {
-			var user = JSON.parse(response).user;
+			currentUser = JSON.parse(response).user;
 			//pass currentUser to store
-			_dataStore2.default.setData('currentUser', user);
+			_dataStore2.default.setData('currentUser', currentUser);
 			//check role : if admin => admin-link
-			if (user.admin && user.admin === true) {
+			if (currentUser.admin && currentUser.admin === true) {
 				_utils2.default.addClass('#admin-link', 'visible');
 			} else {
 				_utils2.default.removeClass('#admin-link', 'visible');
@@ -383,18 +458,9 @@ var index = function () {
 			var options = { method: 'GET', url: '/books/' };
 			return _utils2.default.ajax(options);
 		}).then(function (response) {
-			var books = JSON.parse(response).books;
+			books = JSON.parse(response).books;
 			//pass books to store
 			_dataStore2.default.setData('books', books);
-
-			//ajax get books
-			var options = { method: 'GET', url: '/users/' };
-			return _utils2.default.ajax(options);
-		}).then(function (response) {
-			var users = JSON.parse(response).users;
-			//pass users to store
-			_dataStore2.default.setData('users', users);
-
 			return 'done';
 		}).then(function (resolve) {
 			//call router
@@ -432,7 +498,9 @@ var index = function () {
 			_utils2.default.removeClass("#nav-bar-top", "hidden");
 		}
 	}, false);
-}();
+};
+
+index.call();
 
 /***/ }),
 /* 3 */
@@ -469,41 +537,26 @@ var _admin = __webpack_require__(11);
 
 var _admin2 = _interopRequireDefault(_admin);
 
-var _adminHome = __webpack_require__(12);
+var _adminRouter = __webpack_require__(12);
 
-var _adminHome2 = _interopRequireDefault(_adminHome);
-
-var _adminUsers = __webpack_require__(13);
-
-var _adminUsers2 = _interopRequireDefault(_adminUsers);
-
-var _adminBooks = __webpack_require__(14);
-
-var _adminBooks2 = _interopRequireDefault(_adminBooks);
+var _adminRouter2 = _interopRequireDefault(_adminRouter);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var homeTemplate = __webpack_require__(15);
+var homeTemplate = __webpack_require__(37);
 //book
 
 //home
 
-var bookTemplate = __webpack_require__(16);
+var bookTemplate = __webpack_require__(38);
 //adminLogin
 
-var adminLoginTemplate = __webpack_require__(17);
+var adminLoginTemplate = __webpack_require__(39);
 //admin
 
-var adminTemplate = __webpack_require__(18);
-//admin home
+var adminTemplate = __webpack_require__(40);
+//adminRouter
 
-var adminHomeTemplate = __webpack_require__(19);
-//admin users
-
-var adminUsersTemplate = __webpack_require__(20);
-//admin books
-
-var adminBooksTemplate = __webpack_require__(21);
 
 //routes.js
 var router = function router() {
@@ -519,7 +572,7 @@ var router = function router() {
 			_utils2.default.getTemplate(container, homeTemplate, _home2.default).then(function (controller) {
 				controller();
 			});
-		} else if (newhash.match(/#\/books\/.+[^\/]\/read$/)) {
+		} else if (newhash.match(/#\/books\/[^\/]+\/read$/)) {
 			//BOOK READ
 			_utils2.default.getTemplate(container, bookTemplate, _book2.default).then(function (controller) {
 				controller();
@@ -534,28 +587,9 @@ var router = function router() {
 				_utils2.default.activeLink(); //for admin links
 				controller(user);
 			}).then(function (resolve) {
-				//ADMIN ROUTES
-				var adminContainer = document.querySelector('#admin-container');
 
-				if (newhash === '#/admin/') {
-					//ADMIN HOME
-					_utils2.default.getTemplate(adminContainer, adminHomeTemplate, _adminHome2.default).then(function (controller) {
-						controller(user);
-					});
-				} else if (newhash === '#/admin/users/') {
-					//ADMIN USERS
-					_utils2.default.getTemplate(adminContainer, adminUsersTemplate, _adminUsers2.default).then(function (controller) {
-						controller();
-					});
-				} else if (newhash === '#/admin/books/') {
-					//ADMIN USERS
-					_utils2.default.getTemplate(adminContainer, adminBooksTemplate, _adminBooks2.default).then(function (controller) {
-						controller();
-					});
-				} else {
-					//FALLBACK
-					location.hash = '#/admin/';
-				}
+				//ADMIN ROUTES
+				(0, _adminRouter2.default)(oldhash, newhash, user);
 			}).catch(function (error) {
 				location.hash = '#/admin/login/';
 			});
@@ -624,10 +658,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //home.js
 var home = function home() {
 	'use strict';
-	//rootElement
 
-	var books = _dataStore2.default.getData().books;
-	_utils2.default.repeat(books);
+	var root = document.querySelector('#home');
+	var list = root.querySelector('#books-list');
+	var books = _dataStore2.default.getData('books');
+	_utils2.default.repeat(list, books);
 };
 
 exports.default = home;
@@ -817,7 +852,7 @@ var book = function book() {
 	};
 
 	//GET BOOK
-	var books = _dataStore2.default.getData().books;
+	var books = _dataStore2.default.getData('books');
 	var book = void 0;
 	var loc = location.hash.replace(/(#|\/read)/g, '');
 	for (var i = 0; i < books.length; i++) {
@@ -13976,9 +14011,7 @@ var adminLogin = function adminLogin() {
 	//submit
 	function onSubmit(event) {
 		event.preventDefault();
-		_utils2.default.setHTML('#form-error', "");
-		_utils2.default.setHTML('#email .error', "");
-		_utils2.default.setHTML('#password .error', "");
+		_utils2.default.bind(form, {});
 		var user = {};
 		user.email = form.querySelector('[name=email]').value;
 		user.password = form.querySelector('[name=password]').value;
@@ -13986,9 +14019,7 @@ var adminLogin = function adminLogin() {
 		_utils2.default.ajax(options).then(function (res) {
 			var response = JSON.parse(res);
 			if (response.errors) {
-				_utils2.default.setHTML('#form-error', response.errors.form);
-				_utils2.default.setHTML('#email .error', response.errors.email);
-				_utils2.default.setHTML('#password .error', response.errors.password);
+				_utils2.default.bind(form, response.errors);
 			} else {
 				_dataStore2.default.setData('currentUser', response.user);
 				if (response.user.admin === true) {
@@ -14048,6 +14079,186 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
+var _adminHome = __webpack_require__(13);
+
+var _adminHome2 = _interopRequireDefault(_adminHome);
+
+var _adminUsers = __webpack_require__(14);
+
+var _adminUsers2 = _interopRequireDefault(_adminUsers);
+
+var _adminUser = __webpack_require__(15);
+
+var _adminUser2 = _interopRequireDefault(_adminUser);
+
+var _adminNew = __webpack_require__(16);
+
+var _adminNew2 = _interopRequireDefault(_adminNew);
+
+var _adminEdit = __webpack_require__(17);
+
+var _adminEdit2 = _interopRequireDefault(_adminEdit);
+
+var _adminEditPassword = __webpack_require__(18);
+
+var _adminEditPassword2 = _interopRequireDefault(_adminEditPassword);
+
+var _adminBooks = __webpack_require__(19);
+
+var _adminBooks2 = _interopRequireDefault(_adminBooks);
+
+var _adminBook = __webpack_require__(20);
+
+var _adminBook2 = _interopRequireDefault(_adminBook);
+
+var _adminAuthors = __webpack_require__(21);
+
+var _adminAuthors2 = _interopRequireDefault(_adminAuthors);
+
+var _adminAuthor = __webpack_require__(22);
+
+var _adminAuthor2 = _interopRequireDefault(_adminAuthor);
+
+var _adminAuthorsNew = __webpack_require__(23);
+
+var _adminAuthorsNew2 = _interopRequireDefault(_adminAuthorsNew);
+
+var _adminAuthorEdit = __webpack_require__(24);
+
+var _adminAuthorEdit2 = _interopRequireDefault(_adminAuthorEdit);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var adminHomeTemplate = __webpack_require__(25);
+//admin users
+
+//admin home
+
+var adminUsersTemplate = __webpack_require__(26);
+//admin user
+
+var adminUserTemplate = __webpack_require__(27);
+//admin new
+
+var adminNewTemplate = __webpack_require__(28);
+//admin edit
+
+var adminEditTemplate = __webpack_require__(29);
+//admin edit password
+
+var adminEditPasswordTemplate = __webpack_require__(30);
+//admin books
+
+var adminBooksTemplate = __webpack_require__(31);
+//admin book
+
+var adminBookTemplate = __webpack_require__(32);
+//admin authors
+
+var adminAuthorsTemplate = __webpack_require__(33);
+//admin author
+
+var adminAuthorTemplate = __webpack_require__(34);
+//admin authorNew
+
+var adminAuthorsNewTemplate = __webpack_require__(35);
+//admin authorEdit
+
+var adminAuthorEditTemplate = __webpack_require__(36);
+
+var adminRouter = function adminRouter(oldhash, newhash, data) {
+
+	var user = data;
+	var adminContainer = document.querySelector('#admin-container');
+
+	var routes = function routes(container) {
+
+		if (newhash === '#/admin/') {
+			//ADMIN HOME
+			_utils2.default.getTemplate(adminContainer, adminHomeTemplate, _adminHome2.default).then(function (controller) {
+				controller(user);
+			});
+		} else if (newhash === '#/admin/new') {
+			//ADMIN EDIT
+			_utils2.default.getTemplate(adminContainer, adminNewTemplate, _adminNew2.default).then(function (controller) {
+				controller();
+			});
+		} else if (newhash === '#/admin/edit/') {
+			//ADMIN EDIT
+			_utils2.default.getTemplate(adminContainer, adminEditTemplate, _adminEdit2.default).then(function (controller) {
+				controller(user);
+			});
+		} else if (newhash === '#/admin/edit/password') {
+			//ADMIN EDIT PASSWORD
+			_utils2.default.getTemplate(adminContainer, adminEditPasswordTemplate, _adminEditPassword2.default).then(function (controller) {
+				controller(user);
+			});
+		} else if (newhash === '#/admin/users/') {
+			//ADMIN USERS
+			_utils2.default.getTemplate(adminContainer, adminUsersTemplate, _adminUsers2.default).then(function (controller) {
+				controller();
+			});
+		} else if (newhash.match(/#\/admin\/users\/[^\/]+$/)) {
+			//ADMIN USER
+			_utils2.default.getTemplate(adminContainer, adminUserTemplate, _adminUser2.default).then(function (controller) {
+				controller();
+			});
+		} else if (newhash === '#/admin/books/') {
+			//ADMIN BOOKS
+			_utils2.default.getTemplate(adminContainer, adminBooksTemplate, _adminBooks2.default).then(function (controller) {
+				controller();
+			});
+		} else if (newhash.match(/#\/admin\/books\/[^\/]+$/)) {
+			//ADMIN BOOK
+			_utils2.default.getTemplate(adminContainer, adminBookTemplate, _adminBook2.default).then(function (controller) {
+				controller();
+			});
+		} else if (newhash === '#/admin/authors/') {
+			//ADMIN AUTHORS
+			_utils2.default.getTemplate(adminContainer, adminAuthorsTemplate, _adminAuthors2.default).then(function (controller) {
+				controller();
+			});
+		} else if (newhash === '#/admin/authors/new') {
+			//ADMIN AUTHORS NEW
+			_utils2.default.getTemplate(adminContainer, adminAuthorsNewTemplate, _adminAuthorsNew2.default).then(function (controller) {
+				controller();
+			});
+		} else if (newhash.match(/#\/admin\/authors\/[^\/]+\/edit$/)) {
+			//ADMIN AUTHORS EDIT
+			_utils2.default.getTemplate(adminContainer, adminAuthorEditTemplate, _adminAuthorEdit2.default).then(function (controller) {
+				controller();
+			});
+		} else if (newhash.match(/#\/admin\/authors\/[^\/]+$/)) {
+			//ADMIN AUTHOR
+			_utils2.default.getTemplate(adminContainer, adminAuthorTemplate, _adminAuthor2.default).then(function (controller) {
+				controller();
+			});
+		} else {
+			//FALLBACK
+			location.hash = '#/admin/';
+		}
+	};
+
+	return routes(adminContainer);
+};
+
+exports.default = adminRouter;
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _utils = __webpack_require__(0);
+
+var _utils2 = _interopRequireDefault(_utils);
+
 var _dataStore = __webpack_require__(1);
 
 var _dataStore2 = _interopRequireDefault(_dataStore);
@@ -14081,31 +14292,6 @@ var adminHome = function adminHome(data) {
 exports.default = adminHome;
 
 /***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _utils = __webpack_require__(0);
-
-var _utils2 = _interopRequireDefault(_utils);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//home.js
-var adminUsers = function adminUsers() {
-	'use strict';
-	//rootElement
-};
-
-exports.default = adminUsers;
-
-/***/ }),
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14120,66 +14306,861 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
+var _dataStore = __webpack_require__(1);
+
+var _dataStore2 = _interopRequireDefault(_dataStore);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//home.js
+var adminUsers = function adminUsers() {
+	'use strict';
+
+	var root = document.querySelector('#adminUsers');
+	var list = root.querySelector('#users-list');
+
+	//ajax get users
+	var options = { method: 'GET', url: '/users/' };
+	_utils2.default.ajax(options).then(function (res) {
+		var response = JSON.parse(res);
+		if (response.error) {
+			_utils2.default.bind(root, response, 'error');
+		} else {
+			var users = response.users;
+			_dataStore2.default.setData('users', users);
+			_utils2.default.repeat(list, users);
+		}
+	});
+};
+
+exports.default = adminUsers;
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _utils = __webpack_require__(0);
+
+var _utils2 = _interopRequireDefault(_utils);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//home.js
+var adminUser = function adminUser() {
+	'use strict';
+
+	var root = document.querySelector('#adminUser');
+	var modal = root.querySelector('#modal');
+	var div = root.querySelector('#user');
+	var id = location.hash.replace(/^#\/admin\/users\//, '');
+
+	//ajax get user
+	var options = { method: 'GET', url: '/users/' + id };
+	_utils2.default.ajax(options).then(function (res) {
+		var response = JSON.parse(res);
+		if (response.error) {
+			_utils2.default.bind(div, response, 'error');
+		} else {
+			var user = response.user;
+			_utils2.default.bind(root, user);
+		}
+	});
+
+	var deleteUser = function deleteUser(event) {
+		var options = { method: 'DELETE', url: '/users/' + id };
+		_utils2.default.ajax(options).then(function (res) {
+			var response = JSON.parse(res);
+			if (response.error) {
+				_utils2.default.bind(div, response, 'error');
+				modal.style.display = 'none';
+			} else {
+				location.hash = '#/admin/users/';
+			}
+		});
+	};
+
+	var openModalBtn = div.querySelector('#open-modal-btn');
+	openModalBtn.addEventListener('click', function () {
+		modal.style.display = 'block';
+	}, false);
+
+	var closeModalBtn = modal.querySelector('#close-modal-btn');
+	closeModalBtn.addEventListener('click', function () {
+		modal.style.display = 'none';
+	}, false);
+
+	var deleteBtn = modal.querySelector('#delete-btn');
+	deleteBtn.addEventListener('click', deleteUser, false);
+};
+
+exports.default = adminUser;
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _utils = __webpack_require__(0);
+
+var _utils2 = _interopRequireDefault(_utils);
+
+var _dataStore = __webpack_require__(1);
+
+var _dataStore2 = _interopRequireDefault(_dataStore);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//home.js
+var adminNew = function adminNew(data) {
+	'use strict';
+	//rootElement
+
+	var root = document.querySelector('#adminNew');
+	//form
+	var form = root.querySelector('#adminRegisterForm');
+	var inputs = form.querySelectorAll('input');
+
+	//clear errors on input
+	function onInput(event) {
+		_utils2.default.setHTML('#form-error', "");
+		if (event.target.name === 'name') {
+			_utils2.default.setHTML('#name .error', "");
+		} else if (event.target.name === 'email') {
+			_utils2.default.setHTML('#email .error', "");
+		} else if (event.target.name === 'password') {
+			_utils2.default.setHTML('#password .error', "");
+		} else if (event.target.name === 'password_confirm') {
+			_utils2.default.setHTML('#password_confirm .error', "");
+		}
+	}
+
+	for (var i = 0; i < inputs.length; i++) {
+		inputs[i].addEventListener('input', onInput, false);
+	}
+
+	//submit
+	function onSubmit(event) {
+		event.preventDefault();
+		_utils2.default.bind(form, {});
+		var user = {};
+		user.name = form.querySelector('[name=name]').value;
+		user.email = form.querySelector('[name=email]').value;
+		user.password = form.querySelector('[name=password]').value;
+		user.password_confirm = form.querySelector('[name=password_confirm]').value;
+		var options = { method: 'POST', url: '/users/admin/new', data: JSON.stringify(user) };
+		_utils2.default.ajax(options).then(function (res) {
+			var response = JSON.parse(res);
+			if (response.errors) {
+				_utils2.default.bind(form, response.errors);
+			} else {
+				location.hash = '#/admin/users/';
+			}
+		});
+	}
+
+	form.addEventListener('submit', onSubmit, false);
+};
+
+exports.default = adminNew;
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _utils = __webpack_require__(0);
+
+var _utils2 = _interopRequireDefault(_utils);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//home.js
+var adminEdit = function adminEdit(user) {
+	'use strict';
+	//rootElement
+
+	var root = document.querySelector('#adminEdit');
+	//form
+	var form = root.querySelector('#adminEditForm');
+	var inputs = form.querySelectorAll('input');
+	var data = user;
+	form.querySelector('[name=name]').value = data.name;
+	form.querySelector('[name=email]').value = data.email;
+
+	//clear errors on input
+	function onInput(event) {
+		_utils2.default.setHTML('#form-error', "");
+		if (event.target.name === 'name') {
+			_utils2.default.setHTML('#name .error', "");
+		} else if (event.target.name === 'email') {
+			_utils2.default.setHTML('#email .error', "");
+		} else if (event.target.name === 'password') {
+			_utils2.default.setHTML('#password .error', "");
+		}
+	}
+
+	for (var i = 0; i < inputs.length; i++) {
+		inputs[i].addEventListener('input', onInput, false);
+	}
+
+	//submit
+	function onSubmit(event) {
+		event.preventDefault();
+		_utils2.default.bind(form, {});
+		var user = {};
+		user.name = form.querySelector('[name=name]').value;
+		user.email = form.querySelector('[name=email]').value;
+		user.password = form.querySelector('[name=password]').value;
+		var options = { method: 'PUT', url: '/users/' + data.id, data: JSON.stringify(user) };
+		_utils2.default.ajax(options).then(function (res) {
+			var response = JSON.parse(res);
+			if (response.errors) {
+				_utils2.default.bind(form, response.errors);
+			} else {
+				location.hash = '#/admin/';
+			}
+		});
+	}
+
+	form.addEventListener('submit', onSubmit, false);
+};
+
+exports.default = adminEdit;
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _utils = __webpack_require__(0);
+
+var _utils2 = _interopRequireDefault(_utils);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//home.js
+var adminEditPassword = function adminEditPassword(user) {
+	'use strict';
+	//rootElement
+
+	var root = document.querySelector('#adminEditPassword');
+	//form
+	var form = root.querySelector('#adminEditPasswordForm');
+	var inputs = form.querySelectorAll('input');
+	var data = user;
+
+	//clear errors on input
+	function onInput(event) {
+		_utils2.default.setHTML('#form-error', "");
+		if (event.target.name === 'password') {
+			_utils2.default.setHTML('#password .error', "");
+		} else if (event.target.name === 'password_new') {
+			_utils2.default.setHTML('#password_new .error', "");
+		} else if (event.target.name === 'password_new_confirm') {
+			_utils2.default.setHTML('#password_new_confirm .error', "");
+		}
+	}
+
+	for (var i = 0; i < inputs.length; i++) {
+		inputs[i].addEventListener('input', onInput, false);
+	}
+
+	//submit
+	function onSubmit(event) {
+		event.preventDefault();
+		_utils2.default.bind(form, {});
+		var user = {};
+		user.password = form.querySelector('[name=password]').value;
+		user.password_new = form.querySelector('[name=password_new]').value;
+		user.password_new_confirm = form.querySelector('[name=password_new_confirm]').value;
+		var options = { method: 'PUT', url: '/users/password/' + data.id, data: JSON.stringify(user) };
+		_utils2.default.ajax(options).then(function (res) {
+			var response = JSON.parse(res);
+			if (response.errors) {
+				_utils2.default.bind(form, response.errors);
+			} else {
+				form.querySelector('[name=password]').value = "";
+				form.querySelector('[name=password_new]').value = "";
+				form.querySelector('[name=password_new_confirm]').value = "";
+				_utils2.default.bind(form, { message: 'Votre mot de passe a été changé.' });
+				_utils2.default.addClass('#form-error', 'hidden');
+				_utils2.default.removeClass('#form-succes', 'hidden');
+			}
+		});
+	}
+
+	form.addEventListener('submit', onSubmit, false);
+};
+
+exports.default = adminEditPassword;
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _utils = __webpack_require__(0);
+
+var _utils2 = _interopRequireDefault(_utils);
+
+var _dataStore = __webpack_require__(1);
+
+var _dataStore2 = _interopRequireDefault(_dataStore);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //home.js
 var adminBooks = function adminBooks() {
 	'use strict';
-	//rootElement
+
+	var root = document.querySelector('#adminBooks');
+	var list = root.querySelector('#books-list');
+
+	//ajax get books
+	var options = { method: 'GET', url: '/books/' };
+	_utils2.default.ajax(options).then(function (response) {
+		var books = JSON.parse(response).books;
+		_utils2.default.repeat(list, books);
+		_dataStore2.default.setData('books', books);
+	});
 };
 
 exports.default = adminBooks;
 
 /***/ }),
-/* 15 */
-/***/ (function(module, exports) {
-
-module.exports = "<div id=home class=content> <div class=\"w3-container w3-padding-24\"> <ul id=books-list class=w3-ul> <li data-utils-repeat=\"\n\t\t\t\t<span>{{ author }} &ndash; </span>\n\t\t\t\t<a href='/#{{ path }}/read' class='w3-text-gray w3-hover-none w3-hover-text-black'>{{ title }}</a>\"> </li> </ul> </div> </div> ";
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports) {
-
-module.exports = "<div id=book> <div id=bookContainer> <div id=toc-large-device class=w3-card-4> <button id=toggle-toc-large-device type=button class=\"w3-btn w3-card-4 w3-white\">&colone;</button> <div id=toc-large-device-container class=toc-content> <p class=w3-center data-utils-bind=\"{{ author }}\"></p> <p class=\"w3-center text-uppercase\" data-utils-bind=\"{{ title }}\"></p> <div data-wb-toc class=w3-container></div> </div> </div> <div id=swing-container> <div data-wb-text-container class=w3-card-4> <div id=toc> <div data-wb-toc class=w3-container> <button id=close-toc type=button>&times;</button> <div id=toc-title class=toc-content> <p class=w3-center data-utils-bind=\"{{ author }}\"></p> <p class=\"w3-center text-uppercase\" data-utils-bind=\"{{ title }}\"></p> </div> </div> </div> <div id=top> <span class=wb-current-section-title></span> </div> <div data-wb-text></div> <div id=bottom> <a id=home href=/#/books/ class=\"w3-btn w3-text-dark-grey\">Liber</a> <span class=wb-currentByTotal-pages></span> <button type=button class=\"open-toc w3-btn w3-text-dark-grey\">&colone;</button> </div> <div id=bottom-large> <span class=wb-currentByTotal-pages></span> </div> </div> </div> <div id=book-nav-bar-bottom class=w3-bottom> <div class=\"w3-bar w3-large\"> <div id=swing-bar> <div id=book-nav-bar-bottom-controls> <button id=backward-large type=button class=\"w3-btn w3-margin-right\">&lt;</button> <button id=forward-large type=button class=\"w3-btn w3-margin-left\">&gt;</button> <button id=open-toc-large type=button class=\"open-toc w3-btn\"><span>&colone;</span></button> </div> </div> </div> </div> </div> </div> ";
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports) {
-
-module.exports = "<div id=adminLogin class=content> <div class=\"w3-container w3-padding-24\"> <h4 class=w3-container>Espace administration&ensp;&ndash;&ensp;connexion</h4> <form id=adminLoginForm class=w3-container> <span class=error id=form-error></span> <p id=email> <label>Identifiant : </label> <input type=text name=email class=\"w3-input w3-border\"> <span class=error></span> </p> <p id=password> <label>Mot de passe : </label> <input type=password name=password class=\"w3-input w3-border\"> <span class=error></span> </p> <p> <button type=submit id=loginButton class=\"w3-btn w3-border\">Valider</button> </p> </form> </div> </div> ";
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports) {
-
-module.exports = "<div id=admin class=content> <div class=\"w3-container w3-padding-24\"> <h4 class=w3-container>Espace administration</h4> <nav id=admin-nav-bar-top class=\"w3-bar w3-white w3-border-top w3-border-bottom\"> <a id=admin-home href=/#/admin/ class=\"w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black\">Accueil</a> <a id=admin-users href=/#/admin/users/ class=\"w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black\">Utilisateurs</a> <a id=admin-books href=/#/admin/books/ class=\"w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black\">Ouvrages</a> </nav> <div id=admin-container></div> </div> </div> ";
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports) {
-
-module.exports = "<div id=adminHome class=content> <div class=\"w3-container w3-padding-24\"> <p><button id=logout-btn type=button class=\"w3-button w3-button w3-text-gray w3-hover-none w3-hover-text-black align-right\" style=vertical-align:top;margin-top:-8px>Déconnexion</button></p> <p data-utils-bind=\"{{ name }}\"></p> <p data-utils-bind=\"{{ email }}\"></p> </div> </div> ";
-
-/***/ }),
 /* 20 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<div id=adminUsers class=content> <div class=\"w3-container w3-padding-24\"> <p>Users</p> </div> </div> ";
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _utils = __webpack_require__(0);
+
+var _utils2 = _interopRequireDefault(_utils);
+
+var _dataStore = __webpack_require__(1);
+
+var _dataStore2 = _interopRequireDefault(_dataStore);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//home.js
+var adminBook = function adminBook() {
+	'use strict';
+
+	var root = document.querySelector('#adminBook');
+	var div = root.querySelector('#book');
+	var id = location.hash.replace(/^#\/admin\/books\//, '');
+	var book = _dataStore2.default.getData('books', id);
+	_utils2.default.bind(div, book);
+};
+
+exports.default = adminBook;
 
 /***/ }),
 /* 21 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<div id=adminBooks class=content> <div class=\"w3-container w3-padding-24\"> <p>Books</p> </div> </div> ";
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _utils = __webpack_require__(0);
+
+var _utils2 = _interopRequireDefault(_utils);
+
+var _dataStore = __webpack_require__(1);
+
+var _dataStore2 = _interopRequireDefault(_dataStore);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//home.js
+var adminAuthors = function adminAuthors() {
+	'use strict';
+
+	var root = document.querySelector('#adminAuthors');
+	var list = root.querySelector('#authors-list');
+
+	//ajax get users
+	var options = { method: 'GET', url: '/authors/' };
+	_utils2.default.ajax(options).then(function (res) {
+		var response = JSON.parse(res);
+		if (response.error) {
+			_utils2.default.bind(root, response, 'error');
+		} else {
+			var authors = response.authors;
+			_dataStore2.default.setData('authors', authors);
+			_utils2.default.repeat(list, authors);
+		}
+	});
+};
+
+exports.default = adminAuthors;
 
 /***/ }),
 /* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _utils = __webpack_require__(0);
+
+var _utils2 = _interopRequireDefault(_utils);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//home.js
+var adminAuthor = function adminAuthor() {
+	'use strict';
+
+	var root = document.querySelector('#adminAuthor');
+	var modal = root.querySelector('#modal');
+	var div = root.querySelector('#author');
+	var id = location.hash.replace(/^#\/admin\/authors\//, '');
+
+	//ajax get user
+	var options = { method: 'GET', url: '/authors/' + id };
+	_utils2.default.ajax(options).then(function (res) {
+		var response = JSON.parse(res);
+		if (response.error) {
+			_utils2.default.bind(div, response, 'error');
+		} else {
+			var author = response.author;
+			_utils2.default.bind(root, author);
+		}
+	});
+
+	var deleteAuthor = function deleteAuthor(event) {
+		var options = { method: 'DELETE', url: '/authors/' + id };
+		_utils2.default.ajax(options).then(function (res) {
+			var response = JSON.parse(res);
+			if (response.error) {
+				_utils2.default.bind(div, response, 'error');
+				modal.style.display = 'none';
+			} else {
+				location.hash = '#/admin/authors/';
+			}
+		});
+	};
+
+	var openModalBtn = div.querySelector('#open-modal-btn');
+	openModalBtn.addEventListener('click', function () {
+		modal.style.display = 'block';
+	}, false);
+
+	var closeModalBtn = modal.querySelector('#close-modal-btn');
+	closeModalBtn.addEventListener('click', function () {
+		modal.style.display = 'none';
+	}, false);
+
+	var deleteBtn = modal.querySelector('#delete-btn');
+	deleteBtn.addEventListener('click', deleteAuthor, false);
+
+	var editBtn = div.querySelector('#edit-btn');
+	editBtn.addEventListener('click', function () {
+		location.hash = '#/admin/authors/' + id + '/edit';
+	}, false);
+};
+
+exports.default = adminAuthor;
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _utils = __webpack_require__(0);
+
+var _utils2 = _interopRequireDefault(_utils);
+
+var _dataStore = __webpack_require__(1);
+
+var _dataStore2 = _interopRequireDefault(_dataStore);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//home.js
+var adminAuthorsNew = function adminAuthorsNew(data) {
+	'use strict';
+	//rootElement
+
+	var root = document.querySelector('#adminAuthorsNew');
+	//modal
+	var modal = root.querySelector('#modal');
+	var searchInput = modal.querySelector('input');
+	var results = modal.querySelector('#results');
+	var selectedBooks = [];
+	var booksContainer = root.querySelector('#booksContainer');
+	//form
+	var form = root.querySelector('#adminAuthorsNewForm');
+	var inputs = form.querySelectorAll('input');
+
+	//clear errors on input
+	function onInput(event) {
+		_utils2.default.setHTML('#form-error', "");
+		if (event.target.name === 'name') {
+			_utils2.default.setHTML('#name .error', "");
+		} else if (event.target.name === 'firstName') {
+			_utils2.default.setHTML('#firstName .error', "");
+		} else if (event.target.name === 'nameAlpha') {
+			_utils2.default.setHTML('#nameAlpha .error', "");
+		} else if (event.target.name === 'birth') {
+			_utils2.default.setHTML('#birth .error', "");
+		} else if (event.target.name === 'death') {
+			_utils2.default.setHTML('#death .error', "");
+		}
+	}
+
+	for (var i = 0; i < inputs.length; i++) {
+		inputs[i].addEventListener('input', onInput, false);
+	}
+
+	//submit
+	function onSubmit(event) {
+		event.preventDefault();
+		_utils2.default.bind(form, {});
+		var user = {};
+		user.name = form.querySelector('[name=name]').value;
+		user.firstName = form.querySelector('[name=firstName]').value;
+		user.nameAlpha = form.querySelector('[name=nameAlpha]').value;
+		user.birth = form.querySelector('[name=birth]').value;
+		user.death = form.querySelector('[name=death]').value;
+		user.description = form.querySelector('[name=description]').value;
+		var options = { method: 'POST', url: '/authors/', data: JSON.stringify(user) };
+		_utils2.default.ajax(options).then(function (res) {
+			var response = JSON.parse(res);
+			if (response.errors) {
+				_utils2.default.bind(form, response.errors);
+			} else {
+				location.hash = '#/admin/authors/';
+			}
+		});
+	}
+
+	form.addEventListener('submit', onSubmit, false);
+
+	//search modal
+	var openModalBtn = root.querySelector('#open-modal-btn');
+	openModalBtn.addEventListener('click', function (event) {
+		event.preventDefault();
+		modal.style.display = 'block';
+	}, false);
+
+	var closeModalBtn = modal.querySelector('#close-modal-btn');
+	closeModalBtn.addEventListener('click', function () {
+		modal.style.display = 'none';
+		searchInput.value = '';
+		results.innerHTML = '';
+	}, false);
+
+	function onkeyup(event) {
+		var string = event.target.value;
+		if (!string) {
+			results.innerHTML = '';
+			return;
+		}
+		var options = { method: "GET", url: '/books/search?q=' + string };
+		_utils2.default.ajax(options).then(function (res) {
+			var response = JSON.parse(res);
+			if (response.error) {
+				_utils2.default.bind(modal, response, 'error');
+			} else {
+				results.innerHTML = '';
+				var p = '<p id={{ id }}><span>{{ title }} ({{ author }})</span>' + '<span><button type="button" class="add-btn w3-button w3-display-right">Ajouter</button></span></p>';
+				var li = document.createElement('LI');
+				li.className = 'w3-display-container';
+				li.setAttribute('data-utils-repeat', p);
+				results.appendChild(li);
+				_utils2.default.repeat(modal, response.books);
+
+				var addBtns = modal.querySelectorAll('.add-btn');
+				for (var _i = 0; _i < addBtns.length; _i++) {
+					addBtns[_i].addEventListener('click', addBooks, false);
+				}
+			}
+		}).catch(function (err) {
+			console.log(err);
+		});
+	}
+
+	searchInput.addEventListener('keyup', onkeyup, false);
+
+	//remove books
+	function removeBooks(event) {
+		var id = event.target.parentElement.parentElement.id;
+		console.log(id);
+	}
+
+	//add books
+	function addBooks(event) {
+		var id = event.target.parentElement.parentElement.id;
+		console.log(id);
+		selectedBooks.push(id);
+		var name = event.target.parentElement.parentElement.firstElementChild.innerHTML;
+		console.log(name);
+		var p = document.createElement('P');
+		p.id = id;
+		var spanA = document.createElement('SPAN');
+		spanA.innerHTML = name;
+		var spanB = document.createElement('SPAN');
+		var button = document.createElement('BUTTON');
+		button.className = "remove-btn w3-button w3-display-right";
+		button.setAttribute('type', 'button');
+		button.innerHTML = 'Supprimer';
+		button.addEventListener('click', removeBooks, false);
+		spanB.appendChild(button);
+		p.appendChild(spanA);
+		p.appendChild(spanB);
+		var li = document.createElement('LI');
+		li.className = 'w3-display-container';
+		li.appendChild(p);
+		booksContainer.appendChild(li);
+		modal.style.display = 'none';
+	}
+};
+
+exports.default = adminAuthorsNew;
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _utils = __webpack_require__(0);
+
+var _utils2 = _interopRequireDefault(_utils);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//home.js
+var adminAuthorEdit = function adminAuthorEdit(data) {
+	'use strict';
+	//rootElement
+
+	var root = document.querySelector('#adminAuthorEdit');
+	//form
+	var form = root.querySelector('#adminAuthorEditForm');
+	var inputs = form.querySelectorAll('input');
+	//AJAX
+	var id = location.hash.replace(/(#\/admin\/authors\/|\/edit)/g, '');
+	var options = { method: 'GET', url: '/authors/' + id };
+	_utils2.default.ajax(options).then(function (res) {
+		var response = JSON.parse(res);
+		if (response.error) {
+			console.log(response.error);
+		} else {
+			var author = response.author;
+			_utils2.default.bind(form, author, 'author');
+		}
+	});
+
+	//clear errors on input
+	function onInput(event) {
+		_utils2.default.setHTML('#form-error', "");
+		if (event.target.name === 'name') {
+			_utils2.default.setHTML('#name .error', "");
+		} else if (event.target.name === 'firstName') {
+			_utils2.default.setHTML('#firstName .error', "");
+		} else if (event.target.name === 'nameAlpha') {
+			_utils2.default.setHTML('#nameAlpha .error', "");
+		} else if (event.target.name === 'birth') {
+			_utils2.default.setHTML('#birth .error', "");
+		} else if (event.target.name === 'death') {
+			_utils2.default.setHTML('#death .error', "");
+		}
+	}
+
+	for (var i = 0; i < inputs.length; i++) {
+		inputs[i].addEventListener('input', onInput, false);
+	}
+
+	//submit
+	function onSubmit(event) {
+		event.preventDefault();
+		_utils2.default.bind(form, {}, 'error');
+		var user = {};
+		user.name = form.querySelector('[name=name]').value;
+		user.firstName = form.querySelector('[name=firstName]').value;
+		user.nameAlpha = form.querySelector('[name=nameAlpha]').value;
+		user.birth = form.querySelector('[name=birth]').value;
+		user.death = form.querySelector('[name=death]').value;
+		user.description = form.querySelector('[name=description]').value;
+		var options = { method: 'PUT', url: '/authors/' + id, data: JSON.stringify(user) };
+		_utils2.default.ajax(options).then(function (res) {
+			var response = JSON.parse(res);
+			if (response.errors) {
+				_utils2.default.bind(form, response.errors, 'error');
+			} else {
+				location.hash = '#/admin/authors/' + id;
+			}
+		});
+	}
+
+	form.addEventListener('submit', onSubmit, false);
+};
+
+exports.default = adminAuthorEdit;
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=adminHome class=content> <h4 class=\"w3-container w3-padding-16\">Accueil</h4> <div class=w3-container> <div class=w3-border-bottom> <p data-utils-bind=\"{{ name }}\"></p> <p data-utils-bind=\"{{ email }}\"></p> </div> <div class=w3-border-bottom> <p><a id=update-user-btn href=/#/admin/edit/ class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Modifier profil</a></p> <p><a id=update-password-btn href=/#/admin/edit/password class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Modifier mot de passe</a></p> </div> <p><a id=new-btn href=/#/admin/new class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Nouveau compte administrateur</a></p> <p><button id=logout-btn type=button class=\"w3-button w3-text-gray w3-hover-none w3-hover-text-black\" style=padding-left:0;padding-right:0>Déconnexion</button></p> </div> </div> ";
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=adminUsers class=content> <h4 class=\"w3-container w3-padding-16\">Utilisateurs</h4> <span class=error data-utils-bind=\"{{ error }}\"></span> <div> <ul id=users-list class=w3-ul> <li class=w3-display-container data-utils-repeat=\"\n\t\t\t\t<p id={{ id }}><a href='/#/admin/users/{{ id }}' class='w3-text-gray w3-hover-none w3-hover-text-black'>{{ email }}</a></p>\n\t\t\t\t\"> </li> </ul> </div> </div> ";
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=adminUser class=content> <div id=modal class=\"w3-modal w3-card-4\"> <div class=\"w3-modal-content w3-animate-top\"> <header class=\"w3-container w3-black\"> <span id=close-modal-btn class=\"w3-button w3-display-topright\">&times;</span> <h4>Supprimer un utilisateur</h4> </header> <div class=w3-container> <p>Voulez-vous vraiment supprimer cet utilisateur ?</p> <p data-utils-bind=\"{{ email }}\"></p> <p class=w3-right><button type=button id=delete-btn class=\"w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black\">Supprimer</button></p> </div> </div> </div> <h4 class=\"w3-container align-left w3-padding-16\">Utilisateur</h4> <p class=\"align-right w3-padding-16\"><a href=/#/admin/users/ class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Retour</a></p> <div id=user class=w3-container> <span class=error data-utils-bind=\"{{ error }}\"></span> <div class=w3-border-bottom data-utils-bind=\"\n\t\t\t<p><b>Nom : </b>{{ name }}</p>\n\t\t\t<p><b>Email : </b>{{ email }}</p>\n\t\t\t<p><b>Admin : </b>{{ admin }}</p>\n\t\t\t<p><b>Créé le : </b>{{ created_at }}</p>\n\t\t\t<p><b>Mis à jour le : </b>{{ updated_at }}</p>\n\t\t\t\"> </div> <p><button type=button id=open-modal-btn class=\"w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-right\">Supprimer</button></p> </div> </div> ";
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=adminNew class=content> <h4 class=\"w3-container align-left w3-padding-16\">Nouveau compte administrateur</h4> <p class=\"align-right w3-padding-16\"><a href=/#/admin/ class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Retour</a></p> <div class=w3-container> <form id=adminRegisterForm> <span class=error id=form-error data-utils-bind=\"{{ form }}\"></span> <p id=name> <label>Nom : </label> <input type=text name=name class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ name }}\"></span> </p> <p id=email> <label>Email : </label> <input type=text name=email class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ email }}\"></span> </p> <p id=password> <label>Mot de passe : </label> <input type=password name=password class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ password }}\"></span> </p> <p id=password_confirm> <label>Confirmation : </label> <input type=password name=password_confirm class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ password_confirm }}\"></span> </p> <p> <button type=submit class=\"w3-btn w3-border\">Valider</button> </p> </form> </div> </div> ";
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=adminEdit class=content> <h4 class=\"w3-container align-left w3-padding-16\">Modifier votre profil</h4> <p class=\"align-right w3-padding-16\"><a href=/#/admin/ class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Retour</a></p> <div class=w3-container> <form id=adminEditForm> <span class=error id=form-error data-utils-bind=\"{{ form }}\"></span> <p id=name> <label>Nom : </label> <input type=text name=name class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ name }}\"></span> </p> <p id=email> <label>Email : </label> <input type=text name=email class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ email }}\"></span> </p> <p id=password> <label>Mot de passe : </label> <input type=password name=password class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ password }}\"></span> </p> <p> <button type=submit class=\"w3-btn w3-border\">Valider</button> </p> </form> </div> </div> ";
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=adminEditPassword class=content> <h4 class=\"w3-container align-left w3-padding-16\">Modifier votre mot de passe</h4> <p class=\"align-right w3-padding-16\"><a href=/#/admin/ class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Retour</a></p> <div class=w3-container> <form id=adminEditPasswordForm> <span class=error id=form-error data-utils-bind=\"{{ form }}\"></span> <span class=\"success hidden\" id=form-success data-utils-bind=\"{{ message }}\"></span> <p id=password> <label>Mot de passe actuel : </label> <input type=password name=password class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ password }}\"></span> </p> <p id=password_new> <label>Nouveau mot de passe : </label> <input type=password name=password_new class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ password_new }}\"></span> </p> <p id=password_new_confirm> <label>Confirmation : </label> <input type=password name=password_new_confirm class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ password_new_confirm }}\"></span> </p> <p> <button type=submit class=\"w3-btn w3-border\">Valider</button> </p> </form> </div> </div> ";
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=adminBooks class=content> <h4 class=\"w3-container w3-padding-16\">Ouvrages</h4> <div> <ul id=books-list class=w3-ul> <li class=w3-display-container data-utils-repeat=\"\n\t\t\t\t<p>{{ author }}</p>\n\t\t\t\t<p><span><a href='/#/admin/books/{{ id }}' class='w3-text-gray w3-hover-none w3-hover-text-black'>{{ title }}</a></span>\n\t\t\t\t<span class='w3-display-right'><a id='delete-link' href='/#/admin/books/' class='w3-text-gray w3-hover-none w3-hover-text-black'>Supprimer</a></span></p>\n\t\t\t\t\"> </li> </ul> </div> </div> ";
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=adminBook class=content> <h4 class=\"w3-container align-left w3-padding-16\">Ouvrage</h4> <p class=\"align-right w3-padding-16\"><a href=/#/admin/books/ class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Retour</a></p> <div id=book class=w3-container> <div data-utils-bind=\"\n\t\t\t<p>{{ author }}</p>\n\t\t\t<p>{{ title }}</p>\n\t\t\t\"> </div> </div> </div> ";
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=adminAuthors class=content> <h4 class=\"align-left w3-container w3-padding-16\">Auteurs</h4> <p class=\"align-right w3-padding-16\"><a href=/#/admin/authors/new class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Ajouter</a></p> <div style=clear:both> <span class=error data-utils-bind=\"{{ error }}\"></span> <ul id=authors-list class=w3-ul> <li data-utils-repeat=\"\n\t\t\t\t<p id={{ id }}>\n\t\t\t\t\t<a href='/#/admin/authors/{{ id }}' class='w3-text-gray w3-hover-none w3-hover-text-black'>\n\t\t\t\t\t\t{{ firstName }} {{ name }} ({{ birth }}&thinsp;&ndash;&thinsp;{{ death }})\n\t\t\t\t\t</a>\n\t\t\t\t</p>\n\t\t\t\t\"> </li> </ul> </div> </div> ";
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=adminAuthor class=content> <div id=modal class=\"w3-modal w3-card-4\"> <div class=\"w3-modal-content w3-animate-top\"> <header class=\"w3-container w3-black\"> <span id=close-modal-btn class=\"w3-button w3-display-topright\">&times;</span> <h4>Supprimer un auteur</h4> </header> <div class=w3-container> <p>Voulez-vous vraiment supprimer cet auteur ?</p> <p data-utils-bind=\"{{ firstName }} {{ name }}\"></p> <p class=w3-right><button type=button id=delete-btn class=\"w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black\">Supprimer</button></p> </div> </div> </div> <h4 class=\"w3-container align-left w3-padding-16\">Auteur</h4> <p class=\"align-right w3-padding-16\"><a href=/#/admin/authors/ class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Retour</a></p> <div id=author class=w3-container> <span class=error data-utils-bind=\"{{ error }}\"></span> <div class=w3-border-bottom> <p><b>Nom : </b><span data-utils-bind=\"{{ name }}\"></span></p> <p><b>Prénom : </b><span data-utils-bind=\"{{ firstName }}\"></span></p> <p><b>Nom alphabétique : </b><span data-utils-bind=\"{{ nameAlpha }}\"></span></p> <p><b>Date de naissance : </b><span data-utils-bind=\"{{ birth }}\"></span></p> <p><b>Date de décès : </b><span data-utils-bind=\"{{ death }}\"></span></p> <p><b>Description : </b></p> <div data-utils-bind=\"{{ description }}\"></div> <p><b>Créé le : </b><span data-utils-bind=\"{{ created_at }}\"></span></p> <p><b>Mis à jour le : </b><span data-utils-bind=\"{{ updated_at }}\"></span></p> </div> <p> <button type=button id=edit-btn class=\"w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-left\">Modifier</button> <button type=button id=open-modal-btn class=\"w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-right\">Supprimer</button> </p> </div> </div> ";
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=adminAuthorsNew class=content> <div id=modal class=\"w3-modal w3-card-4\"> <div class=\"w3-modal-content w3-animate-top\"> <header class=\"w3-container w3-black\"> <span id=close-modal-btn class=\"w3-button w3-display-topright\">&times;</span> <h4>Rechercher un ouvrage</h4> </header> <div class=w3-container> <p id=search> <input type=text name=search class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ error }}\"></span> </p> <ul id=results style=min-height:200px class=w3-ul></ul> </div> </div> </div> <h4 class=\"w3-container align-left w3-padding-16\">Ajouter un auteur</h4> <p class=\"align-right w3-padding-16\"><a href=/#/admin/authors/ class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Retour</a></p> <div class=w3-container> <form id=adminAuthorsNewForm> <span class=error id=form-error data-utils-bind=\"{{ form }}\"></span> <p id=name> <label>Nom : </label> <input type=text name=name class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ name }}\"></span> </p> <p id=firstName> <label>Prénom : </label> <input type=text name=firstName class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ firstname }}\"></span> </p> <p id=nameAlpha> <label>Nom alphabétique : </label> <input type=text name=nameAlpha class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ nameAlpha }}\"></span> </p> <p id=birth> <label>Date de naissance : </label> <input type=text name=birth class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ birth }}\"></span> </p> <p id=death> <label>Date de décès : </label> <input type=text name=death class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ death }}\"></span> </p> <p id=description> <label>Description : </label> <textarea type=text name=description class=\"w3-input w3-border\"></textarea> <span class=error data-utils-bind=\"{{ description }}\"></span> </p> <div class=\"w3-margin-bottom w3-border-bottom\"> <div class=w3-margin-bottom style=min-height:100px> <p> <label class=align-left>Ouvrages : </label> <a href=/#/admin/authors/new id=open-modal-btn class=\"align-right w3-text-gray w3-hover-none w3-hover-text-black\">Rechercher</a> </p> <ul id=booksContainer class=\"w3-ul w3-padding-32\"></ul> </div> </div> <p> <button type=submit class=\"w3-btn w3-border\">Valider</button> </p> </form> </div> </div> ";
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=adminAuthorEdit class=content> <h4 class=\"w3-container align-left w3-padding-16\">Modifier un auteur</h4> <p class=\"align-right w3-padding-16\"><a href=/#/admin/authors/ class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Retour</a></p> <div class=w3-container> <form id=adminAuthorEditForm> <span class=error id=form-error data-utils-bind=\"{{ form }}\"></span> <p id=name> <label>Nom : </label> <input type=text name=name class=\"w3-input w3-border author\" data-utils-bind=\"{{ name }}\"> <span class=error data-utils-bind=\"{{ name }}\"></span> </p> <p id=firstName> <label>Prénom : </label> <input type=text name=firstName class=\"w3-input w3-border author\" data-utils-bind=\"{{ firstName }}\"> <span class=error data-utils-bind=\"{{ firstName }}\"></span> </p> <p id=nameAlpha> <label>Nom alphabétique : </label> <input type=text name=nameAlpha class=\"w3-input w3-border author\" data-utils-bind=\"{{ nameAlpha }}\"> <span class=error data-utils-bind=\"{{ nameAlpha }}\"></span> </p> <p id=birth> <label>Date de naissance : </label> <input type=text name=birth class=\"w3-input w3-border author\" data-utils-bind=\"{{ birth }}\"> <span class=error data-utils-bind=\"{{ birth }}\"></span> </p> <p id=death> <label>Date de décès : </label> <input type=text name=death class=\"w3-input w3-border author\" data-utils-bind=\"{{ death }}\"> <span class=error data-utils-bind=\"{{ death }}\"></span> </p> <p id=description> <label>Description : </label> <textarea type=text name=description class=\"w3-input w3-border author\" data-utils-bind=\"{{ description }}\"></textarea> <span class=error data-utils-bind=\"{{ description }}\"></span> </p> <p> <button type=submit class=\"w3-btn w3-border\">Valider</button> </p> </form> </div> </div> ";
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=home class=content> <div class=\"w3-container w3-padding-24\"> <ul id=books-list class=w3-ul> <li data-utils-repeat=\"\n\t\t\t\t<span>{{ author }} &ndash; </span>\n\t\t\t\t<a href='/#{{ path }}/read' class='w3-text-gray w3-hover-none w3-hover-text-black'>{{ title }}</a>\"> </li> </ul> </div> </div> ";
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=book> <div id=bookContainer> <div id=toc-large-device class=w3-card-4> <button id=toggle-toc-large-device type=button class=\"w3-btn w3-card-4 w3-white\">&colone;</button> <div id=toc-large-device-container class=toc-content> <p class=w3-center data-utils-bind=\"{{ author }}\"></p> <p class=\"w3-center text-uppercase\" data-utils-bind=\"{{ title }}\"></p> <div data-wb-toc class=w3-container></div> </div> </div> <div id=swing-container> <div data-wb-text-container class=w3-card-4> <div id=toc> <div data-wb-toc class=w3-container> <button id=close-toc type=button>&times;</button> <div id=toc-title class=toc-content> <p class=w3-center data-utils-bind=\"{{ author }}\"></p> <p class=\"w3-center text-uppercase\" data-utils-bind=\"{{ title }}\"></p> </div> </div> </div> <div id=top> <span class=wb-current-section-title></span> </div> <div data-wb-text></div> <div id=bottom> <a id=home href=/#/books/ class=\"w3-btn w3-text-dark-grey\">Liber</a> <span class=wb-currentByTotal-pages></span> <button type=button class=\"open-toc w3-btn w3-text-dark-grey\">&colone;</button> </div> <div id=bottom-large> <span class=wb-currentByTotal-pages></span> </div> </div> </div> <div id=book-nav-bar-bottom class=w3-bottom> <div class=\"w3-bar w3-large\"> <div id=swing-bar> <div id=book-nav-bar-bottom-controls> <button id=backward-large type=button class=\"w3-btn w3-margin-right\">&lt;</button> <button id=forward-large type=button class=\"w3-btn w3-margin-left\">&gt;</button> <button id=open-toc-large type=button class=\"open-toc w3-btn\"><span>&colone;</span></button> </div> </div> </div> </div> </div> </div> ";
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=adminLogin class=content> <div class=\"w3-container w3-padding-24\"> <h3 class=w3-container>Espace administration&ensp;&ndash;&ensp;connexion</h3> <form id=adminLoginForm class=w3-container> <span class=error id=form-error data-utils-bind=\"{{ form }}\"></span> <p id=email> <label>Identifiant : </label> <input type=text name=email class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ email }}\"></span> </p> <p id=password> <label>Mot de passe : </label> <input type=password name=password class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ password }}\"></span> </p> <p> <button type=submit id=loginButton class=\"w3-btn w3-border\">Valider</button> </p> </form> </div> </div> ";
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=admin class=content> <div class=\"w3-container w3-padding-24\"> <h3 class=w3-container>Espace administration</h3> <nav id=admin-nav-bar-top class=\"w3-bar w3-white w3-border-top w3-border-bottom\"> <a id=admin-home href=/#/admin/ class=\"w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black\">Accueil</a> <a id=admin-users href=/#/admin/users/ class=\"w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black\">Utilisateurs</a> <a id=admin-books href=/#/admin/books/ class=\"w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black\">Ouvrages</a> <a id=admin-authors href=/#/admin/authors/ class=\"w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black\">Auteurs</a> </nav> <div id=admin-container></div> </div> </div> ";
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(23);
+var content = __webpack_require__(42);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -14187,7 +15168,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(25)(content, options);
+var update = __webpack_require__(44)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -14204,10 +15185,10 @@ if(false) {
 }
 
 /***/ }),
-/* 23 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(24)(undefined);
+exports = module.exports = __webpack_require__(43)(undefined);
 // imports
 
 
@@ -14218,7 +15199,7 @@ exports.push([module.i, "/*\nBOOK NAVBAR BOTTOM\n*/\n#book-nav-bar-bottom {\n\td
 
 
 /***/ }),
-/* 24 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14300,7 +15281,7 @@ function toComment(sourceMap) {
 }
 
 /***/ }),
-/* 25 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -14356,7 +15337,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(26);
+var	fixUrls = __webpack_require__(45);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -14672,7 +15653,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 26 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

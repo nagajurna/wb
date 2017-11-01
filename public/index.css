@@ -124,7 +124,14 @@ ERROR MESSAGES
 .error {
 	display: inline-block;
 	line-height: 0.85em;
-	color: #ff0000;
+	color: red;
+	font-size: 0.85em;
+}
+
+.success {
+	display: inline-block;
+	line-height: 0.85em;
+	color: green;
 	font-size: 0.85em;
 }
 
