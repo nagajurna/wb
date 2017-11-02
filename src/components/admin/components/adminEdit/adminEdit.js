@@ -1,7 +1,14 @@
 import utils from '../../../../services/utils';
+let adminEditTemplate = require('./adminEdit.ejs');
 //home.js
-const adminEdit = function(user) {
+const adminEdit = function(container,user) {
 	'use strict';
+	
+	let adminContainer = container;
+	
+	//insert template in container
+	adminContainer.innerHTML = adminEditTemplate();
+	
 	//rootElement
 	const root = document.querySelector('#adminEdit');
 	//form

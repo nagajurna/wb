@@ -3,6 +3,9 @@ let adminUsersTemplate = require('./adminUsers.ejs');
 //home.js
 const adminUsers = function(container) {
 	'use strict';
+	
+	let adminContainer = container;
+	
 	//ajax get users
 	let options = { method: 'GET', url: '/users/' };
 	utils.ajax(options)
@@ -10,12 +13,10 @@ const adminUsers = function(container) {
 		let response = JSON.parse(res);
 		if(response.error) {
 			//insert template in container
-			container.innerHTML = "";
-			container.innerHTML = adminUsersTemplate({ users: [], error: response.error });
+			adminContainer.innerHTML = adminUsersTemplate({ users: [], error: response.error });
 		} else {
 			//insert template in container
-			container.innerHTML = "";
-			container.innerHTML = adminUsersTemplate({ users: response.users, error: '' });
+			adminContainer.innerHTML = adminUsersTemplate({ users: response.users, error: '' });
 		}
 	});
 };

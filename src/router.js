@@ -58,7 +58,7 @@ const router  = function() {
 				location.hash = '#/admin/';
 			})
 			.catch( error => {
-				adminLogin();
+				adminLogin(container);
 			});
 			
 		

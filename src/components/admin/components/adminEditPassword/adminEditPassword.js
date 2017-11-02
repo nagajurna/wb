@@ -1,13 +1,20 @@
 import utils from '../../../../services/utils';
+let adminEditPasswordTemplate = require('./adminEditPassword.ejs');
 //home.js
-const adminEditPassword = function(user) {
+const adminEditPassword = function(container, user) {
 	'use strict';
+	
+	let adminContainer = container;
+	let data = user;
+	
+	//insert template in container
+	adminContainer.innerHTML = adminEditPasswordTemplate();
+	
 	//rootElement
 	const root = document.querySelector('#adminEditPassword');
 	//form
 	const form = root.querySelector('#adminEditPasswordForm');
 	const inputs = form.querySelectorAll('input');
-	let data = user;
 	
 	//clear errors on input
 	function onInput(event) {

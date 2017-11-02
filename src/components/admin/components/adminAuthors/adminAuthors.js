@@ -4,6 +4,8 @@ let adminAuthorsTemplate = require('./adminAuthors.ejs');
 const adminAuthors = function(container) {
 	'use strict';
 	
+	let adminContainer = container;
+	
 	//ajax get authors
 	let options = { method: 'GET', url: '/authors/' };
 	utils.ajax(options)
@@ -11,12 +13,10 @@ const adminAuthors = function(container) {
 		let response = JSON.parse(res);
 		if(response.error) {
 			//insert template in container
-			container.innerHTML = "";
-			container.innerHTML = adminAuthorsTemplate({ authors: [], error: response.error });
+			adminContainer.innerHTML = adminAuthorsTemplate({ authors: [], error: response.error });
 		} else {
 			//insert template in container
-			container.innerHTML = "";
-			container.innerHTML = adminAuthorsTemplate({ authors: response.authors, error: '' });
+			adminContainer.innerHTML = adminAuthorsTemplate({ authors: response.authors, error: '' });
 		}
 	});
 };

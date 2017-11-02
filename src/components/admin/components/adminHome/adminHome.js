@@ -5,12 +5,12 @@ let adminHomeTemplate = require('./adminHome.ejs')
 const adminHome = function(container, data) {
 	'use strict';
 	
+	let adminContainer = container;
 	//User
 	if(!data) { return; }
 	let user = data;
 	//insert template in container
-	container.innerHTML = "";
-	container.innerHTML = adminHomeTemplate({ user: user });
+	adminContainer.innerHTML = adminHomeTemplate({ user: user });
 	
 	function logout() {
 		let options = { method: 'GET', url: '/users/logout' };

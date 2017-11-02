@@ -126,20 +126,6 @@ var utils = {
 		});
 	},
 
-	getTemplate: function getTemplate(container, template, controller) {
-		'use strict';
-
-		var promise = new Promise(function (resolve, reject) {
-			container.innerHTML = ""; //empty
-			var div = document.createElement('div');
-			div.innerHTML = template;
-			container.appendChild(div);
-			resolve(controller);
-		});
-
-		return promise;
-	},
-
 	//active link : change class
 	activeLink: function activeLink() {
 		'use strict';
@@ -235,62 +221,6 @@ var utils = {
 			} else {
 				elements[i].innerHTML = '';
 			}
-		}
-	},
-
-	repeat: function repeat(container, array) {
-		//replace each prop of array item
-		var rpc = function rpc(content, brackets, props, item, index) {
-			if (props.length === 0) {
-				return content;
-			}
-			var newContent = '';
-			for (var i = 0; i < props.length; i++) {
-				var prop = props[i];
-				var bracket = brackets[i];
-				var pattern = new RegExp(bracket, "g");
-				if (prop === '#item') {
-					newContent = content.replace(pattern, item);
-				} else if (prop === '#index') {
-					newContent = content.replace(pattern, index);
-				} else {
-					newContent = content.replace(pattern, item[prop]);
-				}
-				content = newContent;
-			}
-			return newContent;
-		};
-
-		//repeat for each item of array
-		var rpt = function rpt(element, content, array, brackets, props) {
-
-			for (var i = 0; i < array.length; i++) {
-				var newContent = rpc(content, brackets, props, array[i], i);
-				var el = document.createElement(element.nodeName);
-				el.className = element.className;
-				el.innerHTML = newContent;
-				element.parentElement.insertBefore(el, element);
-			}
-
-			//remove element
-			element.parentElement.removeChild(element);
-		};
-		//get template and props for each repeat element
-		var elements = container.querySelectorAll('[data-utils-repeat]');
-		for (var i = 0; i < elements.length; i++) {
-			var brackets = [];
-			var props = [];
-			var content = elements[i].getAttribute('data-utils-repeat');
-
-			if (content.match(/{{[^{]+}}/g)) {
-				brackets = content.match(/{{[^{]+}}/g);
-			}
-
-			for (var j = 0; j < brackets.length; j++) {
-				props.push(brackets[j].replace(/({|})/g, '').trim());
-			}
-
-			rpt(elements[i], content, array, brackets, props);
 		}
 	},
 
@@ -584,7 +514,7 @@ var router = function router() {
 			_utils2.default.checkRole().then(function (user) {
 				location.hash = '#/admin/';
 			}).catch(function (error) {
-				(0, _adminLogin2.default)();
+				(0, _adminLogin2.default)(container);
 			});
 		} else {
 			//FALLBACK
@@ -645,12 +575,13 @@ var homeTemplate = __webpack_require__(5);
 //home.js
 var home = function home(container) {
 	'use strict';
-	//get books from dataStore
 
+	var viewContainer = container;
+
+	//get books from dataStore
 	var books = _dataStore2.default.getData('books');
 	//insert template in container
-	container.innerHTML = "";
-	container.innerHTML = homeTemplate({ books: books });
+	viewContainer.innerHTML = homeTemplate({ books: books });
 };
 
 exports.default = home;
@@ -730,6 +661,8 @@ var bookTemplate = __webpack_require__(11);
 //book.js
 var book = function book(container) {
 	'use strict';
+
+	var viewContainer = container;
 
 	var init = function init() {
 		//DIMENSIONS
@@ -891,8 +824,7 @@ var book = function book(container) {
 	//pass metadata to nav-bar-top
 	_utils2.default.bind(document.body, book);
 	//insert template in container
-	container.innerHTML = "";
-	container.innerHTML = bookTemplate({ book: book });
+	viewContainer.innerHTML = bookTemplate({ book: book });
 
 	//BOOK CONTAINER
 	var bookContainer = document.querySelector('#bookContainer');
@@ -14054,12 +13986,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var adminLoginTemplate = __webpack_require__(13);
 //home.js
-var adminLogin = function adminLogin() {
+var adminLogin = function adminLogin(container) {
 	'use strict';
-	//Insert template
 
-	container.innerHTML = "";
-	container.innerHTML = adminLoginTemplate();
+	var viewContainer = container;
+	//Insert template
+	viewContainer.innerHTML = adminLoginTemplate();
 	//rootElement
 	var root = document.querySelector('#adminLogin');
 	//form
@@ -14176,71 +14108,52 @@ var _adminNew = __webpack_require__(21);
 
 var _adminNew2 = _interopRequireDefault(_adminNew);
 
-var _adminEdit = __webpack_require__(22);
+var _adminEdit = __webpack_require__(23);
 
 var _adminEdit2 = _interopRequireDefault(_adminEdit);
 
-var _adminEditPassword = __webpack_require__(23);
+var _adminEditPassword = __webpack_require__(25);
 
 var _adminEditPassword2 = _interopRequireDefault(_adminEditPassword);
 
-var _adminBooks = __webpack_require__(24);
+var _adminBooks = __webpack_require__(27);
 
 var _adminBooks2 = _interopRequireDefault(_adminBooks);
 
-var _adminBook = __webpack_require__(25);
+var _adminBook = __webpack_require__(29);
 
 var _adminBook2 = _interopRequireDefault(_adminBook);
 
-var _adminAuthors = __webpack_require__(26);
+var _adminAuthors = __webpack_require__(31);
 
 var _adminAuthors2 = _interopRequireDefault(_adminAuthors);
 
-var _adminAuthor = __webpack_require__(28);
+var _adminAuthor = __webpack_require__(33);
 
 var _adminAuthor2 = _interopRequireDefault(_adminAuthor);
 
-var _adminAuthorsNew = __webpack_require__(30);
+var _adminAuthorsNew = __webpack_require__(35);
 
 var _adminAuthorsNew2 = _interopRequireDefault(_adminAuthorsNew);
 
-var _adminAuthorEdit = __webpack_require__(31);
+var _adminAuthorEdit = __webpack_require__(37);
 
 var _adminAuthorEdit2 = _interopRequireDefault(_adminAuthorEdit);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//admin user
-
-//admin home
-var adminNewTemplate = __webpack_require__(32);
-//admin edit
-
-//admin new
-
-//admin users
-
-var adminEditTemplate = __webpack_require__(33);
-//admin edit password
-
-var adminEditPasswordTemplate = __webpack_require__(34);
-//admin books
-
-var adminBooksTemplate = __webpack_require__(35);
-//admin book
-
-var adminBookTemplate = __webpack_require__(36);
-//admin authors
-
-//admin author
-
 //admin authorNew
 
-var adminAuthorsNewTemplate = __webpack_require__(37);
-//admin authorEdit
+//admin authors
 
-var adminAuthorEditTemplate = __webpack_require__(38);
+//admin books
 
+//admin edit
+
+//admin user
+
+//CONTROLLERS
+//admin home
 var adminRouter = function adminRouter(oldhash, newhash, data) {
 
 	var user = data;
@@ -14250,51 +14163,37 @@ var adminRouter = function adminRouter(oldhash, newhash, data) {
 
 		if (newhash === '#/admin/') {
 			//ADMIN HOME
-			(0, _adminHome2.default)(adminContainer, user);
+			(0, _adminHome2.default)(container, user);
 		} else if (newhash === '#/admin/new') {
-			//ADMIN EDIT
-			_utils2.default.getTemplate(adminContainer, adminNewTemplate, _adminNew2.default).then(function (controller) {
-				controller();
-			});
+			//ADMIN NEW
+			(0, _adminNew2.default)(container);
 		} else if (newhash === '#/admin/edit/') {
 			//ADMIN EDIT
-			_utils2.default.getTemplate(adminContainer, adminEditTemplate, _adminEdit2.default).then(function (controller) {
-				controller(user);
-			});
+			(0, _adminEdit2.default)(container, user);
 		} else if (newhash === '#/admin/edit/password') {
 			//ADMIN EDIT PASSWORD
-			_utils2.default.getTemplate(adminContainer, adminEditPasswordTemplate, _adminEditPassword2.default).then(function (controller) {
-				controller(user);
-			});
+			(0, _adminEditPassword2.default)(container, user);
 		} else if (newhash === '#/admin/users/') {
 			//ADMIN USERS
-			(0, _adminUsers2.default)(adminContainer);
+			(0, _adminUsers2.default)(container);
 		} else if (newhash.match(/#\/admin\/users\/[^\/]+$/)) {
 			//ADMIN USER
-			(0, _adminUser2.default)(adminContainer);
+			(0, _adminUser2.default)(container);
 		} else if (newhash === '#/admin/books/') {
 			//ADMIN BOOKS
-			_utils2.default.getTemplate(adminContainer, adminBooksTemplate, _adminBooks2.default).then(function (controller) {
-				controller();
-			});
+			(0, _adminBooks2.default)(container);
 		} else if (newhash.match(/#\/admin\/books\/[^\/]+$/)) {
 			//ADMIN BOOK
-			_utils2.default.getTemplate(adminContainer, adminBookTemplate, _adminBook2.default).then(function (controller) {
-				controller();
-			});
+			(0, _adminBook2.default)(container);
 		} else if (newhash === '#/admin/authors/') {
 			//ADMIN AUTHORS
-			(0, _adminAuthors2.default)(adminContainer);
+			(0, _adminAuthors2.default)(container);
 		} else if (newhash === '#/admin/authors/new') {
 			//ADMIN AUTHORS NEW
-			_utils2.default.getTemplate(adminContainer, adminAuthorsNewTemplate, _adminAuthorsNew2.default).then(function (controller) {
-				controller();
-			});
+			(0, _adminAuthorsNew2.default)(container);
 		} else if (newhash.match(/#\/admin\/authors\/[^\/]+\/edit$/)) {
 			//ADMIN AUTHORS EDIT
-			_utils2.default.getTemplate(adminContainer, adminAuthorEditTemplate, _adminAuthorEdit2.default).then(function (controller) {
-				controller();
-			});
+			(0, _adminAuthorEdit2.default)(container);
 		} else if (newhash.match(/#\/admin\/authors\/[^\/]+$/)) {
 			//ADMIN AUTHOR
 			(0, _adminAuthor2.default)(adminContainer);
@@ -14306,7 +14205,18 @@ var adminRouter = function adminRouter(oldhash, newhash, data) {
 
 	return routes(adminContainer);
 };
+//admin authorEdit
 
+//admin author
+
+//admin book
+
+//admin edit password
+
+//admin new
+
+//admin users
+//UTILS
 exports.default = adminRouter;
 
 /***/ }),
@@ -14335,15 +14245,14 @@ var adminHomeTemplate = __webpack_require__(16);
 var adminHome = function adminHome(container, data) {
 	'use strict';
 
+	var adminContainer = container;
 	//User
-
 	if (!data) {
 		return;
 	}
 	var user = data;
 	//insert template in container
-	container.innerHTML = "";
-	container.innerHTML = adminHomeTemplate({ user: user });
+	adminContainer.innerHTML = adminHomeTemplate({ user: user });
 
 	function logout() {
 		var options = { method: 'GET', url: '/users/logout' };
@@ -14416,19 +14325,19 @@ var adminUsersTemplate = __webpack_require__(18);
 //home.js
 var adminUsers = function adminUsers(container) {
 	'use strict';
-	//ajax get users
 
+	var adminContainer = container;
+
+	//ajax get users
 	var options = { method: 'GET', url: '/users/' };
 	_utils2.default.ajax(options).then(function (res) {
 		var response = JSON.parse(res);
 		if (response.error) {
 			//insert template in container
-			container.innerHTML = "";
-			container.innerHTML = adminUsersTemplate({ users: [], error: response.error });
+			adminContainer.innerHTML = adminUsersTemplate({ users: [], error: response.error });
 		} else {
 			//insert template in container
-			container.innerHTML = "";
-			container.innerHTML = adminUsersTemplate({ users: response.users, error: '' });
+			adminContainer.innerHTML = adminUsersTemplate({ users: response.users, error: '' });
 		}
 	});
 };
@@ -14499,6 +14408,8 @@ var adminUserTemplate = __webpack_require__(20);
 var adminUser = function adminUser(container) {
 	'use strict';
 
+	var adminContainer = container;
+
 	var id = location.hash.replace(/^#\/admin\/users\//, '');
 	//ajax get user
 	var options = { method: 'GET', url: '/users/' + id };
@@ -14506,12 +14417,10 @@ var adminUser = function adminUser(container) {
 		var response = JSON.parse(res);
 		if (response.error) {
 			//insert template in container
-			container.innerHTML = "";
-			container.innerHTML = adminUserTemplate({ user: {}, error: response.error });
+			adminContainer.innerHTML = adminUserTemplate({ user: {}, error: response.error });
 		} else {
 			//insert template in container
-			container.innerHTML = "";
-			container.innerHTML = adminUserTemplate({ user: response.user, error: '' });
+			adminContainer.innerHTML = adminUserTemplate({ user: response.user, error: '' });
 
 			var root = document.querySelector('#adminUser');
 			var modal = root.querySelector('#modal');
@@ -14602,17 +14511,19 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _dataStore = __webpack_require__(1);
-
-var _dataStore2 = _interopRequireDefault(_dataStore);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var adminNewTemplate = __webpack_require__(22);
 //home.js
-var adminNew = function adminNew(data) {
+var adminNew = function adminNew(container) {
 	'use strict';
-	//rootElement
 
+	var adminContainer = container;
+
+	//insert template in container
+	adminContainer.innerHTML = adminNewTemplate();
+
+	//rootElement
 	var root = document.querySelector('#adminNew');
 	//form
 	var form = root.querySelector('#adminRegisterForm');
@@ -14663,6 +14574,42 @@ exports.default = adminNew;
 
 /***/ }),
 /* 22 */
+/***/ (function(module, exports) {
+
+module.exports = function anonymous(locals, filters, escape, rethrow) {
+    escape = escape || function(html) {
+        return String(html).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+    };
+    var __stack = {
+        lineno: 1,
+        input: '<div id="adminNew" class="content">\n	<h4 class="w3-container align-left w3-padding-16">Nouveau compte administrateur</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div class="w3-container">\n		<form id="adminRegisterForm">\n			\n			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>\n			\n			<p id="name">\n				<label>Nom : </label>\n				<input type="text" name="name" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ name }}"></span>\n			</p>\n			\n			<p id="email">\n				<label>Email : </label>\n				<input type="text" name="email" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ email }}"></span>\n			</p>\n			\n			<p id="password">\n				<label>Mot de passe : </label>\n				<input type="password" name="password" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ password }}"></span>\n			</p>\n			\n			<p id="password_confirm">\n				<label>Confirmation : </label>\n				<input type="password" name="password_confirm" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ password_confirm }}"></span>\n			</p>\n			\n			<p>\n				<button type="submit" class="w3-btn w3-border">Valider</button>\n			</p>\n			\n		</form>\n	</div>\n</div>\n',
+        filename: "."
+    };
+    function rethrow(err, str, filename, lineno) {
+        var lines = str.split("\n"), start = Math.max(lineno - 3, 0), end = Math.min(lines.length, lineno + 3);
+        var context = lines.slice(start, end).map(function(line, i) {
+            var curr = i + start + 1;
+            return (curr == lineno ? " >> " : "    ") + curr + "| " + line;
+        }).join("\n");
+        err.path = filename;
+        err.message = (filename || "ejs") + ":" + lineno + "\n" + context + "\n\n" + err.message;
+        throw err;
+    }
+    try {
+        var buf = [];
+        with (locals || {}) {
+            (function() {
+                buf.push('<div id="adminNew" class="content">\n	<h4 class="w3-container align-left w3-padding-16">Nouveau compte administrateur</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div class="w3-container">\n		<form id="adminRegisterForm">\n			\n			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>\n			\n			<p id="name">\n				<label>Nom : </label>\n				<input type="text" name="name" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ name }}"></span>\n			</p>\n			\n			<p id="email">\n				<label>Email : </label>\n				<input type="text" name="email" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ email }}"></span>\n			</p>\n			\n			<p id="password">\n				<label>Mot de passe : </label>\n				<input type="password" name="password" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ password }}"></span>\n			</p>\n			\n			<p id="password_confirm">\n				<label>Confirmation : </label>\n				<input type="password" name="password_confirm" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ password_confirm }}"></span>\n			</p>\n			\n			<p>\n				<button type="submit" class="w3-btn w3-border">Valider</button>\n			</p>\n			\n		</form>\n	</div>\n</div>\n');
+            })();
+        }
+        return buf.join("");
+    } catch (err) {
+        rethrow(err, __stack.input, __stack.filename, __stack.lineno);
+    }
+}
+
+/***/ }),
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14678,11 +14625,17 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var adminEditTemplate = __webpack_require__(24);
 //home.js
-var adminEdit = function adminEdit(user) {
+var adminEdit = function adminEdit(container, user) {
 	'use strict';
-	//rootElement
 
+	var adminContainer = container;
+
+	//insert template in container
+	adminContainer.innerHTML = adminEditTemplate();
+
+	//rootElement
 	var root = document.querySelector('#adminEdit');
 	//form
 	var form = root.querySelector('#adminEditForm');
@@ -14732,7 +14685,43 @@ var adminEdit = function adminEdit(user) {
 exports.default = adminEdit;
 
 /***/ }),
-/* 23 */
+/* 24 */
+/***/ (function(module, exports) {
+
+module.exports = function anonymous(locals, filters, escape, rethrow) {
+    escape = escape || function(html) {
+        return String(html).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+    };
+    var __stack = {
+        lineno: 1,
+        input: '<div id="adminEdit" class="content">\n	<h4 class="w3-container align-left w3-padding-16">Modifier votre profil</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div class="w3-container">\n		<form id="adminEditForm">\n			\n			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>\n			\n			<p id="name">\n				<label>Nom : </label>\n				<input type="text" name="name" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ name }}"></span>\n			</p>\n			\n			<p id="email">\n				<label>Email : </label>\n				<input type="text" name="email" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ email }}"></span>\n			</p>\n			\n			<p id="password">\n				<label>Mot de passe : </label>\n				<input type="password" name="password" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ password }}"></span>\n			</p>\n			\n			<p>\n				<button type="submit" class="w3-btn w3-border">Valider</button>\n			</p>\n			\n		</form>\n	</div>\n</div>\n',
+        filename: "."
+    };
+    function rethrow(err, str, filename, lineno) {
+        var lines = str.split("\n"), start = Math.max(lineno - 3, 0), end = Math.min(lines.length, lineno + 3);
+        var context = lines.slice(start, end).map(function(line, i) {
+            var curr = i + start + 1;
+            return (curr == lineno ? " >> " : "    ") + curr + "| " + line;
+        }).join("\n");
+        err.path = filename;
+        err.message = (filename || "ejs") + ":" + lineno + "\n" + context + "\n\n" + err.message;
+        throw err;
+    }
+    try {
+        var buf = [];
+        with (locals || {}) {
+            (function() {
+                buf.push('<div id="adminEdit" class="content">\n	<h4 class="w3-container align-left w3-padding-16">Modifier votre profil</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div class="w3-container">\n		<form id="adminEditForm">\n			\n			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>\n			\n			<p id="name">\n				<label>Nom : </label>\n				<input type="text" name="name" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ name }}"></span>\n			</p>\n			\n			<p id="email">\n				<label>Email : </label>\n				<input type="text" name="email" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ email }}"></span>\n			</p>\n			\n			<p id="password">\n				<label>Mot de passe : </label>\n				<input type="password" name="password" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ password }}"></span>\n			</p>\n			\n			<p>\n				<button type="submit" class="w3-btn w3-border">Valider</button>\n			</p>\n			\n		</form>\n	</div>\n</div>\n');
+            })();
+        }
+        return buf.join("");
+    } catch (err) {
+        rethrow(err, __stack.input, __stack.filename, __stack.lineno);
+    }
+}
+
+/***/ }),
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14748,16 +14737,22 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var adminEditPasswordTemplate = __webpack_require__(26);
 //home.js
-var adminEditPassword = function adminEditPassword(user) {
+var adminEditPassword = function adminEditPassword(container, user) {
 	'use strict';
-	//rootElement
 
+	var adminContainer = container;
+	var data = user;
+
+	//insert template in container
+	adminContainer.innerHTML = adminEditPasswordTemplate();
+
+	//rootElement
 	var root = document.querySelector('#adminEditPassword');
 	//form
 	var form = root.querySelector('#adminEditPasswordForm');
 	var inputs = form.querySelectorAll('input');
-	var data = user;
 
 	//clear errors on input
 	function onInput(event) {
@@ -14805,7 +14800,43 @@ var adminEditPassword = function adminEditPassword(user) {
 exports.default = adminEditPassword;
 
 /***/ }),
-/* 24 */
+/* 26 */
+/***/ (function(module, exports) {
+
+module.exports = function anonymous(locals, filters, escape, rethrow) {
+    escape = escape || function(html) {
+        return String(html).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+    };
+    var __stack = {
+        lineno: 1,
+        input: '<div id="adminEditPassword" class="content">\n	<h4 class="w3-container align-left w3-padding-16">Modifier votre mot de passe</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div class="w3-container">\n		<form id="adminEditPasswordForm">\n			\n			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>\n			<span class="success hidden" id="form-success" data-utils-bind="{{ message }}"></span>\n			\n			<p id="password">\n				<label>Mot de passe actuel : </label>\n				<input type="password" name="password" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ password }}"></span>\n			</p>\n			\n			<p id="password_new">\n				<label>Nouveau mot de passe : </label>\n				<input type="password" name="password_new" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ password_new }}"></span>\n			</p>\n			\n			<p id="password_new_confirm">\n				<label>Confirmation : </label>\n				<input type="password" name="password_new_confirm" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ password_new_confirm }}"></span>\n			</p>\n			\n			<p>\n				<button type="submit" class="w3-btn w3-border">Valider</button>\n			</p>\n			\n		</form>\n	</div>\n</div>\n',
+        filename: "."
+    };
+    function rethrow(err, str, filename, lineno) {
+        var lines = str.split("\n"), start = Math.max(lineno - 3, 0), end = Math.min(lines.length, lineno + 3);
+        var context = lines.slice(start, end).map(function(line, i) {
+            var curr = i + start + 1;
+            return (curr == lineno ? " >> " : "    ") + curr + "| " + line;
+        }).join("\n");
+        err.path = filename;
+        err.message = (filename || "ejs") + ":" + lineno + "\n" + context + "\n\n" + err.message;
+        throw err;
+    }
+    try {
+        var buf = [];
+        with (locals || {}) {
+            (function() {
+                buf.push('<div id="adminEditPassword" class="content">\n	<h4 class="w3-container align-left w3-padding-16">Modifier votre mot de passe</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div class="w3-container">\n		<form id="adminEditPasswordForm">\n			\n			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>\n			<span class="success hidden" id="form-success" data-utils-bind="{{ message }}"></span>\n			\n			<p id="password">\n				<label>Mot de passe actuel : </label>\n				<input type="password" name="password" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ password }}"></span>\n			</p>\n			\n			<p id="password_new">\n				<label>Nouveau mot de passe : </label>\n				<input type="password" name="password_new" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ password_new }}"></span>\n			</p>\n			\n			<p id="password_new_confirm">\n				<label>Confirmation : </label>\n				<input type="password" name="password_new_confirm" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ password_new_confirm }}"></span>\n			</p>\n			\n			<p>\n				<button type="submit" class="w3-btn w3-border">Valider</button>\n			</p>\n			\n		</form>\n	</div>\n</div>\n');
+            })();
+        }
+        return buf.join("");
+    } catch (err) {
+        rethrow(err, __stack.input, __stack.filename, __stack.lineno);
+    }
+}
+
+/***/ }),
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14819,32 +14850,75 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _dataStore = __webpack_require__(1);
-
-var _dataStore2 = _interopRequireDefault(_dataStore);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var adminBooksTemplate = __webpack_require__(28);
 //home.js
-var adminBooks = function adminBooks() {
+var adminBooks = function adminBooks(container) {
 	'use strict';
 
-	var root = document.querySelector('#adminBooks');
-	var list = root.querySelector('#books-list');
+	var adminContainer = container;
 
 	//ajax get books
 	var options = { method: 'GET', url: '/books/' };
-	_utils2.default.ajax(options).then(function (response) {
-		var books = JSON.parse(response).books;
-		_utils2.default.repeat(list, books);
-		_dataStore2.default.setData('books', books);
+	_utils2.default.ajax(options).then(function (res) {
+		var response = JSON.parse(res);
+		if (response.error) {
+			//insert template in container
+			adminContainer.innerHTML = adminBooksTemplate({ books: [], error: response.error });
+		} else {
+			//insert template in container
+			adminContainer.innerHTML = adminBooksTemplate({ books: response.books, error: '' });
+		}
 	});
 };
 
 exports.default = adminBooks;
 
 /***/ }),
-/* 25 */
+/* 28 */
+/***/ (function(module, exports) {
+
+module.exports = function anonymous(locals, filters, escape, rethrow) {
+    escape = escape || function(html) {
+        return String(html).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+    };
+    var __stack = {
+        lineno: 1,
+        input: '<div id="adminBooks" class="content">\n	<h4 class="w3-container w3-padding-16">Ouvrages</h4>\n	<span class="error"><%= error %></span>\n	<div>\n		<ul id="books-list" class=\'w3-ul\'>\n			<% for(var i=0; i<books.length; i++) {%>\n			<li class="w3-display-container">\n				<p><%= books[i].author %></p>\n				<p>\n					<a href=\'/#/admin/books/<%= books[i].id %>\' class=\'w3-text-gray w3-hover-none w3-hover-text-black\'><%= books[i].title %></a>\n				</p>\n			</li>\n			<% } %>\n		</ul>\n	</div>\n</div>\n',
+        filename: "."
+    };
+    function rethrow(err, str, filename, lineno) {
+        var lines = str.split("\n"), start = Math.max(lineno - 3, 0), end = Math.min(lines.length, lineno + 3);
+        var context = lines.slice(start, end).map(function(line, i) {
+            var curr = i + start + 1;
+            return (curr == lineno ? " >> " : "    ") + curr + "| " + line;
+        }).join("\n");
+        err.path = filename;
+        err.message = (filename || "ejs") + ":" + lineno + "\n" + context + "\n\n" + err.message;
+        throw err;
+    }
+    try {
+        var buf = [];
+        with (locals || {}) {
+            (function() {
+                buf.push('<div id="adminBooks" class="content">\n	<h4 class="w3-container w3-padding-16">Ouvrages</h4>\n	<span class="error">', escape((__stack.lineno = 3, error)), "</span>\n	<div>\n		<ul id=\"books-list\" class='w3-ul'>\n			");
+                __stack.lineno = 6;
+                for (var i = 0; i < books.length; i++) {
+                    buf.push('\n			<li class="w3-display-container">\n				<p>', escape((__stack.lineno = 8, books[i].author)), "</p>\n				<p>\n					<a href='/#/admin/books/", escape((__stack.lineno = 10, books[i].id)), "' class='w3-text-gray w3-hover-none w3-hover-text-black'>", escape((__stack.lineno = 10, books[i].title)), "</a>\n				</p>\n			</li>\n			");
+                    __stack.lineno = 13;
+                }
+                buf.push("\n		</ul>\n	</div>\n</div>\n");
+            })();
+        }
+        return buf.join("");
+    } catch (err) {
+        rethrow(err, __stack.input, __stack.filename, __stack.lineno);
+    }
+}
+
+/***/ }),
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14858,27 +14932,73 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _dataStore = __webpack_require__(1);
-
-var _dataStore2 = _interopRequireDefault(_dataStore);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var adminBookTemplate = __webpack_require__(30);
 //home.js
-var adminBook = function adminBook() {
+var adminBook = function adminBook(container) {
 	'use strict';
 
-	var root = document.querySelector('#adminBook');
-	var div = root.querySelector('#book');
 	var id = location.hash.replace(/^#\/admin\/books\//, '');
-	var book = _dataStore2.default.getData('books', id);
-	_utils2.default.bind(div, book);
+	var adminContainer = container;
+
+	//ajax get book
+	var options = { method: 'GET', url: '/books/' + id };
+	_utils2.default.ajax(options).then(function (res) {
+		var response = JSON.parse(res);
+		if (response.error) {
+			//insert template in container
+			adminContainer.innerHTML = adminBookTemplate({ book: {}, error: response.error });
+		} else {
+			//insert template in container
+			adminContainer.innerHTML = adminBookTemplate({ book: response.book, error: '' });
+
+			var root = document.querySelector('#adminBook');
+			var div = root.querySelector('#book');
+		}
+	});
 };
 
 exports.default = adminBook;
 
 /***/ }),
-/* 26 */
+/* 30 */
+/***/ (function(module, exports) {
+
+module.exports = function anonymous(locals, filters, escape, rethrow) {
+    escape = escape || function(html) {
+        return String(html).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+    };
+    var __stack = {
+        lineno: 1,
+        input: '<div id="adminBook" class="content">\n	<h4 class="w3-container align-left w3-padding-16">Ouvrage</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/books/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div id="book" class="w3-container">\n		<span class="error"><%= error %></span>\n		<div class="w3-border-bottom">\n			<p><%= book.author %></p>\n			<p><%= book.author %></p>\n		</div>\n		\n	</div>\n</div>\n',
+        filename: "."
+    };
+    function rethrow(err, str, filename, lineno) {
+        var lines = str.split("\n"), start = Math.max(lineno - 3, 0), end = Math.min(lines.length, lineno + 3);
+        var context = lines.slice(start, end).map(function(line, i) {
+            var curr = i + start + 1;
+            return (curr == lineno ? " >> " : "    ") + curr + "| " + line;
+        }).join("\n");
+        err.path = filename;
+        err.message = (filename || "ejs") + ":" + lineno + "\n" + context + "\n\n" + err.message;
+        throw err;
+    }
+    try {
+        var buf = [];
+        with (locals || {}) {
+            (function() {
+                buf.push('<div id="adminBook" class="content">\n	<h4 class="w3-container align-left w3-padding-16">Ouvrage</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/books/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div id="book" class="w3-container">\n		<span class="error">', escape((__stack.lineno = 5, error)), '</span>\n		<div class="w3-border-bottom">\n			<p>', escape((__stack.lineno = 7, book.author)), "</p>\n			<p>", escape((__stack.lineno = 8, book.author)), "</p>\n		</div>\n		\n	</div>\n</div>\n");
+            })();
+        }
+        return buf.join("");
+    } catch (err) {
+        rethrow(err, __stack.input, __stack.filename, __stack.lineno);
+    }
+}
+
+/***/ }),
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14894,24 +15014,23 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorsTemplate = __webpack_require__(27);
+var adminAuthorsTemplate = __webpack_require__(32);
 //home.js
 var adminAuthors = function adminAuthors(container) {
 	'use strict';
 
-	//ajax get authors
+	var adminContainer = container;
 
+	//ajax get authors
 	var options = { method: 'GET', url: '/authors/' };
 	_utils2.default.ajax(options).then(function (res) {
 		var response = JSON.parse(res);
 		if (response.error) {
 			//insert template in container
-			container.innerHTML = "";
-			container.innerHTML = adminAuthorsTemplate({ authors: [], error: response.error });
+			adminContainer.innerHTML = adminAuthorsTemplate({ authors: [], error: response.error });
 		} else {
 			//insert template in container
-			container.innerHTML = "";
-			container.innerHTML = adminAuthorsTemplate({ authors: response.authors, error: '' });
+			adminContainer.innerHTML = adminAuthorsTemplate({ authors: response.authors, error: '' });
 		}
 	});
 };
@@ -14919,7 +15038,7 @@ var adminAuthors = function adminAuthors(container) {
 exports.default = adminAuthors;
 
 /***/ }),
-/* 27 */
+/* 32 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -14961,7 +15080,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 28 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14977,25 +15096,24 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorTemplate = __webpack_require__(29);
+var adminAuthorTemplate = __webpack_require__(34);
 //home.js
 var adminAuthor = function adminAuthor(container) {
 	'use strict';
 
 	var id = location.hash.replace(/^#\/admin\/authors\//, '');
+	var adminContainer = container;
 
-	//ajax get user
+	//ajax get author
 	var options = { method: 'GET', url: '/authors/' + id };
 	_utils2.default.ajax(options).then(function (res) {
 		var response = JSON.parse(res);
 		if (response.error) {
 			//insert template in container
-			container.innerHTML = "";
-			container.innerHTML = adminAuthorTemplate({ author: {}, error: response.error });
+			adminContainer.innerHTML = adminAuthorTemplate({ author: {}, error: response.error });
 		} else {
 			//insert template in container
-			container.innerHTML = "";
-			container.innerHTML = adminAuthorTemplate({ author: response.author, error: '' });
+			adminContainer.innerHTML = adminAuthorTemplate({ author: response.author, error: '' });
 
 			var root = document.querySelector('#adminAuthor');
 			var modal = root.querySelector('#modal');
@@ -15033,7 +15151,7 @@ var adminAuthor = function adminAuthor(container) {
 exports.default = adminAuthor;
 
 /***/ }),
-/* 29 */
+/* 34 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15069,7 +15187,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 30 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15083,17 +15201,19 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _dataStore = __webpack_require__(1);
-
-var _dataStore2 = _interopRequireDefault(_dataStore);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var adminAuthorsNewTemplate = __webpack_require__(36);
 //home.js
-var adminAuthorsNew = function adminAuthorsNew(data) {
+var adminAuthorsNew = function adminAuthorsNew(container) {
 	'use strict';
-	//rootElement
 
+	var adminContainer = container;
+
+	//insert template in container
+	adminContainer.innerHTML = adminAuthorsNewTemplate();
+
+	//rootElement
 	var root = document.querySelector('#adminAuthorsNew');
 	//modal
 	var modal = root.querySelector('#modal');
@@ -15232,7 +15352,43 @@ var adminAuthorsNew = function adminAuthorsNew(data) {
 exports.default = adminAuthorsNew;
 
 /***/ }),
-/* 31 */
+/* 36 */
+/***/ (function(module, exports) {
+
+module.exports = function anonymous(locals, filters, escape, rethrow) {
+    escape = escape || function(html) {
+        return String(html).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+    };
+    var __stack = {
+        lineno: 1,
+        input: '<div id="adminAuthorsNew" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="w3-modal w3-card-4">\n		<div class="w3-modal-content w3-animate-top">\n			<header class="w3-container w3-black"> \n				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>\n				<h4>Rechercher un ouvrage</h4>\n			</header>\n			<div  class="w3-container">\n				<p id="search">\n				<input type="text" name="search" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ error }}"></span>\n				</p>\n				<ul id="results" style="min-height:200px" class="w3-ul"></ul>\n			</div>\n			\n		</div>\n	</div>\n\n<!--\n	MAIN\n-->\n	<h4 class="w3-container align-left w3-padding-16">Ajouter un auteur</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/authors/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div class="w3-container">\n		<form id="adminAuthorsNewForm">\n			\n			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>\n			\n			<p id="name">\n				<label>Nom : </label>\n				<input type="text" name="name" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ name }}"></span>\n			</p>\n			\n			<p id="firstName">\n				<label>Prénom : </label>\n				<input type="text" name="firstName" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ firstname }}"></span>\n			</p>\n			\n			<p id="nameAlpha">\n				<label>Nom alphabétique : </label>\n				<input type="text" name="nameAlpha" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ nameAlpha }}"></span>\n			</p>\n			\n			<p id="birth">\n				<label>Date de naissance : </label>\n				<input type="text" name="birth" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ birth }}"></span>\n			</p>\n			\n			<p id="death">\n				<label>Date de décès : </label>\n				<input type="text" name="death" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ death }}"></span>\n			</p>\n			\n			<p id="description">\n				<label>Description : </label>\n				<textarea type="text" name="description" class="w3-input w3-border"></textarea>\n				<span class="error" data-utils-bind="{{ description }}"></span>\n			</p>\n			\n			<div class="w3-margin-bottom w3-border-bottom">\n				<div class="w3-margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Ouvrages : </label>\n						<a href="/#/admin/authors/new" id="open-modal-btn" class="align-right w3-text-gray w3-hover-none w3-hover-text-black">Rechercher</a>\n					</p>\n					\n					<ul id="booksContainer" class="w3-ul w3-padding-32"></ul>\n				</div>\n				\n			</div>\n			\n			\n			\n			<p>\n				<button type="submit" class="w3-btn w3-border">Valider</button>\n			</p>\n			\n		</form>\n	</div>\n</div>\n',
+        filename: "."
+    };
+    function rethrow(err, str, filename, lineno) {
+        var lines = str.split("\n"), start = Math.max(lineno - 3, 0), end = Math.min(lines.length, lineno + 3);
+        var context = lines.slice(start, end).map(function(line, i) {
+            var curr = i + start + 1;
+            return (curr == lineno ? " >> " : "    ") + curr + "| " + line;
+        }).join("\n");
+        err.path = filename;
+        err.message = (filename || "ejs") + ":" + lineno + "\n" + context + "\n\n" + err.message;
+        throw err;
+    }
+    try {
+        var buf = [];
+        with (locals || {}) {
+            (function() {
+                buf.push('<div id="adminAuthorsNew" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="w3-modal w3-card-4">\n		<div class="w3-modal-content w3-animate-top">\n			<header class="w3-container w3-black"> \n				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>\n				<h4>Rechercher un ouvrage</h4>\n			</header>\n			<div  class="w3-container">\n				<p id="search">\n				<input type="text" name="search" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ error }}"></span>\n				</p>\n				<ul id="results" style="min-height:200px" class="w3-ul"></ul>\n			</div>\n			\n		</div>\n	</div>\n\n<!--\n	MAIN\n-->\n	<h4 class="w3-container align-left w3-padding-16">Ajouter un auteur</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/authors/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div class="w3-container">\n		<form id="adminAuthorsNewForm">\n			\n			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>\n			\n			<p id="name">\n				<label>Nom : </label>\n				<input type="text" name="name" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ name }}"></span>\n			</p>\n			\n			<p id="firstName">\n				<label>Prénom : </label>\n				<input type="text" name="firstName" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ firstname }}"></span>\n			</p>\n			\n			<p id="nameAlpha">\n				<label>Nom alphabétique : </label>\n				<input type="text" name="nameAlpha" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ nameAlpha }}"></span>\n			</p>\n			\n			<p id="birth">\n				<label>Date de naissance : </label>\n				<input type="text" name="birth" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ birth }}"></span>\n			</p>\n			\n			<p id="death">\n				<label>Date de décès : </label>\n				<input type="text" name="death" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ death }}"></span>\n			</p>\n			\n			<p id="description">\n				<label>Description : </label>\n				<textarea type="text" name="description" class="w3-input w3-border"></textarea>\n				<span class="error" data-utils-bind="{{ description }}"></span>\n			</p>\n			\n			<div class="w3-margin-bottom w3-border-bottom">\n				<div class="w3-margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Ouvrages : </label>\n						<a href="/#/admin/authors/new" id="open-modal-btn" class="align-right w3-text-gray w3-hover-none w3-hover-text-black">Rechercher</a>\n					</p>\n					\n					<ul id="booksContainer" class="w3-ul w3-padding-32"></ul>\n				</div>\n				\n			</div>\n			\n			\n			\n			<p>\n				<button type="submit" class="w3-btn w3-border">Valider</button>\n			</p>\n			\n		</form>\n	</div>\n</div>\n');
+            })();
+        }
+        return buf.join("");
+    } catch (err) {
+        rethrow(err, __stack.input, __stack.filename, __stack.lineno);
+    }
+}
+
+/***/ }),
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15248,116 +15404,118 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var adminAuthorEditTemplate = __webpack_require__(38);
 //home.js
-var adminAuthorEdit = function adminAuthorEdit(data) {
+var adminAuthorEdit = function adminAuthorEdit(container) {
 	'use strict';
-	//rootElement
 
-	var root = document.querySelector('#adminAuthorEdit');
-	//form
-	var form = root.querySelector('#adminAuthorEditForm');
-	var inputs = form.querySelectorAll('input');
-	//AJAX
 	var id = location.hash.replace(/(#\/admin\/authors\/|\/edit)/g, '');
+	var adminContainer = container;
+
+	//AJAX
 	var options = { method: 'GET', url: '/authors/' + id };
 	_utils2.default.ajax(options).then(function (res) {
 		var response = JSON.parse(res);
 		if (response.error) {
-			console.log(response.error);
+			//insert template in container
+			console.log(error);
 		} else {
-			var author = response.author;
-			_utils2.default.bind(form, author, 'author');
+
+			//clear errors on input
+			var onInput = function onInput(event) {
+				_utils2.default.setHTML('#form-error', "");
+				if (event.target.name === 'name') {
+					_utils2.default.setHTML('#name .error', "");
+				} else if (event.target.name === 'firstName') {
+					_utils2.default.setHTML('#firstName .error', "");
+				} else if (event.target.name === 'nameAlpha') {
+					_utils2.default.setHTML('#nameAlpha .error', "");
+				} else if (event.target.name === 'birth') {
+					_utils2.default.setHTML('#birth .error', "");
+				} else if (event.target.name === 'death') {
+					_utils2.default.setHTML('#death .error', "");
+				}
+			};
+
+			//submit
+			var onSubmit = function onSubmit(event) {
+				event.preventDefault();
+				_utils2.default.bind(form, {}, 'error');
+				var user = {};
+				user.name = form.querySelector('[name=name]').value;
+				user.firstName = form.querySelector('[name=firstName]').value;
+				user.nameAlpha = form.querySelector('[name=nameAlpha]').value;
+				user.birth = form.querySelector('[name=birth]').value;
+				user.death = form.querySelector('[name=death]').value;
+				user.description = form.querySelector('[name=description]').value;
+				var options = { method: 'PUT', url: '/authors/' + id, data: JSON.stringify(user) };
+				_utils2.default.ajax(options).then(function (res) {
+					var response = JSON.parse(res);
+					if (response.errors) {
+						_utils2.default.bind(form, response.errors, 'error');
+					} else {
+						location.hash = '#/admin/authors/' + id;
+					}
+				});
+			};
+
+			//insert template in container
+			adminContainer.innerHTML = adminAuthorEditTemplate({ author: response.author });
+
+			//rootElement
+			var root = document.querySelector('#adminAuthorEdit');
+			//form
+			var form = root.querySelector('#adminAuthorEditForm');
+			var inputs = form.querySelectorAll('input');
+
+			_utils2.default.bind(form, response.author, 'author');
+
+			for (var i = 0; i < inputs.length; i++) {
+				inputs[i].addEventListener('input', onInput, false);
+			}
+
+			form.addEventListener('submit', onSubmit, false);
 		}
 	});
-
-	//clear errors on input
-	function onInput(event) {
-		_utils2.default.setHTML('#form-error', "");
-		if (event.target.name === 'name') {
-			_utils2.default.setHTML('#name .error', "");
-		} else if (event.target.name === 'firstName') {
-			_utils2.default.setHTML('#firstName .error', "");
-		} else if (event.target.name === 'nameAlpha') {
-			_utils2.default.setHTML('#nameAlpha .error', "");
-		} else if (event.target.name === 'birth') {
-			_utils2.default.setHTML('#birth .error', "");
-		} else if (event.target.name === 'death') {
-			_utils2.default.setHTML('#death .error', "");
-		}
-	}
-
-	for (var i = 0; i < inputs.length; i++) {
-		inputs[i].addEventListener('input', onInput, false);
-	}
-
-	//submit
-	function onSubmit(event) {
-		event.preventDefault();
-		_utils2.default.bind(form, {}, 'error');
-		var user = {};
-		user.name = form.querySelector('[name=name]').value;
-		user.firstName = form.querySelector('[name=firstName]').value;
-		user.nameAlpha = form.querySelector('[name=nameAlpha]').value;
-		user.birth = form.querySelector('[name=birth]').value;
-		user.death = form.querySelector('[name=death]').value;
-		user.description = form.querySelector('[name=description]').value;
-		var options = { method: 'PUT', url: '/authors/' + id, data: JSON.stringify(user) };
-		_utils2.default.ajax(options).then(function (res) {
-			var response = JSON.parse(res);
-			if (response.errors) {
-				_utils2.default.bind(form, response.errors, 'error');
-			} else {
-				location.hash = '#/admin/authors/' + id;
-			}
-		});
-	}
-
-	form.addEventListener('submit', onSubmit, false);
 };
 
 exports.default = adminAuthorEdit;
 
 /***/ }),
-/* 32 */
-/***/ (function(module, exports) {
-
-module.exports = "<div id=adminNew class=content> <h4 class=\"w3-container align-left w3-padding-16\">Nouveau compte administrateur</h4> <p class=\"align-right w3-padding-16\"><a href=/#/admin/ class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Retour</a></p> <div class=w3-container> <form id=adminRegisterForm> <span class=error id=form-error data-utils-bind=\"{{ form }}\"></span> <p id=name> <label>Nom : </label> <input type=text name=name class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ name }}\"></span> </p> <p id=email> <label>Email : </label> <input type=text name=email class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ email }}\"></span> </p> <p id=password> <label>Mot de passe : </label> <input type=password name=password class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ password }}\"></span> </p> <p id=password_confirm> <label>Confirmation : </label> <input type=password name=password_confirm class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ password_confirm }}\"></span> </p> <p> <button type=submit class=\"w3-btn w3-border\">Valider</button> </p> </form> </div> </div> ";
-
-/***/ }),
-/* 33 */
-/***/ (function(module, exports) {
-
-module.exports = "<div id=adminEdit class=content> <h4 class=\"w3-container align-left w3-padding-16\">Modifier votre profil</h4> <p class=\"align-right w3-padding-16\"><a href=/#/admin/ class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Retour</a></p> <div class=w3-container> <form id=adminEditForm> <span class=error id=form-error data-utils-bind=\"{{ form }}\"></span> <p id=name> <label>Nom : </label> <input type=text name=name class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ name }}\"></span> </p> <p id=email> <label>Email : </label> <input type=text name=email class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ email }}\"></span> </p> <p id=password> <label>Mot de passe : </label> <input type=password name=password class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ password }}\"></span> </p> <p> <button type=submit class=\"w3-btn w3-border\">Valider</button> </p> </form> </div> </div> ";
-
-/***/ }),
-/* 34 */
-/***/ (function(module, exports) {
-
-module.exports = "<div id=adminEditPassword class=content> <h4 class=\"w3-container align-left w3-padding-16\">Modifier votre mot de passe</h4> <p class=\"align-right w3-padding-16\"><a href=/#/admin/ class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Retour</a></p> <div class=w3-container> <form id=adminEditPasswordForm> <span class=error id=form-error data-utils-bind=\"{{ form }}\"></span> <span class=\"success hidden\" id=form-success data-utils-bind=\"{{ message }}\"></span> <p id=password> <label>Mot de passe actuel : </label> <input type=password name=password class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ password }}\"></span> </p> <p id=password_new> <label>Nouveau mot de passe : </label> <input type=password name=password_new class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ password_new }}\"></span> </p> <p id=password_new_confirm> <label>Confirmation : </label> <input type=password name=password_new_confirm class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ password_new_confirm }}\"></span> </p> <p> <button type=submit class=\"w3-btn w3-border\">Valider</button> </p> </form> </div> </div> ";
-
-/***/ }),
-/* 35 */
-/***/ (function(module, exports) {
-
-module.exports = "<div id=adminBooks class=content> <h4 class=\"w3-container w3-padding-16\">Ouvrages</h4> <div> <ul id=books-list class=w3-ul> <li class=w3-display-container data-utils-repeat=\"\n\t\t\t\t<p>{{ author }}</p>\n\t\t\t\t<p><span><a href='/#/admin/books/{{ id }}' class='w3-text-gray w3-hover-none w3-hover-text-black'>{{ title }}</a></span>\n\t\t\t\t<span class='w3-display-right'><a id='delete-link' href='/#/admin/books/' class='w3-text-gray w3-hover-none w3-hover-text-black'>Supprimer</a></span></p>\n\t\t\t\t\"> </li> </ul> </div> </div> ";
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports) {
-
-module.exports = "<div id=adminBook class=content> <h4 class=\"w3-container align-left w3-padding-16\">Ouvrage</h4> <p class=\"align-right w3-padding-16\"><a href=/#/admin/books/ class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Retour</a></p> <div id=book class=w3-container> <div data-utils-bind=\"\n\t\t\t<p>{{ author }}</p>\n\t\t\t<p>{{ title }}</p>\n\t\t\t\"> </div> </div> </div> ";
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports) {
-
-module.exports = "<div id=adminAuthorsNew class=content> <div id=modal class=\"w3-modal w3-card-4\"> <div class=\"w3-modal-content w3-animate-top\"> <header class=\"w3-container w3-black\"> <span id=close-modal-btn class=\"w3-button w3-display-topright\">&times;</span> <h4>Rechercher un ouvrage</h4> </header> <div class=w3-container> <p id=search> <input type=text name=search class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ error }}\"></span> </p> <ul id=results style=min-height:200px class=w3-ul></ul> </div> </div> </div> <h4 class=\"w3-container align-left w3-padding-16\">Ajouter un auteur</h4> <p class=\"align-right w3-padding-16\"><a href=/#/admin/authors/ class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Retour</a></p> <div class=w3-container> <form id=adminAuthorsNewForm> <span class=error id=form-error data-utils-bind=\"{{ form }}\"></span> <p id=name> <label>Nom : </label> <input type=text name=name class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ name }}\"></span> </p> <p id=firstName> <label>Prénom : </label> <input type=text name=firstName class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ firstname }}\"></span> </p> <p id=nameAlpha> <label>Nom alphabétique : </label> <input type=text name=nameAlpha class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ nameAlpha }}\"></span> </p> <p id=birth> <label>Date de naissance : </label> <input type=text name=birth class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ birth }}\"></span> </p> <p id=death> <label>Date de décès : </label> <input type=text name=death class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ death }}\"></span> </p> <p id=description> <label>Description : </label> <textarea type=text name=description class=\"w3-input w3-border\"></textarea> <span class=error data-utils-bind=\"{{ description }}\"></span> </p> <div class=\"w3-margin-bottom w3-border-bottom\"> <div class=w3-margin-bottom style=min-height:100px> <p> <label class=align-left>Ouvrages : </label> <a href=/#/admin/authors/new id=open-modal-btn class=\"align-right w3-text-gray w3-hover-none w3-hover-text-black\">Rechercher</a> </p> <ul id=booksContainer class=\"w3-ul w3-padding-32\"></ul> </div> </div> <p> <button type=submit class=\"w3-btn w3-border\">Valider</button> </p> </form> </div> </div> ";
-
-/***/ }),
 /* 38 */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=adminAuthorEdit class=content> <h4 class=\"w3-container align-left w3-padding-16\">Modifier un auteur</h4> <p class=\"align-right w3-padding-16\"><a href=/#/admin/authors/ class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Retour</a></p> <div class=w3-container> <form id=adminAuthorEditForm> <span class=error id=form-error data-utils-bind=\"{{ form }}\"></span> <p id=name> <label>Nom : </label> <input type=text name=name class=\"w3-input w3-border author\" data-utils-bind=\"{{ name }}\"> <span class=error data-utils-bind=\"{{ name }}\"></span> </p> <p id=firstName> <label>Prénom : </label> <input type=text name=firstName class=\"w3-input w3-border author\" data-utils-bind=\"{{ firstName }}\"> <span class=error data-utils-bind=\"{{ firstName }}\"></span> </p> <p id=nameAlpha> <label>Nom alphabétique : </label> <input type=text name=nameAlpha class=\"w3-input w3-border author\" data-utils-bind=\"{{ nameAlpha }}\"> <span class=error data-utils-bind=\"{{ nameAlpha }}\"></span> </p> <p id=birth> <label>Date de naissance : </label> <input type=text name=birth class=\"w3-input w3-border author\" data-utils-bind=\"{{ birth }}\"> <span class=error data-utils-bind=\"{{ birth }}\"></span> </p> <p id=death> <label>Date de décès : </label> <input type=text name=death class=\"w3-input w3-border author\" data-utils-bind=\"{{ death }}\"> <span class=error data-utils-bind=\"{{ death }}\"></span> </p> <p id=description> <label>Description : </label> <textarea type=text name=description class=\"w3-input w3-border author\" data-utils-bind=\"{{ description }}\"></textarea> <span class=error data-utils-bind=\"{{ description }}\"></span> </p> <p> <button type=submit class=\"w3-btn w3-border\">Valider</button> </p> </form> </div> </div> ";
+module.exports = function anonymous(locals, filters, escape, rethrow) {
+    escape = escape || function(html) {
+        return String(html).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+    };
+    var __stack = {
+        lineno: 1,
+        input: '<div id="adminAuthorEdit" class="content">\n	<h4 class="w3-container align-left w3-padding-16">Modifier un auteur</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/authors/<%= author.id %>" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div class="w3-container">\n		<form id="adminAuthorEditForm">\n			\n			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>\n			\n			<p id="name">\n				<label>Nom : </label>\n				<input type="text" name="name" class="w3-input w3-border author" data-utils-bind="{{ name }}">\n				<span class="error" data-utils-bind="{{ name }}"></span>\n			</p>\n			\n			<p id="firstName">\n				<label>Prénom : </label>\n				<input type="text" name="firstName" class="w3-input w3-border author" data-utils-bind="{{ firstName }}">\n				<span class="error" data-utils-bind="{{ firstName }}"></span>\n			</p>\n			\n			<p id="nameAlpha">\n				<label>Nom alphabétique : </label>\n				<input type="text" name="nameAlpha" class="w3-input w3-border author" data-utils-bind="{{ nameAlpha }}">\n				<span class="error" data-utils-bind="{{ nameAlpha }}"></span>\n			</p>\n			\n			<p id="birth">\n				<label>Date de naissance : </label>\n				<input type="text" name="birth" class="w3-input w3-border author" data-utils-bind="{{ birth }}">\n				<span class="error" data-utils-bind="{{ birth }}"></span>\n			</p>\n			\n			<p id="death">\n				<label>Date de décès : </label>\n				<input type="text" name="death" class="w3-input w3-border author" data-utils-bind="{{ death }}">\n				<span class="error" data-utils-bind="{{ death }}"></span>\n			</p>\n			\n			<p id="description">\n				<label>Description : </label>\n				<textarea type="text" name="description" class="w3-input w3-border author" data-utils-bind="{{ description }}"></textarea>\n				<span class="error" data-utils-bind="{{ description }}"></span>\n			</p>\n			\n			<p>\n				<button type="submit" class="w3-btn w3-border">Valider</button>\n			</p>\n			\n		</form>\n	</div>\n</div>\n',
+        filename: "."
+    };
+    function rethrow(err, str, filename, lineno) {
+        var lines = str.split("\n"), start = Math.max(lineno - 3, 0), end = Math.min(lines.length, lineno + 3);
+        var context = lines.slice(start, end).map(function(line, i) {
+            var curr = i + start + 1;
+            return (curr == lineno ? " >> " : "    ") + curr + "| " + line;
+        }).join("\n");
+        err.path = filename;
+        err.message = (filename || "ejs") + ":" + lineno + "\n" + context + "\n\n" + err.message;
+        throw err;
+    }
+    try {
+        var buf = [];
+        with (locals || {}) {
+            (function() {
+                buf.push('<div id="adminAuthorEdit" class="content">\n	<h4 class="w3-container align-left w3-padding-16">Modifier un auteur</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/authors/', escape((__stack.lineno = 3, author.id)), '" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div class="w3-container">\n		<form id="adminAuthorEditForm">\n			\n			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>\n			\n			<p id="name">\n				<label>Nom : </label>\n				<input type="text" name="name" class="w3-input w3-border author" data-utils-bind="{{ name }}">\n				<span class="error" data-utils-bind="{{ name }}"></span>\n			</p>\n			\n			<p id="firstName">\n				<label>Prénom : </label>\n				<input type="text" name="firstName" class="w3-input w3-border author" data-utils-bind="{{ firstName }}">\n				<span class="error" data-utils-bind="{{ firstName }}"></span>\n			</p>\n			\n			<p id="nameAlpha">\n				<label>Nom alphabétique : </label>\n				<input type="text" name="nameAlpha" class="w3-input w3-border author" data-utils-bind="{{ nameAlpha }}">\n				<span class="error" data-utils-bind="{{ nameAlpha }}"></span>\n			</p>\n			\n			<p id="birth">\n				<label>Date de naissance : </label>\n				<input type="text" name="birth" class="w3-input w3-border author" data-utils-bind="{{ birth }}">\n				<span class="error" data-utils-bind="{{ birth }}"></span>\n			</p>\n			\n			<p id="death">\n				<label>Date de décès : </label>\n				<input type="text" name="death" class="w3-input w3-border author" data-utils-bind="{{ death }}">\n				<span class="error" data-utils-bind="{{ death }}"></span>\n			</p>\n			\n			<p id="description">\n				<label>Description : </label>\n				<textarea type="text" name="description" class="w3-input w3-border author" data-utils-bind="{{ description }}"></textarea>\n				<span class="error" data-utils-bind="{{ description }}"></span>\n			</p>\n			\n			<p>\n				<button type="submit" class="w3-btn w3-border">Valider</button>\n			</p>\n			\n		</form>\n	</div>\n</div>\n');
+            })();
+        }
+        return buf.join("");
+    } catch (err) {
+        rethrow(err, __stack.input, __stack.filename, __stack.lineno);
+    }
+}
 
 /***/ }),
 /* 39 */

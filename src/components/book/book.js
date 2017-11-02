@@ -6,6 +6,8 @@ let bookTemplate = require('./book.ejs');
 //book.js
 const book = function(container) {
 	'use strict';
+	
+	let viewContainer = container;
 		
 	let init = function() {
 		//DIMENSIONS
@@ -170,8 +172,7 @@ const book = function(container) {
 	//pass metadata to nav-bar-top
 	utils.bind(document.body,book);
 	//insert template in container
-	container.innerHTML = "";
-	container.innerHTML = bookTemplate({book:book});
+	viewContainer.innerHTML = bookTemplate({book:book});
 	
 	//BOOK CONTAINER
 	const bookContainer = document.querySelector('#bookContainer');

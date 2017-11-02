@@ -1,13 +1,28 @@
 import utils from '../../../../services/utils';
-import dataStore from '../../../../services/dataStore';
+let adminBookTemplate = require('./adminBook.ejs');
 //home.js
-const adminBook = function() {
+const adminBook = function(container) {
 	'use strict';
-	let root = document.querySelector('#adminBook');
-	let div = root.querySelector('#book');
+		
 	let id = location.hash.replace(/^#\/admin\/books\//,'');
-	let book = dataStore.getData('books', id);
-	utils.bind(div, book);
+	let adminContainer = container;
+	
+	//ajax get book
+	let options = { method: 'GET', url: '/books/' + id };
+	utils.ajax(options)
+	.then( res => {
+		let response = JSON.parse(res);
+		if(response.error) {
+			//insert template in container
+			adminContainer.innerHTML = adminBookTemplate({ book: {}, error: response.error });
+		} else {
+			//insert template in container
+			adminContainer.innerHTML = adminBookTemplate({ book: response.book, error: '' });
+		
+			let root = document.querySelector('#adminBook');
+			let div = root.querySelector('#book');
+		}
+	});
 }
 
 export default adminBook;

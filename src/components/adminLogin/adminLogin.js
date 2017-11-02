@@ -2,11 +2,12 @@ import utils from '../../services/utils';
 import dataStore from '../../services/dataStore';
 var adminLoginTemplate = require('./adminLogin.ejs');
 //home.js
-const adminLogin = function() {
+const adminLogin = function(container) {
 	'use strict';
+	
+	let viewContainer = container;
 	//Insert template
-	container.innerHTML = "";
-	container.innerHTML = adminLoginTemplate();
+	viewContainer.innerHTML = adminLoginTemplate();
 	//rootElement
 	const root = document.querySelector('#adminLogin');
 	//form

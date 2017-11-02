@@ -1,8 +1,14 @@
 import utils from '../../../../services/utils';
-import dataStore from '../../../../services/dataStore';
+let adminNewTemplate = require('./adminNew.ejs');
 //home.js
-const adminNew = function(data) {
+const adminNew = function(container) {
 	'use strict';
+	
+	let adminContainer = container;
+	
+	//insert template in container
+	adminContainer.innerHTML = adminNewTemplate();
+	
 	//rootElement
 	const root = document.querySelector('#adminNew');
 	//form

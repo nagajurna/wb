@@ -5,20 +5,19 @@ const adminAuthor = function(container) {
 	'use strict';
 	
 	let id = location.hash.replace(/^#\/admin\/authors\//,'');
+	let adminContainer = container;
 		
-	//ajax get user
+	//ajax get author
 	let options = { method: 'GET', url: '/authors/' + id };
 	utils.ajax(options)
 	.then( res => {
 		let response = JSON.parse(res);
 		if(response.error) {
 			//insert template in container
-			container.innerHTML = "";
-			container.innerHTML = adminAuthorTemplate({ author: {}, error: response.error });
+			adminContainer.innerHTML = adminAuthorTemplate({ author: {}, error: response.error });
 		} else {
 			//insert template in container
-			container.innerHTML = "";
-			container.innerHTML = adminAuthorTemplate({ author: response.author, error: '' });
+			adminContainer.innerHTML = adminAuthorTemplate({ author: response.author, error: '' });
 		
 			let root = document.querySelector('#adminAuthor');
 			let modal = root.querySelector('#modal');

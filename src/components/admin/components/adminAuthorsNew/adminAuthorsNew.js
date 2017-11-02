@@ -1,8 +1,14 @@
 import utils from '../../../../services/utils';
-import dataStore from '../../../../services/dataStore';
+let adminAuthorsNewTemplate = require('./adminAuthorsNew.ejs');
 //home.js
-const adminAuthorsNew = function(data) {
+const adminAuthorsNew = function(container) {
 	'use strict';
+	
+	let adminContainer = container;
+	
+	//insert template in container
+	adminContainer.innerHTML = adminAuthorsNewTemplate();
+	
 	//rootElement
 	const root = document.querySelector('#adminAuthorsNew');
 	//modal
