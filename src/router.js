@@ -1,18 +1,14 @@
 import utils from './services/utils';
 import dataStore from './services/dataStore';
-//home
+//home(controller)
 import home from './components/home/home';
-var homeTemplate = require('./components/home/home.html');
-//book
+//book (controller)
 import book from './components/book/book';
-var  bookTemplate = require('./components/book/book.html');
-//adminLogin
+//adminLogin (controller)
 import adminLogin from './components/adminLogin/adminLogin';
-var adminLoginTemplate = require('./components/adminLogin/adminLogin.html');
-//admin
-import admin from './components/admin/admin';
-var adminTemplate = require('./components/admin/admin.html');
-//adminRouter
+//admin (template - no controller)
+let adminTemplate = require('./components/admin/admin.ejs');
+//adminRouter (sub-router)
 import adminRouter from './components/admin/adminRouter';
 
 //routes.js
@@ -26,29 +22,27 @@ const router  = function() {
 		//ROUTES
 		if(newhash === '#/books/') {
 			//HOME
-			utils.getTemplate(container, homeTemplate, home)
-			.then( controller => { controller(); });
+			home(container);
 			
 		} else if(newhash.match(/#\/books\/[^\/]+\/read$/)) {
 			//BOOK READ
-			utils.getTemplate(container, bookTemplate, book)
-			.then( controller => { controller(); });
+			book(container);
 			
 		} else if(newhash.match(/#\/admin/) && newhash !== '#/admin/login/') {
-			//ADMIN LOGIN : if admin not connected, redirect to /admin/login
-			let user;
+			//ADMIN : if admin not connected, redirect to /admin/login
 			utils.checkRole()
 			.then ( response => {
-				user = response;
-				return utils.getTemplate(container, adminTemplate, admin)
+				//Insert adminTemplate including #adminContainer for admin routes
+				let user = response;
+				container.innerHTML = "";//empty the container
+				let div = document.createElement('div');
+				div.innerHTML = adminTemplate();
+				container.appendChild(div);
+				utils.activeLink();//for adminLinks
+				return user
 			})
-			.then( controller => { 
-				utils.activeLink();//for admin links
-				controller(user); 
-			})
-			.then ( resolve => {
-				
-				//ADMIN ROUTES
+			.then ( user => {
+				//ADMIN ROUTES : call to sub-router (admin routes)
 				adminRouter(oldhash, newhash, user);
 								
 			})
@@ -58,15 +52,13 @@ const router  = function() {
 
 			
 		} else if(newhash === '#/admin/login/') {
-			//ADMIN HOME : if admin not connected, redirect to /books
-			let user;
+			//ADMIN LOGIN : if admin already connected, redirect to /admin
 			utils.checkRole()
 			.then( user => {
 				location.hash = '#/admin/';
 			})
 			.catch( error => {
-				utils.getTemplate(container, adminLoginTemplate, adminLogin)
-				.then( controller => { controller(); });
+				adminLogin();
 			});
 			
 		
@@ -77,6 +69,8 @@ const router  = function() {
 		
 	};
 	
+	
+	//ON LOAD (called by index.js)
 	if(location.hash === "") { location.hash = "#/"; }
 	
 	let oldhash, newhash;
@@ -91,7 +85,9 @@ const router  = function() {
 	window.addEventListener('hashchange', function() {
 		oldhash = newhash;
 		newhash = location.hash;
+		//store prev and new location in dataStore
 		dataStore.setData('location', { prevLocation: oldhash, newLocation: newhash });
+		//call routes
 		routes(oldhash, newhash);
 		//active link
 		utils.activeLink();

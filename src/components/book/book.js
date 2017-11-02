@@ -2,15 +2,11 @@ import utils from '../../services/utils';
 import dataStore from '../../services/dataStore';
 import WebBook from '../../../lib/wb/WebBook';
 import Hammer from 'hammerjs';
+let bookTemplate = require('./book.ejs');
 //book.js
-const book = function() {
+const book = function(container) {
 	'use strict';
-	
-	//rootElement
-	const root = document.querySelector("#book");
-	//bookContainer
-	const bookContainer = root.querySelector('#bookContainer');
-	
+		
 	let init = function() {
 		//DIMENSIONS
 		let h, w, marginY, fontSize, lineHeight;
@@ -170,9 +166,16 @@ const book = function() {
 	  }
 	}
 	
-	//DISPLAY METADATA
+	//GET TEMPLATE ET PASS BOOK METADATA
+	//pass metadata to nav-bar-top
 	utils.bind(document.body,book);
+	//insert template in container
+	container.innerHTML = "";
+	container.innerHTML = bookTemplate({book:book});
 	
+	//BOOK CONTAINER
+	const bookContainer = document.querySelector('#bookContainer');
+		
 	//GET TEXT CONTENT
 	let text = bookContainer.querySelector('[data-wb-text]');
 	let options = { method: 'GET', url: book.path + '.html' };

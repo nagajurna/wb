@@ -28,6 +28,12 @@ module.exports = {
 				minimize: true
 			}
 		  }
+		},
+		{
+		  test: /\.ejs$/,
+		  use: {
+			loader: 'ejs-compiled-loader'
+		  }
 		}
 	  ]
   }
@@ -36,5 +42,6 @@ module.exports = {
 		  //sourceMap: true
 	  //})
   //]
+
 };
 

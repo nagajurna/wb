@@ -56,7 +56,6 @@ const utils = {
 			let div = document.createElement('div');
 			div.innerHTML = template;
 			container.appendChild(div);
-			container.style.visibility = "visible";
 			resolve(controller);
 		});
 		

@@ -1,13 +1,16 @@
 import utils from '../../../../services/utils';
 import dataStore from '../../../../services/dataStore';
+let adminHomeTemplate = require('./adminHome.ejs')
 //home.js
-const adminHome = function(data) {
+const adminHome = function(container, data) {
 	'use strict';
-	//rootElement
-	const root = document.querySelector("#adminHome");
+	
+	//User
 	if(!data) { return; }
 	let user = data;
-	utils.bind(root, user);
+	//insert template in container
+	container.innerHTML = "";
+	container.innerHTML = adminHomeTemplate({ user: user });
 	
 	function logout() {
 		let options = { method: 'GET', url: '/users/logout' };
@@ -18,7 +21,7 @@ const adminHome = function(data) {
 			location.hash = '#/books/';
 		});
 	}
-	
+	let root = document.querySelector("#adminHome");
 	root.querySelector('#logout-btn').addEventListener('click', logout, false);
 	
 };

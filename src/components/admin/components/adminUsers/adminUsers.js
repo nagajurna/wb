@@ -1,22 +1,21 @@
 import utils from '../../../../services/utils';
-import dataStore from '../../../../services/dataStore';
+let adminUsersTemplate = require('./adminUsers.ejs');
 //home.js
-const adminUsers = function() {
+const adminUsers = function(container) {
 	'use strict';
-	let root = document.querySelector('#adminUsers');
-	let list = root.querySelector('#users-list');
-	
 	//ajax get users
 	let options = { method: 'GET', url: '/users/' };
 	utils.ajax(options)
 	.then( res => {
 		let response = JSON.parse(res);
 		if(response.error) {
-			utils.bind(root,response,'error');
+			//insert template in container
+			container.innerHTML = "";
+			container.innerHTML = adminUsersTemplate({ users: [], error: response.error });
 		} else {
-			let users = response.users;
-			dataStore.setData('users', users);
-			utils.repeat(list, users);
+			//insert template in container
+			container.innerHTML = "";
+			container.innerHTML = adminUsersTemplate({ users: response.users, error: '' });
 		}
 	});
 };

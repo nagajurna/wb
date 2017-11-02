@@ -4,7 +4,7 @@ import utils from './services/utils';
 import css from './stylesheets/style.css';
 
 //index.js
-var index = function() {
+var index = (function() {
 	'use strict';
 	//VARIABLES
 	let currentUser;
@@ -81,6 +81,4 @@ var index = function() {
 		}
 	}, false);
 
-};
-
-index.call();
+})();

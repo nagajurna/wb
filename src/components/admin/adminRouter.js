@@ -1,13 +1,10 @@
 import utils from '../../services/utils';
 //admin home
 import adminHome from './components/adminHome/adminHome';
-var adminHomeTemplate = require('./components/adminHome/adminHome.html');
 //admin users
 import adminUsers from './components/adminUsers/adminUsers';
-var adminUsersTemplate = require('./components/adminUsers/adminUsers.html');
 //admin user
 import adminUser from './components/adminUser/adminUser';
-var adminUserTemplate = require('./components/adminUser/adminUser.html');
 //admin new
 import adminNew from './components/adminNew/adminNew';
 var adminNewTemplate = require('./components/adminNew/adminNew.html');
@@ -25,10 +22,8 @@ import adminBook from './components/adminBook/adminBook';
 var adminBookTemplate = require('./components/adminBook/adminBook.html');
 //admin authors
 import adminAuthors from './components/adminAuthors/adminAuthors';
-var adminAuthorsTemplate = require('./components/adminAuthors/adminAuthors.html');
 //admin author
 import adminAuthor from './components/adminAuthor/adminAuthor';
-var adminAuthorTemplate = require('./components/adminAuthor/adminAuthor.html');
 //admin authorNew
 import adminAuthorsNew from './components/adminAuthorsNew/adminAuthorsNew';
 var adminAuthorsNewTemplate = require('./components/adminAuthorsNew/adminAuthorsNew.html');
@@ -45,8 +40,7 @@ const adminRouter = (oldhash,newhash,data) => {
 			
 		if(newhash === '#/admin/') {
 			//ADMIN HOME
-			utils.getTemplate(adminContainer, adminHomeTemplate, adminHome)
-			.then( controller => { controller(user); });
+			adminHome(adminContainer, user)
 			
 		} else if(newhash === '#/admin/new') {
 			//ADMIN EDIT
@@ -65,13 +59,11 @@ const adminRouter = (oldhash,newhash,data) => {
 
 		} else if(newhash === '#/admin/users/') {
 			//ADMIN USERS
-			utils.getTemplate(adminContainer, adminUsersTemplate, adminUsers)
-			.then( controller => { controller(); });
+			adminUsers(adminContainer);
 			
 		} else if(newhash.match(/#\/admin\/users\/[^\/]+$/)) {
 			//ADMIN USER
-			utils.getTemplate(adminContainer, adminUserTemplate, adminUser)
-			.then( controller => { controller(); });
+			adminUser(adminContainer);
 			
 		} else if(newhash === '#/admin/books/') {
 			//ADMIN BOOKS
@@ -85,8 +77,7 @@ const adminRouter = (oldhash,newhash,data) => {
 			
 		} else if(newhash === '#/admin/authors/') {
 			//ADMIN AUTHORS
-			utils.getTemplate(adminContainer, adminAuthorsTemplate, adminAuthors)
-			.then( controller => { controller(); });
+			adminAuthors(adminContainer);
 			
 		} else if(newhash === '#/admin/authors/new') {
 			//ADMIN AUTHORS NEW
@@ -100,8 +91,7 @@ const adminRouter = (oldhash,newhash,data) => {
 			
 		} else if(newhash.match(/#\/admin\/authors\/[^\/]+$/)) {
 			//ADMIN AUTHOR
-			utils.getTemplate(adminContainer, adminAuthorTemplate, adminAuthor)
-			.then( controller => { controller(); });
+			adminAuthor(adminContainer);
 				
 		} else {
 			//FALLBACK

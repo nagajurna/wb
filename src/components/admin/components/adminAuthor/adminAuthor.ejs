@@ -10,7 +10,7 @@
 			</header>
 			<div  class="w3-container">
 				<p>Voulez-vous vraiment supprimer cet auteur ?</p>
-				<p data-utils-bind="{{ firstName }} {{ name }}"></p>
+				<p><%= author.firstName %> <%= author.name %></p>
 				<p class="w3-right"><button type="button" id="delete-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black">Supprimer</button></p>
 			</div>
 			
@@ -24,20 +24,21 @@
 	<h4 class="w3-container align-left w3-padding-16">Auteur</h4>
 	<p class="align-right w3-padding-16"><a href="/#/admin/authors/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>
 	<div id="author" class="w3-container">
-		<span class='error' data-utils-bind="{{ error }}"></span>
+		<span class="error"><%= error %></span>
+		<span class="error" id="modal-error" data-utils-bind="{{ error }}"></span>
 		<div class="w3-border-bottom">
-			<p><b>Nom : </b><span data-utils-bind="{{ name }}"></span></p>
-			<p><b>Prénom : </b><span data-utils-bind="{{ firstName }}"></span></p>
-			<p><b>Nom alphabétique : </b><span data-utils-bind="{{ nameAlpha }}"></p>
-			<p><b>Date de naissance : </b><span data-utils-bind="{{ birth }}"></p>
-			<p><b>Date de décès : </b><span data-utils-bind="{{ death }}"></p>
+			<p><b>Nom : </b><span><%= author.name %></span></p>
+			<p><b>Prénom : </b><span><%= author.firstName %></span></p>
+			<p><b>Nom alphabétique : </b><span><%= author.nameAlpha %></p>
+			<p><b>Date de naissance : </b><span><%= author.birth %></p>
+			<p><b>Date de décès : </b><span><%= author.death %></p>
 			<p><b>Description : </b></p>
-			<div data-utils-bind="{{ description }}"></div>
-			<p><b>Créé le : </b><span data-utils-bind="{{ created_at }}"></p>
-			<p><b>Mis à jour le : </b><span data-utils-bind="{{ updated_at }}"></p>
+			<div><%= author.description %></div>
+			<p><b>Créé le : </b><span></span><%= author.created_at %></p>
+			<p><b>Mis à jour le : </b><span><%= author.updated_at %></p>
 		</div>
 		<p>
-			<button type="button" id="edit-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-left">Modifier</button>
+			<a href="#/admin/authors/<%= author.id %>/edit" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-left">Modifier</a>
 			<button type="button" id="open-modal-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-right">Supprimer</button>
 		</p>
 	</div>

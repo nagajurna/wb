@@ -1,22 +1,22 @@
 import utils from '../../../../services/utils';
-import dataStore from '../../../../services/dataStore';
+let adminAuthorsTemplate = require('./adminAuthors.ejs');
 //home.js
-const adminAuthors = function() {
+const adminAuthors = function(container) {
 	'use strict';
-	let root = document.querySelector('#adminAuthors');
-	let list = root.querySelector('#authors-list');
 	
-	//ajax get users
+	//ajax get authors
 	let options = { method: 'GET', url: '/authors/' };
 	utils.ajax(options)
 	.then( res => {
 		let response = JSON.parse(res);
 		if(response.error) {
-			utils.bind(root, response, 'error');
+			//insert template in container
+			container.innerHTML = "";
+			container.innerHTML = adminAuthorsTemplate({ authors: [], error: response.error });
 		} else {
-			let authors = response.authors;
-			dataStore.setData('authors', authors);
-			utils.repeat(list, authors);
+			//insert template in container
+			container.innerHTML = "";
+			container.innerHTML = adminAuthorsTemplate({ authors: response.authors, error: '' });
 		}
 	});
 };

@@ -134,7 +134,6 @@ var utils = {
 			var div = document.createElement('div');
 			div.innerHTML = template;
 			container.appendChild(div);
-			container.style.visibility = "visible";
 			resolve(controller);
 		});
 
@@ -422,14 +421,14 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _style = __webpack_require__(41);
+var _style = __webpack_require__(40);
 
 var _style2 = _interopRequireDefault(_style);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //index.js
-var index = function index() {
+var index = function () {
 	'use strict';
 	//VARIABLES
 
@@ -498,9 +497,7 @@ var index = function index() {
 			_utils2.default.removeClass("#nav-bar-top", "hidden");
 		}
 	}, false);
-};
-
-index.call();
+}();
 
 /***/ }),
 /* 3 */
@@ -525,37 +522,29 @@ var _home = __webpack_require__(4);
 
 var _home2 = _interopRequireDefault(_home);
 
-var _book = __webpack_require__(5);
+var _book = __webpack_require__(6);
 
 var _book2 = _interopRequireDefault(_book);
 
-var _adminLogin = __webpack_require__(10);
+var _adminLogin = __webpack_require__(12);
 
 var _adminLogin2 = _interopRequireDefault(_adminLogin);
 
-var _admin = __webpack_require__(11);
-
-var _admin2 = _interopRequireDefault(_admin);
-
-var _adminRouter = __webpack_require__(12);
+var _adminRouter = __webpack_require__(14);
 
 var _adminRouter2 = _interopRequireDefault(_adminRouter);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var homeTemplate = __webpack_require__(37);
-//book
+//admin (template - no controller)
 
-//home
+//book (controller)
+var adminTemplate = __webpack_require__(39);
+//adminRouter (sub-router)
 
-var bookTemplate = __webpack_require__(38);
-//adminLogin
+//adminLogin (controller)
 
-var adminLoginTemplate = __webpack_require__(39);
-//admin
-
-var adminTemplate = __webpack_require__(40);
-//adminRouter
+//home(controller)
 
 
 //routes.js
@@ -569,39 +558,33 @@ var router = function router() {
 		//ROUTES
 		if (newhash === '#/books/') {
 			//HOME
-			_utils2.default.getTemplate(container, homeTemplate, _home2.default).then(function (controller) {
-				controller();
-			});
+			(0, _home2.default)(container);
 		} else if (newhash.match(/#\/books\/[^\/]+\/read$/)) {
 			//BOOK READ
-			_utils2.default.getTemplate(container, bookTemplate, _book2.default).then(function (controller) {
-				controller();
-			});
+			(0, _book2.default)(container);
 		} else if (newhash.match(/#\/admin/) && newhash !== '#/admin/login/') {
-			//ADMIN LOGIN : if admin not connected, redirect to /admin/login
-			var user = void 0;
+			//ADMIN : if admin not connected, redirect to /admin/login
 			_utils2.default.checkRole().then(function (response) {
-				user = response;
-				return _utils2.default.getTemplate(container, adminTemplate, _admin2.default);
-			}).then(function (controller) {
-				_utils2.default.activeLink(); //for admin links
-				controller(user);
-			}).then(function (resolve) {
-
-				//ADMIN ROUTES
+				//Insert adminTemplate including #adminContainer for admin routes
+				var user = response;
+				container.innerHTML = ""; //empty the container
+				var div = document.createElement('div');
+				div.innerHTML = adminTemplate();
+				container.appendChild(div);
+				_utils2.default.activeLink(); //for adminLinks
+				return user;
+			}).then(function (user) {
+				//ADMIN ROUTES : call to sub-router (admin routes)
 				(0, _adminRouter2.default)(oldhash, newhash, user);
 			}).catch(function (error) {
 				location.hash = '#/admin/login/';
 			});
 		} else if (newhash === '#/admin/login/') {
-			//ADMIN HOME : if admin not connected, redirect to /books
-			var _user = void 0;
+			//ADMIN LOGIN : if admin already connected, redirect to /admin
 			_utils2.default.checkRole().then(function (user) {
 				location.hash = '#/admin/';
 			}).catch(function (error) {
-				_utils2.default.getTemplate(container, adminLoginTemplate, _adminLogin2.default).then(function (controller) {
-					controller();
-				});
+				(0, _adminLogin2.default)();
 			});
 		} else {
 			//FALLBACK
@@ -609,6 +592,7 @@ var router = function router() {
 		}
 	};
 
+	//ON LOAD (called by index.js)
 	if (location.hash === "") {
 		location.hash = "#/";
 	}
@@ -625,7 +609,9 @@ var router = function router() {
 	window.addEventListener('hashchange', function () {
 		oldhash = newhash;
 		newhash = location.hash;
+		//store prev and new location in dataStore
 		_dataStore2.default.setData('location', { prevLocation: oldhash, newLocation: newhash });
+		//call routes
 		routes(oldhash, newhash);
 		//active link
 		_utils2.default.activeLink();
@@ -655,20 +641,64 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var homeTemplate = __webpack_require__(5);
 //home.js
-var home = function home() {
+var home = function home(container) {
 	'use strict';
+	//get books from dataStore
 
-	var root = document.querySelector('#home');
-	var list = root.querySelector('#books-list');
 	var books = _dataStore2.default.getData('books');
-	_utils2.default.repeat(list, books);
+	//insert template in container
+	container.innerHTML = "";
+	container.innerHTML = homeTemplate({ books: books });
 };
 
 exports.default = home;
 
 /***/ }),
 /* 5 */
+/***/ (function(module, exports) {
+
+module.exports = function anonymous(locals, filters, escape, rethrow) {
+    escape = escape || function(html) {
+        return String(html).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+    };
+    var __stack = {
+        lineno: 1,
+        input: '<div id="home" class="content">\n	<div class="w3-container w3-padding-24">\n		<ul id="books-list" class=\'w3-ul\'>\n			<% for(var i=0; i<books.length; i++) {%>\n			   <li>\n				   <span><%= books[i].author %> &mdash; </span>\n				   <a href=\'/#<%= books[i].path %>/read\' class="w3-text-gray w3-hover-none w3-hover-text-black"><%= books[i].title %></a>\n			   </li>\n			<% } %>\n		</ul>\n	</div>\n</div>\n',
+        filename: "."
+    };
+    function rethrow(err, str, filename, lineno) {
+        var lines = str.split("\n"), start = Math.max(lineno - 3, 0), end = Math.min(lines.length, lineno + 3);
+        var context = lines.slice(start, end).map(function(line, i) {
+            var curr = i + start + 1;
+            return (curr == lineno ? " >> " : "    ") + curr + "| " + line;
+        }).join("\n");
+        err.path = filename;
+        err.message = (filename || "ejs") + ":" + lineno + "\n" + context + "\n\n" + err.message;
+        throw err;
+    }
+    try {
+        var buf = [];
+        with (locals || {}) {
+            (function() {
+                buf.push('<div id="home" class="content">\n	<div class="w3-container w3-padding-24">\n		<ul id="books-list" class=\'w3-ul\'>\n			');
+                __stack.lineno = 4;
+                for (var i = 0; i < books.length; i++) {
+                    buf.push("\n			   <li>\n				   <span>", escape((__stack.lineno = 6, books[i].author)), " &mdash; </span>\n				   <a href='/#", escape((__stack.lineno = 7, books[i].path)), '/read\' class="w3-text-gray w3-hover-none w3-hover-text-black">', escape((__stack.lineno = 7, books[i].title)), "</a>\n			   </li>\n			");
+                    __stack.lineno = 9;
+                }
+                buf.push("\n		</ul>\n	</div>\n</div>\n");
+            })();
+        }
+        return buf.join("");
+    } catch (err) {
+        rethrow(err, __stack.input, __stack.filename, __stack.lineno);
+    }
+}
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -686,25 +716,20 @@ var _dataStore = __webpack_require__(1);
 
 var _dataStore2 = _interopRequireDefault(_dataStore);
 
-var _WebBook = __webpack_require__(6);
+var _WebBook = __webpack_require__(7);
 
 var _WebBook2 = _interopRequireDefault(_WebBook);
 
-var _hammerjs = __webpack_require__(9);
+var _hammerjs = __webpack_require__(10);
 
 var _hammerjs2 = _interopRequireDefault(_hammerjs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var bookTemplate = __webpack_require__(11);
 //book.js
-var book = function book() {
+var book = function book(container) {
 	'use strict';
-
-	//rootElement
-
-	var root = document.querySelector("#book");
-	//bookContainer
-	var bookContainer = root.querySelector('#bookContainer');
 
 	var init = function init() {
 		//DIMENSIONS
@@ -862,8 +887,15 @@ var book = function book() {
 		}
 	}
 
-	//DISPLAY METADATA
+	//GET TEMPLATE ET PASS BOOK METADATA
+	//pass metadata to nav-bar-top
 	_utils2.default.bind(document.body, book);
+	//insert template in container
+	container.innerHTML = "";
+	container.innerHTML = bookTemplate({ book: book });
+
+	//BOOK CONTAINER
+	var bookContainer = document.querySelector('#bookContainer');
 
 	//GET TEXT CONTENT
 	var text = bookContainer.querySelector('[data-wb-text]');
@@ -880,7 +912,7 @@ var book = function book() {
 exports.default = book;
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -892,7 +924,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _jquery = __webpack_require__(7);
+var _jquery = __webpack_require__(8);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -1458,7 +1490,7 @@ var WebBook = function () {
 exports.default = WebBook;
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11291,10 +11323,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 	return jQuery;
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)(module)))
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11324,7 +11356,7 @@ module.exports = function (module) {
 };
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13964,7 +13996,43 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 })(window, document, 'Hammer');
 
 /***/ }),
-/* 10 */
+/* 11 */
+/***/ (function(module, exports) {
+
+module.exports = function anonymous(locals, filters, escape, rethrow) {
+    escape = escape || function(html) {
+        return String(html).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+    };
+    var __stack = {
+        lineno: 1,
+        input: '<div id="book">\n	<!--\n		STARTBOOK-CONTAINER\n	-->\n	<div id="bookContainer">\n		<!--\n			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366\n		-->\n		<div id="toc-large-device" class="w3-card-4">\n			<button id="toggle-toc-large-device" type="button" class="w3-btn w3-card-4 w3-white">&colone;</button>\n			<div id="toc-large-device-container" class="toc-content">\n				<p class="w3-center"><%= book.author %></p>\n				<p class="w3-center text-uppercase"><%= book.title %></p>\n				<div data-wb-toc class="w3-container"></div>\n			</div>\n		</div>\n		<!--\n			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		<div id="swing-container">\n			<!--\n				START TEXT-CONTAINER\n			-->\n			<div data-wb-text-container class="w3-card-4">\n				<!--\n					TOC (inside textContainer) : width < 1366\n				-->\n				<div id="toc">\n					<div data-wb-toc class="w3-container">\n						<button id="close-toc" type="button">&times;</button>\n						<div id="toc-title" class="toc-content">\n							<p class="w3-center"><%= book.author %></p>\n							<p class="w3-center text-uppercase"><%= book.title %></p>\n						</div>\n					</div>\n				</div>\n				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text></div>\n				<!--\n					BOTTOM (inside textContainer) : width < 768\n				-->\n				<div id="bottom">\n					<a id="home" href="/#/books/" class="w3-btn w3-text-dark-grey">Liber</a>\n					<span class="wb-currentByTotal-pages"></span>\n					<button type="button" class="open-toc w3-btn w3-text-dark-grey">&colone;</button>\n				</div>\n				<!--\n					BOTTOM-LARGE (inside textContainer) : width >= 768:::\n				-->\n				<div id="bottom-large">\n					<span class="wb-currentByTotal-pages"></span>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom" class="w3-bottom">\n			<div class="w3-bar w3-large">\n				<div id="swing-bar">\n					<div id="book-nav-bar-bottom-controls">\n						<button id="backward-large" type="button" class="w3-btn w3-margin-right">&lt;</button>\n						<button id="forward-large" type="button" class="w3-btn w3-margin-left">&gt;</button>\n						<button id="open-toc-large" type="button" class="open-toc w3-btn"><span>&colone;</span></button>\n					</div>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n</div>\n',
+        filename: "."
+    };
+    function rethrow(err, str, filename, lineno) {
+        var lines = str.split("\n"), start = Math.max(lineno - 3, 0), end = Math.min(lines.length, lineno + 3);
+        var context = lines.slice(start, end).map(function(line, i) {
+            var curr = i + start + 1;
+            return (curr == lineno ? " >> " : "    ") + curr + "| " + line;
+        }).join("\n");
+        err.path = filename;
+        err.message = (filename || "ejs") + ":" + lineno + "\n" + context + "\n\n" + err.message;
+        throw err;
+    }
+    try {
+        var buf = [];
+        with (locals || {}) {
+            (function() {
+                buf.push('<div id="book">\n	<!--\n		STARTBOOK-CONTAINER\n	-->\n	<div id="bookContainer">\n		<!--\n			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366\n		-->\n		<div id="toc-large-device" class="w3-card-4">\n			<button id="toggle-toc-large-device" type="button" class="w3-btn w3-card-4 w3-white">&colone;</button>\n			<div id="toc-large-device-container" class="toc-content">\n				<p class="w3-center">', escape((__stack.lineno = 12, book.author)), '</p>\n				<p class="w3-center text-uppercase">', escape((__stack.lineno = 13, book.title)), '</p>\n				<div data-wb-toc class="w3-container"></div>\n			</div>\n		</div>\n		<!--\n			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		<div id="swing-container">\n			<!--\n				START TEXT-CONTAINER\n			-->\n			<div data-wb-text-container class="w3-card-4">\n				<!--\n					TOC (inside textContainer) : width < 1366\n				-->\n				<div id="toc">\n					<div data-wb-toc class="w3-container">\n						<button id="close-toc" type="button">&times;</button>\n						<div id="toc-title" class="toc-content">\n							<p class="w3-center">', escape((__stack.lineno = 32, book.author)), '</p>\n							<p class="w3-center text-uppercase">', escape((__stack.lineno = 33, book.title)), '</p>\n						</div>\n					</div>\n				</div>\n				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text></div>\n				<!--\n					BOTTOM (inside textContainer) : width < 768\n				-->\n				<div id="bottom">\n					<a id="home" href="/#/books/" class="w3-btn w3-text-dark-grey">Liber</a>\n					<span class="wb-currentByTotal-pages"></span>\n					<button type="button" class="open-toc w3-btn w3-text-dark-grey">&colone;</button>\n				</div>\n				<!--\n					BOTTOM-LARGE (inside textContainer) : width >= 768:::\n				-->\n				<div id="bottom-large">\n					<span class="wb-currentByTotal-pages"></span>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom" class="w3-bottom">\n			<div class="w3-bar w3-large">\n				<div id="swing-bar">\n					<div id="book-nav-bar-bottom-controls">\n						<button id="backward-large" type="button" class="w3-btn w3-margin-right">&lt;</button>\n						<button id="forward-large" type="button" class="w3-btn w3-margin-left">&gt;</button>\n						<button id="open-toc-large" type="button" class="open-toc w3-btn"><span>&colone;</span></button>\n					</div>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n</div>\n');
+            })();
+        }
+        return buf.join("");
+    } catch (err) {
+        rethrow(err, __stack.input, __stack.filename, __stack.lineno);
+    }
+}
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13984,11 +14052,15 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var adminLoginTemplate = __webpack_require__(13);
 //home.js
 var adminLogin = function adminLogin() {
 	'use strict';
-	//rootElement
+	//Insert template
 
+	container.innerHTML = "";
+	container.innerHTML = adminLoginTemplate();
+	//rootElement
 	var root = document.querySelector('#adminLogin');
 	//form
 	var form = root.querySelector('#adminLoginForm');
@@ -14038,34 +14110,43 @@ var adminLogin = function adminLogin() {
 exports.default = adminLogin;
 
 /***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 13 */
+/***/ (function(module, exports) {
 
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _utils = __webpack_require__(0);
-
-var _utils2 = _interopRequireDefault(_utils);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//home.js
-var admin = function admin(user) {
-	'use strict';
-	//rootElement
-
-	var root = document.querySelector('#admin');
-};
-
-exports.default = admin;
+module.exports = function anonymous(locals, filters, escape, rethrow) {
+    escape = escape || function(html) {
+        return String(html).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+    };
+    var __stack = {
+        lineno: 1,
+        input: '<div id="adminLogin" class="content">\n	<div class="w3-container w3-padding-24">\n		<h3 class="w3-container">Espace administration&ensp;&ndash;&ensp;connexion</h3>\n		<form id="adminLoginForm" class="w3-container">\n			\n			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>\n			\n			<p id="email">\n				<label>Identifiant : </label>\n				<input type="text" name="email" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ email }}"></span>\n			</p>\n			\n			<p id="password">\n				<label>Mot de passe : </label>\n				<input type="password" name="password" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ password }}"></span>\n			</p>\n			\n			<p>\n				<button type="submit" id="loginButton" class="w3-btn w3-border">Valider</button>\n			</p>\n			\n		</form>\n	</div>\n</div>\n',
+        filename: "."
+    };
+    function rethrow(err, str, filename, lineno) {
+        var lines = str.split("\n"), start = Math.max(lineno - 3, 0), end = Math.min(lines.length, lineno + 3);
+        var context = lines.slice(start, end).map(function(line, i) {
+            var curr = i + start + 1;
+            return (curr == lineno ? " >> " : "    ") + curr + "| " + line;
+        }).join("\n");
+        err.path = filename;
+        err.message = (filename || "ejs") + ":" + lineno + "\n" + context + "\n\n" + err.message;
+        throw err;
+    }
+    try {
+        var buf = [];
+        with (locals || {}) {
+            (function() {
+                buf.push('<div id="adminLogin" class="content">\n	<div class="w3-container w3-padding-24">\n		<h3 class="w3-container">Espace administration&ensp;&ndash;&ensp;connexion</h3>\n		<form id="adminLoginForm" class="w3-container">\n			\n			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>\n			\n			<p id="email">\n				<label>Identifiant : </label>\n				<input type="text" name="email" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ email }}"></span>\n			</p>\n			\n			<p id="password">\n				<label>Mot de passe : </label>\n				<input type="password" name="password" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ password }}"></span>\n			</p>\n			\n			<p>\n				<button type="submit" id="loginButton" class="w3-btn w3-border">Valider</button>\n			</p>\n			\n		</form>\n	</div>\n</div>\n');
+            })();
+        }
+        return buf.join("");
+    } catch (err) {
+        rethrow(err, __stack.input, __stack.filename, __stack.lineno);
+    }
+}
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14079,92 +14160,86 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _adminHome = __webpack_require__(13);
+var _adminHome = __webpack_require__(15);
 
 var _adminHome2 = _interopRequireDefault(_adminHome);
 
-var _adminUsers = __webpack_require__(14);
+var _adminUsers = __webpack_require__(17);
 
 var _adminUsers2 = _interopRequireDefault(_adminUsers);
 
-var _adminUser = __webpack_require__(15);
+var _adminUser = __webpack_require__(19);
 
 var _adminUser2 = _interopRequireDefault(_adminUser);
 
-var _adminNew = __webpack_require__(16);
+var _adminNew = __webpack_require__(21);
 
 var _adminNew2 = _interopRequireDefault(_adminNew);
 
-var _adminEdit = __webpack_require__(17);
+var _adminEdit = __webpack_require__(22);
 
 var _adminEdit2 = _interopRequireDefault(_adminEdit);
 
-var _adminEditPassword = __webpack_require__(18);
+var _adminEditPassword = __webpack_require__(23);
 
 var _adminEditPassword2 = _interopRequireDefault(_adminEditPassword);
 
-var _adminBooks = __webpack_require__(19);
+var _adminBooks = __webpack_require__(24);
 
 var _adminBooks2 = _interopRequireDefault(_adminBooks);
 
-var _adminBook = __webpack_require__(20);
+var _adminBook = __webpack_require__(25);
 
 var _adminBook2 = _interopRequireDefault(_adminBook);
 
-var _adminAuthors = __webpack_require__(21);
+var _adminAuthors = __webpack_require__(26);
 
 var _adminAuthors2 = _interopRequireDefault(_adminAuthors);
 
-var _adminAuthor = __webpack_require__(22);
+var _adminAuthor = __webpack_require__(28);
 
 var _adminAuthor2 = _interopRequireDefault(_adminAuthor);
 
-var _adminAuthorsNew = __webpack_require__(23);
+var _adminAuthorsNew = __webpack_require__(30);
 
 var _adminAuthorsNew2 = _interopRequireDefault(_adminAuthorsNew);
 
-var _adminAuthorEdit = __webpack_require__(24);
+var _adminAuthorEdit = __webpack_require__(31);
 
 var _adminAuthorEdit2 = _interopRequireDefault(_adminAuthorEdit);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminHomeTemplate = __webpack_require__(25);
-//admin users
-
-//admin home
-
-var adminUsersTemplate = __webpack_require__(26);
 //admin user
 
-var adminUserTemplate = __webpack_require__(27);
-//admin new
-
-var adminNewTemplate = __webpack_require__(28);
+//admin home
+var adminNewTemplate = __webpack_require__(32);
 //admin edit
 
-var adminEditTemplate = __webpack_require__(29);
+//admin new
+
+//admin users
+
+var adminEditTemplate = __webpack_require__(33);
 //admin edit password
 
-var adminEditPasswordTemplate = __webpack_require__(30);
+var adminEditPasswordTemplate = __webpack_require__(34);
 //admin books
 
-var adminBooksTemplate = __webpack_require__(31);
+var adminBooksTemplate = __webpack_require__(35);
 //admin book
 
-var adminBookTemplate = __webpack_require__(32);
+var adminBookTemplate = __webpack_require__(36);
 //admin authors
 
-var adminAuthorsTemplate = __webpack_require__(33);
 //admin author
 
-var adminAuthorTemplate = __webpack_require__(34);
 //admin authorNew
 
-var adminAuthorsNewTemplate = __webpack_require__(35);
+var adminAuthorsNewTemplate = __webpack_require__(37);
 //admin authorEdit
 
-var adminAuthorEditTemplate = __webpack_require__(36);
+var adminAuthorEditTemplate = __webpack_require__(38);
 
 var adminRouter = function adminRouter(oldhash, newhash, data) {
 
@@ -14175,9 +14250,7 @@ var adminRouter = function adminRouter(oldhash, newhash, data) {
 
 		if (newhash === '#/admin/') {
 			//ADMIN HOME
-			_utils2.default.getTemplate(adminContainer, adminHomeTemplate, _adminHome2.default).then(function (controller) {
-				controller(user);
-			});
+			(0, _adminHome2.default)(adminContainer, user);
 		} else if (newhash === '#/admin/new') {
 			//ADMIN EDIT
 			_utils2.default.getTemplate(adminContainer, adminNewTemplate, _adminNew2.default).then(function (controller) {
@@ -14195,14 +14268,10 @@ var adminRouter = function adminRouter(oldhash, newhash, data) {
 			});
 		} else if (newhash === '#/admin/users/') {
 			//ADMIN USERS
-			_utils2.default.getTemplate(adminContainer, adminUsersTemplate, _adminUsers2.default).then(function (controller) {
-				controller();
-			});
+			(0, _adminUsers2.default)(adminContainer);
 		} else if (newhash.match(/#\/admin\/users\/[^\/]+$/)) {
 			//ADMIN USER
-			_utils2.default.getTemplate(adminContainer, adminUserTemplate, _adminUser2.default).then(function (controller) {
-				controller();
-			});
+			(0, _adminUser2.default)(adminContainer);
 		} else if (newhash === '#/admin/books/') {
 			//ADMIN BOOKS
 			_utils2.default.getTemplate(adminContainer, adminBooksTemplate, _adminBooks2.default).then(function (controller) {
@@ -14215,9 +14284,7 @@ var adminRouter = function adminRouter(oldhash, newhash, data) {
 			});
 		} else if (newhash === '#/admin/authors/') {
 			//ADMIN AUTHORS
-			_utils2.default.getTemplate(adminContainer, adminAuthorsTemplate, _adminAuthors2.default).then(function (controller) {
-				controller();
-			});
+			(0, _adminAuthors2.default)(adminContainer);
 		} else if (newhash === '#/admin/authors/new') {
 			//ADMIN AUTHORS NEW
 			_utils2.default.getTemplate(adminContainer, adminAuthorsNewTemplate, _adminAuthorsNew2.default).then(function (controller) {
@@ -14230,9 +14297,7 @@ var adminRouter = function adminRouter(oldhash, newhash, data) {
 			});
 		} else if (newhash.match(/#\/admin\/authors\/[^\/]+$/)) {
 			//ADMIN AUTHOR
-			_utils2.default.getTemplate(adminContainer, adminAuthorTemplate, _adminAuthor2.default).then(function (controller) {
-				controller();
-			});
+			(0, _adminAuthor2.default)(adminContainer);
 		} else {
 			//FALLBACK
 			location.hash = '#/admin/';
@@ -14243,97 +14308,6 @@ var adminRouter = function adminRouter(oldhash, newhash, data) {
 };
 
 exports.default = adminRouter;
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _utils = __webpack_require__(0);
-
-var _utils2 = _interopRequireDefault(_utils);
-
-var _dataStore = __webpack_require__(1);
-
-var _dataStore2 = _interopRequireDefault(_dataStore);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//home.js
-var adminHome = function adminHome(data) {
-	'use strict';
-	//rootElement
-
-	var root = document.querySelector("#adminHome");
-	if (!data) {
-		return;
-	}
-	var user = data;
-	_utils2.default.bind(root, user);
-
-	function logout() {
-		var options = { method: 'GET', url: '/users/logout' };
-		_utils2.default.ajax(options).then(function (response) {
-			_dataStore2.default.setData('currentUser', JSON.parse(response).user);
-			_utils2.default.removeClass('#admin-link', 'visible');
-			location.hash = '#/books/';
-		});
-	}
-
-	root.querySelector('#logout-btn').addEventListener('click', logout, false);
-};
-
-exports.default = adminHome;
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _utils = __webpack_require__(0);
-
-var _utils2 = _interopRequireDefault(_utils);
-
-var _dataStore = __webpack_require__(1);
-
-var _dataStore2 = _interopRequireDefault(_dataStore);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//home.js
-var adminUsers = function adminUsers() {
-	'use strict';
-
-	var root = document.querySelector('#adminUsers');
-	var list = root.querySelector('#users-list');
-
-	//ajax get users
-	var options = { method: 'GET', url: '/users/' };
-	_utils2.default.ajax(options).then(function (res) {
-		var response = JSON.parse(res);
-		if (response.error) {
-			_utils2.default.bind(root, response, 'error');
-		} else {
-			var users = response.users;
-			_dataStore2.default.setData('users', users);
-			_utils2.default.repeat(list, users);
-		}
-	});
-};
-
-exports.default = adminUsers;
 
 /***/ }),
 /* 15 */
@@ -14350,60 +14324,271 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
+var _dataStore = __webpack_require__(1);
+
+var _dataStore2 = _interopRequireDefault(_dataStore);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var adminHomeTemplate = __webpack_require__(16);
 //home.js
-var adminUser = function adminUser() {
+var adminHome = function adminHome(container, data) {
 	'use strict';
 
-	var root = document.querySelector('#adminUser');
-	var modal = root.querySelector('#modal');
-	var div = root.querySelector('#user');
-	var id = location.hash.replace(/^#\/admin\/users\//, '');
+	//User
 
+	if (!data) {
+		return;
+	}
+	var user = data;
+	//insert template in container
+	container.innerHTML = "";
+	container.innerHTML = adminHomeTemplate({ user: user });
+
+	function logout() {
+		var options = { method: 'GET', url: '/users/logout' };
+		_utils2.default.ajax(options).then(function (response) {
+			_dataStore2.default.setData('currentUser', JSON.parse(response).user);
+			_utils2.default.removeClass('#admin-link', 'visible');
+			location.hash = '#/books/';
+		});
+	}
+	var root = document.querySelector("#adminHome");
+	root.querySelector('#logout-btn').addEventListener('click', logout, false);
+};
+
+exports.default = adminHome;
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports) {
+
+module.exports = function anonymous(locals, filters, escape, rethrow) {
+    escape = escape || function(html) {
+        return String(html).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+    };
+    var __stack = {
+        lineno: 1,
+        input: '<div id="adminHome" class="content">\n	<h4 class="w3-container w3-padding-16">Accueil</h4>\n	<div class="w3-container">\n		<div class="w3-border-bottom">\n			<p><%= user.name %></p>\n			<p><%= user.email %></p></p>\n		</div>\n		<div  class="w3-border-bottom">\n			<p><a id="update-user-btn" href="/#/admin/edit/" class="w3-text-gray w3-hover-none w3-hover-text-black">Modifier profil</a></p>\n			<p><a id="update-password-btn" href="/#/admin/edit/password" class="w3-text-gray w3-hover-none w3-hover-text-black">Modifier mot de passe</a></p>\n		</div>\n		<p><a id="new-btn" href="/#/admin/new" class="w3-text-gray w3-hover-none w3-hover-text-black">Nouveau compte administrateur</a></p>\n		<p><button id="logout-btn" type="button" class="w3-button w3-text-gray w3-hover-none w3-hover-text-black" style="padding-left:0px;padding-right:0px">Déconnexion</button></p>\n	</div>\n</div>\n',
+        filename: "."
+    };
+    function rethrow(err, str, filename, lineno) {
+        var lines = str.split("\n"), start = Math.max(lineno - 3, 0), end = Math.min(lines.length, lineno + 3);
+        var context = lines.slice(start, end).map(function(line, i) {
+            var curr = i + start + 1;
+            return (curr == lineno ? " >> " : "    ") + curr + "| " + line;
+        }).join("\n");
+        err.path = filename;
+        err.message = (filename || "ejs") + ":" + lineno + "\n" + context + "\n\n" + err.message;
+        throw err;
+    }
+    try {
+        var buf = [];
+        with (locals || {}) {
+            (function() {
+                buf.push('<div id="adminHome" class="content">\n	<h4 class="w3-container w3-padding-16">Accueil</h4>\n	<div class="w3-container">\n		<div class="w3-border-bottom">\n			<p>', escape((__stack.lineno = 5, user.name)), "</p>\n			<p>", escape((__stack.lineno = 6, user.email)), '</p></p>\n		</div>\n		<div  class="w3-border-bottom">\n			<p><a id="update-user-btn" href="/#/admin/edit/" class="w3-text-gray w3-hover-none w3-hover-text-black">Modifier profil</a></p>\n			<p><a id="update-password-btn" href="/#/admin/edit/password" class="w3-text-gray w3-hover-none w3-hover-text-black">Modifier mot de passe</a></p>\n		</div>\n		<p><a id="new-btn" href="/#/admin/new" class="w3-text-gray w3-hover-none w3-hover-text-black">Nouveau compte administrateur</a></p>\n		<p><button id="logout-btn" type="button" class="w3-button w3-text-gray w3-hover-none w3-hover-text-black" style="padding-left:0px;padding-right:0px">Déconnexion</button></p>\n	</div>\n</div>\n');
+            })();
+        }
+        return buf.join("");
+    } catch (err) {
+        rethrow(err, __stack.input, __stack.filename, __stack.lineno);
+    }
+}
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _utils = __webpack_require__(0);
+
+var _utils2 = _interopRequireDefault(_utils);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var adminUsersTemplate = __webpack_require__(18);
+//home.js
+var adminUsers = function adminUsers(container) {
+	'use strict';
+	//ajax get users
+
+	var options = { method: 'GET', url: '/users/' };
+	_utils2.default.ajax(options).then(function (res) {
+		var response = JSON.parse(res);
+		if (response.error) {
+			//insert template in container
+			container.innerHTML = "";
+			container.innerHTML = adminUsersTemplate({ users: [], error: response.error });
+		} else {
+			//insert template in container
+			container.innerHTML = "";
+			container.innerHTML = adminUsersTemplate({ users: response.users, error: '' });
+		}
+	});
+};
+
+exports.default = adminUsers;
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports) {
+
+module.exports = function anonymous(locals, filters, escape, rethrow) {
+    escape = escape || function(html) {
+        return String(html).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+    };
+    var __stack = {
+        lineno: 1,
+        input: '<div id="adminUsers" class="content">\n	<h4 class="w3-container w3-padding-16">Utilisateurs</h4>\n	<span class="error"><%= error %></span>\n	<div>\n		<ul id="users-list" class=\'w3-ul\'>\n			<% for(var i=0; i<users.length; i++) {%>\n			<li class="w3-display-container">\n				<p id=\'<%= users[i].id %>\'>\n					<a href=\'/#/admin/users/<%= users[i].id %>\' class=\'w3-text-gray w3-hover-none w3-hover-text-black\'><%= users[i].email %></a>\n				</p>\n			</li>\n			<% } %>\n		</ul>\n	</div>\n</div>\n',
+        filename: "."
+    };
+    function rethrow(err, str, filename, lineno) {
+        var lines = str.split("\n"), start = Math.max(lineno - 3, 0), end = Math.min(lines.length, lineno + 3);
+        var context = lines.slice(start, end).map(function(line, i) {
+            var curr = i + start + 1;
+            return (curr == lineno ? " >> " : "    ") + curr + "| " + line;
+        }).join("\n");
+        err.path = filename;
+        err.message = (filename || "ejs") + ":" + lineno + "\n" + context + "\n\n" + err.message;
+        throw err;
+    }
+    try {
+        var buf = [];
+        with (locals || {}) {
+            (function() {
+                buf.push('<div id="adminUsers" class="content">\n	<h4 class="w3-container w3-padding-16">Utilisateurs</h4>\n	<span class="error">', escape((__stack.lineno = 3, error)), "</span>\n	<div>\n		<ul id=\"users-list\" class='w3-ul'>\n			");
+                __stack.lineno = 6;
+                for (var i = 0; i < users.length; i++) {
+                    buf.push('\n			<li class="w3-display-container">\n				<p id=\'', escape((__stack.lineno = 8, users[i].id)), "'>\n					<a href='/#/admin/users/", escape((__stack.lineno = 9, users[i].id)), "' class='w3-text-gray w3-hover-none w3-hover-text-black'>", escape((__stack.lineno = 9, users[i].email)), "</a>\n				</p>\n			</li>\n			");
+                    __stack.lineno = 12;
+                }
+                buf.push("\n		</ul>\n	</div>\n</div>\n");
+            })();
+        }
+        return buf.join("");
+    } catch (err) {
+        rethrow(err, __stack.input, __stack.filename, __stack.lineno);
+    }
+}
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _utils = __webpack_require__(0);
+
+var _utils2 = _interopRequireDefault(_utils);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var adminUserTemplate = __webpack_require__(20);
+//home.js
+var adminUser = function adminUser(container) {
+	'use strict';
+
+	var id = location.hash.replace(/^#\/admin\/users\//, '');
 	//ajax get user
 	var options = { method: 'GET', url: '/users/' + id };
 	_utils2.default.ajax(options).then(function (res) {
 		var response = JSON.parse(res);
 		if (response.error) {
-			_utils2.default.bind(div, response, 'error');
+			//insert template in container
+			container.innerHTML = "";
+			container.innerHTML = adminUserTemplate({ user: {}, error: response.error });
 		} else {
-			var user = response.user;
-			_utils2.default.bind(root, user);
+			//insert template in container
+			container.innerHTML = "";
+			container.innerHTML = adminUserTemplate({ user: response.user, error: '' });
+
+			var root = document.querySelector('#adminUser');
+			var modal = root.querySelector('#modal');
+			var div = root.querySelector('#user');
+
+			//Open modal
+			var openModalBtn = div.querySelector('#open-modal-btn');
+			openModalBtn.addEventListener('click', function () {
+				modal.style.display = 'block';
+			}, false);
+
+			//Close modal
+			var closeModalBtn = modal.querySelector('#close-modal-btn');
+			closeModalBtn.addEventListener('click', function () {
+				modal.style.display = 'none';
+			}, false);
+
+			//Delete User
+			var deleteUser = function deleteUser(event) {
+				var options = { method: 'DELETE', url: '/users/' + id };
+				_utils2.default.ajax(options).then(function (res) {
+					var response = JSON.parse(res);
+					if (response.error) {
+						_utils2.default.bind(div, response);
+						modal.style.display = 'none';
+					} else {
+						location.hash = '#/admin/users/';
+					}
+				});
+			};
+
+			var deleteBtn = modal.querySelector('#delete-btn');
+			deleteBtn.addEventListener('click', deleteUser, false);
 		}
 	});
-
-	var deleteUser = function deleteUser(event) {
-		var options = { method: 'DELETE', url: '/users/' + id };
-		_utils2.default.ajax(options).then(function (res) {
-			var response = JSON.parse(res);
-			if (response.error) {
-				_utils2.default.bind(div, response, 'error');
-				modal.style.display = 'none';
-			} else {
-				location.hash = '#/admin/users/';
-			}
-		});
-	};
-
-	var openModalBtn = div.querySelector('#open-modal-btn');
-	openModalBtn.addEventListener('click', function () {
-		modal.style.display = 'block';
-	}, false);
-
-	var closeModalBtn = modal.querySelector('#close-modal-btn');
-	closeModalBtn.addEventListener('click', function () {
-		modal.style.display = 'none';
-	}, false);
-
-	var deleteBtn = modal.querySelector('#delete-btn');
-	deleteBtn.addEventListener('click', deleteUser, false);
 };
 
 exports.default = adminUser;
 
 /***/ }),
-/* 16 */
+/* 20 */
+/***/ (function(module, exports) {
+
+module.exports = function anonymous(locals, filters, escape, rethrow) {
+    escape = escape || function(html) {
+        return String(html).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+    };
+    var __stack = {
+        lineno: 1,
+        input: '<div id="adminUser" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="w3-modal w3-card-4">\n		<div class="w3-modal-content w3-animate-top">\n			<header class="w3-container w3-black"> \n				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>\n				<h4>Supprimer un utilisateur</h4>\n			</header>\n			<div  class="w3-container">\n				<p>Voulez-vous vraiment supprimer cet utilisateur ?</p>\n				<p><%= user.email %></p>\n				<p class="w3-right"><button type="button" id="delete-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black">Supprimer</button></p>\n			</div>\n			\n		</div>\n	</div>\n<!--\n	MAIN\n-->\n	<h4 class="w3-container align-left w3-padding-16">Utilisateur</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/users/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div id="user" class="w3-container">\n		<span class="error"><%= error %></span>\n		<span class="error" id="modal-error" data-utils-bind="{{ error }}"></span>\n		<div class="w3-border-bottom">\n			<p><b>Nom : </b><%= user.name %></p>\n			<p><b>Email : </b><%= user.email %></p>\n			<p><b>Admin : </b><%= user.admin %></p>\n			<p><b>Créé le : </b><%= user.created_at %></p>\n			<p><b>Mis à jour le : </b><%= user.updated_at %></p>\n		</div>\n		<p><button type="button" id="open-modal-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-right">Supprimer</button></p>\n	</div>\n</div>\n',
+        filename: "."
+    };
+    function rethrow(err, str, filename, lineno) {
+        var lines = str.split("\n"), start = Math.max(lineno - 3, 0), end = Math.min(lines.length, lineno + 3);
+        var context = lines.slice(start, end).map(function(line, i) {
+            var curr = i + start + 1;
+            return (curr == lineno ? " >> " : "    ") + curr + "| " + line;
+        }).join("\n");
+        err.path = filename;
+        err.message = (filename || "ejs") + ":" + lineno + "\n" + context + "\n\n" + err.message;
+        throw err;
+    }
+    try {
+        var buf = [];
+        with (locals || {}) {
+            (function() {
+                buf.push('<div id="adminUser" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="w3-modal w3-card-4">\n		<div class="w3-modal-content w3-animate-top">\n			<header class="w3-container w3-black"> \n				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>\n				<h4>Supprimer un utilisateur</h4>\n			</header>\n			<div  class="w3-container">\n				<p>Voulez-vous vraiment supprimer cet utilisateur ?</p>\n				<p>', escape((__stack.lineno = 13, user.email)), '</p>\n				<p class="w3-right"><button type="button" id="delete-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black">Supprimer</button></p>\n			</div>\n			\n		</div>\n	</div>\n<!--\n	MAIN\n-->\n	<h4 class="w3-container align-left w3-padding-16">Utilisateur</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/users/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div id="user" class="w3-container">\n		<span class="error">', escape((__stack.lineno = 25, error)), '</span>\n		<span class="error" id="modal-error" data-utils-bind="{{ error }}"></span>\n		<div class="w3-border-bottom">\n			<p><b>Nom : </b>', escape((__stack.lineno = 28, user.name)), "</p>\n			<p><b>Email : </b>", escape((__stack.lineno = 29, user.email)), "</p>\n			<p><b>Admin : </b>", escape((__stack.lineno = 30, user.admin)), "</p>\n			<p><b>Créé le : </b>", escape((__stack.lineno = 31, user.created_at)), "</p>\n			<p><b>Mis à jour le : </b>", escape((__stack.lineno = 32, user.updated_at)), '</p>\n		</div>\n		<p><button type="button" id="open-modal-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-right">Supprimer</button></p>\n	</div>\n</div>\n');
+            })();
+        }
+        return buf.join("");
+    } catch (err) {
+        rethrow(err, __stack.input, __stack.filename, __stack.lineno);
+    }
+}
+
+/***/ }),
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14477,7 +14662,7 @@ var adminNew = function adminNew(data) {
 exports.default = adminNew;
 
 /***/ }),
-/* 17 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14547,7 +14732,7 @@ var adminEdit = function adminEdit(user) {
 exports.default = adminEdit;
 
 /***/ }),
-/* 18 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14620,7 +14805,7 @@ var adminEditPassword = function adminEditPassword(user) {
 exports.default = adminEditPassword;
 
 /***/ }),
-/* 19 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14659,7 +14844,7 @@ var adminBooks = function adminBooks() {
 exports.default = adminBooks;
 
 /***/ }),
-/* 20 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14693,7 +14878,7 @@ var adminBook = function adminBook() {
 exports.default = adminBook;
 
 /***/ }),
-/* 21 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14707,29 +14892,26 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _dataStore = __webpack_require__(1);
-
-var _dataStore2 = _interopRequireDefault(_dataStore);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var adminAuthorsTemplate = __webpack_require__(27);
 //home.js
-var adminAuthors = function adminAuthors() {
+var adminAuthors = function adminAuthors(container) {
 	'use strict';
 
-	var root = document.querySelector('#adminAuthors');
-	var list = root.querySelector('#authors-list');
+	//ajax get authors
 
-	//ajax get users
 	var options = { method: 'GET', url: '/authors/' };
 	_utils2.default.ajax(options).then(function (res) {
 		var response = JSON.parse(res);
 		if (response.error) {
-			_utils2.default.bind(root, response, 'error');
+			//insert template in container
+			container.innerHTML = "";
+			container.innerHTML = adminAuthorsTemplate({ authors: [], error: response.error });
 		} else {
-			var authors = response.authors;
-			_dataStore2.default.setData('authors', authors);
-			_utils2.default.repeat(list, authors);
+			//insert template in container
+			container.innerHTML = "";
+			container.innerHTML = adminAuthorsTemplate({ authors: response.authors, error: '' });
 		}
 	});
 };
@@ -14737,7 +14919,49 @@ var adminAuthors = function adminAuthors() {
 exports.default = adminAuthors;
 
 /***/ }),
-/* 22 */
+/* 27 */
+/***/ (function(module, exports) {
+
+module.exports = function anonymous(locals, filters, escape, rethrow) {
+    escape = escape || function(html) {
+        return String(html).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+    };
+    var __stack = {
+        lineno: 1,
+        input: '<div id="adminAuthors" class="content">\n	<h4 class="align-left w3-container w3-padding-16">Auteurs</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/authors/new" class="w3-text-gray w3-hover-none w3-hover-text-black">Ajouter</a></p>\n	<div style="clear:both">\n		<span class="error"><%= error %></span>\n		<ul id="authors-list" class="w3-ul">\n			<% for(var i=0; i<authors.length; i++) {%>\n			<li>\n				<p id="<%= authors[i].id %>">\n					<a href="/#/admin/authors/<%= authors[i].id %>" class=\'w3-text-gray w3-hover-none w3-hover-text-black\'>\n						<%= authors[i].firstName %> <%= authors[i].name %> (<%= authors[i].birth %>&thinsp;&ndash;&thinsp;<%= authors[i].death %>)\n					</a>\n				</p>\n			</li>\n			<% } %>\n		</ul>\n	</div>\n</div>\n',
+        filename: "."
+    };
+    function rethrow(err, str, filename, lineno) {
+        var lines = str.split("\n"), start = Math.max(lineno - 3, 0), end = Math.min(lines.length, lineno + 3);
+        var context = lines.slice(start, end).map(function(line, i) {
+            var curr = i + start + 1;
+            return (curr == lineno ? " >> " : "    ") + curr + "| " + line;
+        }).join("\n");
+        err.path = filename;
+        err.message = (filename || "ejs") + ":" + lineno + "\n" + context + "\n\n" + err.message;
+        throw err;
+    }
+    try {
+        var buf = [];
+        with (locals || {}) {
+            (function() {
+                buf.push('<div id="adminAuthors" class="content">\n	<h4 class="align-left w3-container w3-padding-16">Auteurs</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/authors/new" class="w3-text-gray w3-hover-none w3-hover-text-black">Ajouter</a></p>\n	<div style="clear:both">\n		<span class="error">', escape((__stack.lineno = 5, error)), '</span>\n		<ul id="authors-list" class="w3-ul">\n			');
+                __stack.lineno = 7;
+                for (var i = 0; i < authors.length; i++) {
+                    buf.push('\n			<li>\n				<p id="', escape((__stack.lineno = 9, authors[i].id)), '">\n					<a href="/#/admin/authors/', escape((__stack.lineno = 10, authors[i].id)), "\" class='w3-text-gray w3-hover-none w3-hover-text-black'>\n						", escape((__stack.lineno = 11, authors[i].firstName)), " ", escape((__stack.lineno = 11, authors[i].name)), " (", escape((__stack.lineno = 11, authors[i].birth)), "&thinsp;&ndash;&thinsp;", escape((__stack.lineno = 11, authors[i].death)), ")\n					</a>\n				</p>\n			</li>\n			");
+                    __stack.lineno = 15;
+                }
+                buf.push("\n		</ul>\n	</div>\n</div>\n");
+            })();
+        }
+        return buf.join("");
+    } catch (err) {
+        rethrow(err, __stack.input, __stack.filename, __stack.lineno);
+    }
+}
+
+/***/ }),
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14753,13 +14977,11 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var adminAuthorTemplate = __webpack_require__(29);
 //home.js
-var adminAuthor = function adminAuthor() {
+var adminAuthor = function adminAuthor(container) {
 	'use strict';
 
-	var root = document.querySelector('#adminAuthor');
-	var modal = root.querySelector('#modal');
-	var div = root.querySelector('#author');
 	var id = location.hash.replace(/^#\/admin\/authors\//, '');
 
 	//ajax get user
@@ -14767,49 +14989,87 @@ var adminAuthor = function adminAuthor() {
 	_utils2.default.ajax(options).then(function (res) {
 		var response = JSON.parse(res);
 		if (response.error) {
-			_utils2.default.bind(div, response, 'error');
+			//insert template in container
+			container.innerHTML = "";
+			container.innerHTML = adminAuthorTemplate({ author: {}, error: response.error });
 		} else {
-			var author = response.author;
-			_utils2.default.bind(root, author);
+			//insert template in container
+			container.innerHTML = "";
+			container.innerHTML = adminAuthorTemplate({ author: response.author, error: '' });
+
+			var root = document.querySelector('#adminAuthor');
+			var modal = root.querySelector('#modal');
+			var div = root.querySelector('#author');
+
+			var openModalBtn = div.querySelector('#open-modal-btn');
+			openModalBtn.addEventListener('click', function () {
+				modal.style.display = 'block';
+			}, false);
+
+			var closeModalBtn = modal.querySelector('#close-modal-btn');
+			closeModalBtn.addEventListener('click', function () {
+				modal.style.display = 'none';
+			}, false);
+
+			var deleteAuthor = function deleteAuthor(event) {
+				var options = { method: 'DELETE', url: '/authors/' + id };
+				_utils2.default.ajax(options).then(function (res) {
+					var response = JSON.parse(res);
+					if (response.error) {
+						_utils2.default.bind(div, response, 'error');
+						modal.style.display = 'none';
+					} else {
+						location.hash = '#/admin/authors/';
+					}
+				});
+			};
+
+			var deleteBtn = modal.querySelector('#delete-btn');
+			deleteBtn.addEventListener('click', deleteAuthor, false);
 		}
 	});
-
-	var deleteAuthor = function deleteAuthor(event) {
-		var options = { method: 'DELETE', url: '/authors/' + id };
-		_utils2.default.ajax(options).then(function (res) {
-			var response = JSON.parse(res);
-			if (response.error) {
-				_utils2.default.bind(div, response, 'error');
-				modal.style.display = 'none';
-			} else {
-				location.hash = '#/admin/authors/';
-			}
-		});
-	};
-
-	var openModalBtn = div.querySelector('#open-modal-btn');
-	openModalBtn.addEventListener('click', function () {
-		modal.style.display = 'block';
-	}, false);
-
-	var closeModalBtn = modal.querySelector('#close-modal-btn');
-	closeModalBtn.addEventListener('click', function () {
-		modal.style.display = 'none';
-	}, false);
-
-	var deleteBtn = modal.querySelector('#delete-btn');
-	deleteBtn.addEventListener('click', deleteAuthor, false);
-
-	var editBtn = div.querySelector('#edit-btn');
-	editBtn.addEventListener('click', function () {
-		location.hash = '#/admin/authors/' + id + '/edit';
-	}, false);
 };
 
 exports.default = adminAuthor;
 
 /***/ }),
-/* 23 */
+/* 29 */
+/***/ (function(module, exports) {
+
+module.exports = function anonymous(locals, filters, escape, rethrow) {
+    escape = escape || function(html) {
+        return String(html).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+    };
+    var __stack = {
+        lineno: 1,
+        input: '<div id="adminAuthor" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="w3-modal w3-card-4">\n		<div class="w3-modal-content w3-animate-top">\n			<header class="w3-container w3-black"> \n				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>\n				<h4>Supprimer un auteur</h4>\n			</header>\n			<div  class="w3-container">\n				<p>Voulez-vous vraiment supprimer cet auteur ?</p>\n				<p><%= author.firstName %> <%= author.name %></p>\n				<p class="w3-right"><button type="button" id="delete-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black">Supprimer</button></p>\n			</div>\n			\n		</div>\n	</div>\n\n<!--\n	MAIN\n-->\n	\n	<h4 class="w3-container align-left w3-padding-16">Auteur</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/authors/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div id="author" class="w3-container">\n		<span class="error"><%= error %></span>\n		<span class="error" id="modal-error" data-utils-bind="{{ error }}"></span>\n		<div class="w3-border-bottom">\n			<p><b>Nom : </b><span><%= author.name %></span></p>\n			<p><b>Prénom : </b><span><%= author.firstName %></span></p>\n			<p><b>Nom alphabétique : </b><span><%= author.nameAlpha %></p>\n			<p><b>Date de naissance : </b><span><%= author.birth %></p>\n			<p><b>Date de décès : </b><span><%= author.death %></p>\n			<p><b>Description : </b></p>\n			<div><%= author.description %></div>\n			<p><b>Créé le : </b><span></span><%= author.created_at %></p>\n			<p><b>Mis à jour le : </b><span><%= author.updated_at %></p>\n		</div>\n		<p>\n			<a href="#/admin/authors/<%= author.id %>/edit" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-left">Modifier</a>\n			<button type="button" id="open-modal-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-right">Supprimer</button>\n		</p>\n	</div>\n</div>\n',
+        filename: "."
+    };
+    function rethrow(err, str, filename, lineno) {
+        var lines = str.split("\n"), start = Math.max(lineno - 3, 0), end = Math.min(lines.length, lineno + 3);
+        var context = lines.slice(start, end).map(function(line, i) {
+            var curr = i + start + 1;
+            return (curr == lineno ? " >> " : "    ") + curr + "| " + line;
+        }).join("\n");
+        err.path = filename;
+        err.message = (filename || "ejs") + ":" + lineno + "\n" + context + "\n\n" + err.message;
+        throw err;
+    }
+    try {
+        var buf = [];
+        with (locals || {}) {
+            (function() {
+                buf.push('<div id="adminAuthor" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="w3-modal w3-card-4">\n		<div class="w3-modal-content w3-animate-top">\n			<header class="w3-container w3-black"> \n				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>\n				<h4>Supprimer un auteur</h4>\n			</header>\n			<div  class="w3-container">\n				<p>Voulez-vous vraiment supprimer cet auteur ?</p>\n				<p>', escape((__stack.lineno = 13, author.firstName)), " ", escape((__stack.lineno = 13, author.name)), '</p>\n				<p class="w3-right"><button type="button" id="delete-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black">Supprimer</button></p>\n			</div>\n			\n		</div>\n	</div>\n\n<!--\n	MAIN\n-->\n	\n	<h4 class="w3-container align-left w3-padding-16">Auteur</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/authors/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div id="author" class="w3-container">\n		<span class="error">', escape((__stack.lineno = 27, error)), '</span>\n		<span class="error" id="modal-error" data-utils-bind="{{ error }}"></span>\n		<div class="w3-border-bottom">\n			<p><b>Nom : </b><span>', escape((__stack.lineno = 30, author.name)), "</span></p>\n			<p><b>Prénom : </b><span>", escape((__stack.lineno = 31, author.firstName)), "</span></p>\n			<p><b>Nom alphabétique : </b><span>", escape((__stack.lineno = 32, author.nameAlpha)), "</p>\n			<p><b>Date de naissance : </b><span>", escape((__stack.lineno = 33, author.birth)), "</p>\n			<p><b>Date de décès : </b><span>", escape((__stack.lineno = 34, author.death)), "</p>\n			<p><b>Description : </b></p>\n			<div>", escape((__stack.lineno = 36, author.description)), "</div>\n			<p><b>Créé le : </b><span></span>", escape((__stack.lineno = 37, author.created_at)), "</p>\n			<p><b>Mis à jour le : </b><span>", escape((__stack.lineno = 38, author.updated_at)), '</p>\n		</div>\n		<p>\n			<a href="#/admin/authors/', escape((__stack.lineno = 41, author.id)), '/edit" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-left">Modifier</a>\n			<button type="button" id="open-modal-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-right">Supprimer</button>\n		</p>\n	</div>\n</div>\n');
+            })();
+        }
+        return buf.join("");
+    } catch (err) {
+        rethrow(err, __stack.input, __stack.filename, __stack.lineno);
+    }
+}
+
+/***/ }),
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14972,7 +15232,7 @@ var adminAuthorsNew = function adminAuthorsNew(data) {
 exports.default = adminAuthorsNew;
 
 /***/ }),
-/* 24 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15058,109 +15318,91 @@ var adminAuthorEdit = function adminAuthorEdit(data) {
 exports.default = adminAuthorEdit;
 
 /***/ }),
-/* 25 */
-/***/ (function(module, exports) {
-
-module.exports = "<div id=adminHome class=content> <h4 class=\"w3-container w3-padding-16\">Accueil</h4> <div class=w3-container> <div class=w3-border-bottom> <p data-utils-bind=\"{{ name }}\"></p> <p data-utils-bind=\"{{ email }}\"></p> </div> <div class=w3-border-bottom> <p><a id=update-user-btn href=/#/admin/edit/ class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Modifier profil</a></p> <p><a id=update-password-btn href=/#/admin/edit/password class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Modifier mot de passe</a></p> </div> <p><a id=new-btn href=/#/admin/new class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Nouveau compte administrateur</a></p> <p><button id=logout-btn type=button class=\"w3-button w3-text-gray w3-hover-none w3-hover-text-black\" style=padding-left:0;padding-right:0>Déconnexion</button></p> </div> </div> ";
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports) {
-
-module.exports = "<div id=adminUsers class=content> <h4 class=\"w3-container w3-padding-16\">Utilisateurs</h4> <span class=error data-utils-bind=\"{{ error }}\"></span> <div> <ul id=users-list class=w3-ul> <li class=w3-display-container data-utils-repeat=\"\n\t\t\t\t<p id={{ id }}><a href='/#/admin/users/{{ id }}' class='w3-text-gray w3-hover-none w3-hover-text-black'>{{ email }}</a></p>\n\t\t\t\t\"> </li> </ul> </div> </div> ";
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports) {
-
-module.exports = "<div id=adminUser class=content> <div id=modal class=\"w3-modal w3-card-4\"> <div class=\"w3-modal-content w3-animate-top\"> <header class=\"w3-container w3-black\"> <span id=close-modal-btn class=\"w3-button w3-display-topright\">&times;</span> <h4>Supprimer un utilisateur</h4> </header> <div class=w3-container> <p>Voulez-vous vraiment supprimer cet utilisateur ?</p> <p data-utils-bind=\"{{ email }}\"></p> <p class=w3-right><button type=button id=delete-btn class=\"w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black\">Supprimer</button></p> </div> </div> </div> <h4 class=\"w3-container align-left w3-padding-16\">Utilisateur</h4> <p class=\"align-right w3-padding-16\"><a href=/#/admin/users/ class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Retour</a></p> <div id=user class=w3-container> <span class=error data-utils-bind=\"{{ error }}\"></span> <div class=w3-border-bottom data-utils-bind=\"\n\t\t\t<p><b>Nom : </b>{{ name }}</p>\n\t\t\t<p><b>Email : </b>{{ email }}</p>\n\t\t\t<p><b>Admin : </b>{{ admin }}</p>\n\t\t\t<p><b>Créé le : </b>{{ created_at }}</p>\n\t\t\t<p><b>Mis à jour le : </b>{{ updated_at }}</p>\n\t\t\t\"> </div> <p><button type=button id=open-modal-btn class=\"w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-right\">Supprimer</button></p> </div> </div> ";
-
-/***/ }),
-/* 28 */
+/* 32 */
 /***/ (function(module, exports) {
 
 module.exports = "<div id=adminNew class=content> <h4 class=\"w3-container align-left w3-padding-16\">Nouveau compte administrateur</h4> <p class=\"align-right w3-padding-16\"><a href=/#/admin/ class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Retour</a></p> <div class=w3-container> <form id=adminRegisterForm> <span class=error id=form-error data-utils-bind=\"{{ form }}\"></span> <p id=name> <label>Nom : </label> <input type=text name=name class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ name }}\"></span> </p> <p id=email> <label>Email : </label> <input type=text name=email class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ email }}\"></span> </p> <p id=password> <label>Mot de passe : </label> <input type=password name=password class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ password }}\"></span> </p> <p id=password_confirm> <label>Confirmation : </label> <input type=password name=password_confirm class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ password_confirm }}\"></span> </p> <p> <button type=submit class=\"w3-btn w3-border\">Valider</button> </p> </form> </div> </div> ";
 
 /***/ }),
-/* 29 */
+/* 33 */
 /***/ (function(module, exports) {
 
 module.exports = "<div id=adminEdit class=content> <h4 class=\"w3-container align-left w3-padding-16\">Modifier votre profil</h4> <p class=\"align-right w3-padding-16\"><a href=/#/admin/ class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Retour</a></p> <div class=w3-container> <form id=adminEditForm> <span class=error id=form-error data-utils-bind=\"{{ form }}\"></span> <p id=name> <label>Nom : </label> <input type=text name=name class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ name }}\"></span> </p> <p id=email> <label>Email : </label> <input type=text name=email class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ email }}\"></span> </p> <p id=password> <label>Mot de passe : </label> <input type=password name=password class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ password }}\"></span> </p> <p> <button type=submit class=\"w3-btn w3-border\">Valider</button> </p> </form> </div> </div> ";
 
 /***/ }),
-/* 30 */
+/* 34 */
 /***/ (function(module, exports) {
 
 module.exports = "<div id=adminEditPassword class=content> <h4 class=\"w3-container align-left w3-padding-16\">Modifier votre mot de passe</h4> <p class=\"align-right w3-padding-16\"><a href=/#/admin/ class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Retour</a></p> <div class=w3-container> <form id=adminEditPasswordForm> <span class=error id=form-error data-utils-bind=\"{{ form }}\"></span> <span class=\"success hidden\" id=form-success data-utils-bind=\"{{ message }}\"></span> <p id=password> <label>Mot de passe actuel : </label> <input type=password name=password class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ password }}\"></span> </p> <p id=password_new> <label>Nouveau mot de passe : </label> <input type=password name=password_new class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ password_new }}\"></span> </p> <p id=password_new_confirm> <label>Confirmation : </label> <input type=password name=password_new_confirm class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ password_new_confirm }}\"></span> </p> <p> <button type=submit class=\"w3-btn w3-border\">Valider</button> </p> </form> </div> </div> ";
 
 /***/ }),
-/* 31 */
+/* 35 */
 /***/ (function(module, exports) {
 
 module.exports = "<div id=adminBooks class=content> <h4 class=\"w3-container w3-padding-16\">Ouvrages</h4> <div> <ul id=books-list class=w3-ul> <li class=w3-display-container data-utils-repeat=\"\n\t\t\t\t<p>{{ author }}</p>\n\t\t\t\t<p><span><a href='/#/admin/books/{{ id }}' class='w3-text-gray w3-hover-none w3-hover-text-black'>{{ title }}</a></span>\n\t\t\t\t<span class='w3-display-right'><a id='delete-link' href='/#/admin/books/' class='w3-text-gray w3-hover-none w3-hover-text-black'>Supprimer</a></span></p>\n\t\t\t\t\"> </li> </ul> </div> </div> ";
 
 /***/ }),
-/* 32 */
+/* 36 */
 /***/ (function(module, exports) {
 
 module.exports = "<div id=adminBook class=content> <h4 class=\"w3-container align-left w3-padding-16\">Ouvrage</h4> <p class=\"align-right w3-padding-16\"><a href=/#/admin/books/ class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Retour</a></p> <div id=book class=w3-container> <div data-utils-bind=\"\n\t\t\t<p>{{ author }}</p>\n\t\t\t<p>{{ title }}</p>\n\t\t\t\"> </div> </div> </div> ";
 
 /***/ }),
-/* 33 */
-/***/ (function(module, exports) {
-
-module.exports = "<div id=adminAuthors class=content> <h4 class=\"align-left w3-container w3-padding-16\">Auteurs</h4> <p class=\"align-right w3-padding-16\"><a href=/#/admin/authors/new class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Ajouter</a></p> <div style=clear:both> <span class=error data-utils-bind=\"{{ error }}\"></span> <ul id=authors-list class=w3-ul> <li data-utils-repeat=\"\n\t\t\t\t<p id={{ id }}>\n\t\t\t\t\t<a href='/#/admin/authors/{{ id }}' class='w3-text-gray w3-hover-none w3-hover-text-black'>\n\t\t\t\t\t\t{{ firstName }} {{ name }} ({{ birth }}&thinsp;&ndash;&thinsp;{{ death }})\n\t\t\t\t\t</a>\n\t\t\t\t</p>\n\t\t\t\t\"> </li> </ul> </div> </div> ";
-
-/***/ }),
-/* 34 */
-/***/ (function(module, exports) {
-
-module.exports = "<div id=adminAuthor class=content> <div id=modal class=\"w3-modal w3-card-4\"> <div class=\"w3-modal-content w3-animate-top\"> <header class=\"w3-container w3-black\"> <span id=close-modal-btn class=\"w3-button w3-display-topright\">&times;</span> <h4>Supprimer un auteur</h4> </header> <div class=w3-container> <p>Voulez-vous vraiment supprimer cet auteur ?</p> <p data-utils-bind=\"{{ firstName }} {{ name }}\"></p> <p class=w3-right><button type=button id=delete-btn class=\"w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black\">Supprimer</button></p> </div> </div> </div> <h4 class=\"w3-container align-left w3-padding-16\">Auteur</h4> <p class=\"align-right w3-padding-16\"><a href=/#/admin/authors/ class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Retour</a></p> <div id=author class=w3-container> <span class=error data-utils-bind=\"{{ error }}\"></span> <div class=w3-border-bottom> <p><b>Nom : </b><span data-utils-bind=\"{{ name }}\"></span></p> <p><b>Prénom : </b><span data-utils-bind=\"{{ firstName }}\"></span></p> <p><b>Nom alphabétique : </b><span data-utils-bind=\"{{ nameAlpha }}\"></span></p> <p><b>Date de naissance : </b><span data-utils-bind=\"{{ birth }}\"></span></p> <p><b>Date de décès : </b><span data-utils-bind=\"{{ death }}\"></span></p> <p><b>Description : </b></p> <div data-utils-bind=\"{{ description }}\"></div> <p><b>Créé le : </b><span data-utils-bind=\"{{ created_at }}\"></span></p> <p><b>Mis à jour le : </b><span data-utils-bind=\"{{ updated_at }}\"></span></p> </div> <p> <button type=button id=edit-btn class=\"w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-left\">Modifier</button> <button type=button id=open-modal-btn class=\"w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-right\">Supprimer</button> </p> </div> </div> ";
-
-/***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, exports) {
 
 module.exports = "<div id=adminAuthorsNew class=content> <div id=modal class=\"w3-modal w3-card-4\"> <div class=\"w3-modal-content w3-animate-top\"> <header class=\"w3-container w3-black\"> <span id=close-modal-btn class=\"w3-button w3-display-topright\">&times;</span> <h4>Rechercher un ouvrage</h4> </header> <div class=w3-container> <p id=search> <input type=text name=search class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ error }}\"></span> </p> <ul id=results style=min-height:200px class=w3-ul></ul> </div> </div> </div> <h4 class=\"w3-container align-left w3-padding-16\">Ajouter un auteur</h4> <p class=\"align-right w3-padding-16\"><a href=/#/admin/authors/ class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Retour</a></p> <div class=w3-container> <form id=adminAuthorsNewForm> <span class=error id=form-error data-utils-bind=\"{{ form }}\"></span> <p id=name> <label>Nom : </label> <input type=text name=name class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ name }}\"></span> </p> <p id=firstName> <label>Prénom : </label> <input type=text name=firstName class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ firstname }}\"></span> </p> <p id=nameAlpha> <label>Nom alphabétique : </label> <input type=text name=nameAlpha class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ nameAlpha }}\"></span> </p> <p id=birth> <label>Date de naissance : </label> <input type=text name=birth class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ birth }}\"></span> </p> <p id=death> <label>Date de décès : </label> <input type=text name=death class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ death }}\"></span> </p> <p id=description> <label>Description : </label> <textarea type=text name=description class=\"w3-input w3-border\"></textarea> <span class=error data-utils-bind=\"{{ description }}\"></span> </p> <div class=\"w3-margin-bottom w3-border-bottom\"> <div class=w3-margin-bottom style=min-height:100px> <p> <label class=align-left>Ouvrages : </label> <a href=/#/admin/authors/new id=open-modal-btn class=\"align-right w3-text-gray w3-hover-none w3-hover-text-black\">Rechercher</a> </p> <ul id=booksContainer class=\"w3-ul w3-padding-32\"></ul> </div> </div> <p> <button type=submit class=\"w3-btn w3-border\">Valider</button> </p> </form> </div> </div> ";
 
 /***/ }),
-/* 36 */
+/* 38 */
 /***/ (function(module, exports) {
 
 module.exports = "<div id=adminAuthorEdit class=content> <h4 class=\"w3-container align-left w3-padding-16\">Modifier un auteur</h4> <p class=\"align-right w3-padding-16\"><a href=/#/admin/authors/ class=\"w3-text-gray w3-hover-none w3-hover-text-black\">Retour</a></p> <div class=w3-container> <form id=adminAuthorEditForm> <span class=error id=form-error data-utils-bind=\"{{ form }}\"></span> <p id=name> <label>Nom : </label> <input type=text name=name class=\"w3-input w3-border author\" data-utils-bind=\"{{ name }}\"> <span class=error data-utils-bind=\"{{ name }}\"></span> </p> <p id=firstName> <label>Prénom : </label> <input type=text name=firstName class=\"w3-input w3-border author\" data-utils-bind=\"{{ firstName }}\"> <span class=error data-utils-bind=\"{{ firstName }}\"></span> </p> <p id=nameAlpha> <label>Nom alphabétique : </label> <input type=text name=nameAlpha class=\"w3-input w3-border author\" data-utils-bind=\"{{ nameAlpha }}\"> <span class=error data-utils-bind=\"{{ nameAlpha }}\"></span> </p> <p id=birth> <label>Date de naissance : </label> <input type=text name=birth class=\"w3-input w3-border author\" data-utils-bind=\"{{ birth }}\"> <span class=error data-utils-bind=\"{{ birth }}\"></span> </p> <p id=death> <label>Date de décès : </label> <input type=text name=death class=\"w3-input w3-border author\" data-utils-bind=\"{{ death }}\"> <span class=error data-utils-bind=\"{{ death }}\"></span> </p> <p id=description> <label>Description : </label> <textarea type=text name=description class=\"w3-input w3-border author\" data-utils-bind=\"{{ description }}\"></textarea> <span class=error data-utils-bind=\"{{ description }}\"></span> </p> <p> <button type=submit class=\"w3-btn w3-border\">Valider</button> </p> </form> </div> </div> ";
 
 /***/ }),
-/* 37 */
-/***/ (function(module, exports) {
-
-module.exports = "<div id=home class=content> <div class=\"w3-container w3-padding-24\"> <ul id=books-list class=w3-ul> <li data-utils-repeat=\"\n\t\t\t\t<span>{{ author }} &ndash; </span>\n\t\t\t\t<a href='/#{{ path }}/read' class='w3-text-gray w3-hover-none w3-hover-text-black'>{{ title }}</a>\"> </li> </ul> </div> </div> ";
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports) {
-
-module.exports = "<div id=book> <div id=bookContainer> <div id=toc-large-device class=w3-card-4> <button id=toggle-toc-large-device type=button class=\"w3-btn w3-card-4 w3-white\">&colone;</button> <div id=toc-large-device-container class=toc-content> <p class=w3-center data-utils-bind=\"{{ author }}\"></p> <p class=\"w3-center text-uppercase\" data-utils-bind=\"{{ title }}\"></p> <div data-wb-toc class=w3-container></div> </div> </div> <div id=swing-container> <div data-wb-text-container class=w3-card-4> <div id=toc> <div data-wb-toc class=w3-container> <button id=close-toc type=button>&times;</button> <div id=toc-title class=toc-content> <p class=w3-center data-utils-bind=\"{{ author }}\"></p> <p class=\"w3-center text-uppercase\" data-utils-bind=\"{{ title }}\"></p> </div> </div> </div> <div id=top> <span class=wb-current-section-title></span> </div> <div data-wb-text></div> <div id=bottom> <a id=home href=/#/books/ class=\"w3-btn w3-text-dark-grey\">Liber</a> <span class=wb-currentByTotal-pages></span> <button type=button class=\"open-toc w3-btn w3-text-dark-grey\">&colone;</button> </div> <div id=bottom-large> <span class=wb-currentByTotal-pages></span> </div> </div> </div> <div id=book-nav-bar-bottom class=w3-bottom> <div class=\"w3-bar w3-large\"> <div id=swing-bar> <div id=book-nav-bar-bottom-controls> <button id=backward-large type=button class=\"w3-btn w3-margin-right\">&lt;</button> <button id=forward-large type=button class=\"w3-btn w3-margin-left\">&gt;</button> <button id=open-toc-large type=button class=\"open-toc w3-btn\"><span>&colone;</span></button> </div> </div> </div> </div> </div> </div> ";
-
-/***/ }),
 /* 39 */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=adminLogin class=content> <div class=\"w3-container w3-padding-24\"> <h3 class=w3-container>Espace administration&ensp;&ndash;&ensp;connexion</h3> <form id=adminLoginForm class=w3-container> <span class=error id=form-error data-utils-bind=\"{{ form }}\"></span> <p id=email> <label>Identifiant : </label> <input type=text name=email class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ email }}\"></span> </p> <p id=password> <label>Mot de passe : </label> <input type=password name=password class=\"w3-input w3-border\"> <span class=error data-utils-bind=\"{{ password }}\"></span> </p> <p> <button type=submit id=loginButton class=\"w3-btn w3-border\">Valider</button> </p> </form> </div> </div> ";
+module.exports = function anonymous(locals, filters, escape, rethrow) {
+    escape = escape || function(html) {
+        return String(html).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+    };
+    var __stack = {
+        lineno: 1,
+        input: '<div id="admin" class="content">\n	<div class="w3-container w3-padding-24">\n		<h3 class="w3-container">Espace administration</h3>\n		<nav id="admin-nav-bar-top" class=\'w3-bar w3-white w3-border-top w3-border-bottom\'>\n			<a id="admin-home" href="/#/admin/" class="w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black">Accueil</a>\n			<a id="admin-users" href="/#/admin/users/" class="w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black">Utilisateurs</a>\n			<a id="admin-books" href="/#/admin/books/" class="w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black">Ouvrages</a>\n			<a id="admin-authors" href="/#/admin/authors/" class="w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black">Auteurs</a>\n		</nav>\n		<div id="admin-container"></div>\n	</div>\n</div>\n',
+        filename: "."
+    };
+    function rethrow(err, str, filename, lineno) {
+        var lines = str.split("\n"), start = Math.max(lineno - 3, 0), end = Math.min(lines.length, lineno + 3);
+        var context = lines.slice(start, end).map(function(line, i) {
+            var curr = i + start + 1;
+            return (curr == lineno ? " >> " : "    ") + curr + "| " + line;
+        }).join("\n");
+        err.path = filename;
+        err.message = (filename || "ejs") + ":" + lineno + "\n" + context + "\n\n" + err.message;
+        throw err;
+    }
+    try {
+        var buf = [];
+        with (locals || {}) {
+            (function() {
+                buf.push('<div id="admin" class="content">\n	<div class="w3-container w3-padding-24">\n		<h3 class="w3-container">Espace administration</h3>\n		<nav id="admin-nav-bar-top" class=\'w3-bar w3-white w3-border-top w3-border-bottom\'>\n			<a id="admin-home" href="/#/admin/" class="w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black">Accueil</a>\n			<a id="admin-users" href="/#/admin/users/" class="w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black">Utilisateurs</a>\n			<a id="admin-books" href="/#/admin/books/" class="w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black">Ouvrages</a>\n			<a id="admin-authors" href="/#/admin/authors/" class="w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black">Auteurs</a>\n		</nav>\n		<div id="admin-container"></div>\n	</div>\n</div>\n');
+            })();
+        }
+        return buf.join("");
+    } catch (err) {
+        rethrow(err, __stack.input, __stack.filename, __stack.lineno);
+    }
+}
 
 /***/ }),
 /* 40 */
-/***/ (function(module, exports) {
-
-module.exports = "<div id=admin class=content> <div class=\"w3-container w3-padding-24\"> <h3 class=w3-container>Espace administration</h3> <nav id=admin-nav-bar-top class=\"w3-bar w3-white w3-border-top w3-border-bottom\"> <a id=admin-home href=/#/admin/ class=\"w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black\">Accueil</a> <a id=admin-users href=/#/admin/users/ class=\"w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black\">Utilisateurs</a> <a id=admin-books href=/#/admin/books/ class=\"w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black\">Ouvrages</a> <a id=admin-authors href=/#/admin/authors/ class=\"w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black\">Auteurs</a> </nav> <div id=admin-container></div> </div> </div> ";
-
-/***/ }),
-/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(42);
+var content = __webpack_require__(41);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -15168,7 +15410,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(44)(content, options);
+var update = __webpack_require__(43)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -15185,10 +15427,10 @@ if(false) {
 }
 
 /***/ }),
-/* 42 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(43)(undefined);
+exports = module.exports = __webpack_require__(42)(undefined);
 // imports
 
 
@@ -15199,7 +15441,7 @@ exports.push([module.i, "/*\nBOOK NAVBAR BOTTOM\n*/\n#book-nav-bar-bottom {\n\td
 
 
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15281,7 +15523,7 @@ function toComment(sourceMap) {
 }
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -15337,7 +15579,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(45);
+var	fixUrls = __webpack_require__(44);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -15653,7 +15895,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 45 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

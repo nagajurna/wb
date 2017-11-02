@@ -34,6 +34,7 @@
     "babel-loader": "7.1.2",
     "babel-preset-env": "1.6.1",
     "css-loader": "0.28.7",
+    "ejs-compiled-loader": "^1.1.0",
     "html-loader": "0.5.1",
     "style-loader": "0.19.0",
     "uglify-js": "3.1.6",
