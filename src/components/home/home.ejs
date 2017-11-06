@@ -2,10 +2,12 @@
 	<div class="w3-container w3-padding-24">
 		<ul id="books-list" class='w3-ul'>
 			<% for(var i=0; i<books.length; i++) {%>
+				<% if(books[i].visible) { %>
 			   <li>
-				   <span><%= books[i].author %> &mdash; </span>
+				   <span><%= books[i].authorDisplay %> &mdash; </span>
 				   <a href='/#<%= books[i].path %>/read' class="w3-text-gray w3-hover-none w3-hover-text-black"><%= books[i].title %></a>
 			   </li>
+			   <% } %>
 			<% } %>
 		</ul>
 	</div>

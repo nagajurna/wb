@@ -1,27 +1,52 @@
 import utils from '../../../../services/utils';
 import dataStore from '../../../../services/dataStore';
+let adminBooksNewTemplate = require('./adminBooksNew.ejs');
+let modalHeaderTemplate = require('./modalHeader.ejs');
+let searchAuthorsResultsTemplate = require('./searchAuthorsResults.ejs');
+let selectedAuthorsTemplate = require('./selectedAuthors.ejs');
+let selectedContribsTemplate = require('./selectedContribs.ejs');
+let selectedContribRoleTemplate = require('./selectedContribRole.ejs');
 //home.js
-const adminBooksNew = function(data) {
+const adminBooksNew = function(container) {
 	'use strict';
+	
+	//INSERT TEMPLATE IN CONTAINER
+	let c = container;
+	c.innerHTML = adminBooksNewTemplate();
+	
+	//ELEMENTS
 	//rootElement
 	const root = document.querySelector('#adminBooksNew');
 	//form
 	const form = root.querySelector('#adminBooksNewForm');
 	const inputs = form.querySelectorAll('input');
+	//modal
+	const modal = root.querySelector('#modal');
+	let searchInput = modal.querySelector('input');
+	let results = modal.querySelector('#results');
+	//authors, contribs containers
+	let authorsContainer = root.querySelector('#authorsContainer');
+	let contribsContainer = root.querySelector('#contribsContainer');
 	
-	//clear errors on input
+	//SCOPE VARIABLES
+	let authType = '';
+	let selectedAuthorsDisplay = [], selectedAuthors = [];
+	let selectedContribsDisplay = [], selectedContribs = [];
+	let json = "";//search : string json to compare with response
+		
+	//CLEAR ERRORS ON INPUT
 	function onInput(event) {
 		utils.setHTML('#form-error', "");
-		if(event.target.name === 'name') {
-			utils.setHTML('#name .error', "");
-		} else if(event.target.name === 'firstName') {
-			utils.setHTML('#firstName .error', "");
-		} else if(event.target.name === 'nameAlpha') {
-			utils.setHTML('#nameAlpha .error', "");
-		} else if(event.target.name === 'birth') {
-			utils.setHTML('#birth .error', "");
-		} else if(event.target.name === 'death') {
-			utils.setHTML('#death .error', "");
+		if(event.target.name === 'title') {
+			utils.setHTML('#title .error', "");
+		} else if(event.target.name === 'authorDisplay') {
+			utils.setHTML('#authorDisplay .error', "");
+		} else if(event.target.name === 'year') {
+			utils.setHTML('#year .error', "");
+		} else if(event.target.name === 'language') {
+			utils.setHTML('#language .error', "");
+		} else if(event.target.name === 'path') {
+			utils.setHTML('#path .error', "");
 		}
 	}
 	
@@ -29,30 +54,156 @@ const adminBooksNew = function(data) {
 		inputs[i].addEventListener('input', onInput, false);
 	}
 	
-	//submit
+	//SUBMIT
 	function onSubmit(event) {
 		event.preventDefault();
 		utils.bind(form, {});
-		let user = {};
-		user.name = form.querySelector('[name=name]').value;
-		user.firstName = form.querySelector('[name=firstName]').value;
-		user.nameAlpha = form.querySelector('[name=nameAlpha]').value;
-		user.birth = form.querySelector('[name=birth]').value;
-		user.death = form.querySelector('[name=death]').value;
-		user.description = form.querySelector('[name=description]').value;
-		let options = { method: 'POST', url: '/authors/', data: JSON.stringify(user) };
+		let book = {};
+		book.source = {};
+		book.cover = {};
+		book.title = form.querySelector('[name=title]').value;
+		book.subtitle1 = form.querySelector('[name=subtitle1]').value;
+		book.subtitle2 = form.querySelector('[name=subtitle2]').value;
+		book.authorDisplay = form.querySelector('[name=authorDisplay]').value;
+		book.year = form.querySelector('[name=year]').value;
+		book.language = form.querySelector('[name=language]').value;
+		book.categories = form.querySelector('[name=categories]').value;
+		book.source.publisher = form.querySelector('[name=source-publisher]').value;
+		book.source.year = form.querySelector('[name=source-year]').value;
+		book.source.origin = form.querySelector('[name=source-origin]').value;
+		book.cover.background = form.querySelector('[name=cover-background').value;
+		book.cover.textColor = form.querySelector('[name=cover-textColor').value;
+		book.cover.textSize = form.querySelector('[name=cover-textSize').value;
+		book.cover.textSpacing = form.querySelector('[name=cover-textSpacing').value;
+		book.description = form.querySelector('[name=description]').value;
+		book.path = form.querySelector('[name=path]').value;
+		book.visible = form.querySelector('[name=visible]').checked ? true : false;
+		book.authors = selectedAuthors;
+		book.contribs = selectedContribs;
+		let options = { method: 'POST', url: '/books/', data: JSON.stringify(book) };
 		utils.ajax(options)
 		.then( res => {
 			let response = JSON.parse(res);
 			if(response.errors) {
 				utils.bind(form, response.errors);
 			} else {
-				location.hash = '#/admin/authors/';
+				location.hash = '#/admin/books/';
 			}
 		});
 	}
 	
 	form.addEventListener('submit', onSubmit, false);
+	
+	//SEARCH MODAL
+	//open modal
+	let openModal = event => {
+		event.preventDefault();
+		authType = event.target.id;
+		document.querySelector('#modal h4').innerHTML = modalHeaderTemplate({ authType: authType });
+		utils.removeClass('#search', 'hidden');
+		modal.style.display = 'block';
+	}
+	
+	let openModalBtns = root.querySelectorAll('.open-modal-btn');
+	for(let i=0; i<openModalBtns.length; i++) {
+		openModalBtns[i].addEventListener('click', openModal, false);
+	}
+	
+	//close modal
+	let closeModal = () => {
+		modal.style.display = 'none';
+		searchInput.value = '';
+		results.innerHTML = '';
+	}
+	
+	let closeModalBtn = modal.querySelector('#close-modal-btn');
+	closeModalBtn.addEventListener('click', closeModal, false);
+	
+	//search
+	function onkeyup(event) {
+		let string = event.target.value;
+		let options = { method: "GET", url: '/authors/search?q=' + string }
+		utils.ajax(options)
+		.then (res => {
+			let response = JSON.parse(res);
+			if(response.error) {
+				utils.bind(modal,response,'error');
+			} else {
+				if(res !== json) {//compare JSON string
+					json = res;
+					results.innerHTML = searchAuthorsResultsTemplate({ authors: response.authors });
+				}
+				
+				let addBtns = modal.querySelectorAll('.add-btn')
+				for(let i=0; i<addBtns.length; i++) {
+					addBtns[i].addEventListener('click',addAuth,false);
+				}
+			}
+		})
+		.catch( err => {
+			console.log(err);
+		})
+	}
+	
+	searchInput.addEventListener('keyup',onkeyup,false);
+	
+	//ADD SELECTED AUTHORS/CONTRIBS
+	function addAuth(event) {
+		let id = event.target.parentElement.id;
+		let name = event.target.parentElement.firstElementChild.innerHTML;
+		
+		if(authType==='auteur') {
+			selectedAuthors.push(id);
+			selectedAuthorsDisplay.push({ id: id, name: name });
+			utils.setHTML('#authors .error', "");
+			authorsContainer.innerHTML = selectedAuthorsTemplate({ selectedAuthors: selectedAuthorsDisplay });
+			closeModal();
+			let deleteBtns = authorsContainer.querySelectorAll('.delete-btn')
+			for(let i=0; i<deleteBtns.length; i++) {
+				deleteBtns[i].addEventListener('click', deleteAuth, false);
+			} 	
+		
+		} else if(authType==='contributeur') {
+			utils.addClass('#search', 'hidden');
+			results.innerHTML = selectedContribRoleTemplate({ selectedContrib: { id: id, name: name } })
+			results.querySelector('#add-contrib-role-btn').addEventListener( 'click', event => {
+				let role = results.querySelector('[name=contrib-role]').value;
+				selectedContribs.push({ id: id, role: role });
+				selectedContribsDisplay.push({ id: id, name: name, role: role });
+				contribsContainer.innerHTML = selectedContribsTemplate({ selectedContribs: selectedContribsDisplay });
+				closeModal();
+				let deleteBtns = contribsContainer.querySelectorAll('.delete-btn')
+				for(let i=0; i<deleteBtns.length; i++) {
+					deleteBtns[i].addEventListener('click', deleteAuth, false);
+				} 
+			}, false)
+		}
+	}
+	
+	//DELETE SELECTED AUTHORS/CONTRIBS
+	function deleteAuth(event) {
+		let index = event.target.parentElement.id;
+		authType = event.target.id;
+		if(authType==='auteur') {
+			selectedAuthors.splice(index,1);
+			selectedAuthorsDisplay.splice(index,1);
+			authorsContainer.innerHTML = selectedAuthorsTemplate({ selectedAuthors: selectedAuthorsDisplay });
+			let deleteBtns = authorsContainer.querySelectorAll('.delete-btn')
+			for(let i=0; i<deleteBtns.length; i++) {
+				deleteBtns[i].addEventListener('click', deleteAuth, false);
+			}
+		} else if(authType==='contributeur') {
+			selectedContribs.splice(index,1);
+			selectedContribsDisplay.splice(index,1);
+			contribsContainer.innerHTML = selectedContribsTemplate({ selectedContribs: selectedContribsDisplay });
+			let deleteBtns = contribsContainer.querySelectorAll('.delete-btn')
+			for(let i=0; i<deleteBtns.length; i++) {
+				deleteBtns[i].addEventListener('click', deleteAuth, false);
+			}
+		}
+	}
+
+	
 	
 };
 

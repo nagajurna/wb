@@ -185,6 +185,63 @@ const utils = {
 		}
 	},
 	
+	repeat: (container, array) => {
+		//replace each prop of array item
+		let rpc = (content,brackets,props,item,index) => {
+			if(props.length===0) {
+				return content;
+			}
+			let newContent = '';
+			for(let i=0; i<props.length; i++) {
+				let prop = props[i];
+				let bracket = brackets[i];
+				let pattern = new RegExp(bracket, "g");
+				if(prop==='#item') {
+					newContent = content.replace(pattern,item);
+				} else if (prop==='#index') {
+					newContent = content.replace(pattern,index);
+				} else {
+					newContent = content.replace(pattern,item[prop]);
+				}
+				content = newContent;
+			}
+			return newContent;
+		}
+		
+		//repeat for each item of array
+		let rpt = (element,content,array,brackets,props) => {
+			
+			for(let i=0; i<array.length; i++) {
+				let newContent = rpc(content,brackets,props,array[i],i)
+				let el = document.createElement(element.nodeName);
+				el.className = element.className;
+				el.innerHTML = newContent;
+				element.parentElement.insertBefore(el,element);
+			}
+			
+			//remove element
+			element.parentElement.removeChild(element);
+		}
+		//get template and props for each repeat element
+		let elements = container.querySelectorAll('[data-utils-repeat]');
+		for(let i=0; i< elements.length; i++) {
+			let brackets = [];
+			let props = [];
+			let content = elements[i].getAttribute('data-utils-repeat');
+			
+			if(content.match(/{{[^{]+}}/g)) {
+				brackets = content.match(/{{[^{]+}}/g);
+			}
+			
+			for(let j=0; j<brackets.length; j++) {
+				props.push(brackets[j].replace(/({|})/g,'').trim());
+			}
+			
+			rpt(elements[i],content,array,brackets,props);
+			
+		}
+	},
+	
 	addClass: (selector, className) => {
 		let elements = document.querySelectorAll(selector);
 		let name, array

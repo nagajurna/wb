@@ -5,7 +5,7 @@ const adminAuthorEdit = function(container) {
 	'use strict';
 	
 	let id = location.hash.replace(/(#\/admin\/authors\/|\/edit)/g,'');
-	let adminContainer = container;
+	let c = container;
 	
 	//AJAX
 	let options = { method: 'GET', url: '/authors/' + id };
@@ -13,11 +13,10 @@ const adminAuthorEdit = function(container) {
 	.then( res => {
 		let response = JSON.parse(res);
 		if(response.error) {
-			//insert template in container
 			console.log(error);
 		} else {
 			//insert template in container
-			adminContainer.innerHTML = adminAuthorEditTemplate({ author: response.author });
+			c.innerHTML = adminAuthorEditTemplate({ author: response.author });
 			
 			//rootElement
 			const root = document.querySelector('#adminAuthorEdit');
@@ -25,15 +24,11 @@ const adminAuthorEdit = function(container) {
 			const form = root.querySelector('#adminAuthorEditForm');
 			const inputs = form.querySelectorAll('input');
 			
-			utils.bind(form, response.author, 'author');
-			
 			//clear errors on input
 			function onInput(event) {
 				utils.setHTML('#form-error', "");
 				if(event.target.name === 'name') {
 					utils.setHTML('#name .error', "");
-				} else if(event.target.name === 'firstName') {
-					utils.setHTML('#firstName .error', "");
 				} else if(event.target.name === 'nameAlpha') {
 					utils.setHTML('#nameAlpha .error', "");
 				} else if(event.target.name === 'birth') {
@@ -51,14 +46,14 @@ const adminAuthorEdit = function(container) {
 			function onSubmit(event) {
 				event.preventDefault();
 				utils.bind(form, {}, 'error');
-				let user = {};
-				user.name = form.querySelector('[name=name]').value;
-				user.firstName = form.querySelector('[name=firstName]').value;
-				user.nameAlpha = form.querySelector('[name=nameAlpha]').value;
-				user.birth = form.querySelector('[name=birth]').value;
-				user.death = form.querySelector('[name=death]').value;
-				user.description = form.querySelector('[name=description]').value;
-				let options = { method: 'PUT', url: '/authors/' + id, data: JSON.stringify(user) };
+				let author = {};
+				author.name = form.querySelector('[name=name]').value;
+				author.nameAlpha = form.querySelector('[name=nameAlpha]').value;
+				author.birth = form.querySelector('[name=birth]').value;
+				author.death = form.querySelector('[name=death]').value;
+				author.description = form.querySelector('[name=description]').value;
+				author.visible = form.querySelector('[name=visible]').checked ? true : false;
+				let options = { method: 'PUT', url: '/authors/' + id, data: JSON.stringify(author) };
 				utils.ajax(options)
 				.then( res => {
 					let response = JSON.parse(res);

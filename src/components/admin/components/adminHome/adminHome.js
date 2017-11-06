@@ -5,13 +5,14 @@ let adminHomeTemplate = require('./adminHome.ejs')
 const adminHome = function(container, data) {
 	'use strict';
 	
-	let adminContainer = container;
+	let c = container;
 	//User
 	if(!data) { return; }
 	let user = data;
 	//insert template in container
-	adminContainer.innerHTML = adminHomeTemplate({ user: user });
-	
+	c.innerHTML = adminHomeTemplate({ user: user });
+	let root = document.querySelector("#adminHome");
+
 	function logout() {
 		let options = { method: 'GET', url: '/users/logout' };
 		utils.ajax(options)
@@ -21,7 +22,7 @@ const adminHome = function(container, data) {
 			location.hash = '#/books/';
 		});
 	}
-	let root = document.querySelector("#adminHome");
+	
 	root.querySelector('#logout-btn').addEventListener('click', logout, false);
 	
 };

@@ -31,7 +31,7 @@ const router  = function() {
 		} else if(newhash.match(/#\/admin/) && newhash !== '#/admin/login/') {
 			//ADMIN : if admin not connected, redirect to /admin/login
 			utils.checkRole()
-			.then ( response => {
+			.then ( response => {//admin
 				//Insert adminTemplate including #adminContainer for admin routes
 				let user = response;
 				container.innerHTML = "";//empty the container
@@ -46,7 +46,7 @@ const router  = function() {
 				adminRouter(oldhash, newhash, user);
 								
 			})
-			.catch( error => {
+			.catch( error => {//not admin
 				location.hash = '#/admin/login/';
 			})
 
@@ -54,10 +54,10 @@ const router  = function() {
 		} else if(newhash === '#/admin/login/') {
 			//ADMIN LOGIN : if admin already connected, redirect to /admin
 			utils.checkRole()
-			.then( user => {
+			.then( admin => {//admin
 				location.hash = '#/admin/';
 			})
-			.catch( error => {
+			.catch( error => {//not admin
 				adminLogin(container);
 			});
 			

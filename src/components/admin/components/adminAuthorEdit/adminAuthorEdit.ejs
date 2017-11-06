@@ -8,41 +8,39 @@
 			
 			<p id="name">
 				<label>Nom : </label>
-				<input type="text" name="name" class="w3-input w3-border author" data-utils-bind="{{ name }}">
+				<input type="text" name="name" class="w3-input w3-border author" value="<%= author.name %>" >
 				<span class="error" data-utils-bind="{{ name }}"></span>
-			</p>
-			
-			<p id="firstName">
-				<label>Prénom : </label>
-				<input type="text" name="firstName" class="w3-input w3-border author" data-utils-bind="{{ firstName }}">
-				<span class="error" data-utils-bind="{{ firstName }}"></span>
 			</p>
 			
 			<p id="nameAlpha">
 				<label>Nom alphabétique : </label>
-				<input type="text" name="nameAlpha" class="w3-input w3-border author" data-utils-bind="{{ nameAlpha }}">
+				<input type="text" name="nameAlpha" class="w3-input w3-border author" value="<%= author.nameAlpha %>" >
 				<span class="error" data-utils-bind="{{ nameAlpha }}"></span>
 			</p>
 			
 			<p id="birth">
 				<label>Date de naissance : </label>
-				<input type="text" name="birth" class="w3-input w3-border author" data-utils-bind="{{ birth }}">
+				<input type="text" name="birth" class="w3-input w3-border author" value="<%= author.birth %>" >
 				<span class="error" data-utils-bind="{{ birth }}"></span>
 			</p>
 			
 			<p id="death">
 				<label>Date de décès : </label>
-				<input type="text" name="death" class="w3-input w3-border author" data-utils-bind="{{ death }}">
+				<input type="text" name="death" class="w3-input w3-border author" value="<%= author.death %>" >
 				<span class="error" data-utils-bind="{{ death }}"></span>
 			</p>
 			
 			<p id="description">
 				<label>Description : </label>
-				<textarea type="text" name="description" class="w3-input w3-border author" data-utils-bind="{{ description }}"></textarea>
+				<textarea type="text" name="description" class="w3-input w3-border author" value="<%= author.description %>" ></textarea>
 				<span class="error" data-utils-bind="{{ description }}"></span>
 			</p>
 			
-			<p>
+			<p id="visible">
+				<label><input type="checkbox" name="visible" <% if(author.visible) {%> checked <%}%> > Visible</label>
+			</p>
+			
+			<p class="w3-padding-24">
 				<button type="submit" class="w3-btn w3-border">Valider</button>
 			</p>
 			

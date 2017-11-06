@@ -7,6 +7,14 @@ const dataStore = {
 		dataStore.store[collection] = data;
 	},
 	
+	pushData: (collection, data) => {
+		if(!dataStore[collection]) {
+			dataStore.store[collection] = data;
+		} else {
+			dataStore[collection].push(data);
+		}
+	},
+	
 	getData : (collection, id) => {
 		if(collection && id) {
 			let array = dataStore.store[collection];
@@ -25,6 +33,7 @@ const dataStore = {
 			return dataStore.store;
 		}
 	}
+	
 	
 }
 

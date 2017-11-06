@@ -1,16 +1,18 @@
-import utils from '../../services/utils';
 import dataStore from '../../services/dataStore';
 let homeTemplate = require('./home.ejs');
 //home.js
 const home = function(container) {
 	'use strict';
 	
-	let viewContainer = container;
+	let c = container;
 	
-	//get books from dataStore
+	//Get books from dataStore
 	let books = dataStore.getData('books');
 	//insert template in container
-	viewContainer.innerHTML = homeTemplate({books:books});
+	c.innerHTML = homeTemplate({ books:books });
+	
+	console.log(dataStore.getData());
+
 };
 
 export default home;

@@ -6,20 +6,23 @@ import css from './stylesheets/style.css';
 //index.js
 var index = (function() {
 	'use strict';
-	//VARIABLES
-	let currentUser;
-	let books;
 	
-	//GET DATA
-	window.addEventListener('load', () => {
-		//redirect to /books/ or location.hash
-		location.hash = location.hash === "#/" ? '#/books/' : location.hash;
+	window.addEventListener('DOMContentLoaded', (e) => {
 		
-		//ajax get currentUser
+		//if book/id/read 
+		if(location.hash.match(/#\/books\/[^\/]+\/read$/)) {//if small device
+			if(window.innerWidth < 768) {
+				utils.addClass("#nav-bar-top", "hidden");
+			}
+			utils.addClass('body', 'book');//body background
+		}
+		
+		//GET DATA
+		//check if user && user===admin
 		let options = { method: 'GET', url: '/users/currentuser' };
 		utils.ajax(options)
 		.then( response => {
-			currentUser = JSON.parse(response).user;
+			let currentUser = JSON.parse(response).user;
 			//pass currentUser to store
 			dataStore.setData('currentUser', currentUser);
 			//check role : if admin => admin-link
@@ -29,24 +32,37 @@ var index = (function() {
 				utils.removeClass('#admin-link', 'visible');
 			}
 			
-			//ajax get books
+			//get authors
+			let options = { method: 'GET', url: '/authors/' };
+			return utils.ajax(options)
+		})
+		.then( response => {
+			let authors = JSON.parse(response).authors;
+			//pass authors to store
+			dataStore.setData('authors', authors);
+			
+			//get books
 			let options = { method: 'GET', url: '/books/' };
 			return utils.ajax(options)
 		})
-		.then ( response => {
-			books = JSON.parse(response).books;
+		.then( response => {
+			let books = JSON.parse(response).books;
 			//pass books to store
 			dataStore.setData('books', books);
 			return 'done';
 		})
-		.then ( resolve => {
+		.then( resolve => {
 			//call router
 			router();
+			//redirect to /books/ or location.hash
+			location.hash = location.hash === "#/" ? '#/books/' : location.hash;
+		})
+		.catch( error => {
+			console.log(error);
 		});
-		
-		
-	}, false);
 	
+	}, false);
+		
 
 	window.addEventListener('hashchange', () => {
 		if(location.hash.match(/#\/books\/.+[^\/]$/)) {
@@ -59,16 +75,6 @@ var index = (function() {
 			
 			utils.removeClass('body', 'book');
 			utils.setHTML("#top-title", "");
-		}
-		
-	}, false);
-
-	window.addEventListener('load', (e) => {
-		if(location.hash.match(/#\/books\/.+[^\/]$/)) {
-			if(window.innerWidth < 768) {
-				utils.addClass("#nav-bar-top", "hidden");
-			}
-			utils.addClass('body', 'book');
 		}
 		
 	}, false);

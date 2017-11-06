@@ -1,13 +1,16 @@
 <div id="adminBooks" class="content">
-	<h4 class="w3-container w3-padding-16">Ouvrages</h4>
-	<span class="error"><%= error %></span>
-	<div>
+	<h4 class="w3-container w3-padding-16 align-left">Ouvrages</h4>
+	<p class="w3-padding-16 align-right"><a href="/#/admin/books/new" class="w3-text-gray w3-hover-none w3-hover-text-black">Ajouter</a></p>
+	<div style="clear:both">
+		<span class="error"><%= error %></span>
 		<ul id="books-list" class='w3-ul'>
 			<% for(var i=0; i<books.length; i++) {%>
-			<li class="w3-display-container">
-				<p><%= books[i].author %></p>
+			<li>
 				<p>
-					<a href='/#/admin/books/<%= books[i].id %>' class='w3-text-gray w3-hover-none w3-hover-text-black'><%= books[i].title %></a>
+					<a href='/#/admin/books/<%= books[i].id %>' class='w3-text-gray w3-hover-none w3-hover-text-black'>
+						<%= books[i].title %>&ensp;
+						(<%= books[i].authorDisplay %>)
+					</a>
 				</p>
 			</li>
 			<% } %>

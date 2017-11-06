@@ -17,11 +17,15 @@ import adminEditPassword from './components/adminEditPassword/adminEditPassword'
 import adminBooks from './components/adminBooks/adminBooks';
 //admin book
 import adminBook from './components/adminBook/adminBook';
+//admin booksNew
+import adminBooksNew from './components/adminBooksNew/adminBooksNew';
+//admin booksEdit
+import adminBookEdit from './components/adminBookEdit/adminBookEdit';
 //admin authors
 import adminAuthors from './components/adminAuthors/adminAuthors';
 //admin author
 import adminAuthor from './components/adminAuthor/adminAuthor';
-//admin authorNew
+//admin authorsNew
 import adminAuthorsNew from './components/adminAuthorsNew/adminAuthorsNew';
 //admin authorEdit
 import adminAuthorEdit from './components/adminAuthorEdit/adminAuthorEdit';
@@ -60,6 +64,14 @@ const adminRouter = (oldhash, newhash, data) => {
 		} else if(newhash === '#/admin/books/') {
 			//ADMIN BOOKS
 			adminBooks(container);
+			
+		} else if(newhash === '#/admin/books/new') {
+			//ADMIN BOOKS NEW
+			adminBooksNew(container);
+			
+		} else if(newhash.match(/#\/admin\/books\/[^\/]+\/edit$/)) {
+			//ADMIN BOOK EDIT
+			adminBookEdit(container);
 			
 		} else if(newhash.match(/#\/admin\/books\/[^\/]+$/)) {
 			//ADMIN BOOK

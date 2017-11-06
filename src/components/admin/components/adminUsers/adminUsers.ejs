@@ -1,10 +1,10 @@
 <div id="adminUsers" class="content">
-	<h4 class="w3-container w3-padding-16">Utilisateurs</h4>
-	<span class="error"><%= error %></span>
-	<div>
+	<h4 class="w3-container w3-padding-16 align-left">Utilisateurs</h4>
+	<div style="clear:both">
+		<span class="error"><%= error %></span>
 		<ul id="users-list" class='w3-ul'>
 			<% for(var i=0; i<users.length; i++) {%>
-			<li class="w3-display-container">
+			<li>
 				<p id='<%= users[i].id %>'>
 					<a href='/#/admin/users/<%= users[i].id %>' class='w3-text-gray w3-hover-none w3-hover-text-black'><%= users[i].email %></a>
 				</p>

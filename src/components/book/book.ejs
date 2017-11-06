@@ -9,7 +9,7 @@
 		<div id="toc-large-device" class="w3-card-4">
 			<button id="toggle-toc-large-device" type="button" class="w3-btn w3-card-4 w3-white">&colone;</button>
 			<div id="toc-large-device-container" class="toc-content">
-				<p class="w3-center"><%= book.author %></p>
+				<p class="w3-center"><%= book.authorDisplay %></p>
 				<p class="w3-center text-uppercase"><%= book.title %></p>
 				<div data-wb-toc class="w3-container"></div>
 			</div>
@@ -29,7 +29,7 @@
 					<div data-wb-toc class="w3-container">
 						<button id="close-toc" type="button">&times;</button>
 						<div id="toc-title" class="toc-content">
-							<p class="w3-center"><%= book.author %></p>
+							<p class="w3-center"><%= book.authorDisplay %></p>
 							<p class="w3-center text-uppercase"><%= book.title %></p>
 						</div>
 					</div>
@@ -53,7 +53,7 @@
 					<button type="button" class="open-toc w3-btn w3-text-dark-grey">&colone;</button>
 				</div>
 				<!--
-					BOTTOM-LARGE (inside textContainer) : width >= 768:::
+					BOTTOM-LARGE (inside textContainer) : width >= 768
 				-->
 				<div id="bottom-large">
 					<span class="wb-currentByTotal-pages"></span>

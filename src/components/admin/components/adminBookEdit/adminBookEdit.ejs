@@ -1,0 +1,171 @@
+<div id="adminBookEdit" class="content">
+<!--
+	MODAL
+-->
+	<div id="modal" class="w3-modal w3-card-4">
+		<div class="w3-modal-content w3-animate-top">
+			<header class="w3-container w3-black"> 
+				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>
+				<h4>Rechercher un auteur</h4>
+			</header>
+			<div class="w3-container">
+				<p id="search">
+				<input type="text" name="search" class="w3-input w3-border">
+				<span class="error" data-utils-bind="{{ error }}"></span>
+				</p>
+				<div id="results" style="min-height:150px"></div>
+			</div>
+			
+		</div>
+	</div>
+<!--
+	MAIN
+-->
+	<h4 class="w3-container align-left w3-padding-16">Ajouter un ouvrage</h4>
+	<p class="align-right w3-padding-16"><a href="/#/admin/books/<%= book.id %>" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>
+	<div class="w3-container">
+		<form id="adminBookEditForm">
+			
+			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>
+			
+			<p id="title">
+				<label>Titre * : </label>
+				<input type="text" name="title" class="w3-input w3-border" value="<%= book.title %>" >
+				<span class="error" data-utils-bind="{{ title }}"></span>
+			</p>
+			
+			<p id="subtitle1">
+				<label>Sous-titre 1 : </label>
+				<input type="text" name="subtitle1" class="w3-input w3-border" value="<%= book.subtitle1 %>" >
+			</p>
+			
+			<p id="subtitle2">
+				<label>Sous-titre 2 : </label>
+				<input type="text" name="subtitle2" class="w3-input w3-border" value="<%= book.subtitle2 %>" >
+			</p>
+			
+			<p id="authorDisplay">
+				<label>Auteur (libellé) * : </label>
+				<input type="text" name="authorDisplay" class="w3-input w3-border" value="<%= book.authorDisplay %>" >
+				<span class="error" data-utils-bind="{{ authorDisplay }}"></span>
+			</p>
+			
+			<div id="authors" class="w3-margin-bottom w3-border-bottom">
+				<div class="w3-margin-bottom" style="min-height:100px">
+					<p>
+						<label class="align-left">Auteurs * : </label>
+						<a href="/#/authors" id="auteur" class="align-right w3-text-gray w3-hover-none w3-hover-text-black open-modal-btn">Rechercher</a>
+					</p>
+					
+					<ul id="authorsContainer" class="w3-ul w3-padding-32">
+						<% for(var i=0; i<selectedAuthors.length; i++) {%>
+						<li class="w3-display-container">
+							<p data-key="<%= selectedAuthors[i].id %>" id="<%= i %>" >
+								<span><%= selectedAuthors[i].name %></span>
+								<button type="button" id="auteur" class="delete-btn w3-text-gray w3-hover-none w3-hover-text-black w3-button w3-display-right">Supprimer</button>
+							</p>
+						</li>
+						<% } %>
+					</ul>
+					<span class="error" data-utils-bind="{{ authors }}"></span>
+				</div>
+				
+			</div>
+			
+			<div id="contribs" class="w3-margin-bottom w3-border-bottom">
+				<div class="w3-margin-bottom" style="min-height:100px">
+					<p>
+						<label class="align-left">Contributeurs : </label>
+						<a href="/#/contribs" id="contributeur" class="align-right w3-text-gray w3-hover-none w3-hover-text-black open-modal-btn">Rechercher</a>
+					</p>
+					
+					<ul id="contribsContainer" class="w3-ul w3-padding-32">
+						<% for(var i=0; i<selectedContribs.length; i++) {%>
+						<li class="w3-display-container">
+							<p data-key="<%= selectedContribs[i].id %>" id="<%= i %>" >
+								<span><%= selectedContribs[i].name %> </span>
+								<span>(<%= selectedContribs[i].role %>)</span>
+								<button type="button" id="contributeur" class="delete-btn w3-text-gray w3-hover-none w3-hover-text-black w3-button w3-display-right">Supprimer</button>
+							</p>
+						</li>
+						<% } %>
+					</ul>
+				</div>
+				
+			</div>
+			
+			<p id="year">
+				<label>Année de publication * : </label>
+				<input type="text" name="year" class="w3-input w3-border" value="<%= book.year %>" >
+				<span class="error" data-utils-bind="{{ year }}"></span>
+			</p>
+			
+			<p id="language">
+				<label>Langue * : </label>
+				<input type="text" name="language" class="w3-input w3-border" value="<%= book.language %>" >
+				<span class="error" data-utils-bind="{{ language }}"></span>
+			</p>
+			
+			<p id="categories">
+				<label>Catégories : </label>
+				<input type="text" name="categories" class="w3-input w3-border" value="<%= book.categories %>" >
+				<span class="error" data-utils-bind="{{ categories }}"></span>
+			</p>
+			
+			<p id="source-publisher">
+				<label>Source - éditeur : </label>
+				<input type="text" name="source-publisher" class="w3-input w3-border" value="<%= book.source.publisher %>" >
+			</p>
+			
+			<p id="source-year">
+				<label>Source - année de publication : </label>
+				<input type="text" name="source-year" class="w3-input w3-border" value="<%= book.source.year %>" >
+			</p>
+			
+			<p id="source-origin">
+				<label>Source - origine : </label>
+				<input type="text" name="source-origin" class="w3-input w3-border" value="<%= book.source.origin %>" >
+			</p>
+			
+			<p id="cover-background">
+				<label>Cover - background : </label>
+				<input type="text" name="cover-background" class="w3-input w3-border" value="<%= book.cover.background %>" >
+			</p>
+			
+			<p id="cover-textColor">
+				<label>Cover - textColor : </label>
+				<input type="text" name="cover-textColor" class="w3-input w3-border" value="<%= book.cover.textColor %>" >
+			</p>
+			
+			<p id="cover-textSize">
+				<label>Cover - textSize : </label>
+				<input type="text" name="cover-textSize" class="w3-input w3-border" value="<%= book.cover.textSize %>" >
+			</p>
+			
+			<p id="cover-textSpacing">
+				<label>Cover - textSpacing : </label>
+				<input type="text" name="cover-textSpacing" class="w3-input w3-border" value="<%= book.cover.textSpacing %>" >
+			</p>
+			
+			<p id="description">
+				<label>Description : </label>
+				<textarea type="text" name="description" class="w3-input w3-border" value="<%= book.description %>" ></textarea>
+			</p>
+			
+			<p id="path">
+				<label>Path * : </label>
+				<input type="text" name="path" class="w3-input w3-border" value="<%= book.path %>" >
+				<span class="error" data-utils-bind="{{ path }}"></span>
+			</p>
+			
+			<p id="visible">
+				<label><input type="checkbox" name="visible" <% if(book.visible) {%> checked <%}%> > Visible</label>
+			</p>
+			
+			<p class="w3-padding-24">
+				<button type="submit" class="w3-btn w3-border">Valider</button>
+			</p>
+			
+		</form>
+	</div>
+</div>

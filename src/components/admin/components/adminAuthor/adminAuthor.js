@@ -5,7 +5,7 @@ const adminAuthor = function(container) {
 	'use strict';
 	
 	let id = location.hash.replace(/^#\/admin\/authors\//,'');
-	let adminContainer = container;
+	let c = container;
 		
 	//ajax get author
 	let options = { method: 'GET', url: '/authors/' + id };
@@ -14,10 +14,10 @@ const adminAuthor = function(container) {
 		let response = JSON.parse(res);
 		if(response.error) {
 			//insert template in container
-			adminContainer.innerHTML = adminAuthorTemplate({ author: {}, error: response.error });
+			c.innerHTML = adminAuthorTemplate({ author: {}, error: response.error });
 		} else {
 			//insert template in container
-			adminContainer.innerHTML = adminAuthorTemplate({ author: response.author, error: '' });
+			c.innerHTML = adminAuthorTemplate({ author: response.author, error: '' });
 		
 			let root = document.querySelector('#adminAuthor');
 			let modal = root.querySelector('#modal');
@@ -33,7 +33,7 @@ const adminAuthor = function(container) {
 				modal.style.display = 'none';
 			}, false);
 			
-			let deleteAuthor = (event) => {
+			let deleteAuthor = event => {
 				let options = { method: 'DELETE', url: '/authors/' + id };
 				utils.ajax(options)
 				.then( res => {
