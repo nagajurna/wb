@@ -14,7 +14,7 @@ body {
 	padding: 0px;
 	margin: 0px;
 	border: none;
-	background-color: ##FAFAFA;
+	background-color: #fafafa;
 	font-family: 'Roboto', sans-serif;
 }
 
@@ -76,17 +76,8 @@ NAV-BAR-TOP
 #home-link {
 	line-height: 31px;
 	font-size: 1.4em;
-	letter-spacing: 1px;
+	letter-spacing: 1.5px;
 	font-family: Merriweather, Roboto, sans-serif;
-}
-
-@media only screen and (min-width: 768px) {
-	#home-link {
-		line-height: 31px;
-		font-size: 1.6em;
-		letter-spacing: 1.5px;
-		font-family: Merriweather, Roboto, sans-serif;
-	}
 }
 
 #admin-link {

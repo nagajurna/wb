@@ -12,7 +12,6 @@ const home = function(container) {
 	let books = dataStore.getData('books');
 	//insert template in container
 	c.innerHTML = homeTemplate({ books:books });
-	utils.addClass('#booksList', 'show')
 };
 
 export default home;

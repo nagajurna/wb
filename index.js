@@ -30,8 +30,8 @@ app.use(session({
 	saveUninitialized: false,
 }));
 //express.static
-let oneDay = 86400000;
-app.use(express.static('public', { maxAge: oneDay }));
+let halfDay = 43200000;
+app.use(express.static('public', { maxAge: halfDay }));
 //body-parser
 app.use(bodyParser.json());
 //serve-favicon
