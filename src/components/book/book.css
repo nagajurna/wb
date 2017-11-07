@@ -39,8 +39,8 @@ BOOKCONTAINER
 	opacity: 0.0;
 	margin: auto;
 	transition: opacity 0.5s;
-	-webkit-transition : opacity 0.5s;
-	-moz-transition : opacity 0.5s;
+	-webkit-transition: opacity 0.5s;
+	-moz-transition: opacity 0.5s;
 	-o-transition: opacity 0.5s;
 }
 
@@ -377,7 +377,7 @@ INSIDE TEXT
 /*
 TITLES
 */
-.section-title, .note-title, .table-title, .wb-toc-title {
+.section-title, .note-title, .wb-toc-title {
 	font-size: 1.25em;
 	text-align: left;
 }
@@ -396,37 +396,6 @@ p.section-title {
 	line-height: 1.8em;
 }
 
-.book-title {
-	font-size: 1.25em;
-	padding-top: 5%;
-	text-transform:uppercase;
-}
-
-.book-subtitle, .book-author {
-	font-size: 1.1em;
-}
-
-/*
-TABLE DES MATIÈRES
-*/
-#table ul {
-	padding: 0px;
-}
-
-#table li {
-	list-style-type: none;
-	padding: .5em .5em;
-}
-
-#table a.wb-link {
-	display: inline-block;
-	width: 100%;
-	border: none;
-}
-
-#table [data-wb-element-page-number] {
-	float: right;
-}
 
 #fin {
 	text-align: center;
