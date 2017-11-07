@@ -27,9 +27,9 @@
 		<span class="error" id="modal-error" data-utils-bind="{{ error }}"></span>
 		<div class="w3-border-bottom">
 			<p><b>Titre : </b><span><%- book.title %></span></p>
-			<p><b>Sous-titre1 : </b><span><%= book.subtitle1 %></span></p>
-			<p><b>Sous-titre2 : </b><span><%= book.subtitle2 %></span></p>
-			<p><b>Auteur (libellé) : </b><span><%= book.authorDisplay %></span></p>
+			<p><b>Sous-titre1 : </b><span><%- book.subtitle1 %></span></p>
+			<p><b>Sous-titre2 : </b><span><%- book.subtitle2 %></span></p>
+			<p><b>Auteur (libellé) : </b><span><%- book.authorDisplay %></span></p>
 			<p>
 				<% if (book.authors.length===1) { %>
 					<span><b>Auteur :</b></span>
@@ -70,12 +70,13 @@
 				<li><b>Année : </b><span><%= book.source.year %></span></li>
 				<li><b>Origine : </b><span><%= book.source.origin %></span></li>
 			</ul>
-			<p><b>Couverture :</b></p>
+			<p><b>Styles :</b></p>
 			<ul class='w3-ul'>
-				<li><b>Background : </b><span><%= book.cover.background %></span></li>
-				<li><b>textColor : </b><span><%= book.cover.textColor %></span></li>
-				<li><b>textSize : </b><span><%= book.cover.textSize %></span></li>
-				<li><b>textSpacing : </b><span><%= book.cover.textSpacing %></span></li>
+				<li><b>Couverture : </b><span><%= book.styles.cover %></span></li>
+				<li><b>Auteur : </b><span><%= book.styles.author %></span></li>
+				<li><b>Titre : </b><span><%= book.styles.title %></span></li>
+				<li><b>Sous-titre1 : </b><span><%= book.styles.subtitle1 %></span></li>
+				<li><b>Sous-titre2 : </b><span><%= book.styles.subtitle2 %></span></li>
 			</ul>
 			<p><b>Description :</b></p>
 			<div><%= book.description %></div>

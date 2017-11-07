@@ -6,27 +6,17 @@
 
 @media only screen and (min-width: 600px) {
 	.w3-col {
-		width: 290px;
+		width: 284px;
 	}
 }
 
 #home .book {
-	font-family: Merriweather, Georgia, sans-serif;
-	padding: 16px;
 	width: 250px;
 	height: 340px;
-	margin:auto
-}
-
-#home .author {
-
-}
-
-#home .title {
-	padding-top: 10%;
-	font-size: 1.3em;
+	margin:auto;
 }
 
 #home .publisher {
-	letter-spacing: 1px;
+	letter-spacing: 1.5px;
+	font-family: Merriweather, Georgia, sans-serif;
 }

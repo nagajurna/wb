@@ -44,7 +44,7 @@
 				<% for(var i=0; i<author.books.length; i++) { %>
 				<li>
 					<a href='/#/admin/books/<%= author.books[i].id %>' class="w3-text-gray w3-hover-none w3-hover-text-black">
-						<%= author.books[i].title %> (<%= author.books[i].year %>)
+						<%- author.books[i].title %> (<%= author.books[i].year %>)
 					</a>
 				</li>
 				<% } %>
@@ -58,7 +58,7 @@
 				<% for(var i=0; i<author.contribs.length; i++) {%>
 				<li>
 					<a href='/#/admin/books/<%= author.contribs[i].book.id %>' class="w3-text-gray w3-hover-none w3-hover-text-black">
-						<%= author.contribs[i].book.title %> (<%= author.contribs[i].role %>)
+						<%- author.contribs[i].book.title %> (<%= author.contribs[i].role %>)
 					</a>
 				</li>
 				<% } %>

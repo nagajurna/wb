@@ -4,10 +4,22 @@
 			<% for(var i=0; i<books.length; i++) {%>
 				<% if(books[i].visible) { %>
 				<div class="w3-col">
-					<div class="book w3-card-4 w3-display-container" style="background-color:<%=books[i].cover.background %>">
-						<p class="author"><%= books[i].authorDisplay %></p>
-						<p class="title"><a href='/#<%= books[i].path %>/read' class="w3-text-black w3-hover-none w3-hover-text-gray"><%- books[i].title %></a></p>
-						<p class="w3-display-bottommiddle" >liber</p>
+					<div class="book w3-card-4 w3-display-container" style="<%=books[i].styles.cover %>">
+						<p class="author" style="<%=books[i].styles.author %>"><%= books[i].authorDisplay %></p>
+						<p class="title" style="<%=books[i].styles.title %>">
+							<a href='/#<%= books[i].path %>/read' class="w3-text-black w3-hover-none w3-hover-text-white"><%- books[i].title %></a>
+						</p>
+						<% if(books[i].subtitle1) {%>
+						<p class="subtitle1" style="<%=books[i].styles.subtitle1 %>">
+							<%- books[i].subtitle1 %></a>
+						</p>
+						<% } %>
+						<% if(books[i].subtitle2) {%>
+						<p class="subtitle1" style="<%=books[i].styles.subtitle2 %>">
+							<%- books[i].subtitle2 %></a>
+						</p>
+						<% } %>
+						<p class="publisher w3-display-bottommiddle" >liber</p>
 				   </div>
 				</div>
 				<div class="w3-rest"></div>

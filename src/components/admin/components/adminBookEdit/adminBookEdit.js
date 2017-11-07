@@ -83,7 +83,7 @@ const adminBooksNew = function(container) {
 				utils.bind(form, {});
 				let book = {};
 				book.source = {};
-				book.cover = {};
+				book.styles = {};
 				book.title = form.querySelector('[name=title]').value;
 				book.subtitle1 = form.querySelector('[name=subtitle1]').value;
 				book.subtitle2 = form.querySelector('[name=subtitle2]').value;
@@ -94,10 +94,11 @@ const adminBooksNew = function(container) {
 				book.source.publisher = form.querySelector('[name=source-publisher]').value;
 				book.source.year = form.querySelector('[name=source-year]').value;
 				book.source.origin = form.querySelector('[name=source-origin]').value;
-				book.cover.background = form.querySelector('[name=cover-background').value;
-				book.cover.textColor = form.querySelector('[name=cover-textColor').value;
-				book.cover.textSize = form.querySelector('[name=cover-textSize').value;
-				book.cover.textSpacing = form.querySelector('[name=cover-textSpacing').value;
+				book.styles.cover = form.querySelector('[name=styles-cover').value;
+				book.styles.author = form.querySelector('[name=styles-author').value;
+				book.styles.title = form.querySelector('[name=styles-title').value;
+				book.styles.subtitle1 = form.querySelector('[name=styles-subtitle1').value;
+				book.styles.subtitle2 = form.querySelector('[name=styles-subtitle2').value;
 				book.description = form.querySelector('[name=description]').value;
 				book.path = form.querySelector('[name=path]').value;
 				book.visible = form.querySelector('[name=visible]').checked ? true : false;
