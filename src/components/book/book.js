@@ -1,6 +1,7 @@
 import utils from '../../services/utils';
 import dataStore from '../../services/dataStore';
 import WebBook from '../../../lib/wb/WebBook';
+import css from './book.css';
 import Hammer from 'hammerjs';
 let bookTemplate = require('./book.ejs');
 //book.js

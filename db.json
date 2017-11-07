@@ -18,7 +18,7 @@
         "origin": "Gallica"
       },
       "cover": {
-        "background": "",
+        "background": "#3F51B5",
         "textColor": "",
         "textSize": "",
         "textSpacing": ""
@@ -37,7 +37,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-05 14:56:03",
-      "updated_at": "2017-11-06 16:18:35",
+      "updated_at": "2017-11-07 11:06:26",
       "id": "efe7f3ca-ffa8-48d8-8c2a-9d35ff00ff13",
       "visible": true
     },
@@ -48,12 +48,12 @@
         "origin": "Gallica"
       },
       "cover": {
-        "background": "",
+        "background": "#607D8B",
         "textColor": "",
         "textSize": "",
         "textSpacing": ""
       },
-      "title": "La Croisade des enfants",
+      "title": "La Croisade des&nbsp;enfants",
       "subtitle1": "",
       "subtitle2": "",
       "authorDisplay": "Marcel Schwob",
@@ -67,7 +67,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-05 17:23:30",
-      "updated_at": "2017-11-06 16:15:33",
+      "updated_at": "2017-11-07 11:03:47",
       "id": "9a7eacc1-e038-4695-a8cb-2d8c97f63b17",
       "visible": true
     }

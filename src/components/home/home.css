@@ -1,0 +1,32 @@
+.w3-col {
+	width: 100%;
+	height: 370px;
+	
+}
+
+@media only screen and (min-width: 600px) {
+	.w3-col {
+		width: 290px;
+	}
+}
+
+#home .book {
+	font-family: Merriweather, Georgia, sans-serif;
+	padding: 16px;
+	width: 250px;
+	height: 340px;
+	margin:auto
+}
+
+#home .author {
+
+}
+
+#home .title {
+	padding-top: 10%;
+	font-size: 1.3em;
+}
+
+#home .publisher {
+	letter-spacing: 1px;
+}

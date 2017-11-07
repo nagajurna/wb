@@ -1,14 +1,18 @@
-<div id="home" class="content">
+<div id="home" class="w3-content" style="max-width: 1200px">
 	<div class="w3-container w3-padding-24">
-		<ul id="books-list" class='w3-ul'>
+		<div id="books-list" class='w3-row' style="text-align: center">
 			<% for(var i=0; i<books.length; i++) {%>
 				<% if(books[i].visible) { %>
-			   <li>
-				   <span><%= books[i].authorDisplay %> &mdash; </span>
-				   <a href='/#<%= books[i].path %>/read' class="w3-text-gray w3-hover-none w3-hover-text-black"><%= books[i].title %></a>
-			   </li>
+				<div class="w3-col">
+					<div class="book w3-card-4 w3-display-container" style="background-color:<%=books[i].cover.background %>">
+						<p class="author"><%= books[i].authorDisplay %></p>
+						<p class="title"><a href='/#<%= books[i].path %>/read' class="w3-text-black w3-hover-none w3-hover-text-gray"><%- books[i].title %></a></p>
+						<p class="w3-display-bottommiddle" >liber</p>
+				   </div>
+				</div>
+				<div class="w3-rest"></div>
 			   <% } %>
 			<% } %>
-		</ul>
+		</div>
 	</div>
 </div>

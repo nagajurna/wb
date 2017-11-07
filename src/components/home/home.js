@@ -1,4 +1,5 @@
 import dataStore from '../../services/dataStore';
+import css from './home.css';
 let homeTemplate = require('./home.ejs');
 //home.js
 const home = function(container) {
@@ -10,8 +11,6 @@ const home = function(container) {
 	let books = dataStore.getData('books');
 	//insert template in container
 	c.innerHTML = homeTemplate({ books:books });
-	
-	console.log(dataStore.getData());
 
 };
 

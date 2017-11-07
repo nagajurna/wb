@@ -1,7 +1,6 @@
 import router from './router';
 import dataStore from './services/dataStore';
 import utils from './services/utils';
-import css from './stylesheets/style.css';
 
 //index.js
 var index = (function() {
@@ -15,6 +14,7 @@ var index = (function() {
 				utils.addClass("#nav-bar-top", "hidden");
 			}
 			utils.addClass('body', 'book');//body background
+			utils.addClass('#nav-bar-top', 'w3-border-bottom');//nav-bar-top border
 		}
 		
 		//GET DATA
@@ -70,10 +70,12 @@ var index = (function() {
 				utils.addClass("#nav-bar-top", "hidden");
 			}
 			utils.addClass('body', 'book');
+			utils.addClass('#nav-bar-top', 'w3-border-bottom');
 		} else {
 			utils.removeClass("#nav-bar-top", "hidden");
 			
 			utils.removeClass('body', 'book');
+			utils.removeClass('#nav-bar-top', 'w3-border-bottom');
 			utils.setHTML("#top-title", "");
 		}
 		

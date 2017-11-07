@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -403,7 +403,461 @@ exports.default = dataStore;
 "use strict";
 
 
-var _router = __webpack_require__(3);
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function (useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if (item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function (modules, mediaQuery) {
+		if (typeof modules === "string") modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for (var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if (typeof id === "number") alreadyImportedModules[id] = true;
+		}
+		for (i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if (typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if (mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if (mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */';
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+
+var stylesInDom = {};
+
+var	memoize = function (fn) {
+	var memo;
+
+	return function () {
+		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+		return memo;
+	};
+};
+
+var isOldIE = memoize(function () {
+	// Test for IE <= 9 as proposed by Browserhacks
+	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+	// Tests for existence of standard globals is to allow style-loader
+	// to operate correctly into non-standard environments
+	// @see https://github.com/webpack-contrib/style-loader/issues/177
+	return window && document && document.all && !window.atob;
+});
+
+var getElement = (function (fn) {
+	var memo = {};
+
+	return function(selector) {
+		if (typeof memo[selector] === "undefined") {
+			var styleTarget = fn.call(this, selector);
+			// Special case to return head of iframe instead of iframe itself
+			if (styleTarget instanceof window.HTMLIFrameElement) {
+				try {
+					// This will throw an exception if access to iframe is blocked
+					// due to cross-origin restrictions
+					styleTarget = styleTarget.contentDocument.head;
+				} catch(e) {
+					styleTarget = null;
+				}
+			}
+			memo[selector] = styleTarget;
+		}
+		return memo[selector]
+	};
+})(function (target) {
+	return document.querySelector(target)
+});
+
+var singleton = null;
+var	singletonCounter = 0;
+var	stylesInsertedAtTop = [];
+
+var	fixUrls = __webpack_require__(9);
+
+module.exports = function(list, options) {
+	if (typeof DEBUG !== "undefined" && DEBUG) {
+		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+
+	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (!options.singleton) options.singleton = isOldIE();
+
+	// By default, add <style> tags to the <head> element
+	if (!options.insertInto) options.insertInto = "head";
+
+	// By default, add <style> tags to the bottom of the target
+	if (!options.insertAt) options.insertAt = "bottom";
+
+	var styles = listToStyles(list, options);
+
+	addStylesToDom(styles, options);
+
+	return function update (newList) {
+		var mayRemove = [];
+
+		for (var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+
+		if(newList) {
+			var newStyles = listToStyles(newList, options);
+			addStylesToDom(newStyles, options);
+		}
+
+		for (var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+
+			if(domStyle.refs === 0) {
+				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
+
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+};
+
+function addStylesToDom (styles, options) {
+	for (var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+
+		if(domStyle) {
+			domStyle.refs++;
+
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles (list, options) {
+	var styles = [];
+	var newStyles = {};
+
+	for (var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = options.base ? item[0] + options.base : item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+
+		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
+		else newStyles[id].parts.push(part);
+	}
+
+	return styles;
+}
+
+function insertStyleElement (options, style) {
+	var target = getElement(options.insertInto)
+
+	if (!target) {
+		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+	}
+
+	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
+
+	if (options.insertAt === "top") {
+		if (!lastStyleElementInsertedAtTop) {
+			target.insertBefore(style, target.firstChild);
+		} else if (lastStyleElementInsertedAtTop.nextSibling) {
+			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			target.appendChild(style);
+		}
+		stylesInsertedAtTop.push(style);
+	} else if (options.insertAt === "bottom") {
+		target.appendChild(style);
+	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
+		var nextSibling = getElement(options.insertInto + " " + options.insertAt.before);
+		target.insertBefore(style, nextSibling);
+	} else {
+		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+	}
+}
+
+function removeStyleElement (style) {
+	if (style.parentNode === null) return false;
+	style.parentNode.removeChild(style);
+
+	var idx = stylesInsertedAtTop.indexOf(style);
+	if(idx >= 0) {
+		stylesInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement (options) {
+	var style = document.createElement("style");
+
+	options.attrs.type = "text/css";
+
+	addAttrs(style, options.attrs);
+	insertStyleElement(options, style);
+
+	return style;
+}
+
+function createLinkElement (options) {
+	var link = document.createElement("link");
+
+	options.attrs.type = "text/css";
+	options.attrs.rel = "stylesheet";
+
+	addAttrs(link, options.attrs);
+	insertStyleElement(options, link);
+
+	return link;
+}
+
+function addAttrs (el, attrs) {
+	Object.keys(attrs).forEach(function (key) {
+		el.setAttribute(key, attrs[key]);
+	});
+}
+
+function addStyle (obj, options) {
+	var style, update, remove, result;
+
+	// If a transform function was defined, run it on the css
+	if (options.transform && obj.css) {
+	    result = options.transform(obj.css);
+
+	    if (result) {
+	    	// If transform returns a value, use that instead of the original css.
+	    	// This allows running runtime transformations on the css.
+	    	obj.css = result;
+	    } else {
+	    	// If the transform function returns a falsy value, don't add this css.
+	    	// This allows conditional loading of css
+	    	return function() {
+	    		// noop
+	    	};
+	    }
+	}
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+
+		style = singleton || (singleton = createStyleElement(options));
+
+		update = applyToSingletonTag.bind(null, style, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+
+	} else if (
+		obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function"
+	) {
+		style = createLinkElement(options);
+		update = updateLink.bind(null, style, options);
+		remove = function () {
+			removeStyleElement(style);
+
+			if(style.href) URL.revokeObjectURL(style.href);
+		};
+	} else {
+		style = createStyleElement(options);
+		update = applyToTag.bind(null, style);
+		remove = function () {
+			removeStyleElement(style);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle (newObj) {
+		if (newObj) {
+			if (
+				newObj.css === obj.css &&
+				newObj.media === obj.media &&
+				newObj.sourceMap === obj.sourceMap
+			) {
+				return;
+			}
+
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag (style, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (style.styleSheet) {
+		style.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = style.childNodes;
+
+		if (childNodes[index]) style.removeChild(childNodes[index]);
+
+		if (childNodes.length) {
+			style.insertBefore(cssNode, childNodes[index]);
+		} else {
+			style.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag (style, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		style.setAttribute("media", media)
+	}
+
+	if(style.styleSheet) {
+		style.styleSheet.cssText = css;
+	} else {
+		while(style.firstChild) {
+			style.removeChild(style.firstChild);
+		}
+
+		style.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink (link, options, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	/*
+		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
+		and there is no publicPath defined then lets turn convertToAbsoluteUrls
+		on by default.  Otherwise default to the convertToAbsoluteUrls option
+		directly
+	*/
+	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
+
+	if (options.convertToAbsoluteUrls || autoFixUrls) {
+		css = fixUrls(css);
+	}
+
+	if (sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = link.href;
+
+	link.href = URL.createObjectURL(blob);
+
+	if(oldSrc) URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _router = __webpack_require__(5);
 
 var _router2 = _interopRequireDefault(_router);
 
@@ -414,10 +868,6 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
-
-var _style = __webpack_require__(54);
-
-var _style2 = _interopRequireDefault(_style);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -434,6 +884,7 @@ var index = function () {
 				_utils2.default.addClass("#nav-bar-top", "hidden");
 			}
 			_utils2.default.addClass('body', 'book'); //body background
+			_utils2.default.addClass('#nav-bar-top', 'w3-border-bottom'); //nav-bar-top border
 		}
 
 		//GET DATA
@@ -482,10 +933,12 @@ var index = function () {
 				_utils2.default.addClass("#nav-bar-top", "hidden");
 			}
 			_utils2.default.addClass('body', 'book');
+			_utils2.default.addClass('#nav-bar-top', 'w3-border-bottom');
 		} else {
 			_utils2.default.removeClass("#nav-bar-top", "hidden");
 
 			_utils2.default.removeClass('body', 'book');
+			_utils2.default.removeClass('#nav-bar-top', 'w3-border-bottom');
 			_utils2.default.setHTML("#top-title", "");
 		}
 	}, false);
@@ -500,7 +953,7 @@ var index = function () {
 }();
 
 /***/ }),
-/* 3 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -518,19 +971,19 @@ var _dataStore = __webpack_require__(1);
 
 var _dataStore2 = _interopRequireDefault(_dataStore);
 
-var _home = __webpack_require__(4);
+var _home = __webpack_require__(6);
 
 var _home2 = _interopRequireDefault(_home);
 
-var _book = __webpack_require__(6);
+var _book = __webpack_require__(11);
 
 var _book2 = _interopRequireDefault(_book);
 
-var _adminLogin = __webpack_require__(12);
+var _adminLogin = __webpack_require__(19);
 
 var _adminLogin2 = _interopRequireDefault(_adminLogin);
 
-var _adminRouter = __webpack_require__(14);
+var _adminRouter = __webpack_require__(21);
 
 var _adminRouter2 = _interopRequireDefault(_adminRouter);
 
@@ -539,7 +992,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //admin (template - no controller)
 
 //book (controller)
-var adminTemplate = __webpack_require__(53);
+var adminTemplate = __webpack_require__(60);
 //adminRouter (sub-router)
 
 //adminLogin (controller)
@@ -625,7 +1078,7 @@ var router = function router() {
 exports.default = router;
 
 /***/ }),
-/* 4 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -639,9 +1092,13 @@ var _dataStore = __webpack_require__(1);
 
 var _dataStore2 = _interopRequireDefault(_dataStore);
 
+var _home = __webpack_require__(7);
+
+var _home2 = _interopRequireDefault(_home);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var homeTemplate = __webpack_require__(5);
+var homeTemplate = __webpack_require__(10);
 //home.js
 var home = function home(container) {
 	'use strict';
@@ -652,14 +1109,152 @@ var home = function home(container) {
 	var books = _dataStore2.default.getData('books');
 	//insert template in container
 	c.innerHTML = homeTemplate({ books: books });
-
-	console.log(_dataStore2.default.getData());
 };
 
 exports.default = home;
 
 /***/ }),
-/* 5 */
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(8);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {"hmr":true}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(3)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!./home.css", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!./home.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".w3-col {\n\twidth: 100%;\n\theight: 370px;\n\t\n}\n\n@media only screen and (min-width: 600px) {\n\t.w3-col {\n\t\twidth: 290px;\n\t}\n}\n\n#home .book {\n\tfont-family: Merriweather, Georgia, sans-serif;\n\tpadding: 16px;\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto\n}\n\n#home .author {\n\n}\n\n#home .title {\n\tpadding-top: 10%;\n\tfont-size: 1.3em;\n}\n\n#home .publisher {\n\tletter-spacing: 1px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+
+module.exports = function (css) {
+	// get current location
+	var location = typeof window !== "undefined" && window.location;
+
+	if (!location) {
+		throw new Error("fixUrls requires window.location");
+	}
+
+	// blank or null?
+	if (!css || typeof css !== "string") {
+		return css;
+	}
+
+	var baseUrl = location.protocol + "//" + location.host;
+	var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+
+	// convert each url(...)
+	/*
+ This regular expression is just a way to recursively match brackets within
+ a string.
+ 	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
+    (  = Start a capturing group
+      (?:  = Start a non-capturing group
+          [^)(]  = Match anything that isn't a parentheses
+          |  = OR
+          \(  = Match a start parentheses
+              (?:  = Start another non-capturing groups
+                  [^)(]+  = Match anything that isn't a parentheses
+                  |  = OR
+                  \(  = Match a start parentheses
+                      [^)(]*  = Match anything that isn't a parentheses
+                  \)  = Match a end parentheses
+              )  = End Group
+              *\) = Match anything and then a close parens
+          )  = Close non-capturing group
+          *  = Match anything
+       )  = Close capturing group
+  \)  = Match a close parens
+ 	 /gi  = Get all matches, not the first.  Be case insensitive.
+  */
+	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function (fullMatch, origUrl) {
+		// strip quotes (if they exist)
+		var unquotedOrigUrl = origUrl.trim().replace(/^"(.*)"$/, function (o, $1) {
+			return $1;
+		}).replace(/^'(.*)'$/, function (o, $1) {
+			return $1;
+		});
+
+		// already a full url? no change
+		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/)/i.test(unquotedOrigUrl)) {
+			return fullMatch;
+		}
+
+		// convert the url to a full url
+		var newUrl;
+
+		if (unquotedOrigUrl.indexOf("//") === 0) {
+			//TODO: should we add protocol?
+			newUrl = unquotedOrigUrl;
+		} else if (unquotedOrigUrl.indexOf("/") === 0) {
+			// path should be relative to the base url
+			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
+		} else {
+			// path should be relative to current directory
+			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
+		}
+
+		// send back the fixed url(...)
+		return "url(" + JSON.stringify(newUrl) + ")";
+	});
+
+	// send back the fixed css
+	return fixedCss;
+};
+
+/***/ }),
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -668,7 +1263,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="home" class="content">\n	<div class="w3-container w3-padding-24">\n		<ul id="books-list" class=\'w3-ul\'>\n			<% for(var i=0; i<books.length; i++) {%>\n				<% if(books[i].visible) { %>\n			   <li>\n				   <span><%= books[i].authorDisplay %> &mdash; </span>\n				   <a href=\'/#<%= books[i].path %>/read\' class="w3-text-gray w3-hover-none w3-hover-text-black"><%= books[i].title %></a>\n			   </li>\n			   <% } %>\n			<% } %>\n		</ul>\n	</div>\n</div>\n',
+        input: '<div id="home" class="w3-content" style="max-width: 1200px">\n	<div class="w3-container w3-padding-24">\n		<div id="books-list" class=\'w3-row\' style="text-align: center">\n			<% for(var i=0; i<books.length; i++) {%>\n				<% if(books[i].visible) { %>\n				<div class="w3-col">\n					<div class="book w3-card-4 w3-display-container" style="background-color:<%=books[i].cover.background %>">\n						<p class="author"><%= books[i].authorDisplay %></p>\n						<p class="title"><a href=\'/#<%= books[i].path %>/read\' class="w3-text-black w3-hover-none w3-hover-text-gray"><%- books[i].title %></a></p>\n						<p class="w3-display-bottommiddle" >liber</p>\n				   </div>\n				</div>\n				<div class="w3-rest"></div>\n			   <% } %>\n			<% } %>\n		</div>\n	</div>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -685,19 +1280,19 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
         var buf = [];
         with (locals || {}) {
             (function() {
-                buf.push('<div id="home" class="content">\n	<div class="w3-container w3-padding-24">\n		<ul id="books-list" class=\'w3-ul\'>\n			');
+                buf.push('<div id="home" class="w3-content" style="max-width: 1200px">\n	<div class="w3-container w3-padding-24">\n		<div id="books-list" class=\'w3-row\' style="text-align: center">\n			');
                 __stack.lineno = 4;
                 for (var i = 0; i < books.length; i++) {
                     buf.push("\n				");
                     __stack.lineno = 5;
                     if (books[i].visible) {
-                        buf.push("\n			   <li>\n				   <span>", escape((__stack.lineno = 7, books[i].authorDisplay)), " &mdash; </span>\n				   <a href='/#", escape((__stack.lineno = 8, books[i].path)), '/read\' class="w3-text-gray w3-hover-none w3-hover-text-black">', escape((__stack.lineno = 8, books[i].title)), "</a>\n			   </li>\n			   ");
-                        __stack.lineno = 10;
+                        buf.push('\n				<div class="w3-col">\n					<div class="book w3-card-4 w3-display-container" style="background-color:', escape((__stack.lineno = 7, books[i].cover.background)), '">\n						<p class="author">', escape((__stack.lineno = 8, books[i].authorDisplay)), '</p>\n						<p class="title"><a href=\'/#', escape((__stack.lineno = 9, books[i].path)), '/read\' class="w3-text-black w3-hover-none w3-hover-text-gray">', (__stack.lineno = 9, books[i].title), '</a></p>\n						<p class="w3-display-bottommiddle" >liber</p>\n				   </div>\n				</div>\n				<div class="w3-rest"></div>\n			   ');
+                        __stack.lineno = 14;
                     }
                     buf.push("\n			");
-                    __stack.lineno = 11;
+                    __stack.lineno = 15;
                 }
-                buf.push("\n		</ul>\n	</div>\n</div>\n");
+                buf.push("\n		</div>\n	</div>\n</div>\n");
             })();
         }
         return buf.join("");
@@ -707,7 +1302,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 6 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -725,17 +1320,21 @@ var _dataStore = __webpack_require__(1);
 
 var _dataStore2 = _interopRequireDefault(_dataStore);
 
-var _WebBook = __webpack_require__(7);
+var _WebBook = __webpack_require__(12);
 
 var _WebBook2 = _interopRequireDefault(_WebBook);
 
-var _hammerjs = __webpack_require__(10);
+var _book = __webpack_require__(15);
+
+var _book2 = _interopRequireDefault(_book);
+
+var _hammerjs = __webpack_require__(17);
 
 var _hammerjs2 = _interopRequireDefault(_hammerjs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var bookTemplate = __webpack_require__(11);
+var bookTemplate = __webpack_require__(18);
 //book.js
 var book = function book(container) {
 	'use strict';
@@ -922,7 +1521,7 @@ var book = function book(container) {
 exports.default = book;
 
 /***/ }),
-/* 7 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -934,7 +1533,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _jquery = __webpack_require__(8);
+var _jquery = __webpack_require__(13);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -1500,7 +2099,7 @@ var WebBook = function () {
 exports.default = WebBook;
 
 /***/ }),
-/* 8 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11333,10 +11932,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 	return jQuery;
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)(module)))
 
 /***/ }),
-/* 9 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11366,7 +11965,52 @@ module.exports = function (module) {
 };
 
 /***/ }),
-/* 10 */
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(16);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {"hmr":true}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(3)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!./book.css", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!./book.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "/*\nBOOK NAVBAR BOTTOM\n*/\n#book-nav-bar-bottom {\n\tdisplay: none;\n}\n\n@media screen and (min-width: 768px) {\n\t#book-nav-bar-bottom {\n\t\tdisplay: block;\n\t}\n}\n\n#book-nav-bar-bottom-controls {\n\tdisplay: block;\n\tposition: relative;\n\twidth: 640px;\n\tmargin: auto;\n\theight: 44px;\n\ttext-align: center;\n}\n\n#nav-bar-bottom-controls button {\n\toutline: none;\n\theight: 100%;\n}\n\n#book-nav-bar-bottom-controls button#open-toc-large.w3-btn span {\n\tdisplay: inline-block;\n\tpadding-bottom: 10px;\n}\n\n/*\nBOOKCONTAINER\n*/\n#bookContainer {\n\tposition: relative;\n\tfont-family: 'Georgia', serif;\n\topacity: 0.0;\n\tmargin: auto;\n\ttransition: opacity 0.5s;\n\t-webkit-transition : opacity 0.5s;\n\t-moz-transition : opacity 0.5s;\n\t-o-transition: opacity 0.5s;\n}\n\n#bookContainer.show {\n\topacity: 1.0;\n}\n\n/*\nTEXTCONTAINER\n*/\n[data-wb-text-container] {\n\tmargin: auto;\n\tbackground-color: #fff;\n\ttop: 0px;\n}\n\n@media screen and (min-width: 768px) {\n\t[data-wb-text-container] {\n\t\ttop: 30px;\n\t}\n}\n\n/*\nTOC-LARGE-DEVICE\n*/\n\n#toc-large-device {\n  position: absolute;\n  left: -33%;\n  width: 33%;\n  margin-top: 30px;\n  transition: left 0.4s;\n  -webkit-transition : left 0.4s;\n  -moz-transition : left 0.4s;\n  -o-transition: left 0.4s;\n  display: none;\n}\n\n@media screen and (min-width: 1366px) {\n\n\t#toc-large-device {\n\t\tdisplay: inline-block\n\t}\n\n}\n\n#toc-large-device.open {\n\tleft: 0px;\n}\n\n#toc-large-device-container {\n\twidth: 100%;\n\tbackground-color: #fff;\n\tz-index: 1000;\n\toverflow-y: auto;\n}\n\n#toc-large-device-container > div {\n\tbackground-color: #fff;\n\tposition: relative;\n\theight: 100%;\n\twidth: 100%;\n}\n\n/*\ntoggle toc-large-device, swing-container, swing-bar\n*/\n\n#toggle-toc-large-device {\n    position: absolute;\n\tleft: 100%;\n\ttop: 0px;\n\tmargin-left: 6px;\n\toutline: none;\n\tbackground: #fff;\n\tfont-size: 1.5em;\n}\n\n/*\nif toc-large-device.open : swing-container to left\n*/\n#swing-container {\n\tmargin-left: 0px;\n\ttransition: margin-left 0.6s;\n\t-webkit-transition : margin-left 0.6s;\n\t-moz-transition : margin-left 0.6s;\n    -o-transition: margin-left 0.6s;\n\t\n}\n\n#swing-container.left {\n\t\tmargin-left: 0px;\n\t}\n\n@media screen and (min-width: 1366px) {\n\t#swing-container.left {\n\t\tmargin-left: 33%;\n\t}\n}\n\n/*\nif toc-large-device.open : swing-bar to left\n*/\n#swing-bar {\n\tmargin-left: 0px;\n\ttransition: margin-left 0.9s;\n\t-webkit-transition : margin-left 0.9s;\n\t-moz-transition : margin-left 0.9s;\n    -o-transition: margin-left 0.9s;\n}\n\n#swing-bar.left {\n\tmargin-left: 0px;\n}\n\n@media screen and (min-width: 1366px) {\n\t#swing-bar.left {\n\t\tmargin-left: 33%;\n\t}\n}\n\n/*\nTOC\n*/\n#toc {\n\tposition: absolute;\n\ttop: -1000px;\n\twidth: 100%;\n\theight: 100%;\n\tz-index: 1000;\n\toverflow-y: auto;\n\ttransition: top 0.4s;\n\t-webkit-transition : top 0.4s;\n\t-moz-transition : top 0.4s;\n    -o-transition: top 0.4s;\n\tpadding: 0px;\n\tbackground-color: #fff;\n}\n\n#toc.open {\n\ttop: 0px;\n}\n\n#toc > div {\n\tposition: relative;\n\tbackground-color: #fff;\n}\n\n.open-toc {\n\tfloat: right;\n\tfont-size: 1.4em;\n}\n\n#open-toc-large {\n\tdisplay: inline-block;\n}\n\n@media screen and (min-width: 1366px) {\n\t#open-toc-large {\n\t\tdisplay: none;\n\t}\n}\n\n#close-toc {\n\tposition: absolute;\n\tright: 15px;\n\ttop: 5px;\n\tmin-width: 25px;\n\tpadding: 0;\n\tborder: none;\n\tbackground-color: transparent;\n\tfont-family: 'Helvetica', sans-serif;\n\tfont-size: 1.2em;\n\tcolor: #424242;\n}\n\n#toc-title {\n\tmargin-bottom: 30px;\n\tmargin-top: 20px\n}\n\n#toc-title p {\n\tmargin: 0px;\n}\n/*\ntoc list\n*/\n#toc ul, #toc-large-device ul {\n\tpadding: 0px;\n}\n\n#toc li, #toc-large-device li {\n\tlist-style-type: none;\n\tpadding: .5em .5em;\n}\n\n#toc a.wb-link, #toc-large-device a.wb-link {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: gray;\n}\n\n#toc a.wb-link:hover, #toc-large-device a.wb-link:hover {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: #000;\n}\n\n#toc li.current a.wb-link, #toc-large-device li.current a.wb-link {\n\tcolor: #000;\n\toutline: none;\n\tfont-style: italic;\n}\n\n#toc [data-wb-element-page-number], #toc-large-device [data-wb-element-page-number] {\n\tfloat: right;\n}\n\n/*\nTOP\n*/\n#top {\n\tposition: absolute;\n\ttop: 0px;\n\tbox-sizing: border-box;\n\t-webkit-box-sizing: border-box;\n\t-moz-box-sizing: border-box;\n\tpadding-top: 8px;\n\ttext-align: center;\n\twidth: 100%;\n\theight: 30px;\n}\n\n#top .wb-current-section-title {\n\tfont-size: 0.8em;\n}\n\n/*\nBOTTOM\n*/\n#bottom {\n\tposition: absolute;\n\tbottom: 5px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tz-index: 500;\n}\n\n#bottom-large {\n\tposition: absolute;\n\tbottom: -9999px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tz-index: 500;\n}\n\n@media screen and (min-width: 768px) {\n\t\t\n\t#bottom {\n\t\tbottom: -9999px\n\t}\n\t\n\t#bottom-large {\n\t\tbottom: 5px;\n\t}\n}\n\n#bottom button, #bottom a, #bottom span {\n\tdisplay: inline-block;\n\tborder: none;\n\tbackground-color: transparent;\n\tmargin-right: 10px;\n\tmargin-left: 10px;\n\tmin-width: 25px;\n\theight: 100%;\n\tpadding: 0;\n\tfont-size: 1.2em;\n}\n\n#bottom button.open-toc {\n\tfont-size: 1.5em;\n}\n\n#bottom a#home {\n\tfloat: left;\n\ttext-decoration: none;\n\tmargin-top: 6px;\n\tfont-size: 0.9em;\n\tfont-family: 'Roboto', sans-serif;\n}\n\n#bottom span {\n\tmin-width: 42px;\n\tmargin: 0px;\n\tmargin-top: 6px;\n\tfont-size: 1em;\n}\n\n/*\nTEXT\n*/\n[data-wb-text] {\n\tfont-size: 14px;\n\tline-height: 1.5em;\n\ttext-align: justify;\n\ttext-justify: inter-word;\n}\n\n@media screen and (min-width: 768px) {\n    [data-wb-text] {\n        font-size: 16px;\n        line-height: 1.5em;\n    }\n}\n\n[data-wb-text] p {\n\tmargin-bottom: 0px;\n\tmargin-top: 1.5em;\n}\n\n[data-wb-text] a.wb-link {\n\tborder-bottom: 1px dotted black;\n}\n\n/*\nINSIDE TEXT\n*/\n/*\nTITLES\n*/\n.section-title, .note-title, .table-title, .wb-toc-title {\n\tfont-size: 1.25em;\n\ttext-align: left;\n}\n\n.section-subtitle {\n\tfont-size: 1em;\n}\n\np.section-title {\n\tpadding-top: 3.5em;\n\tmargin-top: 0px;\n}\n\n#titre.wb-section {\n\ttext-align: center;\n\tline-height: 1.8em;\n}\n\n.book-title {\n\tfont-size: 1.25em;\n\tpadding-top: 5%;\n\ttext-transform:uppercase;\n}\n\n.book-subtitle, .book-author {\n\tfont-size: 1.1em;\n}\n\n/*\nTABLE DES MATIÈRES\n*/\n#table ul {\n\tpadding: 0px;\n}\n\n#table li {\n\tlist-style-type: none;\n\tpadding: .5em .5em;\n}\n\n#table a.wb-link {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n}\n\n#table [data-wb-element-page-number] {\n\tfloat: right;\n}\n\n#fin {\n\ttext-align: center;\n\t\n}\n\n#fin p {\n\tpadding-top: 20%;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14006,7 +14650,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 })(window, document, 'Hammer');
 
 /***/ }),
-/* 11 */
+/* 18 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -14042,7 +14686,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 12 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14062,7 +14706,7 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminLoginTemplate = __webpack_require__(13);
+var adminLoginTemplate = __webpack_require__(20);
 //home.js
 var adminLogin = function adminLogin(container) {
 	'use strict';
@@ -14120,7 +14764,7 @@ var adminLogin = function adminLogin(container) {
 exports.default = adminLogin;
 
 /***/ }),
-/* 13 */
+/* 20 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -14156,7 +14800,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 14 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14170,59 +14814,59 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _adminHome = __webpack_require__(15);
+var _adminHome = __webpack_require__(22);
 
 var _adminHome2 = _interopRequireDefault(_adminHome);
 
-var _adminUsers = __webpack_require__(17);
+var _adminUsers = __webpack_require__(24);
 
 var _adminUsers2 = _interopRequireDefault(_adminUsers);
 
-var _adminUser = __webpack_require__(19);
+var _adminUser = __webpack_require__(26);
 
 var _adminUser2 = _interopRequireDefault(_adminUser);
 
-var _adminNew = __webpack_require__(21);
+var _adminNew = __webpack_require__(28);
 
 var _adminNew2 = _interopRequireDefault(_adminNew);
 
-var _adminEdit = __webpack_require__(23);
+var _adminEdit = __webpack_require__(30);
 
 var _adminEdit2 = _interopRequireDefault(_adminEdit);
 
-var _adminEditPassword = __webpack_require__(25);
+var _adminEditPassword = __webpack_require__(32);
 
 var _adminEditPassword2 = _interopRequireDefault(_adminEditPassword);
 
-var _adminBooks = __webpack_require__(27);
+var _adminBooks = __webpack_require__(34);
 
 var _adminBooks2 = _interopRequireDefault(_adminBooks);
 
-var _adminBook = __webpack_require__(29);
+var _adminBook = __webpack_require__(36);
 
 var _adminBook2 = _interopRequireDefault(_adminBook);
 
-var _adminBooksNew = __webpack_require__(31);
+var _adminBooksNew = __webpack_require__(38);
 
 var _adminBooksNew2 = _interopRequireDefault(_adminBooksNew);
 
-var _adminBookEdit = __webpack_require__(38);
+var _adminBookEdit = __webpack_require__(45);
 
 var _adminBookEdit2 = _interopRequireDefault(_adminBookEdit);
 
-var _adminAuthors = __webpack_require__(45);
+var _adminAuthors = __webpack_require__(52);
 
 var _adminAuthors2 = _interopRequireDefault(_adminAuthors);
 
-var _adminAuthor = __webpack_require__(47);
+var _adminAuthor = __webpack_require__(54);
 
 var _adminAuthor2 = _interopRequireDefault(_adminAuthor);
 
-var _adminAuthorsNew = __webpack_require__(49);
+var _adminAuthorsNew = __webpack_require__(56);
 
 var _adminAuthorsNew2 = _interopRequireDefault(_adminAuthorsNew);
 
-var _adminAuthorEdit = __webpack_require__(51);
+var _adminAuthorEdit = __webpack_require__(58);
 
 var _adminAuthorEdit2 = _interopRequireDefault(_adminAuthorEdit);
 
@@ -14316,7 +14960,7 @@ var adminRouter = function adminRouter(oldhash, newhash, data) {
 exports.default = adminRouter;
 
 /***/ }),
-/* 15 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14336,7 +14980,7 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminHomeTemplate = __webpack_require__(16);
+var adminHomeTemplate = __webpack_require__(23);
 //home.js
 var adminHome = function adminHome(container, data) {
 	'use strict';
@@ -14366,7 +15010,7 @@ var adminHome = function adminHome(container, data) {
 exports.default = adminHome;
 
 /***/ }),
-/* 16 */
+/* 23 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -14402,7 +15046,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 17 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14418,7 +15062,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminUsersTemplate = __webpack_require__(18);
+var adminUsersTemplate = __webpack_require__(25);
 //home.js
 var adminUsers = function adminUsers(container) {
 	'use strict';
@@ -14442,7 +15086,7 @@ var adminUsers = function adminUsers(container) {
 exports.default = adminUsers;
 
 /***/ }),
-/* 18 */
+/* 25 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -14484,7 +15128,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 19 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14500,7 +15144,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminUserTemplate = __webpack_require__(20);
+var adminUserTemplate = __webpack_require__(27);
 //home.js
 var adminUser = function adminUser(container) {
 	'use strict';
@@ -14558,7 +15202,7 @@ var adminUser = function adminUser(container) {
 exports.default = adminUser;
 
 /***/ }),
-/* 20 */
+/* 27 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -14594,7 +15238,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 21 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14610,7 +15254,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminNewTemplate = __webpack_require__(22);
+var adminNewTemplate = __webpack_require__(29);
 //home.js
 var adminNew = function adminNew(container) {
 	'use strict';
@@ -14670,7 +15314,7 @@ var adminNew = function adminNew(container) {
 exports.default = adminNew;
 
 /***/ }),
-/* 22 */
+/* 29 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -14706,7 +15350,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 23 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14722,7 +15366,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminEditTemplate = __webpack_require__(24);
+var adminEditTemplate = __webpack_require__(31);
 //home.js
 var adminEdit = function adminEdit(container, user) {
 	'use strict';
@@ -14782,7 +15426,7 @@ var adminEdit = function adminEdit(container, user) {
 exports.default = adminEdit;
 
 /***/ }),
-/* 24 */
+/* 31 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -14818,7 +15462,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 25 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14834,7 +15478,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminEditPasswordTemplate = __webpack_require__(26);
+var adminEditPasswordTemplate = __webpack_require__(33);
 //home.js
 var adminEditPassword = function adminEditPassword(container, user) {
 	'use strict';
@@ -14897,7 +15541,7 @@ var adminEditPassword = function adminEditPassword(container, user) {
 exports.default = adminEditPassword;
 
 /***/ }),
-/* 26 */
+/* 33 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -14933,7 +15577,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 27 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14949,7 +15593,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminBooksTemplate = __webpack_require__(28);
+var adminBooksTemplate = __webpack_require__(35);
 //home.js
 var adminBooks = function adminBooks(container) {
 	'use strict';
@@ -14973,7 +15617,7 @@ var adminBooks = function adminBooks(container) {
 exports.default = adminBooks;
 
 /***/ }),
-/* 28 */
+/* 35 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15015,7 +15659,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 29 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15031,7 +15675,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminBookTemplate = __webpack_require__(30);
+var adminBookTemplate = __webpack_require__(37);
 //home.js
 var adminBook = function adminBook(container) {
 	'use strict';
@@ -15086,7 +15730,7 @@ var adminBook = function adminBook(container) {
 exports.default = adminBook;
 
 /***/ }),
-/* 30 */
+/* 37 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15095,7 +15739,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="adminBook" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="w3-modal w3-card-4">\n		<div class="w3-modal-content w3-animate-top">\n			<header class="w3-container w3-black"> \n				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>\n				<h4>Supprimer un ouvrage</h4>\n			</header>\n			<div  class="w3-container">\n				<p>Voulez-vous vraiment supprimer cet ouvrage ?</p>\n				<p><%= book.title %></p>\n				<p class="w3-right"><button type="button" id="delete-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black">Supprimer</button></p>\n			</div>\n			\n		</div>\n	</div>\n\n<!--\n	MAIN\n-->\n	<h4 class="w3-container align-left w3-padding-16">Ouvrage</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/books/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div id="book" class="w3-container">\n		<span class="error"><%= error %></span>\n		<span class="error" id="modal-error" data-utils-bind="{{ error }}"></span>\n		<div class="w3-border-bottom">\n			<p><b>Titre : </b><span><%= book.title %></span></p>\n			<p><b>Sous-titre1 : </b><span><%= book.subtitle1 %></span></p>\n			<p><b>Sous-titre2 : </b><span><%= book.subtitle2 %></span></p>\n			<p><b>Auteur (libellé) : </b><span><%= book.authorDisplay %></span></p>\n			<p>\n				<% if (book.authors.length===1) { %>\n					<span><b>Auteur :</b></span>\n				<% } else { %>\n					<span><b>Auteurs :</b></span>\n				<% } %>\n			</p>\n			<ul id="authors-list" class=\'w3-ul\'>\n				<% for(var i=0; i<book.authors.length; i++) {%>\n				<li>\n					<a href=\'/#/admin/authors/<%= book.authors[i].id %>\' class="w3-text-gray w3-hover-none w3-hover-text-black">\n						<%= book.authors[i].name %>\n					</a>\n				</li>\n				<% } %>\n			</ul>\n			<p>\n				<% if (book.contribs.length===1) { %>\n					<span><b>Contributeur :</b></span>\n				<% } else { %>\n					<span><b>Contributeurs :</b></span>\n				<% } %>\n			</p>\n			<ul id="contribs-list" class=\'w3-ul\'>\n				<% for(var i=0; i<book.contribs.length; i++) {%>\n				<li>\n					<a href=\'/#/admin/authors/<%= book.contribs[i].id %>\' class="w3-text-gray w3-hover-none w3-hover-text-black">\n						<%= book.contribs[i].name %> (<%= book.contribs[i].role %>)\n					</a>\n				</li>\n				<% } %>\n			</ul>\n			<p><b>Année de publication : </b><span><%= book.year %></span></p>\n			<p><b>Langue : </b><span><%= book.language %></span></p>\n			<p><b>Source :</b></p>\n			<ul class=\'w3-ul\'>\n				<li><b>&Eacute;diteur : </b><span><%- book.source.publisher %></span></li>\n				<li><b>Année : </b><span><%= book.source.year %></span></li>\n				<li><b>Origine : </b><span><%= book.source.origin %></span></li>\n			</ul>\n			<p><b>Couverture :</b></p>\n			<ul class=\'w3-ul\'>\n				<li><b>Background : </b><span><%= book.cover.background %></span></li>\n				<li><b>textColor : </b><span><%= book.cover.textColor %></span></li>\n				<li><b>textSize : </b><span><%= book.cover.textSize %></span></li>\n				<li><b>textSpacing : </b><span><%= book.cover.textSpacing %></span></li>\n			</ul>\n			<p><b>Description :</b></p>\n			<div><%= book.description %></div>\n			<p><b>Path : </b><span><%= book.path %></span></p>\n			<p><b>Visible : </b><span><% if(book.visible===true) {%>oui<%} else {%>non<%}%></span></p>\n			<p><b>Créé le : </b><span><%= book.created_at %></span></p>\n			<p><b>Mis à jour le : </b><span><%= book.updated_at %></span></p>\n		</div>\n		<p>\n			<a href="#/admin/books/<%= book.id %>/edit" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-left">Modifier</a>\n			<button type="button" id="open-modal-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-right">Supprimer</button>\n		</p>\n	</div>\n</div>\n',
+        input: '<div id="adminBook" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="w3-modal w3-card-4">\n		<div class="w3-modal-content w3-animate-top">\n			<header class="w3-container w3-black"> \n				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>\n				<h4>Supprimer un ouvrage</h4>\n			</header>\n			<div  class="w3-container">\n				<p>Voulez-vous vraiment supprimer cet ouvrage ?</p>\n				<p><%= book.title %></p>\n				<p class="w3-right"><button type="button" id="delete-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black">Supprimer</button></p>\n			</div>\n			\n		</div>\n	</div>\n\n<!--\n	MAIN\n-->\n	<h4 class="w3-container align-left w3-padding-16">Ouvrage</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/books/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div id="book" class="w3-container">\n		<span class="error"><%= error %></span>\n		<span class="error" id="modal-error" data-utils-bind="{{ error }}"></span>\n		<div class="w3-border-bottom">\n			<p><b>Titre : </b><span><%- book.title %></span></p>\n			<p><b>Sous-titre1 : </b><span><%= book.subtitle1 %></span></p>\n			<p><b>Sous-titre2 : </b><span><%= book.subtitle2 %></span></p>\n			<p><b>Auteur (libellé) : </b><span><%= book.authorDisplay %></span></p>\n			<p>\n				<% if (book.authors.length===1) { %>\n					<span><b>Auteur :</b></span>\n				<% } else { %>\n					<span><b>Auteurs :</b></span>\n				<% } %>\n			</p>\n			<ul id="authors-list" class=\'w3-ul\'>\n				<% for(var i=0; i<book.authors.length; i++) {%>\n				<li>\n					<a href=\'/#/admin/authors/<%= book.authors[i].id %>\' class="w3-text-gray w3-hover-none w3-hover-text-black">\n						<%= book.authors[i].name %>\n					</a>\n				</li>\n				<% } %>\n			</ul>\n			<p>\n				<% if (book.contribs.length===1) { %>\n					<span><b>Contributeur :</b></span>\n				<% } else { %>\n					<span><b>Contributeurs :</b></span>\n				<% } %>\n			</p>\n			<ul id="contribs-list" class=\'w3-ul\'>\n				<% for(var i=0; i<book.contribs.length; i++) {%>\n				<li>\n					<a href=\'/#/admin/authors/<%= book.contribs[i].id %>\' class="w3-text-gray w3-hover-none w3-hover-text-black">\n						<%= book.contribs[i].name %> (<%= book.contribs[i].role %>)\n					</a>\n				</li>\n				<% } %>\n			</ul>\n			<p><b>Année de publication : </b><span><%= book.year %></span></p>\n			<p><b>Langue : </b><span><%= book.language %></span></p>\n			<p><b>Source :</b></p>\n			<ul class=\'w3-ul\'>\n				<li><b>&Eacute;diteur : </b><span><%- book.source.publisher %></span></li>\n				<li><b>Année : </b><span><%= book.source.year %></span></li>\n				<li><b>Origine : </b><span><%= book.source.origin %></span></li>\n			</ul>\n			<p><b>Couverture :</b></p>\n			<ul class=\'w3-ul\'>\n				<li><b>Background : </b><span><%= book.cover.background %></span></li>\n				<li><b>textColor : </b><span><%= book.cover.textColor %></span></li>\n				<li><b>textSize : </b><span><%= book.cover.textSize %></span></li>\n				<li><b>textSpacing : </b><span><%= book.cover.textSpacing %></span></li>\n			</ul>\n			<p><b>Description :</b></p>\n			<div><%= book.description %></div>\n			<p><b>Path : </b><span><%= book.path %></span></p>\n			<p><b>Visible : </b><span><% if(book.visible===true) {%>oui<%} else {%>non<%}%></span></p>\n			<p><b>Créé le : </b><span><%= book.created_at %></span></p>\n			<p><b>Mis à jour le : </b><span><%= book.updated_at %></span></p>\n		</div>\n		<p>\n			<a href="#/admin/books/<%= book.id %>/edit" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-left">Modifier</a>\n			<button type="button" id="open-modal-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-right">Supprimer</button>\n		</p>\n	</div>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -15112,7 +15756,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
         var buf = [];
         with (locals || {}) {
             (function() {
-                buf.push('<div id="adminBook" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="w3-modal w3-card-4">\n		<div class="w3-modal-content w3-animate-top">\n			<header class="w3-container w3-black"> \n				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>\n				<h4>Supprimer un ouvrage</h4>\n			</header>\n			<div  class="w3-container">\n				<p>Voulez-vous vraiment supprimer cet ouvrage ?</p>\n				<p>', escape((__stack.lineno = 13, book.title)), '</p>\n				<p class="w3-right"><button type="button" id="delete-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black">Supprimer</button></p>\n			</div>\n			\n		</div>\n	</div>\n\n<!--\n	MAIN\n-->\n	<h4 class="w3-container align-left w3-padding-16">Ouvrage</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/books/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div id="book" class="w3-container">\n		<span class="error">', escape((__stack.lineno = 26, error)), '</span>\n		<span class="error" id="modal-error" data-utils-bind="{{ error }}"></span>\n		<div class="w3-border-bottom">\n			<p><b>Titre : </b><span>', escape((__stack.lineno = 29, book.title)), "</span></p>\n			<p><b>Sous-titre1 : </b><span>", escape((__stack.lineno = 30, book.subtitle1)), "</span></p>\n			<p><b>Sous-titre2 : </b><span>", escape((__stack.lineno = 31, book.subtitle2)), "</span></p>\n			<p><b>Auteur (libellé) : </b><span>", escape((__stack.lineno = 32, book.authorDisplay)), "</span></p>\n			<p>\n				");
+                buf.push('<div id="adminBook" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="w3-modal w3-card-4">\n		<div class="w3-modal-content w3-animate-top">\n			<header class="w3-container w3-black"> \n				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>\n				<h4>Supprimer un ouvrage</h4>\n			</header>\n			<div  class="w3-container">\n				<p>Voulez-vous vraiment supprimer cet ouvrage ?</p>\n				<p>', escape((__stack.lineno = 13, book.title)), '</p>\n				<p class="w3-right"><button type="button" id="delete-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black">Supprimer</button></p>\n			</div>\n			\n		</div>\n	</div>\n\n<!--\n	MAIN\n-->\n	<h4 class="w3-container align-left w3-padding-16">Ouvrage</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/books/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div id="book" class="w3-container">\n		<span class="error">', escape((__stack.lineno = 26, error)), '</span>\n		<span class="error" id="modal-error" data-utils-bind="{{ error }}"></span>\n		<div class="w3-border-bottom">\n			<p><b>Titre : </b><span>', (__stack.lineno = 29, book.title), "</span></p>\n			<p><b>Sous-titre1 : </b><span>", escape((__stack.lineno = 30, book.subtitle1)), "</span></p>\n			<p><b>Sous-titre2 : </b><span>", escape((__stack.lineno = 31, book.subtitle2)), "</span></p>\n			<p><b>Auteur (libellé) : </b><span>", escape((__stack.lineno = 32, book.authorDisplay)), "</span></p>\n			<p>\n				");
                 __stack.lineno = 34;
                 if (book.authors.length === 1) {
                     buf.push("\n					<span><b>Auteur :</b></span>\n				");
@@ -15161,7 +15805,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 31 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15181,12 +15825,12 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminBooksNewTemplate = __webpack_require__(32);
-var modalHeaderTemplate = __webpack_require__(33);
-var searchAuthorsResultsTemplate = __webpack_require__(34);
-var selectedAuthorsTemplate = __webpack_require__(35);
-var selectedContribsTemplate = __webpack_require__(36);
-var selectedContribRoleTemplate = __webpack_require__(37);
+var adminBooksNewTemplate = __webpack_require__(39);
+var modalHeaderTemplate = __webpack_require__(40);
+var searchAuthorsResultsTemplate = __webpack_require__(41);
+var selectedAuthorsTemplate = __webpack_require__(42);
+var selectedContribsTemplate = __webpack_require__(43);
+var selectedContribRoleTemplate = __webpack_require__(44);
 //home.js
 var adminBooksNew = function adminBooksNew(container) {
 	'use strict';
@@ -15388,7 +16032,7 @@ var adminBooksNew = function adminBooksNew(container) {
 exports.default = adminBooksNew;
 
 /***/ }),
-/* 32 */
+/* 39 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15424,7 +16068,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 33 */
+/* 40 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15460,7 +16104,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 34 */
+/* 41 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15502,7 +16146,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 35 */
+/* 42 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15544,7 +16188,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 36 */
+/* 43 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15586,7 +16230,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 37 */
+/* 44 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15622,7 +16266,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 38 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15642,12 +16286,12 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminBookEditTemplate = __webpack_require__(39);
-var modalHeaderTemplate = __webpack_require__(40);
-var searchAuthorsResultsTemplate = __webpack_require__(41);
-var selectedAuthorsTemplate = __webpack_require__(42);
-var selectedContribsTemplate = __webpack_require__(43);
-var selectedContribRoleTemplate = __webpack_require__(44);
+var adminBookEditTemplate = __webpack_require__(46);
+var modalHeaderTemplate = __webpack_require__(47);
+var searchAuthorsResultsTemplate = __webpack_require__(48);
+var selectedAuthorsTemplate = __webpack_require__(49);
+var selectedContribsTemplate = __webpack_require__(50);
+var selectedContribRoleTemplate = __webpack_require__(51);
 //home.js
 var adminBooksNew = function adminBooksNew(container) {
 	'use strict';
@@ -15876,7 +16520,7 @@ var adminBooksNew = function adminBooksNew(container) {
 exports.default = adminBooksNew;
 
 /***/ }),
-/* 39 */
+/* 46 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15930,7 +16574,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 40 */
+/* 47 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15966,7 +16610,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 41 */
+/* 48 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16008,7 +16652,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 42 */
+/* 49 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16050,7 +16694,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 43 */
+/* 50 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16092,7 +16736,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 44 */
+/* 51 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16128,7 +16772,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 45 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16144,7 +16788,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorsTemplate = __webpack_require__(46);
+var adminAuthorsTemplate = __webpack_require__(53);
 //home.js
 var adminAuthors = function adminAuthors(container) {
 	'use strict';
@@ -16168,7 +16812,7 @@ var adminAuthors = function adminAuthors(container) {
 exports.default = adminAuthors;
 
 /***/ }),
-/* 46 */
+/* 53 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16210,7 +16854,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 47 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16226,7 +16870,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorTemplate = __webpack_require__(48);
+var adminAuthorTemplate = __webpack_require__(55);
 //home.js
 var adminAuthor = function adminAuthor(container) {
 	'use strict';
@@ -16281,7 +16925,7 @@ var adminAuthor = function adminAuthor(container) {
 exports.default = adminAuthor;
 
 /***/ }),
-/* 48 */
+/* 55 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16350,7 +16994,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 49 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16370,7 +17014,7 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorsNewTemplate = __webpack_require__(50);
+var adminAuthorsNewTemplate = __webpack_require__(57);
 //home.js
 var adminAuthorsNew = function adminAuthorsNew(container) {
 	'use strict';
@@ -16433,7 +17077,7 @@ var adminAuthorsNew = function adminAuthorsNew(container) {
 exports.default = adminAuthorsNew;
 
 /***/ }),
-/* 50 */
+/* 57 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16469,7 +17113,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 51 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16485,7 +17129,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorEditTemplate = __webpack_require__(52);
+var adminAuthorEditTemplate = __webpack_require__(59);
 //home.js
 var adminAuthorEdit = function adminAuthorEdit(container) {
 	'use strict';
@@ -16558,7 +17202,7 @@ var adminAuthorEdit = function adminAuthorEdit(container) {
 exports.default = adminAuthorEdit;
 
 /***/ }),
-/* 52 */
+/* 59 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16600,7 +17244,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 53 */
+/* 60 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16634,600 +17278,6 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
         rethrow(err, __stack.input, __stack.filename, __stack.lineno);
     }
 }
-
-/***/ }),
-/* 54 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(55);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {"hmr":true}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(57)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js!./style.css", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js!./style.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 55 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(56)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "/*\nBOOK NAVBAR BOTTOM\n*/\n#book-nav-bar-bottom {\n\tdisplay: none;\n}\n\n@media screen and (min-width: 768px) {\n\t#book-nav-bar-bottom {\n\t\tdisplay: block;\n\t}\n}\n\n#book-nav-bar-bottom-controls {\n\tdisplay: block;\n\tposition: relative;\n\twidth: 640px;\n\tmargin: auto;\n\theight: 44px;\n\ttext-align: center;\n}\n\n#nav-bar-bottom-controls button {\n\toutline: none;\n\theight: 100%;\n}\n\n#book-nav-bar-bottom-controls button#open-toc-large.w3-btn span {\n\tdisplay: inline-block;\n\tpadding-bottom: 10px;\n}\n\n/*\nBOOKCONTAINER\n*/\n#bookContainer {\n\tposition: relative;\n\tfont-family: 'Georgia', serif;\n\topacity: 0.0;\n\tmargin: auto;\n\ttransition: opacity 0.5s;\n\t-webkit-transition : opacity 0.5s;\n\t-moz-transition : opacity 0.5s;\n\t-o-transition: opacity 0.5s;\n}\n\n#bookContainer.show {\n\topacity: 1.0;\n}\n\n/*\nTEXTCONTAINER\n*/\n[data-wb-text-container] {\n\tmargin: auto;\n\tbackground-color: #fff;\n\ttop: 0px;\n}\n\n@media screen and (min-width: 768px) {\n\t[data-wb-text-container] {\n\t\ttop: 30px;\n\t}\n}\n\n/*\nTOC-LARGE-DEVICE\n*/\n\n#toc-large-device {\n  position: absolute;\n  left: -33%;\n  width: 33%;\n  margin-top: 30px;\n  transition: left 0.4s;\n  -webkit-transition : left 0.4s;\n  -moz-transition : left 0.4s;\n  -o-transition: left 0.4s;\n  display: none;\n}\n\n@media screen and (min-width: 1366px) {\n\n\t#toc-large-device {\n\t\tdisplay: inline-block\n\t}\n\n}\n\n#toc-large-device.open {\n\tleft: 0px;\n}\n\n#toc-large-device-container {\n\twidth: 100%;\n\tbackground-color: #fff;\n\tz-index: 1000;\n\toverflow-y: auto;\n}\n\n#toc-large-device-container > div {\n\tbackground-color: #fff;\n\tposition: relative;\n\theight: 100%;\n\twidth: 100%;\n}\n\n/*\ntoggle toc-large-device, swing-container, swing-bar\n*/\n\n#toggle-toc-large-device {\n    position: absolute;\n\tleft: 100%;\n\ttop: 0px;\n\tmargin-left: 6px;\n\toutline: none;\n\tbackground: #fff;\n\tfont-size: 1.5em;\n}\n\n/*\nif toc-large-device.open : swing-container to left\n*/\n#swing-container {\n\tmargin-left: 0px;\n\ttransition: margin-left 0.6s;\n\t-webkit-transition : margin-left 0.6s;\n\t-moz-transition : margin-left 0.6s;\n    -o-transition: margin-left 0.6s;\n\t\n}\n\n#swing-container.left {\n\t\tmargin-left: 0px;\n\t}\n\n@media screen and (min-width: 1366px) {\n\t#swing-container.left {\n\t\tmargin-left: 33%;\n\t}\n}\n\n/*\nif toc-large-device.open : swing-bar to left\n*/\n#swing-bar {\n\tmargin-left: 0px;\n\ttransition: margin-left 0.9s;\n\t-webkit-transition : margin-left 0.9s;\n\t-moz-transition : margin-left 0.9s;\n    -o-transition: margin-left 0.9s;\n}\n\n#swing-bar.left {\n\tmargin-left: 0px;\n}\n\n@media screen and (min-width: 1366px) {\n\t#swing-bar.left {\n\t\tmargin-left: 33%;\n\t}\n}\n\n/*\nTOC\n*/\n#toc {\n\tposition: absolute;\n\ttop: -1000px;\n\twidth: 100%;\n\theight: 100%;\n\tz-index: 1000;\n\toverflow-y: auto;\n\ttransition: top 0.4s;\n\t-webkit-transition : top 0.4s;\n\t-moz-transition : top 0.4s;\n    -o-transition: top 0.4s;\n\tpadding: 0px;\n\tbackground-color: #fff;\n}\n\n#toc.open {\n\ttop: 0px;\n}\n\n#toc > div {\n\tposition: relative;\n\tbackground-color: #fff;\n}\n\n.open-toc {\n\tfloat: right;\n\tfont-size: 1.4em;\n}\n\n#open-toc-large {\n\tdisplay: inline-block;\n}\n\n@media screen and (min-width: 1366px) {\n\t#open-toc-large {\n\t\tdisplay: none;\n\t}\n}\n\n#close-toc {\n\tposition: absolute;\n\tright: 15px;\n\ttop: 5px;\n\tmin-width: 25px;\n\tpadding: 0;\n\tborder: none;\n\tbackground-color: transparent;\n\tfont-family: 'Helvetica', sans-serif;\n\tfont-size: 1.2em;\n\tcolor: #424242;\n}\n\n#toc-title {\n\tmargin-bottom: 30px;\n\tmargin-top: 20px\n}\n\n#toc-title p {\n\tmargin: 0px;\n}\n/*\ntoc list\n*/\n#toc ul, #toc-large-device ul {\n\tpadding: 0px;\n}\n\n#toc li, #toc-large-device li {\n\tlist-style-type: none;\n\tpadding: .5em .5em;\n}\n\n#toc a.wb-link, #toc-large-device a.wb-link {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: gray;\n}\n\n#toc a.wb-link:hover, #toc-large-device a.wb-link:hover {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: #000;\n}\n\n#toc li.current a.wb-link, #toc-large-device li.current a.wb-link {\n\tcolor: #000;\n\toutline: none;\n\tfont-style: italic;\n}\n\n#toc [data-wb-element-page-number], #toc-large-device [data-wb-element-page-number] {\n\tfloat: right;\n}\n\n/*\nTOP\n*/\n#top {\n\tposition: absolute;\n\ttop: 0px;\n\tbox-sizing: border-box;\n\t-webkit-box-sizing: border-box;\n\t-moz-box-sizing: border-box;\n\tpadding-top: 8px;\n\ttext-align: center;\n\twidth: 100%;\n\theight: 30px;\n}\n\n#top .wb-current-section-title {\n\tfont-size: 0.8em;\n}\n\n/*\nBOTTOM\n*/\n#bottom {\n\tposition: absolute;\n\tbottom: 5px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tz-index: 500;\n}\n\n#bottom-large {\n\tposition: absolute;\n\tbottom: -9999px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tz-index: 500;\n}\n\n@media screen and (min-width: 768px) {\n\t\t\n\t#bottom {\n\t\tbottom: -9999px\n\t}\n\t\n\t#bottom-large {\n\t\tbottom: 5px;\n\t}\n}\n\n#bottom button, #bottom a, #bottom span {\n\tdisplay: inline-block;\n\tborder: none;\n\tbackground-color: transparent;\n\tmargin-right: 10px;\n\tmargin-left: 10px;\n\tmin-width: 25px;\n\theight: 100%;\n\tpadding: 0;\n\tfont-size: 1.2em;\n}\n\n#bottom button.open-toc {\n\tfont-size: 1.5em;\n}\n\n#bottom a#home {\n\tfloat: left;\n\ttext-decoration: none;\n\tmargin-top: 6px;\n\tfont-size: 0.9em;\n\tfont-family: 'Roboto', sans-serif;\n}\n\n#bottom span {\n\tmin-width: 42px;\n\tmargin: 0px;\n\tmargin-top: 6px;\n\tfont-size: 1em;\n}\n\n/*\nTEXT\n*/\n[data-wb-text] {\n\tfont-size: 14px;\n\tline-height: 1.5em;\n\ttext-align: justify;\n\ttext-justify: inter-word;\n}\n\n@media screen and (min-width: 768px) {\n    [data-wb-text] {\n        font-size: 16px;\n        line-height: 1.5em;\n    }\n}\n\n[data-wb-text] p {\n\tmargin-bottom: 0px;\n\tmargin-top: 1.5em;\n}\n\n[data-wb-text] a.wb-link {\n\tborder-bottom: 1px dotted black;\n}\n\n/*\nINSIDE TEXT\n*/\n/*\nTITLES\n*/\n.section-title, .note-title, .table-title, .wb-toc-title {\n\tfont-size: 1.25em;\n\ttext-align: left;\n}\n\n.section-subtitle {\n\tfont-size: 1em;\n}\n\np.section-title {\n\tpadding-top: 3.5em;\n\tmargin-top: 0px;\n}\n\n#titre.wb-section {\n\ttext-align: center;\n\tline-height: 1.8em;\n}\n\n.book-title {\n\tfont-size: 1.25em;\n\tpadding-top: 5%;\n\ttext-transform:uppercase;\n}\n\n.book-subtitle, .book-author {\n\tfont-size: 1.1em;\n}\n\n/*\nTABLE DES MATIÈRES\n*/\n#table ul {\n\tpadding: 0px;\n}\n\n#table li {\n\tlist-style-type: none;\n\tpadding: .5em .5em;\n}\n\n#table a.wb-link {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n}\n\n#table [data-wb-element-page-number] {\n\tfloat: right;\n}\n\n#fin {\n\ttext-align: center;\n\t\n}\n\n#fin p {\n\tpadding-top: 20%;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 56 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function (useSourceMap) {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if (item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function (modules, mediaQuery) {
-		if (typeof modules === "string") modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for (var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if (typeof id === "number") alreadyImportedModules[id] = true;
-		}
-		for (i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if (typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if (mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if (mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
-
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */';
-		});
-
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
-
-	return [content].join('\n');
-}
-
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-	return '/*# ' + data + ' */';
-}
-
-/***/ }),
-/* 57 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-
-var stylesInDom = {};
-
-var	memoize = function (fn) {
-	var memo;
-
-	return function () {
-		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
-		return memo;
-	};
-};
-
-var isOldIE = memoize(function () {
-	// Test for IE <= 9 as proposed by Browserhacks
-	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
-	// Tests for existence of standard globals is to allow style-loader
-	// to operate correctly into non-standard environments
-	// @see https://github.com/webpack-contrib/style-loader/issues/177
-	return window && document && document.all && !window.atob;
-});
-
-var getElement = (function (fn) {
-	var memo = {};
-
-	return function(selector) {
-		if (typeof memo[selector] === "undefined") {
-			var styleTarget = fn.call(this, selector);
-			// Special case to return head of iframe instead of iframe itself
-			if (styleTarget instanceof window.HTMLIFrameElement) {
-				try {
-					// This will throw an exception if access to iframe is blocked
-					// due to cross-origin restrictions
-					styleTarget = styleTarget.contentDocument.head;
-				} catch(e) {
-					styleTarget = null;
-				}
-			}
-			memo[selector] = styleTarget;
-		}
-		return memo[selector]
-	};
-})(function (target) {
-	return document.querySelector(target)
-});
-
-var singleton = null;
-var	singletonCounter = 0;
-var	stylesInsertedAtTop = [];
-
-var	fixUrls = __webpack_require__(58);
-
-module.exports = function(list, options) {
-	if (typeof DEBUG !== "undefined" && DEBUG) {
-		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
-	}
-
-	options = options || {};
-
-	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
-
-	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-	// tags it will allow on a page
-	if (!options.singleton) options.singleton = isOldIE();
-
-	// By default, add <style> tags to the <head> element
-	if (!options.insertInto) options.insertInto = "head";
-
-	// By default, add <style> tags to the bottom of the target
-	if (!options.insertAt) options.insertAt = "bottom";
-
-	var styles = listToStyles(list, options);
-
-	addStylesToDom(styles, options);
-
-	return function update (newList) {
-		var mayRemove = [];
-
-		for (var i = 0; i < styles.length; i++) {
-			var item = styles[i];
-			var domStyle = stylesInDom[item.id];
-
-			domStyle.refs--;
-			mayRemove.push(domStyle);
-		}
-
-		if(newList) {
-			var newStyles = listToStyles(newList, options);
-			addStylesToDom(newStyles, options);
-		}
-
-		for (var i = 0; i < mayRemove.length; i++) {
-			var domStyle = mayRemove[i];
-
-			if(domStyle.refs === 0) {
-				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
-
-				delete stylesInDom[domStyle.id];
-			}
-		}
-	};
-};
-
-function addStylesToDom (styles, options) {
-	for (var i = 0; i < styles.length; i++) {
-		var item = styles[i];
-		var domStyle = stylesInDom[item.id];
-
-		if(domStyle) {
-			domStyle.refs++;
-
-			for(var j = 0; j < domStyle.parts.length; j++) {
-				domStyle.parts[j](item.parts[j]);
-			}
-
-			for(; j < item.parts.length; j++) {
-				domStyle.parts.push(addStyle(item.parts[j], options));
-			}
-		} else {
-			var parts = [];
-
-			for(var j = 0; j < item.parts.length; j++) {
-				parts.push(addStyle(item.parts[j], options));
-			}
-
-			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
-		}
-	}
-}
-
-function listToStyles (list, options) {
-	var styles = [];
-	var newStyles = {};
-
-	for (var i = 0; i < list.length; i++) {
-		var item = list[i];
-		var id = options.base ? item[0] + options.base : item[0];
-		var css = item[1];
-		var media = item[2];
-		var sourceMap = item[3];
-		var part = {css: css, media: media, sourceMap: sourceMap};
-
-		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
-		else newStyles[id].parts.push(part);
-	}
-
-	return styles;
-}
-
-function insertStyleElement (options, style) {
-	var target = getElement(options.insertInto)
-
-	if (!target) {
-		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
-	}
-
-	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
-
-	if (options.insertAt === "top") {
-		if (!lastStyleElementInsertedAtTop) {
-			target.insertBefore(style, target.firstChild);
-		} else if (lastStyleElementInsertedAtTop.nextSibling) {
-			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
-		} else {
-			target.appendChild(style);
-		}
-		stylesInsertedAtTop.push(style);
-	} else if (options.insertAt === "bottom") {
-		target.appendChild(style);
-	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
-		var nextSibling = getElement(options.insertInto + " " + options.insertAt.before);
-		target.insertBefore(style, nextSibling);
-	} else {
-		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
-	}
-}
-
-function removeStyleElement (style) {
-	if (style.parentNode === null) return false;
-	style.parentNode.removeChild(style);
-
-	var idx = stylesInsertedAtTop.indexOf(style);
-	if(idx >= 0) {
-		stylesInsertedAtTop.splice(idx, 1);
-	}
-}
-
-function createStyleElement (options) {
-	var style = document.createElement("style");
-
-	options.attrs.type = "text/css";
-
-	addAttrs(style, options.attrs);
-	insertStyleElement(options, style);
-
-	return style;
-}
-
-function createLinkElement (options) {
-	var link = document.createElement("link");
-
-	options.attrs.type = "text/css";
-	options.attrs.rel = "stylesheet";
-
-	addAttrs(link, options.attrs);
-	insertStyleElement(options, link);
-
-	return link;
-}
-
-function addAttrs (el, attrs) {
-	Object.keys(attrs).forEach(function (key) {
-		el.setAttribute(key, attrs[key]);
-	});
-}
-
-function addStyle (obj, options) {
-	var style, update, remove, result;
-
-	// If a transform function was defined, run it on the css
-	if (options.transform && obj.css) {
-	    result = options.transform(obj.css);
-
-	    if (result) {
-	    	// If transform returns a value, use that instead of the original css.
-	    	// This allows running runtime transformations on the css.
-	    	obj.css = result;
-	    } else {
-	    	// If the transform function returns a falsy value, don't add this css.
-	    	// This allows conditional loading of css
-	    	return function() {
-	    		// noop
-	    	};
-	    }
-	}
-
-	if (options.singleton) {
-		var styleIndex = singletonCounter++;
-
-		style = singleton || (singleton = createStyleElement(options));
-
-		update = applyToSingletonTag.bind(null, style, styleIndex, false);
-		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
-
-	} else if (
-		obj.sourceMap &&
-		typeof URL === "function" &&
-		typeof URL.createObjectURL === "function" &&
-		typeof URL.revokeObjectURL === "function" &&
-		typeof Blob === "function" &&
-		typeof btoa === "function"
-	) {
-		style = createLinkElement(options);
-		update = updateLink.bind(null, style, options);
-		remove = function () {
-			removeStyleElement(style);
-
-			if(style.href) URL.revokeObjectURL(style.href);
-		};
-	} else {
-		style = createStyleElement(options);
-		update = applyToTag.bind(null, style);
-		remove = function () {
-			removeStyleElement(style);
-		};
-	}
-
-	update(obj);
-
-	return function updateStyle (newObj) {
-		if (newObj) {
-			if (
-				newObj.css === obj.css &&
-				newObj.media === obj.media &&
-				newObj.sourceMap === obj.sourceMap
-			) {
-				return;
-			}
-
-			update(obj = newObj);
-		} else {
-			remove();
-		}
-	};
-}
-
-var replaceText = (function () {
-	var textStore = [];
-
-	return function (index, replacement) {
-		textStore[index] = replacement;
-
-		return textStore.filter(Boolean).join('\n');
-	};
-})();
-
-function applyToSingletonTag (style, index, remove, obj) {
-	var css = remove ? "" : obj.css;
-
-	if (style.styleSheet) {
-		style.styleSheet.cssText = replaceText(index, css);
-	} else {
-		var cssNode = document.createTextNode(css);
-		var childNodes = style.childNodes;
-
-		if (childNodes[index]) style.removeChild(childNodes[index]);
-
-		if (childNodes.length) {
-			style.insertBefore(cssNode, childNodes[index]);
-		} else {
-			style.appendChild(cssNode);
-		}
-	}
-}
-
-function applyToTag (style, obj) {
-	var css = obj.css;
-	var media = obj.media;
-
-	if(media) {
-		style.setAttribute("media", media)
-	}
-
-	if(style.styleSheet) {
-		style.styleSheet.cssText = css;
-	} else {
-		while(style.firstChild) {
-			style.removeChild(style.firstChild);
-		}
-
-		style.appendChild(document.createTextNode(css));
-	}
-}
-
-function updateLink (link, options, obj) {
-	var css = obj.css;
-	var sourceMap = obj.sourceMap;
-
-	/*
-		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
-		and there is no publicPath defined then lets turn convertToAbsoluteUrls
-		on by default.  Otherwise default to the convertToAbsoluteUrls option
-		directly
-	*/
-	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
-
-	if (options.convertToAbsoluteUrls || autoFixUrls) {
-		css = fixUrls(css);
-	}
-
-	if (sourceMap) {
-		// http://stackoverflow.com/a/26603875
-		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
-	}
-
-	var blob = new Blob([css], { type: "text/css" });
-
-	var oldSrc = link.href;
-
-	link.href = URL.createObjectURL(blob);
-
-	if(oldSrc) URL.revokeObjectURL(oldSrc);
-}
-
-
-/***/ }),
-/* 58 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * When source maps are enabled, `style-loader` uses a link element with a data-uri to
- * embed the css on the page. This breaks all relative urls because now they are relative to a
- * bundle instead of the current page.
- *
- * One solution is to only use full urls, but that may be impossible.
- *
- * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
- *
- * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
- *
- */
-
-module.exports = function (css) {
-	// get current location
-	var location = typeof window !== "undefined" && window.location;
-
-	if (!location) {
-		throw new Error("fixUrls requires window.location");
-	}
-
-	// blank or null?
-	if (!css || typeof css !== "string") {
-		return css;
-	}
-
-	var baseUrl = location.protocol + "//" + location.host;
-	var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
-
-	// convert each url(...)
-	/*
- This regular expression is just a way to recursively match brackets within
- a string.
- 	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
-    (  = Start a capturing group
-      (?:  = Start a non-capturing group
-          [^)(]  = Match anything that isn't a parentheses
-          |  = OR
-          \(  = Match a start parentheses
-              (?:  = Start another non-capturing groups
-                  [^)(]+  = Match anything that isn't a parentheses
-                  |  = OR
-                  \(  = Match a start parentheses
-                      [^)(]*  = Match anything that isn't a parentheses
-                  \)  = Match a end parentheses
-              )  = End Group
-              *\) = Match anything and then a close parens
-          )  = Close non-capturing group
-          *  = Match anything
-       )  = Close capturing group
-  \)  = Match a close parens
- 	 /gi  = Get all matches, not the first.  Be case insensitive.
-  */
-	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function (fullMatch, origUrl) {
-		// strip quotes (if they exist)
-		var unquotedOrigUrl = origUrl.trim().replace(/^"(.*)"$/, function (o, $1) {
-			return $1;
-		}).replace(/^'(.*)'$/, function (o, $1) {
-			return $1;
-		});
-
-		// already a full url? no change
-		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/)/i.test(unquotedOrigUrl)) {
-			return fullMatch;
-		}
-
-		// convert the url to a full url
-		var newUrl;
-
-		if (unquotedOrigUrl.indexOf("//") === 0) {
-			//TODO: should we add protocol?
-			newUrl = unquotedOrigUrl;
-		} else if (unquotedOrigUrl.indexOf("/") === 0) {
-			// path should be relative to the base url
-			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
-		} else {
-			// path should be relative to current directory
-			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
-		}
-
-		// send back the fixed url(...)
-		return "url(" + JSON.stringify(newUrl) + ")";
-	});
-
-	// send back the fixed css
-	return fixedCss;
-};
 
 /***/ })
 /******/ ]);
