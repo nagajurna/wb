@@ -7,11 +7,20 @@ const home = function(container) {
 	'use strict';
 	
 	let c = container;
+	let lastBooks = [];
 	
 	//Get books from dataStore
 	let books = dataStore.getData('books');
+	//Get last published
+	for(let i=0; i<books.length; i++) {
+		if(i<4) {
+			lastBooks.push(books[i]);
+		} else {
+			break;
+		}
+	}
 	//insert template in container
-	c.innerHTML = homeTemplate({ books:books });
+	c.innerHTML = homeTemplate({ books:lastBooks });
 };
 
 export default home;

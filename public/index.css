@@ -15,7 +15,6 @@ body {
 	margin: 0px;
 	border: none;
 	background-color: #fafafa;
-	font-family: 'Roboto', sans-serif;
 }
 
 body.book {
@@ -66,6 +65,7 @@ NAV-BAR-TOP
 	top: 0px;
 	text-align: center;
 	height: 48px;
+	background-color: #fafafa;
 }
 
 #nav-bar-top.hidden {
@@ -77,14 +77,38 @@ NAV-BAR-TOP
 	line-height: 31px;
 	font-size: 1.4em;
 	letter-spacing: 1.5px;
-	font-family: Merriweather, Roboto, sans-serif;
+	font-family: "Times New Roman", Georgia, sans-serif;
+}
+
+
+#top-links {
+	width:90%;
+	margin: auto;
+	text-align: center;
+	font-size: 0.95em;
+}
+
+#top-links ul {
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+}
+
+#top-links ul li {
+	list-style-type: none;
+	display: inline-block;
+	text-align: center;
+}
+
+#books-link, #last-link, #next-link, #authors-link, #admin-link {
+	line-height: 31px;
+	font-family: "Times New Roman", Georgia, sans-serif;
+	font-variant: small-caps;
+	letter-spacing: 1px;
 }
 
 #admin-link {
-	line-height: 27px;
-	font-size: 1em;
 	display: none;
-	font-family: Merriweather, Roboto, sans-serif;
 }
 
 #admin-link.visible {
@@ -94,9 +118,66 @@ NAV-BAR-TOP
 #top-title {
 	font-family: Georgia, serif;
 	padding: 8px 16px 8px 16px;
-	line-height: 27px;
+	line-height: 31px;
 	max-width: 640px;
 	margin: auto;
+}
+
+/*
+MODAL MENU (SMALL DEVICES)
+*/
+#menu-open {
+	height: 47px;
+	line-height: 31px;
+	font-size: 1.8em;
+	font-family: "Times New Roman", Georgia, sans-serif;
+}
+
+#menu {
+	padding: 0px;
+}
+
+#menu .w3-modal-content {
+	margin: 0px;
+}
+
+#menu #menu-nav-bar {
+	height: 48px;
+}
+
+#menu #menu-close {
+	height: 47px;
+	line-height: 31px;
+	font-size: 1.8em;
+	font-family: "Times New Roman", Georgia, sans-serif;
+}
+
+#menu ul {
+	text-align: center;
+	padding-top: 32px;
+}
+
+#menu-home-link {
+	line-height: 31px;
+	font-size: 1.4em;
+	letter-spacing: 1.5px;
+	font-family: "Times New Roman", Georgia, sans-serif;
+}
+
+#menu ul a {
+	line-height: 31px;
+	font-family: "Times New Roman", Georgia, sans-serif;
+	font-variant: small-caps;
+	letter-spacing: 1.5px;
+	font-size: 1.2em;
+}
+
+#menu-admin-link {
+	display: none;
+}
+
+#menu-admin-link.visible {
+	display: inline-block;
 }
 
 /*

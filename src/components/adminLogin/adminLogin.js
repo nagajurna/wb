@@ -46,6 +46,7 @@ const adminLogin = function(container) {
 				dataStore.setData('currentUser', response.user);
 				if(response.user.admin===true) {
 					utils.addClass('#admin-link', 'visible');
+					utils.addClass('#menu-admin-link', 'visible');
 					location.hash = '#/admin/';
 				} else {
 					utils.setHTML('#form-error', "Vous n'avez pas le droit d'accéder à l'espace administration.");

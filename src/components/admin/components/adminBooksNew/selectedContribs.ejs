@@ -1,7 +1,7 @@
 <% for(var i=0; i<selectedContribs.length; i++) {%>
 <li class="w3-display-container">
 	<p data-key="<%= selectedContribs[i].id %>" id="<%= i %>" >
-		<span><%= selectedContribs[i].name %> </span>
+		<span><%- selectedContribs[i].name %> </span>
 		<span>(<%= selectedContribs[i].role %>)</span>
 		<button type="button" id="contributeur" class="delete-btn w3-text-gray w3-hover-none w3-hover-text-black w3-button w3-display-right">Supprimer</button>
 	</p>

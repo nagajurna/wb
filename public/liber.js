@@ -131,25 +131,37 @@ var utils = {
 		'use strict';
 		//index (nav-bar-top) links
 
-		var root = document.querySelector("#nav-bar-top");
+		var root = document.querySelector("#navigation");
 		var links = root.querySelectorAll("a");
 		for (var i = 0; i < links.length; i++) {
-			if (location.href === links[i].href) {
-				utils.addClass("#" + links[i].id, "w3-text-black");
-				utils.removeClass("#" + links[i].id, "w3-text-gray");
-			} else {
-				utils.addClass("#" + links[i].id, "w3-text-gray");
-				utils.removeClass("#" + links[i].id, "w3-text-black");
-			}
 
-			//admin-link
-			if (location.hash.match(/#\/admin/)) {
-				if (links[i].href.match(/#\/admin/)) {
+			if (links[i].id === 'home-link' || links[i].id === 'menu-home-link') {
+				if (location.href.match(/#\/books\/[^\/]+\/read$/)) {
+					utils.addClass("#" + links[i].id, "w3-text-gray");
+					utils.removeClass("#" + links[i].id, "w3-text-black");
+				} else {
+					utils.addClass("#" + links[i].id, "w3-text-black");
+					utils.removeClass("#" + links[i].id, "w3-text-gray");
+				}
+			} else {
+
+				if (location.href === links[i].href) {
 					utils.addClass("#" + links[i].id, "w3-text-black");
 					utils.removeClass("#" + links[i].id, "w3-text-gray");
 				} else {
 					utils.addClass("#" + links[i].id, "w3-text-gray");
 					utils.removeClass("#" + links[i].id, "w3-text-black");
+				}
+
+				//admin-link
+				if (location.hash.match(/#\/admin/)) {
+					if (links[i].href.match(/#\/admin/)) {
+						utils.addClass("#" + links[i].id, "w3-text-black");
+						utils.removeClass("#" + links[i].id, "w3-text-gray");
+					} else {
+						utils.addClass("#" + links[i].id, "w3-text-gray");
+						utils.removeClass("#" + links[i].id, "w3-text-black");
+					}
 				}
 			}
 		}
@@ -875,19 +887,48 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var index = function () {
 	'use strict';
 
-	window.addEventListener('DOMContentLoaded', function (e) {
-
+	var init = function init() {
 		//if book/id/read 
 		if (location.hash.match(/#\/books\/[^\/]+\/read$/)) {
 			//if small device
 			if (window.innerWidth < 768) {
 				_utils2.default.addClass("#nav-bar-top", "hidden");
+				_utils2.default.addClass('body', 'book'); //body background
 			}
 			_utils2.default.addClass('body', 'book'); //body background
-			_utils2.default.addClass('#nav-bar-top', 'w3-border-bottom'); //nav-bar-top border
+			_utils2.default.addClass("#top-links", "hidden");
+			_utils2.default.addClass("#menu-open", "hidden");
+		} else {
+			if (window.innerWidth <= 600) {
+				_utils2.default.addClass("#top-links", "hidden");
+				_utils2.default.removeClass("#menu-open", "hidden");
+			} else {
+				_utils2.default.removeClass("#top-links", "hidden");
+				_utils2.default.addClass("#menu-open", "hidden");
+			}
 		}
 
-		//GET DATA
+		//modal menu (small devices
+		var root = document.querySelector("#navigation");
+		//open modal
+		root.querySelector("#menu-open").addEventListener("click", function () {
+			root.querySelector('#menu').style.display = 'block';
+		}, false);
+		//close modal
+		root.querySelector("#menu-close").addEventListener("click", function () {
+			root.querySelector('#menu').style.display = 'none';
+		}, false);
+		//menu links : close modal on click
+		var links = root.querySelectorAll("#menu a");
+		for (var i = 0; i < links.length; i++) {
+			links[i].addEventListener("click", function () {
+				root.querySelector('#menu').style.display = 'none';
+			}, false);
+		}
+	};
+
+	//function getData
+	var getData = function getData() {
 		//check if user && user===admin
 		var options = { method: 'GET', url: '/users/currentuser' };
 		_utils2.default.ajax(options).then(function (response) {
@@ -897,8 +938,10 @@ var index = function () {
 			//check role : if admin => admin-link
 			if (currentUser.admin && currentUser.admin === true) {
 				_utils2.default.addClass('#admin-link', 'visible');
+				_utils2.default.addClass('#menu-admin-link', 'visible');
 			} else {
 				_utils2.default.removeClass('#admin-link', 'visible');
+				_utils2.default.removeClass('#menu-admin-link', 'visible');
 			}
 
 			//get authors
@@ -920,34 +963,55 @@ var index = function () {
 		}).then(function (resolve) {
 			//call router
 			(0, _router2.default)();
-			//redirect to /books/ or location.hash
-			location.hash = location.hash === "#/" ? '#/books/' : location.hash;
 		}).catch(function (error) {
 			console.log(error);
 		});
+	};
+
+	window.addEventListener('DOMContentLoaded', function (e) {
+
+		init();
+		getData();
 	}, false);
 
 	window.addEventListener('hashchange', function () {
-		if (location.hash.match(/#\/books\/.+[^\/]$/)) {
+		if (location.hash.match(/#\/books\/[^\/]+\/read$/)) {
 			if (window.innerWidth < 768) {
 				_utils2.default.addClass("#nav-bar-top", "hidden");
 			}
 			_utils2.default.addClass('body', 'book');
-			_utils2.default.addClass('#nav-bar-top', 'w3-border-bottom');
+			_utils2.default.addClass("#top-links", "hidden");
+			_utils2.default.addClass("#menu-open", "hidden");
 		} else {
 			_utils2.default.removeClass("#nav-bar-top", "hidden");
-
 			_utils2.default.removeClass('body', 'book');
-			_utils2.default.removeClass('#nav-bar-top', 'w3-border-bottom');
 			_utils2.default.setHTML("#top-title", "");
+			if (window.innerWidth <= 600) {
+				_utils2.default.addClass("#top-links", "hidden");
+				_utils2.default.removeClass("#menu-open", "hidden");
+			} else {
+				_utils2.default.removeClass("#top-links", "hidden");
+				_utils2.default.addClass("#menu-open", "hidden");
+			}
 		}
 	}, false);
 
 	window.addEventListener('resize', function () {
-		if (location.hash.match(/#\/books\/.+[^\/]$/) && window.innerWidth < 768) {
-			_utils2.default.addClass("#nav-bar-top", "hidden");
+		if (location.hash.match(/#\/books\/[^\/]+\/read$/)) {
+			if (window.innerWidth < 768) {
+				_utils2.default.addClass("#nav-bar-top", "hidden");
+			} else {
+				_utils2.default.removeClass("#nav-bar-top", "hidden");
+			}
 		} else {
 			_utils2.default.removeClass("#nav-bar-top", "hidden");
+			if (window.innerWidth <= 600) {
+				_utils2.default.addClass("#top-links", "hidden");
+				_utils2.default.removeClass("#menu-open", "hidden");
+			} else {
+				_utils2.default.removeClass("#top-links", "hidden");
+				_utils2.default.addClass("#menu-open", "hidden");
+			}
 		}
 	}, false);
 }();
@@ -975,15 +1039,27 @@ var _home = __webpack_require__(6);
 
 var _home2 = _interopRequireDefault(_home);
 
-var _book = __webpack_require__(11);
+var _booksNext = __webpack_require__(11);
 
-var _book2 = _interopRequireDefault(_book);
+var _booksNext2 = _interopRequireDefault(_booksNext);
 
-var _adminLogin = __webpack_require__(19);
+var _books = __webpack_require__(15);
+
+var _books2 = _interopRequireDefault(_books);
+
+var _bookRead = __webpack_require__(19);
+
+var _bookRead2 = _interopRequireDefault(_bookRead);
+
+var _authors = __webpack_require__(27);
+
+var _authors2 = _interopRequireDefault(_authors);
+
+var _adminLogin = __webpack_require__(31);
 
 var _adminLogin2 = _interopRequireDefault(_adminLogin);
 
-var _adminRouter = __webpack_require__(21);
+var _adminRouter = __webpack_require__(33);
 
 var _adminRouter2 = _interopRequireDefault(_adminRouter);
 
@@ -991,13 +1067,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 //admin (template - no controller)
 
-//book (controller)
-var adminTemplate = __webpack_require__(60);
-//adminRouter (sub-router)
-
 //adminLogin (controller)
 
+//books(controller)
+
 //home(controller)
+var adminTemplate = __webpack_require__(72);
+//adminRouter (sub-router)
+
+//book-read (controller)
+
+//book-read (controller)
+
+//books-next(controller)
 
 
 //routes.js
@@ -1009,12 +1091,21 @@ var router = function router() {
 		var container = document.querySelector('#container');
 
 		//ROUTES
-		if (newhash === '#/books/') {
+		if (newhash === '#/') {
 			//HOME
 			(0, _home2.default)(container);
+		} else if (newhash === '#/tobepublished/') {
+			//TO BE PUBLISHED
+			(0, _booksNext2.default)(container);
+		} else if (newhash === '#/books/') {
+			//BOOKS
+			(0, _books2.default)(container);
 		} else if (newhash.match(/#\/books\/[^\/]+\/read$/)) {
 			//BOOK READ
-			(0, _book2.default)(container);
+			(0, _bookRead2.default)(container);
+		} else if (newhash === '#/authors/') {
+			//AUTHORS
+			(0, _authors2.default)(container);
 		} else if (newhash.match(/#\/admin/) && newhash !== '#/admin/login/') {
 			//ADMIN : if admin not connected, redirect to /admin/login
 			_utils2.default.checkRole().then(function (response) {
@@ -1045,7 +1136,7 @@ var router = function router() {
 			});
 		} else {
 			//FALLBACK
-			location.hash = '#/books/';
+			location.hash = '#/';
 		}
 	};
 
@@ -1108,11 +1199,20 @@ var home = function home(container) {
 	'use strict';
 
 	var c = container;
+	var lastBooks = [];
 
 	//Get books from dataStore
 	var books = _dataStore2.default.getData('books');
+	//Get last published
+	for (var i = 0; i < books.length; i++) {
+		if (i < 4) {
+			lastBooks.push(books[i]);
+		} else {
+			break;
+		}
+	}
 	//insert template in container
-	c.innerHTML = homeTemplate({ books: books });
+	c.innerHTML = homeTemplate({ books: lastBooks });
 };
 
 exports.default = home;
@@ -1157,7 +1257,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "#home .w3-col {\n\twidth: 100%;\n\theight: 370px;\n\t\n}\n\n@media only screen and (min-width: 600px) {\n\t#home .w3-col {\n\t\twidth: 284px;\n\t}\n}\n\n#home #paper {\n\tbackground-image: url(\"/images/cover_background_small.jpg\");\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#home .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#home .publisher {\n\tletter-spacing: 1.5px;\n\tfont-family: Merriweather, Georgia, sans-serif;\n}\n\n\n", ""]);
+exports.push([module.i, "#home #booksList {\n\tmax-width: 568px;\n\tmargin: auto;\n}\n\n@media only screen and (min-width: 853px) {\n\t#home #booksList {\n\t\tmax-width: 852px;\n\t}\n}\n\n@media only screen and (min-width: 1137px) {\n\t#home #booksList {\n\t\tmax-width: 1136px;\n\t}\n}\n\n#home .w3-col {\n\twidth: 100%;\n\theight: 370px;\n\t\n}\n\n@media only screen and (min-width: 600px) {\n\t#home .w3-col {\n\t\twidth: 284px;\n\t}\n}\n\n#home #paper {\n\tbackground-image: url(\"/images/cover_background_small.jpg\");\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#home .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#home .publisher {\n\tletter-spacing: 1.5px;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n}\n\n\n", ""]);
 
 // exports
 
@@ -1267,7 +1367,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="home" class="w3-content" style="max-width: 1200px">\n	<div id="booksList" class="w3-container w3-padding-48 w3-animate-opacity">\n		<div class=\'w3-row\' style="text-align: center">\n			<% for(var i=0; i<books.length; i++) {%>\n				<% if(books[i].visible) { %>\n				<div class="w3-col">\n					<div id="paper">\n					<div class="book w3-card-4 w3-display-container" style="<%=books[i].styles.cover %>">\n						<p class="author" style="<%=books[i].styles.author %>"><%= books[i].authorDisplay %></p>\n						<p class="title" style="<%=books[i].styles.title %>">\n							<a href=\'/#<%= books[i].path %>/read\' class="w3-hover-none w3-hover-text-white"><%- books[i].title %></a>\n						</p>\n						<% if(books[i].subtitle1) {%>\n						<p class="subtitle1" style="<%=books[i].styles.subtitle1 %>">\n							<%- books[i].subtitle1 %></a>\n						</p>\n						<% } %>\n						<% if(books[i].subtitle2) {%>\n						<p class="subtitle1" style="<%=books[i].styles.subtitle2 %>">\n							<%- books[i].subtitle2 %></a>\n						</p>\n						<% } %>\n						<p class="publisher w3-display-bottommiddle" >liber</p>\n				   </div>\n				   </div>\n				</div>\n				<div class="w3-rest"></div>\n			   <% } %>\n			<% } %>\n		</div>\n	</div>\n</div>\n',
+        input: '<div id="home" class="w3-content" style="max-width: 1200px">\n	<div id="booksList" class="w3-padding-48 w3-animate-opacity">\n		<div class=\'w3-row\' style="text-align: center">\n			<% for(var i=0; i<books.length; i++) {%>\n				<% if(books[i].visible) { %>\n				<div class="w3-col">\n					<div id="paper">\n					<div class="book w3-card-4 w3-display-container" style="<%=books[i].styles.cover %>">\n						<p class="author" style="<%=books[i].styles.author %>"><%= books[i].authorDisplay %></p>\n						<p class="title" style="<%=books[i].styles.title %>">\n							<a href=\'/#<%= books[i].path %>/read\' class="w3-hover-none w3-hover-text-white"><%- books[i].title %></a>\n						</p>\n						<% if(books[i].subtitle1) {%>\n						<p class="subtitle1" style="<%=books[i].styles.subtitle1 %>">\n							<%- books[i].subtitle1 %></a>\n						</p>\n						<% } %>\n						<% if(books[i].subtitle2) {%>\n						<p class="subtitle1" style="<%=books[i].styles.subtitle2 %>">\n							<%- books[i].subtitle2 %></a>\n						</p>\n						<% } %>\n						<p class="publisher w3-display-bottommiddle" >liber</p>\n				   </div>\n				   </div>\n				</div>\n				\n			   <% } %>\n			<% } %>\n		</div>\n	</div>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -1284,7 +1384,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
         var buf = [];
         with (locals || {}) {
             (function() {
-                buf.push('<div id="home" class="w3-content" style="max-width: 1200px">\n	<div id="booksList" class="w3-container w3-padding-48 w3-animate-opacity">\n		<div class=\'w3-row\' style="text-align: center">\n			');
+                buf.push('<div id="home" class="w3-content" style="max-width: 1200px">\n	<div id="booksList" class="w3-padding-48 w3-animate-opacity">\n		<div class=\'w3-row\' style="text-align: center">\n			');
                 __stack.lineno = 4;
                 for (var i = 0; i < books.length; i++) {
                     buf.push("\n				");
@@ -1302,7 +1402,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                             buf.push('\n						<p class="subtitle1" style="', escape((__stack.lineno = 19, books[i].styles.subtitle2)), '">\n							', (__stack.lineno = 20, books[i].subtitle2), "</a>\n						</p>\n						");
                             __stack.lineno = 22;
                         }
-                        buf.push('\n						<p class="publisher w3-display-bottommiddle" >liber</p>\n				   </div>\n				   </div>\n				</div>\n				<div class="w3-rest"></div>\n			   ');
+                        buf.push('\n						<p class="publisher w3-display-bottommiddle" >liber</p>\n				   </div>\n				   </div>\n				</div>\n				\n			   ');
                         __stack.lineno = 28;
                     }
                     buf.push("\n			");
@@ -1328,6 +1428,300 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
+var _dataStore = __webpack_require__(1);
+
+var _dataStore2 = _interopRequireDefault(_dataStore);
+
+var _utils = __webpack_require__(0);
+
+var _utils2 = _interopRequireDefault(_utils);
+
+var _booksNext = __webpack_require__(12);
+
+var _booksNext2 = _interopRequireDefault(_booksNext);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var booksNextTemplate = __webpack_require__(14);
+//home.js
+var booksNext = function booksNext(container) {
+	'use strict';
+
+	var c = container;
+
+	//Get books from dataStore
+	var books = _dataStore2.default.getData('books');
+	//insert template in container
+	var sortedBooks = books.reverse();
+	c.innerHTML = booksNextTemplate({ books: sortedBooks });
+	books.reverse();
+};
+
+exports.default = booksNext;
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(13);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {"hmr":true}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(3)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!./books-next.css", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!./books-next.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "#books-next-container #booksList {\n\tmax-width: 568px;\n\tmargin: auto;\n}\n\n@media only screen and (min-width: 853px) {\n\t#books-next-container #booksList {\n\t\tmax-width: 852px;\n\t}\n}\n\n@media only screen and (min-width: 1137px) {\n\t#books-next-container #booksList {\n\t\tmax-width: 1136px;\n\t}\n}\n\n#books-next-container .w3-col {\n\twidth: 100%;\n\theight: 370px;\n}\n\n@media only screen and (min-width: 600px) {\n\t#books-next-container .w3-col {\n\t\twidth: 284px;\n\t}\n}\n\n#books-next-container #paper {\n\tbackground-image: url(\"/images/cover_background_small.jpg\");\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#books-next-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#books-next-container .publisher {\n\tletter-spacing: 1.5px;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n}\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+module.exports = function anonymous(locals, filters, escape, rethrow) {
+    escape = escape || function(html) {
+        return String(html).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+    };
+    var __stack = {
+        lineno: 1,
+        input: '<div id="books-next-container" class="w3-content" style="max-width: 1200px">\n	<div id="booksList" class="w3-padding-48 w3-animate-opacity">\n		<div class=\'w3-row\' style="text-align: center">\n			<% for(var i=0; i<books.length; i++) {%>\n				<% if(!books[i].visible) { %>\n				<div class="w3-col">\n					<div id="paper">\n					<div class="book w3-card-4 w3-display-container" style="<%=books[i].styles.cover %>">\n						<p class="author" style="<%=books[i].styles.author %>"><%= books[i].authorDisplay %></p>\n						<p class="title" style="<%=books[i].styles.title %>">\n							<span><%- books[i].title %></span>\n						</p>\n						<% if(books[i].subtitle1) {%>\n						<p class="subtitle1" style="<%=books[i].styles.subtitle1 %>">\n							<%- books[i].subtitle1 %></a>\n						</p>\n						<% } %>\n						<% if(books[i].subtitle2) {%>\n						<p class="subtitle1" style="<%=books[i].styles.subtitle2 %>">\n							<%- books[i].subtitle2 %></a>\n						</p>\n						<% } %>\n						<p class="publisher w3-display-bottommiddle" >liber</p>\n				   </div>\n				   </div>\n				</div>\n			   <% } %>\n			<% } %>\n		</div>\n	</div>\n</div>\n',
+        filename: "."
+    };
+    function rethrow(err, str, filename, lineno) {
+        var lines = str.split("\n"), start = Math.max(lineno - 3, 0), end = Math.min(lines.length, lineno + 3);
+        var context = lines.slice(start, end).map(function(line, i) {
+            var curr = i + start + 1;
+            return (curr == lineno ? " >> " : "    ") + curr + "| " + line;
+        }).join("\n");
+        err.path = filename;
+        err.message = (filename || "ejs") + ":" + lineno + "\n" + context + "\n\n" + err.message;
+        throw err;
+    }
+    try {
+        var buf = [];
+        with (locals || {}) {
+            (function() {
+                buf.push('<div id="books-next-container" class="w3-content" style="max-width: 1200px">\n	<div id="booksList" class="w3-padding-48 w3-animate-opacity">\n		<div class=\'w3-row\' style="text-align: center">\n			');
+                __stack.lineno = 4;
+                for (var i = 0; i < books.length; i++) {
+                    buf.push("\n				");
+                    __stack.lineno = 5;
+                    if (!books[i].visible) {
+                        buf.push('\n				<div class="w3-col">\n					<div id="paper">\n					<div class="book w3-card-4 w3-display-container" style="', escape((__stack.lineno = 8, books[i].styles.cover)), '">\n						<p class="author" style="', escape((__stack.lineno = 9, books[i].styles.author)), '">', escape((__stack.lineno = 9, books[i].authorDisplay)), '</p>\n						<p class="title" style="', escape((__stack.lineno = 10, books[i].styles.title)), '">\n							<span>', (__stack.lineno = 11, books[i].title), "</span>\n						</p>\n						");
+                        __stack.lineno = 13;
+                        if (books[i].subtitle1) {
+                            buf.push('\n						<p class="subtitle1" style="', escape((__stack.lineno = 14, books[i].styles.subtitle1)), '">\n							', (__stack.lineno = 15, books[i].subtitle1), "</a>\n						</p>\n						");
+                            __stack.lineno = 17;
+                        }
+                        buf.push("\n						");
+                        __stack.lineno = 18;
+                        if (books[i].subtitle2) {
+                            buf.push('\n						<p class="subtitle1" style="', escape((__stack.lineno = 19, books[i].styles.subtitle2)), '">\n							', (__stack.lineno = 20, books[i].subtitle2), "</a>\n						</p>\n						");
+                            __stack.lineno = 22;
+                        }
+                        buf.push('\n						<p class="publisher w3-display-bottommiddle" >liber</p>\n				   </div>\n				   </div>\n				</div>\n			   ');
+                        __stack.lineno = 27;
+                    }
+                    buf.push("\n			");
+                    __stack.lineno = 28;
+                }
+                buf.push("\n		</div>\n	</div>\n</div>\n");
+            })();
+        }
+        return buf.join("");
+    } catch (err) {
+        rethrow(err, __stack.input, __stack.filename, __stack.lineno);
+    }
+}
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _dataStore = __webpack_require__(1);
+
+var _dataStore2 = _interopRequireDefault(_dataStore);
+
+var _utils = __webpack_require__(0);
+
+var _utils2 = _interopRequireDefault(_utils);
+
+var _books = __webpack_require__(16);
+
+var _books2 = _interopRequireDefault(_books);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var booksTemplate = __webpack_require__(18);
+//home.js
+var books = function books(container) {
+	'use strict';
+
+	var c = container;
+
+	//Get books from dataStore
+	var books = _dataStore2.default.getData('books');
+	//insert template in container
+	var sortedBooks = books.reverse();
+	c.innerHTML = booksTemplate({ books: sortedBooks });
+	books.reverse();
+};
+
+exports.default = books;
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(17);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {"hmr":true}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(3)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!./books.css", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!./books.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "#books-container #booksList {\n\tmax-width: 568px;\n\tmargin: auto;\n}\n\n@media only screen and (min-width: 853px) {\n\t#books-container #booksList {\n\t\tmax-width: 852px;\n\t}\n}\n\n@media only screen and (min-width: 1137px) {\n\t#books-container #booksList {\n\t\tmax-width: 1136px;\n\t}\n}\n\n#books-container .w3-col {\n\twidth: 100%;\n\theight: 370px;\n}\n\n@media only screen and (min-width: 600px) {\n\t#books-container .w3-col {\n\t\twidth: 284px;\n\t}\n}\n\n#books-container #paper {\n\tbackground-image: url(\"/images/cover_background_small.jpg\");\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#books-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#books-container .publisher {\n\tletter-spacing: 1.5px;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n}\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports) {
+
+module.exports = function anonymous(locals, filters, escape, rethrow) {
+    escape = escape || function(html) {
+        return String(html).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+    };
+    var __stack = {
+        lineno: 1,
+        input: '<div id="books-container" class="w3-content" style="max-width: 1200px">\n	<div id="booksList" class="w3-padding-48 w3-animate-opacity">\n		<div class=\'w3-row\' style="text-align: center">\n			<% for(var i=0; i<books.length; i++) {%>\n				<% if(books[i].visible) { %>\n				<div class="w3-col">\n					<div id="paper">\n					<div class="book w3-card-4 w3-display-container" style="<%=books[i].styles.cover %>">\n						<p class="author" style="<%=books[i].styles.author %>"><%= books[i].authorDisplay %></p>\n						<p class="title" style="<%=books[i].styles.title %>">\n							<a href=\'/#<%= books[i].path %>/read\' class="w3-hover-none w3-hover-text-white"><%- books[i].title %></a>\n						</p>\n						<% if(books[i].subtitle1) {%>\n						<p class="subtitle1" style="<%=books[i].styles.subtitle1 %>">\n							<%- books[i].subtitle1 %></a>\n						</p>\n						<% } %>\n						<% if(books[i].subtitle2) {%>\n						<p class="subtitle1" style="<%=books[i].styles.subtitle2 %>">\n							<%- books[i].subtitle2 %></a>\n						</p>\n						<% } %>\n						<p class="publisher w3-display-bottommiddle" >liber</p>\n				   </div>\n				   </div>\n				</div>\n			   <% } %>\n			<% } %>\n		</div>\n	</div>\n</div>\n',
+        filename: "."
+    };
+    function rethrow(err, str, filename, lineno) {
+        var lines = str.split("\n"), start = Math.max(lineno - 3, 0), end = Math.min(lines.length, lineno + 3);
+        var context = lines.slice(start, end).map(function(line, i) {
+            var curr = i + start + 1;
+            return (curr == lineno ? " >> " : "    ") + curr + "| " + line;
+        }).join("\n");
+        err.path = filename;
+        err.message = (filename || "ejs") + ":" + lineno + "\n" + context + "\n\n" + err.message;
+        throw err;
+    }
+    try {
+        var buf = [];
+        with (locals || {}) {
+            (function() {
+                buf.push('<div id="books-container" class="w3-content" style="max-width: 1200px">\n	<div id="booksList" class="w3-padding-48 w3-animate-opacity">\n		<div class=\'w3-row\' style="text-align: center">\n			');
+                __stack.lineno = 4;
+                for (var i = 0; i < books.length; i++) {
+                    buf.push("\n				");
+                    __stack.lineno = 5;
+                    if (books[i].visible) {
+                        buf.push('\n				<div class="w3-col">\n					<div id="paper">\n					<div class="book w3-card-4 w3-display-container" style="', escape((__stack.lineno = 8, books[i].styles.cover)), '">\n						<p class="author" style="', escape((__stack.lineno = 9, books[i].styles.author)), '">', escape((__stack.lineno = 9, books[i].authorDisplay)), '</p>\n						<p class="title" style="', escape((__stack.lineno = 10, books[i].styles.title)), "\">\n							<a href='/#", escape((__stack.lineno = 11, books[i].path)), '/read\' class="w3-hover-none w3-hover-text-white">', (__stack.lineno = 11, books[i].title), "</a>\n						</p>\n						");
+                        __stack.lineno = 13;
+                        if (books[i].subtitle1) {
+                            buf.push('\n						<p class="subtitle1" style="', escape((__stack.lineno = 14, books[i].styles.subtitle1)), '">\n							', (__stack.lineno = 15, books[i].subtitle1), "</a>\n						</p>\n						");
+                            __stack.lineno = 17;
+                        }
+                        buf.push("\n						");
+                        __stack.lineno = 18;
+                        if (books[i].subtitle2) {
+                            buf.push('\n						<p class="subtitle1" style="', escape((__stack.lineno = 19, books[i].styles.subtitle2)), '">\n							', (__stack.lineno = 20, books[i].subtitle2), "</a>\n						</p>\n						");
+                            __stack.lineno = 22;
+                        }
+                        buf.push('\n						<p class="publisher w3-display-bottommiddle" >liber</p>\n				   </div>\n				   </div>\n				</div>\n			   ');
+                        __stack.lineno = 27;
+                    }
+                    buf.push("\n			");
+                    __stack.lineno = 28;
+                }
+                buf.push("\n		</div>\n	</div>\n</div>\n");
+            })();
+        }
+        return buf.join("");
+    } catch (err) {
+        rethrow(err, __stack.input, __stack.filename, __stack.lineno);
+    }
+}
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
 var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
@@ -1336,21 +1730,21 @@ var _dataStore = __webpack_require__(1);
 
 var _dataStore2 = _interopRequireDefault(_dataStore);
 
-var _WebBook = __webpack_require__(12);
+var _WebBook = __webpack_require__(20);
 
 var _WebBook2 = _interopRequireDefault(_WebBook);
 
-var _book = __webpack_require__(15);
+var _bookRead = __webpack_require__(23);
 
-var _book2 = _interopRequireDefault(_book);
+var _bookRead2 = _interopRequireDefault(_bookRead);
 
-var _hammerjs = __webpack_require__(17);
+var _hammerjs = __webpack_require__(25);
 
 var _hammerjs2 = _interopRequireDefault(_hammerjs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var bookTemplate = __webpack_require__(18);
+var bookReadTemplate = __webpack_require__(26);
 //book.js
 var book = function book(container) {
 	'use strict';
@@ -1517,7 +1911,7 @@ var book = function book(container) {
 	//pass metadata to nav-bar-top
 	_utils2.default.bind(document.body, book);
 	//insert template in container
-	c.innerHTML = bookTemplate({ book: book });
+	c.innerHTML = bookReadTemplate({ book: book });
 
 	//BOOK CONTAINER
 	var bookContainer = document.querySelector('#bookContainer');
@@ -1537,7 +1931,7 @@ var book = function book(container) {
 exports.default = book;
 
 /***/ }),
-/* 12 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1549,7 +1943,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _jquery = __webpack_require__(13);
+var _jquery = __webpack_require__(21);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -2115,7 +2509,7 @@ var WebBook = function () {
 exports.default = WebBook;
 
 /***/ }),
-/* 13 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11948,10 +12342,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 	return jQuery;
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22)(module)))
 
 /***/ }),
-/* 14 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11981,13 +12375,13 @@ module.exports = function (module) {
 };
 
 /***/ }),
-/* 15 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(16);
+var content = __webpack_require__(24);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -12001,8 +12395,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js!./book.css", function() {
-			var newContent = require("!!../../../node_modules/css-loader/index.js!./book.css");
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!./book-read.css", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!./book-read.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -12012,7 +12406,7 @@ if(false) {
 }
 
 /***/ }),
-/* 16 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -12020,13 +12414,13 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "/*\nBOOK NAVBAR BOTTOM\n*/\n#book-nav-bar-bottom {\n\tdisplay: none;\n}\n\n@media screen and (min-width: 768px) {\n\t#book-nav-bar-bottom {\n\t\tdisplay: block;\n\t}\n}\n\n#book-nav-bar-bottom-controls {\n\tdisplay: block;\n\tposition: relative;\n\twidth: 640px;\n\tmargin: auto;\n\theight: 44px;\n\ttext-align: center;\n}\n\n#nav-bar-bottom-controls button {\n\toutline: none;\n\theight: 100%;\n}\n\n#book-nav-bar-bottom-controls button#open-toc-large.w3-btn span {\n\tdisplay: inline-block;\n\tpadding-bottom: 10px;\n}\n\n/*\nBOOKCONTAINER\n*/\n#bookContainer {\n\tposition: relative;\n\tfont-family: 'Georgia', serif;\n\topacity: 0.0;\n\tmargin: auto;\n\ttransition: opacity 0.8s;\n\t-webkit-transition: opacity 0.8s;\n\t-moz-transition: opacity 0.8s;\n\t-o-transition: opacity 0.8s;\n}\n\n#bookContainer.show {\n\topacity: 1.0;\n}\n\n/*\nTEXTCONTAINER\n*/\n[data-wb-text-container] {\n\tmargin: auto;\n\tbackground-color: #fff;\n\ttop: 0px;\n}\n\n@media screen and (min-width: 768px) {\n\t[data-wb-text-container] {\n\t\ttop: 30px;\n\t}\n}\n\n/*\nTOC-LARGE-DEVICE\n*/\n\n#toc-large-device {\n  position: absolute;\n  left: -33%;\n  width: 33%;\n  margin-top: 30px;\n  transition: left 0.4s;\n  -webkit-transition : left 0.4s;\n  -moz-transition : left 0.4s;\n  -o-transition: left 0.4s;\n  display: none;\n}\n\n@media screen and (min-width: 1366px) {\n\n\t#toc-large-device {\n\t\tdisplay: inline-block\n\t}\n\n}\n\n#toc-large-device.open {\n\tleft: 0px;\n}\n\n#toc-large-device-container {\n\twidth: 100%;\n\tbackground-color: #fff;\n\tz-index: 1000;\n\toverflow-y: auto;\n}\n\n#toc-large-device-container > div {\n\tbackground-color: #fff;\n\tposition: relative;\n\theight: 100%;\n\twidth: 100%;\n}\n\n/*\ntoggle toc-large-device, swing-container, swing-bar\n*/\n\n#toggle-toc-large-device {\n    position: absolute;\n\tleft: 100%;\n\ttop: 0px;\n\tmargin-left: 6px;\n\toutline: none;\n\tbackground: #fff;\n\tfont-size: 1.5em;\n}\n\n/*\nif toc-large-device.open : swing-container to left\n*/\n#swing-container {\n\tmargin-left: 0px;\n\ttransition: margin-left 0.6s;\n\t-webkit-transition : margin-left 0.6s;\n\t-moz-transition : margin-left 0.6s;\n    -o-transition: margin-left 0.6s;\n\t\n}\n\n#swing-container.left {\n\t\tmargin-left: 0px;\n\t}\n\n@media screen and (min-width: 1366px) {\n\t#swing-container.left {\n\t\tmargin-left: 33%;\n\t}\n}\n\n/*\nif toc-large-device.open : swing-bar to left\n*/\n#swing-bar {\n\tmargin-left: 0px;\n\ttransition: margin-left 0.9s;\n\t-webkit-transition : margin-left 0.9s;\n\t-moz-transition : margin-left 0.9s;\n    -o-transition: margin-left 0.9s;\n}\n\n#swing-bar.left {\n\tmargin-left: 0px;\n}\n\n@media screen and (min-width: 1366px) {\n\t#swing-bar.left {\n\t\tmargin-left: 33%;\n\t}\n}\n\n/*\nTOC\n*/\n#toc {\n\tposition: absolute;\n\ttop: -1000px;\n\twidth: 100%;\n\theight: 100%;\n\tz-index: 1000;\n\toverflow-y: auto;\n\ttransition: top 0.4s;\n\t-webkit-transition : top 0.4s;\n\t-moz-transition : top 0.4s;\n    -o-transition: top 0.4s;\n\tpadding: 0px;\n\tbackground-color: #fff;\n}\n\n#toc.open {\n\ttop: 0px;\n}\n\n#toc > div {\n\tposition: relative;\n\tbackground-color: #fff;\n}\n\n.open-toc {\n\tfloat: right;\n\tfont-size: 1.4em;\n}\n\n#open-toc-large {\n\tdisplay: inline-block;\n}\n\n@media screen and (min-width: 1366px) {\n\t#open-toc-large {\n\t\tdisplay: none;\n\t}\n}\n\n#close-toc {\n\tposition: absolute;\n\tright: 15px;\n\ttop: 5px;\n\tmin-width: 25px;\n\tpadding: 0;\n\tborder: none;\n\tbackground-color: transparent;\n\tfont-family: 'Helvetica', sans-serif;\n\tfont-size: 1.2em;\n\tcolor: #424242;\n}\n\n#toc-title {\n\tmargin-bottom: 30px;\n\tmargin-top: 20px\n}\n\n#toc-title p {\n\tmargin: 0px;\n}\n/*\ntoc list\n*/\n#toc ul, #toc-large-device ul {\n\tpadding: 0px;\n}\n\n#toc li, #toc-large-device li {\n\tlist-style-type: none;\n\tpadding: .5em .5em;\n}\n\n#toc a.wb-link, #toc-large-device a.wb-link {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: gray;\n}\n\n#toc a.wb-link:hover, #toc-large-device a.wb-link:hover {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: #000;\n}\n\n#toc li.current a.wb-link, #toc-large-device li.current a.wb-link {\n\tcolor: #000;\n\toutline: none;\n\tfont-style: italic;\n}\n\n#toc [data-wb-element-page-number], #toc-large-device [data-wb-element-page-number] {\n\tfloat: right;\n}\n\n/*\nTOP\n*/\n#top {\n\tposition: absolute;\n\ttop: 0px;\n\tbox-sizing: border-box;\n\t-webkit-box-sizing: border-box;\n\t-moz-box-sizing: border-box;\n\tpadding-top: 8px;\n\ttext-align: center;\n\twidth: 100%;\n\theight: 30px;\n}\n\n#top .wb-current-section-title {\n\tfont-size: 0.8em;\n}\n\n/*\nBOTTOM\n*/\n#bottom {\n\tposition: absolute;\n\tbottom: 5px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tz-index: 500;\n}\n\n#bottom-large {\n\tposition: absolute;\n\tbottom: -9999px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tz-index: 500;\n}\n\n@media screen and (min-width: 768px) {\n\t\t\n\t#bottom {\n\t\tbottom: -9999px\n\t}\n\t\n\t#bottom-large {\n\t\tbottom: 5px;\n\t}\n}\n\n#bottom button, #bottom a, #bottom span {\n\tdisplay: inline-block;\n\tborder: none;\n\tbackground-color: transparent;\n\tmargin-right: 10px;\n\tmargin-left: 10px;\n\tmin-width: 25px;\n\theight: 100%;\n\tpadding: 0;\n\tfont-size: 1.2em;\n}\n\n#bottom button.open-toc {\n\tfont-size: 1.5em;\n}\n\n#bottom a#home {\n\tfloat: left;\n\ttext-decoration: none;\n\tmargin-top: 6px;\n\tfont-size: 0.9em;\n\tfont-family: 'Roboto', sans-serif;\n}\n\n#bottom span {\n\tmin-width: 42px;\n\tmargin: 0px;\n\tmargin-top: 6px;\n\tfont-size: 1em;\n}\n\n/*\nTEXT\n*/\n[data-wb-text] {\n\tfont-size: 14px;\n\tline-height: 1.5em;\n\ttext-align: justify;\n\ttext-justify: inter-word;\n}\n\n@media screen and (min-width: 768px) {\n    [data-wb-text] {\n        font-size: 16px;\n        line-height: 1.5em;\n    }\n}\n\n[data-wb-text] p {\n\tmargin-bottom: 0px;\n\tmargin-top: 1.5em;\n}\n\n[data-wb-text] a.wb-link {\n\tborder-bottom: 1px dotted black;\n}\n\n/*\nINSIDE TEXT\n*/\n/*\nTITLES\n*/\n.section-title, .note-title, .wb-toc-title {\n\tfont-size: 1.25em;\n\ttext-align: left;\n}\n\n.section-subtitle {\n\tfont-size: 1em;\n}\n\np.section-title {\n\tpadding-top: 3.5em;\n\tmargin-top: 0px;\n}\n\n#titre.wb-section {\n\ttext-align: center;\n\tline-height: 1.8em;\n}\n\n\n#fin {\n\ttext-align: center;\n\t\n}\n\n#fin p {\n\tpadding-top: 20%;\n}\n", ""]);
+exports.push([module.i, "/*\nBOOK NAVBAR BOTTOM\n*/\n#book-nav-bar-bottom {\n\tdisplay: none;\n}\n\n@media screen and (min-width: 768px) {\n\t#book-nav-bar-bottom {\n\t\tdisplay: block;\n\t}\n}\n\n#book-nav-bar-bottom-controls {\n\tdisplay: block;\n\tposition: relative;\n\twidth: 640px;\n\tmargin: auto;\n\theight: 44px;\n\ttext-align: center;\n}\n\n#nav-bar-bottom-controls button {\n\toutline: none;\n\theight: 100%;\n}\n\n#book-nav-bar-bottom-controls button#open-toc-large.w3-btn span {\n\tdisplay: inline-block;\n\tpadding-bottom: 10px;\n}\n\n/*\nBOOKCONTAINER\n*/\n#bookContainer {\n\tposition: relative;\n\tfont-family: 'Georgia', serif;\n\topacity: 0.0;\n\tmargin: auto;\n\ttransition: opacity 0.8s;\n\t-webkit-transition: opacity 0.8s;\n\t-moz-transition: opacity 0.8s;\n\t-o-transition: opacity 0.8s;\n}\n\n#bookContainer.show {\n\topacity: 1.0;\n}\n\n/*\nTEXTCONTAINER\n*/\n[data-wb-text-container] {\n\tmargin: auto;\n\tbackground-color: #fafafa;\n\ttop: 0px;\n}\n\n@media screen and (min-width: 768px) {\n\t[data-wb-text-container] {\n\t\ttop: 30px;\n\t}\n}\n\n/*\nTOC-LARGE-DEVICE\n*/\n\n#toc-large-device {\n  position: absolute;\n  left: -33%;\n  width: 33%;\n  margin-top: 30px;\n  transition: left 0.4s;\n  -webkit-transition : left 0.4s;\n  -moz-transition : left 0.4s;\n  -o-transition: left 0.4s;\n  display: none;\n}\n\n@media screen and (min-width: 1366px) {\n\n\t#toc-large-device {\n\t\tdisplay: inline-block\n\t}\n\n}\n\n#toc-large-device.open {\n\tleft: 0px;\n}\n\n#toc-large-device-container {\n\twidth: 100%;\n\tbackground-color: #fafafa;\n\tz-index: 1000;\n\toverflow-y: auto;\n}\n\n#toc-large-device-container > div {\n\tbackground-color: #fafafa;\n\tposition: relative;\n\theight: 100%;\n\twidth: 100%;\n}\n\n/*\ntoggle toc-large-device, swing-container, swing-bar\n*/\n\n#toggle-toc-large-device {\n    position: absolute;\n\tleft: 100%;\n\ttop: 0px;\n\tmargin-left: 6px;\n\toutline: none;\n\tbackground: #fafafa;\n\tfont-size: 1.5em;\n}\n\n/*\nif toc-large-device.open : swing-container to left\n*/\n#swing-container {\n\tmargin-left: 0px;\n\ttransition: margin-left 0.6s;\n\t-webkit-transition : margin-left 0.6s;\n\t-moz-transition : margin-left 0.6s;\n    -o-transition: margin-left 0.6s;\n\t\n}\n\n#swing-container.left {\n\t\tmargin-left: 0px;\n\t}\n\n@media screen and (min-width: 1366px) {\n\t#swing-container.left {\n\t\tmargin-left: 33%;\n\t}\n}\n\n/*\nif toc-large-device.open : swing-bar to left\n*/\n#swing-bar {\n\tmargin-left: 0px;\n\ttransition: margin-left 0.9s;\n\t-webkit-transition : margin-left 0.9s;\n\t-moz-transition : margin-left 0.9s;\n    -o-transition: margin-left 0.9s;\n}\n\n#swing-bar.left {\n\tmargin-left: 0px;\n}\n\n@media screen and (min-width: 1366px) {\n\t#swing-bar.left {\n\t\tmargin-left: 33%;\n\t}\n}\n\n/*\nTOC\n*/\n#toc {\n\tposition: absolute;\n\ttop: -1000px;\n\twidth: 100%;\n\theight: 100%;\n\tz-index: 1000;\n\toverflow-y: auto;\n\ttransition: top 0.4s;\n\t-webkit-transition : top 0.4s;\n\t-moz-transition : top 0.4s;\n    -o-transition: top 0.4s;\n\tpadding: 0px;\n\tbackground-color: #fafafa;\n}\n\n#toc.open {\n\ttop: 0px;\n}\n\n#toc > div {\n\tposition: relative;\n\tbackground-color: #fafafa;\n}\n\n.open-toc {\n\tfloat: right;\n\tfont-size: 1.4em;\n}\n\n#open-toc-large {\n\tdisplay: inline-block;\n}\n\n@media screen and (min-width: 1366px) {\n\t#open-toc-large {\n\t\tdisplay: none;\n\t}\n}\n\n#close-toc {\n\tposition: absolute;\n\tright: 15px;\n\ttop: 5px;\n\tmin-width: 25px;\n\tpadding: 0;\n\tborder: none;\n\tbackground-color: transparent;\n\tfont-family: 'Helvetica', sans-serif;\n\tfont-size: 1.2em;\n\tcolor: #424242;\n}\n\n#toc-title {\n\tmargin-bottom: 30px;\n\tmargin-top: 20px\n}\n\n#toc-title p {\n\tmargin: 0px;\n}\n/*\ntoc list\n*/\n#toc ul, #toc-large-device ul {\n\tpadding: 0px;\n}\n\n#toc li, #toc-large-device li {\n\tlist-style-type: none;\n\tpadding: .5em .5em;\n}\n\n#toc a.wb-link, #toc-large-device a.wb-link {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: gray;\n}\n\n#toc a.wb-link:hover, #toc-large-device a.wb-link:hover {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: #000;\n}\n\n#toc li.current a.wb-link, #toc-large-device li.current a.wb-link {\n\tcolor: #000;\n\toutline: none;\n\tfont-style: italic;\n}\n\n#toc [data-wb-element-page-number], #toc-large-device [data-wb-element-page-number] {\n\tfloat: right;\n}\n\n/*\nTOP\n*/\n#top {\n\tposition: absolute;\n\ttop: 0px;\n\tbox-sizing: border-box;\n\t-webkit-box-sizing: border-box;\n\t-moz-box-sizing: border-box;\n\tpadding-top: 8px;\n\ttext-align: center;\n\twidth: 100%;\n\theight: 30px;\n}\n\n#top .wb-current-section-title {\n\tfont-size: 0.8em;\n}\n\n/*\nBOTTOM\n*/\n#bottom {\n\tposition: absolute;\n\tbottom: 5px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tz-index: 500;\n}\n\n#bottom-large {\n\tposition: absolute;\n\tbottom: -9999px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tz-index: 500;\n}\n\n@media screen and (min-width: 768px) {\n\t\t\n\t#bottom {\n\t\tbottom: -9999px\n\t}\n\t\n\t#bottom-large {\n\t\tbottom: 5px;\n\t}\n}\n\n#bottom button, #bottom a, #bottom span {\n\tdisplay: inline-block;\n\tborder: none;\n\tbackground-color: transparent;\n\tmargin-right: 10px;\n\tmargin-left: 10px;\n\tmin-width: 25px;\n\theight: 100%;\n\tpadding: 0;\n\tfont-size: 1.2em;\n}\n\n#bottom button.open-toc {\n\tfont-size: 1.5em;\n}\n\n#bottom a#home {\n\tfloat: left;\n\ttext-decoration: none;\n\tmargin-top: 6px;\n\tfont-size: 0.9em;\n\tfont-family: 'Roboto', sans-serif;\n}\n\n#bottom span {\n\tmin-width: 42px;\n\tmargin: 0px;\n\tmargin-top: 6px;\n\tfont-size: 1em;\n}\n\n/*\nTEXT\n*/\n[data-wb-text] {\n\tfont-size: 14px;\n\tline-height: 1.5em;\n\ttext-align: justify;\n\ttext-justify: inter-word;\n}\n\n@media screen and (min-width: 768px) {\n    [data-wb-text] {\n        font-size: 16px;\n        line-height: 1.5em;\n    }\n}\n\n[data-wb-text] p {\n\tmargin-bottom: 0px;\n\tmargin-top: 1.5em;\n}\n\n[data-wb-text] a.wb-link {\n\tborder-bottom: 1px dotted black;\n}\n\n/*\nINSIDE TEXT\n*/\n/*\nTITLES\n*/\n.section-title, .note-title, .wb-toc-title {\n\tfont-size: 1.25em;\n\ttext-align: left;\n}\n\n.section-subtitle {\n\tfont-size: 1em;\n}\n\np.section-title {\n\tpadding-top: 3.5em;\n\tmargin-top: 0px;\n}\n\n#titre.wb-section {\n\ttext-align: center;\n\tline-height: 1.8em;\n}\n\n\n#fin {\n\ttext-align: center;\n\t\n}\n\n#fin p {\n\tpadding-top: 20%;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 17 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14666,7 +15060,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 })(window, document, 'Hammer');
 
 /***/ }),
-/* 18 */
+/* 26 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -14702,7 +15096,164 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 19 */
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _dataStore = __webpack_require__(1);
+
+var _dataStore2 = _interopRequireDefault(_dataStore);
+
+var _utils = __webpack_require__(0);
+
+var _utils2 = _interopRequireDefault(_utils);
+
+var _authors = __webpack_require__(28);
+
+var _authors2 = _interopRequireDefault(_authors);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var authorsTemplate = __webpack_require__(30);
+//home.js
+var authors = function authors(container) {
+	'use strict';
+
+	var c = container;
+
+	//Get books from dataStore
+	var authors = _dataStore2.default.getData('authors');
+	//insert template in container
+	c.innerHTML = authorsTemplate({ authors: authors });
+};
+
+exports.default = authors;
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(29);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {"hmr":true}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(3)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!./authors.css", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!./authors.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "#authors-container {\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n}\n\n#authors-container .author-name {\n\tfont-size: 1.2em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1.5px;\n\tmargin-bottom: 0px;\n\tmargin-left: 32px;\n\tmargin-right: 32px;\n}\n\n/*\n#authors #booksList {\n\tmax-width: 568px;\n\tmargin: auto;\n}\n\n@media only screen and (min-width: 853px) {\n\t#authors #booksList {\n\t\tmax-width: 852px;\n\t}\n}\n\n@media only screen and (min-width: 1137px) {\n\t#authors #booksList {\n\t\tmax-width: 1136px;\n\t}\n}\n*/\n\n#authors-container .w3-row {\n\tmargin-left: 32px;\n}\n\n#authors-container .w3-col {\n\twidth: 100%;\n\theight: 370px;\n}\n\n@media only screen and (min-width: 600px) {\n\t#authors-container .w3-col {\n\t\twidth: 284px;\n\t}\n}\n\n#authors-container #paper {\n\tbackground-image: url(\"/images/cover_background_small.jpg\");\n\twidth: 250px;\n\theight: 340px;\n/*\n\tmargin:auto;\n*/\n}\n\n#authors-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n\ttext-align: center;\n}\n\n#authors-container .publisher {\n\tletter-spacing: 1.5px;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports) {
+
+module.exports = function anonymous(locals, filters, escape, rethrow) {
+    escape = escape || function(html) {
+        return String(html).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+    };
+    var __stack = {
+        lineno: 1,
+        input: '<div id="authors-container" class="w3-content" style="max-width: 1200px">\n	<div id="authorsList" class="w3-padding-48 w3-animate-opacity">\n		<% for(var i=0; i<authors.length; i++) {%>\n			<% if(authors[i].visible) { %>\n			<div class="author" class="w3-padding-16">\n				<p class="author-name w3-border-bottom"><%- authors[i].name %></p>\n				<div id="booksList" class="w3-padding-16">\n					<div class=\'w3-row\'>\n						<% for(var j=0; j<authors[i].books.length; j++) {%>\n							<% if(authors[i].books[j].visible) { %>\n							<div class="w3-col">\n								<div id="paper">\n								<div class="book w3-card-4 w3-display-container" style="<%=authors[i].books[j].styles.cover %>">\n									<p class="book-author" style="<%=authors[i].books[j].styles.author %>"><%= authors[i].books[j].authorDisplay %></p>\n									<p class="title" style="<%=authors[i].books[j].styles.title %>">\n										<a href=\'/#<%= authors[i].books[j].path %>/read\' class="w3-hover-none w3-hover-text-white"><%- authors[i].books[j].title %></a>\n									</p>\n									<% if(authors[i].books[j].subtitle1) {%>\n									<p class="subtitle1" style="<%=authors[i].books[j].styles.subtitle1 %>">\n										<%- authors[i].books[j].subtitle1 %></a>\n									</p>\n									<% } %>\n									<% if(authors[i].books[j].subtitle2) {%>\n									<p class="subtitle1" style="<%=authors[i].books[j].styles.subtitle2 %>">\n										<%- authors[i].books[j].subtitle2 %></a>\n									</p>\n									<% } %>\n									<p class="publisher w3-display-bottommiddle" >liber</p>\n							   </div>\n							   </div>\n							</div>\n						   <% } %>\n						<% } %>\n					</div>\n				</div>\n			</div>\n			<% } %>\n		<% } %>\n	</div>\n</div>\n',
+        filename: "."
+    };
+    function rethrow(err, str, filename, lineno) {
+        var lines = str.split("\n"), start = Math.max(lineno - 3, 0), end = Math.min(lines.length, lineno + 3);
+        var context = lines.slice(start, end).map(function(line, i) {
+            var curr = i + start + 1;
+            return (curr == lineno ? " >> " : "    ") + curr + "| " + line;
+        }).join("\n");
+        err.path = filename;
+        err.message = (filename || "ejs") + ":" + lineno + "\n" + context + "\n\n" + err.message;
+        throw err;
+    }
+    try {
+        var buf = [];
+        with (locals || {}) {
+            (function() {
+                buf.push('<div id="authors-container" class="w3-content" style="max-width: 1200px">\n	<div id="authorsList" class="w3-padding-48 w3-animate-opacity">\n		');
+                __stack.lineno = 3;
+                for (var i = 0; i < authors.length; i++) {
+                    buf.push("\n			");
+                    __stack.lineno = 4;
+                    if (authors[i].visible) {
+                        buf.push('\n			<div class="author" class="w3-padding-16">\n				<p class="author-name w3-border-bottom">', (__stack.lineno = 6, authors[i].name), '</p>\n				<div id="booksList" class="w3-padding-16">\n					<div class=\'w3-row\'>\n						');
+                        __stack.lineno = 9;
+                        for (var j = 0; j < authors[i].books.length; j++) {
+                            buf.push("\n							");
+                            __stack.lineno = 10;
+                            if (authors[i].books[j].visible) {
+                                buf.push('\n							<div class="w3-col">\n								<div id="paper">\n								<div class="book w3-card-4 w3-display-container" style="', escape((__stack.lineno = 13, authors[i].books[j].styles.cover)), '">\n									<p class="book-author" style="', escape((__stack.lineno = 14, authors[i].books[j].styles.author)), '">', escape((__stack.lineno = 14, authors[i].books[j].authorDisplay)), '</p>\n									<p class="title" style="', escape((__stack.lineno = 15, authors[i].books[j].styles.title)), "\">\n										<a href='/#", escape((__stack.lineno = 16, authors[i].books[j].path)), '/read\' class="w3-hover-none w3-hover-text-white">', (__stack.lineno = 16, authors[i].books[j].title), "</a>\n									</p>\n									");
+                                __stack.lineno = 18;
+                                if (authors[i].books[j].subtitle1) {
+                                    buf.push('\n									<p class="subtitle1" style="', escape((__stack.lineno = 19, authors[i].books[j].styles.subtitle1)), '">\n										', (__stack.lineno = 20, authors[i].books[j].subtitle1), "</a>\n									</p>\n									");
+                                    __stack.lineno = 22;
+                                }
+                                buf.push("\n									");
+                                __stack.lineno = 23;
+                                if (authors[i].books[j].subtitle2) {
+                                    buf.push('\n									<p class="subtitle1" style="', escape((__stack.lineno = 24, authors[i].books[j].styles.subtitle2)), '">\n										', (__stack.lineno = 25, authors[i].books[j].subtitle2), "</a>\n									</p>\n									");
+                                    __stack.lineno = 27;
+                                }
+                                buf.push('\n									<p class="publisher w3-display-bottommiddle" >liber</p>\n							   </div>\n							   </div>\n							</div>\n						   ');
+                                __stack.lineno = 32;
+                            }
+                            buf.push("\n						");
+                            __stack.lineno = 33;
+                        }
+                        buf.push("\n					</div>\n				</div>\n			</div>\n			");
+                        __stack.lineno = 37;
+                    }
+                    buf.push("\n		");
+                    __stack.lineno = 38;
+                }
+                buf.push("\n	</div>\n</div>\n");
+            })();
+        }
+        return buf.join("");
+    } catch (err) {
+        rethrow(err, __stack.input, __stack.filename, __stack.lineno);
+    }
+}
+
+/***/ }),
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14722,7 +15273,7 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminLoginTemplate = __webpack_require__(20);
+var adminLoginTemplate = __webpack_require__(32);
 //home.js
 var adminLogin = function adminLogin(container) {
 	'use strict';
@@ -14766,6 +15317,7 @@ var adminLogin = function adminLogin(container) {
 				_dataStore2.default.setData('currentUser', response.user);
 				if (response.user.admin === true) {
 					_utils2.default.addClass('#admin-link', 'visible');
+					_utils2.default.addClass('#menu-admin-link', 'visible');
 					location.hash = '#/admin/';
 				} else {
 					_utils2.default.setHTML('#form-error', "Vous n'avez pas le droit d'accéder à l'espace administration.");
@@ -14780,7 +15332,7 @@ var adminLogin = function adminLogin(container) {
 exports.default = adminLogin;
 
 /***/ }),
-/* 20 */
+/* 32 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -14816,7 +15368,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 21 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14830,59 +15382,59 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _adminHome = __webpack_require__(22);
+var _adminHome = __webpack_require__(34);
 
 var _adminHome2 = _interopRequireDefault(_adminHome);
 
-var _adminUsers = __webpack_require__(24);
+var _adminUsers = __webpack_require__(36);
 
 var _adminUsers2 = _interopRequireDefault(_adminUsers);
 
-var _adminUser = __webpack_require__(26);
+var _adminUser = __webpack_require__(38);
 
 var _adminUser2 = _interopRequireDefault(_adminUser);
 
-var _adminNew = __webpack_require__(28);
+var _adminNew = __webpack_require__(40);
 
 var _adminNew2 = _interopRequireDefault(_adminNew);
 
-var _adminEdit = __webpack_require__(30);
+var _adminEdit = __webpack_require__(42);
 
 var _adminEdit2 = _interopRequireDefault(_adminEdit);
 
-var _adminEditPassword = __webpack_require__(32);
+var _adminEditPassword = __webpack_require__(44);
 
 var _adminEditPassword2 = _interopRequireDefault(_adminEditPassword);
 
-var _adminBooks = __webpack_require__(34);
+var _adminBooks = __webpack_require__(46);
 
 var _adminBooks2 = _interopRequireDefault(_adminBooks);
 
-var _adminBook = __webpack_require__(36);
+var _adminBook = __webpack_require__(48);
 
 var _adminBook2 = _interopRequireDefault(_adminBook);
 
-var _adminBooksNew = __webpack_require__(38);
+var _adminBooksNew = __webpack_require__(50);
 
 var _adminBooksNew2 = _interopRequireDefault(_adminBooksNew);
 
-var _adminBookEdit = __webpack_require__(45);
+var _adminBookEdit = __webpack_require__(57);
 
 var _adminBookEdit2 = _interopRequireDefault(_adminBookEdit);
 
-var _adminAuthors = __webpack_require__(52);
+var _adminAuthors = __webpack_require__(64);
 
 var _adminAuthors2 = _interopRequireDefault(_adminAuthors);
 
-var _adminAuthor = __webpack_require__(54);
+var _adminAuthor = __webpack_require__(66);
 
 var _adminAuthor2 = _interopRequireDefault(_adminAuthor);
 
-var _adminAuthorsNew = __webpack_require__(56);
+var _adminAuthorsNew = __webpack_require__(68);
 
 var _adminAuthorsNew2 = _interopRequireDefault(_adminAuthorsNew);
 
-var _adminAuthorEdit = __webpack_require__(58);
+var _adminAuthorEdit = __webpack_require__(70);
 
 var _adminAuthorEdit2 = _interopRequireDefault(_adminAuthorEdit);
 
@@ -14976,7 +15528,7 @@ var adminRouter = function adminRouter(oldhash, newhash, data) {
 exports.default = adminRouter;
 
 /***/ }),
-/* 22 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14996,7 +15548,7 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminHomeTemplate = __webpack_require__(23);
+var adminHomeTemplate = __webpack_require__(35);
 //home.js
 var adminHome = function adminHome(container, data) {
 	'use strict';
@@ -15016,7 +15568,8 @@ var adminHome = function adminHome(container, data) {
 		_utils2.default.ajax(options).then(function (response) {
 			_dataStore2.default.setData('currentUser', JSON.parse(response).user);
 			_utils2.default.removeClass('#admin-link', 'visible');
-			location.hash = '#/books/';
+			_utils2.default.removeClass('#menu-admin-link', 'visible');
+			location.hash = '#/';
 		});
 	}
 
@@ -15026,7 +15579,7 @@ var adminHome = function adminHome(container, data) {
 exports.default = adminHome;
 
 /***/ }),
-/* 23 */
+/* 35 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15062,7 +15615,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 24 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15078,7 +15631,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminUsersTemplate = __webpack_require__(25);
+var adminUsersTemplate = __webpack_require__(37);
 //home.js
 var adminUsers = function adminUsers(container) {
 	'use strict';
@@ -15102,7 +15655,7 @@ var adminUsers = function adminUsers(container) {
 exports.default = adminUsers;
 
 /***/ }),
-/* 25 */
+/* 37 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15144,7 +15697,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 26 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15160,7 +15713,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminUserTemplate = __webpack_require__(27);
+var adminUserTemplate = __webpack_require__(39);
 //home.js
 var adminUser = function adminUser(container) {
 	'use strict';
@@ -15218,7 +15771,7 @@ var adminUser = function adminUser(container) {
 exports.default = adminUser;
 
 /***/ }),
-/* 27 */
+/* 39 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15254,7 +15807,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 28 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15270,7 +15823,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminNewTemplate = __webpack_require__(29);
+var adminNewTemplate = __webpack_require__(41);
 //home.js
 var adminNew = function adminNew(container) {
 	'use strict';
@@ -15330,7 +15883,7 @@ var adminNew = function adminNew(container) {
 exports.default = adminNew;
 
 /***/ }),
-/* 29 */
+/* 41 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15366,7 +15919,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 30 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15382,7 +15935,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminEditTemplate = __webpack_require__(31);
+var adminEditTemplate = __webpack_require__(43);
 //home.js
 var adminEdit = function adminEdit(container, user) {
 	'use strict';
@@ -15442,7 +15995,7 @@ var adminEdit = function adminEdit(container, user) {
 exports.default = adminEdit;
 
 /***/ }),
-/* 31 */
+/* 43 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15478,7 +16031,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 32 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15494,7 +16047,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminEditPasswordTemplate = __webpack_require__(33);
+var adminEditPasswordTemplate = __webpack_require__(45);
 //home.js
 var adminEditPassword = function adminEditPassword(container, user) {
 	'use strict';
@@ -15557,7 +16110,7 @@ var adminEditPassword = function adminEditPassword(container, user) {
 exports.default = adminEditPassword;
 
 /***/ }),
-/* 33 */
+/* 45 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15593,7 +16146,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 34 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15609,7 +16162,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminBooksTemplate = __webpack_require__(35);
+var adminBooksTemplate = __webpack_require__(47);
 //home.js
 var adminBooks = function adminBooks(container) {
 	'use strict';
@@ -15633,7 +16186,7 @@ var adminBooks = function adminBooks(container) {
 exports.default = adminBooks;
 
 /***/ }),
-/* 35 */
+/* 47 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15675,7 +16228,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 36 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15691,7 +16244,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminBookTemplate = __webpack_require__(37);
+var adminBookTemplate = __webpack_require__(49);
 //home.js
 var adminBook = function adminBook(container) {
 	'use strict';
@@ -15746,7 +16299,7 @@ var adminBook = function adminBook(container) {
 exports.default = adminBook;
 
 /***/ }),
-/* 37 */
+/* 49 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15821,7 +16374,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 38 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15841,12 +16394,12 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminBooksNewTemplate = __webpack_require__(39);
-var modalHeaderTemplate = __webpack_require__(40);
-var searchAuthorsResultsTemplate = __webpack_require__(41);
-var selectedAuthorsTemplate = __webpack_require__(42);
-var selectedContribsTemplate = __webpack_require__(43);
-var selectedContribRoleTemplate = __webpack_require__(44);
+var adminBooksNewTemplate = __webpack_require__(51);
+var modalHeaderTemplate = __webpack_require__(52);
+var searchAuthorsResultsTemplate = __webpack_require__(53);
+var selectedAuthorsTemplate = __webpack_require__(54);
+var selectedContribsTemplate = __webpack_require__(55);
+var selectedContribRoleTemplate = __webpack_require__(56);
 //home.js
 var adminBooksNew = function adminBooksNew(container) {
 	'use strict';
@@ -16049,7 +16602,7 @@ var adminBooksNew = function adminBooksNew(container) {
 exports.default = adminBooksNew;
 
 /***/ }),
-/* 39 */
+/* 51 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16085,7 +16638,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 40 */
+/* 52 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16121,7 +16674,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 41 */
+/* 53 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16130,7 +16683,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<ul class="w3-ul">\n<% for(var i=0; i<authors.length; i++) {%>\n<li class="w3-display-container">\n	<p id="<%= authors[i].id %>" >\n		<span><%= authors[i].name %></span> \n		<button type="button" class="add-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-right">Ajouter</button>\n	</p>\n</li>\n<% } %>\n</ul>\n',
+        input: '<ul class="w3-ul">\n<% for(var i=0; i<authors.length; i++) {%>\n<li class="w3-display-container">\n	<p id="<%= authors[i].id %>" >\n		<span><%- authors[i].name %></span> \n		<button type="button" class="add-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-right">Ajouter</button>\n	</p>\n</li>\n<% } %>\n</ul>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -16150,7 +16703,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                 buf.push('<ul class="w3-ul">\n');
                 __stack.lineno = 2;
                 for (var i = 0; i < authors.length; i++) {
-                    buf.push('\n<li class="w3-display-container">\n	<p id="', escape((__stack.lineno = 4, authors[i].id)), '" >\n		<span>', escape((__stack.lineno = 5, authors[i].name)), '</span> \n		<button type="button" class="add-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-right">Ajouter</button>\n	</p>\n</li>\n');
+                    buf.push('\n<li class="w3-display-container">\n	<p id="', escape((__stack.lineno = 4, authors[i].id)), '" >\n		<span>', (__stack.lineno = 5, authors[i].name), '</span> \n		<button type="button" class="add-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-right">Ajouter</button>\n	</p>\n</li>\n');
                     __stack.lineno = 9;
                 }
                 buf.push("\n</ul>\n");
@@ -16163,7 +16716,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 42 */
+/* 54 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16172,7 +16725,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<% for(var i=0; i<selectedAuthors.length; i++) {%>\n<li class="w3-display-container">\n	<p data-key="<%= selectedAuthors[i].id %>" id="<%= i %>" >\n		<span><%= selectedAuthors[i].name %></span>\n		<button type="button" id="auteur" class="delete-btn w3-text-gray w3-hover-none w3-hover-text-black w3-button w3-display-right">Supprimer</button>\n	</p>\n</li>\n<% } %>\n',
+        input: '<% for(var i=0; i<selectedAuthors.length; i++) {%>\n<li class="w3-display-container">\n	<p data-key="<%= selectedAuthors[i].id %>" id="<%= i %>" >\n		<span><%- selectedAuthors[i].name %></span>\n		<button type="button" id="auteur" class="delete-btn w3-text-gray w3-hover-none w3-hover-text-black w3-button w3-display-right">Supprimer</button>\n	</p>\n</li>\n<% } %>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -16192,7 +16745,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                 buf.push("");
                 __stack.lineno = 1;
                 for (var i = 0; i < selectedAuthors.length; i++) {
-                    buf.push('\n<li class="w3-display-container">\n	<p data-key="', escape((__stack.lineno = 3, selectedAuthors[i].id)), '" id="', escape((__stack.lineno = 3, i)), '" >\n		<span>', escape((__stack.lineno = 4, selectedAuthors[i].name)), '</span>\n		<button type="button" id="auteur" class="delete-btn w3-text-gray w3-hover-none w3-hover-text-black w3-button w3-display-right">Supprimer</button>\n	</p>\n</li>\n');
+                    buf.push('\n<li class="w3-display-container">\n	<p data-key="', escape((__stack.lineno = 3, selectedAuthors[i].id)), '" id="', escape((__stack.lineno = 3, i)), '" >\n		<span>', (__stack.lineno = 4, selectedAuthors[i].name), '</span>\n		<button type="button" id="auteur" class="delete-btn w3-text-gray w3-hover-none w3-hover-text-black w3-button w3-display-right">Supprimer</button>\n	</p>\n</li>\n');
                     __stack.lineno = 8;
                 }
                 buf.push("\n");
@@ -16205,7 +16758,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 43 */
+/* 55 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16214,7 +16767,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<% for(var i=0; i<selectedContribs.length; i++) {%>\n<li class="w3-display-container">\n	<p data-key="<%= selectedContribs[i].id %>" id="<%= i %>" >\n		<span><%= selectedContribs[i].name %> </span>\n		<span>(<%= selectedContribs[i].role %>)</span>\n		<button type="button" id="contributeur" class="delete-btn w3-text-gray w3-hover-none w3-hover-text-black w3-button w3-display-right">Supprimer</button>\n	</p>\n</li>\n<% } %>\n',
+        input: '<% for(var i=0; i<selectedContribs.length; i++) {%>\n<li class="w3-display-container">\n	<p data-key="<%= selectedContribs[i].id %>" id="<%= i %>" >\n		<span><%- selectedContribs[i].name %> </span>\n		<span>(<%= selectedContribs[i].role %>)</span>\n		<button type="button" id="contributeur" class="delete-btn w3-text-gray w3-hover-none w3-hover-text-black w3-button w3-display-right">Supprimer</button>\n	</p>\n</li>\n<% } %>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -16234,7 +16787,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                 buf.push("");
                 __stack.lineno = 1;
                 for (var i = 0; i < selectedContribs.length; i++) {
-                    buf.push('\n<li class="w3-display-container">\n	<p data-key="', escape((__stack.lineno = 3, selectedContribs[i].id)), '" id="', escape((__stack.lineno = 3, i)), '" >\n		<span>', escape((__stack.lineno = 4, selectedContribs[i].name)), " </span>\n		<span>(", escape((__stack.lineno = 5, selectedContribs[i].role)), ')</span>\n		<button type="button" id="contributeur" class="delete-btn w3-text-gray w3-hover-none w3-hover-text-black w3-button w3-display-right">Supprimer</button>\n	</p>\n</li>\n');
+                    buf.push('\n<li class="w3-display-container">\n	<p data-key="', escape((__stack.lineno = 3, selectedContribs[i].id)), '" id="', escape((__stack.lineno = 3, i)), '" >\n		<span>', (__stack.lineno = 4, selectedContribs[i].name), " </span>\n		<span>(", escape((__stack.lineno = 5, selectedContribs[i].role)), ')</span>\n		<button type="button" id="contributeur" class="delete-btn w3-text-gray w3-hover-none w3-hover-text-black w3-button w3-display-right">Supprimer</button>\n	</p>\n</li>\n');
                     __stack.lineno = 9;
                 }
                 buf.push("\n");
@@ -16247,7 +16800,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 44 */
+/* 56 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16283,7 +16836,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 45 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16303,12 +16856,12 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminBookEditTemplate = __webpack_require__(46);
-var modalHeaderTemplate = __webpack_require__(47);
-var searchAuthorsResultsTemplate = __webpack_require__(48);
-var selectedAuthorsTemplate = __webpack_require__(49);
-var selectedContribsTemplate = __webpack_require__(50);
-var selectedContribRoleTemplate = __webpack_require__(51);
+var adminBookEditTemplate = __webpack_require__(58);
+var modalHeaderTemplate = __webpack_require__(59);
+var searchAuthorsResultsTemplate = __webpack_require__(60);
+var selectedAuthorsTemplate = __webpack_require__(61);
+var selectedContribsTemplate = __webpack_require__(62);
+var selectedContribRoleTemplate = __webpack_require__(63);
 //home.js
 var adminBooksNew = function adminBooksNew(container) {
 	'use strict';
@@ -16538,7 +17091,7 @@ var adminBooksNew = function adminBooksNew(container) {
 exports.default = adminBooksNew;
 
 /***/ }),
-/* 46 */
+/* 58 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16592,7 +17145,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 47 */
+/* 59 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16628,7 +17181,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 48 */
+/* 60 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16670,7 +17223,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 49 */
+/* 61 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16712,7 +17265,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 50 */
+/* 62 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16754,7 +17307,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 51 */
+/* 63 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16790,7 +17343,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 52 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16806,7 +17359,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorsTemplate = __webpack_require__(53);
+var adminAuthorsTemplate = __webpack_require__(65);
 //home.js
 var adminAuthors = function adminAuthors(container) {
 	'use strict';
@@ -16830,7 +17383,7 @@ var adminAuthors = function adminAuthors(container) {
 exports.default = adminAuthors;
 
 /***/ }),
-/* 53 */
+/* 65 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16839,7 +17392,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="adminAuthors" class="content">\n	<h4 class="w3-container w3-padding-16 align-left">Auteurs</h4>\n	<p class="w3-padding-16 align-right"><a href="/#/admin/authors/new" class="w3-text-gray w3-hover-none w3-hover-text-black">Ajouter</a></p>\n	<div style="clear:both">\n		<span class="error"><%= error %></span>\n		<ul id="authors-list" class="w3-ul">\n			<% for(var i=0; i<authors.length; i++) {%>\n			<li>\n				<p>\n					<a href="/#/admin/authors/<%= authors[i].id %>" class=\'w3-text-gray w3-hover-none w3-hover-text-black\'>\n						<%= authors[i].name %> (<%= authors[i].birth %>&thinsp;&ndash;&thinsp;<%= authors[i].death %>)\n					</a>\n				</p>\n			</li>\n			<% } %>\n		</ul>\n	</div>\n</div>\n',
+        input: '<div id="adminAuthors" class="content">\n	<h4 class="w3-container w3-padding-16 align-left">Auteurs</h4>\n	<p class="w3-padding-16 align-right"><a href="/#/admin/authors/new" class="w3-text-gray w3-hover-none w3-hover-text-black">Ajouter</a></p>\n	<div style="clear:both">\n		<span class="error"><%= error %></span>\n		<ul id="authors-list" class="w3-ul">\n			<% for(var i=0; i<authors.length; i++) {%>\n			<li>\n				<p>\n					<a href="/#/admin/authors/<%= authors[i].id %>" class=\'w3-text-gray w3-hover-none w3-hover-text-black\'>\n						<%- authors[i].name %> (<%= authors[i].birth %>&thinsp;&ndash;&thinsp;<%= authors[i].death %>)\n					</a>\n				</p>\n			</li>\n			<% } %>\n		</ul>\n	</div>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -16859,7 +17412,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                 buf.push('<div id="adminAuthors" class="content">\n	<h4 class="w3-container w3-padding-16 align-left">Auteurs</h4>\n	<p class="w3-padding-16 align-right"><a href="/#/admin/authors/new" class="w3-text-gray w3-hover-none w3-hover-text-black">Ajouter</a></p>\n	<div style="clear:both">\n		<span class="error">', escape((__stack.lineno = 5, error)), '</span>\n		<ul id="authors-list" class="w3-ul">\n			');
                 __stack.lineno = 7;
                 for (var i = 0; i < authors.length; i++) {
-                    buf.push('\n			<li>\n				<p>\n					<a href="/#/admin/authors/', escape((__stack.lineno = 10, authors[i].id)), "\" class='w3-text-gray w3-hover-none w3-hover-text-black'>\n						", escape((__stack.lineno = 11, authors[i].name)), " (", escape((__stack.lineno = 11, authors[i].birth)), "&thinsp;&ndash;&thinsp;", escape((__stack.lineno = 11, authors[i].death)), ")\n					</a>\n				</p>\n			</li>\n			");
+                    buf.push('\n			<li>\n				<p>\n					<a href="/#/admin/authors/', escape((__stack.lineno = 10, authors[i].id)), "\" class='w3-text-gray w3-hover-none w3-hover-text-black'>\n						", (__stack.lineno = 11, authors[i].name), " (", escape((__stack.lineno = 11, authors[i].birth)), "&thinsp;&ndash;&thinsp;", escape((__stack.lineno = 11, authors[i].death)), ")\n					</a>\n				</p>\n			</li>\n			");
                     __stack.lineno = 15;
                 }
                 buf.push("\n		</ul>\n	</div>\n</div>\n");
@@ -16872,7 +17425,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 54 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16888,7 +17441,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorTemplate = __webpack_require__(55);
+var adminAuthorTemplate = __webpack_require__(67);
 //home.js
 var adminAuthor = function adminAuthor(container) {
 	'use strict';
@@ -16943,7 +17496,7 @@ var adminAuthor = function adminAuthor(container) {
 exports.default = adminAuthor;
 
 /***/ }),
-/* 55 */
+/* 67 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16952,7 +17505,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="adminAuthor" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="w3-modal w3-card-4">\n		<div class="w3-modal-content w3-animate-top">\n			<header class="w3-container w3-black"> \n				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>\n				<h4>Supprimer un auteur</h4>\n			</header>\n			<div  class="w3-container">\n				<p>Voulez-vous vraiment supprimer cet auteur ?</p>\n				<p><%= author.name %></p>\n				<p class="w3-right"><button type="button" id="delete-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black">Supprimer</button></p>\n			</div>\n			\n		</div>\n	</div>\n\n<!--\n	MAIN\n-->\n	\n	<h4 class="w3-container align-left w3-padding-16">Auteur</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/authors/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div id="author" class="w3-container">\n		<span class="error"><%= error %></span>\n		<span class="error" id="modal-error" data-utils-bind="{{ error }}"></span>\n		<div class="w3-border-bottom">\n			<p><b>Nom : </b><span><%= author.name %></span></p>\n			<p><b>Nom alphabétique : </b><span><%= author.nameAlpha %></p>\n			<p><b>Date de naissance : </b><span><%= author.birth %></p>\n			<p><b>Date de décès : </b><span><%= author.death %></p>\n			<p><b>Description : </b></p>\n			<div><%= author.description %></div>\n			<p><b>Visible : </b><span><% if(author.visible===true) {%>oui<%} else {%>non<%}%></span></p>\n			<p><b>Créé le : </b><span></span><%= author.created_at %></p>\n			<p><b>Mis à jour le : </b><span><%= author.updated_at %></p>\n			<% if(author.books.length > 0) { %>\n			<p>\n				<span><b>Œuvres :</b></span>\n			</p>\n			<ul id="books-list" class=\'w3-ul\'>\n				<% for(var i=0; i<author.books.length; i++) { %>\n				<li>\n					<a href=\'/#/admin/books/<%= author.books[i].id %>\' class="w3-text-gray w3-hover-none w3-hover-text-black">\n						<%- author.books[i].title %> (<%= author.books[i].year %>)\n					</a>\n				</li>\n				<% } %>\n			</ul>\n			<% } %>\n			<% if(author.contribs.length > 0) { %>\n			<p>\n				<span><b>Contributions :</b></span>\n			</p>\n			<ul id="books-list" class=\'w3-ul w3-margin-bottom\'>\n				<% for(var i=0; i<author.contribs.length; i++) {%>\n				<li>\n					<a href=\'/#/admin/books/<%= author.contribs[i].book.id %>\' class="w3-text-gray w3-hover-none w3-hover-text-black">\n						<%- author.contribs[i].book.title %> (<%= author.contribs[i].role %>)\n					</a>\n				</li>\n				<% } %>\n			</ul>\n			<% } %>\n		</div>\n		<p>\n			<a href="#/admin/authors/<%= author.id %>/edit" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-left">Modifier</a>\n			<button type="button" id="open-modal-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-right">Supprimer</button>\n		</p>\n	</div>\n</div>\n',
+        input: '<div id="adminAuthor" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="w3-modal w3-card-4">\n		<div class="w3-modal-content w3-animate-top">\n			<header class="w3-container w3-black"> \n				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>\n				<h4>Supprimer un auteur</h4>\n			</header>\n			<div  class="w3-container">\n				<p>Voulez-vous vraiment supprimer cet auteur ?</p>\n				<p><%= author.name %></p>\n				<p class="w3-right"><button type="button" id="delete-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black">Supprimer</button></p>\n			</div>\n			\n		</div>\n	</div>\n\n<!--\n	MAIN\n-->\n	\n	<h4 class="w3-container align-left w3-padding-16">Auteur</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/authors/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div id="author" class="w3-container">\n		<span class="error"><%= error %></span>\n		<span class="error" id="modal-error" data-utils-bind="{{ error }}"></span>\n		<div class="w3-border-bottom">\n			<p><b>Nom : </b><span><%- author.name %></span></p>\n			<p><b>Nom alphabétique : </b><span><%= author.nameAlpha %></p>\n			<p><b>Date de naissance : </b><span><%= author.birth %></p>\n			<p><b>Date de décès : </b><span><%= author.death %></p>\n			<p><b>Description : </b></p>\n			<div><%= author.description %></div>\n			<p><b>Visible : </b><span><% if(author.visible===true) {%>oui<%} else {%>non<%}%></span></p>\n			<p><b>Créé le : </b><span></span><%= author.created_at %></p>\n			<p><b>Mis à jour le : </b><span><%= author.updated_at %></p>\n			<% if(author.books.length > 0) { %>\n			<p>\n				<span><b>Œuvres :</b></span>\n			</p>\n			<ul id="books-list" class=\'w3-ul\'>\n				<% for(var i=0; i<author.books.length; i++) { %>\n				<li>\n					<a href=\'/#/admin/books/<%= author.books[i].id %>\' class="w3-text-gray w3-hover-none w3-hover-text-black">\n						<%- author.books[i].title %> (<%= author.books[i].year %>)\n					</a>\n				</li>\n				<% } %>\n			</ul>\n			<% } %>\n			<% if(author.contribs.length > 0) { %>\n			<p>\n				<span><b>Contributions :</b></span>\n			</p>\n			<ul id="books-list" class=\'w3-ul w3-margin-bottom\'>\n				<% for(var i=0; i<author.contribs.length; i++) {%>\n				<li>\n					<a href=\'/#/admin/books/<%= author.contribs[i].book.id %>\' class="w3-text-gray w3-hover-none w3-hover-text-black">\n						<%- author.contribs[i].book.title %> (<%= author.contribs[i].role %>)\n					</a>\n				</li>\n				<% } %>\n			</ul>\n			<% } %>\n		</div>\n		<p>\n			<a href="#/admin/authors/<%= author.id %>/edit" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-left">Modifier</a>\n			<button type="button" id="open-modal-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-right">Supprimer</button>\n		</p>\n	</div>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -16969,7 +17522,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
         var buf = [];
         with (locals || {}) {
             (function() {
-                buf.push('<div id="adminAuthor" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="w3-modal w3-card-4">\n		<div class="w3-modal-content w3-animate-top">\n			<header class="w3-container w3-black"> \n				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>\n				<h4>Supprimer un auteur</h4>\n			</header>\n			<div  class="w3-container">\n				<p>Voulez-vous vraiment supprimer cet auteur ?</p>\n				<p>', escape((__stack.lineno = 13, author.name)), '</p>\n				<p class="w3-right"><button type="button" id="delete-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black">Supprimer</button></p>\n			</div>\n			\n		</div>\n	</div>\n\n<!--\n	MAIN\n-->\n	\n	<h4 class="w3-container align-left w3-padding-16">Auteur</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/authors/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div id="author" class="w3-container">\n		<span class="error">', escape((__stack.lineno = 27, error)), '</span>\n		<span class="error" id="modal-error" data-utils-bind="{{ error }}"></span>\n		<div class="w3-border-bottom">\n			<p><b>Nom : </b><span>', escape((__stack.lineno = 30, author.name)), "</span></p>\n			<p><b>Nom alphabétique : </b><span>", escape((__stack.lineno = 31, author.nameAlpha)), "</p>\n			<p><b>Date de naissance : </b><span>", escape((__stack.lineno = 32, author.birth)), "</p>\n			<p><b>Date de décès : </b><span>", escape((__stack.lineno = 33, author.death)), "</p>\n			<p><b>Description : </b></p>\n			<div>", escape((__stack.lineno = 35, author.description)), "</div>\n			<p><b>Visible : </b><span>");
+                buf.push('<div id="adminAuthor" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="w3-modal w3-card-4">\n		<div class="w3-modal-content w3-animate-top">\n			<header class="w3-container w3-black"> \n				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>\n				<h4>Supprimer un auteur</h4>\n			</header>\n			<div  class="w3-container">\n				<p>Voulez-vous vraiment supprimer cet auteur ?</p>\n				<p>', escape((__stack.lineno = 13, author.name)), '</p>\n				<p class="w3-right"><button type="button" id="delete-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black">Supprimer</button></p>\n			</div>\n			\n		</div>\n	</div>\n\n<!--\n	MAIN\n-->\n	\n	<h4 class="w3-container align-left w3-padding-16">Auteur</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/authors/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div id="author" class="w3-container">\n		<span class="error">', escape((__stack.lineno = 27, error)), '</span>\n		<span class="error" id="modal-error" data-utils-bind="{{ error }}"></span>\n		<div class="w3-border-bottom">\n			<p><b>Nom : </b><span>', (__stack.lineno = 30, author.name), "</span></p>\n			<p><b>Nom alphabétique : </b><span>", escape((__stack.lineno = 31, author.nameAlpha)), "</p>\n			<p><b>Date de naissance : </b><span>", escape((__stack.lineno = 32, author.birth)), "</p>\n			<p><b>Date de décès : </b><span>", escape((__stack.lineno = 33, author.death)), "</p>\n			<p><b>Description : </b></p>\n			<div>", escape((__stack.lineno = 35, author.description)), "</div>\n			<p><b>Visible : </b><span>");
                 __stack.lineno = 36;
                 if (author.visible === true) {
                     buf.push("oui");
@@ -17012,7 +17565,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 56 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17032,7 +17585,7 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorsNewTemplate = __webpack_require__(57);
+var adminAuthorsNewTemplate = __webpack_require__(69);
 //home.js
 var adminAuthorsNew = function adminAuthorsNew(container) {
 	'use strict';
@@ -17095,7 +17648,7 @@ var adminAuthorsNew = function adminAuthorsNew(container) {
 exports.default = adminAuthorsNew;
 
 /***/ }),
-/* 57 */
+/* 69 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -17131,7 +17684,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 58 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17147,7 +17700,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorEditTemplate = __webpack_require__(59);
+var adminAuthorEditTemplate = __webpack_require__(71);
 //home.js
 var adminAuthorEdit = function adminAuthorEdit(container) {
 	'use strict';
@@ -17220,7 +17773,7 @@ var adminAuthorEdit = function adminAuthorEdit(container) {
 exports.default = adminAuthorEdit;
 
 /***/ }),
-/* 59 */
+/* 71 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -17262,7 +17815,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 60 */
+/* 72 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {

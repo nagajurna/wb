@@ -53,25 +53,38 @@ const utils = {
 	activeLink: () => {
 		'use strict';
 		//index (nav-bar-top) links
-		let root = document.querySelector("#nav-bar-top");
+		let root = document.querySelector("#navigation");
 		let links = root.querySelectorAll("a");
 		for(let i=0; i<links.length; i++) {
-			if(location.href===links[i].href) {
-				utils.addClass("#" + links[i].id, "w3-text-black");
-				utils.removeClass("#" + links[i].id, "w3-text-gray");
-			} else {
-				utils.addClass("#" + links[i].id, "w3-text-gray");
-				utils.removeClass("#" + links[i].id, "w3-text-black");
-			}
 			
-			//admin-link
-			if(location.hash.match(/#\/admin/)) {
-				if(links[i].href.match(/#\/admin/)) {
+			if(links[i].id==='home-link' || links[i].id==='menu-home-link') {
+				if(location.href.match(/#\/books\/[^\/]+\/read$/)) {
+					utils.addClass("#" + links[i].id, "w3-text-gray");
+					utils.removeClass("#" + links[i].id, "w3-text-black");
+				} else {
+					utils.addClass("#" + links[i].id, "w3-text-black");
+					utils.removeClass("#" + links[i].id, "w3-text-gray");
+				}
+				
+			} else {
+			
+				if(location.href===links[i].href) {
 					utils.addClass("#" + links[i].id, "w3-text-black");
 					utils.removeClass("#" + links[i].id, "w3-text-gray");
 				} else {
 					utils.addClass("#" + links[i].id, "w3-text-gray");
 					utils.removeClass("#" + links[i].id, "w3-text-black");
+				}
+				
+				//admin-link
+				if(location.hash.match(/#\/admin/)) {
+					if(links[i].href.match(/#\/admin/)) {
+						utils.addClass("#" + links[i].id, "w3-text-black");
+						utils.removeClass("#" + links[i].id, "w3-text-gray");
+					} else {
+						utils.addClass("#" + links[i].id, "w3-text-gray");
+						utils.removeClass("#" + links[i].id, "w3-text-black");
+					}
 				}
 			}
 		}

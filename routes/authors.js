@@ -11,6 +11,7 @@ router.get('/', function(req, res, next) {
 		let authors = db
 			.get('authors')
 			.cloneDeep()
+			.sortBy('nameAlpha')
 			.value();
 		return { db: db, authors: authors };
 	})

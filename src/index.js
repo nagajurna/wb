@@ -6,18 +6,47 @@ import utils from './services/utils';
 var index = (function() {
 	'use strict';
 	
-	window.addEventListener('DOMContentLoaded', (e) => {
-		
+	let init = () => {
 		//if book/id/read 
 		if(location.hash.match(/#\/books\/[^\/]+\/read$/)) {//if small device
 			if(window.innerWidth < 768) {
 				utils.addClass("#nav-bar-top", "hidden");
+				utils.addClass('body', 'book');//body background
 			}
 			utils.addClass('body', 'book');//body background
-			utils.addClass('#nav-bar-top', 'w3-border-bottom');//nav-bar-top border
+			utils.addClass("#top-links", "hidden");
+			utils.addClass("#menu-open", "hidden");
+		} else {
+			if(window.innerWidth <= 600) {
+				utils.addClass("#top-links", "hidden");
+				utils.removeClass("#menu-open", "hidden");
+			} else {
+				utils.removeClass("#top-links", "hidden");
+				utils.addClass("#menu-open", "hidden");
+			}
 		}
 		
-		//GET DATA
+		//modal menu (small devices
+		let root = document.querySelector("#navigation");
+		//open modal
+		root.querySelector("#menu-open").addEventListener("click", () => {
+			root.querySelector('#menu').style.display='block';
+		}, false);
+		//close modal
+		root.querySelector("#menu-close").addEventListener("click", () => {
+			root.querySelector('#menu').style.display='none';
+		}, false);
+		//menu links : close modal on click
+		let links = root.querySelectorAll("#menu a");
+		for(let i=0; i<links.length; i++) {
+			links[i].addEventListener("click", () => {
+				root.querySelector('#menu').style.display='none';
+			}, false);
+		}
+	}
+	
+	//function getData
+	let getData = () => {
 		//check if user && user===admin
 		let options = { method: 'GET', url: '/users/currentuser' };
 		utils.ajax(options)
@@ -28,8 +57,10 @@ var index = (function() {
 			//check role : if admin => admin-link
 			if(currentUser.admin && currentUser.admin===true) {
 				utils.addClass('#admin-link', 'visible');
+				utils.addClass('#menu-admin-link', 'visible');
 			} else {
 				utils.removeClass('#admin-link', 'visible');
+				utils.removeClass('#menu-admin-link', 'visible');
 			}
 			
 			//get authors
@@ -54,38 +85,62 @@ var index = (function() {
 		.then( resolve => {
 			//call router
 			router();
-			//redirect to /books/ or location.hash
-			location.hash = location.hash === "#/" ? '#/books/' : location.hash;
 		})
 		.catch( error => {
 			console.log(error);
 		});
+	}
+	
+	window.addEventListener('DOMContentLoaded', (e) => {
+		
+		init();
+		getData();
+		
 	
 	}, false);
 		
 
 	window.addEventListener('hashchange', () => {
-		if(location.hash.match(/#\/books\/.+[^\/]$/)) {
+		if(location.hash.match(/#\/books\/[^\/]+\/read$/)) {
 			if(window.innerWidth < 768) {
 				utils.addClass("#nav-bar-top", "hidden");
 			}
 			utils.addClass('body', 'book');
-			utils.addClass('#nav-bar-top', 'w3-border-bottom');
+			utils.addClass("#top-links", "hidden");
+			utils.addClass("#menu-open", "hidden");
 		} else {
 			utils.removeClass("#nav-bar-top", "hidden");
-			
 			utils.removeClass('body', 'book');
-			utils.removeClass('#nav-bar-top', 'w3-border-bottom');
 			utils.setHTML("#top-title", "");
+			if(window.innerWidth <= 600) {
+				utils.addClass("#top-links", "hidden");
+				utils.removeClass("#menu-open", "hidden");
+			} else {
+				utils.removeClass("#top-links", "hidden");
+				utils.addClass("#menu-open", "hidden");
+			}
+				
 		}
 		
 	}, false);
 
 	window.addEventListener('resize', () => {
-		if(location.hash.match(/#\/books\/.+[^\/]$/) && window.innerWidth < 768) {
-			utils.addClass("#nav-bar-top", "hidden");
+		if(location.hash.match(/#\/books\/[^\/]+\/read$/)) {
+			if(window.innerWidth < 768) {
+				utils.addClass("#nav-bar-top", "hidden");
+			} else {
+				utils.removeClass("#nav-bar-top", "hidden");
+			}
+			
 		} else {
 			utils.removeClass("#nav-bar-top", "hidden");
+			if(window.innerWidth <= 600) {
+				utils.addClass("#top-links", "hidden");
+				utils.removeClass("#menu-open", "hidden");
+			} else {
+				utils.removeClass("#top-links", "hidden");
+				utils.addClass("#menu-open", "hidden");
+			}
 		}
 	}, false);
 

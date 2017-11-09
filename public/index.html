@@ -6,18 +6,51 @@
   <meta name="keywords" content="littérature lecture on line web book">
   <meta name="description" content="une application pour lire">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <link href="https://fonts.googleapis.com/css?family=Roboto|Merriweather" rel="stylesheet">
   <link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet"/>
   <link href="/index.css" rel="stylesheet"/>
   <script src="https://www.promisejs.org/polyfills/promise-7.0.4.min.js"></script>
 </head>
 <body>
-	<div id="nav-bar-top" class="w3-white w3-large">
-		<a id="home-link" href="#/books/" class="align-left w3-button w3-text-gray w3-hover-none w3-hover-text-black brand">liber</a>
-		<a id="admin-link" href="#/admin/" class="align-right w3-button w3-text-gray w3-hover-none w3-hover-text-black">admin</a>
-		<div id="top-title" 
-			  class="w3-bar-item w3-small text-uppercase"
-			  data-utils-bind="{{ authorDisplay }}&ensp;&mdash;&ensp;{{ title }}"></div>
+	<div id="navigation">
+		<!-- MODAL-MENU (SMALL DEVICES) -->
+		<div id="menu" class="w3-modal">
+		  <div class="w3-modal-content" style="height: 100%">
+			<div style="height: 100%">
+			   <div id="menu-nav-bar" class="w3-large w3-border-bottom">
+				  <a id="menu-home-link" href="#/" class="align-left w3-button w3-text-black w3-hover-none w3-hover-text-black">liber</a>
+				  <button id="menu-close" class="w3-button w3-text-black w3-hover-none w3-display-topright">&times;</button>
+			  </div>
+			  <div class="w3-container" style="clear:both" >
+				<ul class="w3-ul">
+					<li><a id="menu-last-link" href="#/" class="w3-button w3-text-gray w3-hover-none w3-hover-text-black">nouveautés</a></li>
+					<li><a id="menu-next-link" href="#/tobepublished/" class="w3-button w3-text-gray w3-hover-none w3-hover-text-black">à paraître</a></li>
+					<li><a id="menu-books-link" href="#/books/" class="w3-button w3-text-gray w3-hover-none w3-hover-text-black">catalogue</a></li>
+					<li><a id="menu-authors-link" href="#/authors/" class="w3-button w3-text-gray w3-hover-none w3-hover-text-black">auteurs</a></li>
+					<li><a id="menu-admin-link" href="#/admin/" class="w3-button w3-text-gray w3-hover-none w3-hover-text-black">administration</a></li>
+				</ul>
+			  </div>
+			  
+			</div>
+		  </div>
+		</div>
+		<!-- NAV-BAR -->
+		<div id="nav-bar-top" class="w3-large w3-border-bottom">
+			<a id="home-link" href="#/" class="align-left w3-button w3-text-black w3-hover-none w3-hover-text-black">liber</a>
+			<button id="menu-open" type="button" class="align-right w3-button w3-text-black w3-hover-none hidden">&equiv;</button>
+			<div id="top-links">
+				<ul>
+					<li><a id="last-link" href="#/" class="w3-button w3-text-gray w3-hover-none w3-hover-text-black">nouveautés</a></li>
+					<li><a id="next-link" href="#/tobepublished/" class="w3-button w3-text-gray w3-hover-none w3-hover-text-black">à paraître</a></li>
+					<li><a id="books-link" href="#/books/" class="w3-button w3-text-gray w3-hover-none w3-hover-text-black">catalogue</a></li>
+					<li><a id="authors-link" href="#/authors/" class="w3-button w3-text-gray w3-hover-none w3-hover-text-black">auteurs</a></li>
+					<li><a id="admin-link" href="#/admin/" class="w3-button w3-text-gray w3-hover-none w3-hover-text-black">administration</a></li>
+				</ul>
+			</div>
+			<div id="top-title" 
+				  class="w3-small text-uppercase"
+				  data-utils-bind="{{ authorDisplay }}&ensp;&mdash;&ensp;{{ title }}">
+			</div>
+		</div>
 	</div>
 	<div id="container"></div>
 	<script src="liber.js"></script>

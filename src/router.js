@@ -2,9 +2,15 @@ import utils from './services/utils';
 import dataStore from './services/dataStore';
 //home(controller)
 import home from './components/home/home';
-//book (controller)
-import book from './components/book/book';
+//books-next(controller)
+import booksNext from './components/books-next/books-next';
+//books(controller)
+import books from './components/books/books';
+//book-read (controller)
+import bookRead from './components/book-read/book-read';
 //adminLogin (controller)
+import authors from './components/authors/authors';
+//book-read (controller)
 import adminLogin from './components/adminLogin/adminLogin';
 //admin (template - no controller)
 let adminTemplate = require('./components/admin/admin.ejs');
@@ -20,13 +26,25 @@ const router  = function() {
 		let container = document.querySelector('#container');
 		
 		//ROUTES
-		if(newhash === '#/books/') {
+		if(newhash === '#/') {
 			//HOME
 			home(container);
+		
+		} else if(newhash === '#/tobepublished/') {
+			//TO BE PUBLISHED
+			booksNext(container);
+			
+		} else if(newhash === '#/books/') {
+			//BOOKS
+			books(container);
 			
 		} else if(newhash.match(/#\/books\/[^\/]+\/read$/)) {
 			//BOOK READ
-			book(container);
+			bookRead(container);
+		
+		} else if(newhash === '#/authors/') {
+			//AUTHORS
+			authors(container);
 			
 		} else if(newhash.match(/#\/admin/) && newhash !== '#/admin/login/') {
 			//ADMIN : if admin not connected, redirect to /admin/login
@@ -64,7 +82,7 @@ const router  = function() {
 		
 		} else {
 			//FALLBACK
-			location.hash = '#/books/';
+			location.hash = '#/';
 		}
 		
 	};

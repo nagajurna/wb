@@ -19,7 +19,8 @@ const adminHome = function(container, data) {
 		.then( response => {
 			dataStore.setData('currentUser', JSON.parse(response).user);
 			utils.removeClass('#admin-link', 'visible');
-			location.hash = '#/books/';
+			utils.removeClass('#menu-admin-link', 'visible');
+			location.hash = '#/';
 		});
 	}
 	

@@ -31,7 +31,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-05 14:56:03",
-      "updated_at": "2017-11-07 21:26:19",
+      "updated_at": "2017-11-09 20:27:21",
       "id": "efe7f3ca-ffa8-48d8-8c2a-9d35ff00ff13",
       "visible": true,
       "styles": {
@@ -101,8 +101,39 @@
       ],
       "contribs": [],
       "created_at": "2017-11-07 22:51:03",
-      "updated_at": "2017-11-07 23:06:08",
+      "updated_at": "2017-11-09 20:25:51",
       "id": "ad292def-1f0c-4ce5-a770-6dc9400851f4"
+    },
+    {
+      "source": {
+        "publisher": "Eugène Renduel (Paris)",
+        "year": "1834",
+        "origin": ""
+      },
+      "styles": {
+        "cover": "padding: 16px;background-color: #f6d155;font-family: Georgia, serif;opacity: 0.8",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 10%; font-size: 1.4em;letter-spacing: 2px;font-variant: small-caps",
+        "subtitle1": "",
+        "subtitle2": ""
+      },
+      "title": "Un Roman pour les&nbsp;cuisinières",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Émile Cabanon",
+      "year": "1834",
+      "language": "français",
+      "categories": "",
+      "description": "",
+      "path": "/books/un_roman_pour_les_cuisinieres",
+      "visible": false,
+      "authors": [
+        "caec356e-4b52-4635-9830-eefa889de37d"
+      ],
+      "contribs": [],
+      "created_at": "2017-11-09 17:21:00",
+      "updated_at": "2017-11-09 20:30:32",
+      "id": "d465bfe1-cab4-41b5-9096-096c0e8901e9"
     }
   ],
   "authors": [
@@ -116,6 +147,17 @@
       "updated_at": "2017-11-06 16:25:38",
       "id": "6e757154-155a-4518-add7-b3e5cfd9e3ca",
       "visible": true
+    },
+    {
+      "name": "Émile Cabanon",
+      "nameAlpha": "cabanon",
+      "birth": "date inconnue",
+      "death": "1846/47",
+      "description": "",
+      "visible": false,
+      "created_at": "2017-11-09 17:11:45",
+      "updated_at": "2017-11-09 20:13:32",
+      "id": "caec356e-4b52-4635-9830-eefa889de37d"
     }
   ]
 }

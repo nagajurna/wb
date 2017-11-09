@@ -1,46 +1,45 @@
-#home #booksList {
+#books-container #booksList {
 	max-width: 568px;
 	margin: auto;
 }
 
 @media only screen and (min-width: 853px) {
-	#home #booksList {
+	#books-container #booksList {
 		max-width: 852px;
 	}
 }
 
 @media only screen and (min-width: 1137px) {
-	#home #booksList {
+	#books-container #booksList {
 		max-width: 1136px;
 	}
 }
 
-#home .w3-col {
+#books-container .w3-col {
 	width: 100%;
 	height: 370px;
-	
 }
 
 @media only screen and (min-width: 600px) {
-	#home .w3-col {
+	#books-container .w3-col {
 		width: 284px;
 	}
 }
 
-#home #paper {
+#books-container #paper {
 	background-image: url("/images/cover_background_small.jpg");
 	width: 250px;
 	height: 340px;
 	margin:auto;
 }
 
-#home .book {
+#books-container .book {
 	width: 250px;
 	height: 340px;
 	margin:auto;
 }
 
-#home .publisher {
+#books-container .publisher {
 	letter-spacing: 1.5px;
 	font-family: "Times New Roman", Georgia, sans-serif;
 }

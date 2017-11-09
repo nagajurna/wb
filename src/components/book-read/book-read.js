@@ -1,9 +1,9 @@
 import utils from '../../services/utils';
 import dataStore from '../../services/dataStore';
 import WebBook from '../../../lib/wb/WebBook';
-import css from './book.css';
+import css from './book-read.css';
 import Hammer from 'hammerjs';
-let bookTemplate = require('./book.ejs');
+let bookReadTemplate = require('./book-read.ejs');
 //book.js
 const book = function(container) {
 	'use strict';
@@ -173,7 +173,7 @@ const book = function(container) {
 	//pass metadata to nav-bar-top
 	utils.bind(document.body,book);
 	//insert template in container
-	c.innerHTML = bookTemplate({book:book});
+	c.innerHTML = bookReadTemplate({book:book});
 	
 	//BOOK CONTAINER
 	const bookContainer = document.querySelector('#bookContainer');
