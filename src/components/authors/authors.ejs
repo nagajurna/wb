@@ -1,19 +1,19 @@
-<div id="authors-container" class="w3-content" style="max-width: 1200px">
+<div id="authors-container" class="w3-content" style="max-width: 1136px">
 	<div id="authorsList" class="w3-padding-48 w3-animate-opacity">
 		<% for(var i=0; i<authors.length; i++) {%>
 			<% if(authors[i].visible) { %>
-			<div class="author" class="w3-padding-16">
+			<div class="author">
 				<p class="author-name w3-border-bottom"><%- authors[i].name %></p>
 				<div id="booksList" class="w3-padding-16">
-					<div class='w3-row'>
+					<div class='w3-row' style="text-align: center">
 						<% for(var j=0; j<authors[i].books.length; j++) {%>
 							<% if(authors[i].books[j].visible) { %>
 							<div class="w3-col">
 								<div id="paper">
-								<div class="book w3-card-4 w3-display-container" style="<%=authors[i].books[j].styles.cover %>">
+								<div id="<%= authors[i].books[j].id %>" class="book w3-card-4 w3-display-container" style="<%= authors[i].books[j].styles.cover %>">
 									<p class="book-author" style="<%=authors[i].books[j].styles.author %>"><%= authors[i].books[j].authorDisplay %></p>
 									<p class="title" style="<%=authors[i].books[j].styles.title %>">
-										<a href='/#<%= authors[i].books[j].path %>/read' class="w3-hover-none w3-hover-text-white"><%- authors[i].books[j].title %></a>
+										<%- authors[i].books[j].title %>
 									</p>
 									<% if(authors[i].books[j].subtitle1) {%>
 									<p class="subtitle1" style="<%=authors[i].books[j].styles.subtitle1 %>">
@@ -27,6 +27,10 @@
 									<% } %>
 									<p class="publisher w3-display-bottommiddle" >liber</p>
 							   </div>
+							   </div>
+							   <div id="book-btns" class="w3-light-gray">
+								<a href="/#<%= authors[i].books[j].path %>/read" id="read-btn" class="align-left w3-button">lire</a>
+								<button id="info-btn" class="align-right w3-button">infos</button>
 							   </div>
 							</div>
 						   <% } %>

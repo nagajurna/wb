@@ -152,6 +152,14 @@ const book = function(container) {
 			}
 		}, false);
 		
+		
+		//HOME LINK
+		bookContainer.querySelector('#home').addEventListener('click', event => {
+			event.preventDefault();
+			let prevLocation = dataStore.getData('location').prevLocation;
+			location.hash = prevLocation ? prevLocation : '#/';
+		}, false);
+		
 		//end loader
 		bookContainer.className = 'show';
 		

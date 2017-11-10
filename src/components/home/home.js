@@ -25,6 +25,16 @@ const home = function(container) {
 	}
 	//insert template in container
 	c.innerHTML = homeTemplate({ books:lastBooks });
+	
+	let root = document.querySelector('#home-container');
+	let bks = root.querySelectorAll('.book');
+	for(let i=0; i<bks.length; i++) {
+		bks[i].addEventListener('click', event => {
+			let bk = dataStore.getData('books', event.currentTarget.id);
+			location.hash = '#' + bk.path + "/read";
+		}, false);
+	}
+	
 };
 
 export default home;

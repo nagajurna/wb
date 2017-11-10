@@ -2,42 +2,61 @@
 	font-family: "Times New Roman", Georgia, sans-serif;
 }
 
+#authors-container .author {
+	padding-top: 8px;
+}
+
 #authors-container .author-name {
+	max-width: 568px;
 	font-size: 1.2em;
 	font-variant: small-caps;
 	letter-spacing: 1.5px;
 	margin-bottom: 0px;
 	margin-top: 0px;
-	margin-left: 32px;
-	margin-right: 32px;
+	margin-left: 17px;
+	margin-right: 17px;
 }
 
-/*
-#authors #booksList {
+#authors-container #booksList {
 	max-width: 568px;
 	margin: auto;
 }
 
-@media only screen and (min-width: 853px) {
-	#authors #booksList {
+@media only screen and (min-width: 600px) {
+	#authors-container #booksList {
+		margin: 0px;
+	}
+	
+	#authors-container .author-name {
 		max-width: 852px;
 	}
 }
 
-@media only screen and (min-width: 1137px) {
-	#authors #booksList {
+@media only screen and (min-width: 853px) {
+	#authors-container #booksList {
+		max-width: 852px;
+		margin: 0px;
+	}
+	
+	#authors-container .author-name {
 		max-width: 1136px;
 	}
 }
-*/
 
-#authors-container .w3-row {
-	margin-left: 32px;
+@media only screen and (min-width: 1137px) {
+	#authors-container #booksList {
+		max-width: 1136px;
+		margin: 0px;
+	}
+	
+	#authors-container .author-name {
+		max-width: 1136px;
+	}
 }
 
 #authors-container .w3-col {
 	width: 100%;
-	height: 370px;
+	height: 408px;
 }
 
 @media only screen and (min-width: 600px) {
@@ -50,20 +69,31 @@
 	background-image: url("/images/cover_background_small.jpg");
 	width: 250px;
 	height: 340px;
-/*
 	margin:auto;
-*/
 }
 
 #authors-container .book {
 	width: 250px;
 	height: 340px;
 	margin:auto;
-	text-align: center;
 }
 
 #authors-container .publisher {
 	letter-spacing: 1.5px;
 	font-family: "Times New Roman", Georgia, sans-serif;
+}
+
+#authors-container #book-btns {
+	width: 238px;
+	height: 40px;
+	margin: auto;
+	margin-top: 12px;
+}
+
+#authors-container #book-btns button, #book-btns a {
+	font-family: "Times New Roman", Georgia, serif;
+	font-size: 1.1em;
+	letter-spacing: 1.5px;
+	font-variant: small-caps;
 }
 

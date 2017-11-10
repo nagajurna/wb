@@ -15,6 +15,16 @@ const books = function(container) {
 	let sortedBooks = books.reverse();
 	c.innerHTML = booksTemplate({ books: sortedBooks });
 	books.reverse();
+	
+	let root = document.querySelector('#books-container');
+	let bks = root.querySelectorAll('.book');
+	for(let i=0; i<bks.length; i++) {
+		bks[i].addEventListener('click', event => {
+			let bk = dataStore.getData('books', event.currentTarget.id);
+			location.hash = '#' + bk.path + "/read";
+		}, false);
+	}
+	
 };
 
 export default books;

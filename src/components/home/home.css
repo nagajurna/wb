@@ -1,48 +1,63 @@
-#home #booksList {
+#home-container #booksList {
 	max-width: 568px;
 	margin: auto;
 }
 
 @media only screen and (min-width: 853px) {
-	#home #booksList {
+	#home-container #booksList {
 		max-width: 852px;
 	}
 }
 
 @media only screen and (min-width: 1137px) {
-	#home #booksList {
+	#home-container #booksList {
 		max-width: 1136px;
 	}
 }
 
-#home .w3-col {
+#home-container .w3-col {
 	width: 100%;
-	height: 370px;
+	height: 408px;
 	
 }
 
 @media only screen and (min-width: 600px) {
-	#home .w3-col {
+	#home-container .w3-col {
 		width: 284px;
 	}
 }
 
-#home #paper {
+#home-container #paper {
 	background-image: url("/images/cover_background_small.jpg");
 	width: 250px;
 	height: 340px;
 	margin:auto;
 }
 
-#home .book {
+#home-container .book {
 	width: 250px;
 	height: 340px;
 	margin:auto;
 }
 
-#home .publisher {
+#home-container .publisher {
+	font-family: "Times New Roman", Georgia, serif;
 	letter-spacing: 1.5px;
-	font-family: "Times New Roman", Georgia, sans-serif;
 }
+
+#home-container #book-btns {
+	width: 238px;
+	height: 40px;
+	margin: auto;
+	margin-top: 12px;
+}
+
+#home-container #book-btns button, #book-btns a {
+	font-family: "Times New Roman", Georgia, serif;
+	font-size: 1.1em;
+	letter-spacing: 1.5px;
+	font-variant: small-caps;
+}
+
 
 

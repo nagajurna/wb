@@ -45,6 +45,17 @@ var index = (function() {
 				},100);
 			}, false);
 		}
+		
+		//home-link
+		root.querySelector('#home-link').addEventListener('click', event => {
+			event.preventDefault();
+			if(location.hash.match(/#\/books\/[^\/]+\/read$/)) {
+				let prevLocation = dataStore.getData('location').prevLocation;
+				location.hash = prevLocation ? prevLocation : '#/';
+			} else {
+				location.hash = '#/';
+			}
+		}, false);
 	}
 	
 	//function getData
