@@ -59,11 +59,13 @@ a:hover {
 /*
 NAV-BAR-TOP
 */
+/*
+When not book-read only
+*/
 #nav-bar-top {
 	display: block;
 	position: relative;
 	top: 0px;
-	text-align: center;
 	height: 48px;
 	background-color: #fafafa;
 }
@@ -74,18 +76,29 @@ NAV-BAR-TOP
 }
 
 #home-link {
-	line-height: 31px;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	line-height: 27px;
 	font-size: 1.4em;
 	letter-spacing: 1.5px;
 	font-family: "Times New Roman", Georgia, sans-serif;
 }
 
-
+/*
+Medium and large devices only
+*/
 #top-links {
 	width:90%;
 	margin: auto;
 	text-align: center;
-	font-size: 0.95em;
+	font-size: 0.9em;
+}
+
+@media only screen and (min-width: 768px) {
+	#top-links {
+		font-size: 0.95em;
+	}
 }
 
 #top-links ul {
@@ -107,15 +120,51 @@ NAV-BAR-TOP
 	letter-spacing: 1px;
 }
 
-#admin-link {
-	display: none;
-}
-
-#admin-link.visible {
+#admin-item {
 	display: inline-block;
 }
 
+#admin-item.hidden {
+	display: none;
+}
+
+/*
+Small devices only
+*/
+#top-links-small {
+	position: relative;
+	width: 100%;
+	padding-top: 10px;
+}
+
+#top-page-header {
+	text-align: center;
+	font-family: "Times New Roman", Georgia, sans-serif;
+	font-size: 0.85em;
+	font-variant: small-caps;
+	letter-spacing: 1px;
+	padding: 0px 0px 0px 0px;
+	line-height: 25px;
+	padding-bottom: 4px;
+	width: 120px;
+	margin: auto;
+}
+
+#menu-open {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	height: 47px;
+	line-height: 27px;
+	font-size: 1.8em;
+	font-family: "Times New Roman", Georgia, sans-serif;
+}
+
+/*
+When book-read only
+*/
 #top-title {
+	text-align: center;
 	font-family: Georgia, serif;
 	padding: 8px 16px 8px 16px;
 	line-height: 31px;
@@ -126,12 +175,6 @@ NAV-BAR-TOP
 /*
 MODAL MENU (SMALL DEVICES)
 */
-#menu-open {
-	height: 47px;
-	line-height: 31px;
-	font-size: 1.8em;
-	font-family: "Times New Roman", Georgia, sans-serif;
-}
 
 #menu {
 	padding: 0px;
@@ -139,6 +182,12 @@ MODAL MENU (SMALL DEVICES)
 
 #menu .w3-modal-content {
 	margin: 0px;
+	width: 100%;
+	height: 100%;
+}
+
+#menu .w3-modal-content > div {
+	height: 100%;
 }
 
 #menu #menu-nav-bar {
@@ -147,7 +196,7 @@ MODAL MENU (SMALL DEVICES)
 
 #menu #menu-close {
 	height: 47px;
-	line-height: 31px;
+	line-height: 27px;
 	font-size: 1.8em;
 	font-family: "Times New Roman", Georgia, sans-serif;
 }
@@ -158,26 +207,28 @@ MODAL MENU (SMALL DEVICES)
 }
 
 #menu-home-link {
-	line-height: 31px;
+	line-height: 27px;
 	font-size: 1.4em;
 	letter-spacing: 1.5px;
 	font-family: "Times New Roman", Georgia, sans-serif;
 }
 
+#menu-admin-item {
+	display: list-item;
+}
+
+#menu-admin-item.hidden {
+	display: none;
+}
+
 #menu ul a {
+	display: inline-block;
+	width: 100%;
 	line-height: 31px;
 	font-family: "Times New Roman", Georgia, sans-serif;
 	font-variant: small-caps;
 	letter-spacing: 1.5px;
 	font-size: 1.2em;
-}
-
-#menu-admin-link {
-	display: none;
-}
-
-#menu-admin-link.visible {
-	display: inline-block;
 }
 
 /*

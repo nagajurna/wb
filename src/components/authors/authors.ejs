@@ -6,30 +6,37 @@
 				<p class="author-name w3-border-bottom"><%- authors[i].name %></p>
 				<div id="booksList" class="w3-padding-16">
 					<div class='w3-row' style="text-align: center">
-						<% for(var j=0; j<authors[i].books.length; j++) {%>
-							<% if(authors[i].books[j].visible) { %>
+						<% var works = authors[i].books.concat(authors[i].contribs)	%>
+						<% for(var j=0; j<works.length; j++) {%>
+						<% if(works[j].role) {
+								var book = works[j].book;
+							} else {
+								var book = works[j];
+							}
+						%>
+							<% if(book.visible) { %>
 							<div class="w3-col">
 								<div id="paper">
-								<div id="<%= authors[i].books[j].id %>" class="book w3-card-4 w3-display-container" style="<%= authors[i].books[j].styles.cover %>">
-									<p class="book-author" style="<%=authors[i].books[j].styles.author %>"><%= authors[i].books[j].authorDisplay %></p>
-									<p class="title" style="<%=authors[i].books[j].styles.title %>">
-										<%- authors[i].books[j].title %>
+								<div id="<%= book.id %>" class="book w3-card-4 w3-display-container" style="<%= book.styles.cover %>">
+									<p class="book-author" style="<%=book.styles.author %>"><%= book.authorDisplay %></p>
+									<p class="title" style="<%= book.styles.title %>">
+										<%- book.title %>
 									</p>
-									<% if(authors[i].books[j].subtitle1) {%>
-									<p class="subtitle1" style="<%=authors[i].books[j].styles.subtitle1 %>">
-										<%- authors[i].books[j].subtitle1 %></a>
+									<% if(book.subtitle1) {%>
+									<p class="subtitle1" style="<%=book.styles.subtitle1 %>">
+										<%- book.subtitle1 %></a>
 									</p>
 									<% } %>
-									<% if(authors[i].books[j].subtitle2) {%>
-									<p class="subtitle1" style="<%=authors[i].books[j].styles.subtitle2 %>">
-										<%- authors[i].books[j].subtitle2 %></a>
+									<% if(book.subtitle2) {%>
+									<p class="subtitle1" style="<%=book.styles.subtitle2 %>">
+										<%- book.subtitle2 %></a>
 									</p>
 									<% } %>
 									<p class="publisher w3-display-bottommiddle" >liber</p>
 							   </div>
 							   </div>
 							   <div id="book-btns" class="w3-light-gray">
-								<a href="/#<%= authors[i].books[j].path %>/read" id="read-btn" class="align-left w3-button">lire</a>
+								<a href="/#<%= book.path %>/read" id="read-btn" class="align-left w3-button">lire</a>
 								<button id="info-btn" class="align-right w3-button">infos</button>
 							   </div>
 							</div>

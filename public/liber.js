@@ -891,9 +891,13 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var topHeaderTemplate = __webpack_require__(73);
+
 //index.js
 var index = function () {
 	'use strict';
+
+	var root = void 0;
 
 	var init = function init() {
 		//if book/id/read 
@@ -907,17 +911,17 @@ var index = function () {
 			_utils2.default.addClass("#top-links", "hidden");
 			_utils2.default.addClass("#menu-open", "hidden");
 		} else {
-			if (window.innerWidth <= 600) {
+			if (window.innerWidth <= 700) {
 				_utils2.default.addClass("#top-links", "hidden");
-				_utils2.default.removeClass("#menu-open", "hidden");
+				_utils2.default.removeClass("#top-links-small", "hidden");
 			} else {
 				_utils2.default.removeClass("#top-links", "hidden");
-				_utils2.default.addClass("#menu-open", "hidden");
+				_utils2.default.addClass("#top-links-small", "hidden");
 			}
 		}
 
-		//modal menu (small devices
-		var root = document.querySelector("#navigation");
+		root = document.querySelector("#navigation");
+		//MODAL MENU (small devices)
 		//open modal
 		root.querySelector("#menu-open").addEventListener("click", function () {
 			root.querySelector('#menu').style.display = 'block';
@@ -936,7 +940,12 @@ var index = function () {
 			}, false);
 		}
 
-		//home-link
+		//TOP-HEADER
+		root = document.querySelector("#navigation");
+		var topPageHeader = root.querySelector('#top-page-header');
+		topPageHeader.innerHTML = topHeaderTemplate();
+
+		//HOME-LINK
 		root.querySelector('#home-link').addEventListener('click', function (event) {
 			event.preventDefault();
 			if (location.hash.match(/#\/books\/[^\/]+\/read$/)) {
@@ -958,11 +967,11 @@ var index = function () {
 			_dataStore2.default.setData('currentUser', currentUser);
 			//check role : if admin => admin-link
 			if (currentUser.admin && currentUser.admin === true) {
-				_utils2.default.addClass('#admin-link', 'visible');
-				_utils2.default.addClass('#menu-admin-link', 'visible');
+				_utils2.default.removeClass('#admin-item', 'hidden');
+				_utils2.default.removeClass('#menu-admin-item', 'hidden');
 			} else {
-				_utils2.default.removeClass('#admin-link', 'visible');
-				_utils2.default.removeClass('#menu-admin-link', 'visible');
+				_utils2.default.addClass('#admin-item', 'hidden');
+				_utils2.default.addClass('#menu-admin-item', 'hidden');
 			}
 
 			//get authors
@@ -990,50 +999,53 @@ var index = function () {
 	};
 
 	window.addEventListener('DOMContentLoaded', function (e) {
-
 		init();
 		getData();
-	}, false);
 
-	window.addEventListener('hashchange', function () {
-		if (location.hash.match(/#\/books\/[^\/]+\/read$/)) {
-			if (window.innerWidth < 768) {
-				_utils2.default.addClass("#nav-bar-top", "hidden");
-			}
-			_utils2.default.addClass('body', 'book');
-			_utils2.default.addClass("#top-links", "hidden");
-			_utils2.default.addClass("#menu-open", "hidden");
-		} else {
-			_utils2.default.removeClass("#nav-bar-top", "hidden");
-			_utils2.default.removeClass('body', 'book');
-			_utils2.default.setHTML("#top-title", "");
-			if (window.innerWidth <= 600) {
+		window.addEventListener('hashchange', function () {
+			if (location.hash.match(/#\/books\/[^\/]+\/read$/)) {
+				if (window.innerWidth < 768) {
+					_utils2.default.addClass("#nav-bar-top", "hidden");
+				}
+				_utils2.default.addClass('body', 'book');
 				_utils2.default.addClass("#top-links", "hidden");
-				_utils2.default.removeClass("#menu-open", "hidden");
-			} else {
-				_utils2.default.removeClass("#top-links", "hidden");
-				_utils2.default.addClass("#menu-open", "hidden");
-			}
-		}
-	}, false);
-
-	window.addEventListener('resize', function () {
-		if (location.hash.match(/#\/books\/[^\/]+\/read$/)) {
-			if (window.innerWidth < 768) {
-				_utils2.default.addClass("#nav-bar-top", "hidden");
+				_utils2.default.addClass("#top-links-small", "hidden");
 			} else {
 				_utils2.default.removeClass("#nav-bar-top", "hidden");
+				_utils2.default.removeClass('body', 'book');
+				_utils2.default.setHTML("#top-title", "");
+				if (window.innerWidth <= 700) {
+					_utils2.default.addClass("#top-links", "hidden");
+					_utils2.default.removeClass("#top-links-small", "hidden");
+				} else {
+					_utils2.default.removeClass("#top-links", "hidden");
+					_utils2.default.addClass("#top-links-small", "hidden");
+				}
 			}
-		} else {
-			_utils2.default.removeClass("#nav-bar-top", "hidden");
-			if (window.innerWidth <= 600) {
-				_utils2.default.addClass("#top-links", "hidden");
-				_utils2.default.removeClass("#menu-open", "hidden");
+
+			//TOP-HEADER
+			var topPageHeader = root.querySelector('#top-page-header');
+			topPageHeader.innerHTML = topHeaderTemplate();
+		}, false);
+
+		window.addEventListener('resize', function () {
+			if (location.hash.match(/#\/books\/[^\/]+\/read$/)) {
+				if (window.innerWidth < 768) {
+					_utils2.default.addClass("#nav-bar-top", "hidden");
+				} else {
+					_utils2.default.removeClass("#nav-bar-top", "hidden");
+				}
 			} else {
-				_utils2.default.removeClass("#top-links", "hidden");
-				_utils2.default.addClass("#menu-open", "hidden");
+				_utils2.default.removeClass("#nav-bar-top", "hidden");
+				if (window.innerWidth <= 700) {
+					_utils2.default.addClass("#top-links", "hidden");
+					_utils2.default.removeClass("#top-links-small", "hidden");
+				} else {
+					_utils2.default.removeClass("#top-links", "hidden");
+					_utils2.default.addClass("#top-links-small", "hidden");
+				}
 			}
-		}
+		}, false);
 	}, false);
 }();
 
@@ -1289,7 +1301,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "#home-container #booksList {\n\tmax-width: 568px;\n\tmargin: auto;\n}\n\n@media only screen and (min-width: 853px) {\n\t#home-container #booksList {\n\t\tmax-width: 852px;\n\t}\n}\n\n@media only screen and (min-width: 1137px) {\n\t#home-container #booksList {\n\t\tmax-width: 1136px;\n\t}\n}\n\n#home-container .w3-col {\n\twidth: 100%;\n\theight: 408px;\n\t\n}\n\n@media only screen and (min-width: 600px) {\n\t#home-container .w3-col {\n\t\twidth: 284px;\n\t}\n}\n\n#home-container #paper {\n\tbackground-image: url(\"/images/cover_background_small.jpg\");\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#home-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#home-container .publisher {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n\tletter-spacing: 1.5px;\n}\n\n#home-container #book-btns {\n\twidth: 238px;\n\theight: 40px;\n\tmargin: auto;\n\tmargin-top: 12px;\n}\n\n#home-container #book-btns button, #book-btns a {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n\tfont-size: 1.1em;\n\tletter-spacing: 1.5px;\n\tfont-variant: small-caps;\n}\n\n\n\n", ""]);
+exports.push([module.i, "#home-container #booksList {\n\tmax-width: 568px;\n\tmargin: auto;\n}\n\n@media only screen and (min-width: 853px) {\n\t#home-container #booksList {\n\t\tmax-width: 852px;\n\t}\n}\n\n@media only screen and (min-width: 1137px) {\n\t#home-container #booksList {\n\t\tmax-width: 1136px;\n\t}\n}\n\n#home-container .w3-col {\n\twidth: 100%;\n\theight: 408px;\n\t\n}\n\n@media only screen and (min-width: 600px) {\n\t#home-container .w3-col {\n\t\twidth: 284px;\n\t}\n}\n\n#home-container #paper {\n\tbackground-image: url(\"/images/cover_background_small.jpg\");\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#home-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#home-container .publisher {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n\tletter-spacing: 1.5px;\n}\n\n#home-container #book-btns {\n\twidth: 238px;\n\theight: 40px;\n\tmargin: auto;\n\tmargin-top: 12px;\n}\n\n#home-container #book-btns button, #book-btns a {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1.5px;\n\tfont-variant: small-caps;\n}\n\n\n\n", ""]);
 
 // exports
 
@@ -1687,7 +1699,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "#books-container #booksList {\n\tmax-width: 568px;\n\tmargin: auto;\n}\n\n@media only screen and (min-width: 853px) {\n\t#books-container #booksList {\n\t\tmax-width: 852px;\n\t}\n}\n\n@media only screen and (min-width: 1137px) {\n\t#books-container #booksList {\n\t\tmax-width: 1136px;\n\t}\n}\n\n#books-container .w3-col {\n\twidth: 100%;\n\theight: 408px;\n}\n\n@media only screen and (min-width: 600px) {\n\t#books-container .w3-col {\n\t\twidth: 284px;\n\t}\n}\n\n#books-container #paper {\n\tbackground-image: url(\"/images/cover_background_small.jpg\");\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#books-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#books-container .publisher {\n\tletter-spacing: 1.5px;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n}\n\n#books-container #book-btns {\n\twidth: 238px;\n\theight: 40px;\n\tmargin: auto;\n\tmargin-top: 12px;\n}\n\n#books-container #book-btns button, #book-btns a {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n\tfont-size: 1.1em;\n\tletter-spacing: 1.5px;\n\tfont-variant: small-caps;\n}\n\n\n", ""]);
+exports.push([module.i, "#books-container #booksList {\n\tmax-width: 568px;\n\tmargin: auto;\n}\n\n@media only screen and (min-width: 853px) {\n\t#books-container #booksList {\n\t\tmax-width: 852px;\n\t}\n}\n\n@media only screen and (min-width: 1137px) {\n\t#books-container #booksList {\n\t\tmax-width: 1136px;\n\t}\n}\n\n#books-container .w3-col {\n\twidth: 100%;\n\theight: 408px;\n}\n\n@media only screen and (min-width: 600px) {\n\t#books-container .w3-col {\n\t\twidth: 284px;\n\t}\n}\n\n#books-container #paper {\n\tbackground-image: url(\"/images/cover_background_small.jpg\");\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#books-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#books-container .publisher {\n\tletter-spacing: 1.5px;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n}\n\n#books-container #book-btns {\n\twidth: 238px;\n\theight: 40px;\n\tmargin: auto;\n\tmargin-top: 12px;\n}\n\n#books-container #book-btns button, #book-btns a {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1.5px;\n\tfont-variant: small-caps;\n}\n\n\n", ""]);
 
 // exports
 
@@ -15232,7 +15244,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "#authors-container {\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n}\n\n#authors-container .author {\n\tpadding-top: 8px;\n}\n\n#authors-container .author-name {\n\tmax-width: 568px;\n\tfont-size: 1.2em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1.5px;\n\tmargin-bottom: 0px;\n\tmargin-top: 0px;\n\tmargin-left: 17px;\n\tmargin-right: 17px;\n}\n\n#authors-container #booksList {\n\tmax-width: 568px;\n\tmargin: auto;\n}\n\n@media only screen and (min-width: 600px) {\n\t#authors-container #booksList {\n\t\tmargin: 0px;\n\t}\n\t\n\t#authors-container .author-name {\n\t\tmax-width: 852px;\n\t}\n}\n\n@media only screen and (min-width: 853px) {\n\t#authors-container #booksList {\n\t\tmax-width: 852px;\n\t\tmargin: 0px;\n\t}\n\t\n\t#authors-container .author-name {\n\t\tmax-width: 1136px;\n\t}\n}\n\n@media only screen and (min-width: 1137px) {\n\t#authors-container #booksList {\n\t\tmax-width: 1136px;\n\t\tmargin: 0px;\n\t}\n\t\n\t#authors-container .author-name {\n\t\tmax-width: 1136px;\n\t}\n}\n\n#authors-container .w3-col {\n\twidth: 100%;\n\theight: 408px;\n}\n\n@media only screen and (min-width: 600px) {\n\t#authors-container .w3-col {\n\t\twidth: 284px;\n\t}\n}\n\n#authors-container #paper {\n\tbackground-image: url(\"/images/cover_background_small.jpg\");\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#authors-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#authors-container .publisher {\n\tletter-spacing: 1.5px;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n}\n\n#authors-container #book-btns {\n\twidth: 238px;\n\theight: 40px;\n\tmargin: auto;\n\tmargin-top: 12px;\n}\n\n#authors-container #book-btns button, #book-btns a {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n\tfont-size: 1.1em;\n\tletter-spacing: 1.5px;\n\tfont-variant: small-caps;\n}\n\n", ""]);
+exports.push([module.i, "#authors-container {\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n}\n\n#authors-container .author {\n\tpadding-top: 8px;\n}\n\n#authors-container .author-name {\n\tmax-width: 568px;\n\tfont-size: 1.2em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1.5px;\n\tmargin-bottom: 0px;\n\tmargin-top: 0px;\n\tmargin-left: 17px;\n\tmargin-right: 17px;\n\ttext-align: center;\n}\n\n#authors-container #booksList {\n\tmax-width: 568px;\n\tmargin: auto;\n}\n\n@media only screen and (min-width: 600px) {\n\t#authors-container #booksList {\n\t\tmargin: 0px;\n\t}\n\t\n\t#authors-container .author-name {\n\t\tmax-width: 852px;\n\t\ttext-align: left;\n\t}\n}\n\n@media only screen and (min-width: 853px) {\n\t#authors-container #booksList {\n\t\tmax-width: 852px;\n\t\tmargin: 0px;\n\t}\n\t\n\t#authors-container .author-name {\n\t\tmax-width: 1136px;\n\t}\n}\n\n@media only screen and (min-width: 1137px) {\n\t#authors-container #booksList {\n\t\tmax-width: 1136px;\n\t\tmargin: 0px;\n\t}\n\t\n\t#authors-container .author-name {\n\t\tmax-width: 1136px;\n\t}\n}\n\n#authors-container .w3-col {\n\twidth: 100%;\n\theight: 408px;\n}\n\n@media only screen and (min-width: 600px) {\n\t#authors-container .w3-col {\n\t\twidth: 284px;\n\t}\n}\n\n#authors-container #paper {\n\tbackground-image: url(\"/images/cover_background_small.jpg\");\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#authors-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#authors-container .publisher {\n\tletter-spacing: 1.5px;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n}\n\n#authors-container #book-btns {\n\twidth: 238px;\n\theight: 40px;\n\tmargin: auto;\n\tmargin-top: 12px;\n}\n\n#authors-container #book-btns button, #book-btns a {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1.5px;\n\tfont-variant: small-caps;\n}\n\n", ""]);
 
 // exports
 
@@ -15247,7 +15259,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="authors-container" class="w3-content" style="max-width: 1136px">\n	<div id="authorsList" class="w3-padding-48 w3-animate-opacity">\n		<% for(var i=0; i<authors.length; i++) {%>\n			<% if(authors[i].visible) { %>\n			<div class="author">\n				<p class="author-name w3-border-bottom"><%- authors[i].name %></p>\n				<div id="booksList" class="w3-padding-16">\n					<div class=\'w3-row\' style="text-align: center">\n						<% for(var j=0; j<authors[i].books.length; j++) {%>\n							<% if(authors[i].books[j].visible) { %>\n							<div class="w3-col">\n								<div id="paper">\n								<div id="<%= authors[i].books[j].id %>" class="book w3-card-4 w3-display-container" style="<%= authors[i].books[j].styles.cover %>">\n									<p class="book-author" style="<%=authors[i].books[j].styles.author %>"><%= authors[i].books[j].authorDisplay %></p>\n									<p class="title" style="<%=authors[i].books[j].styles.title %>">\n										<%- authors[i].books[j].title %>\n									</p>\n									<% if(authors[i].books[j].subtitle1) {%>\n									<p class="subtitle1" style="<%=authors[i].books[j].styles.subtitle1 %>">\n										<%- authors[i].books[j].subtitle1 %></a>\n									</p>\n									<% } %>\n									<% if(authors[i].books[j].subtitle2) {%>\n									<p class="subtitle1" style="<%=authors[i].books[j].styles.subtitle2 %>">\n										<%- authors[i].books[j].subtitle2 %></a>\n									</p>\n									<% } %>\n									<p class="publisher w3-display-bottommiddle" >liber</p>\n							   </div>\n							   </div>\n							   <div id="book-btns" class="w3-light-gray">\n								<a href="/#<%= authors[i].books[j].path %>/read" id="read-btn" class="align-left w3-button">lire</a>\n								<button id="info-btn" class="align-right w3-button">infos</button>\n							   </div>\n							</div>\n						   <% } %>\n						<% } %>\n					</div>\n				</div>\n			</div>\n			<% } %>\n		<% } %>\n	</div>\n</div>\n',
+        input: '<div id="authors-container" class="w3-content" style="max-width: 1136px">\n	<div id="authorsList" class="w3-padding-48 w3-animate-opacity">\n		<% for(var i=0; i<authors.length; i++) {%>\n			<% if(authors[i].visible) { %>\n			<div class="author">\n				<p class="author-name w3-border-bottom"><%- authors[i].name %></p>\n				<div id="booksList" class="w3-padding-16">\n					<div class=\'w3-row\' style="text-align: center">\n						<% var works = authors[i].books.concat(authors[i].contribs)	%>\n						<% for(var j=0; j<works.length; j++) {%>\n						<% if(works[j].role) {\n								var book = works[j].book;\n							} else {\n								var book = works[j];\n							}\n						%>\n							<% if(book.visible) { %>\n							<div class="w3-col">\n								<div id="paper">\n								<div id="<%= book.id %>" class="book w3-card-4 w3-display-container" style="<%= book.styles.cover %>">\n									<p class="book-author" style="<%=book.styles.author %>"><%= book.authorDisplay %></p>\n									<p class="title" style="<%= book.styles.title %>">\n										<%- book.title %>\n									</p>\n									<% if(book.subtitle1) {%>\n									<p class="subtitle1" style="<%=book.styles.subtitle1 %>">\n										<%- book.subtitle1 %></a>\n									</p>\n									<% } %>\n									<% if(book.subtitle2) {%>\n									<p class="subtitle1" style="<%=book.styles.subtitle2 %>">\n										<%- book.subtitle2 %></a>\n									</p>\n									<% } %>\n									<p class="publisher w3-display-bottommiddle" >liber</p>\n							   </div>\n							   </div>\n							   <div id="book-btns" class="w3-light-gray">\n								<a href="/#<%= book.path %>/read" id="read-btn" class="align-left w3-button">lire</a>\n								<button id="info-btn" class="align-right w3-button">infos</button>\n							   </div>\n							</div>\n						   <% } %>\n						<% } %>\n					</div>\n				</div>\n			</div>\n			<% } %>\n		<% } %>\n	</div>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -15272,33 +15284,43 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                     if (authors[i].visible) {
                         buf.push('\n			<div class="author">\n				<p class="author-name w3-border-bottom">', (__stack.lineno = 6, authors[i].name), '</p>\n				<div id="booksList" class="w3-padding-16">\n					<div class=\'w3-row\' style="text-align: center">\n						');
                         __stack.lineno = 9;
-                        for (var j = 0; j < authors[i].books.length; j++) {
+                        var works = authors[i].books.concat(authors[i].contribs);
+                        buf.push("\n						");
+                        __stack.lineno = 10;
+                        for (var j = 0; j < works.length; j++) {
+                            buf.push("\n						");
+                            __stack.lineno = 11;
+                            if (works[j].role) {
+                                var book = works[j].book;
+                            } else {
+                                var book = works[j];
+                            }
                             buf.push("\n							");
-                            __stack.lineno = 10;
-                            if (authors[i].books[j].visible) {
-                                buf.push('\n							<div class="w3-col">\n								<div id="paper">\n								<div id="', escape((__stack.lineno = 13, authors[i].books[j].id)), '" class="book w3-card-4 w3-display-container" style="', escape((__stack.lineno = 13, authors[i].books[j].styles.cover)), '">\n									<p class="book-author" style="', escape((__stack.lineno = 14, authors[i].books[j].styles.author)), '">', escape((__stack.lineno = 14, authors[i].books[j].authorDisplay)), '</p>\n									<p class="title" style="', escape((__stack.lineno = 15, authors[i].books[j].styles.title)), '">\n										', (__stack.lineno = 16, authors[i].books[j].title), "\n									</p>\n									");
-                                __stack.lineno = 18;
-                                if (authors[i].books[j].subtitle1) {
-                                    buf.push('\n									<p class="subtitle1" style="', escape((__stack.lineno = 19, authors[i].books[j].styles.subtitle1)), '">\n										', (__stack.lineno = 20, authors[i].books[j].subtitle1), "</a>\n									</p>\n									");
-                                    __stack.lineno = 22;
+                            __stack.lineno = 17;
+                            if (book.visible) {
+                                buf.push('\n							<div class="w3-col">\n								<div id="paper">\n								<div id="', escape((__stack.lineno = 20, book.id)), '" class="book w3-card-4 w3-display-container" style="', escape((__stack.lineno = 20, book.styles.cover)), '">\n									<p class="book-author" style="', escape((__stack.lineno = 21, book.styles.author)), '">', escape((__stack.lineno = 21, book.authorDisplay)), '</p>\n									<p class="title" style="', escape((__stack.lineno = 22, book.styles.title)), '">\n										', (__stack.lineno = 23, book.title), "\n									</p>\n									");
+                                __stack.lineno = 25;
+                                if (book.subtitle1) {
+                                    buf.push('\n									<p class="subtitle1" style="', escape((__stack.lineno = 26, book.styles.subtitle1)), '">\n										', (__stack.lineno = 27, book.subtitle1), "</a>\n									</p>\n									");
+                                    __stack.lineno = 29;
                                 }
                                 buf.push("\n									");
-                                __stack.lineno = 23;
-                                if (authors[i].books[j].subtitle2) {
-                                    buf.push('\n									<p class="subtitle1" style="', escape((__stack.lineno = 24, authors[i].books[j].styles.subtitle2)), '">\n										', (__stack.lineno = 25, authors[i].books[j].subtitle2), "</a>\n									</p>\n									");
-                                    __stack.lineno = 27;
+                                __stack.lineno = 30;
+                                if (book.subtitle2) {
+                                    buf.push('\n									<p class="subtitle1" style="', escape((__stack.lineno = 31, book.styles.subtitle2)), '">\n										', (__stack.lineno = 32, book.subtitle2), "</a>\n									</p>\n									");
+                                    __stack.lineno = 34;
                                 }
-                                buf.push('\n									<p class="publisher w3-display-bottommiddle" >liber</p>\n							   </div>\n							   </div>\n							   <div id="book-btns" class="w3-light-gray">\n								<a href="/#', escape((__stack.lineno = 32, authors[i].books[j].path)), '/read" id="read-btn" class="align-left w3-button">lire</a>\n								<button id="info-btn" class="align-right w3-button">infos</button>\n							   </div>\n							</div>\n						   ');
-                                __stack.lineno = 36;
+                                buf.push('\n									<p class="publisher w3-display-bottommiddle" >liber</p>\n							   </div>\n							   </div>\n							   <div id="book-btns" class="w3-light-gray">\n								<a href="/#', escape((__stack.lineno = 39, book.path)), '/read" id="read-btn" class="align-left w3-button">lire</a>\n								<button id="info-btn" class="align-right w3-button">infos</button>\n							   </div>\n							</div>\n						   ');
+                                __stack.lineno = 43;
                             }
                             buf.push("\n						");
-                            __stack.lineno = 37;
+                            __stack.lineno = 44;
                         }
                         buf.push("\n					</div>\n				</div>\n			</div>\n			");
-                        __stack.lineno = 41;
+                        __stack.lineno = 48;
                     }
                     buf.push("\n		");
-                    __stack.lineno = 42;
+                    __stack.lineno = 49;
                 }
                 buf.push("\n	</div>\n</div>\n");
             })();
@@ -15373,8 +15395,8 @@ var adminLogin = function adminLogin(container) {
 			} else {
 				_dataStore2.default.setData('currentUser', response.user);
 				if (response.user.admin === true) {
-					_utils2.default.addClass('#admin-link', 'visible');
-					_utils2.default.addClass('#menu-admin-link', 'visible');
+					_utils2.default.removeClass('#admin-item', 'hidden');
+					_utils2.default.removeClass('#menu-admin-item', 'hidden');
 					location.hash = '#/admin/';
 				} else {
 					_utils2.default.setHTML('#form-error', "Vous n'avez pas le droit d'accéder à l'espace administration.");
@@ -15624,8 +15646,8 @@ var adminHome = function adminHome(container, data) {
 		var options = { method: 'GET', url: '/users/logout' };
 		_utils2.default.ajax(options).then(function (response) {
 			_dataStore2.default.setData('currentUser', JSON.parse(response).user);
-			_utils2.default.removeClass('#admin-link', 'visible');
-			_utils2.default.removeClass('#menu-admin-link', 'visible');
+			_utils2.default.addClass('#admin-item', 'hidden');
+			_utils2.default.addClass('#menu-admin-item', 'hidden');
 			location.hash = '#/';
 		});
 	}
@@ -17899,6 +17921,57 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
         with (locals || {}) {
             (function() {
                 buf.push('<div id="admin" class="content">\n	<div class="w3-container w3-padding-24">\n		<h3 class="w3-container">Espace administration</h3>\n		<nav id="admin-nav-bar-top" class=\'w3-bar w3-white w3-border-top w3-border-bottom\'>\n			<a id="admin-home" href="/#/admin/" class="w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black">Accueil</a>\n			<a id="admin-users" href="/#/admin/users/" class="w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black">Utilisateurs</a>\n			<a id="admin-books" href="/#/admin/books/" class="w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black">Ouvrages</a>\n			<a id="admin-authors" href="/#/admin/authors/" class="w3-bar-item w3-button w3-text-gray w3-hover-none w3-hover-text-black">Auteurs</a>\n		</nav>\n		<div id="admin-container"></div>\n	</div>\n</div>\n');
+            })();
+        }
+        return buf.join("");
+    } catch (err) {
+        rethrow(err, __stack.input, __stack.filename, __stack.lineno);
+    }
+}
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports) {
+
+module.exports = function anonymous(locals, filters, escape, rethrow) {
+    escape = escape || function(html) {
+        return String(html).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+    };
+    var __stack = {
+        lineno: 1,
+        input: "<% if(location.hash==='' || location.hash==='#/') {%>\n	nouveautés\n<%} else if(location.hash==='#/tobepublished/') {%>\n	à paraître\n<%} else if(location.hash==='#/books/') {%>\n	catalogue\n<%} else if(location.hash==='#/authors/') {%>\n	auteurs\n<%}%>\n",
+        filename: "."
+    };
+    function rethrow(err, str, filename, lineno) {
+        var lines = str.split("\n"), start = Math.max(lineno - 3, 0), end = Math.min(lines.length, lineno + 3);
+        var context = lines.slice(start, end).map(function(line, i) {
+            var curr = i + start + 1;
+            return (curr == lineno ? " >> " : "    ") + curr + "| " + line;
+        }).join("\n");
+        err.path = filename;
+        err.message = (filename || "ejs") + ":" + lineno + "\n" + context + "\n\n" + err.message;
+        throw err;
+    }
+    try {
+        var buf = [];
+        with (locals || {}) {
+            (function() {
+                buf.push("");
+                __stack.lineno = 1;
+                if (location.hash === "" || location.hash === "#/") {
+                    buf.push("\n	nouveautés\n");
+                    __stack.lineno = 3;
+                } else if (location.hash === "#/tobepublished/") {
+                    buf.push("\n	à paraître\n");
+                    __stack.lineno = 5;
+                } else if (location.hash === "#/books/") {
+                    buf.push("\n	catalogue\n");
+                    __stack.lineno = 7;
+                } else if (location.hash === "#/authors/") {
+                    buf.push("\n	auteurs\n");
+                    __stack.lineno = 9;
+                }
+                buf.push("\n");
             })();
         }
         return buf.join("");

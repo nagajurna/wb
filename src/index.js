@@ -1,10 +1,12 @@
 import router from './router';
 import dataStore from './services/dataStore';
 import utils from './services/utils';
+let topHeaderTemplate = require('./top-header.ejs');
 
 //index.js
 var index = (function() {
 	'use strict';
+	let root;
 	
 	let init = () => {
 		//if book/id/read 
@@ -17,17 +19,17 @@ var index = (function() {
 			utils.addClass("#top-links", "hidden");
 			utils.addClass("#menu-open", "hidden");
 		} else {
-			if(window.innerWidth <= 600) {
+			if(window.innerWidth <= 700) {
 				utils.addClass("#top-links", "hidden");
-				utils.removeClass("#menu-open", "hidden");
+				utils.removeClass("#top-links-small", "hidden");
 			} else {
 				utils.removeClass("#top-links", "hidden");
-				utils.addClass("#menu-open", "hidden");
+				utils.addClass("#top-links-small", "hidden");
 			}
 		}
 		
-		//modal menu (small devices
-		let root = document.querySelector("#navigation");
+		root = document.querySelector("#navigation");
+		//MODAL MENU (small devices)
 		//open modal
 		root.querySelector("#menu-open").addEventListener("click", () => {
 			root.querySelector('#menu').style.display='block';
@@ -46,7 +48,12 @@ var index = (function() {
 			}, false);
 		}
 		
-		//home-link
+		//TOP-HEADER
+		root = document.querySelector("#navigation");
+		let topPageHeader = root.querySelector('#top-page-header');
+		topPageHeader.innerHTML = topHeaderTemplate();
+		
+		//HOME-LINK
 		root.querySelector('#home-link').addEventListener('click', event => {
 			event.preventDefault();
 			if(location.hash.match(/#\/books\/[^\/]+\/read$/)) {
@@ -69,11 +76,11 @@ var index = (function() {
 			dataStore.setData('currentUser', currentUser);
 			//check role : if admin => admin-link
 			if(currentUser.admin && currentUser.admin===true) {
-				utils.addClass('#admin-link', 'visible');
-				utils.addClass('#menu-admin-link', 'visible');
+				utils.removeClass('#admin-item', 'hidden');
+				utils.removeClass('#menu-admin-item', 'hidden');
 			} else {
-				utils.removeClass('#admin-link', 'visible');
-				utils.removeClass('#menu-admin-link', 'visible');
+				utils.addClass('#admin-item', 'hidden');
+				utils.addClass('#menu-admin-item', 'hidden');
 			}
 			
 			//get authors
@@ -105,56 +112,56 @@ var index = (function() {
 	}
 	
 	window.addEventListener('DOMContentLoaded', (e) => {
-		
 		init();
 		getData();
 		
-	
-	}, false);
-		
-
-	window.addEventListener('hashchange', () => {
-		if(location.hash.match(/#\/books\/[^\/]+\/read$/)) {
-			if(window.innerWidth < 768) {
-				utils.addClass("#nav-bar-top", "hidden");
-			}
-			utils.addClass('body', 'book');
-			utils.addClass("#top-links", "hidden");
-			utils.addClass("#menu-open", "hidden");
-		} else {
-			utils.removeClass("#nav-bar-top", "hidden");
-			utils.removeClass('body', 'book');
-			utils.setHTML("#top-title", "");
-			if(window.innerWidth <= 600) {
+		window.addEventListener('hashchange', () => {
+			if(location.hash.match(/#\/books\/[^\/]+\/read$/)) {
+				if(window.innerWidth < 768) {
+					utils.addClass("#nav-bar-top", "hidden");
+				}
+				utils.addClass('body', 'book');
 				utils.addClass("#top-links", "hidden");
-				utils.removeClass("#menu-open", "hidden");
-			} else {
-				utils.removeClass("#top-links", "hidden");
-				utils.addClass("#menu-open", "hidden");
-			}
-				
-		}
-		
-	}, false);
-
-	window.addEventListener('resize', () => {
-		if(location.hash.match(/#\/books\/[^\/]+\/read$/)) {
-			if(window.innerWidth < 768) {
-				utils.addClass("#nav-bar-top", "hidden");
+				utils.addClass("#top-links-small", "hidden");
 			} else {
 				utils.removeClass("#nav-bar-top", "hidden");
+				utils.removeClass('body', 'book');
+				utils.setHTML("#top-title", "");
+				if(window.innerWidth <= 700) {
+					utils.addClass("#top-links", "hidden");
+					utils.removeClass("#top-links-small", "hidden");
+				} else {
+					utils.removeClass("#top-links", "hidden");
+					utils.addClass("#top-links-small", "hidden");
+				}
 			}
 			
-		} else {
-			utils.removeClass("#nav-bar-top", "hidden");
-			if(window.innerWidth <= 600) {
-				utils.addClass("#top-links", "hidden");
-				utils.removeClass("#menu-open", "hidden");
+			//TOP-HEADER
+			let topPageHeader = root.querySelector('#top-page-header');
+			topPageHeader.innerHTML = topHeaderTemplate();
+			
+		}, false);
+
+		window.addEventListener('resize', () => {
+			if(location.hash.match(/#\/books\/[^\/]+\/read$/)) {
+				if(window.innerWidth < 768) {
+					utils.addClass("#nav-bar-top", "hidden");
+				} else {
+					utils.removeClass("#nav-bar-top", "hidden");
+				}
+				
 			} else {
-				utils.removeClass("#top-links", "hidden");
-				utils.addClass("#menu-open", "hidden");
+				utils.removeClass("#nav-bar-top", "hidden");
+				if(window.innerWidth <= 700) {
+					utils.addClass("#top-links", "hidden");
+					utils.removeClass("#top-links-small", "hidden");
+				} else {
+					utils.removeClass("#top-links", "hidden");
+					utils.addClass("#top-links-small", "hidden");
+				}
 			}
-		}
+		}, false);
+		
 	}, false);
 
 })();

@@ -18,8 +18,8 @@ const adminHome = function(container, data) {
 		utils.ajax(options)
 		.then( response => {
 			dataStore.setData('currentUser', JSON.parse(response).user);
-			utils.removeClass('#admin-link', 'visible');
-			utils.removeClass('#menu-admin-link', 'visible');
+			utils.addClass('#admin-item', 'hidden');
+			utils.addClass('#menu-admin-item', 'hidden');
 			location.hash = '#/';
 		});
 	}
