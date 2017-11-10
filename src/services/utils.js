@@ -66,6 +66,15 @@ const utils = {
 					utils.removeClass("#" + links[i].id, "w3-text-gray");
 				}
 				
+			} else if(links[i].id==='last-link' || links[i].id==='menu-last-link') {
+				if(location.hash==='' || location.hash==='#/') {
+					utils.addClass("#" + links[i].id, "w3-text-black");
+					utils.removeClass("#" + links[i].id, "w3-text-gray");
+				} else {
+					utils.addClass("#" + links[i].id, "w3-text-gray");
+					utils.removeClass("#" + links[i].id, "w3-text-black");
+				}
+				
 			} else {
 			
 				if(location.href===links[i].href) {

@@ -12,8 +12,12 @@ const home = function(container) {
 	//Get books from dataStore
 	let books = dataStore.getData('books');
 	//Get last published
+	let count = 0;
 	for(let i=0; i<books.length; i++) {
-		if(i<4) {
+		if(books[i].visible) {
+			count+=1
+		}
+		if(count<=4) {
 			lastBooks.push(books[i]);
 		} else {
 			break;

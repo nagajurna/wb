@@ -40,7 +40,9 @@ var index = (function() {
 		let links = root.querySelectorAll("#menu a");
 		for(let i=0; i<links.length; i++) {
 			links[i].addEventListener("click", () => {
-				root.querySelector('#menu').style.display='none';
+				setTimeout(() => {
+					root.querySelector('#menu').style.display='none';
+				},100);
 			}, false);
 		}
 	}

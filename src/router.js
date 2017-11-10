@@ -26,7 +26,7 @@ const router  = function() {
 		let container = document.querySelector('#container');
 		
 		//ROUTES
-		if(newhash === '#/') {
+		if(newhash === '' || newhash === '#/') {
 			//HOME
 			home(container);
 		
@@ -89,7 +89,7 @@ const router  = function() {
 	
 	
 	//ON LOAD (called by index.js)
-	if(location.hash === "") { location.hash = "#/"; }
+	//if(location.hash === "") { location.hash = "#/"; }
 	
 	let oldhash, newhash;
 	
