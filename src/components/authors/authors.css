@@ -1,3 +1,22 @@
+#authors-container #top-page-header {
+	text-align: center;
+	font-family: "Times New Roman", Georgia, sans-serif;
+	font-size: 1em;
+	font-variant: small-caps;
+	letter-spacing: 1px;
+	line-height: 25px;
+	width: 90px;
+	margin: auto;
+	margin-top: 16px;
+	display: block;
+}
+
+@media only screen and (min-width: 768px) {
+	#authors-container #top-page-header {
+		display: none;
+	}
+}
+
 #authors-container {
 	font-family: "Times New Roman", Georgia, sans-serif;
 }
@@ -85,17 +104,56 @@
 	font-family: "Times New Roman", Georgia, sans-serif;
 }
 
-#authors-container #book-btns {
+#authors-container #book-btn {
 	width: 238px;
 	height: 40px;
 	margin: auto;
-	margin-top: 12px;
+	margin-top: 8px;
 }
 
-#authors-container #book-btns button, #book-btns a {
+#authors-container #book-btn button {
 	font-family: "Times New Roman", Georgia, serif;
 	font-size: 1em;
 	letter-spacing: 1.5px;
-	font-variant: small-caps;
 }
+
+/*
+MODAL (INFOS)
+*/
+#authors-container .w3-modal {
+	font-family: "Times New Roman", Georgia, serif;
+}
+
+#authors-container .w3-modal header {
+	height: 48px;
+}
+
+#authors-container .w3-modal header span {
+	line-height: 27px;
+	font-size: 1.2em;
+	letter-spacing: 1px;
+}
+
+#authors-container .w3-modal .close-infos-btn {
+	height: 47px;
+	line-height: 27px;
+	font-size: 2em;
+	font-family: "Times New Roman", Georgia, sans-serif;
+}
+
+#authors-container .w3-modal p {
+	margin: 0px;
+	margin-top: 8px;
+}
+
+#authors-container .w3-modal ul {
+	margin: 0px;
+	padding-left: 20px;
+	list-style-type: none;
+}
+
+#authors-container .w3-modal .contrib-role {
+	text-transform: capitalize;
+}
+
 

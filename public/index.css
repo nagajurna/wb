@@ -15,6 +15,7 @@ body {
 	margin: 0px;
 	border: none;
 	background-color: #fafafa;
+	font-size: 14px;
 }
 
 body.book {
@@ -80,7 +81,7 @@ When not book-read only
 	left: 0px;
 	top: 0px;
 	line-height: 27px;
-	font-size: 1.4em;
+	font-size: 1.8em;
 	letter-spacing: 1.5px;
 	font-family: "Times New Roman", Georgia, sans-serif;
 }
@@ -89,16 +90,11 @@ When not book-read only
 Medium and large devices only
 */
 #top-links {
+	font-size: 14px;
 	width:90%;
 	margin: auto;
 	text-align: center;
-	font-size: 0.9em;
-}
-
-@media only screen and (min-width: 768px) {
-	#top-links {
-		font-size: 0.95em;
-	}
+	font-size: 1.2em;
 }
 
 #top-links ul {
@@ -131,32 +127,13 @@ Medium and large devices only
 /*
 Small devices only
 */
-#top-links-small {
-	position: relative;
-	width: 100%;
-	padding-top: 10px;
-}
-
-#top-page-header {
-	text-align: center;
-	font-family: "Times New Roman", Georgia, sans-serif;
-	font-size: 0.85em;
-	font-variant: small-caps;
-	letter-spacing: 1px;
-	padding: 0px 0px 0px 0px;
-	line-height: 25px;
-	padding-bottom: 4px;
-	width: 120px;
-	margin: auto;
-}
-
 #menu-open {
 	position: absolute;
 	right: 0px;
 	top: 0px;
 	height: 47px;
 	line-height: 27px;
-	font-size: 1.8em;
+	font-size: 2em;
 	font-family: "Times New Roman", Georgia, sans-serif;
 }
 
@@ -197,7 +174,7 @@ MODAL MENU (SMALL DEVICES)
 #menu #menu-close {
 	height: 47px;
 	line-height: 27px;
-	font-size: 1.8em;
+	font-size: 2em;
 	font-family: "Times New Roman", Georgia, sans-serif;
 }
 
@@ -208,7 +185,7 @@ MODAL MENU (SMALL DEVICES)
 
 #menu-home-link {
 	line-height: 27px;
-	font-size: 1.4em;
+	font-size: 1.8em;
 	letter-spacing: 1.5px;
 	font-family: "Times New Roman", Georgia, sans-serif;
 }

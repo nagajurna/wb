@@ -1,7 +1,6 @@
 import router from './router';
 import dataStore from './services/dataStore';
 import utils from './services/utils';
-let topHeaderTemplate = require('./top-header.ejs');
 
 //index.js
 var index = (function() {
@@ -19,12 +18,12 @@ var index = (function() {
 			utils.addClass("#top-links", "hidden");
 			utils.addClass("#menu-open", "hidden");
 		} else {
-			if(window.innerWidth <= 700) {
+			if(window.innerWidth < 768) {
 				utils.addClass("#top-links", "hidden");
-				utils.removeClass("#top-links-small", "hidden");
+				utils.removeClass("#menu-open", "hidden");
 			} else {
 				utils.removeClass("#top-links", "hidden");
-				utils.addClass("#top-links-small", "hidden");
+				utils.addClass("#menu-open", "hidden");
 			}
 		}
 		
@@ -47,11 +46,6 @@ var index = (function() {
 				},100);
 			}, false);
 		}
-		
-		//TOP-HEADER
-		root = document.querySelector("#navigation");
-		let topPageHeader = root.querySelector('#top-page-header');
-		topPageHeader.innerHTML = topHeaderTemplate();
 		
 		//HOME-LINK
 		root.querySelector('#home-link').addEventListener('click', event => {
@@ -127,18 +121,14 @@ var index = (function() {
 				utils.removeClass("#nav-bar-top", "hidden");
 				utils.removeClass('body', 'book');
 				utils.setHTML("#top-title", "");
-				if(window.innerWidth <= 700) {
+				if(window.innerWidth < 768) {
 					utils.addClass("#top-links", "hidden");
-					utils.removeClass("#top-links-small", "hidden");
+					utils.removeClass("#menu-open", "hidden");
 				} else {
 					utils.removeClass("#top-links", "hidden");
-					utils.addClass("#top-links-small", "hidden");
+					utils.addClass("#menu-open", "hidden");
 				}
 			}
-			
-			//TOP-HEADER
-			let topPageHeader = root.querySelector('#top-page-header');
-			topPageHeader.innerHTML = topHeaderTemplate();
 			
 		}, false);
 
@@ -152,12 +142,12 @@ var index = (function() {
 				
 			} else {
 				utils.removeClass("#nav-bar-top", "hidden");
-				if(window.innerWidth <= 700) {
+				if(window.innerWidth < 768) {
 					utils.addClass("#top-links", "hidden");
-					utils.removeClass("#top-links-small", "hidden");
+					utils.removeClass("#menu-open", "hidden");
 				} else {
 					utils.removeClass("#top-links", "hidden");
-					utils.addClass("#top-links-small", "hidden");
+					utils.addClass("#menu-open", "hidden");
 				}
 			}
 		}, false);

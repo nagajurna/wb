@@ -1,3 +1,22 @@
+#books-next-container #top-page-header {
+	text-align: center;
+	font-family: "Times New Roman", Georgia, sans-serif;
+	font-size: 1em;
+	font-variant: small-caps;
+	letter-spacing: 1px;
+	line-height: 25px;
+	width: 100px;
+	margin: auto;
+	margin-top: 16px;
+	display: block;
+}
+
+@media only screen and (min-width: 768px) {
+	#books-next-container #top-page-header {
+		display: none;
+	}
+}
+
 #books-next-container #booksList {
 	max-width: 568px;
 	margin: auto;
@@ -17,7 +36,7 @@
 
 #books-next-container .w3-col {
 	width: 100%;
-	height: 370px;
+	height: 408px;
 }
 
 @media only screen and (min-width: 600px) {
@@ -43,5 +62,58 @@
 	letter-spacing: 1.5px;
 	font-family: "Times New Roman", Georgia, sans-serif;
 }
+
+#books-next-container #book-btn {
+	width: 238px;
+	height: 40px;
+	margin: auto;
+	margin-top: 8px;
+}
+
+#books-next-container #book-btn button {
+	font-family: "Times New Roman", Georgia, serif;
+	font-size: 1em;
+	letter-spacing: 1.5px;
+}
+
+/*
+MODAL (INFOS)
+*/
+#books-next-container .w3-modal {
+	font-family: "Times New Roman", Georgia, serif;
+}
+
+#books-next-container .w3-modal header {
+	height: 48px;
+}
+
+#books-next-container .w3-modal header span {
+	line-height: 27px;
+	font-size: 1.2em;
+	letter-spacing: 1px;
+}
+
+#books-next-container .w3-modal .close-infos-btn {
+	height: 47px;
+	line-height: 27px;
+	font-size: 2em;
+	font-family: "Times New Roman", Georgia, sans-serif;
+}
+
+#books-next-container .w3-modal p {
+	margin: 0px;
+	margin-top: 8px;
+}
+
+#books-next-container .w3-modal ul {
+	margin: 0px;
+	padding-left: 20px;
+	list-style-type: none;
+}
+
+#books-next-container .w3-modal .contrib-role {
+	text-transform: capitalize;
+}
+
 
 

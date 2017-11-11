@@ -44,7 +44,7 @@
     },
     {
       "source": {
-        "publisher": "La Lampe de Psyché, Mercure de France (Paris)&ensp;&ndash;&ensp;pages 71-109",
+        "publisher": "La Lampe de&nbsp;Psyché, Mercure de&nbsp;France (Paris)&ensp;&ndash;&ensp;pages&nbsp;71-109",
         "year": "1925",
         "origin": "Gallica"
       },
@@ -62,7 +62,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-05 17:23:30",
-      "updated_at": "2017-11-07 20:06:04",
+      "updated_at": "2017-11-11 13:54:10",
       "id": "9a7eacc1-e038-4695-a8cb-2d8c97f63b17",
       "visible": true,
       "styles": {
@@ -75,7 +75,7 @@
     },
     {
       "source": {
-        "publisher": "La Lampe de Psyché, Mercure de France (Paris) – pages 7-70",
+        "publisher": "La Lampe de&nbsp;Psyché, Mercure de&nbsp;France (Paris) – pages&nbsp;7-70",
         "year": "1925",
         "origin": ""
       },
@@ -101,7 +101,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-07 22:51:03",
-      "updated_at": "2017-11-10 20:22:08",
+      "updated_at": "2017-11-11 15:59:27",
       "id": "ad292def-1f0c-4ce5-a770-6dc9400851f4"
     },
     {
@@ -163,7 +163,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-09 22:22:20",
-      "updated_at": "2017-11-10 20:22:18",
+      "updated_at": "2017-11-11 15:59:04",
       "id": "40d223dc-9bbc-48fa-a3e5-3649929a8dec"
     }
   ],
@@ -198,7 +198,7 @@
       "description": "",
       "visible": false,
       "created_at": "2017-11-09 22:08:44",
-      "updated_at": "2017-11-10 20:22:28",
+      "updated_at": "2017-11-11 15:59:38",
       "id": "5315cb5e-f391-467c-8ed2-035f2bce133f"
     }
   ]

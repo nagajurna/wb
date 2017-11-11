@@ -25,7 +25,7 @@ const home = function(container) {
 	}
 	//insert template in container
 	c.innerHTML = homeTemplate({ books:lastBooks });
-	
+	//link to book/read
 	let root = document.querySelector('#home-container');
 	let bks = root.querySelectorAll('.book');
 	for(let i=0; i<bks.length; i++) {
@@ -34,7 +34,23 @@ const home = function(container) {
 			location.hash = '#' + bk.path + "/read";
 		}, false);
 	}
-	
+	//modal (infos)
+	//open
+	let openInfosBtns = root.querySelectorAll('.open-infos-btn');
+	for(let i=0; i<openInfosBtns.length; i++) {
+		openInfosBtns[i].addEventListener('click', event => {
+			let id = event.target.id.replace('open-', '');
+			document.getElementById(id).style.display = 'block';
+		}, false);
+	}
+	//close
+	let closeInfosBtns = root.querySelectorAll('.close-infos-btn');
+	for(let i=0; i<closeInfosBtns.length; i++) {
+		closeInfosBtns[i].addEventListener('click', event => {
+			let id = event.target.id.replace('close-', '');
+			document.getElementById(id).style.display = 'none';
+		}, false);
+	}
 };
 
 export default home;

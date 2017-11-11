@@ -5,7 +5,7 @@ import home from './components/home/home';
 //books-next(controller)
 import booksNext from './components/books-next/books-next';
 //books(controller)
-import books from './components/books/books';
+//import books from './components/books/books';
 //book-read (controller)
 import bookRead from './components/book-read/book-read';
 //adminLogin (controller)
@@ -34,9 +34,9 @@ const router  = function() {
 			//TO BE PUBLISHED
 			booksNext(container);
 			
-		} else if(newhash === '#/books/') {
-			//BOOKS
-			books(container);
+		//} else if(newhash === '#/books/') {
+			////BOOKS
+			//books(container);
 			
 		} else if(newhash.match(/#\/books\/[^\/]+\/read$/)) {
 			//BOOK READ

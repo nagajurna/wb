@@ -1,9 +1,81 @@
 <div id="books-next-container" class="w3-content" style="max-width: 1200px">
+	<div id="top-page-header" class="w3-light-gray">à paraître</div>
 	<div id="booksList" class="w3-padding-64 w3-animate-opacity">
-		<div class='w3-row' style="text-align: center">
+		<div class='w3-row'>
 			<% for(var i=0; i<books.length; i++) {%>
 				<% if(!books[i].visible) { %>
-				<div class="w3-col">
+				
+				<!-- MODAL (INFOS) -->
+				<div id="infos-<%= books[i].id %>" class="w3-modal" style="background-color: rgba(0,0,0,0.1)">
+					<div class="w3-modal-content w3-card w3-padding-16" style="max-width: 600px">
+						<header class="w3-container">
+							<button id="close-infos-<%= books[i].id %>" class="close-infos-btn w3-button w3-text-black w3-hover-none w3-display-topright">&times;</button>
+							<span><%- books[i].title %></span>
+						</header>
+						<div class="w3-container">
+							  <p><b>Titre : </b><%- books[i].title %></p>
+							  <% if(books[i].subtitle1) {%>
+								<p><b>Sous-titre : </b><%- books[i].subtitle1 %></p>
+							  <%}%>
+							  <% if(books[i].subtitle2) {%>
+								<p><b>Sous-sous-titre : </b><%- books[i].subtitle2 %></p>
+							  <%}%>
+							  <p><b>Année de parution : </b><%- books[i].year %></p>
+							  <% if(books[i].authors.length > 1) {%>
+									<p>
+										<span><b>Auteurs :</b></span>
+										<br>
+										<ul>
+										<% for(var j=0; j<books[i].authors.length; j++) {%>
+											<li>
+												<%- books[i].authors[j].name %> (<%- books[i].authors[j].birth %>&nbsp;&ndash; <%- books[i].authors[j].death %>)
+											</li>
+										<%}%>
+										</ul>
+								    </p>
+							  <%} else if(books[i].authors.length === 1) {%>
+									<p><b>Auteur : </b><%- books[i].authors[0].name %> (<%- books[i].authors[0].birth %>&nbsp;&ndash; <%- books[i].authors[0].death %>)</p>
+							  <%}%>
+							  <% if(books[i].contribs.length > 1) {%>
+									<p>
+										<span><b>Contributions :</b></span>
+										<br>
+										<ul>
+										<% for(var j=0; j<books[i].contribs.length; j++) {%>
+											<li>
+												<span class="contrib-role"><%- books[i].contribs[j].role %> : </span>
+												<%- books[i].contribs[j].name %> (<%- books[i].contribs[j].birth %>&nbsp;&ndash; <%- books[i].contribs[j].death %>)
+											</li>
+										<%}%>
+										</ul>
+								    </p>
+							  <%} else if(books[i].contribs.length === 1) {%>
+									<p>
+										<span><b>Contribution : </b></span>
+										<br>
+										<ul>
+											<li>
+												<span class="contrib-role"><%- books[i].contribs[0].role %> : </span>
+												<%- books[i].contribs[0].name %> (<%- books[i].contribs[0].birth %>&nbsp;&ndash; <%- books[i].contribs[0].death %>)
+											</li>
+										</ul>
+									</p>
+							  <%}%>
+							  <p class="book-source"><b>Source : </b>
+								  <ul>
+									  <li>&Eacute;diteur : <%- books[i].source.publisher %></li>
+									  <li>Année de publication : <%- books[i].source.year %></li>
+								  </ul>
+							  </p>
+							  <% if(books[i].description) {%>
+							  <div><%- books[i].description %></div>
+							  <%}%>
+						</div>
+					</div>
+				</div>
+
+				
+				<div class="w3-col" style="text-align: center">
 					<div id="paper">
 					<div class="book w3-card-4 w3-display-container" style="<%=books[i].styles.cover %>">
 						<p class="author" style="<%=books[i].styles.author %>"><%= books[i].authorDisplay %></p>
@@ -22,6 +94,9 @@
 						<% } %>
 						<p class="publisher w3-display-bottommiddle" >liber</p>
 				   </div>
+				   </div>
+				   <div id="book-btn" >
+						<button id="open-infos-<%= books[i].id %>" class="open-infos-btn align-right w3-button">+ d'infos</button>
 				   </div>
 				</div>
 			   <% } %>

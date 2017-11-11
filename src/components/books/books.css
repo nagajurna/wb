@@ -1,3 +1,22 @@
+#books-container #top-page-header {
+	text-align: center;
+	font-family: "Times New Roman", Georgia, sans-serif;
+	font-size: 1em;
+	font-variant: small-caps;
+	letter-spacing: 1px;
+	line-height: 25px;
+	width: 100px;
+	margin: auto;
+	margin-top: 16px;
+	display: block;
+}
+
+@media only screen and (min-width: 768px) {
+	#books-container #top-page-header {
+		display: none;
+	}
+}
+
 #books-container #booksList {
 	max-width: 568px;
 	margin: auto;
@@ -44,18 +63,17 @@
 	font-family: "Times New Roman", Georgia, sans-serif;
 }
 
-#books-container #book-btns {
+#books-container #book-btn {
 	width: 238px;
 	height: 40px;
 	margin: auto;
-	margin-top: 12px;
+	margin-top: 8px;
 }
 
-#books-container #book-btns button, #book-btns a {
+#books-container #book-btn button {
 	font-family: "Times New Roman", Georgia, serif;
 	font-size: 1em;
 	letter-spacing: 1.5px;
-	font-variant: small-caps;
 }
 
 

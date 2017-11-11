@@ -1,21 +1,98 @@
 <div id="authors-container" class="w3-content" style="max-width: 1136px">
+	<div id="top-page-header" class="w3-light-gray">auteurs</div>
 	<div id="authorsList" class="w3-padding-48 w3-animate-opacity">
 		<% for(var i=0; i<authors.length; i++) {%>
 			<% if(authors[i].visible) { %>
 			<div class="author">
 				<p class="author-name w3-border-bottom"><%- authors[i].name %></p>
 				<div id="booksList" class="w3-padding-16">
-					<div class='w3-row' style="text-align: center">
+					<div class='w3-row'>
 						<% var works = authors[i].books.concat(authors[i].contribs)	%>
 						<% for(var j=0; j<works.length; j++) {%>
-						<% if(works[j].role) {
-								var book = works[j].book;
-							} else {
-								var book = works[j];
-							}
-						%>
-							<% if(book.visible) { %>
-							<div class="w3-col">
+							<% if(works[j].role) {
+									var b = works[j].book;
+								} else {
+									var b = works[j];
+								}
+							%>
+							<% if(b.visible) { %>
+							<% for(var k=0; k<books.length; k++) {
+								if(books[k].id===b.id) {
+									var book = books[k];
+									break;
+								}
+							}%>
+							
+							<!-- MODAL (INFOS) -->
+							<div id="infos-<%= book.id %>" class="w3-modal" style="background-color: rgba(0,0,0,0.1)">
+								<div class="w3-modal-content w3-card w3-padding-16" style="max-width: 600px">
+									<header class="w3-container">
+										<button id="close-infos-<%= book.id %>" class="close-infos-btn w3-button w3-text-black w3-hover-none w3-display-topright">&times;</button>
+										<span><%- book.title %></span>
+									</header>
+									<div class="w3-container">
+										  <p><b>Titre : </b><%- book.title %></p>
+										  <% if(book.subtitle1) {%>
+											<p><b>Sous-titre : </b><%- book.subtitle1 %></p>
+										  <%}%>
+										  <% if(book.subtitle2) {%>
+											<p><b>Sous-sous-titre : </b><%- book.subtitle2 %></p>
+										  <%}%>
+										  <p><b>Année de parution : </b><%- book.year %></p>
+										  <% if(book.authors.length > 1) {%>
+												<p>
+													<span><b>Auteurs :</b></span>
+													<br>
+													<ul>
+													<% for(var j=0; j<book.authors.length; j++) {%>
+														<li>
+															<%- book.authors[j].name %> (<%- book.authors[j].birth %>&nbsp;&ndash; <%- book.authors[j].death %>)
+														</li>
+													<%}%>
+													</ul>
+												</p>
+										  <%} else if(book.authors.length === 1) {%>
+												<p><b>Auteur : </b><%- book.authors[0].name %> (<%- book.authors[0].birth %>&nbsp;&ndash; <%- book.authors[0].death %>)</p>
+										  <%}%>
+										  <% if(book.contribs.length > 1) {%>
+												<p>
+													<span><b>Contributions :</b></span>
+													<br>
+													<ul>
+													<% for(var j=0; j<book.contribs.length; j++) {%>
+														<li>
+															<span class="contrib-role"><%- book.contribs[j].role %> : </span>
+															<%- book.contribs[j].name %> (<%- book.contribs[j].birth %>&nbsp;&ndash; <%- book.contribs[j].death %>)
+														</li>
+													<%}%>
+													</ul>
+												</p>
+										  <%} else if(book.contribs.length === 1) {%>
+												<p>
+													<span><b>Contribution : </b></span>
+													<br>
+													<ul>
+														<li>
+															<span class="contrib-role"><%- book.contribs[0].role %> : </span>
+															<%- book.contribs[0].name %> (<%- book.contribs[0].birth %>&nbsp;&ndash; <%- book.contribs[0].death %>)
+														</li>
+													</ul>
+												</p>
+										  <%}%>
+										  <p class="book-source"><b>Source : </b>
+											  <ul>
+												  <li>&Eacute;diteur : <%- book.source.publisher %></li>
+												  <li>Année de publication : <%- book.source.year %></li>
+											  </ul>
+										  </p>
+										  <% if(book.description) {%>
+										  <div><%- book.description %></div>
+										  <%}%>
+									</div>
+								</div>
+							</div>
+							
+							<div class="w3-col" style="text-align: center">
 								<div id="paper">
 								<div id="<%= book.id %>" class="book w3-card-4 w3-display-container" style="<%= book.styles.cover %>">
 									<p class="book-author" style="<%=book.styles.author %>"><%= book.authorDisplay %></p>
@@ -35,9 +112,8 @@
 									<p class="publisher w3-display-bottommiddle" >liber</p>
 							   </div>
 							   </div>
-							   <div id="book-btns" class="w3-light-gray">
-								<a href="/#<%= book.path %>/read" id="read-btn" class="align-left w3-button">lire</a>
-								<button id="info-btn" class="align-right w3-button">infos</button>
+							   <div id="book-btn" >
+									<button id="open-infos-<%= book.id %>" class="open-infos-btn align-right w3-button">+ d'infos</button>
 							   </div>
 							</div>
 						   <% } %>
