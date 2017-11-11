@@ -77,7 +77,7 @@
 				
 				<div class="w3-col" style="text-align: center">
 					<div id="paper">
-					<div class="book w3-card-4 w3-display-container" style="<%=books[i].styles.cover %>">
+					<div id="<%= books[i].id %>" class="book w3-card-4 w3-display-container" style="<%=books[i].styles.cover %>">
 						<p class="author" style="<%=books[i].styles.author %>"><%= books[i].authorDisplay %></p>
 						<p class="title" style="<%=books[i].styles.title %>">
 							<%- books[i].title %>
