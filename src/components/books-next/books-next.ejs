@@ -7,12 +7,8 @@
 				
 				<!-- MODAL (INFOS) -->
 				<div id="infos-<%= books[i].id %>" class="w3-modal" style="background-color: rgba(0,0,0,0.1)">
-					<div class="w3-modal-content w3-card w3-padding-16" style="max-width: 600px">
-						<header class="w3-container">
-							<button id="close-infos-<%= books[i].id %>" class="close-infos-btn w3-button w3-text-black w3-hover-none w3-display-topright">&times;</button>
-							<span><%- books[i].title %></span>
-						</header>
-						<div class="w3-container">
+					<div class="w3-modal-content w3-card" style="max-width: 500px">
+						<div class="w3-container w3-padding-16">
 							  <p><b>Titre : </b><%- books[i].title %></p>
 							  <% if(books[i].subtitle1) {%>
 								<p><b>Sous-titre : </b><%- books[i].subtitle1 %></p>
@@ -71,6 +67,9 @@
 							  <div><%- books[i].description %></div>
 							  <%}%>
 						</div>
+						<div id=footer class="w3-container w3-border-bottom">
+							<button id="close-infos-<%= books[i].id %>" class="close-infos-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-bottomright">Fermer</button>
+						</div>
 					</div>
 				</div>
 
@@ -92,7 +91,7 @@
 							<%- books[i].subtitle2 %></a>
 						</p>
 						<% } %>
-						<p class="publisher w3-display-bottommiddle" >liber</p>
+						<p class="logo w3-display-bottommiddle" style="<%=books[i].styles.logo %>">liber</p>
 				   </div>
 				   </div>
 				   <div id="book-btn" >

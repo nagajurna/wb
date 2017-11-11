@@ -112,6 +112,12 @@
 				<span class="error" data-utils-bind="{{ categories }}"></span>
 			</p>
 			
+			<p id="collection">
+				<label>Collection : </label>
+				<input type="text" name="collection" class="w3-input w3-border" value="<%= book.collection %>" >
+				<span class="error" data-utils-bind="{{ collection }}"></span>
+			</p>
+			
 			<p id="source-publisher">
 				<label>Source - éditeur : </label>
 				<input type="text" name="source-publisher" class="w3-input w3-border" value="<%= book.source.publisher %>" >
@@ -126,6 +132,17 @@
 				<label>Source - origine : </label>
 				<input type="text" name="source-origin" class="w3-input w3-border" value="<%= book.source.origin %>" >
 			</p>
+			
+			<p id="styles-color">
+				<label>Styles - couleur : </label>
+				<input type="text" name="styles-color" class="w3-input w3-border" value="<%= book.styles.color %>" >
+			</p>
+			
+			<p id="styles-image">
+				<label>Styles - image : </label>
+				<input type="text" name="styles-image" class="w3-input w3-border" value="<%= book.styles.image %>" >
+			</p>
+			
 			<p id="styles-cover">
 				<label>Styles - couverture : </label>
 				<input type="text" name="styles-cover" class="w3-input w3-border" value="<%= book.styles.cover %>" >
@@ -149,6 +166,11 @@
 			<p id="styles-subtitle2">
 				<label>Styles - sous-titre2 : </label>
 				<input type="text" name="styles-subtitle2" class="w3-input w3-border" value="<%= book.styles.subtitle2 %>" >
+			</p>
+			
+			<p id="styles-logo">
+				<label>Styles - logo : </label>
+				<input type="text" name="styles-logo" class="w3-input w3-border" value="<%= book.styles.logo %>" >
 			</p>
 			
 			<p id="description">

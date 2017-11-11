@@ -91,14 +91,18 @@ const adminBooksNew = function(container) {
 				book.year = form.querySelector('[name=year]').value;
 				book.language = form.querySelector('[name=language]').value;
 				book.categories = form.querySelector('[name=categories]').value;
+				book.collection = form.querySelector('[name=collection]').value;
 				book.source.publisher = form.querySelector('[name=source-publisher]').value;
 				book.source.year = form.querySelector('[name=source-year]').value;
 				book.source.origin = form.querySelector('[name=source-origin]').value;
+				book.styles.color = form.querySelector('[name=styles-color').value;
+				book.styles.image = form.querySelector('[name=styles-image').value;
 				book.styles.cover = form.querySelector('[name=styles-cover').value;
 				book.styles.author = form.querySelector('[name=styles-author').value;
 				book.styles.title = form.querySelector('[name=styles-title').value;
 				book.styles.subtitle1 = form.querySelector('[name=styles-subtitle1').value;
 				book.styles.subtitle2 = form.querySelector('[name=styles-subtitle2').value;
+				book.styles.logo = form.querySelector('[name=styles-logo').value;
 				book.description = form.querySelector('[name=description]').value;
 				book.path = form.querySelector('[name=path]').value;
 				book.visible = form.querySelector('[name=visible]').checked ? true : false;

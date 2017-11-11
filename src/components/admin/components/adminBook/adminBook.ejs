@@ -10,7 +10,7 @@
 			</header>
 			<div  class="w3-container">
 				<p>Voulez-vous vraiment supprimer cet ouvrage ?</p>
-				<p><%= book.title %></p>
+				<p><%- book.title %></p>
 				<p class="w3-right"><button type="button" id="delete-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black">Supprimer</button></p>
 			</div>
 			
@@ -72,12 +72,16 @@
 			</ul>
 			<p><b>Styles :</b></p>
 			<ul class='w3-ul'>
+				<li><b>Couleur : </b><span><%= book.styles.color %></span></li>
+				<li><b>Image : </b><span><%= book.styles.image %></span></li>
 				<li><b>Couverture : </b><span><%= book.styles.cover %></span></li>
 				<li><b>Auteur : </b><span><%= book.styles.author %></span></li>
 				<li><b>Titre : </b><span><%= book.styles.title %></span></li>
 				<li><b>Sous-titre1 : </b><span><%= book.styles.subtitle1 %></span></li>
 				<li><b>Sous-titre2 : </b><span><%= book.styles.subtitle2 %></span></li>
+				<li><b>Sous-titre2 : </b><span><%= book.styles.logo %></span></li>
 			</ul>
+			<p><b>Collection : </b><span><%= book.collection %></span></p>
 			<p><b>Description :</b></p>
 			<div><%= book.description %></div>
 			<p><b>Path : </b><span><%= book.path %></span></p>

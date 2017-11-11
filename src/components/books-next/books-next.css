@@ -46,7 +46,7 @@
 }
 
 #books-next-container #paper {
-	background-image: url("/images/cover_background_small.jpg");
+	background-image: url("/images/cover_background.jpg");
 	width: 250px;
 	height: 340px;
 	margin:auto;
@@ -56,11 +56,6 @@
 	width: 250px;
 	height: 340px;
 	margin:auto;
-}
-
-#books-next-container .publisher {
-	letter-spacing: 1.5px;
-	font-family: "Times New Roman", Georgia, sans-serif;
 }
 
 #books-next-container #book-btn {
@@ -83,21 +78,14 @@ MODAL (INFOS)
 	font-family: "Times New Roman", Georgia, serif;
 }
 
-#books-next-container .w3-modal header {
-	height: 48px;
-}
-
-#books-next-container .w3-modal header span {
-	line-height: 27px;
-	font-size: 1.2em;
-	letter-spacing: 1px;
+#books-next-container .w3-modal #footer {
+	padding-top: 16px;
 }
 
 #books-next-container .w3-modal .close-infos-btn {
-	height: 47px;
-	line-height: 27px;
-	font-size: 2em;
+	font-size: 1.1em;
 	font-family: "Times New Roman", Georgia, sans-serif;
+	letter-spacing: 1px;
 }
 
 #books-next-container .w3-modal p {
@@ -107,7 +95,7 @@ MODAL (INFOS)
 
 #books-next-container .w3-modal ul {
 	margin: 0px;
-	padding-left: 20px;
+	padding-left: 10px;
 	list-style-type: none;
 }
 

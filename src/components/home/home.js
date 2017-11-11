@@ -25,8 +25,8 @@ const home = function(container) {
 	}
 	//insert template in container
 	c.innerHTML = homeTemplate({ books:lastBooks });
-	//link to book/read
 	let root = document.querySelector('#home-container');
+	//link to book/read
 	let bks = root.querySelectorAll('.book');
 	for(let i=0; i<bks.length; i++) {
 		bks[i].addEventListener('click', event => {

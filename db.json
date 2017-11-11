@@ -13,140 +13,19 @@
   "books": [
     {
       "source": {
-        "publisher": "G. Charpentier et E. Fasquelle (Paris)",
-        "year": "1896",
-        "origin": "Gallica"
-      },
-      "title": "Vies imaginaires",
-      "subtitle1": "",
-      "subtitle2": "",
-      "authorDisplay": "Marcel Schwob",
-      "year": "1896",
-      "language": "français",
-      "categories": "",
-      "description": "",
-      "path": "/books/vies_imaginaires",
-      "authors": [
-        "6e757154-155a-4518-add7-b3e5cfd9e3ca"
-      ],
-      "contribs": [],
-      "created_at": "2017-11-05 14:56:03",
-      "updated_at": "2017-11-09 22:37:53",
-      "id": "efe7f3ca-ffa8-48d8-8c2a-9d35ff00ff13",
-      "visible": true,
-      "styles": {
-        "cover": "padding: 16px 32px 16px 32px;background-color: #7c3647;font-family: Georgia, serif;opacity: 0.8",
-        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
-        "title": "padding-top: 15%; font-size: 1.2em;letter-spacing: 2px;text-transform: uppercase",
-        "subtitle1": "",
-        "subtitle2": ""
-      }
-    },
-    {
-      "source": {
-        "publisher": "La Lampe de&nbsp;Psyché, Mercure de&nbsp;France (Paris)&ensp;&ndash;&ensp;pages&nbsp;71-109",
-        "year": "1925",
-        "origin": "Gallica"
-      },
-      "title": "La Croisade des&nbsp;enfants",
-      "subtitle1": "",
-      "subtitle2": "",
-      "authorDisplay": "Marcel Schwob",
-      "year": "1896",
-      "language": "français",
-      "categories": "",
-      "description": "",
-      "path": "/books/la_croisade_des_enfants",
-      "authors": [
-        "6e757154-155a-4518-add7-b3e5cfd9e3ca"
-      ],
-      "contribs": [],
-      "created_at": "2017-11-05 17:23:30",
-      "updated_at": "2017-11-11 13:54:10",
-      "id": "9a7eacc1-e038-4695-a8cb-2d8c97f63b17",
-      "visible": true,
-      "styles": {
-        "cover": "padding: 16px;background-color: #cfb095;font-family: Georgia, serif;opacity: 0.8",
-        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
-        "title": "padding-top: 9%; font-size: 1.4em;letter-spacing: 1.5px",
-        "subtitle1": "",
-        "subtitle2": ""
-      }
-    },
-    {
-      "source": {
-        "publisher": "La Lampe de&nbsp;Psyché, Mercure de&nbsp;France (Paris) – pages&nbsp;7-70",
-        "year": "1925",
-        "origin": ""
-      },
-      "styles": {
-        "cover": "padding: 16px;background-color: #edcdc2;font-family: Georgia, serif;opacity: 0.8",
-        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
-        "title": "padding-top: 15%; font-size: 1.4em;letter-spacing: 3px;text-transform: uppercase",
-        "subtitle1": "",
-        "subtitle2": ""
-      },
-      "title": "Mimes",
-      "subtitle1": "",
-      "subtitle2": "",
-      "authorDisplay": "Marcel Schwob",
-      "year": "1894",
-      "language": "français",
-      "categories": "",
-      "description": "",
-      "path": "/books/mimes",
-      "visible": true,
-      "authors": [
-        "6e757154-155a-4518-add7-b3e5cfd9e3ca"
-      ],
-      "contribs": [],
-      "created_at": "2017-11-07 22:51:03",
-      "updated_at": "2017-11-11 15:59:27",
-      "id": "ad292def-1f0c-4ce5-a770-6dc9400851f4"
-    },
-    {
-      "source": {
-        "publisher": "Eugène Renduel (Paris)",
-        "year": "1834",
-        "origin": ""
-      },
-      "styles": {
-        "cover": "padding: 16px;background-color: #d8ae47;font-family: Georgia, serif;opacity: 0.8",
-        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
-        "title": "padding-top: 10%; font-size: 1.4em;letter-spacing: 2px;font-variant: small-caps",
-        "subtitle1": "",
-        "subtitle2": ""
-      },
-      "title": "Un Roman pour les&nbsp;cuisinières",
-      "subtitle1": "",
-      "subtitle2": "",
-      "authorDisplay": "Émile Cabanon",
-      "year": "1834",
-      "language": "français",
-      "categories": "",
-      "description": "",
-      "path": "/books/un_roman_pour_les_cuisinieres",
-      "visible": false,
-      "authors": [
-        "caec356e-4b52-4635-9830-eefa889de37d"
-      ],
-      "contribs": [],
-      "created_at": "2017-11-09 17:21:00",
-      "updated_at": "2017-11-09 22:04:36",
-      "id": "d465bfe1-cab4-41b5-9096-096c0e8901e9"
-    },
-    {
-      "source": {
         "publisher": "B. Mancel (Caen)",
         "year": "1845",
         "origin": ""
       },
       "styles": {
-        "cover": "padding: 16px;background-color: #7d7e82;font-family: Georgia, serif;opacity: 0.8",
-        "author": "font-size: 1em;letter-spacing: 1px",
-        "title": "padding-top: 11%; font-size: 1.3em;letter-spacing: 2px;font-variant: small-caps",
+        "color": "#191a1a",
+        "image": "",
+        "cover": "padding: 16px;background-color: #191a1a;font-family: Georgia, serif;opacity: 0.8",
+        "author": "font-size: 1em;letter-spacing: 1px;color: #fafafa",
+        "title": "padding-top: 11%; font-size: 1.3em;letter-spacing: 2px;font-variant: small-caps;color: #fafafa",
         "subtitle1": "",
-        "subtitle2": ""
+        "subtitle2": "",
+        "logo": "font-family: \"Times New Roman\", Georgia, serif;letter-spacing: 1.5px;color: #fafafa"
       },
       "title": "Du dandysme et&nbsp;de&nbsp;G.&nbsp;Brummel",
       "subtitle1": "",
@@ -155,6 +34,7 @@
       "year": "1845",
       "language": "français",
       "categories": "",
+      "collection": "",
       "description": "",
       "path": "/books/du_dandysme_et_de_g_brummel",
       "visible": false,
@@ -162,9 +42,149 @@
         "5315cb5e-f391-467c-8ed2-035f2bce133f"
       ],
       "contribs": [],
-      "created_at": "2017-11-09 22:22:20",
-      "updated_at": "2017-11-11 15:59:04",
-      "id": "40d223dc-9bbc-48fa-a3e5-3649929a8dec"
+      "created_at": "2017-11-11 16:54:18",
+      "updated_at": "2017-11-11 17:31:16",
+      "id": "baf909f9-8f38-4d7f-b678-fb8ed46d41f0"
+    },
+    {
+      "source": {
+        "publisher": "Eugène Renduel (Paris)",
+        "year": "1834",
+        "origin": ""
+      },
+      "styles": {
+        "color": "#d8ae47",
+        "image": "",
+        "cover": "padding: 16px;background-color: #d8ae47;font-family: Georgia, serif;opacity: 0.8",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 10%; font-size: 1.4em;letter-spacing: 2px;font-variant: small-caps",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": ""
+      },
+      "title": "Un Roman pour les&nbsp;cuisinières",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Émile Cabanon",
+      "year": "1834",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "description": "",
+      "path": "/books/un_roman_pour_les_cuisinieres",
+      "visible": false,
+      "authors": [
+        "caec356e-4b52-4635-9830-eefa889de37d"
+      ],
+      "contribs": [],
+      "created_at": "2017-11-11 17:00:53",
+      "updated_at": "2017-11-11 17:30:46",
+      "id": "b3e3c2e7-305f-4697-867f-3dd2417f71ed"
+    },
+    {
+      "source": {
+        "publisher": "G. Charpentier et E. Fasquelle (Paris)",
+        "year": "1896",
+        "origin": ""
+      },
+      "styles": {
+        "color": "#7c3647",
+        "image": "",
+        "cover": "padding: 16px 32px 16px 32px;background-color: #7c3647;font-family: Georgia, serif;opacity: 0.8",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 15%; font-size: 1.2em;letter-spacing: 2px;text-transform: uppercase",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": ""
+      },
+      "title": "Vies imaginaires",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Marcel Schwob",
+      "year": "1896",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "description": "",
+      "path": "/books/vies_imaginaires",
+      "visible": true,
+      "authors": [
+        "6e757154-155a-4518-add7-b3e5cfd9e3ca"
+      ],
+      "contribs": [],
+      "created_at": "2017-11-11 17:05:16",
+      "updated_at": "2017-11-11 17:30:11",
+      "id": "67f99f06-7af1-4dc4-9b8d-9d8f8afdc198"
+    },
+    {
+      "source": {
+        "publisher": "La Lampe de&nbsp;Psyché, Mercure de&nbsp;France (Paris)&ensp;&ndash;&ensp;pages&nbsp;71-109",
+        "year": "1925",
+        "origin": ""
+      },
+      "styles": {
+        "color": "#cfb095",
+        "image": "",
+        "cover": "padding: 16px;background-color: #cfb095;font-family: Georgia, serif;opacity: 0.8",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 9%; font-size: 1.4em;letter-spacing: 1.5px",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": ""
+      },
+      "title": "La Croisade des&nbsp;enfants",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Marcel Schwob",
+      "year": "1896",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "description": "",
+      "path": "/books/la_croisade_des_enfants",
+      "visible": true,
+      "authors": [
+        "6e757154-155a-4518-add7-b3e5cfd9e3ca"
+      ],
+      "contribs": [],
+      "created_at": "2017-11-11 17:08:48",
+      "updated_at": "2017-11-11 17:29:40",
+      "id": "e22c5a98-e5b8-4926-8cad-fd30131868c2"
+    },
+    {
+      "source": {
+        "publisher": "La Lampe de&nbsp;Psyché, Mercure de&nbsp;France (Paris) – pages&nbsp;7-70",
+        "year": "1925",
+        "origin": ""
+      },
+      "styles": {
+        "color": "#edcdc2",
+        "image": "",
+        "cover": "padding: 16px;background-color: #edcdc2;font-family: Georgia, serif;opacity: 0.8",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 15%; font-size: 1.4em;letter-spacing: 3px;text-transform: uppercase",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": ""
+      },
+      "title": "Mimes",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Marcel Schwob",
+      "year": "1894",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "description": "",
+      "path": "/books/mimes",
+      "visible": true,
+      "authors": [
+        "6e757154-155a-4518-add7-b3e5cfd9e3ca"
+      ],
+      "contribs": [],
+      "created_at": "2017-11-11 17:11:49",
+      "updated_at": "2017-11-11 17:29:17",
+      "id": "f379d066-0347-4fb1-998f-2e4c214c3960"
     }
   ],
   "authors": [
