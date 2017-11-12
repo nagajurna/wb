@@ -30,7 +30,7 @@ const router  = function() {
 			//HOME
 			home(container);
 		
-		} else if(newhash === '#/tobepublished/') {
+		} else if(newhash === '#/tobepublished') {
 			//TO BE PUBLISHED
 			booksNext(container);
 			
@@ -42,7 +42,7 @@ const router  = function() {
 			//BOOK READ
 			bookRead(container);
 		
-		} else if(newhash === '#/authors/') {
+		} else if(newhash.match(/#\/authors\?(search=(A-Z))?/)) {
 			//AUTHORS
 			authors(container);
 			

@@ -2,14 +2,20 @@ import dataStore from '../../services/dataStore';
 import utils from '../../services/utils';
 import css from './authors.css';
 let authorsTemplate = require('./authors.ejs');
+let authorsLettersTemplate = require('./authors-letters.ejs');
 //home.js
 const authors = function(container) {
 	'use strict';
 	
 	let c = container;
 	
-	//Get books from dataStore
+	let search = location.hash.replace(/#\/authors\?search\=/,''); 
+	
+	//get authors from dataStore
 	let as = dataStore.getData('authors');
+	//get searched authors
+	let sas = as.filter(function(a) { return a.nameAlpha.split("")[0].toUpperCase()===search  });
+	//get books
 	let bs = dataStore.getData('books');
 	
 	//go to book/read
@@ -28,8 +34,21 @@ const authors = function(container) {
 		document.getElementById(id).style.display = 'none';
 	}
 	//insert template in container
-	c.innerHTML = authorsTemplate({ authors:as, books: bs });
+	c.innerHTML = authorsTemplate({ authors:sas, books: bs });
 	let root = document.querySelector('#authors-container');
+	//fill letters
+	root.querySelector('#letters').innerHTML = authorsLettersTemplate();
+	//get active letter link
+	let ls = root.querySelectorAll('#letters a');
+	for(let i=0; i<ls.length; i++) {
+		if(ls[i].innerHTML===search) {
+			utils.removeClass('#' + ls[i].id, 'w3-text-gray');
+			utils.addClass('#' + ls[i].id, 'w3-text-black')
+		} else {
+			utils.removeClass('#' + ls[i].id, 'w3-text-black');
+			utils.addClass('#' + ls[i].id, 'w3-text-gray')
+		}
+	}
     //link to book/read
 	let bks = root.querySelectorAll('.book');
 	for(let i=0; i<bks.length; i++) {
