@@ -11,7 +11,6 @@ router.get('/', function(req, res, next) {
 		let books = db
 			.get('books')
 			.cloneDeep()
-			.reverse()
 			.value();
 		return { db: db, books: books };
 	})

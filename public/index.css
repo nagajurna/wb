@@ -4,18 +4,43 @@
 
 html {
 	width: 100%;
+	height:100%;
 	padding: 0px;
 	margin: 0px;
 	border: none;
+	position: relative;
 }
 
 body {
 	width: 100%;
+	height: 100%;
 	padding: 0px;
 	margin: 0px;
 	border: none;
 	background-color: #fafafa;
 	font-size: 14px;
+	position: relative;
+}
+
+#screen {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background: #fafafa;
+	text-align: center;
+	padding: 10%;
+}
+
+#screen h4 {
+	font-family: "Times New Roman", Georgia, sans-serif;
+	letter-spacing: 1.5px;
+	font-variant: small-caps;
+}
+
+#screen.hidden {
+	display: none;
 }
 
 body.book {
@@ -65,7 +90,6 @@ When not book-read only
 */
 #nav-bar-top {
 	display: block;
-	position: relative;
 	top: 0px;
 	height: 48px;
 	background-color: #fafafa;
@@ -77,9 +101,6 @@ When not book-read only
 }
 
 #home-link {
-	position: absolute;
-	left: 0px;
-	top: 0px;
 	line-height: 27px;
 	font-size: 1.8em;
 	letter-spacing: 1.5px;
@@ -128,9 +149,6 @@ Medium and large devices only
 Small devices only
 */
 #menu-open {
-	position: absolute;
-	right: 0px;
-	top: 0px;
 	height: 47px;
 	line-height: 27px;
 	font-size: 2em;

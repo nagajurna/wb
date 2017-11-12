@@ -4,7 +4,6 @@
 	<div id="booksList" class="w3-padding-64 w3-animate-opacity">
 		<div class='w3-row'>
 			<% for(var i=0; i<books.length; i++) {%>
-				<% if(books[i].visible) { %>
 				
 				<!-- MODAL (INFOS) -->
 				<div id="infos-<%= books[i].id %>" class="w3-modal" style="background-color: rgba(0,0,0,0.1)">
@@ -69,7 +68,9 @@
 							  <%}%>
 						</div>
 						<div id=footer class="w3-container w3-border-bottom">
-							<button id="close-infos-<%= books[i].id %>" class="close-infos-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-bottomright">Fermer</button>
+							<button id="close-infos-<%= books[i].id %>" 
+									class="close-infos-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-bottomright"
+									>Fermer</button>
 						</div>
 					</div>
 				</div>
@@ -95,11 +96,11 @@
 				   </div>
 				   </div>
 				   <div id="book-btn" >
-						<button id="open-infos-<%= books[i].id %>" class="open-infos-btn align-right w3-button">+ d'infos</button>
+						<button id="open-infos-<%= books[i].id %>" 
+						        class="open-infos-btn align-right w3-button" >+ d'infos</button>
 				   </div>
 				</div>
 				
-			   <% } %>
 			<% } %>
 		</div>
 	</div>

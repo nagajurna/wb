@@ -39,8 +39,8 @@
 		</div>
 		<!-- NAV-BAR -->
 		<div id="nav-bar-top" class="w3-border-bottom" style="font-size: 14px">
-			<a id="home-link" href="#/" class="w3-button w3-text-black w3-hover-none w3-hover-text-black">liber</a>
-			<button id="menu-open" type="button" class="w3-button w3-text-black w3-hover-none">&equiv;</button>
+			<a id="home-link" href="#/" class="align-left w3-button w3-text-black w3-hover-none w3-hover-text-black">liber</a>
+			<button id="menu-open" type="button" class="w3-button w3-text-black w3-hover-none w3-display-topright">&equiv;</button>
 			<div id="top-links" class="hidden">
 				<ul>
 					<li><a id="last-link" href="#/" class="w3-button w3-text-gray w3-hover-none w3-hover-text-black">nouvelles parutions</a></li>
@@ -61,6 +61,12 @@
 		</div>
 	</div>
 	<div id="container"></div>
+	<div id="screen"></div>
+	 <script>
+		setTimeout(function() {
+			document.getElementById('screen').innerHTML="<h4>loading&hellip;</h4>"
+			},1200)
+  </script>
 	<script src="liber.js"></script>
 </body>
 </html>

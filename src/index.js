@@ -99,6 +99,7 @@ var index = (function() {
 		.then( resolve => {
 			//call router
 			router();
+			utils.addClass('#screen', 'hidden');
 		})
 		.catch( error => {
 			console.log(error);
