@@ -3,6 +3,8 @@ BOOK NAVBAR BOTTOM
 */
 #book-nav-bar-bottom {
 	display: none;
+	height: 44px;
+	position: relative;
 }
 
 @media screen and (min-width: 768px) {
@@ -14,7 +16,7 @@ BOOK NAVBAR BOTTOM
 #book-nav-bar-bottom-controls {
 	display: block;
 	position: relative;
-	width: 640px;
+	width: 530px;
 	margin: auto;
 	height: 44px;
 	text-align: center;
@@ -54,12 +56,16 @@ TEXTCONTAINER
 [data-wb-text-container] {
 	margin: auto;
 	background-color: #fafafa;
+/*
 	top: 0px;
+*/
 }
 
 @media screen and (min-width: 768px) {
 	[data-wb-text-container] {
+/*
 		top: 30px;
+*/
 	}
 }
 
@@ -71,7 +77,9 @@ TOC-LARGE-DEVICE
   position: absolute;
   left: -33%;
   width: 33%;
+/*
   margin-top: 30px;
+*/
   transition: left 0.4s;
   -webkit-transition : left 0.4s;
   -moz-transition : left 0.4s;
@@ -113,7 +121,7 @@ toggle toc-large-device, swing-container, swing-bar
     position: absolute;
 	left: 100%;
 	top: 0px;
-	margin-left: 6px;
+	margin-left: 8px;
 	outline: none;
 	background: #fafafa;
 	font-size: 1.5em;
@@ -191,12 +199,15 @@ TOC
 	background-color: #fafafa;
 }
 
-.open-toc {
+#open-toc {
 	float: right;
 	font-size: 1.4em;
 }
 
 #open-toc-large {
+	position: absolute;
+	top: 0px;
+	right: 0px;
 	display: inline-block;
 }
 
@@ -293,8 +304,8 @@ BOTTOM
 	width: 100%;
 	text-align: center;
 	z-index: 500;
-	background-color: #333;
-	color: #fafafa;
+	background-color: #fafafa;
+	color: #000;
 }
 
 #bottom-large {
@@ -344,9 +355,10 @@ BOTTOM
 }
 
 #bottom span {
+	display: inline-block;
 	min-width: 42px;
 	margin: 0px;
-	margin-top: 6px;
+	margin-top: 0px;
 	font-size: 1em;
 }
 
@@ -362,7 +374,7 @@ TEXT
 
 @media screen and (min-width: 768px) {
     [data-wb-text] {
-        font-size: 16px;
+        font-size: 15px;
         line-height: 1.5em;
     }
 }

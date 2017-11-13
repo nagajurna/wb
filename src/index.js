@@ -117,7 +117,8 @@ var index = (function() {
 				}
 				utils.addClass('body', 'book');
 				utils.addClass("#top-links", "hidden");
-				utils.addClass("#top-links-small", "hidden");
+				utils.addClass("#menu-open", "hidden");
+				//utils.addClass("#top-links-small", "hidden");
 			} else {
 				utils.removeClass("#nav-bar-top", "hidden");
 				utils.removeClass('body', 'book');

@@ -12,28 +12,51 @@ const book = function(container) {
 		
 	let init = function() {
 		//DIMENSIONS
-		let h, w, marginY, fontSize, lineHeight;
+		let h, w, marginY, marginX, fontSize, lineHeight, top;
 		
 		//width (responsive)
 		if(window.innerWidth >= 768) {
-			h = window.innerHeight-88-60;//navBars height *2 (2*44) + textContainer top * 2 (2*30)
-			w = 640;
-			fontSize = 16;
+			//max-height: 720
+			if(window.innerHeight > 848) {//720 + navBars height *2 (2*44) + textContainer minimum top * 2 (2*20)
+				h = 720;
+				top = (window.innerHeight-720-88)/2;
+				textContainer.style.top = top-15 + 'px';
+				tocLargeDevice.style.marginTop = top-15 + 'px';
+				bookNavBarBottom.style.marginTop = top-15 + 'px';
+			} else {
+				h = window.innerHeight-88-40;//navBars height *2 (2*44) + textContainer top * 2 (2*20)
+				textContainer.style.top ='15px';
+				tocLargeDevice.style.marginTop = '15px';
+				bookNavBarBottom.style.marginTop = '15px';
+			}
+			w = 530;
+			fontSize = 15;
 		 } else {
 			 h = window.innerHeight;
 			 w = window.innerWidth;
 			 fontSize = 14;
+			 textContainer.style.top ='0px';
 		 }
 		 
 		 //marginY is relative to line-height
 		 lineHeight = fontSize*1.5;
 		 marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*3;
+		 
+		//marginX : smaller for very small devices
+		if(window.innerWidth > 420) {
+			marginX = 45;
+		} else {
+			marginX = 25;
+		}
+		 
 		
 		//new Book
 		let book = new WebBook(bookContainer, {
 			 height: h,
 			 maxWidth: w,
-			 marginY: 45});
+			 marginY: marginY,
+			 marginX: marginX
+		 });
 		
 		if(window.innerWidth >= 1366) {
 			//Toc-large height
@@ -43,13 +66,26 @@ const book = function(container) {
 		//on resize
 		window.addEventListener('resize', event => {
 			if(window.innerWidth >= 768) {
-				h = window.innerHeight-88-60;
-				w = 640;
-				fontSize = 16;
+				//max-height: 720
+				if(window.innerHeight >= 848) {//720 + navBars height *2 (2*44) + textContainer minimum top * 2 (2*20)
+					h = 720;
+					top = (window.innerHeight-720-88)/2;
+					textContainer.style.top = top-15 + 'px';
+					tocLargeDevice.style.marginTop = top-15 + 'px';
+					bookNavBarBottom.style.marginTop = top-15 + 'px';
+				} else {
+					h = window.innerHeight-88-40;//navBars height *2 (2*44) + textContainer top * 2 (2*20)
+					textContainer.style.top ='15px';
+					tocLargeDevice.style.marginTop = '15px';
+					bookNavBarBottom.style.marginTop = '15px';
+				}
+				w = 530;
+				fontSize = 15;
 			} else {
 				h = window.innerHeight;
 				w = window.innerWidth;
 				fontSize = 14;
+				textContainer.style.top ='0px';
 			}
 			
 			if(window.innerWidth >= 1366) {
@@ -61,10 +97,18 @@ const book = function(container) {
 			lineHeight = fontSize*1.5;
 			marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*3;
 			
+			//marginX : smaller for very small devices
+			if(window.innerWidth > 420) {
+				marginX = 45;
+			} else {
+				marginX = 25;
+			}
+			
 			//set new dimensions
 			book.setHeight(h);
 			book.setMaxWidth(w);
 			book.setMarginY(marginY);
+			book.setMarginX(marginX);
 			
 			if(book.col===true) {
 				book.toBook();
@@ -187,6 +231,9 @@ const book = function(container) {
 	const bookContainer = document.querySelector('#bookContainer');
 		
 	//GET TEXT CONTENT
+	let textContainer = bookContainer.querySelector('[data-wb-text-container]');
+	let tocLargeDevice = bookContainer.querySelector('#toc-large-device');
+	let bookNavBarBottom = bookContainer.querySelector('#book-nav-bar-bottom');
 	let text = bookContainer.querySelector('[data-wb-text]');
 	let options = { method: 'GET', url: book.path + '.html' };
 	
