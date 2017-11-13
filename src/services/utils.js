@@ -75,6 +75,15 @@ const utils = {
 					utils.removeClass("#" + links[i].id, "w3-text-black");
 				}
 				
+			} else if(links[i].id==='authors-link' || links[i].id==='menu-authors-link') {
+				if(location.hash.match(/#\/authors/)) {
+					utils.addClass("#" + links[i].id, "w3-text-black");
+					utils.removeClass("#" + links[i].id, "w3-text-gray");
+				} else {
+					utils.addClass("#" + links[i].id, "w3-text-gray");
+					utils.removeClass("#" + links[i].id, "w3-text-black");
+				}
+				
 			} else {
 			
 				if(location.href===links[i].href) {

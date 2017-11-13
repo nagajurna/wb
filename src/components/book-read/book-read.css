@@ -401,6 +401,9 @@ p.section-title {
 	line-height: 1.8em;
 }
 
+#cover-author, #cover-title, #cover-logo {
+	margin: 0px;
+}
 
 #fin {
 	text-align: center;
