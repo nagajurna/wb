@@ -7,11 +7,24 @@
   <meta name="description" content="une application pour lire">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="/index.css" rel="stylesheet"/>
   <script src="https://www.promisejs.org/polyfills/promise-7.0.4.min.js"></script>
 </head>
 <body>
 	<div id="navigation">
+		<!-- MODAL-SEARCH -->
+		<div id="search-input" class="w3-modal" style="background-color: rgba(0,0,0,0.1)">
+			<div class="w3-modal-content w3-container w3-padding-32 w3-card" style="text-align: center; width: 500px">
+				<button id="search-close" class="w3-button w3-text-black w3-hover-none w3-display-topright">&times;</button>
+				<div class="w3-padding-16">
+					<form id="search-form">
+						<input type="text" name="search">
+						<button id="search-valid" type="submit" class="w3-display-bottomright w3-button w3-text-gray w3-hover-none w3-hover-text-black">Valider</button>
+					</form>
+				</div>
+			</div>
+		</div>
 		<!-- MODAL-MENU (SMALL DEVICES) -->
 		<div id="menu" class="w3-modal">
 		  <div class="w3-modal-content">
@@ -32,15 +45,15 @@
 						<a id="menu-admin-link" href="#/admin/" class="w3-button w3-text-gray w3-hover-none w3-hover-text-black">administration</a>
 					</li>
 				</ul>
-			  </div>
-			  
+			  </div>		  
 			</div>
 		  </div>
 		</div>
 		<!-- NAV-BAR -->
 		<div id="nav-bar-top" class="w3-border-bottom" style="font-size: 14px">
 			<a id="home-link" href="#/" class="align-left w3-button w3-text-black w3-hover-none w3-hover-text-black">liber</a>
-			<button id="menu-open" type="button" class="w3-button w3-text-black w3-hover-none w3-display-topright">&equiv;</button>
+			<button id="menu-open" type="button" class="w3-button w3-text-black w3-hover-none">&equiv;</button>
+			<a id="search-open" href="#/search/" class="w3-button w3-text-gray w3-hover-none w3-hover-text-black"><i class="material-icons">search</i></a>
 			<div id="top-links" class="hidden">
 				<ul>
 					<li><a id="last-link" href="#/" class="w3-button w3-text-gray w3-hover-none w3-hover-text-black">nouvelles parutions</a></li>

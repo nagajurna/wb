@@ -29,6 +29,10 @@ const router  = function() {
 		if(newhash === '' || newhash === '#/') {
 			//HOME
 			home(container);
+			
+		} else if(newhash.match(/#\/search\?q=/)) {
+			//TO BE PUBLISHED
+			booksNext(container);
 		
 		} else if(newhash === '#/tobepublished') {
 			//TO BE PUBLISHED

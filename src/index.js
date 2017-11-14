@@ -7,6 +7,31 @@ var index = (function() {
 	'use strict';
 	let root;
 	
+	let searchInput = () => {
+		//MODAL SEARCH (small devices)
+		//search open
+		root.querySelector("#search-open").addEventListener("click", event => {
+			event.preventDefault();
+			root.querySelector('#search-input').style.display = 'block';
+		}, false);
+		//search close
+		root.querySelector("#search-close").addEventListener("click", event => {
+			root.querySelector('#search-input').style.display = 'none';
+		}, false);
+		//search valid
+		root.querySelector("#search-form").addEventListener("submit", event => {
+			event.preventDefault();
+			let search = root.querySelector('[name=search]').value;
+			if(search!=='') {
+				location.hash = '#/search?q=' + search;
+				console.log(location.hash);
+			}
+			root.querySelector('#search-input').style.display = 'none';
+			root.querySelector('[name=search]').value = '';
+		}, false);
+		
+	}
+	
 	let init = () => {
 		//if book/id/read 
 		if(location.hash.match(/#\/books\/[^\/]+\/read$/)) {//if small device
@@ -17,12 +42,15 @@ var index = (function() {
 			utils.addClass('body', 'book');//body background
 			utils.addClass("#top-links", "hidden");
 			utils.addClass("#menu-open", "hidden");
+			utils.addClass('#search-open', 'hidden');
 		} else {
 			if(window.innerWidth < 768) {
 				utils.addClass("#top-links", "hidden");
+				utils.addClass('#search-open', 'hidden');
 				utils.removeClass("#menu-open", "hidden");
 			} else {
 				utils.removeClass("#top-links", "hidden");
+				utils.removeClass('#search-open', 'hidden');
 				utils.addClass("#menu-open", "hidden");
 			}
 		}
@@ -46,6 +74,8 @@ var index = (function() {
 				},100);
 			}, false);
 		}
+		
+		searchInput();
 		
 		//HOME-LINK
 		root.querySelector('#home-link').addEventListener('click', event => {
@@ -118,7 +148,7 @@ var index = (function() {
 				utils.addClass('body', 'book');
 				utils.addClass("#top-links", "hidden");
 				utils.addClass("#menu-open", "hidden");
-				//utils.addClass("#top-links-small", "hidden");
+				utils.addClass('#search-open', 'hidden');
 			} else {
 				utils.removeClass("#nav-bar-top", "hidden");
 				utils.removeClass('body', 'book');
@@ -126,9 +156,11 @@ var index = (function() {
 				if(window.innerWidth < 768) {
 					utils.addClass("#top-links", "hidden");
 					utils.removeClass("#menu-open", "hidden");
+					utils.addClass('#search-open', 'hidden');
 				} else {
 					utils.removeClass("#top-links", "hidden");
 					utils.addClass("#menu-open", "hidden");
+					utils.removeClass('#search-open', 'hidden');
 				}
 			}
 			

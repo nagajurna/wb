@@ -381,7 +381,8 @@ TEXT
 
 [data-wb-text] p {
 	margin-bottom: 0px;
-	margin-top: 1.5em;
+	margin-top: 0px;
+	text-indent: 1em;
 }
 
 [data-wb-text] a.wb-link {
@@ -397,15 +398,20 @@ TITLES
 .section-title, .note-title, .wb-toc-title {
 	font-size: 1.25em;
 	text-align: left;
+	text-indent: 0px;
 }
 
-.section-subtitle {
+p.section-subtitle {
 	font-size: 1em;
+	text-indent: 0px;
+	margin-bottom: 1.5em;
 }
 
 p.section-title {
-	padding-top: 3.5em;
+	padding-top: 3em;
 	margin-top: 0px;
+	margin-bottom: 1.5em;
+	text-indent: 0px;
 }
 
 #titre.wb-section {
@@ -415,6 +421,7 @@ p.section-title {
 
 #cover-author, #cover-title, #cover-logo {
 	margin: 0px;
+	text-indent: 0px;
 }
 
 #fin {
@@ -424,4 +431,5 @@ p.section-title {
 
 #fin p {
 	padding-top: 20%;
+	text-indent: 0px;
 }

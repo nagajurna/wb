@@ -905,6 +905,30 @@ var index = function () {
 
 	var root = void 0;
 
+	var searchInput = function searchInput() {
+		//MODAL SEARCH (small devices)
+		//search open
+		root.querySelector("#search-open").addEventListener("click", function (event) {
+			event.preventDefault();
+			root.querySelector('#search-input').style.display = 'block';
+		}, false);
+		//search close
+		root.querySelector("#search-close").addEventListener("click", function (event) {
+			root.querySelector('#search-input').style.display = 'none';
+		}, false);
+		//search valid
+		root.querySelector("#search-form").addEventListener("submit", function (event) {
+			event.preventDefault();
+			var search = root.querySelector('[name=search]').value;
+			if (search !== '') {
+				location.hash = '#/search?q=' + search;
+				console.log(location.hash);
+			}
+			root.querySelector('#search-input').style.display = 'none';
+			root.querySelector('[name=search]').value = '';
+		}, false);
+	};
+
 	var init = function init() {
 		//if book/id/read 
 		if (location.hash.match(/#\/books\/[^\/]+\/read$/)) {
@@ -916,12 +940,15 @@ var index = function () {
 			_utils2.default.addClass('body', 'book'); //body background
 			_utils2.default.addClass("#top-links", "hidden");
 			_utils2.default.addClass("#menu-open", "hidden");
+			_utils2.default.addClass('#search-open', 'hidden');
 		} else {
 			if (window.innerWidth < 768) {
 				_utils2.default.addClass("#top-links", "hidden");
+				_utils2.default.addClass('#search-open', 'hidden');
 				_utils2.default.removeClass("#menu-open", "hidden");
 			} else {
 				_utils2.default.removeClass("#top-links", "hidden");
+				_utils2.default.removeClass('#search-open', 'hidden');
 				_utils2.default.addClass("#menu-open", "hidden");
 			}
 		}
@@ -945,6 +972,8 @@ var index = function () {
 				}, 100);
 			}, false);
 		}
+
+		searchInput();
 
 		//HOME-LINK
 		root.querySelector('#home-link').addEventListener('click', function (event) {
@@ -1012,7 +1041,7 @@ var index = function () {
 				_utils2.default.addClass('body', 'book');
 				_utils2.default.addClass("#top-links", "hidden");
 				_utils2.default.addClass("#menu-open", "hidden");
-				//utils.addClass("#top-links-small", "hidden");
+				_utils2.default.addClass('#search-open', 'hidden');
 			} else {
 				_utils2.default.removeClass("#nav-bar-top", "hidden");
 				_utils2.default.removeClass('body', 'book');
@@ -1020,9 +1049,11 @@ var index = function () {
 				if (window.innerWidth < 768) {
 					_utils2.default.addClass("#top-links", "hidden");
 					_utils2.default.removeClass("#menu-open", "hidden");
+					_utils2.default.addClass('#search-open', 'hidden');
 				} else {
 					_utils2.default.removeClass("#top-links", "hidden");
 					_utils2.default.addClass("#menu-open", "hidden");
+					_utils2.default.removeClass('#search-open', 'hidden');
 				}
 			}
 		}, false);
@@ -1122,6 +1153,9 @@ var router = function router() {
 		if (newhash === '' || newhash === '#/') {
 			//HOME
 			(0, _home2.default)(container);
+		} else if (newhash.match(/#\/search\?q=/)) {
+			//TO BE PUBLISHED
+			(0, _booksNext2.default)(container);
 		} else if (newhash === '#/tobepublished') {
 			//TO BE PUBLISHED
 			(0, _booksNext2.default)(container);
@@ -12489,7 +12523,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "/*\nBOOK NAVBAR BOTTOM\n*/\n#book-nav-bar-bottom {\n\tdisplay: none;\n\theight: 44px;\n\tposition: relative;\n}\n\n@media screen and (min-width: 768px) {\n\t#book-nav-bar-bottom {\n\t\tdisplay: block;\n\t}\n}\n\n#book-nav-bar-bottom-controls {\n\tdisplay: block;\n\tposition: relative;\n\twidth: 530px;\n\tmargin: auto;\n\theight: 44px;\n\ttext-align: center;\n}\n\n#nav-bar-bottom-controls button {\n\toutline: none;\n\theight: 100%;\n}\n\n#book-nav-bar-bottom-controls button#open-toc-large.w3-btn span {\n\tdisplay: inline-block;\n\tpadding-bottom: 10px;\n}\n\n/*\nBOOKCONTAINER\n*/\n#bookContainer {\n\tposition: relative;\n\tfont-family: 'Georgia', serif;\n\topacity: 0.0;\n\tmargin: auto;\n\ttransition: opacity 0.8s;\n\t-webkit-transition: opacity 0.8s;\n\t-moz-transition: opacity 0.8s;\n\t-o-transition: opacity 0.8s;\n}\n\n#bookContainer.show {\n\topacity: 1.0;\n}\n\n/*\nTEXTCONTAINER\n*/\n[data-wb-text-container] {\n\tmargin: auto;\n\tbackground-color: #fafafa;\n/*\n\ttop: 0px;\n*/\n}\n\n@media screen and (min-width: 768px) {\n\t[data-wb-text-container] {\n/*\n\t\ttop: 30px;\n*/\n\t}\n}\n\n/*\nTOC-LARGE-DEVICE\n*/\n\n#toc-large-device {\n  position: absolute;\n  left: -33%;\n  width: 33%;\n/*\n  margin-top: 30px;\n*/\n  transition: left 0.4s;\n  -webkit-transition : left 0.4s;\n  -moz-transition : left 0.4s;\n  -o-transition: left 0.4s;\n  display: none;\n}\n\n@media screen and (min-width: 1366px) {\n\n\t#toc-large-device {\n\t\tdisplay: inline-block\n\t}\n\n}\n\n#toc-large-device.open {\n\tleft: 0px;\n}\n\n#toc-large-device-container {\n\twidth: 100%;\n\tbackground-color: #fafafa;\n\tz-index: 1000;\n\toverflow-y: auto;\n}\n\n#toc-large-device-container > div {\n\tbackground-color: #fafafa;\n\tposition: relative;\n\theight: 100%;\n\twidth: 100%;\n}\n\n/*\ntoggle toc-large-device, swing-container, swing-bar\n*/\n\n#toggle-toc-large-device {\n    position: absolute;\n\tleft: 100%;\n\ttop: 0px;\n\tmargin-left: 8px;\n\toutline: none;\n\tbackground: #fafafa;\n\tfont-size: 1.5em;\n}\n\n/*\nif toc-large-device.open : swing-container to left\n*/\n#swing-container {\n\tmargin-left: 0px;\n\ttransition: margin-left 0.6s;\n\t-webkit-transition : margin-left 0.6s;\n\t-moz-transition : margin-left 0.6s;\n    -o-transition: margin-left 0.6s;\n\t\n}\n\n#swing-container.left {\n\t\tmargin-left: 0px;\n\t}\n\n@media screen and (min-width: 1366px) {\n\t#swing-container.left {\n\t\tmargin-left: 33%;\n\t}\n}\n\n/*\nif toc-large-device.open : swing-bar to left\n*/\n#swing-bar {\n\tmargin-left: 0px;\n\ttransition: margin-left 0.9s;\n\t-webkit-transition : margin-left 0.9s;\n\t-moz-transition : margin-left 0.9s;\n    -o-transition: margin-left 0.9s;\n}\n\n#swing-bar.left {\n\tmargin-left: 0px;\n}\n\n@media screen and (min-width: 1366px) {\n\t#swing-bar.left {\n\t\tmargin-left: 33%;\n\t}\n}\n\n/*\nTOC\n*/\n#toc {\n\tposition: absolute;\n\ttop: -1000px;\n\twidth: 100%;\n\theight: 100%;\n\tz-index: 1000;\n\toverflow-y: auto;\n/*\n\ttransition: top 0.4s;\n\t-webkit-transition : top 0.4s;\n\t-moz-transition : top 0.4s;\n    -o-transition: top 0.4s;\n*/\n\tpadding: 0px;\n\tbackground-color: #fafafa;\n}\n\n#toc.open {\n\ttop: 0px;\n}\n\n#toc > div {\n\tposition: relative;\n\tbackground-color: #fafafa;\n}\n\n#open-toc {\n\tfloat: right;\n\tfont-size: 1.4em;\n}\n\n#open-toc-large {\n\tposition: absolute;\n\ttop: 0px;\n\tright: 0px;\n\tdisplay: inline-block;\n}\n\n@media screen and (min-width: 1366px) {\n\t#open-toc-large {\n\t\tdisplay: none;\n\t}\n}\n\n#close-toc {\n\tposition: absolute;\n\tright: 15px;\n\ttop: 5px;\n\tmin-width: 25px;\n\tpadding: 0;\n\tborder: none;\n\tbackground-color: transparent;\n\tfont-family: 'Helvetica', sans-serif;\n\tfont-size: 1.2em;\n\tcolor: #424242;\n}\n\n#toc-title {\n\tmargin-bottom: 30px;\n\tmargin-top: 20px\n}\n\n#toc-title p {\n\tmargin: 8px;\n}\n/*\ntoc list\n*/\n#toc ul, #toc-large-device ul {\n\tpadding: 0px;\n}\n\n#toc li, #toc-large-device li {\n\tlist-style-type: none;\n\tpadding: .5em .5em;\n}\n\n#toc a.wb-link, #toc-large-device a.wb-link {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: gray;\n}\n\n#toc a.wb-link:hover, #toc-large-device a.wb-link:hover {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: #000;\n}\n\n#toc li.current a.wb-link, #toc-large-device li.current a.wb-link {\n\tcolor: #000;\n\toutline: none;\n\tfont-style: italic;\n}\n\n#toc [data-wb-element-page-number], #toc-large-device [data-wb-element-page-number] {\n\tfloat: right;\n}\n\n/*\nTOP\n*/\n#top {\n\tposition: absolute;\n\ttop: 0px;\n\tbox-sizing: border-box;\n\t-webkit-box-sizing: border-box;\n\t-moz-box-sizing: border-box;\n\tpadding-top: 8px;\n\ttext-align: center;\n\twidth: 100%;\n\theight: 30px;\n}\n\n#top .wb-current-section-title {\n\tfont-size: 0.8em;\n}\n\n/*\nBOTTOM\n*/\n#bottom {\n\tposition: absolute;\n\tbottom: 0px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tz-index: 500;\n\tbackground-color: #fafafa;\n\tcolor: #000;\n}\n\n#bottom-large {\n\tposition: absolute;\n\tbottom: -9999px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tz-index: 500;\n}\n\n@media screen and (min-width: 768px) {\n\t\t\n\t#bottom {\n\t\tbottom: -9999px\n\t}\n\t\n\t#bottom-large {\n\t\tbottom: 5px;\n\t}\n}\n\n#bottom button, #bottom a, #bottom span {\n\tdisplay: inline-block;\n\tborder: none;\n\tbackground-color: transparent;\n\tmargin-right: 10px;\n\tmargin-left: 10px;\n\tmin-width: 25px;\n\theight: 100%;\n\tpadding: 0;\n\tfont-size: 1.2em;\n}\n\n#bottom button.open-toc {\n\tfont-size: 1.5em;\n}\n\n#bottom a#home {\n\tfloat: left;\n\ttext-decoration: none;\n\tmargin-top: 6px;\n\tfont-size: 0.9em;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tletter-spacing: 1px;\n}\n\n#bottom span {\n\tdisplay: inline-block;\n\tmin-width: 42px;\n\tmargin: 0px;\n\tmargin-top: 0px;\n\tfont-size: 1em;\n}\n\n/*\nTEXT\n*/\n[data-wb-text] {\n\tfont-size: 14px;\n\tline-height: 1.5em;\n\ttext-align: justify;\n\ttext-justify: inter-word;\n}\n\n@media screen and (min-width: 768px) {\n    [data-wb-text] {\n        font-size: 15px;\n        line-height: 1.5em;\n    }\n}\n\n[data-wb-text] p {\n\tmargin-bottom: 0px;\n\tmargin-top: 1.5em;\n}\n\n[data-wb-text] a.wb-link {\n\tborder-bottom: 1px dotted black;\n}\n\n/*\nINSIDE TEXT\n*/\n/*\nTITLES\n*/\n.section-title, .note-title, .wb-toc-title {\n\tfont-size: 1.25em;\n\ttext-align: left;\n}\n\n.section-subtitle {\n\tfont-size: 1em;\n}\n\np.section-title {\n\tpadding-top: 3.5em;\n\tmargin-top: 0px;\n}\n\n#titre.wb-section {\n\ttext-align: center;\n\tline-height: 1.8em;\n}\n\n#cover-author, #cover-title, #cover-logo {\n\tmargin: 0px;\n}\n\n#fin {\n\ttext-align: center;\n\t\n}\n\n#fin p {\n\tpadding-top: 20%;\n}\n", ""]);
+exports.push([module.i, "/*\nBOOK NAVBAR BOTTOM\n*/\n#book-nav-bar-bottom {\n\tdisplay: none;\n\theight: 44px;\n\tposition: relative;\n}\n\n@media screen and (min-width: 768px) {\n\t#book-nav-bar-bottom {\n\t\tdisplay: block;\n\t}\n}\n\n#book-nav-bar-bottom-controls {\n\tdisplay: block;\n\tposition: relative;\n\twidth: 530px;\n\tmargin: auto;\n\theight: 44px;\n\ttext-align: center;\n}\n\n#nav-bar-bottom-controls button {\n\toutline: none;\n\theight: 100%;\n}\n\n#book-nav-bar-bottom-controls button#open-toc-large.w3-btn span {\n\tdisplay: inline-block;\n\tpadding-bottom: 10px;\n}\n\n/*\nBOOKCONTAINER\n*/\n#bookContainer {\n\tposition: relative;\n\tfont-family: 'Georgia', serif;\n\topacity: 0.0;\n\tmargin: auto;\n\ttransition: opacity 0.8s;\n\t-webkit-transition: opacity 0.8s;\n\t-moz-transition: opacity 0.8s;\n\t-o-transition: opacity 0.8s;\n}\n\n#bookContainer.show {\n\topacity: 1.0;\n}\n\n/*\nTEXTCONTAINER\n*/\n[data-wb-text-container] {\n\tmargin: auto;\n\tbackground-color: #fafafa;\n/*\n\ttop: 0px;\n*/\n}\n\n@media screen and (min-width: 768px) {\n\t[data-wb-text-container] {\n/*\n\t\ttop: 30px;\n*/\n\t}\n}\n\n/*\nTOC-LARGE-DEVICE\n*/\n\n#toc-large-device {\n  position: absolute;\n  left: -33%;\n  width: 33%;\n/*\n  margin-top: 30px;\n*/\n  transition: left 0.4s;\n  -webkit-transition : left 0.4s;\n  -moz-transition : left 0.4s;\n  -o-transition: left 0.4s;\n  display: none;\n}\n\n@media screen and (min-width: 1366px) {\n\n\t#toc-large-device {\n\t\tdisplay: inline-block\n\t}\n\n}\n\n#toc-large-device.open {\n\tleft: 0px;\n}\n\n#toc-large-device-container {\n\twidth: 100%;\n\tbackground-color: #fafafa;\n\tz-index: 1000;\n\toverflow-y: auto;\n}\n\n#toc-large-device-container > div {\n\tbackground-color: #fafafa;\n\tposition: relative;\n\theight: 100%;\n\twidth: 100%;\n}\n\n/*\ntoggle toc-large-device, swing-container, swing-bar\n*/\n\n#toggle-toc-large-device {\n    position: absolute;\n\tleft: 100%;\n\ttop: 0px;\n\tmargin-left: 8px;\n\toutline: none;\n\tbackground: #fafafa;\n\tfont-size: 1.5em;\n}\n\n/*\nif toc-large-device.open : swing-container to left\n*/\n#swing-container {\n\tmargin-left: 0px;\n\ttransition: margin-left 0.6s;\n\t-webkit-transition : margin-left 0.6s;\n\t-moz-transition : margin-left 0.6s;\n    -o-transition: margin-left 0.6s;\n\t\n}\n\n#swing-container.left {\n\t\tmargin-left: 0px;\n\t}\n\n@media screen and (min-width: 1366px) {\n\t#swing-container.left {\n\t\tmargin-left: 33%;\n\t}\n}\n\n/*\nif toc-large-device.open : swing-bar to left\n*/\n#swing-bar {\n\tmargin-left: 0px;\n\ttransition: margin-left 0.9s;\n\t-webkit-transition : margin-left 0.9s;\n\t-moz-transition : margin-left 0.9s;\n    -o-transition: margin-left 0.9s;\n}\n\n#swing-bar.left {\n\tmargin-left: 0px;\n}\n\n@media screen and (min-width: 1366px) {\n\t#swing-bar.left {\n\t\tmargin-left: 33%;\n\t}\n}\n\n/*\nTOC\n*/\n#toc {\n\tposition: absolute;\n\ttop: -1000px;\n\twidth: 100%;\n\theight: 100%;\n\tz-index: 1000;\n\toverflow-y: auto;\n/*\n\ttransition: top 0.4s;\n\t-webkit-transition : top 0.4s;\n\t-moz-transition : top 0.4s;\n    -o-transition: top 0.4s;\n*/\n\tpadding: 0px;\n\tbackground-color: #fafafa;\n}\n\n#toc.open {\n\ttop: 0px;\n}\n\n#toc > div {\n\tposition: relative;\n\tbackground-color: #fafafa;\n}\n\n#open-toc {\n\tfloat: right;\n\tfont-size: 1.4em;\n}\n\n#open-toc-large {\n\tposition: absolute;\n\ttop: 0px;\n\tright: 0px;\n\tdisplay: inline-block;\n}\n\n@media screen and (min-width: 1366px) {\n\t#open-toc-large {\n\t\tdisplay: none;\n\t}\n}\n\n#close-toc {\n\tposition: absolute;\n\tright: 15px;\n\ttop: 5px;\n\tmin-width: 25px;\n\tpadding: 0;\n\tborder: none;\n\tbackground-color: transparent;\n\tfont-family: 'Helvetica', sans-serif;\n\tfont-size: 1.2em;\n\tcolor: #424242;\n}\n\n#toc-title {\n\tmargin-bottom: 30px;\n\tmargin-top: 20px\n}\n\n#toc-title p {\n\tmargin: 8px;\n}\n/*\ntoc list\n*/\n#toc ul, #toc-large-device ul {\n\tpadding: 0px;\n}\n\n#toc li, #toc-large-device li {\n\tlist-style-type: none;\n\tpadding: .5em .5em;\n}\n\n#toc a.wb-link, #toc-large-device a.wb-link {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: gray;\n}\n\n#toc a.wb-link:hover, #toc-large-device a.wb-link:hover {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: #000;\n}\n\n#toc li.current a.wb-link, #toc-large-device li.current a.wb-link {\n\tcolor: #000;\n\toutline: none;\n\tfont-style: italic;\n}\n\n#toc [data-wb-element-page-number], #toc-large-device [data-wb-element-page-number] {\n\tfloat: right;\n}\n\n/*\nTOP\n*/\n#top {\n\tposition: absolute;\n\ttop: 0px;\n\tbox-sizing: border-box;\n\t-webkit-box-sizing: border-box;\n\t-moz-box-sizing: border-box;\n\tpadding-top: 8px;\n\ttext-align: center;\n\twidth: 100%;\n\theight: 30px;\n}\n\n#top .wb-current-section-title {\n\tfont-size: 0.8em;\n}\n\n/*\nBOTTOM\n*/\n#bottom {\n\tposition: absolute;\n\tbottom: 0px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tz-index: 500;\n\tbackground-color: #fafafa;\n\tcolor: #000;\n}\n\n#bottom-large {\n\tposition: absolute;\n\tbottom: -9999px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tz-index: 500;\n}\n\n@media screen and (min-width: 768px) {\n\t\t\n\t#bottom {\n\t\tbottom: -9999px\n\t}\n\t\n\t#bottom-large {\n\t\tbottom: 5px;\n\t}\n}\n\n#bottom button, #bottom a, #bottom span {\n\tdisplay: inline-block;\n\tborder: none;\n\tbackground-color: transparent;\n\tmargin-right: 10px;\n\tmargin-left: 10px;\n\tmin-width: 25px;\n\theight: 100%;\n\tpadding: 0;\n\tfont-size: 1.2em;\n}\n\n#bottom button.open-toc {\n\tfont-size: 1.5em;\n}\n\n#bottom a#home {\n\tfloat: left;\n\ttext-decoration: none;\n\tmargin-top: 6px;\n\tfont-size: 0.9em;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tletter-spacing: 1px;\n}\n\n#bottom span {\n\tdisplay: inline-block;\n\tmin-width: 42px;\n\tmargin: 0px;\n\tmargin-top: 0px;\n\tfont-size: 1em;\n}\n\n/*\nTEXT\n*/\n[data-wb-text] {\n\tfont-size: 14px;\n\tline-height: 1.5em;\n\ttext-align: justify;\n\ttext-justify: inter-word;\n}\n\n@media screen and (min-width: 768px) {\n    [data-wb-text] {\n        font-size: 15px;\n        line-height: 1.5em;\n    }\n}\n\n[data-wb-text] p {\n\tmargin-bottom: 0px;\n\tmargin-top: 0px;\n\ttext-indent: 1em;\n}\n\n[data-wb-text] a.wb-link {\n\tborder-bottom: 1px dotted black;\n}\n\n/*\nINSIDE TEXT\n*/\n/*\nTITLES\n*/\n.section-title, .note-title, .wb-toc-title {\n\tfont-size: 1.25em;\n\ttext-align: left;\n\ttext-indent: 0px;\n}\n\np.section-subtitle {\n\tfont-size: 1em;\n\ttext-indent: 0px;\n\tmargin-bottom: 1.5em;\n}\n\np.section-title {\n\tpadding-top: 3em;\n\tmargin-top: 0px;\n\tmargin-bottom: 1.5em;\n\ttext-indent: 0px;\n}\n\n#titre.wb-section {\n\ttext-align: center;\n\tline-height: 1.8em;\n}\n\n#cover-author, #cover-title, #cover-logo {\n\tmargin: 0px;\n\ttext-indent: 0px;\n}\n\n#fin {\n\ttext-align: center;\n\t\n}\n\n#fin p {\n\tpadding-top: 20%;\n\ttext-indent: 0px;\n}\n", ""]);
 
 // exports
 

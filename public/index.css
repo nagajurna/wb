@@ -93,6 +93,7 @@ When not book-read only
 	top: 0px;
 	height: 48px;
 	background-color: #fafafa;
+	position: relative;
 }
 
 #nav-bar-top.hidden {
@@ -145,10 +146,31 @@ Medium and large devices only
 	display: none;
 }
 
+#search-open {
+	position: absolute;
+	right: 0px;
+	top: 3px;
+	height: 43px;
+	display: inline-block;
+}
+
+#search-open.hidden {
+		display: none;
+	}
+
+input[name=search] {
+	width: 100%;
+}
+
+
+
 /*
 Small devices only
 */
 #menu-open {
+	position: absolute;
+	right: 0px;
+	top: 0px;
 	height: 47px;
 	line-height: 27px;
 	font-size: 2em;
