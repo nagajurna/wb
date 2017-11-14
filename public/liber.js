@@ -910,11 +910,11 @@ var index = function () {
 		//search open
 		root.querySelector("#search-open").addEventListener("click", function (event) {
 			event.preventDefault();
-			root.querySelector('#search-input').style.display = 'block';
+			root.querySelector('#search-modal').style.display = 'block';
 		}, false);
 		//search close
 		root.querySelector("#search-close").addEventListener("click", function (event) {
-			root.querySelector('#search-input').style.display = 'none';
+			root.querySelector('#search-modal').style.display = 'none';
 		}, false);
 		//search valid
 		root.querySelector("#search-form").addEventListener("submit", function (event) {
@@ -922,9 +922,8 @@ var index = function () {
 			var search = root.querySelector('[name=search]').value;
 			if (search !== '') {
 				location.hash = '#/search?q=' + search;
-				console.log(location.hash);
 			}
-			root.querySelector('#search-input').style.display = 'none';
+			root.querySelector('#search-modal').style.display = 'none';
 			root.querySelector('[name=search]').value = '';
 		}, false);
 	};
@@ -944,11 +943,9 @@ var index = function () {
 		} else {
 			if (window.innerWidth < 768) {
 				_utils2.default.addClass("#top-links", "hidden");
-				_utils2.default.addClass('#search-open', 'hidden');
 				_utils2.default.removeClass("#menu-open", "hidden");
 			} else {
 				_utils2.default.removeClass("#top-links", "hidden");
-				_utils2.default.removeClass('#search-open', 'hidden');
 				_utils2.default.addClass("#menu-open", "hidden");
 			}
 		}
@@ -1046,14 +1043,13 @@ var index = function () {
 				_utils2.default.removeClass("#nav-bar-top", "hidden");
 				_utils2.default.removeClass('body', 'book');
 				_utils2.default.setHTML("#top-title", "");
+				_utils2.default.removeClass('#search-open', 'hidden');
 				if (window.innerWidth < 768) {
 					_utils2.default.addClass("#top-links", "hidden");
 					_utils2.default.removeClass("#menu-open", "hidden");
-					_utils2.default.addClass('#search-open', 'hidden');
 				} else {
 					_utils2.default.removeClass("#top-links", "hidden");
 					_utils2.default.addClass("#menu-open", "hidden");
-					_utils2.default.removeClass('#search-open', 'hidden');
 				}
 			}
 		}, false);
@@ -1102,23 +1098,27 @@ var _home = __webpack_require__(6);
 
 var _home2 = _interopRequireDefault(_home);
 
-var _booksNext = __webpack_require__(11);
+var _search = __webpack_require__(11);
+
+var _search2 = _interopRequireDefault(_search);
+
+var _booksNext = __webpack_require__(15);
 
 var _booksNext2 = _interopRequireDefault(_booksNext);
 
-var _bookRead = __webpack_require__(15);
+var _bookRead = __webpack_require__(19);
 
 var _bookRead2 = _interopRequireDefault(_bookRead);
 
-var _authors = __webpack_require__(23);
+var _authors = __webpack_require__(27);
 
 var _authors2 = _interopRequireDefault(_authors);
 
-var _adminLogin = __webpack_require__(28);
+var _adminLogin = __webpack_require__(32);
 
 var _adminLogin2 = _interopRequireDefault(_adminLogin);
 
-var _adminRouter = __webpack_require__(30);
+var _adminRouter = __webpack_require__(34);
 
 var _adminRouter2 = _interopRequireDefault(_adminRouter);
 
@@ -1126,19 +1126,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 //admin (template - no controller)
 
-//adminLogin (controller)
+//authors (controller)
 
 //books-next(controller)
-var adminTemplate = __webpack_require__(69);
-//adminRouter (sub-router)
-
-//book-read (controller)
-
-//books(controller)
-//import books from './components/books/books';
-//book-read (controller)
 
 //home(controller)
+var adminTemplate = __webpack_require__(73);
+//adminRouter (sub-router)
+
+//adminLogin (controller)
+
+//book-read (controller)
+
+//search(controller)
 
 
 //routes.js
@@ -1154,15 +1154,11 @@ var router = function router() {
 			//HOME
 			(0, _home2.default)(container);
 		} else if (newhash.match(/#\/search\?q=/)) {
-			//TO BE PUBLISHED
-			(0, _booksNext2.default)(container);
+			//SEARCH
+			(0, _search2.default)(container);
 		} else if (newhash === '#/tobepublished') {
 			//TO BE PUBLISHED
 			(0, _booksNext2.default)(container);
-
-			//} else if(newhash === '#/books/') {
-			////BOOKS
-			//books(container);
 		} else if (newhash.match(/#\/books\/[^\/]+\/read$/)) {
 			//BOOK READ
 			(0, _bookRead2.default)(container);
@@ -1568,13 +1564,295 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _booksNext = __webpack_require__(12);
+var _search = __webpack_require__(12);
+
+var _search2 = _interopRequireDefault(_search);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var searchTemplate = __webpack_require__(14);
+
+//authors.js
+var search = function search(container) {
+	'use strict';
+
+	var c = container;
+
+	var search = location.hash.replace(/#\/search\?q\=/, '');
+	var nores = '';
+	if (search.split('').length < 3) {
+		nores = 'Aucun résultat.';
+		c.innerHTML = searchTemplate({ books: [], nores: nores });
+		return;
+	}
+	var q = new RegExp(search, 'gi');
+
+	//get visible books from dataStore
+	var bs = _dataStore2.default.getData('books').filter(function (b) {
+		return b.visible === true;
+	});
+	//get search books
+	var sbs = bs.filter(function (b) {
+		return b.title.replace('&nbsp;', ' ').match(q);
+	});
+	//get visible authors from dataStore
+	var as = _dataStore2.default.getData('authors').filter(function (a) {
+		return a.visible === true;
+	});
+	//get search authors
+	var sas = as.filter(function (a) {
+		return a.name.replace('&nbsp;', ' ').match(q);
+	});
+	for (var i = 0; i < sas.length; i++) {
+		var a = sas[i];
+
+		var _loop = function _loop(j) {
+			var ab = a.contribs[j].book;
+			var ba = bs.filter(function (b) {
+				return b.id === ab.id;
+			});
+			sbs.push(ba[0]);
+		};
+
+		for (var j = 0; j < a.contribs.length; j++) {
+			_loop(j);
+		}
+
+		var _loop2 = function _loop2(j) {
+			var ab = a.books[j];
+			var ba = bs.filter(function (b) {
+				return b.id === ab.id;
+			});
+			sbs.push(ba[0]);
+		};
+
+		for (var j = 0; j < a.books.length; j++) {
+			_loop2(j);
+		}
+	}
+
+	if (sbs.length === 0) {
+		nores = 'Aucun résultat.';
+		c.innerHTML = searchTemplate({ books: [], nores: nores });
+		return;
+	}
+
+	//go to book/read
+	var readBk = function readBk(event) {
+		var bk = _dataStore2.default.getData('books', event.currentTarget.id);
+		location.hash = '#' + bk.path + "/read";
+	};
+	//open infos
+	var openInfos = function openInfos(event) {
+		var id = event.target.id.replace('open-', '');
+		document.getElementById(id).style.display = 'block';
+	};
+	//close infos
+	var closeInfos = function closeInfos(event) {
+		var id = event.target.id.replace('close-', '');
+		document.getElementById(id).style.display = 'none';
+	};
+	c.innerHTML = searchTemplate({ books: sbs.reverse(), nores: nores });
+	var root = document.querySelector('#search-container');
+	//link to book/read
+	var bks = root.querySelectorAll('.book');
+	for (var _i = 0; _i < bks.length; _i++) {
+		bks[_i].addEventListener('click', readBk, false);
+	}
+	//modal (infos)
+	//open
+	var openInfosBtns = root.querySelectorAll('.open-infos-btn');
+	for (var _i2 = 0; _i2 < openInfosBtns.length; _i2++) {
+		openInfosBtns[_i2].addEventListener('click', openInfos, false);
+	}
+	//close
+	var closeInfosBtns = root.querySelectorAll('.close-infos-btn');
+	for (var _i3 = 0; _i3 < closeInfosBtns.length; _i3++) {
+		closeInfosBtns[_i3].addEventListener('click', closeInfos, false);
+	}
+};
+
+exports.default = search;
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(13);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {"hmr":true}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(3)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!./search.css", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!./search.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "#search-container #top-page-header {\n\ttext-align: center;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tfont-size: 1em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1px;\n\tline-height: 25px;\n\twidth: 98px;\n\tmargin: auto;\n\tmargin-top: 16px;\n\tdisplay: block;\n}\n\n@media only screen and (min-width: 768px) {\n\t#search-container #top-page-header {\n\t\tdisplay: none;\n\t}\n}\n\n#search-container #booksList {\n\tmax-width: 568px;\n\tmargin: auto;\n}\n\n@media only screen and (min-width: 853px) {\n\t#search-container #booksList {\n\t\tmax-width: 852px;\n\t}\n}\n\n@media only screen and (min-width: 1137px) {\n\t#search-container #booksList {\n\t\tmax-width: 1136px;\n\t}\n}\n\n#search-container .w3-col {\n\twidth: 100%;\n\theight: 408px;\n}\n\n@media only screen and (min-width: 600px) {\n\t#search-container .w3-col {\n\t\twidth: 284px;\n\t}\n}\n\n#search-container #paper {\n\tbackground-image: url(\"/images/cover_background.jpg\");\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#search-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#search-container #book-btn {\n\twidth: 238px;\n\theight: 40px;\n\tmargin: auto;\n\tmargin-top: 8px;\n}\n\n#search-container #book-btn button {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1.5px;\n}\n\n/*\nMODAL (INFOS)\n*/\n#search-container .w3-modal {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n}\n\n#search-container .w3-modal #footer {\n\tpadding-top: 16px;\n}\n\n#search-container .w3-modal .close-infos-btn {\n\tfont-size: 1.1em;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tletter-spacing: 1px;\n}\n\n#search-container .w3-modal p {\n\tmargin: 0px;\n\tmargin-top: 8px;\n}\n\n#search-container .w3-modal ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#search-container .w3-modal .contrib-role {\n\ttext-transform: capitalize;\n}\n\n#nores {\n\ttext-align: center;\n}\n\n#nores p {\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tfont-size: 1.2em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1px;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+module.exports = function anonymous(locals, filters, escape, rethrow) {
+    escape = escape || function(html) {
+        return String(html).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+    };
+    var __stack = {
+        lineno: 1,
+        input: '<div id="search-container" class="w3-content" style="max-width: 1136px">\n	<div id="top-page-header" class="w3-light-gray">recherche</div>\n	<% if(nores!==\'\') {%>\n		<div id="nores" class="w3-padding-32 w3-animate-opacity">\n			<p><%= nores %></p>\n		</div<\n	<%}%>\n	<div id="booksList" class="w3-padding-64 w3-animate-opacity">\n		<div class=\'w3-row\'>\n			<% for(var i=0; i<books.length; i++) {%>\n				\n				<!-- MODAL (INFOS) -->\n				<div id="infos-<%= books[i].id %>" class="w3-modal" style="background-color: rgba(0,0,0,0.1)">\n					<div class="w3-modal-content w3-card" style="max-width: 500px">\n						<div class="w3-container w3-padding-16 ">\n							  <p><b>Titre : </b><%- books[i].title %></p>\n							  <% if(books[i].subtitle1) {%>\n								<p><b>Sous-titre : </b><%- books[i].subtitle1 %></p>\n							  <%}%>\n							  <% if(books[i].subtitle2) {%>\n								<p><b>Sous-sous-titre : </b><%- books[i].subtitle2 %></p>\n							  <%}%>\n							  <p><b>Année de parution : </b><%- books[i].year %></p>\n							  <% if(books[i].authors.length > 1) {%>\n									<p>\n										<span><b>Auteurs :</b></span>\n										<br>\n										<ul>\n										<% for(var j=0; j<books[i].authors.length; j++) {%>\n											<li>\n												<%- books[i].authors[j].name %> (<%- books[i].authors[j].birth %>&nbsp;&ndash; <%- books[i].authors[j].death %>)\n											</li>\n										<%}%>\n										</ul>\n								    </p>\n							  <%} else if(books[i].authors.length === 1) {%>\n									<p><b>Auteur : </b><%- books[i].authors[0].name %> (<%- books[i].authors[0].birth %>&nbsp;&ndash; <%- books[i].authors[0].death %>)</p>\n							  <%}%>\n							  <% if(books[i].contribs.length > 1) {%>\n									<p>\n										<span><b>Contributions :</b></span>\n										<br>\n										<ul>\n										<% for(var j=0; j<books[i].contribs.length; j++) {%>\n											<li>\n												<span class="contrib-role"><%- books[i].contribs[j].role %> : </span>\n												<%- books[i].contribs[j].name %> (<%- books[i].contribs[j].birth %>&nbsp;&ndash; <%- books[i].contribs[j].death %>)\n											</li>\n										<%}%>\n										</ul>\n								    </p>\n							  <%} else if(books[i].contribs.length === 1) {%>\n									<p>\n										<span><b>Contribution : </b></span>\n										<br>\n										<ul>\n											<li>\n												<span class="contrib-role"><%- books[i].contribs[0].role %> : </span>\n												<%- books[i].contribs[0].name %> (<%- books[i].contribs[0].birth %>&nbsp;&ndash; <%- books[i].contribs[0].death %>)\n											</li>\n										</ul>\n									</p>\n							  <%}%>\n							  <p class="book-source"><b>Source : </b>\n								  <ul>\n									  <li>&Eacute;diteur : <%- books[i].source.publisher %></li>\n									  <li>Année de publication : <%- books[i].source.year %></li>\n								  </ul>\n							  </p>\n							  <% if(books[i].description) {%>\n							  <div><%- books[i].description %></div>\n							  <%}%>\n						</div>\n						<div id=footer class="w3-container w3-border-bottom">\n							<button id="close-infos-<%= books[i].id %>" \n									class="close-infos-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-bottomright"\n									>Fermer</button>\n						</div>\n					</div>\n				</div>\n				\n				<div class="w3-col" style="text-align: center">\n					<div id="paper">\n					<div id="<%= books[i].id %>" class="book w3-card-4 w3-display-container" style="<%=books[i].styles.cover %>">\n						<p class="author" style="<%=books[i].styles.author %>"><%= books[i].authorDisplay %></p>\n						<p class="title" style="<%=books[i].styles.title %>">\n							<%- books[i].title %>\n						</p>\n						<% if(books[i].subtitle1) {%>\n						<p class="subtitle1" style="<%=books[i].styles.subtitle1 %>">\n							<%- books[i].subtitle1 %></a>\n						</p>\n						<% } %>\n						<% if(books[i].subtitle2) {%>\n						<p class="subtitle1" style="<%=books[i].styles.subtitle2 %>">\n							<%- books[i].subtitle2 %></a>\n						</p>\n						<% } %>\n						<p class="logo w3-display-bottommiddle" style="<%=books[i].styles.logo %>">liber</p>\n				   </div>\n				   </div>\n				   <div id="book-btn" >\n						<button id="open-infos-<%= books[i].id %>" \n						        class="open-infos-btn align-right w3-button" >+ d\'infos</button>\n				   </div>\n				</div>\n				\n			<% } %>\n		</div>\n	\n	</div>\n</div>\n',
+        filename: "."
+    };
+    function rethrow(err, str, filename, lineno) {
+        var lines = str.split("\n"), start = Math.max(lineno - 3, 0), end = Math.min(lines.length, lineno + 3);
+        var context = lines.slice(start, end).map(function(line, i) {
+            var curr = i + start + 1;
+            return (curr == lineno ? " >> " : "    ") + curr + "| " + line;
+        }).join("\n");
+        err.path = filename;
+        err.message = (filename || "ejs") + ":" + lineno + "\n" + context + "\n\n" + err.message;
+        throw err;
+    }
+    try {
+        var buf = [];
+        with (locals || {}) {
+            (function() {
+                buf.push('<div id="search-container" class="w3-content" style="max-width: 1136px">\n	<div id="top-page-header" class="w3-light-gray">recherche</div>\n	');
+                __stack.lineno = 3;
+                if (nores !== "") {
+                    buf.push('\n		<div id="nores" class="w3-padding-32 w3-animate-opacity">\n			<p>', escape((__stack.lineno = 5, nores)), "</p>\n		</div<\n	");
+                    __stack.lineno = 7;
+                }
+                buf.push('\n	<div id="booksList" class="w3-padding-64 w3-animate-opacity">\n		<div class=\'w3-row\'>\n			');
+                __stack.lineno = 10;
+                for (var i = 0; i < books.length; i++) {
+                    buf.push('\n				\n				<!-- MODAL (INFOS) -->\n				<div id="infos-', escape((__stack.lineno = 13, books[i].id)), '" class="w3-modal" style="background-color: rgba(0,0,0,0.1)">\n					<div class="w3-modal-content w3-card" style="max-width: 500px">\n						<div class="w3-container w3-padding-16 ">\n							  <p><b>Titre : </b>', (__stack.lineno = 16, books[i].title), "</p>\n							  ");
+                    __stack.lineno = 17;
+                    if (books[i].subtitle1) {
+                        buf.push("\n								<p><b>Sous-titre : </b>", (__stack.lineno = 18, books[i].subtitle1), "</p>\n							  ");
+                        __stack.lineno = 19;
+                    }
+                    buf.push("\n							  ");
+                    __stack.lineno = 20;
+                    if (books[i].subtitle2) {
+                        buf.push("\n								<p><b>Sous-sous-titre : </b>", (__stack.lineno = 21, books[i].subtitle2), "</p>\n							  ");
+                        __stack.lineno = 22;
+                    }
+                    buf.push("\n							  <p><b>Année de parution : </b>", (__stack.lineno = 23, books[i].year), "</p>\n							  ");
+                    __stack.lineno = 24;
+                    if (books[i].authors.length > 1) {
+                        buf.push("\n									<p>\n										<span><b>Auteurs :</b></span>\n										<br>\n										<ul>\n										");
+                        __stack.lineno = 29;
+                        for (var j = 0; j < books[i].authors.length; j++) {
+                            buf.push("\n											<li>\n												", (__stack.lineno = 31, books[i].authors[j].name), " (", (__stack.lineno = 31, books[i].authors[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 31, books[i].authors[j].death), ")\n											</li>\n										");
+                            __stack.lineno = 33;
+                        }
+                        buf.push("\n										</ul>\n								    </p>\n							  ");
+                        __stack.lineno = 36;
+                    } else if (books[i].authors.length === 1) {
+                        buf.push("\n									<p><b>Auteur : </b>", (__stack.lineno = 37, books[i].authors[0].name), " (", (__stack.lineno = 37, books[i].authors[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 37, books[i].authors[0].death), ")</p>\n							  ");
+                        __stack.lineno = 38;
+                    }
+                    buf.push("\n							  ");
+                    __stack.lineno = 39;
+                    if (books[i].contribs.length > 1) {
+                        buf.push("\n									<p>\n										<span><b>Contributions :</b></span>\n										<br>\n										<ul>\n										");
+                        __stack.lineno = 44;
+                        for (var j = 0; j < books[i].contribs.length; j++) {
+                            buf.push('\n											<li>\n												<span class="contrib-role">', (__stack.lineno = 46, books[i].contribs[j].role), " : </span>\n												", (__stack.lineno = 47, books[i].contribs[j].name), " (", (__stack.lineno = 47, books[i].contribs[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 47, books[i].contribs[j].death), ")\n											</li>\n										");
+                            __stack.lineno = 49;
+                        }
+                        buf.push("\n										</ul>\n								    </p>\n							  ");
+                        __stack.lineno = 52;
+                    } else if (books[i].contribs.length === 1) {
+                        buf.push('\n									<p>\n										<span><b>Contribution : </b></span>\n										<br>\n										<ul>\n											<li>\n												<span class="contrib-role">', (__stack.lineno = 58, books[i].contribs[0].role), " : </span>\n												", (__stack.lineno = 59, books[i].contribs[0].name), " (", (__stack.lineno = 59, books[i].contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 59, books[i].contribs[0].death), ")\n											</li>\n										</ul>\n									</p>\n							  ");
+                        __stack.lineno = 63;
+                    }
+                    buf.push('\n							  <p class="book-source"><b>Source : </b>\n								  <ul>\n									  <li>&Eacute;diteur : ', (__stack.lineno = 66, books[i].source.publisher), "</li>\n									  <li>Année de publication : ", (__stack.lineno = 67, books[i].source.year), "</li>\n								  </ul>\n							  </p>\n							  ");
+                    __stack.lineno = 70;
+                    if (books[i].description) {
+                        buf.push("\n							  <div>", (__stack.lineno = 71, books[i].description), "</div>\n							  ");
+                        __stack.lineno = 72;
+                    }
+                    buf.push('\n						</div>\n						<div id=footer class="w3-container w3-border-bottom">\n							<button id="close-infos-', escape((__stack.lineno = 75, books[i].id)), '" \n									class="close-infos-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-bottomright"\n									>Fermer</button>\n						</div>\n					</div>\n				</div>\n				\n				<div class="w3-col" style="text-align: center">\n					<div id="paper">\n					<div id="', escape((__stack.lineno = 84, books[i].id)), '" class="book w3-card-4 w3-display-container" style="', escape((__stack.lineno = 84, books[i].styles.cover)), '">\n						<p class="author" style="', escape((__stack.lineno = 85, books[i].styles.author)), '">', escape((__stack.lineno = 85, books[i].authorDisplay)), '</p>\n						<p class="title" style="', escape((__stack.lineno = 86, books[i].styles.title)), '">\n							', (__stack.lineno = 87, books[i].title), "\n						</p>\n						");
+                    __stack.lineno = 89;
+                    if (books[i].subtitle1) {
+                        buf.push('\n						<p class="subtitle1" style="', escape((__stack.lineno = 90, books[i].styles.subtitle1)), '">\n							', (__stack.lineno = 91, books[i].subtitle1), "</a>\n						</p>\n						");
+                        __stack.lineno = 93;
+                    }
+                    buf.push("\n						");
+                    __stack.lineno = 94;
+                    if (books[i].subtitle2) {
+                        buf.push('\n						<p class="subtitle1" style="', escape((__stack.lineno = 95, books[i].styles.subtitle2)), '">\n							', (__stack.lineno = 96, books[i].subtitle2), "</a>\n						</p>\n						");
+                        __stack.lineno = 98;
+                    }
+                    buf.push('\n						<p class="logo w3-display-bottommiddle" style="', escape((__stack.lineno = 99, books[i].styles.logo)), '">liber</p>\n				   </div>\n				   </div>\n				   <div id="book-btn" >\n						<button id="open-infos-', escape((__stack.lineno = 103, books[i].id)), '" \n						        class="open-infos-btn align-right w3-button" >+ d\'infos</button>\n				   </div>\n				</div>\n				\n			');
+                    __stack.lineno = 108;
+                }
+                buf.push("\n		</div>\n	\n	</div>\n</div>\n");
+            })();
+        }
+        return buf.join("");
+    } catch (err) {
+        rethrow(err, __stack.input, __stack.filename, __stack.lineno);
+    }
+}
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _dataStore = __webpack_require__(1);
+
+var _dataStore2 = _interopRequireDefault(_dataStore);
+
+var _utils = __webpack_require__(0);
+
+var _utils2 = _interopRequireDefault(_utils);
+
+var _booksNext = __webpack_require__(16);
 
 var _booksNext2 = _interopRequireDefault(_booksNext);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var booksNextTemplate = __webpack_require__(14);
+var booksNextTemplate = __webpack_require__(18);
 //home.js
 var booksNext = function booksNext(container) {
 	'use strict';
@@ -1617,13 +1895,13 @@ var booksNext = function booksNext(container) {
 exports.default = booksNext;
 
 /***/ }),
-/* 12 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(13);
+var content = __webpack_require__(17);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -1648,7 +1926,7 @@ if(false) {
 }
 
 /***/ }),
-/* 13 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -1662,7 +1940,7 @@ exports.push([module.i, "#books-next-container #top-page-header {\n\ttext-align:
 
 
 /***/ }),
-/* 14 */
+/* 18 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -1764,7 +2042,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 15 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1782,21 +2060,21 @@ var _dataStore = __webpack_require__(1);
 
 var _dataStore2 = _interopRequireDefault(_dataStore);
 
-var _WebBook = __webpack_require__(16);
+var _WebBook = __webpack_require__(20);
 
 var _WebBook2 = _interopRequireDefault(_WebBook);
 
-var _bookRead = __webpack_require__(19);
+var _bookRead = __webpack_require__(23);
 
 var _bookRead2 = _interopRequireDefault(_bookRead);
 
-var _hammerjs = __webpack_require__(21);
+var _hammerjs = __webpack_require__(25);
 
 var _hammerjs2 = _interopRequireDefault(_hammerjs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var bookReadTemplate = __webpack_require__(22);
+var bookReadTemplate = __webpack_require__(26);
 //book.js
 var book = function book(container) {
 	'use strict';
@@ -2040,7 +2318,7 @@ var book = function book(container) {
 exports.default = book;
 
 /***/ }),
-/* 16 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2052,7 +2330,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _jquery = __webpack_require__(17);
+var _jquery = __webpack_require__(21);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -2618,7 +2896,7 @@ var WebBook = function () {
 exports.default = WebBook;
 
 /***/ }),
-/* 17 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12451,10 +12729,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 	return jQuery;
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(18)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22)(module)))
 
 /***/ }),
-/* 18 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12484,13 +12762,13 @@ module.exports = function (module) {
 };
 
 /***/ }),
-/* 19 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(20);
+var content = __webpack_require__(24);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -12515,7 +12793,7 @@ if(false) {
 }
 
 /***/ }),
-/* 20 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -12523,13 +12801,13 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "/*\nBOOK NAVBAR BOTTOM\n*/\n#book-nav-bar-bottom {\n\tdisplay: none;\n\theight: 44px;\n\tposition: relative;\n}\n\n@media screen and (min-width: 768px) {\n\t#book-nav-bar-bottom {\n\t\tdisplay: block;\n\t}\n}\n\n#book-nav-bar-bottom-controls {\n\tdisplay: block;\n\tposition: relative;\n\twidth: 530px;\n\tmargin: auto;\n\theight: 44px;\n\ttext-align: center;\n}\n\n#nav-bar-bottom-controls button {\n\toutline: none;\n\theight: 100%;\n}\n\n#book-nav-bar-bottom-controls button#open-toc-large.w3-btn span {\n\tdisplay: inline-block;\n\tpadding-bottom: 10px;\n}\n\n/*\nBOOKCONTAINER\n*/\n#bookContainer {\n\tposition: relative;\n\tfont-family: 'Georgia', serif;\n\topacity: 0.0;\n\tmargin: auto;\n\ttransition: opacity 0.8s;\n\t-webkit-transition: opacity 0.8s;\n\t-moz-transition: opacity 0.8s;\n\t-o-transition: opacity 0.8s;\n}\n\n#bookContainer.show {\n\topacity: 1.0;\n}\n\n/*\nTEXTCONTAINER\n*/\n[data-wb-text-container] {\n\tmargin: auto;\n\tbackground-color: #fafafa;\n/*\n\ttop: 0px;\n*/\n}\n\n@media screen and (min-width: 768px) {\n\t[data-wb-text-container] {\n/*\n\t\ttop: 30px;\n*/\n\t}\n}\n\n/*\nTOC-LARGE-DEVICE\n*/\n\n#toc-large-device {\n  position: absolute;\n  left: -33%;\n  width: 33%;\n/*\n  margin-top: 30px;\n*/\n  transition: left 0.4s;\n  -webkit-transition : left 0.4s;\n  -moz-transition : left 0.4s;\n  -o-transition: left 0.4s;\n  display: none;\n}\n\n@media screen and (min-width: 1366px) {\n\n\t#toc-large-device {\n\t\tdisplay: inline-block\n\t}\n\n}\n\n#toc-large-device.open {\n\tleft: 0px;\n}\n\n#toc-large-device-container {\n\twidth: 100%;\n\tbackground-color: #fafafa;\n\tz-index: 1000;\n\toverflow-y: auto;\n}\n\n#toc-large-device-container > div {\n\tbackground-color: #fafafa;\n\tposition: relative;\n\theight: 100%;\n\twidth: 100%;\n}\n\n/*\ntoggle toc-large-device, swing-container, swing-bar\n*/\n\n#toggle-toc-large-device {\n    position: absolute;\n\tleft: 100%;\n\ttop: 0px;\n\tmargin-left: 8px;\n\toutline: none;\n\tbackground: #fafafa;\n\tfont-size: 1.5em;\n}\n\n/*\nif toc-large-device.open : swing-container to left\n*/\n#swing-container {\n\tmargin-left: 0px;\n\ttransition: margin-left 0.6s;\n\t-webkit-transition : margin-left 0.6s;\n\t-moz-transition : margin-left 0.6s;\n    -o-transition: margin-left 0.6s;\n\t\n}\n\n#swing-container.left {\n\t\tmargin-left: 0px;\n\t}\n\n@media screen and (min-width: 1366px) {\n\t#swing-container.left {\n\t\tmargin-left: 33%;\n\t}\n}\n\n/*\nif toc-large-device.open : swing-bar to left\n*/\n#swing-bar {\n\tmargin-left: 0px;\n\ttransition: margin-left 0.9s;\n\t-webkit-transition : margin-left 0.9s;\n\t-moz-transition : margin-left 0.9s;\n    -o-transition: margin-left 0.9s;\n}\n\n#swing-bar.left {\n\tmargin-left: 0px;\n}\n\n@media screen and (min-width: 1366px) {\n\t#swing-bar.left {\n\t\tmargin-left: 33%;\n\t}\n}\n\n/*\nTOC\n*/\n#toc {\n\tposition: absolute;\n\ttop: -1000px;\n\twidth: 100%;\n\theight: 100%;\n\tz-index: 1000;\n\toverflow-y: auto;\n/*\n\ttransition: top 0.4s;\n\t-webkit-transition : top 0.4s;\n\t-moz-transition : top 0.4s;\n    -o-transition: top 0.4s;\n*/\n\tpadding: 0px;\n\tbackground-color: #fafafa;\n}\n\n#toc.open {\n\ttop: 0px;\n}\n\n#toc > div {\n\tposition: relative;\n\tbackground-color: #fafafa;\n}\n\n#open-toc {\n\tfloat: right;\n\tfont-size: 1.4em;\n}\n\n#open-toc-large {\n\tposition: absolute;\n\ttop: 0px;\n\tright: 0px;\n\tdisplay: inline-block;\n}\n\n@media screen and (min-width: 1366px) {\n\t#open-toc-large {\n\t\tdisplay: none;\n\t}\n}\n\n#close-toc {\n\tposition: absolute;\n\tright: 15px;\n\ttop: 5px;\n\tmin-width: 25px;\n\tpadding: 0;\n\tborder: none;\n\tbackground-color: transparent;\n\tfont-family: 'Helvetica', sans-serif;\n\tfont-size: 1.2em;\n\tcolor: #424242;\n}\n\n#toc-title {\n\tmargin-bottom: 30px;\n\tmargin-top: 20px\n}\n\n#toc-title p {\n\tmargin: 8px;\n}\n/*\ntoc list\n*/\n#toc ul, #toc-large-device ul {\n\tpadding: 0px;\n}\n\n#toc li, #toc-large-device li {\n\tlist-style-type: none;\n\tpadding: .5em .5em;\n}\n\n#toc a.wb-link, #toc-large-device a.wb-link {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: gray;\n}\n\n#toc a.wb-link:hover, #toc-large-device a.wb-link:hover {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: #000;\n}\n\n#toc li.current a.wb-link, #toc-large-device li.current a.wb-link {\n\tcolor: #000;\n\toutline: none;\n\tfont-style: italic;\n}\n\n#toc [data-wb-element-page-number], #toc-large-device [data-wb-element-page-number] {\n\tfloat: right;\n}\n\n/*\nTOP\n*/\n#top {\n\tposition: absolute;\n\ttop: 0px;\n\tbox-sizing: border-box;\n\t-webkit-box-sizing: border-box;\n\t-moz-box-sizing: border-box;\n\tpadding-top: 8px;\n\ttext-align: center;\n\twidth: 100%;\n\theight: 30px;\n}\n\n#top .wb-current-section-title {\n\tfont-size: 0.8em;\n}\n\n/*\nBOTTOM\n*/\n#bottom {\n\tposition: absolute;\n\tbottom: 0px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tz-index: 500;\n\tbackground-color: #fafafa;\n\tcolor: #000;\n}\n\n#bottom-large {\n\tposition: absolute;\n\tbottom: -9999px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tz-index: 500;\n}\n\n@media screen and (min-width: 768px) {\n\t\t\n\t#bottom {\n\t\tbottom: -9999px\n\t}\n\t\n\t#bottom-large {\n\t\tbottom: 5px;\n\t}\n}\n\n#bottom button, #bottom a, #bottom span {\n\tdisplay: inline-block;\n\tborder: none;\n\tbackground-color: transparent;\n\tmargin-right: 10px;\n\tmargin-left: 10px;\n\tmin-width: 25px;\n\theight: 100%;\n\tpadding: 0;\n\tfont-size: 1.2em;\n}\n\n#bottom button.open-toc {\n\tfont-size: 1.5em;\n}\n\n#bottom a#home {\n\tfloat: left;\n\ttext-decoration: none;\n\tmargin-top: 6px;\n\tfont-size: 0.9em;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tletter-spacing: 1px;\n}\n\n#bottom span {\n\tdisplay: inline-block;\n\tmin-width: 42px;\n\tmargin: 0px;\n\tmargin-top: 0px;\n\tfont-size: 1em;\n}\n\n/*\nTEXT\n*/\n[data-wb-text] {\n\tfont-size: 14px;\n\tline-height: 1.5em;\n\ttext-align: justify;\n\ttext-justify: inter-word;\n}\n\n@media screen and (min-width: 768px) {\n    [data-wb-text] {\n        font-size: 15px;\n        line-height: 1.5em;\n    }\n}\n\n[data-wb-text] p {\n\tmargin-bottom: 0px;\n\tmargin-top: 0px;\n\ttext-indent: 1em;\n}\n\n[data-wb-text] a.wb-link {\n\tborder-bottom: 1px dotted black;\n}\n\n/*\nINSIDE TEXT\n*/\n/*\nTITLES\n*/\n.section-title, .note-title, .wb-toc-title {\n\tfont-size: 1.25em;\n\ttext-align: left;\n\ttext-indent: 0px;\n}\n\np.section-subtitle {\n\tfont-size: 1em;\n\ttext-indent: 0px;\n\tmargin-bottom: 1.5em;\n}\n\np.section-title {\n\tpadding-top: 3em;\n\tmargin-top: 0px;\n\tmargin-bottom: 1.5em;\n\ttext-indent: 0px;\n}\n\n#titre.wb-section {\n\ttext-align: center;\n\tline-height: 1.8em;\n}\n\n#cover-author, #cover-title, #cover-logo {\n\tmargin: 0px;\n\ttext-indent: 0px;\n}\n\n#fin {\n\ttext-align: center;\n\t\n}\n\n#fin p {\n\tpadding-top: 20%;\n\ttext-indent: 0px;\n}\n", ""]);
+exports.push([module.i, "/*\nBOOK NAVBAR BOTTOM\n*/\n#book-nav-bar-bottom {\n\tdisplay: none;\n\theight: 44px;\n\tposition: relative;\n}\n\n@media screen and (min-width: 768px) {\n\t#book-nav-bar-bottom {\n\t\tdisplay: block;\n\t}\n}\n\n#book-nav-bar-bottom-controls {\n\tdisplay: block;\n\tposition: relative;\n\twidth: 530px;\n\tmargin: auto;\n\theight: 44px;\n\ttext-align: center;\n}\n\n#nav-bar-bottom-controls button {\n\toutline: none;\n\theight: 100%;\n}\n\n#book-nav-bar-bottom-controls button#open-toc-large.w3-btn span {\n\tdisplay: inline-block;\n\tpadding-bottom: 10px;\n}\n\n/*\nBOOKCONTAINER\n*/\n#bookContainer {\n\tposition: relative;\n\tfont-family: 'Georgia', serif;\n\tcolor: #000;\n\topacity: 0.0;\n\tmargin: auto;\n\ttransition: opacity 0.8s;\n\t-webkit-transition: opacity 0.8s;\n\t-moz-transition: opacity 0.8s;\n\t-o-transition: opacity 0.8s;\n}\n\n#bookContainer.show {\n\topacity: 1.0;\n}\n\n/*\nTEXTCONTAINER\n*/\n[data-wb-text-container] {\n\tmargin: auto;\n\tbackground-color: #fafafa;\n/*\n\ttop: 0px;\n*/\n}\n\n@media screen and (min-width: 768px) {\n\t[data-wb-text-container] {\n/*\n\t\ttop: 30px;\n*/\n\t}\n}\n\n/*\nTOC-LARGE-DEVICE\n*/\n\n#toc-large-device {\n  position: absolute;\n  left: -33%;\n  width: 33%;\n/*\n  margin-top: 30px;\n*/\n  transition: left 0.4s;\n  -webkit-transition : left 0.4s;\n  -moz-transition : left 0.4s;\n  -o-transition: left 0.4s;\n  display: none;\n}\n\n@media screen and (min-width: 1366px) {\n\n\t#toc-large-device {\n\t\tdisplay: inline-block\n\t}\n\n}\n\n#toc-large-device.open {\n\tleft: 0px;\n}\n\n#toc-large-device-container {\n\twidth: 100%;\n\tbackground-color: #fafafa;\n\tz-index: 1000;\n\toverflow-y: auto;\n}\n\n#toc-large-device-container > div {\n\tbackground-color: #fafafa;\n\tposition: relative;\n\theight: 100%;\n\twidth: 100%;\n}\n\n/*\ntoggle toc-large-device, swing-container, swing-bar\n*/\n\n#toggle-toc-large-device {\n    position: absolute;\n\tleft: 100%;\n\ttop: 0px;\n\tmargin-left: 8px;\n\toutline: none;\n\tbackground: #fafafa;\n\tfont-size: 1.5em;\n}\n\n/*\nif toc-large-device.open : swing-container to left\n*/\n#swing-container {\n\tmargin-left: 0px;\n\ttransition: margin-left 0.6s;\n\t-webkit-transition : margin-left 0.6s;\n\t-moz-transition : margin-left 0.6s;\n    -o-transition: margin-left 0.6s;\n\t\n}\n\n#swing-container.left {\n\t\tmargin-left: 0px;\n\t}\n\n@media screen and (min-width: 1366px) {\n\t#swing-container.left {\n\t\tmargin-left: 33%;\n\t}\n}\n\n/*\nif toc-large-device.open : swing-bar to left\n*/\n#swing-bar {\n\tmargin-left: 0px;\n\ttransition: margin-left 0.9s;\n\t-webkit-transition : margin-left 0.9s;\n\t-moz-transition : margin-left 0.9s;\n    -o-transition: margin-left 0.9s;\n}\n\n#swing-bar.left {\n\tmargin-left: 0px;\n}\n\n@media screen and (min-width: 1366px) {\n\t#swing-bar.left {\n\t\tmargin-left: 33%;\n\t}\n}\n\n/*\nTOC\n*/\n#toc {\n\tposition: absolute;\n\ttop: -1000px;\n\twidth: 100%;\n\theight: 100%;\n\tz-index: 1000;\n\toverflow-y: auto;\n/*\n\ttransition: top 0.4s;\n\t-webkit-transition : top 0.4s;\n\t-moz-transition : top 0.4s;\n    -o-transition: top 0.4s;\n*/\n\tpadding: 0px;\n\tbackground-color: #fafafa;\n}\n\n#toc.open {\n\ttop: 0px;\n}\n\n#toc > div {\n\tposition: relative;\n\tbackground-color: #fafafa;\n}\n\n#open-toc {\n\tfloat: right;\n\tfont-size: 1.4em;\n}\n\n#open-toc-large {\n\tposition: absolute;\n\ttop: 0px;\n\tright: 0px;\n\tdisplay: inline-block;\n}\n\n@media screen and (min-width: 1366px) {\n\t#open-toc-large {\n\t\tdisplay: none;\n\t}\n}\n\n#close-toc {\n\tposition: absolute;\n\tright: 15px;\n\ttop: 5px;\n\tmin-width: 25px;\n\tpadding: 0;\n\tborder: none;\n\tbackground-color: transparent;\n\tfont-family: 'Helvetica', sans-serif;\n\tfont-size: 1.2em;\n\tcolor: #424242;\n}\n\n#toc-title {\n\tmargin-bottom: 30px;\n\tmargin-top: 20px\n}\n\n#toc-title p {\n\tmargin: 8px;\n}\n/*\ntoc list\n*/\n#toc ul, #toc-large-device ul {\n\tpadding: 0px;\n}\n\n#toc li, #toc-large-device li {\n\tlist-style-type: none;\n\tpadding: .5em .5em;\n}\n\n#toc a.wb-link, #toc-large-device a.wb-link {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: gray;\n}\n\n#toc a.wb-link:hover, #toc-large-device a.wb-link:hover {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: #000;\n}\n\n#toc li.current a.wb-link, #toc-large-device li.current a.wb-link {\n\tcolor: #000;\n\toutline: none;\n\tfont-style: italic;\n}\n\n#toc [data-wb-element-page-number], #toc-large-device [data-wb-element-page-number] {\n\tfloat: right;\n}\n\n/*\nTOP\n*/\n#top {\n\tposition: absolute;\n\ttop: 0px;\n\tbox-sizing: border-box;\n\t-webkit-box-sizing: border-box;\n\t-moz-box-sizing: border-box;\n\tpadding-top: 8px;\n\ttext-align: center;\n\twidth: 100%;\n\theight: 30px;\n}\n\n#top .wb-current-section-title {\n\tfont-size: 0.8em;\n}\n\n/*\nBOTTOM\n*/\n#bottom {\n\tposition: absolute;\n\tbottom: 0px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tz-index: 500;\n\tbackground-color: #fafafa;\n\tcolor: #000;\n}\n\n#bottom-large {\n\tposition: absolute;\n\tbottom: -9999px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tz-index: 500;\n}\n\n@media screen and (min-width: 768px) {\n\t\t\n\t#bottom {\n\t\tbottom: -9999px\n\t}\n\t\n\t#bottom-large {\n\t\tbottom: 5px;\n\t}\n}\n\n#bottom button, #bottom a, #bottom span {\n\tdisplay: inline-block;\n\tborder: none;\n\tbackground-color: transparent;\n\tmargin-right: 10px;\n\tmargin-left: 10px;\n\tmin-width: 25px;\n\theight: 100%;\n\tpadding: 0;\n\tfont-size: 1.2em;\n}\n\n#bottom button.open-toc {\n\tfont-size: 1.5em;\n}\n\n#bottom a#home {\n\tfloat: left;\n\ttext-decoration: none;\n\tmargin-top: 6px;\n\tfont-size: 0.9em;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tletter-spacing: 1px;\n}\n\n#bottom span {\n\tdisplay: inline-block;\n\tmin-width: 42px;\n\tmargin: 0px;\n\tmargin-top: 0px;\n\tfont-size: 1em;\n}\n\n/*\nTEXT\n*/\n[data-wb-text] {\n\tfont-size: 14px;\n\tline-height: 1.5em;\n\ttext-align: justify;\n\ttext-justify: inter-word;\n}\n\n@media screen and (min-width: 768px) {\n    [data-wb-text] {\n        font-size: 15px;\n        line-height: 1.5em;\n    }\n}\n\n[data-wb-text] p {\n\tmargin-bottom: 0px;\n\tmargin-top: 0px;\n\ttext-indent: 1.5em;\n}\n\n[data-wb-text] a.wb-link {\n\tborder-bottom: 1px dotted black;\n}\n\n/*\nINSIDE TEXT\n*/\n/*\nTITLES\n*/\n.section-title, .note-title, .wb-toc-title {\n\tfont-size: 1.25em;\n\ttext-align: left;\n\ttext-indent: 0px;\n}\n\np.section-subtitle {\n\tfont-size: 1em;\n\ttext-indent: 0px;\n\tmargin-bottom: 1.5em;\n}\n\np.section-title {\n\tpadding-top: 3em;\n\tmargin-top: 0px;\n\tmargin-bottom: 1.5em;\n\ttext-indent: 0px;\n}\n\n#titre.wb-section {\n\ttext-align: center;\n\tline-height: 1.8em;\n}\n\n#cover-author, #cover-title, #cover-logo {\n\tmargin: 0px;\n\ttext-indent: 0px;\n}\n\n#fin {\n\ttext-align: center;\n\t\n}\n\n#fin p {\n\tpadding-top: 20%;\n\ttext-indent: 0px;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 21 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15169,7 +15447,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 })(window, document, 'Hammer');
 
 /***/ }),
-/* 22 */
+/* 26 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15205,7 +15483,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 23 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15223,14 +15501,14 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _authors = __webpack_require__(24);
+var _authors = __webpack_require__(28);
 
 var _authors2 = _interopRequireDefault(_authors);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var authorsTemplate = __webpack_require__(26);
-var authorsLettersTemplate = __webpack_require__(27);
+var authorsTemplate = __webpack_require__(30);
+var authorsLettersTemplate = __webpack_require__(31);
 //home.js
 var authors = function authors(container) {
 	'use strict';
@@ -15300,13 +15578,13 @@ var authors = function authors(container) {
 exports.default = authors;
 
 /***/ }),
-/* 24 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(25);
+var content = __webpack_require__(29);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -15331,7 +15609,7 @@ if(false) {
 }
 
 /***/ }),
-/* 25 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -15345,7 +15623,7 @@ exports.push([module.i, "#authors-container {\n\tfont-family: \"Times New Roman\
 
 
 /***/ }),
-/* 26 */
+/* 30 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15477,7 +15755,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 27 */
+/* 31 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15513,7 +15791,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 28 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15533,7 +15811,7 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminLoginTemplate = __webpack_require__(29);
+var adminLoginTemplate = __webpack_require__(33);
 //home.js
 var adminLogin = function adminLogin(container) {
 	'use strict';
@@ -15592,7 +15870,7 @@ var adminLogin = function adminLogin(container) {
 exports.default = adminLogin;
 
 /***/ }),
-/* 29 */
+/* 33 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15628,7 +15906,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 30 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15642,59 +15920,59 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _adminHome = __webpack_require__(31);
+var _adminHome = __webpack_require__(35);
 
 var _adminHome2 = _interopRequireDefault(_adminHome);
 
-var _adminUsers = __webpack_require__(33);
+var _adminUsers = __webpack_require__(37);
 
 var _adminUsers2 = _interopRequireDefault(_adminUsers);
 
-var _adminUser = __webpack_require__(35);
+var _adminUser = __webpack_require__(39);
 
 var _adminUser2 = _interopRequireDefault(_adminUser);
 
-var _adminNew = __webpack_require__(37);
+var _adminNew = __webpack_require__(41);
 
 var _adminNew2 = _interopRequireDefault(_adminNew);
 
-var _adminEdit = __webpack_require__(39);
+var _adminEdit = __webpack_require__(43);
 
 var _adminEdit2 = _interopRequireDefault(_adminEdit);
 
-var _adminEditPassword = __webpack_require__(41);
+var _adminEditPassword = __webpack_require__(45);
 
 var _adminEditPassword2 = _interopRequireDefault(_adminEditPassword);
 
-var _adminBooks = __webpack_require__(43);
+var _adminBooks = __webpack_require__(47);
 
 var _adminBooks2 = _interopRequireDefault(_adminBooks);
 
-var _adminBook = __webpack_require__(45);
+var _adminBook = __webpack_require__(49);
 
 var _adminBook2 = _interopRequireDefault(_adminBook);
 
-var _adminBooksNew = __webpack_require__(47);
+var _adminBooksNew = __webpack_require__(51);
 
 var _adminBooksNew2 = _interopRequireDefault(_adminBooksNew);
 
-var _adminBookEdit = __webpack_require__(54);
+var _adminBookEdit = __webpack_require__(58);
 
 var _adminBookEdit2 = _interopRequireDefault(_adminBookEdit);
 
-var _adminAuthors = __webpack_require__(61);
+var _adminAuthors = __webpack_require__(65);
 
 var _adminAuthors2 = _interopRequireDefault(_adminAuthors);
 
-var _adminAuthor = __webpack_require__(63);
+var _adminAuthor = __webpack_require__(67);
 
 var _adminAuthor2 = _interopRequireDefault(_adminAuthor);
 
-var _adminAuthorsNew = __webpack_require__(65);
+var _adminAuthorsNew = __webpack_require__(69);
 
 var _adminAuthorsNew2 = _interopRequireDefault(_adminAuthorsNew);
 
-var _adminAuthorEdit = __webpack_require__(67);
+var _adminAuthorEdit = __webpack_require__(71);
 
 var _adminAuthorEdit2 = _interopRequireDefault(_adminAuthorEdit);
 
@@ -15788,7 +16066,7 @@ var adminRouter = function adminRouter(oldhash, newhash, data) {
 exports.default = adminRouter;
 
 /***/ }),
-/* 31 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15808,7 +16086,7 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminHomeTemplate = __webpack_require__(32);
+var adminHomeTemplate = __webpack_require__(36);
 //home.js
 var adminHome = function adminHome(container, data) {
 	'use strict';
@@ -15839,7 +16117,7 @@ var adminHome = function adminHome(container, data) {
 exports.default = adminHome;
 
 /***/ }),
-/* 32 */
+/* 36 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15875,7 +16153,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 33 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15891,7 +16169,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminUsersTemplate = __webpack_require__(34);
+var adminUsersTemplate = __webpack_require__(38);
 //home.js
 var adminUsers = function adminUsers(container) {
 	'use strict';
@@ -15915,7 +16193,7 @@ var adminUsers = function adminUsers(container) {
 exports.default = adminUsers;
 
 /***/ }),
-/* 34 */
+/* 38 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15957,7 +16235,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 35 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15973,7 +16251,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminUserTemplate = __webpack_require__(36);
+var adminUserTemplate = __webpack_require__(40);
 //home.js
 var adminUser = function adminUser(container) {
 	'use strict';
@@ -16031,7 +16309,7 @@ var adminUser = function adminUser(container) {
 exports.default = adminUser;
 
 /***/ }),
-/* 36 */
+/* 40 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16067,7 +16345,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 37 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16083,7 +16361,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminNewTemplate = __webpack_require__(38);
+var adminNewTemplate = __webpack_require__(42);
 //home.js
 var adminNew = function adminNew(container) {
 	'use strict';
@@ -16143,7 +16421,7 @@ var adminNew = function adminNew(container) {
 exports.default = adminNew;
 
 /***/ }),
-/* 38 */
+/* 42 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16179,7 +16457,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 39 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16195,7 +16473,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminEditTemplate = __webpack_require__(40);
+var adminEditTemplate = __webpack_require__(44);
 //home.js
 var adminEdit = function adminEdit(container, user) {
 	'use strict';
@@ -16255,7 +16533,7 @@ var adminEdit = function adminEdit(container, user) {
 exports.default = adminEdit;
 
 /***/ }),
-/* 40 */
+/* 44 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16291,7 +16569,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 41 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16307,7 +16585,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminEditPasswordTemplate = __webpack_require__(42);
+var adminEditPasswordTemplate = __webpack_require__(46);
 //home.js
 var adminEditPassword = function adminEditPassword(container, user) {
 	'use strict';
@@ -16370,7 +16648,7 @@ var adminEditPassword = function adminEditPassword(container, user) {
 exports.default = adminEditPassword;
 
 /***/ }),
-/* 42 */
+/* 46 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16406,7 +16684,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 43 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16422,7 +16700,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminBooksTemplate = __webpack_require__(44);
+var adminBooksTemplate = __webpack_require__(48);
 //home.js
 var adminBooks = function adminBooks(container) {
 	'use strict';
@@ -16446,7 +16724,7 @@ var adminBooks = function adminBooks(container) {
 exports.default = adminBooks;
 
 /***/ }),
-/* 44 */
+/* 48 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16488,7 +16766,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 45 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16504,7 +16782,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminBookTemplate = __webpack_require__(46);
+var adminBookTemplate = __webpack_require__(50);
 //home.js
 var adminBook = function adminBook(container) {
 	'use strict';
@@ -16559,7 +16837,7 @@ var adminBook = function adminBook(container) {
 exports.default = adminBook;
 
 /***/ }),
-/* 46 */
+/* 50 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16634,7 +16912,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 47 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16654,12 +16932,12 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminBooksNewTemplate = __webpack_require__(48);
-var modalHeaderTemplate = __webpack_require__(49);
-var searchAuthorsResultsTemplate = __webpack_require__(50);
-var selectedAuthorsTemplate = __webpack_require__(51);
-var selectedContribsTemplate = __webpack_require__(52);
-var selectedContribRoleTemplate = __webpack_require__(53);
+var adminBooksNewTemplate = __webpack_require__(52);
+var modalHeaderTemplate = __webpack_require__(53);
+var searchAuthorsResultsTemplate = __webpack_require__(54);
+var selectedAuthorsTemplate = __webpack_require__(55);
+var selectedContribsTemplate = __webpack_require__(56);
+var selectedContribRoleTemplate = __webpack_require__(57);
 //home.js
 var adminBooksNew = function adminBooksNew(container) {
 	'use strict';
@@ -16866,7 +17144,7 @@ var adminBooksNew = function adminBooksNew(container) {
 exports.default = adminBooksNew;
 
 /***/ }),
-/* 48 */
+/* 52 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16902,7 +17180,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 49 */
+/* 53 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16938,7 +17216,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 50 */
+/* 54 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16980,7 +17258,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 51 */
+/* 55 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -17022,7 +17300,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 52 */
+/* 56 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -17064,7 +17342,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 53 */
+/* 57 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -17100,7 +17378,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 54 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17120,12 +17398,12 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminBookEditTemplate = __webpack_require__(55);
-var modalHeaderTemplate = __webpack_require__(56);
-var searchAuthorsResultsTemplate = __webpack_require__(57);
-var selectedAuthorsTemplate = __webpack_require__(58);
-var selectedContribsTemplate = __webpack_require__(59);
-var selectedContribRoleTemplate = __webpack_require__(60);
+var adminBookEditTemplate = __webpack_require__(59);
+var modalHeaderTemplate = __webpack_require__(60);
+var searchAuthorsResultsTemplate = __webpack_require__(61);
+var selectedAuthorsTemplate = __webpack_require__(62);
+var selectedContribsTemplate = __webpack_require__(63);
+var selectedContribRoleTemplate = __webpack_require__(64);
 //home.js
 var adminBooksNew = function adminBooksNew(container) {
 	'use strict';
@@ -17359,7 +17637,7 @@ var adminBooksNew = function adminBooksNew(container) {
 exports.default = adminBooksNew;
 
 /***/ }),
-/* 55 */
+/* 59 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -17413,7 +17691,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 56 */
+/* 60 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -17449,7 +17727,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 57 */
+/* 61 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -17491,7 +17769,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 58 */
+/* 62 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -17533,7 +17811,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 59 */
+/* 63 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -17575,7 +17853,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 60 */
+/* 64 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -17611,7 +17889,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 61 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17627,7 +17905,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorsTemplate = __webpack_require__(62);
+var adminAuthorsTemplate = __webpack_require__(66);
 //home.js
 var adminAuthors = function adminAuthors(container) {
 	'use strict';
@@ -17651,7 +17929,7 @@ var adminAuthors = function adminAuthors(container) {
 exports.default = adminAuthors;
 
 /***/ }),
-/* 62 */
+/* 66 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -17693,7 +17971,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 63 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17709,7 +17987,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorTemplate = __webpack_require__(64);
+var adminAuthorTemplate = __webpack_require__(68);
 //home.js
 var adminAuthor = function adminAuthor(container) {
 	'use strict';
@@ -17764,7 +18042,7 @@ var adminAuthor = function adminAuthor(container) {
 exports.default = adminAuthor;
 
 /***/ }),
-/* 64 */
+/* 68 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -17833,7 +18111,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 65 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17853,7 +18131,7 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorsNewTemplate = __webpack_require__(66);
+var adminAuthorsNewTemplate = __webpack_require__(70);
 //home.js
 var adminAuthorsNew = function adminAuthorsNew(container) {
 	'use strict';
@@ -17916,7 +18194,7 @@ var adminAuthorsNew = function adminAuthorsNew(container) {
 exports.default = adminAuthorsNew;
 
 /***/ }),
-/* 66 */
+/* 70 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -17952,7 +18230,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 67 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17968,7 +18246,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorEditTemplate = __webpack_require__(68);
+var adminAuthorEditTemplate = __webpack_require__(72);
 //home.js
 var adminAuthorEdit = function adminAuthorEdit(container) {
 	'use strict';
@@ -18041,7 +18319,7 @@ var adminAuthorEdit = function adminAuthorEdit(container) {
 exports.default = adminAuthorEdit;
 
 /***/ }),
-/* 68 */
+/* 72 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -18083,7 +18361,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 69 */
+/* 73 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {

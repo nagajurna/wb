@@ -38,6 +38,7 @@ BOOKCONTAINER
 #bookContainer {
 	position: relative;
 	font-family: 'Georgia', serif;
+	color: #000;
 	opacity: 0.0;
 	margin: auto;
 	transition: opacity 0.8s;
@@ -382,7 +383,7 @@ TEXT
 [data-wb-text] p {
 	margin-bottom: 0px;
 	margin-top: 0px;
-	text-indent: 1em;
+	text-indent: 1.5em;
 }
 
 [data-wb-text] a.wb-link {

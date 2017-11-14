@@ -148,21 +148,23 @@ Medium and large devices only
 
 #search-open {
 	position: absolute;
-	right: 0px;
-	top: 3px;
-	height: 43px;
+	right: 44px;
+	top: 5px;
+	height: 42px;
 	display: inline-block;
+	padding-right: 12px;
+	padding-left: 12px;
+}
+
+@media only screen and (min-width: 768px) {
+	#search-open {
+		right: 0px;
+	}
 }
 
 #search-open.hidden {
 		display: none;
 	}
-
-input[name=search] {
-	width: 100%;
-}
-
-
 
 /*
 Small devices only
@@ -246,6 +248,26 @@ MODAL MENU (SMALL DEVICES)
 	font-variant: small-caps;
 	letter-spacing: 1.5px;
 	font-size: 1.2em;
+}
+
+/*
+SEARCH INPUT
+*/
+
+#search-modal label {
+	font-size: 1.2em;
+	font-family: "Times New Roman", Georgia, sans-serif;
+	letter-spacing: 1px;
+}
+
+#search-form {
+	text-align: center;
+}
+
+#search-valid {
+	font-size: 1.2em;
+	font-family: "Times New Roman", Georgia, sans-serif;
+	letter-spacing: 1px;
 }
 
 /*

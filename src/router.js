@@ -2,15 +2,15 @@ import utils from './services/utils';
 import dataStore from './services/dataStore';
 //home(controller)
 import home from './components/home/home';
+//search(controller)
+import search from './components/search/search';
 //books-next(controller)
 import booksNext from './components/books-next/books-next';
-//books(controller)
-//import books from './components/books/books';
 //book-read (controller)
 import bookRead from './components/book-read/book-read';
-//adminLogin (controller)
+//authors (controller)
 import authors from './components/authors/authors';
-//book-read (controller)
+//adminLogin (controller)
 import adminLogin from './components/adminLogin/adminLogin';
 //admin (template - no controller)
 let adminTemplate = require('./components/admin/admin.ejs');
@@ -31,16 +31,12 @@ const router  = function() {
 			home(container);
 			
 		} else if(newhash.match(/#\/search\?q=/)) {
-			//TO BE PUBLISHED
-			booksNext(container);
+			//SEARCH
+			search(container);
 		
 		} else if(newhash === '#/tobepublished') {
 			//TO BE PUBLISHED
 			booksNext(container);
-			
-		//} else if(newhash === '#/books/') {
-			////BOOKS
-			//books(container);
 			
 		} else if(newhash.match(/#\/books\/[^\/]+\/read$/)) {
 			//BOOK READ

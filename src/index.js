@@ -12,11 +12,11 @@ var index = (function() {
 		//search open
 		root.querySelector("#search-open").addEventListener("click", event => {
 			event.preventDefault();
-			root.querySelector('#search-input').style.display = 'block';
+			root.querySelector('#search-modal').style.display = 'block';
 		}, false);
 		//search close
 		root.querySelector("#search-close").addEventListener("click", event => {
-			root.querySelector('#search-input').style.display = 'none';
+			root.querySelector('#search-modal').style.display = 'none';
 		}, false);
 		//search valid
 		root.querySelector("#search-form").addEventListener("submit", event => {
@@ -24,9 +24,8 @@ var index = (function() {
 			let search = root.querySelector('[name=search]').value;
 			if(search!=='') {
 				location.hash = '#/search?q=' + search;
-				console.log(location.hash);
 			}
-			root.querySelector('#search-input').style.display = 'none';
+			root.querySelector('#search-modal').style.display = 'none';
 			root.querySelector('[name=search]').value = '';
 		}, false);
 		
@@ -46,11 +45,9 @@ var index = (function() {
 		} else {
 			if(window.innerWidth < 768) {
 				utils.addClass("#top-links", "hidden");
-				utils.addClass('#search-open', 'hidden');
 				utils.removeClass("#menu-open", "hidden");
 			} else {
 				utils.removeClass("#top-links", "hidden");
-				utils.removeClass('#search-open', 'hidden');
 				utils.addClass("#menu-open", "hidden");
 			}
 		}
@@ -153,14 +150,13 @@ var index = (function() {
 				utils.removeClass("#nav-bar-top", "hidden");
 				utils.removeClass('body', 'book');
 				utils.setHTML("#top-title", "");
+				utils.removeClass('#search-open', 'hidden');
 				if(window.innerWidth < 768) {
 					utils.addClass("#top-links", "hidden");
 					utils.removeClass("#menu-open", "hidden");
-					utils.addClass('#search-open', 'hidden');
 				} else {
 					utils.removeClass("#top-links", "hidden");
 					utils.addClass("#menu-open", "hidden");
-					utils.removeClass('#search-open', 'hidden');
 				}
 			}
 			

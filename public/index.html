@@ -14,12 +14,13 @@
 <body>
 	<div id="navigation">
 		<!-- MODAL-SEARCH -->
-		<div id="search-input" class="w3-modal" style="background-color: rgba(0,0,0,0.1)">
-			<div class="w3-modal-content w3-container w3-padding-32 w3-card" style="text-align: center; width: 500px">
+		<div id="search-modal" class="w3-modal" style="background-color: rgba(0,0,0,0.1)">
+			<div class="w3-modal-content w3-container w3-padding-32 w3-card" style="width: 500px">
 				<button id="search-close" class="w3-button w3-text-black w3-hover-none w3-display-topright">&times;</button>
 				<div class="w3-padding-16">
-					<form id="search-form">
-						<input type="text" name="search">
+					<label>Rechercher un titre ou un auteur</label>
+					<form id="search-form" autocomplete="off">
+						<input type="text" name="search" class="w3-input w3-border">
 						<button id="search-valid" type="submit" class="w3-display-bottomright w3-button w3-text-gray w3-hover-none w3-hover-text-black">Valider</button>
 					</form>
 				</div>
@@ -53,7 +54,7 @@
 		<div id="nav-bar-top" class="w3-border-bottom" style="font-size: 14px">
 			<a id="home-link" href="#/" class="align-left w3-button w3-text-black w3-hover-none w3-hover-text-black">liber</a>
 			<button id="menu-open" type="button" class="w3-button w3-text-black w3-hover-none">&equiv;</button>
-			<a id="search-open" href="#/search/" class="w3-button w3-text-gray w3-hover-none w3-hover-text-black"><i class="material-icons">search</i></a>
+			<a id="search-open" href="#/search/" class="w3-button w3-hover-none"><i class="material-icons w3-text-black">search</i></a>
 			<div id="top-links" class="hidden">
 				<ul>
 					<li><a id="last-link" href="#/" class="w3-button w3-text-gray w3-hover-none w3-hover-text-black">nouvelles parutions</a></li>
