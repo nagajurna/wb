@@ -16,7 +16,7 @@ BOOK NAVBAR BOTTOM
 #book-nav-bar-bottom-controls {
 	display: block;
 	position: relative;
-	width: 530px;
+	width: 550px;
 	margin: auto;
 	height: 44px;
 	text-align: center;
@@ -25,6 +25,7 @@ BOOK NAVBAR BOTTOM
 #nav-bar-bottom-controls button {
 	outline: none;
 	height: 100%;
+	background: transparent;
 }
 
 #book-nav-bar-bottom-controls button#open-toc-large.w3-btn span {
@@ -37,7 +38,7 @@ BOOKCONTAINER
 */
 #bookContainer {
 	position: relative;
-	font-family: 'Georgia', serif;
+	font-family: 'Noto Serif', 'Georgia', serif;
 	color: #000;
 	opacity: 0.0;
 	margin: auto;
@@ -409,10 +410,11 @@ p.section-subtitle {
 }
 
 p.section-title {
-	padding-top: 3em;
+	padding-top: 3.5em;
 	margin-top: 0px;
 	margin-bottom: 1.5em;
 	text-indent: 0px;
+	line-height: 2em;
 }
 
 #titre.wb-section {

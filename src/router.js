@@ -38,7 +38,7 @@ const router  = function() {
 			//TO BE PUBLISHED
 			booksNext(container);
 			
-		} else if(newhash.match(/#\/books\/[^\/]+\/read$/)) {
+		} else if(newhash.match(/#\/[^\/]+\/read$/)) {
 			//BOOK READ
 			bookRead(container);
 		

@@ -9,7 +9,7 @@ const authors = function(container) {
 	
 	let c = container;
 	
-	let search = location.hash.replace(/#\/authors\?search\=/,''); 
+	let search = location.hash.replace(/#\/authors\?q\=/,''); 
 	
 	//get authors from dataStore
 	let as = dataStore.getData('authors');

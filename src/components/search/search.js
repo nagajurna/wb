@@ -9,7 +9,7 @@ const search = function(container) {
 	
 	let c = container;
 	
-	let search = location.hash.replace(/#\/search\?q\=/,'');
+	let search = location.hash.replace(/#\/search\?q\=/,'').replace('\'','’');
 	let nores = '';
 	if(search.split('').length < 3) {
 		nores = 'Aucun résultat.'

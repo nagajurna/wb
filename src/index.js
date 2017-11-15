@@ -33,7 +33,7 @@ var index = (function() {
 	
 	let init = () => {
 		//if book/id/read 
-		if(location.hash.match(/#\/books\/[^\/]+\/read$/)) {//if small device
+		if(location.hash.match(/#\/[^\/]+\/read$/)) {//if small device
 			if(window.innerWidth < 768) {
 				utils.addClass("#nav-bar-top", "hidden");
 				utils.addClass('body', 'book');//body background
@@ -77,7 +77,7 @@ var index = (function() {
 		//HOME-LINK
 		root.querySelector('#home-link').addEventListener('click', event => {
 			event.preventDefault();
-			if(location.hash.match(/#\/books\/[^\/]+\/read$/)) {
+			if(location.hash.match(/#\/[^\/]+\/read$/)) {
 				let prevLocation = dataStore.getData('location').prevLocation;
 				location.hash = prevLocation ? prevLocation : '#/';
 			} else {
@@ -138,7 +138,7 @@ var index = (function() {
 		getData();
 		
 		window.addEventListener('hashchange', () => {
-			if(location.hash.match(/#\/books\/[^\/]+\/read$/)) {
+			if(location.hash.match(/#\/[^\/]+\/read$/)) {
 				if(window.innerWidth < 768) {
 					utils.addClass("#nav-bar-top", "hidden");
 				}
@@ -163,7 +163,7 @@ var index = (function() {
 		}, false);
 
 		window.addEventListener('resize', () => {
-			if(location.hash.match(/#\/books\/[^\/]+\/read$/)) {
+			if(location.hash.match(/#\/[^\/]+\/read$/)) {
 				if(window.innerWidth < 768) {
 					utils.addClass("#nav-bar-top", "hidden");
 				} else {

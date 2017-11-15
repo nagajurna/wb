@@ -20,7 +20,7 @@
       "styles": {
         "color": "#191a1a",
         "image": "/images/du_dandysme_et_de_g_brummel_cover.jpg",
-        "cover": "padding: 16px;background-color: #191a1a;font-family: Georgia, serif;opacity: 0.8",
+        "cover": "padding: 16px;background-color: #191a1a;font-family: 'Noto Serif', 'Georgia', serif;opacity: 0.8",
         "author": "font-size: 1em;letter-spacing: 1px;color: #fafafa",
         "title": "padding-top: 11%; font-size: 1.3em;letter-spacing: 2px;font-variant: small-caps;color: #fafafa",
         "subtitle1": "",
@@ -30,20 +30,20 @@
       "title": "Du dandysme et&nbsp;de&nbsp;G.&nbsp;Brummel",
       "subtitle1": "",
       "subtitle2": "",
-      "authorDisplay": "J.-A. Barbey d'Aurevilly",
+      "authorDisplay": "J.-A. Barbey d’Aurevilly",
       "year": "1845",
       "language": "français",
       "categories": "",
       "collection": "",
       "description": "",
-      "path": "/books/du_dandysme_et_de_g_brummel",
+      "path": "/du_dandysme_et_de_g_brummel",
       "visible": false,
       "authors": [
         "5315cb5e-f391-467c-8ed2-035f2bce133f"
       ],
       "contribs": [],
       "created_at": "2017-11-11 16:54:18",
-      "updated_at": "2017-11-12 19:41:52",
+      "updated_at": "2017-11-14 22:59:00",
       "id": "baf909f9-8f38-4d7f-b678-fb8ed46d41f0"
     },
     {
@@ -55,7 +55,7 @@
       "styles": {
         "color": "#d8ae47",
         "image": "/images/un_roman_pour_les_cuisinieres_cover.jpg",
-        "cover": "padding: 16px;background-color: #d8ae47;font-family: Georgia, serif;opacity: 0.8",
+        "cover": "padding: 16px;background-color: #d8ae47;font-family:'Noto Serif', 'Georgia', serif;opacity: 0.8",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
         "title": "padding-top: 10%; font-size: 1.4em;letter-spacing: 2px;font-variant: small-caps",
         "subtitle1": "",
@@ -71,14 +71,14 @@
       "categories": "",
       "collection": "",
       "description": "",
-      "path": "/books/un_roman_pour_les_cuisinieres",
+      "path": "/un_roman_pour_les_cuisinieres",
       "visible": false,
       "authors": [
         "caec356e-4b52-4635-9830-eefa889de37d"
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:00:53",
-      "updated_at": "2017-11-12 19:42:03",
+      "updated_at": "2017-11-14 22:49:31",
       "id": "b3e3c2e7-305f-4697-867f-3dd2417f71ed"
     },
     {
@@ -90,7 +90,7 @@
       "styles": {
         "color": "#7c3647",
         "image": "/images/vies_imaginaires_cover.jpg",
-        "cover": "padding: 16px 32px 16px 32px;background-color: #7c3647;font-family: Georgia, serif;opacity: 0.8",
+        "cover": "padding: 16px 32px 16px 32px;background-color: #7c3647;font-family: 'Noto Serif', 'Georgia', serif;opacity: 0.8",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
         "title": "padding-top: 15%; font-size: 1.2em;letter-spacing: 2px;text-transform: uppercase",
         "subtitle1": "",
@@ -106,14 +106,14 @@
       "categories": "",
       "collection": "",
       "description": "",
-      "path": "/books/vies_imaginaires",
+      "path": "/vies_imaginaires",
       "visible": true,
       "authors": [
         "6e757154-155a-4518-add7-b3e5cfd9e3ca"
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:05:16",
-      "updated_at": "2017-11-12 14:30:29",
+      "updated_at": "2017-11-14 22:49:52",
       "id": "67f99f06-7af1-4dc4-9b8d-9d8f8afdc198"
     },
     {
@@ -125,7 +125,7 @@
       "styles": {
         "color": "#cfb095",
         "image": "/images/la_croisade_des_enfants_cover.jpg",
-        "cover": "padding: 16px;background-color: #cfb095;font-family: Georgia, serif;opacity: 0.8",
+        "cover": "padding: 16px;background-color: #cfb095;font-family: 'Noto Serif', 'Georgia', serif;opacity: 0.8",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
         "title": "padding-top: 9%; font-size: 1.4em;letter-spacing: 1.5px",
         "subtitle1": "",
@@ -141,14 +141,14 @@
       "categories": "",
       "collection": "",
       "description": "",
-      "path": "/books/la_croisade_des_enfants",
+      "path": "/la_croisade_des_enfants",
       "visible": true,
       "authors": [
         "6e757154-155a-4518-add7-b3e5cfd9e3ca"
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:08:48",
-      "updated_at": "2017-11-12 14:24:02",
+      "updated_at": "2017-11-14 22:50:10",
       "id": "e22c5a98-e5b8-4926-8cad-fd30131868c2"
     },
     {
@@ -160,7 +160,7 @@
       "styles": {
         "color": "#edcdc2",
         "image": "/images/mimes_cover.jpg",
-        "cover": "padding: 16px;background-color: #edcdc2;font-family: Georgia, serif;opacity: 0.8",
+        "cover": "padding: 16px;background-color: #edcdc2;font-family: 'Noto Serif', 'Georgia', serif;opacity: 0.8",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
         "title": "padding-top: 15%; font-size: 1.4em;letter-spacing: 3px;text-transform: uppercase",
         "subtitle1": "",
@@ -176,14 +176,14 @@
       "categories": "",
       "collection": "",
       "description": "",
-      "path": "/books/mimes",
+      "path": "/mimes",
       "visible": true,
       "authors": [
         "6e757154-155a-4518-add7-b3e5cfd9e3ca"
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:11:49",
-      "updated_at": "2017-11-12 14:16:12",
+      "updated_at": "2017-11-14 22:50:28",
       "id": "f379d066-0347-4fb1-998f-2e4c214c3960"
     }
   ],
@@ -211,14 +211,14 @@
       "id": "caec356e-4b52-4635-9830-eefa889de37d"
     },
     {
-      "name": "Jules Barbey d'Aurevilly",
-      "nameAlpha": "Barbey d'Aurevilly",
+      "name": "Jules Barbey d’Aurevilly",
+      "nameAlpha": "Barbey d’Aurevilly",
       "birth": "1808",
       "death": "1889",
       "description": "",
       "visible": false,
       "created_at": "2017-11-09 22:08:44",
-      "updated_at": "2017-11-14 11:56:21",
+      "updated_at": "2017-11-14 22:58:49",
       "id": "5315cb5e-f391-467c-8ed2-035f2bce133f"
     }
   ]
