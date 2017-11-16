@@ -2565,7 +2565,7 @@ var WebBook = function () {
 					if (index !== undefined && startIndex === undefined) {
 						startIndex = i;
 						var el = this._sections[startIndex];
-						var elPosition = (0, _jquery2.default)(el).position().left - this.getMarginX();
+						var elPosition = Math.round((0, _jquery2.default)(el).position().left) - this.getMarginX();
 						elPosition = elPosition % this._containerWidth !== 0 ? elPosition - elPosition % this._containerWidth : elPosition; //always at a page beginning
 						this._startPage = elPosition / this._containerWidth;
 					}
