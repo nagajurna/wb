@@ -2301,14 +2301,16 @@ var WebBook = function () {
 		this._bookmark = 0;
 		this._containerWidth = null;
 		//this.lastBreak is used as a ghost page
-		this._lastBreak = document.createElement("div");
-		this._lastBreak.className = "wb-text-break";
+		this._lastBreak = document.createElement('DIV');
+		this._lastBreak.className = 'wb-text-break';
 		this._text.appendChild(this._lastBreak);
 		//this._lastElement is used as landmark
-		this._lastElement = document.createElement("div");
-		this._lastElement.innerHTML = "&nbsp;"; //not empty (for mozColumns)
-		this._lastElement.className = "wb-section wb-no-toc";
-		this._lastElement.id = "last";
+		this._lastElement = document.createElement('DIV');
+		this._lastElement.innerHTML = 'nbsp;'; //not empty (for mozColumns)
+		this._lastElement.className = 'wb-section wb-no-toc';
+		this._lastElement.id = 'last';
+		var p = document.createElement('P');
+		this._lastElement.appendChild(p);
 		this._text.appendChild(this._lastElement);
 		//sections
 		this._sections = this._text.querySelectorAll('.wb-section');
@@ -2614,7 +2616,7 @@ var WebBook = function () {
 			} else {
 				el = this._text.querySelector('#' + id);
 			}
-			var elPosition = Math.round((0, _jquery2.default)(el).offset().left - (0, _jquery2.default)(this._text).offset().left) - this.getMarginX();
+			var elPosition = Math.round((0, _jquery2.default)(el).position().left) - this.getMarginX();
 			elPosition = elPosition % this._containerWidth !== 0 ? elPosition - elPosition % this._containerWidth : elPosition; //always at a page beginning
 			var elPageNumber = elPosition / this._containerWidth + 1; //elPosition/this._containerWidth is position of a page : position 0 is page 1,...
 			elPageNumber = elPageNumber - this._startPage;
