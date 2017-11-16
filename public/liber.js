@@ -2339,7 +2339,7 @@ var WebBook = function () {
 		//links : replace default with goToPage
 		this.setLinks();
 
-		if ('WebkitColumnWidth' in document.body.style || 'MozColumnWidth' in document.body.style || 'columnWidth' in document.body.style) {
+		if ('webkitColumnWidth' in document.body.style || 'mozColumnWidth' in document.body.style || 'columnWidth' in document.body.style) {
 			this.toBook();
 		} else {
 			this.toScroll();
@@ -2349,14 +2349,14 @@ var WebBook = function () {
 	_createClass(WebBook, [{
 		key: 'toBook',
 		value: function toBook() {
-			if ('webkitColumnWidth' in document.body.style || 'MozColumnWidth' in document.body.style || 'columnWidth' in document.body.style) {
+			if ('webkitColumnWidth' in document.body.style || 'mozColumnWidth' in document.body.style || 'columnWidth' in document.body.style) {
 
 				this.col = true;
 				var cs = this._textContainer.style;
 				var ts = this._text.style;
 				//text-container
 				cs.boxSizing = "border-box";
-				cs.WebkitBoxSizing = "border-box";
+				cs.webkitBoxSizing = "border-box";
 				cs.overflow = "hidden";
 				cs.position = "relative";
 				cs.padding = "0px";
@@ -2386,7 +2386,7 @@ var WebBook = function () {
 
 				//text
 				ts.boxSizing = "border-box";
-				ts.WebkitBoxSizing = "border-box";
+				ts.webkitBoxSizing = "border-box";
 				ts.position = "absolute";
 				ts.left = 0;
 				ts.top = 0;
@@ -2396,12 +2396,12 @@ var WebBook = function () {
 				ts.paddingLeft = this.getMarginX() + "px";
 				ts.paddingTop = this.getMarginY() + "px";
 				ts.paddingBottom = this.getMarginY() + "px";
-				ts.MozColumnFill = "auto"; //important !!!
+				ts.mozColumnFill = "auto"; //important !!!
 				ts.columnFill = "auto"; //important !!!		
-				ts.WebkitColumnWidth = this._containerWidth + "px";
-				ts.MozColumnWidth = this._containerWidth + "px";
+				ts.webkitColumnWidth = this._containerWidth + "px";
+				ts.mozColumnWidth = this._containerWidth + "px";
 				ts.columnWidth = this._containerWidth + "px";
-				ts.MozColumnGap = this.getMarginX() * 2 + "px";
+				ts.mozColumnGap = this.getMarginX() * 2 + "px";
 				ts.webkitColumnGap = this.getMarginX() * 2 + "px";
 				ts.columnGap = this.getMarginX() * 2 + "px";
 
@@ -2435,9 +2435,9 @@ var WebBook = function () {
 			cs.paddingTop = this.getMarginY() + "px";
 			cs.paddingBottom = this.getMarginY() + "px";
 
-			if ('WebkitColumnWidth' in document.body.style || 'MozColumnWidth' in document.body.style || 'columnWidth' in document.body.style) {
+			if ('webkitColumnWidth' in document.body.style || 'mozColumnWidth' in document.body.style || 'columnWidth' in document.body.style) {
 				ts.webkitColumns = "auto 1";
-				ts.MozColumns = "auto 1";
+				ts.mozColumns = "auto 1";
 				ts.columns = "auto 1";
 			}
 
@@ -2608,7 +2608,12 @@ var WebBook = function () {
 	}, {
 		key: 'elementPageNumber',
 		value: function elementPageNumber(id) {
-			var el = this._text.querySelector('#' + id);
+			var el = void 0;
+			if (this._text.querySelector('#' + id).className.match(/wb-section/)) {
+				el = this._text.querySelector('#' + id + ' p:first-child');
+			} else {
+				el = this._text.querySelector('#' + id);
+			}
 			var elPosition = Math.round((0, _jquery2.default)(el).offset().left - (0, _jquery2.default)(this._text).offset().left) - this.getMarginX();
 			elPosition = elPosition % this._containerWidth !== 0 ? elPosition - elPosition % this._containerWidth : elPosition; //always at a page beginning
 			var elPageNumber = elPosition / this._containerWidth + 1; //elPosition/this._containerWidth is position of a page : position 0 is page 1,...
