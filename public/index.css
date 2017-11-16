@@ -272,6 +272,12 @@ SEARCH INPUT
 	letter-spacing: 1px;
 }
 
+#search-close {
+	line-height: 27px;
+	font-size: 2em;
+	font-family: "Times New Roman", Georgia, sans-serif;
+}
+
 /*
 CONTAINER, ADMIN-CONTAINER
 */

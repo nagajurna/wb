@@ -21,7 +21,7 @@
 <!--
 	MAIN
 -->
-	<h4 class="w3-container align-left w3-padding-16">Ajouter un ouvrage</h4>
+	<h4 class="w3-container align-left w3-padding-16">Modifier un ouvrage</h4>
 	<p class="align-right w3-padding-16"><a href="/#/admin/books/<%= book.id %>" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>
 	<div class="w3-container">
 		<form id="adminBookEditForm">
@@ -141,6 +141,11 @@
 			<p id="styles-image">
 				<label>Styles - image : </label>
 				<input type="text" name="styles-image" class="w3-input w3-border" value="<%= book.styles.image %>" >
+			</p>
+			
+			<p id="styles-font">
+				<label>Styles - police : </label>
+				<input type="text" name="styles-font" class="w3-input w3-border" value="<%= book.styles.font %>" >
 			</p>
 			
 			<p id="styles-cover">

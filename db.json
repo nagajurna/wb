@@ -20,6 +20,7 @@
       "styles": {
         "color": "#191a1a",
         "image": "/images/du_dandysme_et_de_g_brummel_cover.jpg",
+        "font": "'Noto Serif', 'Georgia', serif",
         "cover": "padding: 16px;background-color: #191a1a;font-family: 'Noto Serif', 'Georgia', serif;opacity: 0.8",
         "author": "font-size: 1em;letter-spacing: 1px;color: #fafafa",
         "title": "padding-top: 11%; font-size: 1.3em;letter-spacing: 2px;font-variant: small-caps;color: #fafafa",
@@ -43,7 +44,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 16:54:18",
-      "updated_at": "2017-11-14 22:59:00",
+      "updated_at": "2017-11-16 07:36:29",
       "id": "baf909f9-8f38-4d7f-b678-fb8ed46d41f0"
     },
     {
@@ -55,6 +56,7 @@
       "styles": {
         "color": "#d8ae47",
         "image": "/images/un_roman_pour_les_cuisinieres_cover.jpg",
+        "font": "'Noto Serif', 'Georgia', serif",
         "cover": "padding: 16px;background-color: #d8ae47;font-family:'Noto Serif', 'Georgia', serif;opacity: 0.8",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
         "title": "padding-top: 10%; font-size: 1.4em;letter-spacing: 2px;font-variant: small-caps",
@@ -78,7 +80,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:00:53",
-      "updated_at": "2017-11-14 22:49:31",
+      "updated_at": "2017-11-16 07:37:13",
       "id": "b3e3c2e7-305f-4697-867f-3dd2417f71ed"
     },
     {
@@ -90,6 +92,7 @@
       "styles": {
         "color": "#7c3647",
         "image": "/images/vies_imaginaires_cover.jpg",
+        "font": "'Noto Serif', 'Georgia', serif",
         "cover": "padding: 16px 32px 16px 32px;background-color: #7c3647;font-family: 'Noto Serif', 'Georgia', serif;opacity: 0.8",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
         "title": "padding-top: 15%; font-size: 1.2em;letter-spacing: 2px;text-transform: uppercase",
@@ -113,7 +116,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:05:16",
-      "updated_at": "2017-11-14 22:49:52",
+      "updated_at": "2017-11-16 08:38:56",
       "id": "67f99f06-7af1-4dc4-9b8d-9d8f8afdc198"
     },
     {
@@ -125,6 +128,7 @@
       "styles": {
         "color": "#cfb095",
         "image": "/images/la_croisade_des_enfants_cover.jpg",
+        "font": "'Noto Serif', 'Georgia', serif",
         "cover": "padding: 16px;background-color: #cfb095;font-family: 'Noto Serif', 'Georgia', serif;opacity: 0.8",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
         "title": "padding-top: 9%; font-size: 1.4em;letter-spacing: 1.5px",
@@ -148,7 +152,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:08:48",
-      "updated_at": "2017-11-14 22:50:10",
+      "updated_at": "2017-11-16 07:38:29",
       "id": "e22c5a98-e5b8-4926-8cad-fd30131868c2"
     },
     {
@@ -160,6 +164,7 @@
       "styles": {
         "color": "#edcdc2",
         "image": "/images/mimes_cover.jpg",
+        "font": "'Noto Serif', 'Georgia', serif",
         "cover": "padding: 16px;background-color: #edcdc2;font-family: 'Noto Serif', 'Georgia', serif;opacity: 0.8",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
         "title": "padding-top: 15%; font-size: 1.4em;letter-spacing: 3px;text-transform: uppercase",
@@ -183,7 +188,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:11:49",
-      "updated_at": "2017-11-14 22:50:28",
+      "updated_at": "2017-11-16 07:52:57",
       "id": "f379d066-0347-4fb1-998f-2e4c214c3960"
     }
   ],

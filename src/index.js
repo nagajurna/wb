@@ -5,6 +5,7 @@ import utils from './services/utils';
 //index.js
 var index = (function() {
 	'use strict';
+	
 	let root;
 	
 	let searchInput = () => {

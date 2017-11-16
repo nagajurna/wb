@@ -74,6 +74,7 @@ const adminBooksNew = function(container) {
 		book.source.origin = form.querySelector('[name=source-origin]').value;
 		book.styles.color = form.querySelector('[name=styles-color').value;
 		book.styles.image = form.querySelector('[name=styles-image').value;
+		book.styles.font = form.querySelector('[name=styles-font').value;
 		book.styles.cover = form.querySelector('[name=styles-cover').value;
 		book.styles.author = form.querySelector('[name=styles-author').value;
 		book.styles.title = form.querySelector('[name=styles-title').value;

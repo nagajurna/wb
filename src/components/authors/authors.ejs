@@ -1,6 +1,8 @@
 <div id="authors-container" class="w3-content" style="max-width: 1136px">
 	<div id="top-page-header" class="w3-light-gray">auteurs</div>
-	<div id="letters" class="w3-container w3-padding-32"></div>
+	<div id="letters" class="w3-container w3-padding-32">
+		<%- include src/components/authors/authors-letters.ejs -%>
+	</div>
 	<div id="authorsList" class="w3-padding-48 w3-animate-opacity">
 		<% for(var i=0; i<authors.length; i++) {%>
 			<% if(authors[i].visible) { %>
@@ -93,7 +95,7 @@
 							</div>
 							
 							<div class="w3-col" style="text-align: center">
-								<div id="paper">
+								<div id="paper" style="background-image=<%= book.styles.image %>">
 								<div id="<%= book.id %>" class="book w3-card-4 w3-display-container" style="<%= book.styles.cover %>">
 									<p class="book-author" style="<%=book.styles.author %>"><%= book.authorDisplay %></p>
 									<p class="title" style="<%= book.styles.title %>">

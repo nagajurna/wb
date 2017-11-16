@@ -1058,11 +1058,11 @@ var _authors = __webpack_require__(27);
 
 var _authors2 = _interopRequireDefault(_authors);
 
-var _adminLogin = __webpack_require__(32);
+var _adminLogin = __webpack_require__(31);
 
 var _adminLogin2 = _interopRequireDefault(_adminLogin);
 
-var _adminRouter = __webpack_require__(34);
+var _adminRouter = __webpack_require__(33);
 
 var _adminRouter2 = _interopRequireDefault(_adminRouter);
 
@@ -1075,7 +1075,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //books-next(controller)
 
 //home(controller)
-var adminTemplate = __webpack_require__(73);
+var adminTemplate = __webpack_require__(72);
 //adminRouter (sub-router)
 
 //adminLogin (controller)
@@ -1287,7 +1287,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "#home-container #top-page-header {\n\ttext-align: center;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tfont-size: 1em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1px;\n\tline-height: 25px;\n\twidth: 170px;\n\tmargin: auto;\n\tmargin-top: 16px;\n\tdisplay: block;\n}\n\n@media only screen and (min-width: 768px) {\n\t#home-container #top-page-header {\n\t\tdisplay: none;\n\t}\n}\n\n#home-container #booksList {\n\tmax-width: 568px;\n\tmargin: auto;\n}\n\n@media only screen and (min-width: 853px) {\n\t#home-container #booksList {\n\t\tmax-width: 852px;\n\t}\n}\n\n@media only screen and (min-width: 1137px) {\n\t#home-container #booksList {\n\t\tmax-width: 1136px;\n\t}\n}\n\n#home-container .w3-col {\n\twidth: 100%;\n\theight: 408px;\n\t\n}\n\n@media only screen and (min-width: 600px) {\n\t#home-container .w3-col {\n\t\twidth: 284px;\n\t}\n}\n\n#home-container #paper {\n\tbackground-image: url(\"/images/cover_background.jpg\");\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#home-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#home-container #book-btn {\n\twidth: 238px;\n\theight: 40px;\n\tmargin: auto;\n\tmargin-top: 8px;\n}\n\n#home-container #book-btn button {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1.5px;\n}\n\n/*\nMODAL (INFOS)\n*/\n#home-container .w3-modal {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n}\n\n#home-container .w3-modal #footer {\n\tpadding-top: 16px;\n}\n\n#home-container .w3-modal .close-infos-btn {\n\tfont-size: 1.1em;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tletter-spacing: 1px;\n}\n\n#home-container .w3-modal p {\n\tmargin: 0px;\n\tmargin-top: 8px;\n}\n\n#home-container .w3-modal ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#home-container .w3-modal .contrib-role {\n\ttext-transform: capitalize;\n}\n\n\n\n", ""]);
+exports.push([module.i, "#home-container #top-page-header {\n\ttext-align: center;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tfont-size: 1em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1px;\n\tline-height: 25px;\n\twidth: 170px;\n\tmargin: auto;\n\tmargin-top: 16px;\n\tdisplay: block;\n}\n\n@media only screen and (min-width: 768px) {\n\t#home-container #top-page-header {\n\t\tdisplay: none;\n\t}\n}\n\n#home-container #booksList {\n\tmax-width: 568px;\n\tmargin: auto;\n}\n\n@media only screen and (min-width: 853px) {\n\t#home-container #booksList {\n\t\tmax-width: 852px;\n\t}\n}\n\n@media only screen and (min-width: 1137px) {\n\t#home-container #booksList {\n\t\tmax-width: 1136px;\n\t}\n}\n\n#home-container .w3-col {\n\twidth: 100%;\n\theight: 408px;\n\t\n}\n\n@media only screen and (min-width: 600px) {\n\t#home-container .w3-col {\n\t\twidth: 284px;\n\t}\n}\n\n#home-container #paper {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#home-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#home-container #book-btn {\n\twidth: 238px;\n\theight: 40px;\n\tmargin: auto;\n\tmargin-top: 8px;\n}\n\n#home-container #book-btn button {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1.5px;\n}\n\n/*\nMODAL (INFOS)\n*/\n#home-container .w3-modal {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n}\n\n#home-container .w3-modal #footer {\n\tpadding-top: 16px;\n}\n\n#home-container .w3-modal .close-infos-btn {\n\tfont-size: 1.1em;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tletter-spacing: 1px;\n}\n\n#home-container .w3-modal p {\n\tmargin: 0px;\n\tmargin-top: 8px;\n}\n\n#home-container .w3-modal ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#home-container .w3-modal .contrib-role {\n\ttext-transform: capitalize;\n}\n\n\n\n", ""]);
 
 // exports
 
@@ -1397,7 +1397,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="home-container" class="w3-content" style="max-width: 1136px">\n\n	<div id="top-page-header" class="w3-light-gray">nouvelles parutions</div>\n	<div id="booksList" class="w3-padding-64 w3-animate-opacity">\n		<div class=\'w3-row\'>\n			<% for(var i=0; i<books.length; i++) {%>\n				\n				<!-- MODAL (INFOS) -->\n				<div id="infos-<%= books[i].id %>" class="w3-modal" style="background-color: rgba(0,0,0,0.1)">\n					<div class="w3-modal-content w3-card" style="max-width: 500px">\n						<div class="w3-container w3-padding-16 ">\n							  <p><b>Titre : </b><%- books[i].title %></p>\n							  <% if(books[i].subtitle1) {%>\n								<p><b>Sous-titre : </b><%- books[i].subtitle1 %></p>\n							  <%}%>\n							  <% if(books[i].subtitle2) {%>\n								<p><b>Sous-sous-titre : </b><%- books[i].subtitle2 %></p>\n							  <%}%>\n							  <p><b>Année de parution : </b><%- books[i].year %></p>\n							  <% if(books[i].authors.length > 1) {%>\n									<p>\n										<span><b>Auteurs :</b></span>\n										<br>\n										<ul>\n										<% for(var j=0; j<books[i].authors.length; j++) {%>\n											<li>\n												<%- books[i].authors[j].name %> (<%- books[i].authors[j].birth %>&nbsp;&ndash; <%- books[i].authors[j].death %>)\n											</li>\n										<%}%>\n										</ul>\n								    </p>\n							  <%} else if(books[i].authors.length === 1) {%>\n									<p><b>Auteur : </b><%- books[i].authors[0].name %> (<%- books[i].authors[0].birth %>&nbsp;&ndash; <%- books[i].authors[0].death %>)</p>\n							  <%}%>\n							  <% if(books[i].contribs.length > 1) {%>\n									<p>\n										<span><b>Contributions :</b></span>\n										<br>\n										<ul>\n										<% for(var j=0; j<books[i].contribs.length; j++) {%>\n											<li>\n												<span class="contrib-role"><%- books[i].contribs[j].role %> : </span>\n												<%- books[i].contribs[j].name %> (<%- books[i].contribs[j].birth %>&nbsp;&ndash; <%- books[i].contribs[j].death %>)\n											</li>\n										<%}%>\n										</ul>\n								    </p>\n							  <%} else if(books[i].contribs.length === 1) {%>\n									<p>\n										<span><b>Contribution : </b></span>\n										<br>\n										<ul>\n											<li>\n												<span class="contrib-role"><%- books[i].contribs[0].role %> : </span>\n												<%- books[i].contribs[0].name %> (<%- books[i].contribs[0].birth %>&nbsp;&ndash; <%- books[i].contribs[0].death %>)\n											</li>\n										</ul>\n									</p>\n							  <%}%>\n							  <p class="book-source"><b>Source : </b>\n								  <ul>\n									  <li>&Eacute;diteur : <%- books[i].source.publisher %></li>\n									  <li>Année de publication : <%- books[i].source.year %></li>\n								  </ul>\n							  </p>\n							  <% if(books[i].description) {%>\n							  <div><%- books[i].description %></div>\n							  <%}%>\n						</div>\n						<div id=footer class="w3-container w3-border-bottom">\n							<button id="close-infos-<%= books[i].id %>" \n									class="close-infos-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-bottomright"\n									>Fermer</button>\n						</div>\n					</div>\n				</div>\n				\n				<div class="w3-col" style="text-align: center">\n					<div id="paper">\n					<div id="<%= books[i].id %>" class="book w3-card-4 w3-display-container" style="<%=books[i].styles.cover %>">\n						<p class="author" style="<%=books[i].styles.author %>"><%= books[i].authorDisplay %></p>\n						<p class="title" style="<%=books[i].styles.title %>">\n							<%- books[i].title %>\n						</p>\n						<% if(books[i].subtitle1) {%>\n						<p class="subtitle1" style="<%=books[i].styles.subtitle1 %>">\n							<%- books[i].subtitle1 %></a>\n						</p>\n						<% } %>\n						<% if(books[i].subtitle2) {%>\n						<p class="subtitle1" style="<%=books[i].styles.subtitle2 %>">\n							<%- books[i].subtitle2 %></a>\n						</p>\n						<% } %>\n						<p class="logo w3-display-bottommiddle" style="<%=books[i].styles.logo %>">liber</p>\n				   </div>\n				   </div>\n				   <div id="book-btn" >\n						<button id="open-infos-<%= books[i].id %>" \n						        class="open-infos-btn align-right w3-button" >+ d\'infos</button>\n				   </div>\n				</div>\n				\n			<% } %>\n		</div>\n	</div>\n</div>\n',
+        input: '<div id="home-container" class="w3-content" style="max-width: 1136px">\n\n	<div id="top-page-header" class="w3-light-gray">nouvelles parutions</div>\n	<div id="booksList" class="w3-padding-64 w3-animate-opacity">\n		<div class=\'w3-row\'>\n			<% for(var i=0; i<books.length; i++) {%>\n				\n				<!-- MODAL (INFOS) -->\n				<div id="infos-<%= books[i].id %>" class="w3-modal" style="background-color: rgba(0,0,0,0.1)">\n					<div class="w3-modal-content w3-card" style="max-width: 500px">\n						<div class="w3-container w3-padding-16 ">\n							  <p><b>Titre : </b><%- books[i].title %></p>\n							  <% if(books[i].subtitle1) {%>\n								<p><b>Sous-titre : </b><%- books[i].subtitle1 %></p>\n							  <%}%>\n							  <% if(books[i].subtitle2) {%>\n								<p><b>Sous-sous-titre : </b><%- books[i].subtitle2 %></p>\n							  <%}%>\n							  <p><b>Année de parution : </b><%- books[i].year %></p>\n							  <% if(books[i].authors.length > 1) {%>\n									<p>\n										<span><b>Auteurs :</b></span>\n										<br>\n										<ul>\n										<% for(var j=0; j<books[i].authors.length; j++) {%>\n											<li>\n												<%- books[i].authors[j].name %> (<%- books[i].authors[j].birth %>&nbsp;&ndash; <%- books[i].authors[j].death %>)\n											</li>\n										<%}%>\n										</ul>\n								    </p>\n							  <%} else if(books[i].authors.length === 1) {%>\n									<p><b>Auteur : </b><%- books[i].authors[0].name %> (<%- books[i].authors[0].birth %>&nbsp;&ndash; <%- books[i].authors[0].death %>)</p>\n							  <%}%>\n							  <% if(books[i].contribs.length > 1) {%>\n									<p>\n										<span><b>Contributions :</b></span>\n										<br>\n										<ul>\n										<% for(var j=0; j<books[i].contribs.length; j++) {%>\n											<li>\n												<span class="contrib-role"><%- books[i].contribs[j].role %> : </span>\n												<%- books[i].contribs[j].name %> (<%- books[i].contribs[j].birth %>&nbsp;&ndash; <%- books[i].contribs[j].death %>)\n											</li>\n										<%}%>\n										</ul>\n								    </p>\n							  <%} else if(books[i].contribs.length === 1) {%>\n									<p>\n										<span><b>Contribution : </b></span>\n										<br>\n										<ul>\n											<li>\n												<span class="contrib-role"><%- books[i].contribs[0].role %> : </span>\n												<%- books[i].contribs[0].name %> (<%- books[i].contribs[0].birth %>&nbsp;&ndash; <%- books[i].contribs[0].death %>)\n											</li>\n										</ul>\n									</p>\n							  <%}%>\n							  <p class="book-source"><b>Source : </b>\n								  <ul>\n									  <li>&Eacute;diteur : <%- books[i].source.publisher %></li>\n									  <li>Année de publication : <%- books[i].source.year %></li>\n								  </ul>\n							  </p>\n							  <% if(books[i].description) {%>\n							  <div><%- books[i].description %></div>\n							  <%}%>\n						</div>\n						<div id=footer class="w3-container w3-border-bottom">\n							<button id="close-infos-<%= books[i].id %>" \n									class="close-infos-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-bottomright"\n									>Fermer</button>\n						</div>\n					</div>\n				</div>\n				\n				<div class="w3-col" style="text-align: center">\n					<div id="paper" style="background-image=<%= books[i].styles.image %>">\n					<div id="<%= books[i].id %>" class="book w3-card-4 w3-display-container" style="<%= books[i].styles.cover %>">\n						<p class="author" style="<%=books[i].styles.author %>"><%= books[i].authorDisplay %></p>\n						<p class="title" style="<%=books[i].styles.title %>">\n							<%- books[i].title %>\n						</p>\n						<% if(books[i].subtitle1) {%>\n						<p class="subtitle1" style="<%=books[i].styles.subtitle1 %>">\n							<%- books[i].subtitle1 %></a>\n						</p>\n						<% } %>\n						<% if(books[i].subtitle2) {%>\n						<p class="subtitle1" style="<%=books[i].styles.subtitle2 %>">\n							<%- books[i].subtitle2 %></a>\n						</p>\n						<% } %>\n						<p class="logo w3-display-bottommiddle" style="<%=books[i].styles.logo %>">liber</p>\n				   </div>\n				   </div>\n				   <div id="book-btn" >\n						<button id="open-infos-<%= books[i].id %>" \n						        class="open-infos-btn align-right w3-button" >+ d\'infos</button>\n				   </div>\n				</div>\n				\n			<% } %>\n		</div>\n	</div>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -1465,7 +1465,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                         buf.push("\n							  <div>", (__stack.lineno = 67, books[i].description), "</div>\n							  ");
                         __stack.lineno = 68;
                     }
-                    buf.push('\n						</div>\n						<div id=footer class="w3-container w3-border-bottom">\n							<button id="close-infos-', escape((__stack.lineno = 71, books[i].id)), '" \n									class="close-infos-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-bottomright"\n									>Fermer</button>\n						</div>\n					</div>\n				</div>\n				\n				<div class="w3-col" style="text-align: center">\n					<div id="paper">\n					<div id="', escape((__stack.lineno = 80, books[i].id)), '" class="book w3-card-4 w3-display-container" style="', escape((__stack.lineno = 80, books[i].styles.cover)), '">\n						<p class="author" style="', escape((__stack.lineno = 81, books[i].styles.author)), '">', escape((__stack.lineno = 81, books[i].authorDisplay)), '</p>\n						<p class="title" style="', escape((__stack.lineno = 82, books[i].styles.title)), '">\n							', (__stack.lineno = 83, books[i].title), "\n						</p>\n						");
+                    buf.push('\n						</div>\n						<div id=footer class="w3-container w3-border-bottom">\n							<button id="close-infos-', escape((__stack.lineno = 71, books[i].id)), '" \n									class="close-infos-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-bottomright"\n									>Fermer</button>\n						</div>\n					</div>\n				</div>\n				\n				<div class="w3-col" style="text-align: center">\n					<div id="paper" style="background-image=', escape((__stack.lineno = 79, books[i].styles.image)), '">\n					<div id="', escape((__stack.lineno = 80, books[i].id)), '" class="book w3-card-4 w3-display-container" style="', escape((__stack.lineno = 80, books[i].styles.cover)), '">\n						<p class="author" style="', escape((__stack.lineno = 81, books[i].styles.author)), '">', escape((__stack.lineno = 81, books[i].authorDisplay)), '</p>\n						<p class="title" style="', escape((__stack.lineno = 82, books[i].styles.title)), '">\n							', (__stack.lineno = 83, books[i].title), "\n						</p>\n						");
                     __stack.lineno = 85;
                     if (books[i].subtitle1) {
                         buf.push('\n						<p class="subtitle1" style="', escape((__stack.lineno = 86, books[i].styles.subtitle1)), '">\n							', (__stack.lineno = 87, books[i].subtitle1), "</a>\n						</p>\n						");
@@ -1658,7 +1658,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "#search-container #top-page-header {\n\ttext-align: center;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tfont-size: 1em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1px;\n\tline-height: 25px;\n\twidth: 98px;\n\tmargin: auto;\n\tmargin-top: 16px;\n\tdisplay: block;\n}\n\n@media only screen and (min-width: 768px) {\n\t#search-container #top-page-header {\n\t\tdisplay: none;\n\t}\n}\n\n#search-container #booksList {\n\tmax-width: 568px;\n\tmargin: auto;\n}\n\n@media only screen and (min-width: 853px) {\n\t#search-container #booksList {\n\t\tmax-width: 852px;\n\t}\n}\n\n@media only screen and (min-width: 1137px) {\n\t#search-container #booksList {\n\t\tmax-width: 1136px;\n\t}\n}\n\n#search-container .w3-col {\n\twidth: 100%;\n\theight: 408px;\n}\n\n@media only screen and (min-width: 600px) {\n\t#search-container .w3-col {\n\t\twidth: 284px;\n\t}\n}\n\n#search-container #paper {\n\tbackground-image: url(\"/images/cover_background.jpg\");\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#search-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#search-container #book-btn {\n\twidth: 238px;\n\theight: 40px;\n\tmargin: auto;\n\tmargin-top: 8px;\n}\n\n#search-container #book-btn button {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1.5px;\n}\n\n/*\nMODAL (INFOS)\n*/\n#search-container .w3-modal {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n}\n\n#search-container .w3-modal #footer {\n\tpadding-top: 16px;\n}\n\n#search-container .w3-modal .close-infos-btn {\n\tfont-size: 1.1em;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tletter-spacing: 1px;\n}\n\n#search-container .w3-modal p {\n\tmargin: 0px;\n\tmargin-top: 8px;\n}\n\n#search-container .w3-modal ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#search-container .w3-modal .contrib-role {\n\ttext-transform: capitalize;\n}\n\n#nores {\n\ttext-align: center;\n}\n\n#nores p {\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tfont-size: 1.2em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1px;\n}\n\n", ""]);
+exports.push([module.i, "#search-container #top-page-header {\n\ttext-align: center;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tfont-size: 1em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1px;\n\tline-height: 25px;\n\twidth: 98px;\n\tmargin: auto;\n\tmargin-top: 16px;\n\tdisplay: block;\n}\n\n@media only screen and (min-width: 768px) {\n\t#search-container #top-page-header {\n\t\tdisplay: none;\n\t}\n}\n\n#search-container #booksList {\n\tmax-width: 568px;\n\tmargin: auto;\n}\n\n@media only screen and (min-width: 853px) {\n\t#search-container #booksList {\n\t\tmax-width: 852px;\n\t}\n}\n\n@media only screen and (min-width: 1137px) {\n\t#search-container #booksList {\n\t\tmax-width: 1136px;\n\t}\n}\n\n#search-container .w3-col {\n\twidth: 100%;\n\theight: 408px;\n}\n\n@media only screen and (min-width: 600px) {\n\t#search-container .w3-col {\n\t\twidth: 284px;\n\t}\n}\n\n#search-container #paper {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#search-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#search-container #book-btn {\n\twidth: 238px;\n\theight: 40px;\n\tmargin: auto;\n\tmargin-top: 8px;\n}\n\n#search-container #book-btn button {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1.5px;\n}\n\n/*\nMODAL (INFOS)\n*/\n#search-container .w3-modal {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n}\n\n#search-container .w3-modal #footer {\n\tpadding-top: 16px;\n}\n\n#search-container .w3-modal .close-infos-btn {\n\tfont-size: 1.1em;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tletter-spacing: 1px;\n}\n\n#search-container .w3-modal p {\n\tmargin: 0px;\n\tmargin-top: 8px;\n}\n\n#search-container .w3-modal ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#search-container .w3-modal .contrib-role {\n\ttext-transform: capitalize;\n}\n\n#nores {\n\ttext-align: center;\n}\n\n#nores p {\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tfont-size: 1.2em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1px;\n}\n\n", ""]);
 
 // exports
 
@@ -1673,7 +1673,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="search-container" class="w3-content" style="max-width: 1136px">\n	<div id="top-page-header" class="w3-light-gray">recherche</div>\n	<% if(nores!==\'\') {%>\n		<div id="nores" class="w3-padding-32 w3-animate-opacity">\n			<p><%= nores %></p>\n		</div<\n	<%}%>\n	<div id="booksList" class="w3-padding-64 w3-animate-opacity">\n		<div class=\'w3-row\'>\n			<% for(var i=0; i<books.length; i++) {%>\n				\n				<!-- MODAL (INFOS) -->\n				<div id="infos-<%= books[i].id %>" class="w3-modal" style="background-color: rgba(0,0,0,0.1)">\n					<div class="w3-modal-content w3-card" style="max-width: 500px">\n						<div class="w3-container w3-padding-16 ">\n							  <p><b>Titre : </b><%- books[i].title %></p>\n							  <% if(books[i].subtitle1) {%>\n								<p><b>Sous-titre : </b><%- books[i].subtitle1 %></p>\n							  <%}%>\n							  <% if(books[i].subtitle2) {%>\n								<p><b>Sous-sous-titre : </b><%- books[i].subtitle2 %></p>\n							  <%}%>\n							  <p><b>Année de parution : </b><%- books[i].year %></p>\n							  <% if(books[i].authors.length > 1) {%>\n									<p>\n										<span><b>Auteurs :</b></span>\n										<br>\n										<ul>\n										<% for(var j=0; j<books[i].authors.length; j++) {%>\n											<li>\n												<%- books[i].authors[j].name %> (<%- books[i].authors[j].birth %>&nbsp;&ndash; <%- books[i].authors[j].death %>)\n											</li>\n										<%}%>\n										</ul>\n								    </p>\n							  <%} else if(books[i].authors.length === 1) {%>\n									<p><b>Auteur : </b><%- books[i].authors[0].name %> (<%- books[i].authors[0].birth %>&nbsp;&ndash; <%- books[i].authors[0].death %>)</p>\n							  <%}%>\n							  <% if(books[i].contribs.length > 1) {%>\n									<p>\n										<span><b>Contributions :</b></span>\n										<br>\n										<ul>\n										<% for(var j=0; j<books[i].contribs.length; j++) {%>\n											<li>\n												<span class="contrib-role"><%- books[i].contribs[j].role %> : </span>\n												<%- books[i].contribs[j].name %> (<%- books[i].contribs[j].birth %>&nbsp;&ndash; <%- books[i].contribs[j].death %>)\n											</li>\n										<%}%>\n										</ul>\n								    </p>\n							  <%} else if(books[i].contribs.length === 1) {%>\n									<p>\n										<span><b>Contribution : </b></span>\n										<br>\n										<ul>\n											<li>\n												<span class="contrib-role"><%- books[i].contribs[0].role %> : </span>\n												<%- books[i].contribs[0].name %> (<%- books[i].contribs[0].birth %>&nbsp;&ndash; <%- books[i].contribs[0].death %>)\n											</li>\n										</ul>\n									</p>\n							  <%}%>\n							  <p class="book-source"><b>Source : </b>\n								  <ul>\n									  <li>&Eacute;diteur : <%- books[i].source.publisher %></li>\n									  <li>Année de publication : <%- books[i].source.year %></li>\n								  </ul>\n							  </p>\n							  <% if(books[i].description) {%>\n							  <div><%- books[i].description %></div>\n							  <%}%>\n						</div>\n						<div id=footer class="w3-container w3-border-bottom">\n							<button id="close-infos-<%= books[i].id %>" \n									class="close-infos-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-bottomright"\n									>Fermer</button>\n						</div>\n					</div>\n				</div>\n				\n				<div class="w3-col" style="text-align: center">\n					<div id="paper">\n					<div id="<%= books[i].id %>" class="book w3-card-4 w3-display-container" style="<%=books[i].styles.cover %>">\n						<p class="author" style="<%=books[i].styles.author %>"><%= books[i].authorDisplay %></p>\n						<p class="title" style="<%=books[i].styles.title %>">\n							<%- books[i].title %>\n						</p>\n						<% if(books[i].subtitle1) {%>\n						<p class="subtitle1" style="<%=books[i].styles.subtitle1 %>">\n							<%- books[i].subtitle1 %></a>\n						</p>\n						<% } %>\n						<% if(books[i].subtitle2) {%>\n						<p class="subtitle1" style="<%=books[i].styles.subtitle2 %>">\n							<%- books[i].subtitle2 %></a>\n						</p>\n						<% } %>\n						<p class="logo w3-display-bottommiddle" style="<%=books[i].styles.logo %>">liber</p>\n				   </div>\n				   </div>\n				   <div id="book-btn" >\n						<button id="open-infos-<%= books[i].id %>" \n						        class="open-infos-btn align-right w3-button" >+ d\'infos</button>\n				   </div>\n				</div>\n				\n			<% } %>\n		</div>\n	\n	</div>\n</div>\n',
+        input: '<div id="search-container" class="w3-content" style="max-width: 1136px">\n	<div id="top-page-header" class="w3-light-gray">recherche</div>\n	<% if(nores!==\'\') {%>\n		<div id="nores" class="w3-padding-32 w3-animate-opacity">\n			<p><%= nores %></p>\n		</div<\n	<%}%>\n	<div id="booksList" class="w3-padding-64 w3-animate-opacity">\n		<div class=\'w3-row\'>\n			<% for(var i=0; i<books.length; i++) {%>\n				\n				<!-- MODAL (INFOS) -->\n				<div id="infos-<%= books[i].id %>" class="w3-modal" style="background-color: rgba(0,0,0,0.1)">\n					<div class="w3-modal-content w3-card" style="max-width: 500px">\n						<div class="w3-container w3-padding-16 ">\n							  <p><b>Titre : </b><%- books[i].title %></p>\n							  <% if(books[i].subtitle1) {%>\n								<p><b>Sous-titre : </b><%- books[i].subtitle1 %></p>\n							  <%}%>\n							  <% if(books[i].subtitle2) {%>\n								<p><b>Sous-sous-titre : </b><%- books[i].subtitle2 %></p>\n							  <%}%>\n							  <p><b>Année de parution : </b><%- books[i].year %></p>\n							  <% if(books[i].authors.length > 1) {%>\n									<p>\n										<span><b>Auteurs :</b></span>\n										<br>\n										<ul>\n										<% for(var j=0; j<books[i].authors.length; j++) {%>\n											<li>\n												<%- books[i].authors[j].name %> (<%- books[i].authors[j].birth %>&nbsp;&ndash; <%- books[i].authors[j].death %>)\n											</li>\n										<%}%>\n										</ul>\n								    </p>\n							  <%} else if(books[i].authors.length === 1) {%>\n									<p><b>Auteur : </b><%- books[i].authors[0].name %> (<%- books[i].authors[0].birth %>&nbsp;&ndash; <%- books[i].authors[0].death %>)</p>\n							  <%}%>\n							  <% if(books[i].contribs.length > 1) {%>\n									<p>\n										<span><b>Contributions :</b></span>\n										<br>\n										<ul>\n										<% for(var j=0; j<books[i].contribs.length; j++) {%>\n											<li>\n												<span class="contrib-role"><%- books[i].contribs[j].role %> : </span>\n												<%- books[i].contribs[j].name %> (<%- books[i].contribs[j].birth %>&nbsp;&ndash; <%- books[i].contribs[j].death %>)\n											</li>\n										<%}%>\n										</ul>\n								    </p>\n							  <%} else if(books[i].contribs.length === 1) {%>\n									<p>\n										<span><b>Contribution : </b></span>\n										<br>\n										<ul>\n											<li>\n												<span class="contrib-role"><%- books[i].contribs[0].role %> : </span>\n												<%- books[i].contribs[0].name %> (<%- books[i].contribs[0].birth %>&nbsp;&ndash; <%- books[i].contribs[0].death %>)\n											</li>\n										</ul>\n									</p>\n							  <%}%>\n							  <p class="book-source"><b>Source : </b>\n								  <ul>\n									  <li>&Eacute;diteur : <%- books[i].source.publisher %></li>\n									  <li>Année de publication : <%- books[i].source.year %></li>\n								  </ul>\n							  </p>\n							  <% if(books[i].description) {%>\n							  <div><%- books[i].description %></div>\n							  <%}%>\n						</div>\n						<div id=footer class="w3-container w3-border-bottom">\n							<button id="close-infos-<%= books[i].id %>" \n									class="close-infos-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-bottomright"\n									>Fermer</button>\n						</div>\n					</div>\n				</div>\n				\n				<div class="w3-col" style="text-align: center">\n					<div id="paper" style="background-image=<%= books[i].styles.image %>">\n					<div id="<%= books[i].id %>" class="book w3-card-4 w3-display-container" style="<%=books[i].styles.cover %>">\n						<p class="author" style="<%=books[i].styles.author %>"><%= books[i].authorDisplay %></p>\n						<p class="title" style="<%=books[i].styles.title %>">\n							<%- books[i].title %>\n						</p>\n						<% if(books[i].subtitle1) {%>\n						<p class="subtitle1" style="<%=books[i].styles.subtitle1 %>">\n							<%- books[i].subtitle1 %></a>\n						</p>\n						<% } %>\n						<% if(books[i].subtitle2) {%>\n						<p class="subtitle1" style="<%=books[i].styles.subtitle2 %>">\n							<%- books[i].subtitle2 %></a>\n						</p>\n						<% } %>\n						<p class="logo w3-display-bottommiddle" style="<%=books[i].styles.logo %>">liber</p>\n				   </div>\n				   </div>\n				   <div id="book-btn" >\n						<button id="open-infos-<%= books[i].id %>" \n						        class="open-infos-btn align-right w3-button" >+ d\'infos</button>\n				   </div>\n				</div>\n				\n			<% } %>\n		</div>\n	\n	</div>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -1747,7 +1747,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                         buf.push("\n							  <div>", (__stack.lineno = 71, books[i].description), "</div>\n							  ");
                         __stack.lineno = 72;
                     }
-                    buf.push('\n						</div>\n						<div id=footer class="w3-container w3-border-bottom">\n							<button id="close-infos-', escape((__stack.lineno = 75, books[i].id)), '" \n									class="close-infos-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-bottomright"\n									>Fermer</button>\n						</div>\n					</div>\n				</div>\n				\n				<div class="w3-col" style="text-align: center">\n					<div id="paper">\n					<div id="', escape((__stack.lineno = 84, books[i].id)), '" class="book w3-card-4 w3-display-container" style="', escape((__stack.lineno = 84, books[i].styles.cover)), '">\n						<p class="author" style="', escape((__stack.lineno = 85, books[i].styles.author)), '">', escape((__stack.lineno = 85, books[i].authorDisplay)), '</p>\n						<p class="title" style="', escape((__stack.lineno = 86, books[i].styles.title)), '">\n							', (__stack.lineno = 87, books[i].title), "\n						</p>\n						");
+                    buf.push('\n						</div>\n						<div id=footer class="w3-container w3-border-bottom">\n							<button id="close-infos-', escape((__stack.lineno = 75, books[i].id)), '" \n									class="close-infos-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-bottomright"\n									>Fermer</button>\n						</div>\n					</div>\n				</div>\n				\n				<div class="w3-col" style="text-align: center">\n					<div id="paper" style="background-image=', escape((__stack.lineno = 83, books[i].styles.image)), '">\n					<div id="', escape((__stack.lineno = 84, books[i].id)), '" class="book w3-card-4 w3-display-container" style="', escape((__stack.lineno = 84, books[i].styles.cover)), '">\n						<p class="author" style="', escape((__stack.lineno = 85, books[i].styles.author)), '">', escape((__stack.lineno = 85, books[i].authorDisplay)), '</p>\n						<p class="title" style="', escape((__stack.lineno = 86, books[i].styles.title)), '">\n							', (__stack.lineno = 87, books[i].title), "\n						</p>\n						");
                     __stack.lineno = 89;
                     if (books[i].subtitle1) {
                         buf.push('\n						<p class="subtitle1" style="', escape((__stack.lineno = 90, books[i].styles.subtitle1)), '">\n							', (__stack.lineno = 91, books[i].subtitle1), "</a>\n						</p>\n						");
@@ -1878,7 +1878,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "#books-next-container #top-page-header {\n\ttext-align: center;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tfont-size: 1em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1px;\n\tline-height: 25px;\n\twidth: 172px;\n\tmargin: auto;\n\tmargin-top: 16px;\n\tdisplay: block;\n}\n\n@media only screen and (min-width: 768px) {\n\t#books-next-container #top-page-header {\n\t\tdisplay: none;\n\t}\n}\n\n#books-next-container #booksList {\n\tmax-width: 568px;\n\tmargin: auto;\n}\n\n@media only screen and (min-width: 853px) {\n\t#books-next-container #booksList {\n\t\tmax-width: 852px;\n\t}\n}\n\n@media only screen and (min-width: 1137px) {\n\t#books-next-container #booksList {\n\t\tmax-width: 1136px;\n\t}\n}\n\n#books-next-container .w3-col {\n\twidth: 100%;\n\theight: 408px;\n}\n\n@media only screen and (min-width: 600px) {\n\t#books-next-container .w3-col {\n\t\twidth: 284px;\n\t}\n}\n\n#books-next-container #paper {\n\tbackground-image: url(\"/images/cover_background.jpg\");\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#books-next-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#books-next-container #book-btn {\n\twidth: 238px;\n\theight: 40px;\n\tmargin: auto;\n\tmargin-top: 8px;\n}\n\n#books-next-container #book-btn button {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1.5px;\n}\n\n/*\nMODAL (INFOS)\n*/\n#books-next-container .w3-modal {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n}\n\n#books-next-container .w3-modal #footer {\n\tpadding-top: 16px;\n}\n\n#books-next-container .w3-modal .close-infos-btn {\n\tfont-size: 1.1em;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tletter-spacing: 1px;\n}\n\n#books-next-container .w3-modal p {\n\tmargin: 0px;\n\tmargin-top: 8px;\n}\n\n#books-next-container .w3-modal ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#books-next-container .w3-modal .contrib-role {\n\ttext-transform: capitalize;\n}\n\n\n\n", ""]);
+exports.push([module.i, "#books-next-container #top-page-header {\n\ttext-align: center;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tfont-size: 1em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1px;\n\tline-height: 25px;\n\twidth: 172px;\n\tmargin: auto;\n\tmargin-top: 16px;\n\tdisplay: block;\n}\n\n@media only screen and (min-width: 768px) {\n\t#books-next-container #top-page-header {\n\t\tdisplay: none;\n\t}\n}\n\n#books-next-container #booksList {\n\tmax-width: 568px;\n\tmargin: auto;\n}\n\n@media only screen and (min-width: 853px) {\n\t#books-next-container #booksList {\n\t\tmax-width: 852px;\n\t}\n}\n\n@media only screen and (min-width: 1137px) {\n\t#books-next-container #booksList {\n\t\tmax-width: 1136px;\n\t}\n}\n\n#books-next-container .w3-col {\n\twidth: 100%;\n\theight: 408px;\n}\n\n@media only screen and (min-width: 600px) {\n\t#books-next-container .w3-col {\n\t\twidth: 284px;\n\t}\n}\n\n#books-next-container #paper {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#books-next-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#books-next-container #book-btn {\n\twidth: 238px;\n\theight: 40px;\n\tmargin: auto;\n\tmargin-top: 8px;\n}\n\n#books-next-container #book-btn button {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1.5px;\n}\n\n/*\nMODAL (INFOS)\n*/\n#books-next-container .w3-modal {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n}\n\n#books-next-container .w3-modal #footer {\n\tpadding-top: 16px;\n}\n\n#books-next-container .w3-modal .close-infos-btn {\n\tfont-size: 1.1em;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tletter-spacing: 1px;\n}\n\n#books-next-container .w3-modal p {\n\tmargin: 0px;\n\tmargin-top: 8px;\n}\n\n#books-next-container .w3-modal ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#books-next-container .w3-modal .contrib-role {\n\ttext-transform: capitalize;\n}\n\n\n\n", ""]);
 
 // exports
 
@@ -1893,7 +1893,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="books-next-container" class="w3-content" style="max-width: 1200px">\n	<div id="top-page-header" class="w3-light-gray">prochaines parutions</div>\n	<div id="booksList" class="w3-padding-64 w3-animate-opacity">\n		<div class=\'w3-row\'>\n			<% for(var i=0; i<books.length; i++) {%>\n				\n				<!-- MODAL (INFOS) -->\n				<div id="infos-<%= books[i].id %>" class="w3-modal" style="background-color: rgba(0,0,0,0.1)">\n					<div class="w3-modal-content w3-card" style="max-width: 500px">\n						<div class="w3-container w3-padding-16">\n							  <p><b>Titre : </b><%- books[i].title %></p>\n							  <% if(books[i].subtitle1) {%>\n								<p><b>Sous-titre : </b><%- books[i].subtitle1 %></p>\n							  <%}%>\n							  <% if(books[i].subtitle2) {%>\n								<p><b>Sous-sous-titre : </b><%- books[i].subtitle2 %></p>\n							  <%}%>\n							  <p><b>Année de parution : </b><%- books[i].year %></p>\n							  <% if(books[i].authors.length > 1) {%>\n									<p>\n										<span><b>Auteurs :</b></span>\n										<br>\n										<ul>\n										<% for(var j=0; j<books[i].authors.length; j++) {%>\n											<li>\n												<%- books[i].authors[j].name %> (<%- books[i].authors[j].birth %>&nbsp;&ndash; <%- books[i].authors[j].death %>)\n											</li>\n										<%}%>\n										</ul>\n								    </p>\n							  <%} else if(books[i].authors.length === 1) {%>\n									<p><b>Auteur : </b><%- books[i].authors[0].name %> (<%- books[i].authors[0].birth %>&nbsp;&ndash; <%- books[i].authors[0].death %>)</p>\n							  <%}%>\n							  <% if(books[i].contribs.length > 1) {%>\n									<p>\n										<span><b>Contributions :</b></span>\n										<br>\n										<ul>\n										<% for(var j=0; j<books[i].contribs.length; j++) {%>\n											<li>\n												<span class="contrib-role"><%- books[i].contribs[j].role %> : </span>\n												<%- books[i].contribs[j].name %> (<%- books[i].contribs[j].birth %>&nbsp;&ndash; <%- books[i].contribs[j].death %>)\n											</li>\n										<%}%>\n										</ul>\n								    </p>\n							  <%} else if(books[i].contribs.length === 1) {%>\n									<p>\n										<span><b>Contribution : </b></span>\n										<br>\n										<ul>\n											<li>\n												<span class="contrib-role"><%- books[i].contribs[0].role %> : </span>\n												<%- books[i].contribs[0].name %> (<%- books[i].contribs[0].birth %>&nbsp;&ndash; <%- books[i].contribs[0].death %>)\n											</li>\n										</ul>\n									</p>\n							  <%}%>\n							  <p class="book-source"><b>Source : </b>\n								  <ul>\n									  <li>&Eacute;diteur : <%- books[i].source.publisher %></li>\n									  <li>Année de publication : <%- books[i].source.year %></li>\n								  </ul>\n							  </p>\n							  <% if(books[i].description) {%>\n							  <div><%- books[i].description %></div>\n							  <%}%>\n						</div>\n						<div id=footer class="w3-container w3-border-bottom">\n							<button id="close-infos-<%= books[i].id %>" class="close-infos-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-bottomright">Fermer</button>\n						</div>\n					</div>\n				</div>\n\n				\n				<div class="w3-col" style="text-align: center">\n					<div id="paper">\n					<div class="book w3-card-4 w3-display-container" style="<%=books[i].styles.cover %>">\n						<p class="author" style="<%=books[i].styles.author %>"><%= books[i].authorDisplay %></p>\n						<p class="title" style="<%=books[i].styles.title %>">\n							<span><%- books[i].title %></span>\n						</p>\n						<% if(books[i].subtitle1) {%>\n						<p class="subtitle1" style="<%=books[i].styles.subtitle1 %>">\n							<%- books[i].subtitle1 %></a>\n						</p>\n						<% } %>\n						<% if(books[i].subtitle2) {%>\n						<p class="subtitle1" style="<%=books[i].styles.subtitle2 %>">\n							<%- books[i].subtitle2 %></a>\n						</p>\n						<% } %>\n						<p class="logo w3-display-bottommiddle" style="<%=books[i].styles.logo %>">liber</p>\n				   </div>\n				   </div>\n				   <div id="book-btn" >\n						<button id="open-infos-<%= books[i].id %>" class="open-infos-btn align-right w3-button">+ d\'infos</button>\n				   </div>\n				</div>\n				\n			<% } %>\n		</div>\n	</div>\n</div>\n',
+        input: '<div id="books-next-container" class="w3-content" style="max-width: 1200px">\n	<div id="top-page-header" class="w3-light-gray">prochaines parutions</div>\n	<div id="booksList" class="w3-padding-64 w3-animate-opacity">\n		<div class=\'w3-row\'>\n			<% for(var i=0; i<books.length; i++) {%>\n				\n				<!-- MODAL (INFOS) -->\n				<div id="infos-<%= books[i].id %>" class="w3-modal" style="background-color: rgba(0,0,0,0.1)">\n					<div class="w3-modal-content w3-card" style="max-width: 500px">\n						<div class="w3-container w3-padding-16">\n							  <p><b>Titre : </b><%- books[i].title %></p>\n							  <% if(books[i].subtitle1) {%>\n								<p><b>Sous-titre : </b><%- books[i].subtitle1 %></p>\n							  <%}%>\n							  <% if(books[i].subtitle2) {%>\n								<p><b>Sous-sous-titre : </b><%- books[i].subtitle2 %></p>\n							  <%}%>\n							  <p><b>Année de parution : </b><%- books[i].year %></p>\n							  <% if(books[i].authors.length > 1) {%>\n									<p>\n										<span><b>Auteurs :</b></span>\n										<br>\n										<ul>\n										<% for(var j=0; j<books[i].authors.length; j++) {%>\n											<li>\n												<%- books[i].authors[j].name %> (<%- books[i].authors[j].birth %>&nbsp;&ndash; <%- books[i].authors[j].death %>)\n											</li>\n										<%}%>\n										</ul>\n								    </p>\n							  <%} else if(books[i].authors.length === 1) {%>\n									<p><b>Auteur : </b><%- books[i].authors[0].name %> (<%- books[i].authors[0].birth %>&nbsp;&ndash; <%- books[i].authors[0].death %>)</p>\n							  <%}%>\n							  <% if(books[i].contribs.length > 1) {%>\n									<p>\n										<span><b>Contributions :</b></span>\n										<br>\n										<ul>\n										<% for(var j=0; j<books[i].contribs.length; j++) {%>\n											<li>\n												<span class="contrib-role"><%- books[i].contribs[j].role %> : </span>\n												<%- books[i].contribs[j].name %> (<%- books[i].contribs[j].birth %>&nbsp;&ndash; <%- books[i].contribs[j].death %>)\n											</li>\n										<%}%>\n										</ul>\n								    </p>\n							  <%} else if(books[i].contribs.length === 1) {%>\n									<p>\n										<span><b>Contribution : </b></span>\n										<br>\n										<ul>\n											<li>\n												<span class="contrib-role"><%- books[i].contribs[0].role %> : </span>\n												<%- books[i].contribs[0].name %> (<%- books[i].contribs[0].birth %>&nbsp;&ndash; <%- books[i].contribs[0].death %>)\n											</li>\n										</ul>\n									</p>\n							  <%}%>\n							  <p class="book-source"><b>Source : </b>\n								  <ul>\n									  <li>&Eacute;diteur : <%- books[i].source.publisher %></li>\n									  <li>Année de publication : <%- books[i].source.year %></li>\n								  </ul>\n							  </p>\n							  <% if(books[i].description) {%>\n							  <div><%- books[i].description %></div>\n							  <%}%>\n						</div>\n						<div id=footer class="w3-container w3-border-bottom">\n							<button id="close-infos-<%= books[i].id %>" class="close-infos-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-bottomright">Fermer</button>\n						</div>\n					</div>\n				</div>\n\n				\n				<div class="w3-col" style="text-align: center">\n					<div id="paper" style="background-image=<%= books[i].styles.image %>">\n					<div class="book w3-card-4 w3-display-container" style="<%=books[i].styles.cover %>">\n						<p class="author" style="<%=books[i].styles.author %>"><%= books[i].authorDisplay %></p>\n						<p class="title" style="<%=books[i].styles.title %>">\n							<span><%- books[i].title %></span>\n						</p>\n						<% if(books[i].subtitle1) {%>\n						<p class="subtitle1" style="<%=books[i].styles.subtitle1 %>">\n							<%- books[i].subtitle1 %></a>\n						</p>\n						<% } %>\n						<% if(books[i].subtitle2) {%>\n						<p class="subtitle1" style="<%=books[i].styles.subtitle2 %>">\n							<%- books[i].subtitle2 %></a>\n						</p>\n						<% } %>\n						<p class="logo w3-display-bottommiddle" style="<%=books[i].styles.logo %>">liber</p>\n				   </div>\n				   </div>\n				   <div id="book-btn" >\n						<button id="open-infos-<%= books[i].id %>" class="open-infos-btn align-right w3-button">+ d\'infos</button>\n				   </div>\n				</div>\n				\n			<% } %>\n		</div>\n	</div>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -1961,7 +1961,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                         buf.push("\n							  <div>", (__stack.lineno = 66, books[i].description), "</div>\n							  ");
                         __stack.lineno = 67;
                     }
-                    buf.push('\n						</div>\n						<div id=footer class="w3-container w3-border-bottom">\n							<button id="close-infos-', escape((__stack.lineno = 70, books[i].id)), '" class="close-infos-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-bottomright">Fermer</button>\n						</div>\n					</div>\n				</div>\n\n				\n				<div class="w3-col" style="text-align: center">\n					<div id="paper">\n					<div class="book w3-card-4 w3-display-container" style="', escape((__stack.lineno = 78, books[i].styles.cover)), '">\n						<p class="author" style="', escape((__stack.lineno = 79, books[i].styles.author)), '">', escape((__stack.lineno = 79, books[i].authorDisplay)), '</p>\n						<p class="title" style="', escape((__stack.lineno = 80, books[i].styles.title)), '">\n							<span>', (__stack.lineno = 81, books[i].title), "</span>\n						</p>\n						");
+                    buf.push('\n						</div>\n						<div id=footer class="w3-container w3-border-bottom">\n							<button id="close-infos-', escape((__stack.lineno = 70, books[i].id)), '" class="close-infos-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-bottomright">Fermer</button>\n						</div>\n					</div>\n				</div>\n\n				\n				<div class="w3-col" style="text-align: center">\n					<div id="paper" style="background-image=', escape((__stack.lineno = 77, books[i].styles.image)), '">\n					<div class="book w3-card-4 w3-display-container" style="', escape((__stack.lineno = 78, books[i].styles.cover)), '">\n						<p class="author" style="', escape((__stack.lineno = 79, books[i].styles.author)), '">', escape((__stack.lineno = 79, books[i].authorDisplay)), '</p>\n						<p class="title" style="', escape((__stack.lineno = 80, books[i].styles.title)), '">\n							<span>', (__stack.lineno = 81, books[i].title), "</span>\n						</p>\n						");
                     __stack.lineno = 83;
                     if (books[i].subtitle1) {
                         buf.push('\n						<p class="subtitle1" style="', escape((__stack.lineno = 84, books[i].styles.subtitle1)), '">\n							', (__stack.lineno = 85, books[i].subtitle1), "</a>\n						</p>\n						");
@@ -2324,8 +2324,6 @@ var WebBook = function () {
 		//elements : select all elements but .text-breaks (for bookmarks)
 		this._elements = this._text.querySelectorAll(':not(.wb-text-break)');
 		this._elements_all = this._text.querySelectorAll('*');
-		console.log(this._elements);
-		console.log(this._elements_all);
 		//toc
 		this._tocs = this._bookContainer.querySelectorAll('[data-wb-toc]');
 		//setToc before querying this.elPageNumbers
@@ -2611,7 +2609,7 @@ var WebBook = function () {
 		key: 'elementPageNumber',
 		value: function elementPageNumber(id) {
 			var el = this._text.querySelector('#' + id);
-			var elPosition = Math.round((0, _jquery2.default)(el).offset().left) - Math.round((0, _jquery2.default)(this._text).offset().left) - this.getMarginX();
+			var elPosition = Math.round((0, _jquery2.default)(el).position().left) - this.getMarginX();
 			elPosition = elPosition % this._containerWidth !== 0 ? elPosition - elPosition % this._containerWidth : elPosition; //always at a page beginning
 			var elPageNumber = elPosition / this._containerWidth + 1; //elPosition/this._containerWidth is position of a page : position 0 is page 1,...
 			elPageNumber = elPageNumber - this._startPage;
@@ -2723,7 +2721,6 @@ var WebBook = function () {
 	}, {
 		key: 'insertBookmark',
 		value: function insertBookmark() {
-			console.log(this._elements_all);
 			var elPosition = void 0;
 			var position = Math.abs(this._position);
 			for (var i = 0; i < this._elements_all.length; i++) {
@@ -2731,19 +2728,9 @@ var WebBook = function () {
 				var _elPosition = Math.round((0, _jquery2.default)(this._elements_all[i]).position().left) - this.getMarginX();
 				_elPosition = _elPosition % this._containerWidth !== 0 ? _elPosition - _elPosition % this._containerWidth : _elPosition; //always at a page beginning
 				if (_elPosition === position) {
-					console.log("element");
-					console.log(i);
-					console.log(this._elements[i]);
-					console.log("position   " + position);
-					console.log("elposition   " + _elPosition);
 					this._bookmark = i;
 					break;
 				} else if (_elPosition > position) {
-					console.log("element -1");
-					console.log(i - 1);
-					console.log(this._elements[i - 1]);
-					console.log("position   " + position);
-					console.log("elposition   " + _elPosition);
 					this._bookmark = i - 1;
 					break;
 				}
@@ -12745,7 +12732,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "/*\nBOOK NAVBAR BOTTOM\n*/\n#book-nav-bar-bottom {\n\tdisplay: none;\n\theight: 44px;\n\tposition: relative;\n}\n\n@media screen and (min-width: 768px) {\n\t#book-nav-bar-bottom {\n\t\tdisplay: block;\n\t}\n}\n\n#book-nav-bar-bottom-controls {\n\tdisplay: block;\n\tposition: relative;\n\twidth: 550px;\n\tmargin: auto;\n\theight: 44px;\n\ttext-align: center;\n}\n\n#nav-bar-bottom-controls button {\n\toutline: none;\n\theight: 100%;\n\tbackground: transparent;\n}\n\n#book-nav-bar-bottom-controls button#open-toc-large.w3-btn span {\n\tdisplay: inline-block;\n\tpadding-bottom: 10px;\n}\n\n/*\nBOOKCONTAINER\n*/\n#bookContainer {\n\tposition: relative;\n\tfont-family: 'Noto Serif', 'Georgia', serif;\n\tcolor: #000;\n\topacity: 0.0;\n\tmargin: auto;\n\ttransition: opacity 0.8s;\n\t-webkit-transition: opacity 0.8s;\n\t-moz-transition: opacity 0.8s;\n\t-o-transition: opacity 0.8s;\n}\n\n#bookContainer.show {\n\topacity: 1.0;\n}\n\n/*\nTEXTCONTAINER\n*/\n[data-wb-text-container] {\n\tmargin: auto;\n\tbackground-color: #fafafa;\n/*\n\ttop: 0px;\n*/\n}\n\n@media screen and (min-width: 768px) {\n\t[data-wb-text-container] {\n/*\n\t\ttop: 30px;\n*/\n\t}\n}\n\n/*\nTOC-LARGE-DEVICE\n*/\n\n#toc-large-device {\n  position: absolute;\n  left: -33%;\n  width: 33%;\n/*\n  margin-top: 30px;\n*/\n  transition: left 0.4s;\n  -webkit-transition : left 0.4s;\n  -moz-transition : left 0.4s;\n  -o-transition: left 0.4s;\n  display: none;\n}\n\n@media screen and (min-width: 1366px) {\n\n\t#toc-large-device {\n\t\tdisplay: inline-block\n\t}\n\n}\n\n#toc-large-device.open {\n\tleft: 0px;\n}\n\n#toc-large-device-container {\n\twidth: 100%;\n\tbackground-color: #fafafa;\n\tz-index: 1000;\n\toverflow-y: auto;\n}\n\n#toc-large-device-container > div {\n\tbackground-color: #fafafa;\n\tposition: relative;\n\theight: 100%;\n\twidth: 100%;\n}\n\n/*\ntoggle toc-large-device, swing-container, swing-bar\n*/\n\n#toggle-toc-large-device {\n    position: absolute;\n\tleft: 100%;\n\ttop: 0px;\n\tmargin-left: 8px;\n\toutline: none;\n\tbackground: #fafafa;\n\tfont-size: 1.5em;\n}\n\n/*\nif toc-large-device.open : swing-container to left\n*/\n#swing-container {\n\tmargin-left: 0px;\n\ttransition: margin-left 0.6s;\n\t-webkit-transition : margin-left 0.6s;\n\t-moz-transition : margin-left 0.6s;\n    -o-transition: margin-left 0.6s;\n\t\n}\n\n#swing-container.left {\n\t\tmargin-left: 0px;\n\t}\n\n@media screen and (min-width: 1366px) {\n\t#swing-container.left {\n\t\tmargin-left: 33%;\n\t}\n}\n\n/*\nif toc-large-device.open : swing-bar to left\n*/\n#swing-bar {\n\tmargin-left: 0px;\n\ttransition: margin-left 0.9s;\n\t-webkit-transition : margin-left 0.9s;\n\t-moz-transition : margin-left 0.9s;\n    -o-transition: margin-left 0.9s;\n}\n\n#swing-bar.left {\n\tmargin-left: 0px;\n}\n\n@media screen and (min-width: 1366px) {\n\t#swing-bar.left {\n\t\tmargin-left: 33%;\n\t}\n}\n\n/*\nTOC\n*/\n#toc {\n\tposition: absolute;\n\ttop: -1000px;\n\twidth: 100%;\n\theight: 100%;\n\tz-index: 1000;\n\toverflow-y: auto;\n/*\n\ttransition: top 0.4s;\n\t-webkit-transition : top 0.4s;\n\t-moz-transition : top 0.4s;\n    -o-transition: top 0.4s;\n*/\n\tpadding: 0px;\n\tbackground-color: #fafafa;\n}\n\n#toc.open {\n\ttop: 0px;\n}\n\n#toc > div {\n\tposition: relative;\n\tbackground-color: #fafafa;\n}\n\n#open-toc {\n\tfloat: right;\n\tfont-size: 1.4em;\n}\n\n#open-toc-large {\n\tposition: absolute;\n\ttop: 0px;\n\tright: 0px;\n\tdisplay: inline-block;\n}\n\n@media screen and (min-width: 1366px) {\n\t#open-toc-large {\n\t\tdisplay: none;\n\t}\n}\n\n#close-toc {\n\tposition: absolute;\n\tright: 15px;\n\ttop: 5px;\n\tmin-width: 25px;\n\tpadding: 0;\n\tborder: none;\n\tbackground-color: transparent;\n\tfont-family: 'Helvetica', sans-serif;\n\tfont-size: 1.2em;\n\tcolor: #424242;\n}\n\n#toc-title {\n\tmargin-bottom: 30px;\n\tmargin-top: 20px\n}\n\n#toc-title p {\n\tmargin: 8px;\n}\n/*\ntoc list\n*/\n#toc ul, #toc-large-device ul {\n\tpadding: 0px;\n}\n\n#toc li, #toc-large-device li {\n\tlist-style-type: none;\n\tpadding: .5em .5em;\n}\n\n#toc a.wb-link, #toc-large-device a.wb-link {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: gray;\n}\n\n#toc a.wb-link:hover, #toc-large-device a.wb-link:hover {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: #000;\n}\n\n#toc li.current a.wb-link, #toc-large-device li.current a.wb-link {\n\tcolor: #000;\n\toutline: none;\n\tfont-style: italic;\n}\n\n#toc [data-wb-element-page-number], #toc-large-device [data-wb-element-page-number] {\n\tfloat: right;\n}\n\n/*\nTOP\n*/\n#top {\n\tposition: absolute;\n\ttop: 0px;\n\tbox-sizing: border-box;\n\t-webkit-box-sizing: border-box;\n\t-moz-box-sizing: border-box;\n\tpadding-top: 8px;\n\ttext-align: center;\n\twidth: 100%;\n\theight: 30px;\n}\n\n#top .wb-current-section-title {\n\tfont-size: 0.8em;\n}\n\n/*\nBOTTOM\n*/\n#bottom {\n\tposition: absolute;\n\tbottom: 0px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tz-index: 500;\n\tbackground-color: #fafafa;\n\tcolor: #000;\n}\n\n#bottom-large {\n\tposition: absolute;\n\tbottom: -9999px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tz-index: 500;\n}\n\n@media screen and (min-width: 768px) {\n\t\t\n\t#bottom {\n\t\tbottom: -9999px\n\t}\n\t\n\t#bottom-large {\n\t\tbottom: 5px;\n\t}\n}\n\n#bottom button, #bottom a, #bottom span {\n\tdisplay: inline-block;\n\tborder: none;\n\tbackground-color: transparent;\n\tmargin-right: 10px;\n\tmargin-left: 10px;\n\tmin-width: 25px;\n\theight: 100%;\n\tpadding: 0;\n\tfont-size: 1.2em;\n}\n\n#bottom button.open-toc {\n\tfont-size: 1.5em;\n}\n\n#bottom a#home {\n\tfloat: left;\n\ttext-decoration: none;\n\tmargin-top: 6px;\n\tfont-size: 0.9em;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tletter-spacing: 1px;\n}\n\n#bottom span {\n\tdisplay: inline-block;\n\tmin-width: 42px;\n\tmargin: 0px;\n\tmargin-top: 0px;\n\tfont-size: 1em;\n}\n\n/*\nTEXT\n*/\n[data-wb-text] {\n\tfont-size: 14px;\n\tline-height: 1.5em;\n\ttext-align: justify;\n\ttext-justify: inter-word;\n}\n\n@media screen and (min-width: 768px) {\n    [data-wb-text] {\n        font-size: 15px;\n        line-height: 1.5em;\n    }\n}\n\n[data-wb-text] p {\n\tmargin-bottom: 0px;\n\tmargin-top: 0px;\n\ttext-indent: 1.5em;\n}\n\n[data-wb-text] a.wb-link {\n\tborder-bottom: 1px dotted black;\n}\n\n/*\nINSIDE TEXT\n*/\n/*\nTITLES\n*/\n.section-title, .note-title, .wb-toc-title {\n\tfont-size: 1.25em;\n\ttext-align: left;\n\ttext-indent: 0px;\n}\n\np.section-subtitle {\n\tfont-size: 1em;\n\ttext-indent: 0px;\n\tmargin-bottom: 1.5em;\n}\n\np.section-title {\n\tpadding-top: 3.5em;\n\tmargin-top: 0px;\n\tmargin-bottom: 1.5em;\n\ttext-indent: 0px;\n\tline-height: 2em;\n}\n\n#titre.wb-section {\n\ttext-align: center;\n\tline-height: 1.8em;\n}\n\n#cover-author, #cover-title, #cover-logo {\n\tmargin: 0px;\n\ttext-indent: 0px;\n}\n\n#fin {\n\ttext-align: center;\n\t\n}\n\n#fin p {\n\tpadding-top: 20%;\n\ttext-indent: 0px;\n}\n", ""]);
+exports.push([module.i, "/*\nBOOK NAVBAR BOTTOM\n*/\n#book-nav-bar-bottom {\n\tdisplay: none;\n\theight: 44px;\n\tposition: relative;\n}\n\n@media screen and (min-width: 768px) {\n\t#book-nav-bar-bottom {\n\t\tdisplay: block;\n\t}\n}\n\n#book-nav-bar-bottom-controls {\n\tdisplay: block;\n\tposition: relative;\n\twidth: 550px;\n\tmargin: auto;\n\theight: 44px;\n\ttext-align: center;\n}\n\n#nav-bar-bottom-controls button {\n\toutline: none;\n\theight: 100%;\n\tbackground: transparent;\n}\n\n#book-nav-bar-bottom-controls button#open-toc-large.w3-btn span {\n\tdisplay: inline-block;\n\tpadding-bottom: 10px;\n}\n\n/*\nBOOKCONTAINER\n*/\n#bookContainer {\n\tposition: relative;\n\tcolor: #000;\n\topacity: 0.0;\n\tmargin: auto;\n\ttransition: opacity 0.8s;\n\t-webkit-transition: opacity 0.8s;\n\t-moz-transition: opacity 0.8s;\n\t-o-transition: opacity 0.8s;\n}\n\n#bookContainer.show {\n\topacity: 1.0;\n}\n\n/*\nTEXTCONTAINER\n*/\n[data-wb-text-container] {\n\tmargin: auto;\n\tbackground-color: #fafafa;\n}\n\n/*\nTOC-LARGE-DEVICE\n*/\n\n#toc-large-device {\n  position: absolute;\n  left: -33%;\n  width: 33%;\n  transition: left 0.4s;\n  -webkit-transition : left 0.4s;\n  -moz-transition : left 0.4s;\n  -o-transition: left 0.4s;\n  display: none;\n}\n\n@media screen and (min-width: 1366px) {\n\n\t#toc-large-device {\n\t\tdisplay: inline-block\n\t}\n\n}\n\n#toc-large-device.open {\n\tleft: 0px;\n}\n\n#toc-large-device-container {\n\twidth: 100%;\n\tbackground-color: #fafafa;\n\tz-index: 1000;\n\toverflow-y: auto;\n}\n\n#toc-large-device-container > div {\n\tbackground-color: #fafafa;\n\tposition: relative;\n\theight: 100%;\n\twidth: 100%;\n}\n\n/*\ntoggle toc-large-device, swing-container, swing-bar\n*/\n\n#toggle-toc-large-device {\n    position: absolute;\n\tleft: 100%;\n\ttop: 0px;\n\tmargin-left: 8px;\n\toutline: none;\n\tbackground: #fafafa;\n\tfont-size: 1.5em;\n}\n\n/*\nif toc-large-device.open : swing-container to left\n*/\n#swing-container {\n\tmargin-left: 0px;\n\ttransition: margin-left 0.6s;\n\t-webkit-transition : margin-left 0.6s;\n\t-moz-transition : margin-left 0.6s;\n    -o-transition: margin-left 0.6s;\n\t\n}\n\n#swing-container.left {\n\t\tmargin-left: 0px;\n\t}\n\n@media screen and (min-width: 1366px) {\n\t#swing-container.left {\n\t\tmargin-left: 33%;\n\t}\n}\n\n/*\nif toc-large-device.open : swing-bar to left\n*/\n#swing-bar {\n\tmargin-left: 0px;\n\ttransition: margin-left 0.9s;\n\t-webkit-transition : margin-left 0.9s;\n\t-moz-transition : margin-left 0.9s;\n    -o-transition: margin-left 0.9s;\n}\n\n#swing-bar.left {\n\tmargin-left: 0px;\n}\n\n@media screen and (min-width: 1366px) {\n\t#swing-bar.left {\n\t\tmargin-left: 33%;\n\t}\n}\n\n/*\nTOC\n*/\n#toc {\n\tposition: absolute;\n\ttop: -1000px;\n\twidth: 100%;\n\theight: 100%;\n\tz-index: 1000;\n\toverflow-y: auto;\n/*\n\ttransition: top 0.4s;\n\t-webkit-transition : top 0.4s;\n\t-moz-transition : top 0.4s;\n    -o-transition: top 0.4s;\n*/\n\tpadding: 0px;\n\tbackground-color: #fafafa;\n}\n\n#toc.open {\n\ttop: 0px;\n}\n\n#toc > div {\n\tposition: relative;\n\tbackground-color: #fafafa;\n}\n\n#open-toc {\n\tfloat: right;\n\tfont-size: 1.4em;\n}\n\n#open-toc-large {\n\tposition: absolute;\n\ttop: 0px;\n\tright: 0px;\n\tdisplay: inline-block;\n}\n\n@media screen and (min-width: 1366px) {\n\t#open-toc-large {\n\t\tdisplay: none;\n\t}\n}\n\n#close-toc {\n\tbackground-color: transparent;\n\tline-height: 27px;\n\tfont-size: 2em;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n}\n\n#toc-title {\n\tmargin-bottom: 30px;\n\tmargin-top: 20px\n}\n\n#toc-title p {\n\tmargin: 8px;\n}\n/*\ntoc list\n*/\n#toc ul, #toc-large-device ul {\n\tpadding: 0px;\n}\n\n#toc li, #toc-large-device li {\n\tlist-style-type: none;\n\tpadding: .5em .5em;\n}\n\n#toc a.wb-link, #toc-large-device a.wb-link {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: gray;\n}\n\n#toc a.wb-link:hover, #toc-large-device a.wb-link:hover {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: #000;\n}\n\n#toc li.current a.wb-link, #toc-large-device li.current a.wb-link {\n\tcolor: #000;\n\toutline: none;\n\tfont-style: italic;\n}\n\n#toc [data-wb-element-page-number], #toc-large-device [data-wb-element-page-number] {\n\tfloat: right;\n}\n\n/*\nTOP\n*/\n#top {\n\tposition: absolute;\n\ttop: 0px;\n\tbox-sizing: border-box;\n\t-webkit-box-sizing: border-box;\n\t-moz-box-sizing: border-box;\n\tpadding-top: 8px;\n\ttext-align: center;\n\twidth: 100%;\n\theight: 30px;\n}\n\n#top .wb-current-section-title {\n\tdisplay: inline-block;\n\twidth: 80%;\n\twhite-space: nowrap;\n\tfont-size: 0.8em;\n\toverflow: hidden;\n\ttext-overflow: ellipsis;\n\t-o-text-overflow: ellipsis;\n}\n\n/*\nBOTTOM\n*/\n#bottom {\n\tposition: absolute;\n\tbottom: 0px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tz-index: 500;\n\tbackground-color: #fafafa;\n\tcolor: #000;\n}\n\n#bottom-large {\n\tposition: absolute;\n\tbottom: -9999px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tz-index: 500;\n}\n\n@media screen and (min-width: 768px) {\n\t\t\n\t#bottom {\n\t\tbottom: -9999px\n\t}\n\t\n\t#bottom-large {\n\t\tbottom: 5px;\n\t}\n}\n\n#bottom button, #bottom a, #bottom span {\n\tdisplay: inline-block;\n\tborder: none;\n\tbackground-color: transparent;\n\tmargin-right: 10px;\n\tmargin-left: 10px;\n\tmin-width: 25px;\n\theight: 100%;\n\tpadding: 0;\n\tfont-size: 1.2em;\n}\n\n#bottom button.open-toc {\n\tfont-size: 1.5em;\n}\n\n#bottom a#home {\n\tfloat: left;\n\ttext-decoration: none;\n\tmargin-top: 6px;\n\tfont-size: 0.9em;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tletter-spacing: 1px;\n}\n\n#bottom span {\n\tdisplay: inline-block;\n\tmin-width: 42px;\n\tmargin: 0px;\n\tmargin-top: 0px;\n\tfont-size: 1em;\n}\n\n/*\nTEXT\n*/\n[data-wb-text] {\n\tfont-size: 14px;\n\tline-height: 1.5em;\n\ttext-align: justify;\n\ttext-justify: inter-word;\n}\n\n@media screen and (min-width: 768px) {\n    [data-wb-text] {\n        font-size: 15px;\n        line-height: 1.5em;\n    }\n}\n\n[data-wb-text] p {\n\tmargin-bottom: 0px;\n\tmargin-top: 0px;\n\ttext-indent: 1.5em;\n}\n\n[data-wb-text] a.wb-link {\n\tborder-bottom: 1px dotted black;\n}\n\n/*\nINSIDE TEXT\n*/\n/*\nTITLES\n*/\n.section-title, .note-title, .wb-toc-title {\n\tfont-size: 1.25em;\n\ttext-align: left;\n\ttext-indent: 0px;\n}\n\np.section-subtitle {\n\tfont-size: 1em;\n\ttext-indent: 0px;\n\tmargin-bottom: 1.5em;\n}\n\np.section-title {\n\tpadding-top: 3.5em;\n\tmargin-top: 0px;\n\tmargin-bottom: 1.5em;\n\ttext-indent: 0px;\n\tline-height: 2em;\n}\n\n#titre.wb-section {\n\ttext-align: center;\n\tline-height: 1.8em;\n}\n\n#cover-author, #cover-title, #cover-logo {\n\tmargin: 0px;\n\ttext-indent: 0px;\n}\n\n#fin {\n\ttext-align: center;\n\t\n}\n\n#fin p {\n\tpadding-top: 20%;\n\ttext-indent: 0px;\n}\n", ""]);
 
 // exports
 
@@ -15400,7 +15387,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="book">\n	<!--\n		STARTBOOK-CONTAINER\n	-->\n	<div id="bookContainer">\n		<!--\n			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366\n		-->\n		<div id="toc-large-device" class="w3-card-4">\n			<button id="toggle-toc-large-device" type="button" class="w3-btn w3-card-4 w3-white">&colone;</button>\n			<div id="toc-large-device-container" class="toc-content">\n				<p class="w3-center"><%- book.authorDisplay %></p>\n				<p class="w3-center text-uppercase"><%- book.title %></p>\n				<div data-wb-toc class="w3-container"></div>\n			</div>\n		</div>\n		<!--\n			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		<div id="swing-container">\n			<!--\n				START TEXT-CONTAINER\n			-->\n			<div data-wb-text-container class="w3-card-4">\n				<!--\n					TOC (inside textContainer) : width < 1366\n				-->\n				<div id="toc">\n					<div data-wb-toc class="w3-container">\n						<button id="close-toc" type="button">&times;</button>\n						<div id="toc-title" class="toc-content">\n							<p class="w3-center"><%- book.authorDisplay %></p>\n							<p class="w3-center text-uppercase"><%- book.title %></p>\n						</div>\n					</div>\n				</div>\n				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text style="background-image: url(<%- book.styles.image %>)"></div>\n				<!--\n					BOTTOM (inside textContainer) : width < 768\n				-->\n				<div id="bottom">\n					<a id="home" href="/#/books/" class="w3-btn w3-text-gray">liber</a>\n					<span class="wb-currentByTotal-pages"></span>\n					<button type="button" id="open-toc" class="open-toc w3-btn w3-text-gray">&colone;</button>\n				</div>\n				<!--\n					BOTTOM-LARGE (inside textContainer) : width >= 768\n				-->\n				<div id="bottom-large">\n					<span class="wb-currentByTotal-pages"></span>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom">\n			<div class="w3-bar w3-large">\n				<div id="swing-bar">\n					<div id="book-nav-bar-bottom-controls">\n						<button id="backward-large" type="button" class="w3-button w3-hover-none w3-margin-right">&lt;</button>\n						<button id="forward-large" type="button" class="w3-button w3-hover-none w3-margin-left">&gt;</button>\n						<button id="open-toc-large" type="button" class="open-toc w3-button w3-hover-none"><span>&colone;</span></button>\n					</div>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n</div>\n',
+        input: '<div id="book">\n	<!--\n		STARTBOOK-CONTAINER\n	-->\n	<div id="bookContainer" style="font-family: <%= book.styles.font %>">\n		<!--\n			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366\n		-->\n		<div id="toc-large-device" class="w3-card-4">\n			<button id="toggle-toc-large-device" type="button" class="w3-btn w3-card-4 w3-white">&colone;</button>\n			<div id="toc-large-device-container" class="toc-content">\n				<p class="w3-center"><%- book.authorDisplay %></p>\n				<p class="w3-center text-uppercase"><%- book.title %></p>\n				<div data-wb-toc class="w3-container"></div>\n			</div>\n		</div>\n		<!--\n			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		<div id="swing-container">\n			<!--\n				START TEXT-CONTAINER\n			-->\n			<div data-wb-text-container class="w3-card-4">\n				<!--\n					TOC (inside textContainer) : width < 1366\n				-->\n				<div id="toc">\n					<div data-wb-toc class="w3-container">\n						<button id="close-toc" type="button" class="w3-button w3-text-black w3-hover-none w3-display-topright">&times;</button>\n						<div id="toc-title" class="toc-content">\n							<p class="w3-center"><%- book.authorDisplay %></p>\n							<p class="w3-center text-uppercase"><%- book.title %></p>\n						</div>\n					</div>\n				</div>\n				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text style="background-image: url(<%- book.styles.image %>)"></div>\n				<!--\n					BOTTOM (inside textContainer) : width < 768\n				-->\n				<div id="bottom">\n					<a id="home" href="/#/books/" class="w3-btn w3-text-gray">liber</a>\n					<span class="wb-currentByTotal-pages"></span>\n					<button type="button" id="open-toc" class="open-toc w3-btn w3-text-gray">&colone;</button>\n				</div>\n				<!--\n					BOTTOM-LARGE (inside textContainer) : width >= 768\n				-->\n				<div id="bottom-large">\n					<span class="wb-currentByTotal-pages"></span>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom">\n			<div class="w3-bar w3-large">\n				<div id="swing-bar">\n					<div id="book-nav-bar-bottom-controls">\n						<button id="backward-large" type="button" class="w3-button w3-hover-none w3-margin-right">&lt;</button>\n						<button id="forward-large" type="button" class="w3-button w3-hover-none w3-margin-left">&gt;</button>\n						<button id="open-toc-large" type="button" class="open-toc w3-button w3-hover-none"><span>&colone;</span></button>\n					</div>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -15417,7 +15404,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
         var buf = [];
         with (locals || {}) {
             (function() {
-                buf.push('<div id="book">\n	<!--\n		STARTBOOK-CONTAINER\n	-->\n	<div id="bookContainer">\n		<!--\n			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366\n		-->\n		<div id="toc-large-device" class="w3-card-4">\n			<button id="toggle-toc-large-device" type="button" class="w3-btn w3-card-4 w3-white">&colone;</button>\n			<div id="toc-large-device-container" class="toc-content">\n				<p class="w3-center">', (__stack.lineno = 12, book.authorDisplay), '</p>\n				<p class="w3-center text-uppercase">', (__stack.lineno = 13, book.title), '</p>\n				<div data-wb-toc class="w3-container"></div>\n			</div>\n		</div>\n		<!--\n			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		<div id="swing-container">\n			<!--\n				START TEXT-CONTAINER\n			-->\n			<div data-wb-text-container class="w3-card-4">\n				<!--\n					TOC (inside textContainer) : width < 1366\n				-->\n				<div id="toc">\n					<div data-wb-toc class="w3-container">\n						<button id="close-toc" type="button">&times;</button>\n						<div id="toc-title" class="toc-content">\n							<p class="w3-center">', (__stack.lineno = 32, book.authorDisplay), '</p>\n							<p class="w3-center text-uppercase">', (__stack.lineno = 33, book.title), '</p>\n						</div>\n					</div>\n				</div>\n				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text style="background-image: url(', (__stack.lineno = 46, book.styles.image), ')"></div>\n				<!--\n					BOTTOM (inside textContainer) : width < 768\n				-->\n				<div id="bottom">\n					<a id="home" href="/#/books/" class="w3-btn w3-text-gray">liber</a>\n					<span class="wb-currentByTotal-pages"></span>\n					<button type="button" id="open-toc" class="open-toc w3-btn w3-text-gray">&colone;</button>\n				</div>\n				<!--\n					BOTTOM-LARGE (inside textContainer) : width >= 768\n				-->\n				<div id="bottom-large">\n					<span class="wb-currentByTotal-pages"></span>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom">\n			<div class="w3-bar w3-large">\n				<div id="swing-bar">\n					<div id="book-nav-bar-bottom-controls">\n						<button id="backward-large" type="button" class="w3-button w3-hover-none w3-margin-right">&lt;</button>\n						<button id="forward-large" type="button" class="w3-button w3-hover-none w3-margin-left">&gt;</button>\n						<button id="open-toc-large" type="button" class="open-toc w3-button w3-hover-none"><span>&colone;</span></button>\n					</div>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n</div>\n');
+                buf.push('<div id="book">\n	<!--\n		STARTBOOK-CONTAINER\n	-->\n	<div id="bookContainer" style="font-family: ', escape((__stack.lineno = 5, book.styles.font)), '">\n		<!--\n			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366\n		-->\n		<div id="toc-large-device" class="w3-card-4">\n			<button id="toggle-toc-large-device" type="button" class="w3-btn w3-card-4 w3-white">&colone;</button>\n			<div id="toc-large-device-container" class="toc-content">\n				<p class="w3-center">', (__stack.lineno = 12, book.authorDisplay), '</p>\n				<p class="w3-center text-uppercase">', (__stack.lineno = 13, book.title), '</p>\n				<div data-wb-toc class="w3-container"></div>\n			</div>\n		</div>\n		<!--\n			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		<div id="swing-container">\n			<!--\n				START TEXT-CONTAINER\n			-->\n			<div data-wb-text-container class="w3-card-4">\n				<!--\n					TOC (inside textContainer) : width < 1366\n				-->\n				<div id="toc">\n					<div data-wb-toc class="w3-container">\n						<button id="close-toc" type="button" class="w3-button w3-text-black w3-hover-none w3-display-topright">&times;</button>\n						<div id="toc-title" class="toc-content">\n							<p class="w3-center">', (__stack.lineno = 32, book.authorDisplay), '</p>\n							<p class="w3-center text-uppercase">', (__stack.lineno = 33, book.title), '</p>\n						</div>\n					</div>\n				</div>\n				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text style="background-image: url(', (__stack.lineno = 46, book.styles.image), ')"></div>\n				<!--\n					BOTTOM (inside textContainer) : width < 768\n				-->\n				<div id="bottom">\n					<a id="home" href="/#/books/" class="w3-btn w3-text-gray">liber</a>\n					<span class="wb-currentByTotal-pages"></span>\n					<button type="button" id="open-toc" class="open-toc w3-btn w3-text-gray">&colone;</button>\n				</div>\n				<!--\n					BOTTOM-LARGE (inside textContainer) : width >= 768\n				-->\n				<div id="bottom-large">\n					<span class="wb-currentByTotal-pages"></span>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom">\n			<div class="w3-bar w3-large">\n				<div id="swing-bar">\n					<div id="book-nav-bar-bottom-controls">\n						<button id="backward-large" type="button" class="w3-button w3-hover-none w3-margin-right">&lt;</button>\n						<button id="forward-large" type="button" class="w3-button w3-hover-none w3-margin-left">&gt;</button>\n						<button id="open-toc-large" type="button" class="open-toc w3-button w3-hover-none"><span>&colone;</span></button>\n					</div>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n</div>\n');
             })();
         }
         return buf.join("");
@@ -15452,8 +15439,7 @@ var _authors2 = _interopRequireDefault(_authors);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var authorsTemplate = __webpack_require__(30);
-var authorsLettersTemplate = __webpack_require__(31);
-//home.js
+//authors.js
 var authors = function authors(container) {
 	'use strict';
 
@@ -15488,8 +15474,6 @@ var authors = function authors(container) {
 	//insert template in container
 	c.innerHTML = authorsTemplate({ authors: sas, books: bs });
 	var root = document.querySelector('#authors-container');
-	//fill letters
-	root.querySelector('#letters').innerHTML = authorsLettersTemplate();
 	//get active letter link
 	var ls = root.querySelectorAll('#letters a');
 	for (var i = 0; i < ls.length; i++) {
@@ -15561,7 +15545,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "#authors-container {\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n}\n\n#authors-container #top-page-header {\n\ttext-align: center;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tfont-size: 1em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1px;\n\tline-height: 25px;\n\twidth: 90px;\n\tmargin: auto;\n\tmargin-top: 16px;\n\tdisplay: block;\n}\n\n@media only screen and (min-width: 768px) {\n\t#authors-container #top-page-header {\n\t\tdisplay: none;\n\t}\n}\n\n#authors-container #letters {\n\ttext-align: center;\n\tline-height: 25px;\n\twidth: 320px;\n\tmargin: auto;\n}\n\n@media only screen and (min-width: 410px) {\n\t#authors-container #letters {\n\t\twidth: 410px;\n\t}\n}\n\n@media only screen and (min-width: 768px) {\n\t#authors-container #letters {\n\t\twidth: 100%;\n\t}\n}\n\n#authors-container .author {\n\tpadding-top: 8px;\n}\n\n#authors-container .author-name {\n\tmax-width: 568px;\n\tfont-size: 1.2em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1.5px;\n\tmargin-bottom: 0px;\n\tmargin-top: 0px;\n\tmargin-left: 17px;\n\tmargin-right: 17px;\n\ttext-align: center;\n}\n\n#authors-container #booksList {\n\tmax-width: 568px;\n\tmargin: auto;\n}\n\n@media only screen and (min-width: 600px) {\n\t#authors-container #booksList {\n\t\tmargin: 0px;\n\t}\n\t\n\t#authors-container .author-name {\n\t\tmax-width: 852px;\n\t\ttext-align: left;\n\t}\n}\n\n@media only screen and (min-width: 853px) {\n\t#authors-container #booksList {\n\t\tmax-width: 852px;\n\t\tmargin: 0px;\n\t}\n\t\n\t#authors-container .author-name {\n\t\tmax-width: 1136px;\n\t}\n}\n\n@media only screen and (min-width: 1137px) {\n\t#authors-container #booksList {\n\t\tmax-width: 1136px;\n\t\tmargin: 0px;\n\t}\n\t\n\t#authors-container .author-name {\n\t\tmax-width: 1136px;\n\t}\n}\n\n#authors-container .w3-col {\n\twidth: 100%;\n\theight: 408px;\n}\n\n@media only screen and (min-width: 600px) {\n\t#authors-container .w3-col {\n\t\twidth: 284px;\n\t}\n}\n\n#authors-container #paper {\n\tbackground-image: url(\"/images/cover_background.jpg\");\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#authors-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#authors-container #book-btn {\n\twidth: 238px;\n\theight: 40px;\n\tmargin: auto;\n\tmargin-top: 8px;\n}\n\n#authors-container #book-btn button {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1.5px;\n}\n\n/*\nMODAL (INFOS)\n*/\n#authors-container .w3-modal {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n}\n\n#authors-container .w3-modal #footer {\n\tpadding-top: 16px;\n}\n\n#authors-container .w3-modal .close-infos-btn {\n\tfont-size: 1.1em;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tletter-spacing: 1px;\n}\n\n#authors-container .w3-modal p {\n\tmargin: 0px;\n\tmargin-top: 8px;\n}\n\n#authors-container .w3-modal ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#authors-container .w3-modal .contrib-role {\n\ttext-transform: capitalize;\n}\n\n\n", ""]);
+exports.push([module.i, "#authors-container {\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n}\n\n#authors-container #top-page-header {\n\ttext-align: center;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tfont-size: 1em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1px;\n\tline-height: 25px;\n\twidth: 90px;\n\tmargin: auto;\n\tmargin-top: 16px;\n\tdisplay: block;\n}\n\n@media only screen and (min-width: 768px) {\n\t#authors-container #top-page-header {\n\t\tdisplay: none;\n\t}\n}\n\n#authors-container #letters {\n\ttext-align: center;\n\tline-height: 25px;\n\twidth: 320px;\n\tmargin: auto;\n}\n\n@media only screen and (min-width: 410px) {\n\t#authors-container #letters {\n\t\twidth: 410px;\n\t}\n}\n\n@media only screen and (min-width: 768px) {\n\t#authors-container #letters {\n\t\twidth: 100%;\n\t}\n}\n\n#authors-container .author {\n\tpadding-top: 8px;\n}\n\n#authors-container .author-name {\n\tmax-width: 568px;\n\tfont-size: 1.2em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1.5px;\n\tmargin-bottom: 0px;\n\tmargin-top: 0px;\n\tmargin-left: 17px;\n\tmargin-right: 17px;\n\ttext-align: center;\n}\n\n#authors-container #booksList {\n\tmax-width: 568px;\n\tmargin: auto;\n}\n\n@media only screen and (min-width: 600px) {\n\t#authors-container #booksList {\n\t\tmargin: 0px;\n\t}\n\t\n\t#authors-container .author-name {\n\t\tmax-width: 852px;\n\t\ttext-align: left;\n\t}\n}\n\n@media only screen and (min-width: 853px) {\n\t#authors-container #booksList {\n\t\tmax-width: 852px;\n\t\tmargin: 0px;\n\t}\n\t\n\t#authors-container .author-name {\n\t\tmax-width: 1136px;\n\t}\n}\n\n@media only screen and (min-width: 1137px) {\n\t#authors-container #booksList {\n\t\tmax-width: 1136px;\n\t\tmargin: 0px;\n\t}\n\t\n\t#authors-container .author-name {\n\t\tmax-width: 1136px;\n\t}\n}\n\n#authors-container .w3-col {\n\twidth: 100%;\n\theight: 408px;\n}\n\n@media only screen and (min-width: 600px) {\n\t#authors-container .w3-col {\n\t\twidth: 284px;\n\t}\n}\n\n#authors-container #paper {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#authors-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#authors-container #book-btn {\n\twidth: 238px;\n\theight: 40px;\n\tmargin: auto;\n\tmargin-top: 8px;\n}\n\n#authors-container #book-btn button {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1.5px;\n}\n\n/*\nMODAL (INFOS)\n*/\n#authors-container .w3-modal {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n}\n\n#authors-container .w3-modal #footer {\n\tpadding-top: 16px;\n}\n\n#authors-container .w3-modal .close-infos-btn {\n\tfont-size: 1.1em;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tletter-spacing: 1px;\n}\n\n#authors-container .w3-modal p {\n\tmargin: 0px;\n\tmargin-top: 8px;\n}\n\n#authors-container .w3-modal ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#authors-container .w3-modal .contrib-role {\n\ttext-transform: capitalize;\n}\n\n\n", ""]);
 
 // exports
 
@@ -15576,7 +15560,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="authors-container" class="w3-content" style="max-width: 1136px">\n	<div id="top-page-header" class="w3-light-gray">auteurs</div>\n	<div id="letters" class="w3-container w3-padding-32"></div>\n	<div id="authorsList" class="w3-padding-48 w3-animate-opacity">\n		<% for(var i=0; i<authors.length; i++) {%>\n			<% if(authors[i].visible) { %>\n			<div class="author">\n				<p class="author-name w3-border-bottom"><%- authors[i].name %></p>\n				<div id="booksList" class="w3-padding-16">\n					<div class=\'w3-row\'>\n						<% var works = authors[i].books.concat(authors[i].contribs)	%>\n						<% for(var j=0; j<works.length; j++) {\n							if(works[j].role) {\n									var b = works[j].book;\n								} else {\n									var b = works[j];\n								}\n							\n							if(b.visible) {\n							for(var k=0; k<books.length; k++) {\n								if(books[k].id===b.id) {\n									var book = books[k];\n									break;\n								}\n							}%>\n							\n							<!-- MODAL (INFOS) -->\n							<div id="infos-<%= book.id %>" class="w3-modal" style="background-color: rgba(0,0,0,0.1)">\n								<div class="w3-modal-content w3-card" style="max-width: 500px">\n									<div class="w3-container w3-padding-16">\n										  <p><b>Titre : </b><%- book.title %></p>\n										  <% if(book.subtitle1) {%>\n											<p><b>Sous-titre : </b><%- book.subtitle1 %></p>\n										  <%}%>\n										  <% if(book.subtitle2) {%>\n											<p><b>Sous-sous-titre : </b><%- book.subtitle2 %></p>\n										  <%}%>\n										  <p><b>Année de parution : </b><%- book.year %></p>\n										  <% if(book.authors.length > 1) {%>\n												<p>\n													<span><b>Auteurs :</b></span>\n													<br>\n													<ul>\n													<% for(var j=0; j<book.authors.length; j++) {%>\n														<li>\n															<%- book.authors[j].name %> (<%- book.authors[j].birth %>&nbsp;&ndash; <%- book.authors[j].death %>)\n														</li>\n													<%}%>\n													</ul>\n												</p>\n										  <%} else if(book.authors.length === 1) {%>\n												<p><b>Auteur : </b><%- book.authors[0].name %> (<%- book.authors[0].birth %>&nbsp;&ndash; <%- book.authors[0].death %>)</p>\n										  <%}%>\n										  <% if(book.contribs.length > 1) {%>\n												<p>\n													<span><b>Contributions :</b></span>\n													<br>\n													<ul>\n													<% for(var j=0; j<book.contribs.length; j++) {%>\n														<li>\n															<span class="contrib-role"><%- book.contribs[j].role %> : </span>\n															<%- book.contribs[j].name %> (<%- book.contribs[j].birth %>&nbsp;&ndash; <%- book.contribs[j].death %>)\n														</li>\n													<%}%>\n													</ul>\n												</p>\n										  <%} else if(book.contribs.length === 1) {%>\n												<p>\n													<span><b>Contribution : </b></span>\n													<br>\n													<ul>\n														<li>\n															<span class="contrib-role"><%- book.contribs[0].role %> : </span>\n															<%- book.contribs[0].name %> (<%- book.contribs[0].birth %>&nbsp;&ndash; <%- book.contribs[0].death %>)\n														</li>\n													</ul>\n												</p>\n										  <%}%>\n										  <p class="book-source"><b>Source : </b>\n											  <ul>\n												  <li>&Eacute;diteur : <%- book.source.publisher %></li>\n												  <li>Année de publication : <%- book.source.year %></li>\n											  </ul>\n										  </p>\n										  <% if(book.description) {%>\n										  <div><%- book.description %></div>\n										  <%}%>\n									</div>\n									<div id=footer class="w3-container w3-border-bottom">\n										<button id="close-infos-<%= book.id %>" class="close-infos-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-bottomright">Fermer</button>\n									</div>\n								</div>\n							</div>\n							\n							<div class="w3-col" style="text-align: center">\n								<div id="paper">\n								<div id="<%= book.id %>" class="book w3-card-4 w3-display-container" style="<%= book.styles.cover %>">\n									<p class="book-author" style="<%=book.styles.author %>"><%= book.authorDisplay %></p>\n									<p class="title" style="<%= book.styles.title %>">\n										<%- book.title %>\n									</p>\n									<% if(book.subtitle1) {%>\n									<p class="subtitle1" style="<%=book.styles.subtitle1 %>">\n										<%- book.subtitle1 %></a>\n									</p>\n									<% } %>\n									<% if(book.subtitle2) {%>\n									<p class="subtitle1" style="<%=book.styles.subtitle2 %>">\n										<%- book.subtitle2 %></a>\n									</p>\n									<% } %>\n									<p class="logo w3-display-bottommiddle" style="<%=book.styles.logo %>">liber</p>\n							   </div>\n							   </div>\n							   <div id="book-btn" >\n									<button id="open-infos-<%= book.id %>" class="open-infos-btn align-right w3-button">+ d\'infos</button>\n							   </div>\n							</div>\n						   <% } %>\n						<% } %>\n					</div>\n				</div>\n			</div>\n			<% } %>\n		<% } %>\n	</div>\n</div>\n',
+        input: '<div id="authors-container" class="w3-content" style="max-width: 1136px">\n	<div id="top-page-header" class="w3-light-gray">auteurs</div>\n	<div id="letters" class="w3-container w3-padding-32">\n		<%- include src/components/authors/authors-letters.ejs -%>\n	</div>\n	<div id="authorsList" class="w3-padding-48 w3-animate-opacity">\n		<% for(var i=0; i<authors.length; i++) {%>\n			<% if(authors[i].visible) { %>\n			<div class="author">\n				<p class="author-name w3-border-bottom"><%- authors[i].name %></p>\n				<div id="booksList" class="w3-padding-16">\n					<div class=\'w3-row\'>\n						<% var works = authors[i].books.concat(authors[i].contribs)	%>\n						<% for(var j=0; j<works.length; j++) {\n							if(works[j].role) {\n									var b = works[j].book;\n								} else {\n									var b = works[j];\n								}\n							\n							if(b.visible) {\n							for(var k=0; k<books.length; k++) {\n								if(books[k].id===b.id) {\n									var book = books[k];\n									break;\n								}\n							}%>\n							\n							<!-- MODAL (INFOS) -->\n							<div id="infos-<%= book.id %>" class="w3-modal" style="background-color: rgba(0,0,0,0.1)">\n								<div class="w3-modal-content w3-card" style="max-width: 500px">\n									<div class="w3-container w3-padding-16">\n										  <p><b>Titre : </b><%- book.title %></p>\n										  <% if(book.subtitle1) {%>\n											<p><b>Sous-titre : </b><%- book.subtitle1 %></p>\n										  <%}%>\n										  <% if(book.subtitle2) {%>\n											<p><b>Sous-sous-titre : </b><%- book.subtitle2 %></p>\n										  <%}%>\n										  <p><b>Année de parution : </b><%- book.year %></p>\n										  <% if(book.authors.length > 1) {%>\n												<p>\n													<span><b>Auteurs :</b></span>\n													<br>\n													<ul>\n													<% for(var j=0; j<book.authors.length; j++) {%>\n														<li>\n															<%- book.authors[j].name %> (<%- book.authors[j].birth %>&nbsp;&ndash; <%- book.authors[j].death %>)\n														</li>\n													<%}%>\n													</ul>\n												</p>\n										  <%} else if(book.authors.length === 1) {%>\n												<p><b>Auteur : </b><%- book.authors[0].name %> (<%- book.authors[0].birth %>&nbsp;&ndash; <%- book.authors[0].death %>)</p>\n										  <%}%>\n										  <% if(book.contribs.length > 1) {%>\n												<p>\n													<span><b>Contributions :</b></span>\n													<br>\n													<ul>\n													<% for(var j=0; j<book.contribs.length; j++) {%>\n														<li>\n															<span class="contrib-role"><%- book.contribs[j].role %> : </span>\n															<%- book.contribs[j].name %> (<%- book.contribs[j].birth %>&nbsp;&ndash; <%- book.contribs[j].death %>)\n														</li>\n													<%}%>\n													</ul>\n												</p>\n										  <%} else if(book.contribs.length === 1) {%>\n												<p>\n													<span><b>Contribution : </b></span>\n													<br>\n													<ul>\n														<li>\n															<span class="contrib-role"><%- book.contribs[0].role %> : </span>\n															<%- book.contribs[0].name %> (<%- book.contribs[0].birth %>&nbsp;&ndash; <%- book.contribs[0].death %>)\n														</li>\n													</ul>\n												</p>\n										  <%}%>\n										  <p class="book-source"><b>Source : </b>\n											  <ul>\n												  <li>&Eacute;diteur : <%- book.source.publisher %></li>\n												  <li>Année de publication : <%- book.source.year %></li>\n											  </ul>\n										  </p>\n										  <% if(book.description) {%>\n										  <div><%- book.description %></div>\n										  <%}%>\n									</div>\n									<div id=footer class="w3-container w3-border-bottom">\n										<button id="close-infos-<%= book.id %>" class="close-infos-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-bottomright">Fermer</button>\n									</div>\n								</div>\n							</div>\n							\n							<div class="w3-col" style="text-align: center">\n								<div id="paper" style="background-image=<%= book.styles.image %>">\n								<div id="<%= book.id %>" class="book w3-card-4 w3-display-container" style="<%= book.styles.cover %>">\n									<p class="book-author" style="<%=book.styles.author %>"><%= book.authorDisplay %></p>\n									<p class="title" style="<%= book.styles.title %>">\n										<%- book.title %>\n									</p>\n									<% if(book.subtitle1) {%>\n									<p class="subtitle1" style="<%=book.styles.subtitle1 %>">\n										<%- book.subtitle1 %></a>\n									</p>\n									<% } %>\n									<% if(book.subtitle2) {%>\n									<p class="subtitle1" style="<%=book.styles.subtitle2 %>">\n										<%- book.subtitle2 %></a>\n									</p>\n									<% } %>\n									<p class="logo w3-display-bottommiddle" style="<%=book.styles.logo %>">liber</p>\n							   </div>\n							   </div>\n							   <div id="book-btn" >\n									<button id="open-infos-<%= book.id %>" class="open-infos-btn align-right w3-button">+ d\'infos</button>\n							   </div>\n							</div>\n						   <% } %>\n						<% } %>\n					</div>\n				</div>\n			</div>\n			<% } %>\n		<% } %>\n	</div>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -15593,17 +15577,21 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
         var buf = [];
         with (locals || {}) {
             (function() {
-                buf.push('<div id="authors-container" class="w3-content" style="max-width: 1136px">\n	<div id="top-page-header" class="w3-light-gray">auteurs</div>\n	<div id="letters" class="w3-container w3-padding-32"></div>\n	<div id="authorsList" class="w3-padding-48 w3-animate-opacity">\n		');
-                __stack.lineno = 5;
+                buf.push('<div id="authors-container" class="w3-content" style="max-width: 1136px">\n	<div id="top-page-header" class="w3-light-gray">auteurs</div>\n	<div id="letters" class="w3-container w3-padding-32">\n		' + function() {
+                    var buf = [];
+                    buf.push('<a id="a" href="#/authors?q=A" class="w3-text-gray w3-hover-none w3-hover-text-black">A</a>&emsp;\n<a id="b" href="#/authors?q=B" class="w3-text-gray w3-hover-none w3-hover-text-black">B</a>&emsp;\n<a id="c" href="#/authors?q=C" class="w3-text-gray w3-hover-none w3-hover-text-black">C</a>&emsp;\n<a id="d" href="#/authors?q=D" class="w3-text-gray w3-hover-none w3-hover-text-black">D</a>&emsp;\n<a id="e" href="#/authors?q=E" class="w3-text-gray w3-hover-none w3-hover-text-black">E</a>&emsp;\n<a id="f" href="#/authors?q=F" class="w3-text-gray w3-hover-none w3-hover-text-black">F</a>&emsp;\n<a id="g" href="#/authors?q=G" class="w3-text-gray w3-hover-none w3-hover-text-black">G</a>&emsp;\n<a id="h" href="#/authors?q=H" class="w3-text-gray w3-hover-none w3-hover-text-black">H</a>&emsp;\n<a id="i" href="#/authors?q=I" class="w3-text-gray w3-hover-none w3-hover-text-black">I</a>&emsp;\n<a id="j" href="#/authors?q=J" class="w3-text-gray w3-hover-none w3-hover-text-black">J</a>&emsp;\n<a id="k" href="#/authors?q=K" class="w3-text-gray w3-hover-none w3-hover-text-black">K</a>&emsp;\n<a id="l" href="#/authors?q=L" class="w3-text-gray w3-hover-none w3-hover-text-black">L</a>&emsp;\n<a id="m" href="#/authors?q=M" class="w3-text-gray w3-hover-none w3-hover-text-black">M</a>&emsp;\n<a id="n" href="#/authors?q=N" class="w3-text-gray w3-hover-none w3-hover-text-black">N</a>&emsp;\n<a id="o" href="#/authors?q=O" class="w3-text-gray w3-hover-none w3-hover-text-black">O</a>&emsp;\n<a id="p" href="#/authors?q=P" class="w3-text-gray w3-hover-none w3-hover-text-black">P</a>&emsp;\n<a id="q" href="#/authors?q=Q" class="w3-text-gray w3-hover-none w3-hover-text-black">Q</a>&emsp;\n<a id="r" href="#/authors?q=R" class="w3-text-gray w3-hover-none w3-hover-text-black">R</a>&emsp;\n<a id="s" href="#/authors?q=S" class="w3-text-gray w3-hover-none w3-hover-text-black">S</a>&emsp;\n<a id="t" href="#/authors?q=T" class="w3-text-gray w3-hover-none w3-hover-text-black">T</a>&emsp;\n<a id="u" href="#/authors?q=U" class="w3-text-gray w3-hover-none w3-hover-text-black">U</a>&emsp;\n<a id="v" href="#/authors?q=V" class="w3-text-gray w3-hover-none w3-hover-text-black">V</a>&emsp;\n<a id="w" href="#/authors?q=W" class="w3-text-gray w3-hover-none w3-hover-text-black">W</a>&emsp;\n<a id="x" href="#/authors?q=X" class="w3-text-gray w3-hover-none w3-hover-text-black">X</a>&emsp;\n<a id="y" href="#/authors?q=Y" class="w3-text-gray w3-hover-none w3-hover-text-black">Y</a>&emsp;\n<a id="z" href="#/authors?q=Z" class="w3-text-gray w3-hover-none w3-hover-text-black">Z</a>&emsp;\n');
+                    return buf.join("");
+                }() + '	</div>\n	<div id="authorsList" class="w3-padding-48 w3-animate-opacity">\n		');
+                __stack.lineno = 6;
                 for (var i = 0; i < authors.length; i++) {
                     buf.push("\n			");
-                    __stack.lineno = 6;
+                    __stack.lineno = 7;
                     if (authors[i].visible) {
-                        buf.push('\n			<div class="author">\n				<p class="author-name w3-border-bottom">', (__stack.lineno = 8, authors[i].name), '</p>\n				<div id="booksList" class="w3-padding-16">\n					<div class=\'w3-row\'>\n						');
-                        __stack.lineno = 11;
+                        buf.push('\n			<div class="author">\n				<p class="author-name w3-border-bottom">', (__stack.lineno = 9, authors[i].name), '</p>\n				<div id="booksList" class="w3-padding-16">\n					<div class=\'w3-row\'>\n						');
+                        __stack.lineno = 12;
                         var works = authors[i].books.concat(authors[i].contribs);
                         buf.push("\n						");
-                        __stack.lineno = 12;
+                        __stack.lineno = 13;
                         for (var j = 0; j < works.length; j++) {
                             if (works[j].role) {
                                 var b = works[j].book;
@@ -15617,77 +15605,77 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                                         break;
                                     }
                                 }
-                                buf.push('\n							\n							<!-- MODAL (INFOS) -->\n							<div id="infos-', escape((__stack.lineno = 28, book.id)), '" class="w3-modal" style="background-color: rgba(0,0,0,0.1)">\n								<div class="w3-modal-content w3-card" style="max-width: 500px">\n									<div class="w3-container w3-padding-16">\n										  <p><b>Titre : </b>', (__stack.lineno = 31, book.title), "</p>\n										  ");
-                                __stack.lineno = 32;
+                                buf.push('\n							\n							<!-- MODAL (INFOS) -->\n							<div id="infos-', escape((__stack.lineno = 29, book.id)), '" class="w3-modal" style="background-color: rgba(0,0,0,0.1)">\n								<div class="w3-modal-content w3-card" style="max-width: 500px">\n									<div class="w3-container w3-padding-16">\n										  <p><b>Titre : </b>', (__stack.lineno = 32, book.title), "</p>\n										  ");
+                                __stack.lineno = 33;
                                 if (book.subtitle1) {
-                                    buf.push("\n											<p><b>Sous-titre : </b>", (__stack.lineno = 33, book.subtitle1), "</p>\n										  ");
-                                    __stack.lineno = 34;
+                                    buf.push("\n											<p><b>Sous-titre : </b>", (__stack.lineno = 34, book.subtitle1), "</p>\n										  ");
+                                    __stack.lineno = 35;
                                 }
                                 buf.push("\n										  ");
-                                __stack.lineno = 35;
+                                __stack.lineno = 36;
                                 if (book.subtitle2) {
-                                    buf.push("\n											<p><b>Sous-sous-titre : </b>", (__stack.lineno = 36, book.subtitle2), "</p>\n										  ");
-                                    __stack.lineno = 37;
+                                    buf.push("\n											<p><b>Sous-sous-titre : </b>", (__stack.lineno = 37, book.subtitle2), "</p>\n										  ");
+                                    __stack.lineno = 38;
                                 }
-                                buf.push("\n										  <p><b>Année de parution : </b>", (__stack.lineno = 38, book.year), "</p>\n										  ");
-                                __stack.lineno = 39;
+                                buf.push("\n										  <p><b>Année de parution : </b>", (__stack.lineno = 39, book.year), "</p>\n										  ");
+                                __stack.lineno = 40;
                                 if (book.authors.length > 1) {
                                     buf.push("\n												<p>\n													<span><b>Auteurs :</b></span>\n													<br>\n													<ul>\n													");
-                                    __stack.lineno = 44;
+                                    __stack.lineno = 45;
                                     for (var j = 0; j < book.authors.length; j++) {
-                                        buf.push("\n														<li>\n															", (__stack.lineno = 46, book.authors[j].name), " (", (__stack.lineno = 46, book.authors[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 46, book.authors[j].death), ")\n														</li>\n													");
-                                        __stack.lineno = 48;
+                                        buf.push("\n														<li>\n															", (__stack.lineno = 47, book.authors[j].name), " (", (__stack.lineno = 47, book.authors[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 47, book.authors[j].death), ")\n														</li>\n													");
+                                        __stack.lineno = 49;
                                     }
                                     buf.push("\n													</ul>\n												</p>\n										  ");
-                                    __stack.lineno = 51;
+                                    __stack.lineno = 52;
                                 } else if (book.authors.length === 1) {
-                                    buf.push("\n												<p><b>Auteur : </b>", (__stack.lineno = 52, book.authors[0].name), " (", (__stack.lineno = 52, book.authors[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 52, book.authors[0].death), ")</p>\n										  ");
-                                    __stack.lineno = 53;
+                                    buf.push("\n												<p><b>Auteur : </b>", (__stack.lineno = 53, book.authors[0].name), " (", (__stack.lineno = 53, book.authors[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 53, book.authors[0].death), ")</p>\n										  ");
+                                    __stack.lineno = 54;
                                 }
                                 buf.push("\n										  ");
-                                __stack.lineno = 54;
+                                __stack.lineno = 55;
                                 if (book.contribs.length > 1) {
                                     buf.push("\n												<p>\n													<span><b>Contributions :</b></span>\n													<br>\n													<ul>\n													");
-                                    __stack.lineno = 59;
+                                    __stack.lineno = 60;
                                     for (var j = 0; j < book.contribs.length; j++) {
-                                        buf.push('\n														<li>\n															<span class="contrib-role">', (__stack.lineno = 61, book.contribs[j].role), " : </span>\n															", (__stack.lineno = 62, book.contribs[j].name), " (", (__stack.lineno = 62, book.contribs[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 62, book.contribs[j].death), ")\n														</li>\n													");
-                                        __stack.lineno = 64;
+                                        buf.push('\n														<li>\n															<span class="contrib-role">', (__stack.lineno = 62, book.contribs[j].role), " : </span>\n															", (__stack.lineno = 63, book.contribs[j].name), " (", (__stack.lineno = 63, book.contribs[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 63, book.contribs[j].death), ")\n														</li>\n													");
+                                        __stack.lineno = 65;
                                     }
                                     buf.push("\n													</ul>\n												</p>\n										  ");
-                                    __stack.lineno = 67;
+                                    __stack.lineno = 68;
                                 } else if (book.contribs.length === 1) {
-                                    buf.push('\n												<p>\n													<span><b>Contribution : </b></span>\n													<br>\n													<ul>\n														<li>\n															<span class="contrib-role">', (__stack.lineno = 73, book.contribs[0].role), " : </span>\n															", (__stack.lineno = 74, book.contribs[0].name), " (", (__stack.lineno = 74, book.contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 74, book.contribs[0].death), ")\n														</li>\n													</ul>\n												</p>\n										  ");
-                                    __stack.lineno = 78;
+                                    buf.push('\n												<p>\n													<span><b>Contribution : </b></span>\n													<br>\n													<ul>\n														<li>\n															<span class="contrib-role">', (__stack.lineno = 74, book.contribs[0].role), " : </span>\n															", (__stack.lineno = 75, book.contribs[0].name), " (", (__stack.lineno = 75, book.contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 75, book.contribs[0].death), ")\n														</li>\n													</ul>\n												</p>\n										  ");
+                                    __stack.lineno = 79;
                                 }
-                                buf.push('\n										  <p class="book-source"><b>Source : </b>\n											  <ul>\n												  <li>&Eacute;diteur : ', (__stack.lineno = 81, book.source.publisher), "</li>\n												  <li>Année de publication : ", (__stack.lineno = 82, book.source.year), "</li>\n											  </ul>\n										  </p>\n										  ");
-                                __stack.lineno = 85;
+                                buf.push('\n										  <p class="book-source"><b>Source : </b>\n											  <ul>\n												  <li>&Eacute;diteur : ', (__stack.lineno = 82, book.source.publisher), "</li>\n												  <li>Année de publication : ", (__stack.lineno = 83, book.source.year), "</li>\n											  </ul>\n										  </p>\n										  ");
+                                __stack.lineno = 86;
                                 if (book.description) {
-                                    buf.push("\n										  <div>", (__stack.lineno = 86, book.description), "</div>\n										  ");
-                                    __stack.lineno = 87;
+                                    buf.push("\n										  <div>", (__stack.lineno = 87, book.description), "</div>\n										  ");
+                                    __stack.lineno = 88;
                                 }
-                                buf.push('\n									</div>\n									<div id=footer class="w3-container w3-border-bottom">\n										<button id="close-infos-', escape((__stack.lineno = 90, book.id)), '" class="close-infos-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-bottomright">Fermer</button>\n									</div>\n								</div>\n							</div>\n							\n							<div class="w3-col" style="text-align: center">\n								<div id="paper">\n								<div id="', escape((__stack.lineno = 97, book.id)), '" class="book w3-card-4 w3-display-container" style="', escape((__stack.lineno = 97, book.styles.cover)), '">\n									<p class="book-author" style="', escape((__stack.lineno = 98, book.styles.author)), '">', escape((__stack.lineno = 98, book.authorDisplay)), '</p>\n									<p class="title" style="', escape((__stack.lineno = 99, book.styles.title)), '">\n										', (__stack.lineno = 100, book.title), "\n									</p>\n									");
-                                __stack.lineno = 102;
+                                buf.push('\n									</div>\n									<div id=footer class="w3-container w3-border-bottom">\n										<button id="close-infos-', escape((__stack.lineno = 91, book.id)), '" class="close-infos-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-bottomright">Fermer</button>\n									</div>\n								</div>\n							</div>\n							\n							<div class="w3-col" style="text-align: center">\n								<div id="paper" style="background-image=', escape((__stack.lineno = 97, book.styles.image)), '">\n								<div id="', escape((__stack.lineno = 98, book.id)), '" class="book w3-card-4 w3-display-container" style="', escape((__stack.lineno = 98, book.styles.cover)), '">\n									<p class="book-author" style="', escape((__stack.lineno = 99, book.styles.author)), '">', escape((__stack.lineno = 99, book.authorDisplay)), '</p>\n									<p class="title" style="', escape((__stack.lineno = 100, book.styles.title)), '">\n										', (__stack.lineno = 101, book.title), "\n									</p>\n									");
+                                __stack.lineno = 103;
                                 if (book.subtitle1) {
-                                    buf.push('\n									<p class="subtitle1" style="', escape((__stack.lineno = 103, book.styles.subtitle1)), '">\n										', (__stack.lineno = 104, book.subtitle1), "</a>\n									</p>\n									");
-                                    __stack.lineno = 106;
+                                    buf.push('\n									<p class="subtitle1" style="', escape((__stack.lineno = 104, book.styles.subtitle1)), '">\n										', (__stack.lineno = 105, book.subtitle1), "</a>\n									</p>\n									");
+                                    __stack.lineno = 107;
                                 }
                                 buf.push("\n									");
-                                __stack.lineno = 107;
+                                __stack.lineno = 108;
                                 if (book.subtitle2) {
-                                    buf.push('\n									<p class="subtitle1" style="', escape((__stack.lineno = 108, book.styles.subtitle2)), '">\n										', (__stack.lineno = 109, book.subtitle2), "</a>\n									</p>\n									");
-                                    __stack.lineno = 111;
+                                    buf.push('\n									<p class="subtitle1" style="', escape((__stack.lineno = 109, book.styles.subtitle2)), '">\n										', (__stack.lineno = 110, book.subtitle2), "</a>\n									</p>\n									");
+                                    __stack.lineno = 112;
                                 }
-                                buf.push('\n									<p class="logo w3-display-bottommiddle" style="', escape((__stack.lineno = 112, book.styles.logo)), '">liber</p>\n							   </div>\n							   </div>\n							   <div id="book-btn" >\n									<button id="open-infos-', escape((__stack.lineno = 116, book.id)), '" class="open-infos-btn align-right w3-button">+ d\'infos</button>\n							   </div>\n							</div>\n						   ');
-                                __stack.lineno = 119;
+                                buf.push('\n									<p class="logo w3-display-bottommiddle" style="', escape((__stack.lineno = 113, book.styles.logo)), '">liber</p>\n							   </div>\n							   </div>\n							   <div id="book-btn" >\n									<button id="open-infos-', escape((__stack.lineno = 117, book.id)), '" class="open-infos-btn align-right w3-button">+ d\'infos</button>\n							   </div>\n							</div>\n						   ');
+                                __stack.lineno = 120;
                             }
                             buf.push("\n						");
-                            __stack.lineno = 120;
+                            __stack.lineno = 121;
                         }
                         buf.push("\n					</div>\n				</div>\n			</div>\n			");
-                        __stack.lineno = 124;
+                        __stack.lineno = 125;
                     }
                     buf.push("\n		");
-                    __stack.lineno = 125;
+                    __stack.lineno = 126;
                 }
                 buf.push("\n	</div>\n</div>\n");
             })();
@@ -15700,42 +15688,6 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 
 /***/ }),
 /* 31 */
-/***/ (function(module, exports) {
-
-module.exports = function anonymous(locals, filters, escape, rethrow) {
-    escape = escape || function(html) {
-        return String(html).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
-    };
-    var __stack = {
-        lineno: 1,
-        input: '<a id="a" href="#/authors?q=A" class="w3-text-gray w3-hover-none w3-hover-text-black">A</a>&emsp;\n<a id="b" href="#/authors?q=B" class="w3-text-gray w3-hover-none w3-hover-text-black">B</a>&emsp;\n<a id="c" href="#/authors?q=C" class="w3-text-gray w3-hover-none w3-hover-text-black">C</a>&emsp;\n<a id="d" href="#/authors?q=D" class="w3-text-gray w3-hover-none w3-hover-text-black">D</a>&emsp;\n<a id="e" href="#/authors?q=E" class="w3-text-gray w3-hover-none w3-hover-text-black">E</a>&emsp;\n<a id="f" href="#/authors?q=F" class="w3-text-gray w3-hover-none w3-hover-text-black">F</a>&emsp;\n<a id="g" href="#/authors?q=G" class="w3-text-gray w3-hover-none w3-hover-text-black">G</a>&emsp;\n<a id="h" href="#/authors?q=H" class="w3-text-gray w3-hover-none w3-hover-text-black">H</a>&emsp;\n<a id="i" href="#/authors?q=I" class="w3-text-gray w3-hover-none w3-hover-text-black">I</a>&emsp;\n<a id="j" href="#/authors?q=J" class="w3-text-gray w3-hover-none w3-hover-text-black">J</a>&emsp;\n<a id="k" href="#/authors?q=K" class="w3-text-gray w3-hover-none w3-hover-text-black">K</a>&emsp;\n<a id="l" href="#/authors?q=L" class="w3-text-gray w3-hover-none w3-hover-text-black">L</a>&emsp;\n<a id="m" href="#/authors?q=M" class="w3-text-gray w3-hover-none w3-hover-text-black">M</a>&emsp;\n<a id="n" href="#/authors?q=N" class="w3-text-gray w3-hover-none w3-hover-text-black">N</a>&emsp;\n<a id="o" href="#/authors?q=O" class="w3-text-gray w3-hover-none w3-hover-text-black">O</a>&emsp;\n<a id="p" href="#/authors?q=P" class="w3-text-gray w3-hover-none w3-hover-text-black">P</a>&emsp;\n<a id="q" href="#/authors?q=Q" class="w3-text-gray w3-hover-none w3-hover-text-black">Q</a>&emsp;\n<a id="r" href="#/authors?q=R" class="w3-text-gray w3-hover-none w3-hover-text-black">R</a>&emsp;\n<a id="s" href="#/authors?q=S" class="w3-text-gray w3-hover-none w3-hover-text-black">S</a>&emsp;\n<a id="t" href="#/authors?q=T" class="w3-text-gray w3-hover-none w3-hover-text-black">T</a>&emsp;\n<a id="u" href="#/authors?q=U" class="w3-text-gray w3-hover-none w3-hover-text-black">U</a>&emsp;\n<a id="v" href="#/authors?q=V" class="w3-text-gray w3-hover-none w3-hover-text-black">V</a>&emsp;\n<a id="w" href="#/authors?q=W" class="w3-text-gray w3-hover-none w3-hover-text-black">W</a>&emsp;\n<a id="x" href="#/authors?q=X" class="w3-text-gray w3-hover-none w3-hover-text-black">X</a>&emsp;\n<a id="y" href="#/authors?q=Y" class="w3-text-gray w3-hover-none w3-hover-text-black">Y</a>&emsp;\n<a id="z" href="#/authors?q=Z" class="w3-text-gray w3-hover-none w3-hover-text-black">Z</a>&emsp;\n',
-        filename: "."
-    };
-    function rethrow(err, str, filename, lineno) {
-        var lines = str.split("\n"), start = Math.max(lineno - 3, 0), end = Math.min(lines.length, lineno + 3);
-        var context = lines.slice(start, end).map(function(line, i) {
-            var curr = i + start + 1;
-            return (curr == lineno ? " >> " : "    ") + curr + "| " + line;
-        }).join("\n");
-        err.path = filename;
-        err.message = (filename || "ejs") + ":" + lineno + "\n" + context + "\n\n" + err.message;
-        throw err;
-    }
-    try {
-        var buf = [];
-        with (locals || {}) {
-            (function() {
-                buf.push('<a id="a" href="#/authors?q=A" class="w3-text-gray w3-hover-none w3-hover-text-black">A</a>&emsp;\n<a id="b" href="#/authors?q=B" class="w3-text-gray w3-hover-none w3-hover-text-black">B</a>&emsp;\n<a id="c" href="#/authors?q=C" class="w3-text-gray w3-hover-none w3-hover-text-black">C</a>&emsp;\n<a id="d" href="#/authors?q=D" class="w3-text-gray w3-hover-none w3-hover-text-black">D</a>&emsp;\n<a id="e" href="#/authors?q=E" class="w3-text-gray w3-hover-none w3-hover-text-black">E</a>&emsp;\n<a id="f" href="#/authors?q=F" class="w3-text-gray w3-hover-none w3-hover-text-black">F</a>&emsp;\n<a id="g" href="#/authors?q=G" class="w3-text-gray w3-hover-none w3-hover-text-black">G</a>&emsp;\n<a id="h" href="#/authors?q=H" class="w3-text-gray w3-hover-none w3-hover-text-black">H</a>&emsp;\n<a id="i" href="#/authors?q=I" class="w3-text-gray w3-hover-none w3-hover-text-black">I</a>&emsp;\n<a id="j" href="#/authors?q=J" class="w3-text-gray w3-hover-none w3-hover-text-black">J</a>&emsp;\n<a id="k" href="#/authors?q=K" class="w3-text-gray w3-hover-none w3-hover-text-black">K</a>&emsp;\n<a id="l" href="#/authors?q=L" class="w3-text-gray w3-hover-none w3-hover-text-black">L</a>&emsp;\n<a id="m" href="#/authors?q=M" class="w3-text-gray w3-hover-none w3-hover-text-black">M</a>&emsp;\n<a id="n" href="#/authors?q=N" class="w3-text-gray w3-hover-none w3-hover-text-black">N</a>&emsp;\n<a id="o" href="#/authors?q=O" class="w3-text-gray w3-hover-none w3-hover-text-black">O</a>&emsp;\n<a id="p" href="#/authors?q=P" class="w3-text-gray w3-hover-none w3-hover-text-black">P</a>&emsp;\n<a id="q" href="#/authors?q=Q" class="w3-text-gray w3-hover-none w3-hover-text-black">Q</a>&emsp;\n<a id="r" href="#/authors?q=R" class="w3-text-gray w3-hover-none w3-hover-text-black">R</a>&emsp;\n<a id="s" href="#/authors?q=S" class="w3-text-gray w3-hover-none w3-hover-text-black">S</a>&emsp;\n<a id="t" href="#/authors?q=T" class="w3-text-gray w3-hover-none w3-hover-text-black">T</a>&emsp;\n<a id="u" href="#/authors?q=U" class="w3-text-gray w3-hover-none w3-hover-text-black">U</a>&emsp;\n<a id="v" href="#/authors?q=V" class="w3-text-gray w3-hover-none w3-hover-text-black">V</a>&emsp;\n<a id="w" href="#/authors?q=W" class="w3-text-gray w3-hover-none w3-hover-text-black">W</a>&emsp;\n<a id="x" href="#/authors?q=X" class="w3-text-gray w3-hover-none w3-hover-text-black">X</a>&emsp;\n<a id="y" href="#/authors?q=Y" class="w3-text-gray w3-hover-none w3-hover-text-black">Y</a>&emsp;\n<a id="z" href="#/authors?q=Z" class="w3-text-gray w3-hover-none w3-hover-text-black">Z</a>&emsp;\n');
-            })();
-        }
-        return buf.join("");
-    } catch (err) {
-        rethrow(err, __stack.input, __stack.filename, __stack.lineno);
-    }
-}
-
-/***/ }),
-/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15755,7 +15707,7 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminLoginTemplate = __webpack_require__(33);
+var adminLoginTemplate = __webpack_require__(32);
 //home.js
 var adminLogin = function adminLogin(container) {
 	'use strict';
@@ -15814,7 +15766,7 @@ var adminLogin = function adminLogin(container) {
 exports.default = adminLogin;
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15850,7 +15802,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15864,59 +15816,59 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _adminHome = __webpack_require__(35);
+var _adminHome = __webpack_require__(34);
 
 var _adminHome2 = _interopRequireDefault(_adminHome);
 
-var _adminUsers = __webpack_require__(37);
+var _adminUsers = __webpack_require__(36);
 
 var _adminUsers2 = _interopRequireDefault(_adminUsers);
 
-var _adminUser = __webpack_require__(39);
+var _adminUser = __webpack_require__(38);
 
 var _adminUser2 = _interopRequireDefault(_adminUser);
 
-var _adminNew = __webpack_require__(41);
+var _adminNew = __webpack_require__(40);
 
 var _adminNew2 = _interopRequireDefault(_adminNew);
 
-var _adminEdit = __webpack_require__(43);
+var _adminEdit = __webpack_require__(42);
 
 var _adminEdit2 = _interopRequireDefault(_adminEdit);
 
-var _adminEditPassword = __webpack_require__(45);
+var _adminEditPassword = __webpack_require__(44);
 
 var _adminEditPassword2 = _interopRequireDefault(_adminEditPassword);
 
-var _adminBooks = __webpack_require__(47);
+var _adminBooks = __webpack_require__(46);
 
 var _adminBooks2 = _interopRequireDefault(_adminBooks);
 
-var _adminBook = __webpack_require__(49);
+var _adminBook = __webpack_require__(48);
 
 var _adminBook2 = _interopRequireDefault(_adminBook);
 
-var _adminBooksNew = __webpack_require__(51);
+var _adminBooksNew = __webpack_require__(50);
 
 var _adminBooksNew2 = _interopRequireDefault(_adminBooksNew);
 
-var _adminBookEdit = __webpack_require__(58);
+var _adminBookEdit = __webpack_require__(57);
 
 var _adminBookEdit2 = _interopRequireDefault(_adminBookEdit);
 
-var _adminAuthors = __webpack_require__(65);
+var _adminAuthors = __webpack_require__(64);
 
 var _adminAuthors2 = _interopRequireDefault(_adminAuthors);
 
-var _adminAuthor = __webpack_require__(67);
+var _adminAuthor = __webpack_require__(66);
 
 var _adminAuthor2 = _interopRequireDefault(_adminAuthor);
 
-var _adminAuthorsNew = __webpack_require__(69);
+var _adminAuthorsNew = __webpack_require__(68);
 
 var _adminAuthorsNew2 = _interopRequireDefault(_adminAuthorsNew);
 
-var _adminAuthorEdit = __webpack_require__(71);
+var _adminAuthorEdit = __webpack_require__(70);
 
 var _adminAuthorEdit2 = _interopRequireDefault(_adminAuthorEdit);
 
@@ -16010,7 +15962,7 @@ var adminRouter = function adminRouter(oldhash, newhash, data) {
 exports.default = adminRouter;
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16030,7 +15982,7 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminHomeTemplate = __webpack_require__(36);
+var adminHomeTemplate = __webpack_require__(35);
 //home.js
 var adminHome = function adminHome(container, data) {
 	'use strict';
@@ -16061,7 +16013,7 @@ var adminHome = function adminHome(container, data) {
 exports.default = adminHome;
 
 /***/ }),
-/* 36 */
+/* 35 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16097,7 +16049,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 37 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16113,7 +16065,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminUsersTemplate = __webpack_require__(38);
+var adminUsersTemplate = __webpack_require__(37);
 //home.js
 var adminUsers = function adminUsers(container) {
 	'use strict';
@@ -16137,7 +16089,7 @@ var adminUsers = function adminUsers(container) {
 exports.default = adminUsers;
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16179,7 +16131,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 39 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16195,7 +16147,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminUserTemplate = __webpack_require__(40);
+var adminUserTemplate = __webpack_require__(39);
 //home.js
 var adminUser = function adminUser(container) {
 	'use strict';
@@ -16253,7 +16205,7 @@ var adminUser = function adminUser(container) {
 exports.default = adminUser;
 
 /***/ }),
-/* 40 */
+/* 39 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16289,7 +16241,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 41 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16305,7 +16257,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminNewTemplate = __webpack_require__(42);
+var adminNewTemplate = __webpack_require__(41);
 //home.js
 var adminNew = function adminNew(container) {
 	'use strict';
@@ -16365,7 +16317,7 @@ var adminNew = function adminNew(container) {
 exports.default = adminNew;
 
 /***/ }),
-/* 42 */
+/* 41 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16401,7 +16353,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16417,7 +16369,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminEditTemplate = __webpack_require__(44);
+var adminEditTemplate = __webpack_require__(43);
 //home.js
 var adminEdit = function adminEdit(container, user) {
 	'use strict';
@@ -16477,7 +16429,7 @@ var adminEdit = function adminEdit(container, user) {
 exports.default = adminEdit;
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16513,7 +16465,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 45 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16529,7 +16481,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminEditPasswordTemplate = __webpack_require__(46);
+var adminEditPasswordTemplate = __webpack_require__(45);
 //home.js
 var adminEditPassword = function adminEditPassword(container, user) {
 	'use strict';
@@ -16592,7 +16544,7 @@ var adminEditPassword = function adminEditPassword(container, user) {
 exports.default = adminEditPassword;
 
 /***/ }),
-/* 46 */
+/* 45 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16628,7 +16580,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 47 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16644,7 +16596,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminBooksTemplate = __webpack_require__(48);
+var adminBooksTemplate = __webpack_require__(47);
 //home.js
 var adminBooks = function adminBooks(container) {
 	'use strict';
@@ -16668,7 +16620,7 @@ var adminBooks = function adminBooks(container) {
 exports.default = adminBooks;
 
 /***/ }),
-/* 48 */
+/* 47 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16710,7 +16662,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 49 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16726,7 +16678,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminBookTemplate = __webpack_require__(50);
+var adminBookTemplate = __webpack_require__(49);
 //home.js
 var adminBook = function adminBook(container) {
 	'use strict';
@@ -16781,7 +16733,7 @@ var adminBook = function adminBook(container) {
 exports.default = adminBook;
 
 /***/ }),
-/* 50 */
+/* 49 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16790,7 +16742,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="adminBook" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="w3-modal w3-card-4">\n		<div class="w3-modal-content w3-animate-top">\n			<header class="w3-container w3-black"> \n				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>\n				<h4>Supprimer un ouvrage</h4>\n			</header>\n			<div  class="w3-container">\n				<p>Voulez-vous vraiment supprimer cet ouvrage ?</p>\n				<p><%- book.title %></p>\n				<p class="w3-right"><button type="button" id="delete-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black">Supprimer</button></p>\n			</div>\n			\n		</div>\n	</div>\n\n<!--\n	MAIN\n-->\n	<h4 class="w3-container align-left w3-padding-16">Ouvrage</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/books/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div id="book" class="w3-container">\n		<span class="error"><%= error %></span>\n		<span class="error" id="modal-error" data-utils-bind="{{ error }}"></span>\n		<div class="w3-border-bottom">\n			<p><b>Titre : </b><span><%- book.title %></span></p>\n			<p><b>Sous-titre1 : </b><span><%- book.subtitle1 %></span></p>\n			<p><b>Sous-titre2 : </b><span><%- book.subtitle2 %></span></p>\n			<p><b>Auteur (libellé) : </b><span><%- book.authorDisplay %></span></p>\n			<p>\n				<% if (book.authors.length===1) { %>\n					<span><b>Auteur :</b></span>\n				<% } else { %>\n					<span><b>Auteurs :</b></span>\n				<% } %>\n			</p>\n			<ul id="authors-list" class=\'w3-ul\'>\n				<% for(var i=0; i<book.authors.length; i++) {%>\n				<li>\n					<a href=\'/#/admin/authors/<%= book.authors[i].id %>\' class="w3-text-gray w3-hover-none w3-hover-text-black">\n						<%= book.authors[i].name %>\n					</a>\n				</li>\n				<% } %>\n			</ul>\n			<p>\n				<% if (book.contribs.length===1) { %>\n					<span><b>Contributeur :</b></span>\n				<% } else { %>\n					<span><b>Contributeurs :</b></span>\n				<% } %>\n			</p>\n			<ul id="contribs-list" class=\'w3-ul\'>\n				<% for(var i=0; i<book.contribs.length; i++) {%>\n				<li>\n					<a href=\'/#/admin/authors/<%= book.contribs[i].id %>\' class="w3-text-gray w3-hover-none w3-hover-text-black">\n						<%= book.contribs[i].name %> (<%= book.contribs[i].role %>)\n					</a>\n				</li>\n				<% } %>\n			</ul>\n			<p><b>Année de publication : </b><span><%= book.year %></span></p>\n			<p><b>Langue : </b><span><%= book.language %></span></p>\n			<p><b>Source :</b></p>\n			<ul class=\'w3-ul\'>\n				<li><b>&Eacute;diteur : </b><span><%- book.source.publisher %></span></li>\n				<li><b>Année : </b><span><%= book.source.year %></span></li>\n				<li><b>Origine : </b><span><%= book.source.origin %></span></li>\n			</ul>\n			<p><b>Styles :</b></p>\n			<ul class=\'w3-ul\'>\n				<li><b>Couleur : </b><span><%= book.styles.color %></span></li>\n				<li><b>Image : </b><span><%= book.styles.image %></span></li>\n				<li><b>Couverture : </b><span><%= book.styles.cover %></span></li>\n				<li><b>Auteur : </b><span><%= book.styles.author %></span></li>\n				<li><b>Titre : </b><span><%= book.styles.title %></span></li>\n				<li><b>Sous-titre1 : </b><span><%= book.styles.subtitle1 %></span></li>\n				<li><b>Sous-titre2 : </b><span><%= book.styles.subtitle2 %></span></li>\n				<li><b>Logo : </b><span><%= book.styles.logo %></span></li>\n			</ul>\n			<p><b>Collection : </b><span><%= book.collection %></span></p>\n			<p><b>Description :</b></p>\n			<div><%= book.description %></div>\n			<p><b>Path : </b><span><%= book.path %></span></p>\n			<p><b>Visible : </b><span><% if(book.visible===true) {%>oui<%} else {%>non<%}%></span></p>\n			<p><b>Créé le : </b><span><%= book.created_at %></span></p>\n			<p><b>Mis à jour le : </b><span><%= book.updated_at %></span></p>\n		</div>\n		<p>\n			<a href="#/admin/books/<%= book.id %>/edit" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-left">Modifier</a>\n			<button type="button" id="open-modal-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-right">Supprimer</button>\n		</p>\n	</div>\n</div>\n',
+        input: '<div id="adminBook" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="w3-modal w3-card-4">\n		<div class="w3-modal-content w3-animate-top">\n			<header class="w3-container w3-black"> \n				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>\n				<h4>Supprimer un ouvrage</h4>\n			</header>\n			<div  class="w3-container">\n				<p>Voulez-vous vraiment supprimer cet ouvrage ?</p>\n				<p><%- book.title %></p>\n				<p class="w3-right"><button type="button" id="delete-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black">Supprimer</button></p>\n			</div>\n			\n		</div>\n	</div>\n\n<!--\n	MAIN\n-->\n	<h4 class="w3-container align-left w3-padding-16">Ouvrage</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/books/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div id="book" class="w3-container">\n		<span class="error"><%= error %></span>\n		<span class="error" id="modal-error" data-utils-bind="{{ error }}"></span>\n		<div class="w3-border-bottom">\n			<p><b>Titre : </b><span><%- book.title %></span></p>\n			<p><b>Sous-titre1 : </b><span><%- book.subtitle1 %></span></p>\n			<p><b>Sous-titre2 : </b><span><%- book.subtitle2 %></span></p>\n			<p><b>Auteur (libellé) : </b><span><%- book.authorDisplay %></span></p>\n			<p>\n				<% if (book.authors.length===1) { %>\n					<span><b>Auteur :</b></span>\n				<% } else { %>\n					<span><b>Auteurs :</b></span>\n				<% } %>\n			</p>\n			<ul id="authors-list" class=\'w3-ul\'>\n				<% for(var i=0; i<book.authors.length; i++) {%>\n				<li>\n					<a href=\'/#/admin/authors/<%= book.authors[i].id %>\' class="w3-text-gray w3-hover-none w3-hover-text-black">\n						<%= book.authors[i].name %>\n					</a>\n				</li>\n				<% } %>\n			</ul>\n			<p>\n				<% if (book.contribs.length===1) { %>\n					<span><b>Contributeur :</b></span>\n				<% } else { %>\n					<span><b>Contributeurs :</b></span>\n				<% } %>\n			</p>\n			<ul id="contribs-list" class=\'w3-ul\'>\n				<% for(var i=0; i<book.contribs.length; i++) {%>\n				<li>\n					<a href=\'/#/admin/authors/<%= book.contribs[i].id %>\' class="w3-text-gray w3-hover-none w3-hover-text-black">\n						<%= book.contribs[i].name %> (<%= book.contribs[i].role %>)\n					</a>\n				</li>\n				<% } %>\n			</ul>\n			<p><b>Année de publication : </b><span><%= book.year %></span></p>\n			<p><b>Langue : </b><span><%= book.language %></span></p>\n			<p><b>Source :</b></p>\n			<ul class=\'w3-ul\'>\n				<li><b>&Eacute;diteur : </b><span><%- book.source.publisher %></span></li>\n				<li><b>Année : </b><span><%= book.source.year %></span></li>\n				<li><b>Origine : </b><span><%= book.source.origin %></span></li>\n			</ul>\n			<p><b>Styles :</b></p>\n			<ul class=\'w3-ul\'>\n				<li><b>Couleur : </b><span><%= book.styles.color %></span></li>\n				<li><b>Image : </b><span><%= book.styles.image %></span></li>\n				<li><b>Police : </b><span><%= book.styles.font %></span></li>\n				<li><b>Couverture : </b><span><%= book.styles.cover %></span></li>\n				<li><b>Auteur : </b><span><%= book.styles.author %></span></li>\n				<li><b>Titre : </b><span><%= book.styles.title %></span></li>\n				<li><b>Sous-titre1 : </b><span><%= book.styles.subtitle1 %></span></li>\n				<li><b>Sous-titre2 : </b><span><%= book.styles.subtitle2 %></span></li>\n				<li><b>Logo : </b><span><%= book.styles.logo %></span></li>\n			</ul>\n			<p><b>Collection : </b><span><%= book.collection %></span></p>\n			<p><b>Description :</b></p>\n			<div><%= book.description %></div>\n			<p><b>Path : </b><span><%= book.path %></span></p>\n			<p><b>Visible : </b><span><% if(book.visible===true) {%>oui<%} else {%>non<%}%></span></p>\n			<p><b>Créé le : </b><span><%= book.created_at %></span></p>\n			<p><b>Mis à jour le : </b><span><%= book.updated_at %></span></p>\n		</div>\n		<p>\n			<a href="#/admin/books/<%= book.id %>/edit" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-left">Modifier</a>\n			<button type="button" id="open-modal-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-right">Supprimer</button>\n		</p>\n	</div>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -16837,16 +16789,16 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                     buf.push("\n				<li>\n					<a href='/#/admin/authors/", escape((__stack.lineno = 59, book.contribs[i].id)), '\' class="w3-text-gray w3-hover-none w3-hover-text-black">\n						', escape((__stack.lineno = 60, book.contribs[i].name)), " (", escape((__stack.lineno = 60, book.contribs[i].role)), ")\n					</a>\n				</li>\n				");
                     __stack.lineno = 63;
                 }
-                buf.push("\n			</ul>\n			<p><b>Année de publication : </b><span>", escape((__stack.lineno = 65, book.year)), "</span></p>\n			<p><b>Langue : </b><span>", escape((__stack.lineno = 66, book.language)), "</span></p>\n			<p><b>Source :</b></p>\n			<ul class='w3-ul'>\n				<li><b>&Eacute;diteur : </b><span>", (__stack.lineno = 69, book.source.publisher), "</span></li>\n				<li><b>Année : </b><span>", escape((__stack.lineno = 70, book.source.year)), "</span></li>\n				<li><b>Origine : </b><span>", escape((__stack.lineno = 71, book.source.origin)), "</span></li>\n			</ul>\n			<p><b>Styles :</b></p>\n			<ul class='w3-ul'>\n				<li><b>Couleur : </b><span>", escape((__stack.lineno = 75, book.styles.color)), "</span></li>\n				<li><b>Image : </b><span>", escape((__stack.lineno = 76, book.styles.image)), "</span></li>\n				<li><b>Couverture : </b><span>", escape((__stack.lineno = 77, book.styles.cover)), "</span></li>\n				<li><b>Auteur : </b><span>", escape((__stack.lineno = 78, book.styles.author)), "</span></li>\n				<li><b>Titre : </b><span>", escape((__stack.lineno = 79, book.styles.title)), "</span></li>\n				<li><b>Sous-titre1 : </b><span>", escape((__stack.lineno = 80, book.styles.subtitle1)), "</span></li>\n				<li><b>Sous-titre2 : </b><span>", escape((__stack.lineno = 81, book.styles.subtitle2)), "</span></li>\n				<li><b>Logo : </b><span>", escape((__stack.lineno = 82, book.styles.logo)), "</span></li>\n			</ul>\n			<p><b>Collection : </b><span>", escape((__stack.lineno = 84, book.collection)), "</span></p>\n			<p><b>Description :</b></p>\n			<div>", escape((__stack.lineno = 86, book.description)), "</div>\n			<p><b>Path : </b><span>", escape((__stack.lineno = 87, book.path)), "</span></p>\n			<p><b>Visible : </b><span>");
-                __stack.lineno = 88;
+                buf.push("\n			</ul>\n			<p><b>Année de publication : </b><span>", escape((__stack.lineno = 65, book.year)), "</span></p>\n			<p><b>Langue : </b><span>", escape((__stack.lineno = 66, book.language)), "</span></p>\n			<p><b>Source :</b></p>\n			<ul class='w3-ul'>\n				<li><b>&Eacute;diteur : </b><span>", (__stack.lineno = 69, book.source.publisher), "</span></li>\n				<li><b>Année : </b><span>", escape((__stack.lineno = 70, book.source.year)), "</span></li>\n				<li><b>Origine : </b><span>", escape((__stack.lineno = 71, book.source.origin)), "</span></li>\n			</ul>\n			<p><b>Styles :</b></p>\n			<ul class='w3-ul'>\n				<li><b>Couleur : </b><span>", escape((__stack.lineno = 75, book.styles.color)), "</span></li>\n				<li><b>Image : </b><span>", escape((__stack.lineno = 76, book.styles.image)), "</span></li>\n				<li><b>Police : </b><span>", escape((__stack.lineno = 77, book.styles.font)), "</span></li>\n				<li><b>Couverture : </b><span>", escape((__stack.lineno = 78, book.styles.cover)), "</span></li>\n				<li><b>Auteur : </b><span>", escape((__stack.lineno = 79, book.styles.author)), "</span></li>\n				<li><b>Titre : </b><span>", escape((__stack.lineno = 80, book.styles.title)), "</span></li>\n				<li><b>Sous-titre1 : </b><span>", escape((__stack.lineno = 81, book.styles.subtitle1)), "</span></li>\n				<li><b>Sous-titre2 : </b><span>", escape((__stack.lineno = 82, book.styles.subtitle2)), "</span></li>\n				<li><b>Logo : </b><span>", escape((__stack.lineno = 83, book.styles.logo)), "</span></li>\n			</ul>\n			<p><b>Collection : </b><span>", escape((__stack.lineno = 85, book.collection)), "</span></p>\n			<p><b>Description :</b></p>\n			<div>", escape((__stack.lineno = 87, book.description)), "</div>\n			<p><b>Path : </b><span>", escape((__stack.lineno = 88, book.path)), "</span></p>\n			<p><b>Visible : </b><span>");
+                __stack.lineno = 89;
                 if (book.visible === true) {
                     buf.push("oui");
-                    __stack.lineno = 88;
+                    __stack.lineno = 89;
                 } else {
                     buf.push("non");
-                    __stack.lineno = 88;
+                    __stack.lineno = 89;
                 }
-                buf.push("</span></p>\n			<p><b>Créé le : </b><span>", escape((__stack.lineno = 89, book.created_at)), "</span></p>\n			<p><b>Mis à jour le : </b><span>", escape((__stack.lineno = 90, book.updated_at)), '</span></p>\n		</div>\n		<p>\n			<a href="#/admin/books/', escape((__stack.lineno = 93, book.id)), '/edit" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-left">Modifier</a>\n			<button type="button" id="open-modal-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-right">Supprimer</button>\n		</p>\n	</div>\n</div>\n');
+                buf.push("</span></p>\n			<p><b>Créé le : </b><span>", escape((__stack.lineno = 90, book.created_at)), "</span></p>\n			<p><b>Mis à jour le : </b><span>", escape((__stack.lineno = 91, book.updated_at)), '</span></p>\n		</div>\n		<p>\n			<a href="#/admin/books/', escape((__stack.lineno = 94, book.id)), '/edit" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-left">Modifier</a>\n			<button type="button" id="open-modal-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-right">Supprimer</button>\n		</p>\n	</div>\n</div>\n');
             })();
         }
         return buf.join("");
@@ -16856,7 +16808,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 51 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16876,12 +16828,12 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminBooksNewTemplate = __webpack_require__(52);
-var modalHeaderTemplate = __webpack_require__(53);
-var searchAuthorsResultsTemplate = __webpack_require__(54);
-var selectedAuthorsTemplate = __webpack_require__(55);
-var selectedContribsTemplate = __webpack_require__(56);
-var selectedContribRoleTemplate = __webpack_require__(57);
+var adminBooksNewTemplate = __webpack_require__(51);
+var modalHeaderTemplate = __webpack_require__(52);
+var searchAuthorsResultsTemplate = __webpack_require__(53);
+var selectedAuthorsTemplate = __webpack_require__(54);
+var selectedContribsTemplate = __webpack_require__(55);
+var selectedContribRoleTemplate = __webpack_require__(56);
 //home.js
 var adminBooksNew = function adminBooksNew(container) {
 	'use strict';
@@ -16953,6 +16905,7 @@ var adminBooksNew = function adminBooksNew(container) {
 		book.source.origin = form.querySelector('[name=source-origin]').value;
 		book.styles.color = form.querySelector('[name=styles-color').value;
 		book.styles.image = form.querySelector('[name=styles-image').value;
+		book.styles.font = form.querySelector('[name=styles-font').value;
 		book.styles.cover = form.querySelector('[name=styles-cover').value;
 		book.styles.author = form.querySelector('[name=styles-author').value;
 		book.styles.title = form.querySelector('[name=styles-title').value;
@@ -17088,7 +17041,7 @@ var adminBooksNew = function adminBooksNew(container) {
 exports.default = adminBooksNew;
 
 /***/ }),
-/* 52 */
+/* 51 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -17097,7 +17050,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="adminBooksNew" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="w3-modal w3-card-4">\n		<div class="w3-modal-content w3-animate-top">\n			<header class="w3-container w3-black"> \n				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>\n				<h4>Rechercher un auteur</h4>\n			</header>\n			<div class="w3-container">\n				<p id="search">\n				<input type="text" name="search" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ error }}"></span>\n				</p>\n				<div id="results" style="min-height:150px"></div>\n			</div>\n			\n		</div>\n	</div>\n<!--\n	MAIN\n-->\n	<h4 class="w3-container align-left w3-padding-16">Ajouter un ouvrage</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/books/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div class="w3-container">\n		<form id="adminBooksNewForm">\n			\n			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>\n			\n			<p id="title">\n				<label>Titre * : </label>\n				<input type="text" name="title" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ title }}"></span>\n			</p>\n			\n			<p id="subtitle1">\n				<label>Sous-titre 1 : </label>\n				<input type="text" name="subtitle1" class="w3-input w3-border">\n			</p>\n			\n			<p id="subtitle2">\n				<label>Sous-titre 2 : </label>\n				<input type="text" name="subtitle2" class="w3-input w3-border">\n			</p>\n			\n			<p id="authorDisplay">\n				<label>Auteur (libellé) * : </label>\n				<input type="text" name="authorDisplay" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ authorDisplay }}"></span>\n			</p>\n			\n			<div id="authors" class="w3-margin-bottom w3-border-bottom">\n				<div class="w3-margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Auteurs * : </label>\n						<a href="/#/authors" id="auteur" class="align-right w3-text-gray w3-hover-none w3-hover-text-black open-modal-btn">Rechercher</a>\n					</p>\n					\n					<ul id="authorsContainer" class="w3-ul w3-padding-32"></ul>\n					<span class="error" data-utils-bind="{{ authors }}"></span>\n				</div>\n				\n			</div>\n			\n			<div id="contribs" class="w3-margin-bottom w3-border-bottom">\n				<div class="w3-margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Contributeurs : </label>\n						<a href="/#/contribs" id="contributeur" class="align-right w3-text-gray w3-hover-none w3-hover-text-black open-modal-btn">Rechercher</a>\n					</p>\n					\n					<ul id="contribsContainer" class="w3-ul w3-padding-32"></ul>\n				</div>\n				\n			</div>\n			\n			<p id="year">\n				<label>Année de publication * : </label>\n				<input type="text" name="year" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ year }}"></span>\n			</p>\n			\n			<p id="language">\n				<label>Langue * : </label>\n				<input type="text" name="language" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ language }}"></span>\n			</p>\n			\n			<p id="categories">\n				<label>Catégories : </label>\n				<input type="text" name="categories" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ categories }}"></span>\n			</p>\n			\n			<p id="collection">\n				<label>Collection : </label>\n				<input type="text" name="collection" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ collection }}"></span>\n			</p>\n			\n			<p id="source-publisher">\n				<label>Source - éditeur : </label>\n				<input type="text" name="source-publisher" class="w3-input w3-border">\n			</p>\n			\n			<p id="source-year">\n				<label>Source - année de publication : </label>\n				<input type="text" name="source-year" class="w3-input w3-border">\n			</p>\n			\n			<p id="source-origin">\n				<label>Source - origine : </label>\n				<input type="text" name="source-origin" class="w3-input w3-border">\n			</p>\n			\n			<p id="styles-color">\n				<label>Styles - couleur : </label>\n				<input type="text" name="styles-color" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-image">\n				<label>Styles - image : </label>\n				<input type="text" name="styles-image" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-cover">\n				<label>Styles - couverture : </label>\n				<input type="text" name="styles-cover" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-author">\n				<label>Styles - auteur : </label>\n				<input type="text" name="styles-author" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-title">\n				<label>Styles - titre : </label>\n				<input type="text" name="styles-title" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-subtitle1">\n				<label>Styles - sous-titre1 : </label>\n				<input type="text" name="styles-subtitle1" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-subtitle2">\n				<label>Styles - sous-titre2 : </label>\n				<input type="text" name="styles-subtitle2" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-subtitle2">\n				<label>Styles - sous-titre2 : </label>\n				<input type="text" name="styles-subtitle2" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-logo">\n				<label>Styles - logo : </label>\n				<input type="text" name="styles-logo" class="w3-input w3-border" >\n			</p>\n			\n			<p id="description">\n				<label>Description : </label>\n				<textarea type="text" name="description" class="w3-input w3-border"></textarea>\n			</p>\n			\n			<p id="path">\n				<label>Path * : </label>\n				<input type="text" name="path" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ path }}"></span>\n			</p>\n			\n			<p id="visible">\n				<label><input type="checkbox" name="visible" > Visible</label>\n			</p>\n			\n			<p class="w3-padding-24">\n				<button type="submit" class="w3-btn w3-border">Valider</button>\n			</p>\n			\n		</form>\n	</div>\n</div>\n',
+        input: '<div id="adminBooksNew" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="w3-modal w3-card-4">\n		<div class="w3-modal-content w3-animate-top">\n			<header class="w3-container w3-black"> \n				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>\n				<h4>Rechercher un auteur</h4>\n			</header>\n			<div class="w3-container">\n				<p id="search">\n				<input type="text" name="search" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ error }}"></span>\n				</p>\n				<div id="results" style="min-height:150px"></div>\n			</div>\n			\n		</div>\n	</div>\n<!--\n	MAIN\n-->\n	<h4 class="w3-container align-left w3-padding-16">Ajouter un ouvrage</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/books/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div class="w3-container">\n		<form id="adminBooksNewForm">\n			\n			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>\n			\n			<p id="title">\n				<label>Titre * : </label>\n				<input type="text" name="title" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ title }}"></span>\n			</p>\n			\n			<p id="subtitle1">\n				<label>Sous-titre 1 : </label>\n				<input type="text" name="subtitle1" class="w3-input w3-border">\n			</p>\n			\n			<p id="subtitle2">\n				<label>Sous-titre 2 : </label>\n				<input type="text" name="subtitle2" class="w3-input w3-border">\n			</p>\n			\n			<p id="authorDisplay">\n				<label>Auteur (libellé) * : </label>\n				<input type="text" name="authorDisplay" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ authorDisplay }}"></span>\n			</p>\n			\n			<div id="authors" class="w3-margin-bottom w3-border-bottom">\n				<div class="w3-margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Auteurs * : </label>\n						<a href="/#/authors" id="auteur" class="align-right w3-text-gray w3-hover-none w3-hover-text-black open-modal-btn">Rechercher</a>\n					</p>\n					\n					<ul id="authorsContainer" class="w3-ul w3-padding-32"></ul>\n					<span class="error" data-utils-bind="{{ authors }}"></span>\n				</div>\n				\n			</div>\n			\n			<div id="contribs" class="w3-margin-bottom w3-border-bottom">\n				<div class="w3-margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Contributeurs : </label>\n						<a href="/#/contribs" id="contributeur" class="align-right w3-text-gray w3-hover-none w3-hover-text-black open-modal-btn">Rechercher</a>\n					</p>\n					\n					<ul id="contribsContainer" class="w3-ul w3-padding-32"></ul>\n				</div>\n				\n			</div>\n			\n			<p id="year">\n				<label>Année de publication * : </label>\n				<input type="text" name="year" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ year }}"></span>\n			</p>\n			\n			<p id="language">\n				<label>Langue * : </label>\n				<input type="text" name="language" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ language }}"></span>\n			</p>\n			\n			<p id="categories">\n				<label>Catégories : </label>\n				<input type="text" name="categories" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ categories }}"></span>\n			</p>\n			\n			<p id="collection">\n				<label>Collection : </label>\n				<input type="text" name="collection" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ collection }}"></span>\n			</p>\n			\n			<p id="source-publisher">\n				<label>Source - éditeur : </label>\n				<input type="text" name="source-publisher" class="w3-input w3-border">\n			</p>\n			\n			<p id="source-year">\n				<label>Source - année de publication : </label>\n				<input type="text" name="source-year" class="w3-input w3-border">\n			</p>\n			\n			<p id="source-origin">\n				<label>Source - origine : </label>\n				<input type="text" name="source-origin" class="w3-input w3-border">\n			</p>\n			\n			<p id="styles-color">\n				<label>Styles - couleur : </label>\n				<input type="text" name="styles-color" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-image">\n				<label>Styles - image : </label>\n				<input type="text" name="styles-image" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-font">\n				<label>Styles - police : </label>\n				<input type="text" name="styles-font" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-cover">\n				<label>Styles - couverture : </label>\n				<input type="text" name="styles-cover" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-author">\n				<label>Styles - auteur : </label>\n				<input type="text" name="styles-author" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-title">\n				<label>Styles - titre : </label>\n				<input type="text" name="styles-title" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-subtitle1">\n				<label>Styles - sous-titre1 : </label>\n				<input type="text" name="styles-subtitle1" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-subtitle2">\n				<label>Styles - sous-titre2 : </label>\n				<input type="text" name="styles-subtitle2" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-subtitle2">\n				<label>Styles - sous-titre2 : </label>\n				<input type="text" name="styles-subtitle2" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-logo">\n				<label>Styles - logo : </label>\n				<input type="text" name="styles-logo" class="w3-input w3-border" >\n			</p>\n			\n			<p id="description">\n				<label>Description : </label>\n				<textarea type="text" name="description" class="w3-input w3-border"></textarea>\n			</p>\n			\n			<p id="path">\n				<label>Path * : </label>\n				<input type="text" name="path" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ path }}"></span>\n			</p>\n			\n			<p id="visible">\n				<label><input type="checkbox" name="visible" > Visible</label>\n			</p>\n			\n			<p class="w3-padding-24">\n				<button type="submit" class="w3-btn w3-border">Valider</button>\n			</p>\n			\n		</form>\n	</div>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -17114,7 +17067,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
         var buf = [];
         with (locals || {}) {
             (function() {
-                buf.push('<div id="adminBooksNew" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="w3-modal w3-card-4">\n		<div class="w3-modal-content w3-animate-top">\n			<header class="w3-container w3-black"> \n				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>\n				<h4>Rechercher un auteur</h4>\n			</header>\n			<div class="w3-container">\n				<p id="search">\n				<input type="text" name="search" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ error }}"></span>\n				</p>\n				<div id="results" style="min-height:150px"></div>\n			</div>\n			\n		</div>\n	</div>\n<!--\n	MAIN\n-->\n	<h4 class="w3-container align-left w3-padding-16">Ajouter un ouvrage</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/books/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div class="w3-container">\n		<form id="adminBooksNewForm">\n			\n			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>\n			\n			<p id="title">\n				<label>Titre * : </label>\n				<input type="text" name="title" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ title }}"></span>\n			</p>\n			\n			<p id="subtitle1">\n				<label>Sous-titre 1 : </label>\n				<input type="text" name="subtitle1" class="w3-input w3-border">\n			</p>\n			\n			<p id="subtitle2">\n				<label>Sous-titre 2 : </label>\n				<input type="text" name="subtitle2" class="w3-input w3-border">\n			</p>\n			\n			<p id="authorDisplay">\n				<label>Auteur (libellé) * : </label>\n				<input type="text" name="authorDisplay" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ authorDisplay }}"></span>\n			</p>\n			\n			<div id="authors" class="w3-margin-bottom w3-border-bottom">\n				<div class="w3-margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Auteurs * : </label>\n						<a href="/#/authors" id="auteur" class="align-right w3-text-gray w3-hover-none w3-hover-text-black open-modal-btn">Rechercher</a>\n					</p>\n					\n					<ul id="authorsContainer" class="w3-ul w3-padding-32"></ul>\n					<span class="error" data-utils-bind="{{ authors }}"></span>\n				</div>\n				\n			</div>\n			\n			<div id="contribs" class="w3-margin-bottom w3-border-bottom">\n				<div class="w3-margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Contributeurs : </label>\n						<a href="/#/contribs" id="contributeur" class="align-right w3-text-gray w3-hover-none w3-hover-text-black open-modal-btn">Rechercher</a>\n					</p>\n					\n					<ul id="contribsContainer" class="w3-ul w3-padding-32"></ul>\n				</div>\n				\n			</div>\n			\n			<p id="year">\n				<label>Année de publication * : </label>\n				<input type="text" name="year" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ year }}"></span>\n			</p>\n			\n			<p id="language">\n				<label>Langue * : </label>\n				<input type="text" name="language" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ language }}"></span>\n			</p>\n			\n			<p id="categories">\n				<label>Catégories : </label>\n				<input type="text" name="categories" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ categories }}"></span>\n			</p>\n			\n			<p id="collection">\n				<label>Collection : </label>\n				<input type="text" name="collection" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ collection }}"></span>\n			</p>\n			\n			<p id="source-publisher">\n				<label>Source - éditeur : </label>\n				<input type="text" name="source-publisher" class="w3-input w3-border">\n			</p>\n			\n			<p id="source-year">\n				<label>Source - année de publication : </label>\n				<input type="text" name="source-year" class="w3-input w3-border">\n			</p>\n			\n			<p id="source-origin">\n				<label>Source - origine : </label>\n				<input type="text" name="source-origin" class="w3-input w3-border">\n			</p>\n			\n			<p id="styles-color">\n				<label>Styles - couleur : </label>\n				<input type="text" name="styles-color" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-image">\n				<label>Styles - image : </label>\n				<input type="text" name="styles-image" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-cover">\n				<label>Styles - couverture : </label>\n				<input type="text" name="styles-cover" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-author">\n				<label>Styles - auteur : </label>\n				<input type="text" name="styles-author" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-title">\n				<label>Styles - titre : </label>\n				<input type="text" name="styles-title" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-subtitle1">\n				<label>Styles - sous-titre1 : </label>\n				<input type="text" name="styles-subtitle1" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-subtitle2">\n				<label>Styles - sous-titre2 : </label>\n				<input type="text" name="styles-subtitle2" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-subtitle2">\n				<label>Styles - sous-titre2 : </label>\n				<input type="text" name="styles-subtitle2" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-logo">\n				<label>Styles - logo : </label>\n				<input type="text" name="styles-logo" class="w3-input w3-border" >\n			</p>\n			\n			<p id="description">\n				<label>Description : </label>\n				<textarea type="text" name="description" class="w3-input w3-border"></textarea>\n			</p>\n			\n			<p id="path">\n				<label>Path * : </label>\n				<input type="text" name="path" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ path }}"></span>\n			</p>\n			\n			<p id="visible">\n				<label><input type="checkbox" name="visible" > Visible</label>\n			</p>\n			\n			<p class="w3-padding-24">\n				<button type="submit" class="w3-btn w3-border">Valider</button>\n			</p>\n			\n		</form>\n	</div>\n</div>\n');
+                buf.push('<div id="adminBooksNew" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="w3-modal w3-card-4">\n		<div class="w3-modal-content w3-animate-top">\n			<header class="w3-container w3-black"> \n				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>\n				<h4>Rechercher un auteur</h4>\n			</header>\n			<div class="w3-container">\n				<p id="search">\n				<input type="text" name="search" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ error }}"></span>\n				</p>\n				<div id="results" style="min-height:150px"></div>\n			</div>\n			\n		</div>\n	</div>\n<!--\n	MAIN\n-->\n	<h4 class="w3-container align-left w3-padding-16">Ajouter un ouvrage</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/books/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div class="w3-container">\n		<form id="adminBooksNewForm">\n			\n			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>\n			\n			<p id="title">\n				<label>Titre * : </label>\n				<input type="text" name="title" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ title }}"></span>\n			</p>\n			\n			<p id="subtitle1">\n				<label>Sous-titre 1 : </label>\n				<input type="text" name="subtitle1" class="w3-input w3-border">\n			</p>\n			\n			<p id="subtitle2">\n				<label>Sous-titre 2 : </label>\n				<input type="text" name="subtitle2" class="w3-input w3-border">\n			</p>\n			\n			<p id="authorDisplay">\n				<label>Auteur (libellé) * : </label>\n				<input type="text" name="authorDisplay" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ authorDisplay }}"></span>\n			</p>\n			\n			<div id="authors" class="w3-margin-bottom w3-border-bottom">\n				<div class="w3-margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Auteurs * : </label>\n						<a href="/#/authors" id="auteur" class="align-right w3-text-gray w3-hover-none w3-hover-text-black open-modal-btn">Rechercher</a>\n					</p>\n					\n					<ul id="authorsContainer" class="w3-ul w3-padding-32"></ul>\n					<span class="error" data-utils-bind="{{ authors }}"></span>\n				</div>\n				\n			</div>\n			\n			<div id="contribs" class="w3-margin-bottom w3-border-bottom">\n				<div class="w3-margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Contributeurs : </label>\n						<a href="/#/contribs" id="contributeur" class="align-right w3-text-gray w3-hover-none w3-hover-text-black open-modal-btn">Rechercher</a>\n					</p>\n					\n					<ul id="contribsContainer" class="w3-ul w3-padding-32"></ul>\n				</div>\n				\n			</div>\n			\n			<p id="year">\n				<label>Année de publication * : </label>\n				<input type="text" name="year" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ year }}"></span>\n			</p>\n			\n			<p id="language">\n				<label>Langue * : </label>\n				<input type="text" name="language" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ language }}"></span>\n			</p>\n			\n			<p id="categories">\n				<label>Catégories : </label>\n				<input type="text" name="categories" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ categories }}"></span>\n			</p>\n			\n			<p id="collection">\n				<label>Collection : </label>\n				<input type="text" name="collection" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ collection }}"></span>\n			</p>\n			\n			<p id="source-publisher">\n				<label>Source - éditeur : </label>\n				<input type="text" name="source-publisher" class="w3-input w3-border">\n			</p>\n			\n			<p id="source-year">\n				<label>Source - année de publication : </label>\n				<input type="text" name="source-year" class="w3-input w3-border">\n			</p>\n			\n			<p id="source-origin">\n				<label>Source - origine : </label>\n				<input type="text" name="source-origin" class="w3-input w3-border">\n			</p>\n			\n			<p id="styles-color">\n				<label>Styles - couleur : </label>\n				<input type="text" name="styles-color" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-image">\n				<label>Styles - image : </label>\n				<input type="text" name="styles-image" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-font">\n				<label>Styles - police : </label>\n				<input type="text" name="styles-font" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-cover">\n				<label>Styles - couverture : </label>\n				<input type="text" name="styles-cover" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-author">\n				<label>Styles - auteur : </label>\n				<input type="text" name="styles-author" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-title">\n				<label>Styles - titre : </label>\n				<input type="text" name="styles-title" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-subtitle1">\n				<label>Styles - sous-titre1 : </label>\n				<input type="text" name="styles-subtitle1" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-subtitle2">\n				<label>Styles - sous-titre2 : </label>\n				<input type="text" name="styles-subtitle2" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-subtitle2">\n				<label>Styles - sous-titre2 : </label>\n				<input type="text" name="styles-subtitle2" class="w3-input w3-border" >\n			</p>\n			\n			<p id="styles-logo">\n				<label>Styles - logo : </label>\n				<input type="text" name="styles-logo" class="w3-input w3-border" >\n			</p>\n			\n			<p id="description">\n				<label>Description : </label>\n				<textarea type="text" name="description" class="w3-input w3-border"></textarea>\n			</p>\n			\n			<p id="path">\n				<label>Path * : </label>\n				<input type="text" name="path" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ path }}"></span>\n			</p>\n			\n			<p id="visible">\n				<label><input type="checkbox" name="visible" > Visible</label>\n			</p>\n			\n			<p class="w3-padding-24">\n				<button type="submit" class="w3-btn w3-border">Valider</button>\n			</p>\n			\n		</form>\n	</div>\n</div>\n');
             })();
         }
         return buf.join("");
@@ -17124,7 +17077,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 53 */
+/* 52 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -17160,7 +17113,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 54 */
+/* 53 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -17202,7 +17155,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 55 */
+/* 54 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -17244,7 +17197,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 56 */
+/* 55 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -17286,7 +17239,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 57 */
+/* 56 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -17322,7 +17275,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 58 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17342,12 +17295,12 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminBookEditTemplate = __webpack_require__(59);
-var modalHeaderTemplate = __webpack_require__(60);
-var searchAuthorsResultsTemplate = __webpack_require__(61);
-var selectedAuthorsTemplate = __webpack_require__(62);
-var selectedContribsTemplate = __webpack_require__(63);
-var selectedContribRoleTemplate = __webpack_require__(64);
+var adminBookEditTemplate = __webpack_require__(58);
+var modalHeaderTemplate = __webpack_require__(59);
+var searchAuthorsResultsTemplate = __webpack_require__(60);
+var selectedAuthorsTemplate = __webpack_require__(61);
+var selectedContribsTemplate = __webpack_require__(62);
+var selectedContribRoleTemplate = __webpack_require__(63);
 //home.js
 var adminBooksNew = function adminBooksNew(container) {
 	'use strict';
@@ -17398,6 +17351,7 @@ var adminBooksNew = function adminBooksNew(container) {
 				book.source.origin = form.querySelector('[name=source-origin]').value;
 				book.styles.color = form.querySelector('[name=styles-color').value;
 				book.styles.image = form.querySelector('[name=styles-image').value;
+				book.styles.font = form.querySelector('[name=styles-font').value;
 				book.styles.cover = form.querySelector('[name=styles-cover').value;
 				book.styles.author = form.querySelector('[name=styles-author').value;
 				book.styles.title = form.querySelector('[name=styles-title').value;
@@ -17581,7 +17535,7 @@ var adminBooksNew = function adminBooksNew(container) {
 exports.default = adminBooksNew;
 
 /***/ }),
-/* 59 */
+/* 58 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -17590,7 +17544,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="adminBookEdit" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="w3-modal w3-card-4">\n		<div class="w3-modal-content w3-animate-top">\n			<header class="w3-container w3-black"> \n				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>\n				<h4>Rechercher un auteur</h4>\n			</header>\n			<div class="w3-container">\n				<p id="search">\n				<input type="text" name="search" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ error }}"></span>\n				</p>\n				<div id="results" style="min-height:150px"></div>\n			</div>\n			\n		</div>\n	</div>\n<!--\n	MAIN\n-->\n	<h4 class="w3-container align-left w3-padding-16">Ajouter un ouvrage</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/books/<%= book.id %>" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div class="w3-container">\n		<form id="adminBookEditForm">\n			\n			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>\n			\n			<p id="title">\n				<label>Titre * : </label>\n				<input type="text" name="title" class="w3-input w3-border" value="<%= book.title %>" >\n				<span class="error" data-utils-bind="{{ title }}"></span>\n			</p>\n			\n			<p id="subtitle1">\n				<label>Sous-titre 1 : </label>\n				<input type="text" name="subtitle1" class="w3-input w3-border" value="<%= book.subtitle1 %>" >\n			</p>\n			\n			<p id="subtitle2">\n				<label>Sous-titre 2 : </label>\n				<input type="text" name="subtitle2" class="w3-input w3-border" value="<%= book.subtitle2 %>" >\n			</p>\n			\n			<p id="authorDisplay">\n				<label>Auteur (libellé) * : </label>\n				<input type="text" name="authorDisplay" class="w3-input w3-border" value="<%= book.authorDisplay %>" >\n				<span class="error" data-utils-bind="{{ authorDisplay }}"></span>\n			</p>\n			\n			<div id="authors" class="w3-margin-bottom w3-border-bottom">\n				<div class="w3-margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Auteurs * : </label>\n						<a href="/#/authors" id="auteur" class="align-right w3-text-gray w3-hover-none w3-hover-text-black open-modal-btn">Rechercher</a>\n					</p>\n					\n					<ul id="authorsContainer" class="w3-ul w3-padding-32">\n						<% for(var i=0; i<selectedAuthors.length; i++) {%>\n						<li class="w3-display-container">\n							<p data-key="<%= selectedAuthors[i].id %>" id="<%= i %>" >\n								<span><%= selectedAuthors[i].name %></span>\n								<button type="button" id="auteur" class="delete-btn w3-text-gray w3-hover-none w3-hover-text-black w3-button w3-display-right">Supprimer</button>\n							</p>\n						</li>\n						<% } %>\n					</ul>\n					<span class="error" data-utils-bind="{{ authors }}"></span>\n				</div>\n				\n			</div>\n			\n			<div id="contribs" class="w3-margin-bottom w3-border-bottom">\n				<div class="w3-margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Contributeurs : </label>\n						<a href="/#/contribs" id="contributeur" class="align-right w3-text-gray w3-hover-none w3-hover-text-black open-modal-btn">Rechercher</a>\n					</p>\n					\n					<ul id="contribsContainer" class="w3-ul w3-padding-32">\n						<% for(var i=0; i<selectedContribs.length; i++) {%>\n						<li class="w3-display-container">\n							<p data-key="<%= selectedContribs[i].id %>" id="<%= i %>" >\n								<span><%= selectedContribs[i].name %> </span>\n								<span>(<%= selectedContribs[i].role %>)</span>\n								<button type="button" id="contributeur" class="delete-btn w3-text-gray w3-hover-none w3-hover-text-black w3-button w3-display-right">Supprimer</button>\n							</p>\n						</li>\n						<% } %>\n					</ul>\n				</div>\n				\n			</div>\n			\n			<p id="year">\n				<label>Année de publication * : </label>\n				<input type="text" name="year" class="w3-input w3-border" value="<%= book.year %>" >\n				<span class="error" data-utils-bind="{{ year }}"></span>\n			</p>\n			\n			<p id="language">\n				<label>Langue * : </label>\n				<input type="text" name="language" class="w3-input w3-border" value="<%= book.language %>" >\n				<span class="error" data-utils-bind="{{ language }}"></span>\n			</p>\n			\n			<p id="categories">\n				<label>Catégories : </label>\n				<input type="text" name="categories" class="w3-input w3-border" value="<%= book.categories %>" >\n				<span class="error" data-utils-bind="{{ categories }}"></span>\n			</p>\n			\n			<p id="collection">\n				<label>Collection : </label>\n				<input type="text" name="collection" class="w3-input w3-border" value="<%= book.collection %>" >\n				<span class="error" data-utils-bind="{{ collection }}"></span>\n			</p>\n			\n			<p id="source-publisher">\n				<label>Source - éditeur : </label>\n				<input type="text" name="source-publisher" class="w3-input w3-border" value="<%= book.source.publisher %>" >\n			</p>\n			\n			<p id="source-year">\n				<label>Source - année de publication : </label>\n				<input type="text" name="source-year" class="w3-input w3-border" value="<%= book.source.year %>" >\n			</p>\n			\n			<p id="source-origin">\n				<label>Source - origine : </label>\n				<input type="text" name="source-origin" class="w3-input w3-border" value="<%= book.source.origin %>" >\n			</p>\n			\n			<p id="styles-color">\n				<label>Styles - couleur : </label>\n				<input type="text" name="styles-color" class="w3-input w3-border" value="<%= book.styles.color %>" >\n			</p>\n			\n			<p id="styles-image">\n				<label>Styles - image : </label>\n				<input type="text" name="styles-image" class="w3-input w3-border" value="<%= book.styles.image %>" >\n			</p>\n			\n			<p id="styles-cover">\n				<label>Styles - couverture : </label>\n				<input type="text" name="styles-cover" class="w3-input w3-border" value="<%= book.styles.cover %>" >\n			</p>\n			\n			<p id="styles-author">\n				<label>Styles - auteur : </label>\n				<input type="text" name="styles-author" class="w3-input w3-border" value="<%= book.styles.author %>" >\n			</p>\n			\n			<p id="styles-title">\n				<label>Styles - titre : </label>\n				<input type="text" name="styles-title" class="w3-input w3-border" value="<%= book.styles.title %>" >\n			</p>\n			\n			<p id="styles-subtitle1">\n				<label>Styles - sous-titre1 : </label>\n				<input type="text" name="styles-subtitle1" class="w3-input w3-border" value="<%= book.styles.subtitle1 %>" >\n			</p>\n			\n			<p id="styles-subtitle2">\n				<label>Styles - sous-titre2 : </label>\n				<input type="text" name="styles-subtitle2" class="w3-input w3-border" value="<%= book.styles.subtitle2 %>" >\n			</p>\n			\n			<p id="styles-logo">\n				<label>Styles - logo : </label>\n				<input type="text" name="styles-logo" class="w3-input w3-border" value="<%= book.styles.logo %>" >\n			</p>\n			\n			<p id="description">\n				<label>Description : </label>\n				<textarea type="text" name="description" class="w3-input w3-border" value="<%= book.description %>" ></textarea>\n			</p>\n			\n			<p id="path">\n				<label>Path * : </label>\n				<input type="text" name="path" class="w3-input w3-border" value="<%= book.path %>" >\n				<span class="error" data-utils-bind="{{ path }}"></span>\n			</p>\n			\n			<p id="visible">\n				<label><input type="checkbox" name="visible" <% if(book.visible) {%> checked <%}%> > Visible</label>\n			</p>\n			\n			<p class="w3-padding-24">\n				<button type="submit" class="w3-btn w3-border">Valider</button>\n			</p>\n			\n		</form>\n	</div>\n</div>\n',
+        input: '<div id="adminBookEdit" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="w3-modal w3-card-4">\n		<div class="w3-modal-content w3-animate-top">\n			<header class="w3-container w3-black"> \n				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>\n				<h4>Rechercher un auteur</h4>\n			</header>\n			<div class="w3-container">\n				<p id="search">\n				<input type="text" name="search" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ error }}"></span>\n				</p>\n				<div id="results" style="min-height:150px"></div>\n			</div>\n			\n		</div>\n	</div>\n<!--\n	MAIN\n-->\n	<h4 class="w3-container align-left w3-padding-16">Modifier un ouvrage</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/books/<%= book.id %>" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div class="w3-container">\n		<form id="adminBookEditForm">\n			\n			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>\n			\n			<p id="title">\n				<label>Titre * : </label>\n				<input type="text" name="title" class="w3-input w3-border" value="<%= book.title %>" >\n				<span class="error" data-utils-bind="{{ title }}"></span>\n			</p>\n			\n			<p id="subtitle1">\n				<label>Sous-titre 1 : </label>\n				<input type="text" name="subtitle1" class="w3-input w3-border" value="<%= book.subtitle1 %>" >\n			</p>\n			\n			<p id="subtitle2">\n				<label>Sous-titre 2 : </label>\n				<input type="text" name="subtitle2" class="w3-input w3-border" value="<%= book.subtitle2 %>" >\n			</p>\n			\n			<p id="authorDisplay">\n				<label>Auteur (libellé) * : </label>\n				<input type="text" name="authorDisplay" class="w3-input w3-border" value="<%= book.authorDisplay %>" >\n				<span class="error" data-utils-bind="{{ authorDisplay }}"></span>\n			</p>\n			\n			<div id="authors" class="w3-margin-bottom w3-border-bottom">\n				<div class="w3-margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Auteurs * : </label>\n						<a href="/#/authors" id="auteur" class="align-right w3-text-gray w3-hover-none w3-hover-text-black open-modal-btn">Rechercher</a>\n					</p>\n					\n					<ul id="authorsContainer" class="w3-ul w3-padding-32">\n						<% for(var i=0; i<selectedAuthors.length; i++) {%>\n						<li class="w3-display-container">\n							<p data-key="<%= selectedAuthors[i].id %>" id="<%= i %>" >\n								<span><%= selectedAuthors[i].name %></span>\n								<button type="button" id="auteur" class="delete-btn w3-text-gray w3-hover-none w3-hover-text-black w3-button w3-display-right">Supprimer</button>\n							</p>\n						</li>\n						<% } %>\n					</ul>\n					<span class="error" data-utils-bind="{{ authors }}"></span>\n				</div>\n				\n			</div>\n			\n			<div id="contribs" class="w3-margin-bottom w3-border-bottom">\n				<div class="w3-margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Contributeurs : </label>\n						<a href="/#/contribs" id="contributeur" class="align-right w3-text-gray w3-hover-none w3-hover-text-black open-modal-btn">Rechercher</a>\n					</p>\n					\n					<ul id="contribsContainer" class="w3-ul w3-padding-32">\n						<% for(var i=0; i<selectedContribs.length; i++) {%>\n						<li class="w3-display-container">\n							<p data-key="<%= selectedContribs[i].id %>" id="<%= i %>" >\n								<span><%= selectedContribs[i].name %> </span>\n								<span>(<%= selectedContribs[i].role %>)</span>\n								<button type="button" id="contributeur" class="delete-btn w3-text-gray w3-hover-none w3-hover-text-black w3-button w3-display-right">Supprimer</button>\n							</p>\n						</li>\n						<% } %>\n					</ul>\n				</div>\n				\n			</div>\n			\n			<p id="year">\n				<label>Année de publication * : </label>\n				<input type="text" name="year" class="w3-input w3-border" value="<%= book.year %>" >\n				<span class="error" data-utils-bind="{{ year }}"></span>\n			</p>\n			\n			<p id="language">\n				<label>Langue * : </label>\n				<input type="text" name="language" class="w3-input w3-border" value="<%= book.language %>" >\n				<span class="error" data-utils-bind="{{ language }}"></span>\n			</p>\n			\n			<p id="categories">\n				<label>Catégories : </label>\n				<input type="text" name="categories" class="w3-input w3-border" value="<%= book.categories %>" >\n				<span class="error" data-utils-bind="{{ categories }}"></span>\n			</p>\n			\n			<p id="collection">\n				<label>Collection : </label>\n				<input type="text" name="collection" class="w3-input w3-border" value="<%= book.collection %>" >\n				<span class="error" data-utils-bind="{{ collection }}"></span>\n			</p>\n			\n			<p id="source-publisher">\n				<label>Source - éditeur : </label>\n				<input type="text" name="source-publisher" class="w3-input w3-border" value="<%= book.source.publisher %>" >\n			</p>\n			\n			<p id="source-year">\n				<label>Source - année de publication : </label>\n				<input type="text" name="source-year" class="w3-input w3-border" value="<%= book.source.year %>" >\n			</p>\n			\n			<p id="source-origin">\n				<label>Source - origine : </label>\n				<input type="text" name="source-origin" class="w3-input w3-border" value="<%= book.source.origin %>" >\n			</p>\n			\n			<p id="styles-color">\n				<label>Styles - couleur : </label>\n				<input type="text" name="styles-color" class="w3-input w3-border" value="<%= book.styles.color %>" >\n			</p>\n			\n			<p id="styles-image">\n				<label>Styles - image : </label>\n				<input type="text" name="styles-image" class="w3-input w3-border" value="<%= book.styles.image %>" >\n			</p>\n			\n			<p id="styles-font">\n				<label>Styles - police : </label>\n				<input type="text" name="styles-font" class="w3-input w3-border" value="<%= book.styles.font %>" >\n			</p>\n			\n			<p id="styles-cover">\n				<label>Styles - couverture : </label>\n				<input type="text" name="styles-cover" class="w3-input w3-border" value="<%= book.styles.cover %>" >\n			</p>\n			\n			<p id="styles-author">\n				<label>Styles - auteur : </label>\n				<input type="text" name="styles-author" class="w3-input w3-border" value="<%= book.styles.author %>" >\n			</p>\n			\n			<p id="styles-title">\n				<label>Styles - titre : </label>\n				<input type="text" name="styles-title" class="w3-input w3-border" value="<%= book.styles.title %>" >\n			</p>\n			\n			<p id="styles-subtitle1">\n				<label>Styles - sous-titre1 : </label>\n				<input type="text" name="styles-subtitle1" class="w3-input w3-border" value="<%= book.styles.subtitle1 %>" >\n			</p>\n			\n			<p id="styles-subtitle2">\n				<label>Styles - sous-titre2 : </label>\n				<input type="text" name="styles-subtitle2" class="w3-input w3-border" value="<%= book.styles.subtitle2 %>" >\n			</p>\n			\n			<p id="styles-logo">\n				<label>Styles - logo : </label>\n				<input type="text" name="styles-logo" class="w3-input w3-border" value="<%= book.styles.logo %>" >\n			</p>\n			\n			<p id="description">\n				<label>Description : </label>\n				<textarea type="text" name="description" class="w3-input w3-border" value="<%= book.description %>" ></textarea>\n			</p>\n			\n			<p id="path">\n				<label>Path * : </label>\n				<input type="text" name="path" class="w3-input w3-border" value="<%= book.path %>" >\n				<span class="error" data-utils-bind="{{ path }}"></span>\n			</p>\n			\n			<p id="visible">\n				<label><input type="checkbox" name="visible" <% if(book.visible) {%> checked <%}%> > Visible</label>\n			</p>\n			\n			<p class="w3-padding-24">\n				<button type="submit" class="w3-btn w3-border">Valider</button>\n			</p>\n			\n		</form>\n	</div>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -17607,7 +17561,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
         var buf = [];
         with (locals || {}) {
             (function() {
-                buf.push('<div id="adminBookEdit" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="w3-modal w3-card-4">\n		<div class="w3-modal-content w3-animate-top">\n			<header class="w3-container w3-black"> \n				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>\n				<h4>Rechercher un auteur</h4>\n			</header>\n			<div class="w3-container">\n				<p id="search">\n				<input type="text" name="search" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ error }}"></span>\n				</p>\n				<div id="results" style="min-height:150px"></div>\n			</div>\n			\n		</div>\n	</div>\n<!--\n	MAIN\n-->\n	<h4 class="w3-container align-left w3-padding-16">Ajouter un ouvrage</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/books/', escape((__stack.lineno = 25, book.id)), '" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div class="w3-container">\n		<form id="adminBookEditForm">\n			\n			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>\n			\n			<p id="title">\n				<label>Titre * : </label>\n				<input type="text" name="title" class="w3-input w3-border" value="', escape((__stack.lineno = 33, book.title)), '" >\n				<span class="error" data-utils-bind="{{ title }}"></span>\n			</p>\n			\n			<p id="subtitle1">\n				<label>Sous-titre 1 : </label>\n				<input type="text" name="subtitle1" class="w3-input w3-border" value="', escape((__stack.lineno = 39, book.subtitle1)), '" >\n			</p>\n			\n			<p id="subtitle2">\n				<label>Sous-titre 2 : </label>\n				<input type="text" name="subtitle2" class="w3-input w3-border" value="', escape((__stack.lineno = 44, book.subtitle2)), '" >\n			</p>\n			\n			<p id="authorDisplay">\n				<label>Auteur (libellé) * : </label>\n				<input type="text" name="authorDisplay" class="w3-input w3-border" value="', escape((__stack.lineno = 49, book.authorDisplay)), '" >\n				<span class="error" data-utils-bind="{{ authorDisplay }}"></span>\n			</p>\n			\n			<div id="authors" class="w3-margin-bottom w3-border-bottom">\n				<div class="w3-margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Auteurs * : </label>\n						<a href="/#/authors" id="auteur" class="align-right w3-text-gray w3-hover-none w3-hover-text-black open-modal-btn">Rechercher</a>\n					</p>\n					\n					<ul id="authorsContainer" class="w3-ul w3-padding-32">\n						');
+                buf.push('<div id="adminBookEdit" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="w3-modal w3-card-4">\n		<div class="w3-modal-content w3-animate-top">\n			<header class="w3-container w3-black"> \n				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>\n				<h4>Rechercher un auteur</h4>\n			</header>\n			<div class="w3-container">\n				<p id="search">\n				<input type="text" name="search" class="w3-input w3-border">\n				<span class="error" data-utils-bind="{{ error }}"></span>\n				</p>\n				<div id="results" style="min-height:150px"></div>\n			</div>\n			\n		</div>\n	</div>\n<!--\n	MAIN\n-->\n	<h4 class="w3-container align-left w3-padding-16">Modifier un ouvrage</h4>\n	<p class="align-right w3-padding-16"><a href="/#/admin/books/', escape((__stack.lineno = 25, book.id)), '" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>\n	<div class="w3-container">\n		<form id="adminBookEditForm">\n			\n			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>\n			\n			<p id="title">\n				<label>Titre * : </label>\n				<input type="text" name="title" class="w3-input w3-border" value="', escape((__stack.lineno = 33, book.title)), '" >\n				<span class="error" data-utils-bind="{{ title }}"></span>\n			</p>\n			\n			<p id="subtitle1">\n				<label>Sous-titre 1 : </label>\n				<input type="text" name="subtitle1" class="w3-input w3-border" value="', escape((__stack.lineno = 39, book.subtitle1)), '" >\n			</p>\n			\n			<p id="subtitle2">\n				<label>Sous-titre 2 : </label>\n				<input type="text" name="subtitle2" class="w3-input w3-border" value="', escape((__stack.lineno = 44, book.subtitle2)), '" >\n			</p>\n			\n			<p id="authorDisplay">\n				<label>Auteur (libellé) * : </label>\n				<input type="text" name="authorDisplay" class="w3-input w3-border" value="', escape((__stack.lineno = 49, book.authorDisplay)), '" >\n				<span class="error" data-utils-bind="{{ authorDisplay }}"></span>\n			</p>\n			\n			<div id="authors" class="w3-margin-bottom w3-border-bottom">\n				<div class="w3-margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Auteurs * : </label>\n						<a href="/#/authors" id="auteur" class="align-right w3-text-gray w3-hover-none w3-hover-text-black open-modal-btn">Rechercher</a>\n					</p>\n					\n					<ul id="authorsContainer" class="w3-ul w3-padding-32">\n						');
                 __stack.lineno = 61;
                 for (var i = 0; i < selectedAuthors.length; i++) {
                     buf.push('\n						<li class="w3-display-container">\n							<p data-key="', escape((__stack.lineno = 63, selectedAuthors[i].id)), '" id="', escape((__stack.lineno = 63, i)), '" >\n								<span>', escape((__stack.lineno = 64, selectedAuthors[i].name)), '</span>\n								<button type="button" id="auteur" class="delete-btn w3-text-gray w3-hover-none w3-hover-text-black w3-button w3-display-right">Supprimer</button>\n							</p>\n						</li>\n						');
@@ -17619,11 +17573,11 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                     buf.push('\n						<li class="w3-display-container">\n							<p data-key="', escape((__stack.lineno = 85, selectedContribs[i].id)), '" id="', escape((__stack.lineno = 85, i)), '" >\n								<span>', escape((__stack.lineno = 86, selectedContribs[i].name)), " </span>\n								<span>(", escape((__stack.lineno = 87, selectedContribs[i].role)), ')</span>\n								<button type="button" id="contributeur" class="delete-btn w3-text-gray w3-hover-none w3-hover-text-black w3-button w3-display-right">Supprimer</button>\n							</p>\n						</li>\n						');
                     __stack.lineno = 91;
                 }
-                buf.push('\n					</ul>\n				</div>\n				\n			</div>\n			\n			<p id="year">\n				<label>Année de publication * : </label>\n				<input type="text" name="year" class="w3-input w3-border" value="', escape((__stack.lineno = 99, book.year)), '" >\n				<span class="error" data-utils-bind="{{ year }}"></span>\n			</p>\n			\n			<p id="language">\n				<label>Langue * : </label>\n				<input type="text" name="language" class="w3-input w3-border" value="', escape((__stack.lineno = 105, book.language)), '" >\n				<span class="error" data-utils-bind="{{ language }}"></span>\n			</p>\n			\n			<p id="categories">\n				<label>Catégories : </label>\n				<input type="text" name="categories" class="w3-input w3-border" value="', escape((__stack.lineno = 111, book.categories)), '" >\n				<span class="error" data-utils-bind="{{ categories }}"></span>\n			</p>\n			\n			<p id="collection">\n				<label>Collection : </label>\n				<input type="text" name="collection" class="w3-input w3-border" value="', escape((__stack.lineno = 117, book.collection)), '" >\n				<span class="error" data-utils-bind="{{ collection }}"></span>\n			</p>\n			\n			<p id="source-publisher">\n				<label>Source - éditeur : </label>\n				<input type="text" name="source-publisher" class="w3-input w3-border" value="', escape((__stack.lineno = 123, book.source.publisher)), '" >\n			</p>\n			\n			<p id="source-year">\n				<label>Source - année de publication : </label>\n				<input type="text" name="source-year" class="w3-input w3-border" value="', escape((__stack.lineno = 128, book.source.year)), '" >\n			</p>\n			\n			<p id="source-origin">\n				<label>Source - origine : </label>\n				<input type="text" name="source-origin" class="w3-input w3-border" value="', escape((__stack.lineno = 133, book.source.origin)), '" >\n			</p>\n			\n			<p id="styles-color">\n				<label>Styles - couleur : </label>\n				<input type="text" name="styles-color" class="w3-input w3-border" value="', escape((__stack.lineno = 138, book.styles.color)), '" >\n			</p>\n			\n			<p id="styles-image">\n				<label>Styles - image : </label>\n				<input type="text" name="styles-image" class="w3-input w3-border" value="', escape((__stack.lineno = 143, book.styles.image)), '" >\n			</p>\n			\n			<p id="styles-cover">\n				<label>Styles - couverture : </label>\n				<input type="text" name="styles-cover" class="w3-input w3-border" value="', escape((__stack.lineno = 148, book.styles.cover)), '" >\n			</p>\n			\n			<p id="styles-author">\n				<label>Styles - auteur : </label>\n				<input type="text" name="styles-author" class="w3-input w3-border" value="', escape((__stack.lineno = 153, book.styles.author)), '" >\n			</p>\n			\n			<p id="styles-title">\n				<label>Styles - titre : </label>\n				<input type="text" name="styles-title" class="w3-input w3-border" value="', escape((__stack.lineno = 158, book.styles.title)), '" >\n			</p>\n			\n			<p id="styles-subtitle1">\n				<label>Styles - sous-titre1 : </label>\n				<input type="text" name="styles-subtitle1" class="w3-input w3-border" value="', escape((__stack.lineno = 163, book.styles.subtitle1)), '" >\n			</p>\n			\n			<p id="styles-subtitle2">\n				<label>Styles - sous-titre2 : </label>\n				<input type="text" name="styles-subtitle2" class="w3-input w3-border" value="', escape((__stack.lineno = 168, book.styles.subtitle2)), '" >\n			</p>\n			\n			<p id="styles-logo">\n				<label>Styles - logo : </label>\n				<input type="text" name="styles-logo" class="w3-input w3-border" value="', escape((__stack.lineno = 173, book.styles.logo)), '" >\n			</p>\n			\n			<p id="description">\n				<label>Description : </label>\n				<textarea type="text" name="description" class="w3-input w3-border" value="', escape((__stack.lineno = 178, book.description)), '" ></textarea>\n			</p>\n			\n			<p id="path">\n				<label>Path * : </label>\n				<input type="text" name="path" class="w3-input w3-border" value="', escape((__stack.lineno = 183, book.path)), '" >\n				<span class="error" data-utils-bind="{{ path }}"></span>\n			</p>\n			\n			<p id="visible">\n				<label><input type="checkbox" name="visible" ');
-                __stack.lineno = 188;
+                buf.push('\n					</ul>\n				</div>\n				\n			</div>\n			\n			<p id="year">\n				<label>Année de publication * : </label>\n				<input type="text" name="year" class="w3-input w3-border" value="', escape((__stack.lineno = 99, book.year)), '" >\n				<span class="error" data-utils-bind="{{ year }}"></span>\n			</p>\n			\n			<p id="language">\n				<label>Langue * : </label>\n				<input type="text" name="language" class="w3-input w3-border" value="', escape((__stack.lineno = 105, book.language)), '" >\n				<span class="error" data-utils-bind="{{ language }}"></span>\n			</p>\n			\n			<p id="categories">\n				<label>Catégories : </label>\n				<input type="text" name="categories" class="w3-input w3-border" value="', escape((__stack.lineno = 111, book.categories)), '" >\n				<span class="error" data-utils-bind="{{ categories }}"></span>\n			</p>\n			\n			<p id="collection">\n				<label>Collection : </label>\n				<input type="text" name="collection" class="w3-input w3-border" value="', escape((__stack.lineno = 117, book.collection)), '" >\n				<span class="error" data-utils-bind="{{ collection }}"></span>\n			</p>\n			\n			<p id="source-publisher">\n				<label>Source - éditeur : </label>\n				<input type="text" name="source-publisher" class="w3-input w3-border" value="', escape((__stack.lineno = 123, book.source.publisher)), '" >\n			</p>\n			\n			<p id="source-year">\n				<label>Source - année de publication : </label>\n				<input type="text" name="source-year" class="w3-input w3-border" value="', escape((__stack.lineno = 128, book.source.year)), '" >\n			</p>\n			\n			<p id="source-origin">\n				<label>Source - origine : </label>\n				<input type="text" name="source-origin" class="w3-input w3-border" value="', escape((__stack.lineno = 133, book.source.origin)), '" >\n			</p>\n			\n			<p id="styles-color">\n				<label>Styles - couleur : </label>\n				<input type="text" name="styles-color" class="w3-input w3-border" value="', escape((__stack.lineno = 138, book.styles.color)), '" >\n			</p>\n			\n			<p id="styles-image">\n				<label>Styles - image : </label>\n				<input type="text" name="styles-image" class="w3-input w3-border" value="', escape((__stack.lineno = 143, book.styles.image)), '" >\n			</p>\n			\n			<p id="styles-font">\n				<label>Styles - police : </label>\n				<input type="text" name="styles-font" class="w3-input w3-border" value="', escape((__stack.lineno = 148, book.styles.font)), '" >\n			</p>\n			\n			<p id="styles-cover">\n				<label>Styles - couverture : </label>\n				<input type="text" name="styles-cover" class="w3-input w3-border" value="', escape((__stack.lineno = 153, book.styles.cover)), '" >\n			</p>\n			\n			<p id="styles-author">\n				<label>Styles - auteur : </label>\n				<input type="text" name="styles-author" class="w3-input w3-border" value="', escape((__stack.lineno = 158, book.styles.author)), '" >\n			</p>\n			\n			<p id="styles-title">\n				<label>Styles - titre : </label>\n				<input type="text" name="styles-title" class="w3-input w3-border" value="', escape((__stack.lineno = 163, book.styles.title)), '" >\n			</p>\n			\n			<p id="styles-subtitle1">\n				<label>Styles - sous-titre1 : </label>\n				<input type="text" name="styles-subtitle1" class="w3-input w3-border" value="', escape((__stack.lineno = 168, book.styles.subtitle1)), '" >\n			</p>\n			\n			<p id="styles-subtitle2">\n				<label>Styles - sous-titre2 : </label>\n				<input type="text" name="styles-subtitle2" class="w3-input w3-border" value="', escape((__stack.lineno = 173, book.styles.subtitle2)), '" >\n			</p>\n			\n			<p id="styles-logo">\n				<label>Styles - logo : </label>\n				<input type="text" name="styles-logo" class="w3-input w3-border" value="', escape((__stack.lineno = 178, book.styles.logo)), '" >\n			</p>\n			\n			<p id="description">\n				<label>Description : </label>\n				<textarea type="text" name="description" class="w3-input w3-border" value="', escape((__stack.lineno = 183, book.description)), '" ></textarea>\n			</p>\n			\n			<p id="path">\n				<label>Path * : </label>\n				<input type="text" name="path" class="w3-input w3-border" value="', escape((__stack.lineno = 188, book.path)), '" >\n				<span class="error" data-utils-bind="{{ path }}"></span>\n			</p>\n			\n			<p id="visible">\n				<label><input type="checkbox" name="visible" ');
+                __stack.lineno = 193;
                 if (book.visible) {
                     buf.push(" checked ");
-                    __stack.lineno = 188;
+                    __stack.lineno = 193;
                 }
                 buf.push(' > Visible</label>\n			</p>\n			\n			<p class="w3-padding-24">\n				<button type="submit" class="w3-btn w3-border">Valider</button>\n			</p>\n			\n		</form>\n	</div>\n</div>\n');
             })();
@@ -17635,7 +17589,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 60 */
+/* 59 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -17671,7 +17625,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 61 */
+/* 60 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -17713,7 +17667,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 62 */
+/* 61 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -17755,7 +17709,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 63 */
+/* 62 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -17797,7 +17751,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 64 */
+/* 63 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -17833,7 +17787,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 65 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17849,7 +17803,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorsTemplate = __webpack_require__(66);
+var adminAuthorsTemplate = __webpack_require__(65);
 //home.js
 var adminAuthors = function adminAuthors(container) {
 	'use strict';
@@ -17873,7 +17827,7 @@ var adminAuthors = function adminAuthors(container) {
 exports.default = adminAuthors;
 
 /***/ }),
-/* 66 */
+/* 65 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -17915,7 +17869,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 67 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17931,7 +17885,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorTemplate = __webpack_require__(68);
+var adminAuthorTemplate = __webpack_require__(67);
 //home.js
 var adminAuthor = function adminAuthor(container) {
 	'use strict';
@@ -17986,7 +17940,7 @@ var adminAuthor = function adminAuthor(container) {
 exports.default = adminAuthor;
 
 /***/ }),
-/* 68 */
+/* 67 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -18055,7 +18009,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 69 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18075,7 +18029,7 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorsNewTemplate = __webpack_require__(70);
+var adminAuthorsNewTemplate = __webpack_require__(69);
 //home.js
 var adminAuthorsNew = function adminAuthorsNew(container) {
 	'use strict';
@@ -18138,7 +18092,7 @@ var adminAuthorsNew = function adminAuthorsNew(container) {
 exports.default = adminAuthorsNew;
 
 /***/ }),
-/* 70 */
+/* 69 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -18174,7 +18128,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 71 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18190,7 +18144,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorEditTemplate = __webpack_require__(72);
+var adminAuthorEditTemplate = __webpack_require__(71);
 //home.js
 var adminAuthorEdit = function adminAuthorEdit(container) {
 	'use strict';
@@ -18263,7 +18217,7 @@ var adminAuthorEdit = function adminAuthorEdit(container) {
 exports.default = adminAuthorEdit;
 
 /***/ }),
-/* 72 */
+/* 71 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -18305,7 +18259,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 73 */
+/* 72 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {

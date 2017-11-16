@@ -38,7 +38,6 @@ BOOKCONTAINER
 */
 #bookContainer {
 	position: relative;
-	font-family: 'Noto Serif', 'Georgia', serif;
 	color: #000;
 	opacity: 0.0;
 	margin: auto;
@@ -58,17 +57,6 @@ TEXTCONTAINER
 [data-wb-text-container] {
 	margin: auto;
 	background-color: #fafafa;
-/*
-	top: 0px;
-*/
-}
-
-@media screen and (min-width: 768px) {
-	[data-wb-text-container] {
-/*
-		top: 30px;
-*/
-	}
 }
 
 /*
@@ -79,9 +67,6 @@ TOC-LARGE-DEVICE
   position: absolute;
   left: -33%;
   width: 33%;
-/*
-  margin-top: 30px;
-*/
   transition: left 0.4s;
   -webkit-transition : left 0.4s;
   -moz-transition : left 0.4s;
@@ -220,16 +205,10 @@ TOC
 }
 
 #close-toc {
-	position: absolute;
-	right: 15px;
-	top: 5px;
-	min-width: 25px;
-	padding: 0;
-	border: none;
 	background-color: transparent;
-	font-family: 'Helvetica', sans-serif;
-	font-size: 1.2em;
-	color: #424242;
+	line-height: 27px;
+	font-size: 2em;
+	font-family: "Times New Roman", Georgia, sans-serif;
 }
 
 #toc-title {
@@ -292,7 +271,13 @@ TOP
 }
 
 #top .wb-current-section-title {
+	display: inline-block;
+	width: 80%;
+	white-space: nowrap;
 	font-size: 0.8em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
 }
 
 /*

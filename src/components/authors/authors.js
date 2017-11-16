@@ -2,8 +2,7 @@ import dataStore from '../../services/dataStore';
 import utils from '../../services/utils';
 import css from './authors.css';
 let authorsTemplate = require('./authors.ejs');
-let authorsLettersTemplate = require('./authors-letters.ejs');
-//home.js
+//authors.js
 const authors = function(container) {
 	'use strict';
 	
@@ -36,8 +35,6 @@ const authors = function(container) {
 	//insert template in container
 	c.innerHTML = authorsTemplate({ authors:sas, books: bs });
 	let root = document.querySelector('#authors-container');
-	//fill letters
-	root.querySelector('#letters').innerHTML = authorsLettersTemplate();
 	//get active letter link
 	let ls = root.querySelectorAll('#letters a');
 	for(let i=0; i<ls.length; i++) {
