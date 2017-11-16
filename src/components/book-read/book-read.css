@@ -22,13 +22,13 @@ BOOK NAVBAR BOTTOM
 	text-align: center;
 }
 
-#nav-bar-bottom-controls button {
+#nav-bar-bottom-controls > span {
 	outline: none;
 	height: 100%;
-	background: transparent;
+	background-color: transparent;
 }
 
-#book-nav-bar-bottom-controls button#open-toc-large.w3-btn span {
+#book-nav-bar-bottom-controls #open-toc-large span {
 	display: inline-block;
 	padding-bottom: 10px;
 }
@@ -110,7 +110,7 @@ toggle toc-large-device, swing-container, swing-bar
 	top: 0px;
 	margin-left: 8px;
 	outline: none;
-	background: #fafafa;
+	background-color: #fafafa;
 	font-size: 1.5em;
 }
 
