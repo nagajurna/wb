@@ -2559,13 +2559,14 @@ var WebBook = function () {
 		value: function getPageStart() {
 			var index = void 0,
 			    startIndex = void 0;
-			for (var i = 0; i < this._sections.length - 1; i++) {
+			for (var i = 0; i < this._sections.length; i++) {
 				if (this._sections[i].className.match(/wb-no-page/)) {
 					index = i;
 				} else {
 					if (index !== undefined && startIndex === undefined) {
 						startIndex = i;
-						var el = this._sections[startIndex];
+						var id = this._sections[startIndex].id;
+						var el = this._text.querySelector('#' + id + ' p:first-child');
 						var elPosition = Math.round((0, _jquery2.default)(el).position().left) - this.getMarginX();
 						elPosition = elPosition % this._containerWidth !== 0 ? elPosition - elPosition % this._containerWidth : elPosition; //always at a page beginning
 						this._startPage = elPosition / this._containerWidth;
@@ -2785,13 +2786,13 @@ var WebBook = function () {
 				}
 
 				for (var _i7 = 0; _i7 < this._currentPages.length; _i7++) {
-					if (this._currentPages[_i7].innerHTML != this.getPageNumber()) {
+					if (this._currentPages[_i7].innerHTML !== this.getPageNumber()) {
 						this._currentPages[_i7].innerHTML = this.getPageNumber();
 					}
 				}
 
 				for (var _i8 = 0; _i8 < this._totalPages.length; _i8++) {
-					if (this._totalPages[_i8].innerHTML != this.getPageNumber()) {
+					if (this._totalPages[_i8].innerHTML !== this.getPageNumber()) {
 						this._totalPages[_i8].innerHTML = this.getPageNumber();
 					}
 				}
