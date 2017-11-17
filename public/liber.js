@@ -2383,7 +2383,6 @@ var WebBook = function () {
 				//last element
 				if (this._lastElement.style.marginBottom !== "300%") {
 					this._lastElement.style.marginBottom = "300%";
-					this._lastElement.style.width = "0px";
 				}
 
 				//text
@@ -2503,16 +2502,16 @@ var WebBook = function () {
 	}, {
 		key: 'setLinks',
 		value: function setLinks() {
-			var _this = this;
+			var _this2 = this;
 
 			var links = this._bookContainer.querySelectorAll('.wb-link');
 			for (var i = 0; i < links.length; i++) {
 				links[i].addEventListener('click', function (e) {
-					if (_this.col === true) {
+					if (_this2.col === true) {
 						e.preventDefault();
 						var href = e.currentTarget.getAttribute('href');
 						var id = href.replace(/^#/, "");
-						_this.goToPage(_this.elementPageNumber(id));
+						_this2.goToPage(_this2.elementPageNumber(id));
 					}
 				}, false);
 			}
@@ -2692,37 +2691,33 @@ var WebBook = function () {
 	}, {
 		key: 'getTocCurrentSection',
 		value: function getTocCurrentSection() {
-			var position = -this._position;
-			this._tocSections.push(this._lastElement);
-			if (this._sections[0].className.match(/wb-no-toc/)) {
-				this._tocSections.unshift(this._sections[0]);
-			}
-			for (var i = 0; i < this._tocs.length; i++) {
-				var toc = this._tocs[i];
-				for (var _i3 = 1; _i3 < this._tocSections.length; _i3++) {
-					if (Math.round((0, _jquery2.default)(this._tocSections[_i3]).position().left) - this._containerWidth >= position) {
-						var id = this._tocSections[_i3 - 1].id;
-						var links = toc.querySelectorAll('a');
-						for (var j = 0; j < links.length; j++) {
-							var link = links[j];
-							if (link.getAttribute('href').replace(/^#/, '') === id) {
-								if (!link.parentElement.className.match(/current/)) {
-									link.parentElement.className += ' current';
-								}
-							} else {
-								if (link.parentElement.className.match(/current/)) {
-									link.parentElement.className = link.parentElement.className.replace(/ current/, '');
-								}
-							}
+			var sections = [].slice.call(this._sections);
+			var _this = this;
+			var doneSections = sections.filter(function (section) {
+				return _this.elementPageNumber(section.id) <= _this.getPageNumber();
+			});
+			var currentSection = doneSections[doneSections.length - 1];
+			if (currentSection) {
+				for (var i = 0; i < this._tocs.length; i++) {
+					var toc = this._tocs[i];
+					var links = [].slice.call(toc.querySelectorAll('a'));
+					var link = links.filter(function (l) {
+						return l.getAttribute('href').replace(/^#/, '') === currentSection.id;
+					});
+					var currentLink = links.filter(function (l) {
+						return l.parentElement.className.match(/current/);
+					});
+					if (!currentLink[0]) {
+						if (link[0]) {
+							link[0].parentElement.className += ' current';
 						}
-
-						break;
+					} else if (currentLink[0] && currentLink[0] !== link[0]) {
+						currentLink[0].parentElement.className = currentLink[0].parentElement.className.replace(/ current/, '');
+						if (link[0]) {
+							link[0].parentElement.className += ' current';
+						}
 					}
 				}
-			}
-			this._tocSections.pop(this._lastElement);
-			if (this._sections[0].className.match(/wb-no-toc/)) {
-				this._tocSections.shift(this._sections[0]);
 			}
 		}
 	}, {
@@ -2766,20 +2761,20 @@ var WebBook = function () {
 					this._currentPages[i].innerHTML = "";
 				}
 
-				for (var _i4 = 0; _i4 < this._totalPages.length; _i4++) {
-					this._totalPages[_i4].innerHTML = "";
+				for (var _i3 = 0; _i3 < this._totalPages.length; _i3++) {
+					this._totalPages[_i3].innerHTML = "";
 				}
 
-				for (var _i5 = 0; _i5 < this._currentTotalPages.length; _i5++) {
-					this._currentTotalPages[_i5].innerHTML = "";
+				for (var _i4 = 0; _i4 < this._currentTotalPages.length; _i4++) {
+					this._currentTotalPages[_i4].innerHTML = "";
 				}
 
-				for (var _i6 = 0; _i6 < this._elPageNumbers.length; _i6++) {
-					this._elPageNumbers[_i6].innerHTML = "";
+				for (var _i5 = 0; _i5 < this._elPageNumbers.length; _i5++) {
+					this._elPageNumbers[_i5].innerHTML = "";
 				}
 
-				for (var _i7 = 0; _i7 < this._sectionTitles.length; _i7++) {
-					this._sectionTitles[_i7].innerHTML = "";
+				for (var _i6 = 0; _i6 < this._sectionTitles.length; _i6++) {
+					this._sectionTitles[_i6].innerHTML = "";
 				}
 			} else {
 
@@ -2789,39 +2784,39 @@ var WebBook = function () {
 					this.getTocCurrentSection();
 				}
 
-				for (var _i8 = 0; _i8 < this._currentPages.length; _i8++) {
-					if (this._currentPages[_i8].innerHTML != this.getPageNumber()) {
-						this._currentPages[_i8].innerHTML = this.getPageNumber();
+				for (var _i7 = 0; _i7 < this._currentPages.length; _i7++) {
+					if (this._currentPages[_i7].innerHTML != this.getPageNumber()) {
+						this._currentPages[_i7].innerHTML = this.getPageNumber();
 					}
 				}
 
-				for (var _i9 = 0; _i9 < this._totalPages.length; _i9++) {
-					if (this._totalPages[_i9].innerHTML != this.getPageNumber()) {
-						this._totalPages[_i9].innerHTML = this.getPageNumber();
+				for (var _i8 = 0; _i8 < this._totalPages.length; _i8++) {
+					if (this._totalPages[_i8].innerHTML != this.getPageNumber()) {
+						this._totalPages[_i8].innerHTML = this.getPageNumber();
 					}
 				}
 
-				for (var _i10 = 0; _i10 < this._currentTotalPages.length; _i10++) {
+				for (var _i9 = 0; _i9 < this._currentTotalPages.length; _i9++) {
 					if (this.getPageNumber() < 1) {
-						this._currentTotalPages[_i10].innerHTML = "";
-					} else if (this._currentTotalPages[_i10].innerHTML !== this.getPageNumber() + "/" + this.getTotalPages()) {
-						this._currentTotalPages[_i10].innerHTML = this.getPageNumber() + "/" + this.getTotalPages();
+						this._currentTotalPages[_i9].innerHTML = "";
+					} else if (this._currentTotalPages[_i9].innerHTML !== this.getPageNumber() + "/" + this.getTotalPages()) {
+						this._currentTotalPages[_i9].innerHTML = this.getPageNumber() + "/" + this.getTotalPages();
 					}
 				}
 
-				for (var _i11 = 0; _i11 < this._elPageNumbers.length; _i11++) {
-					var id = this._elPageNumbers[_i11].getAttribute('data-wb-element-page-number');
+				for (var _i10 = 0; _i10 < this._elPageNumbers.length; _i10++) {
+					var id = this._elPageNumbers[_i10].getAttribute('data-wb-element-page-number');
 					var pageNumber = this.elementPageNumber(id);
 					if (pageNumber < 1) {
-						this._elPageNumbers[_i11].innerHTML = "";
-					} else if (this._elPageNumbers[_i11].innerHTML != pageNumber) {
-						this._elPageNumbers[_i11].innerHTML = pageNumber;
+						this._elPageNumbers[_i10].innerHTML = "";
+					} else if (this._elPageNumbers[_i10].innerHTML != pageNumber) {
+						this._elPageNumbers[_i10].innerHTML = pageNumber;
 					}
 				}
 
-				for (var _i12 = 0; _i12 < this._sectionTitles.length; _i12++) {
-					if (this._sectionTitles[_i12].innerHTML != this.getSectionTitle()) {
-						this._sectionTitles[_i12].innerHTML = this.getSectionTitle();
+				for (var _i11 = 0; _i11 < this._sectionTitles.length; _i11++) {
+					if (this._sectionTitles[_i11].innerHTML != this.getSectionTitle()) {
+						this._sectionTitles[_i11].innerHTML = this.getSectionTitle();
 					}
 				}
 			}
@@ -15394,7 +15389,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="book">\n	<!--\n		STARTBOOK-CONTAINER\n	-->\n	<div id="bookContainer" style="font-family: <%= book.styles.font %>">\n		<!--\n			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366\n		-->\n		<div id="toc-large-device" class="w3-card-4">\n			<button id="toggle-toc-large-device" type="button" class="w3-btn w3-card-4 w3-white">&colone;</button>\n			<div id="toc-large-device-container" class="toc-content">\n				<p class="w3-center"><%- book.authorDisplay %></p>\n				<p class="w3-center text-uppercase"><%- book.title %></p>\n				<div data-wb-toc class="w3-container"></div>\n			</div>\n		</div>\n		<!--\n			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		<div id="swing-container">\n			<!--\n				START TEXT-CONTAINER\n			-->\n			<div data-wb-text-container class="w3-card-4">\n				<!--\n					TOC (inside textContainer) : width < 1366\n				-->\n				<div id="toc">\n					<div data-wb-toc class="w3-container">\n						<button id="close-toc" type="button" class="w3-button w3-text-black w3-hover-none w3-display-topright">&times;</button>\n						<div id="toc-title" class="toc-content">\n							<p class="w3-center"><%- book.authorDisplay %></p>\n							<p class="w3-center text-uppercase"><%- book.title %></p>\n						</div>\n					</div>\n				</div>\n				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text style="background-image: url(<%- book.styles.image %>)"></div>\n				<!--\n					BOTTOM (inside textContainer) : width < 768\n				-->\n				<div id="bottom">\n					<a id="home" href="/#/books/" class="w3-btn w3-text-gray">liber</a>\n					<span class="wb-currentByTotal-pages"></span>\n					<button type="button" id="open-toc" class="open-toc w3-btn w3-text-gray">&colone;</button>\n				</div>\n				<!--\n					BOTTOM-LARGE (inside textContainer) : width >= 768\n				-->\n				<div id="bottom-large">\n					<span class="wb-currentByTotal-pages"></span>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom">\n			<div class="w3-bar w3-large">\n				<div id="swing-bar">\n					<div id="book-nav-bar-bottom-controls">\n						<span id="backward-large" class="w3-button w3-hover-none w3-margin-right">&lt;</span>\n						<span id="forward-large" class="w3-button w3-hover-none w3-margin-left">&gt;</span>\n						<span id="open-toc-large" class="open-toc w3-button w3-hover-none"><span>&colone;</span></span>\n					</div>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n</div>\n',
+        input: '<div id="book">\n	<!--\n		STARTBOOK-CONTAINER\n	-->\n	<div id="bookContainer" style="font-family: <%= book.styles.font %>">\n		<!--\n			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366\n		-->\n		<div id="toc-large-device" class="w3-card-4">\n			<button id="toggle-toc-large-device" type="button" class="w3-btn w3-card-4 w3-white">&colone;</button>\n			<div id="toc-large-device-container" class="toc-content">\n				<p class="w3-center"><%- book.authorDisplay %></p>\n				<p class="w3-center text-uppercase"><%- book.title %></p>\n				<div data-wb-toc class="w3-container"></div>\n			</div>\n		</div>\n		<!--\n			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		<div id="swing-container">\n			<!--\n				START TEXT-CONTAINER\n			-->\n			<div data-wb-text-container class="w3-card-4">\n				<!--\n					TOC (inside textContainer) : width < 1366\n				-->\n				<div id="toc">\n					<div data-wb-toc class="w3-container">\n						<button id="close-toc" type="button" class="w3-button w3-text-black w3-hover-none w3-display-topright">&times;</button>\n						<div id="toc-title" class="toc-content">\n							<p class="w3-center"><%- book.authorDisplay %></p>\n							<p class="w3-center text-uppercase"><%- book.title %></p>\n						</div>\n					</div>\n				</div>\n				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text style="background-image: url(<%- book.styles.image %>)"></div>\n				<!--\n					BOTTOM (inside textContainer) : width < 768\n				-->\n				<div id="bottom">\n					<a id="home" href="/#/books/" class="w3-button w3-hover-none w3-text-gray">liber</a>\n					<span class="wb-currentByTotal-pages"></span>\n					<button type="button" id="open-toc" class="open-toc w3-button w3-hover-none w3-text-gray">&colone;</button>\n				</div>\n				<!--\n					BOTTOM-LARGE (inside textContainer) : width >= 768\n				-->\n				<div id="bottom-large">\n					<span class="wb-currentByTotal-pages"></span>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom">\n			<div class="w3-bar w3-large">\n				<div id="swing-bar">\n					<div id="book-nav-bar-bottom-controls">\n						<span id="backward-large" class="w3-button w3-hover-none w3-margin-right">&lt;</span>\n						<span id="forward-large" class="w3-button w3-hover-none w3-margin-left">&gt;</span>\n						<span id="open-toc-large" class="open-toc w3-button w3-hover-none"><span>&colone;</span></span>\n					</div>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -15411,7 +15406,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
         var buf = [];
         with (locals || {}) {
             (function() {
-                buf.push('<div id="book">\n	<!--\n		STARTBOOK-CONTAINER\n	-->\n	<div id="bookContainer" style="font-family: ', escape((__stack.lineno = 5, book.styles.font)), '">\n		<!--\n			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366\n		-->\n		<div id="toc-large-device" class="w3-card-4">\n			<button id="toggle-toc-large-device" type="button" class="w3-btn w3-card-4 w3-white">&colone;</button>\n			<div id="toc-large-device-container" class="toc-content">\n				<p class="w3-center">', (__stack.lineno = 12, book.authorDisplay), '</p>\n				<p class="w3-center text-uppercase">', (__stack.lineno = 13, book.title), '</p>\n				<div data-wb-toc class="w3-container"></div>\n			</div>\n		</div>\n		<!--\n			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		<div id="swing-container">\n			<!--\n				START TEXT-CONTAINER\n			-->\n			<div data-wb-text-container class="w3-card-4">\n				<!--\n					TOC (inside textContainer) : width < 1366\n				-->\n				<div id="toc">\n					<div data-wb-toc class="w3-container">\n						<button id="close-toc" type="button" class="w3-button w3-text-black w3-hover-none w3-display-topright">&times;</button>\n						<div id="toc-title" class="toc-content">\n							<p class="w3-center">', (__stack.lineno = 32, book.authorDisplay), '</p>\n							<p class="w3-center text-uppercase">', (__stack.lineno = 33, book.title), '</p>\n						</div>\n					</div>\n				</div>\n				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text style="background-image: url(', (__stack.lineno = 46, book.styles.image), ')"></div>\n				<!--\n					BOTTOM (inside textContainer) : width < 768\n				-->\n				<div id="bottom">\n					<a id="home" href="/#/books/" class="w3-btn w3-text-gray">liber</a>\n					<span class="wb-currentByTotal-pages"></span>\n					<button type="button" id="open-toc" class="open-toc w3-btn w3-text-gray">&colone;</button>\n				</div>\n				<!--\n					BOTTOM-LARGE (inside textContainer) : width >= 768\n				-->\n				<div id="bottom-large">\n					<span class="wb-currentByTotal-pages"></span>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom">\n			<div class="w3-bar w3-large">\n				<div id="swing-bar">\n					<div id="book-nav-bar-bottom-controls">\n						<span id="backward-large" class="w3-button w3-hover-none w3-margin-right">&lt;</span>\n						<span id="forward-large" class="w3-button w3-hover-none w3-margin-left">&gt;</span>\n						<span id="open-toc-large" class="open-toc w3-button w3-hover-none"><span>&colone;</span></span>\n					</div>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n</div>\n');
+                buf.push('<div id="book">\n	<!--\n		STARTBOOK-CONTAINER\n	-->\n	<div id="bookContainer" style="font-family: ', escape((__stack.lineno = 5, book.styles.font)), '">\n		<!--\n			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366\n		-->\n		<div id="toc-large-device" class="w3-card-4">\n			<button id="toggle-toc-large-device" type="button" class="w3-btn w3-card-4 w3-white">&colone;</button>\n			<div id="toc-large-device-container" class="toc-content">\n				<p class="w3-center">', (__stack.lineno = 12, book.authorDisplay), '</p>\n				<p class="w3-center text-uppercase">', (__stack.lineno = 13, book.title), '</p>\n				<div data-wb-toc class="w3-container"></div>\n			</div>\n		</div>\n		<!--\n			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		<div id="swing-container">\n			<!--\n				START TEXT-CONTAINER\n			-->\n			<div data-wb-text-container class="w3-card-4">\n				<!--\n					TOC (inside textContainer) : width < 1366\n				-->\n				<div id="toc">\n					<div data-wb-toc class="w3-container">\n						<button id="close-toc" type="button" class="w3-button w3-text-black w3-hover-none w3-display-topright">&times;</button>\n						<div id="toc-title" class="toc-content">\n							<p class="w3-center">', (__stack.lineno = 32, book.authorDisplay), '</p>\n							<p class="w3-center text-uppercase">', (__stack.lineno = 33, book.title), '</p>\n						</div>\n					</div>\n				</div>\n				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text style="background-image: url(', (__stack.lineno = 46, book.styles.image), ')"></div>\n				<!--\n					BOTTOM (inside textContainer) : width < 768\n				-->\n				<div id="bottom">\n					<a id="home" href="/#/books/" class="w3-button w3-hover-none w3-text-gray">liber</a>\n					<span class="wb-currentByTotal-pages"></span>\n					<button type="button" id="open-toc" class="open-toc w3-button w3-hover-none w3-text-gray">&colone;</button>\n				</div>\n				<!--\n					BOTTOM-LARGE (inside textContainer) : width >= 768\n				-->\n				<div id="bottom-large">\n					<span class="wb-currentByTotal-pages"></span>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom">\n			<div class="w3-bar w3-large">\n				<div id="swing-bar">\n					<div id="book-nav-bar-bottom-controls">\n						<span id="backward-large" class="w3-button w3-hover-none w3-margin-right">&lt;</span>\n						<span id="forward-large" class="w3-button w3-hover-none w3-margin-left">&gt;</span>\n						<span id="open-toc-large" class="open-toc w3-button w3-hover-none"><span>&colone;</span></span>\n					</div>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n</div>\n');
             })();
         }
         return buf.join("");
