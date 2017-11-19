@@ -372,26 +372,21 @@ TEXT
 	text-indent: 1.5em;
 }
 
-[data-wb-text] a.wb-link {
-	border-bottom: 1px dotted black;
-}
-
 /*
 INSIDE TEXT
 */
 /*
 TITLES
 */
-.section-title, .note-title, .wb-toc-title {
+p.section-title, p.notes-title, p.wb-toc-title {
 	font-size: 1.25em;
 	text-align: left;
 	text-indent: 0px;
 }
 
-p.section-subtitle {
-	font-size: 1em;
-	text-indent: 0px;
-	margin-bottom: 1.5em;
+p.notes-title {
+	border-bottom: 1px solid black;
+	margin-bottom: 0.5em;
 }
 
 p.section-title {
@@ -402,6 +397,12 @@ p.section-title {
 	line-height: 2em;
 }
 
+p.section-subtitle {
+	font-size: 1em;
+	text-indent: 0px;
+	margin-bottom: 1.5em;
+}
+
 #titre.wb-section {
 	text-align: center;
 	line-height: 1.8em;
@@ -409,6 +410,10 @@ p.section-title {
 
 #cover-author, #cover-title, #cover-logo {
 	margin: 0px;
+	text-indent: 0px;
+}
+
+p.note {
 	text-indent: 0px;
 }
 

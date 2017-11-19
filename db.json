@@ -26,7 +26,7 @@
         "title": "padding-top: 11%; font-size: 1.3em;letter-spacing: 2px;font-variant: small-caps;color: #fafafa",
         "subtitle1": "",
         "subtitle2": "",
-        "logo": "font-family: \"Times New Roman\", Georgia, serif;letter-spacing: 1.5px;color: #fafafa"
+        "logo": "font-size: 0.9em;letter-spacing: 2px;color: #fafafa"
       },
       "title": "Du dandysme et&nbsp;de&nbsp;G.&nbsp;Brummel",
       "subtitle1": "",
@@ -44,7 +44,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 16:54:18",
-      "updated_at": "2017-11-16 07:36:29",
+      "updated_at": "2017-11-19 14:20:24",
       "id": "baf909f9-8f38-4d7f-b678-fb8ed46d41f0"
     },
     {
@@ -62,7 +62,7 @@
         "title": "padding-top: 10%; font-size: 1.4em;letter-spacing: 2px;font-variant: small-caps",
         "subtitle1": "",
         "subtitle2": "",
-        "logo": ""
+        "logo": "font-size: 0.9em;letter-spacing: 2px;"
       },
       "title": "Un Roman pour les&nbsp;cuisinières",
       "subtitle1": "",
@@ -74,13 +74,13 @@
       "collection": "",
       "description": "",
       "path": "/un_roman_pour_les_cuisinieres",
-      "visible": false,
+      "visible": true,
       "authors": [
         "caec356e-4b52-4635-9830-eefa889de37d"
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:00:53",
-      "updated_at": "2017-11-16 07:37:13",
+      "updated_at": "2017-11-19 14:20:56",
       "id": "b3e3c2e7-305f-4697-867f-3dd2417f71ed"
     },
     {
@@ -98,7 +98,7 @@
         "title": "padding-top: 15%; font-size: 1.2em;letter-spacing: 2px;text-transform: uppercase",
         "subtitle1": "",
         "subtitle2": "",
-        "logo": ""
+        "logo": "font-size: 0.9em;letter-spacing: 2px;"
       },
       "title": "Vies imaginaires",
       "subtitle1": "",
@@ -116,7 +116,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:05:16",
-      "updated_at": "2017-11-16 08:38:56",
+      "updated_at": "2017-11-19 14:21:11",
       "id": "67f99f06-7af1-4dc4-9b8d-9d8f8afdc198"
     },
     {
@@ -134,7 +134,7 @@
         "title": "padding-top: 9%; font-size: 1.4em;letter-spacing: 1.5px",
         "subtitle1": "",
         "subtitle2": "",
-        "logo": ""
+        "logo": "font-size: 0.9em;letter-spacing: 2px;"
       },
       "title": "La Croisade des&nbsp;enfants",
       "subtitle1": "",
@@ -152,7 +152,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:08:48",
-      "updated_at": "2017-11-16 16:34:26",
+      "updated_at": "2017-11-19 14:21:24",
       "id": "e22c5a98-e5b8-4926-8cad-fd30131868c2"
     },
     {
@@ -170,7 +170,7 @@
         "title": "padding-top: 15%; font-size: 1.4em;letter-spacing: 3px;text-transform: uppercase",
         "subtitle1": "",
         "subtitle2": "",
-        "logo": ""
+        "logo": "font-size: 0.9em;letter-spacing: 2px;"
       },
       "title": "Mimes",
       "subtitle1": "",
@@ -188,7 +188,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:11:49",
-      "updated_at": "2017-11-16 07:52:57",
+      "updated_at": "2017-11-19 14:21:43",
       "id": "f379d066-0347-4fb1-998f-2e4c214c3960"
     }
   ],
@@ -210,9 +210,9 @@
       "birth": "date inconnue",
       "death": "1846/47",
       "description": "",
-      "visible": false,
+      "visible": true,
       "created_at": "2017-11-09 17:11:45",
-      "updated_at": "2017-11-12 19:42:18",
+      "updated_at": "2017-11-19 13:01:29",
       "id": "caec356e-4b52-4635-9830-eefa889de37d"
     },
     {
