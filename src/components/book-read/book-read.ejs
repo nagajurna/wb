@@ -6,14 +6,7 @@
 		<!--
 			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366
 		-->
-		<div id="toc-large-device" class="w3-card-4">
-			<button id="toggle-toc-large-device" type="button" class="w3-btn w3-card-4 w3-white">&colone;</button>
-			<div id="toc-large-device-container" class="toc-content">
-				<p class="w3-center"><%- book.authorDisplay %></p>
-				<p class="w3-center text-uppercase"><%- book.title %></p>
-				<div data-wb-toc class="w3-container"></div>
-			</div>
-		</div>
+		<%- include src/components/book-read/toc-large-device.ejs -%>
 		<!--
 			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN
 		-->
@@ -43,7 +36,7 @@
 				<!--
 					TEXT
 				-->
-				<div data-wb-text style="background-image: url(<%- book.styles.image %>)"></div>
+				<div data-wb-text style="background-color: <%- book.styles.color %>; background-image: url(<%- book.styles.image %>)"></div>
 				<!--
 					BOTTOM (inside textContainer) : width < 768
 				-->

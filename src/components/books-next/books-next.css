@@ -5,7 +5,7 @@
 	font-variant: small-caps;
 	letter-spacing: 1px;
 	line-height: 25px;
-	width: 172px;
+	width: 100px;
 	margin: auto;
 	margin-top: 16px;
 	display: block;
@@ -55,6 +55,11 @@
 	width: 250px;
 	height: 340px;
 	margin:auto;
+}
+
+#books-container .book .logo .span2 {
+	font-variant: small-caps;
+	font-style: normal;
 }
 
 #books-next-container #book-btn {

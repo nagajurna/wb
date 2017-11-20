@@ -48,8 +48,9 @@ const search = function(container) {
 	
 	//go to book/read
 	let readBk = event => {
-		let bk = dataStore.getData('books', event.currentTarget.id);
-		location.hash = '#' + bk.path + "/read";
+		let b = dataStore.getData('books', event.currentTarget.id);
+		let path = b.path.replace(/^\/books\/[^\/]+/,'');
+		location.hash = '#' + path + "/read";
 	}
 	//open infos
 	let openInfos = event => {

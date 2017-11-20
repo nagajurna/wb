@@ -17,16 +17,20 @@ const book = function(container) {
 		//width (responsive)
 		if(window.innerWidth >= 768) {
 			//max-height: 720
-			if(window.innerHeight > 876) {//748 + navBars height *2 (2*44) + textContainer minimum top * 2 (2*20)
+			if(window.innerHeight > 832) {//748 + navBarBottom height (1*44) + textContainer minimum top * 2 (2*20)
 				h = 748;
-				top = (window.innerHeight-748-88)/2;
+				top = (window.innerHeight-748-44)/2;
 				textContainer.style.top = top-15 + 'px';
-				tocLargeDevice.style.marginTop = top-15 + 'px';
+				tocLarge.style.marginTop = top-15 + 'px';
+				tabInfos.style.marginTop = top+32 + 'px';
+				bookCommands.style.top = top-16 + 'px';
 				bookNavBarBottom.style.marginTop = top-15 + 'px';
 			} else {
-				h = window.innerHeight-88-40;//navBars height *2 (2*44) + textContainer top * 2 (2*20)
+				h = window.innerHeight-44-40;//navBarBottom height (1*44) + textContainer top * 2 (2*20)
 				textContainer.style.top ='15px';
-				tocLargeDevice.style.marginTop = '15px';
+				tocLarge.style.marginTop = '15px';
+				tabInfos.style.marginTop = '63px';
+				bookCommands.style.top = '15px';
 				bookNavBarBottom.style.marginTop = '15px';
 			}
 			w = 550;
@@ -60,23 +64,27 @@ const book = function(container) {
 		
 		if(window.innerWidth >= 1366) {
 			//Toc-large height
-			bookContainer.querySelector("#toc-large-device div").style.maxHeight = h-30 + "px";
+			bookContainer.querySelector("#toc-large-device div").style.maxHeight = h + "px";
 		}
 						 
 		//on resize
 		window.addEventListener('resize', event => {
 			if(window.innerWidth >= 768) {
 				//max-height: 720
-				if(window.innerHeight >= 876) {//748 + navBars height *2 (2*44) + textContainer minimum top * 2 (2*20)
+				if(window.innerHeight >= 832) {//748 + navBarBottom height (1*44) + textContainer minimum top * 2 (2*20)
 					h = 748;
-					top = (window.innerHeight-748-88)/2;
+					top = (window.innerHeight-748-44)/2;
 					textContainer.style.top = top-15 + 'px';
-					tocLargeDevice.style.marginTop = top-15 + 'px';
+					tocLarge.style.marginTop = top-15 + 'px';
+					tabInfos.style.marginTop = top+32 + 'px';
+					bookCommands.style.top = top-16 + 'px';
 					bookNavBarBottom.style.marginTop = top-15 + 'px';
 				} else {
-					h = window.innerHeight-88-40;//navBars height *2 (2*44) + textContainer top * 2 (2*20)
+					h = window.innerHeight-44-40;//navBars height *2 (2*44) + textContainer top * 2 (2*20)
 					textContainer.style.top ='15px';
-					tocLargeDevice.style.marginTop = '15px';
+					tocLarge.style.marginTop = '15px';
+					tabInfos.style.marginTop = '63px';
+					bookCommands.style.top = '15px';
 					bookNavBarBottom.style.marginTop = '15px';
 				}
 				w = 550;
@@ -90,7 +98,7 @@ const book = function(container) {
 			
 			if(window.innerWidth >= 1366) {
 				//Toc-large height
-				bookContainer.querySelector("#toc-large-device div").style.maxHeight = h-30 + "px";
+				bookContainer.querySelector("#toc-large-device div").style.maxHeight = h + "px";
 			}
 			
 			//marginY is relative to line-height
@@ -142,7 +150,15 @@ const book = function(container) {
 		}, false);
 		
 			
-		//BUTTONS
+		//TAB-HOME-LINK
+		bookContainer.querySelector('#tab-home-link').addEventListener('click', event => {
+			event.preventDefault();
+			let prevLocation = dataStore.getData('location').prevLocation;
+			location.hash = prevLocation ? prevLocation : '#/';
+		}, false);
+		
+		
+		//BUTTONS FORWARD/BACKWARD
 		//large
 		let forwardLarge = bookContainer.querySelector('#forward-large');
 		let backwardLarge = bookContainer.querySelector('#backward-large');
@@ -178,27 +194,72 @@ const book = function(container) {
 			}, false);
 		}
 		
-		
-		//TOC-LARGE-DEVICE
-		let tocLarge = bookContainer.querySelector('#toc-large-device');
+		//TAB-CONTAINER
 		let swingContainer = bookContainer.querySelector('#swing-container');
 		let swingBar = bookContainer.querySelector('#swing-bar');
-		//Toggle toc-large-device, swing-container, swing-bar
-		bookContainer.querySelector('#toggle-toc-large-device').addEventListener('click', event => {
+		let tabHome = bookContainer.querySelector('#tab-home-link');
+		let toggleTocLarge = bookContainer.querySelector('#toggle-toc-large-device');
+		let toggleTabInfos = bookContainer.querySelector('#toggle-tab-infos');
+		let closeTocLarge = bookContainer.querySelector('#close-toc-large-device');
+		let closeTabInfos = bookContainer.querySelector('#close-tab-infos');
+		//TOGGLE TOC-LARGE-DEVICE
+		toggleTocLarge.addEventListener('click', event => {
 			if(!tocLarge.className.match(/open/)) {
+				if(tabInfos.className.match(/open/)) {
+					tabInfos.style.zIndex='0';
+					tocLarge.style.zIndex='1000';
+					utils.removeClass('#tab-infos','open');
+				}
 				utils.addClass('#toc-large-device','open');
 				utils.addClass('#swing-container','left');
 				utils.addClass('#swing-bar','left');
+				
 			} else {
+				tocLarge.style.zIndex='0';
 				utils.removeClass('#toc-large-device','open');
 				utils.removeClass('#swing-container','left');
 				utils.removeClass('#swing-bar','left');
 			}
 		}, false);
 		
+		//CLOSE TOC-LARGE-DEVICE
+		closeTocLarge.addEventListener('click', event => {
+			utils.removeClass('#toc-large-device','open');
+			utils.removeClass('#swing-container','left');
+			utils.removeClass('#swing-bar','left');
+			tocLarge.style.zIndex='0';
+		}, false);
+		
+		//TOGGLE TAB-INFOS
+		toggleTabInfos.addEventListener('click', event => {
+			if(!tabInfos.className.match(/open/)) {
+				if(tocLarge.className.match(/open/)) {
+					tocLarge.style.zIndex='0';
+					tabInfos.style.zIndex='1000';
+					utils.removeClass('#toc-large-device','open');
+				}
+				utils.addClass('#tab-infos','open');
+				utils.addClass('#swing-container','left');
+				utils.addClass('#swing-bar','left');
+			} else {
+				tabInfos.style.zIndex='0';
+				utils.removeClass('#tab-infos','open');
+				utils.removeClass('#swing-container','left');
+				utils.removeClass('#swing-bar','left');
+			}
+		}, false);
+		
+		//CLOSE TAB-INFOS
+		closeTabInfos.addEventListener('click', event => {
+			utils.removeClass('#tab-infos','open');
+			utils.removeClass('#swing-container','left');
+			utils.removeClass('#swing-bar','left');
+			tabInfos.style.zIndex='0';
+		}, false);
+		
 		
 		//HOME LINK
-		bookContainer.querySelector('#home').addEventListener('click', event => {
+		tabHome.addEventListener('click', event => {
 			event.preventDefault();
 			let prevLocation = dataStore.getData('location').prevLocation;
 			location.hash = prevLocation ? prevLocation : '#/';
@@ -214,8 +275,10 @@ const book = function(container) {
 	let books = dataStore.getData('books');
 	let book;
 	let loc = location.hash.replace(/(#|\/read)/g,'');
+	let title = '';
 	for(let i = 0; i < books.length; i++) {
-	  if(books[i].path===loc) {
+		title = books[i].path.replace(/^\/books\/[^\/]+/,'');
+	  if(title===loc) {
 		 book = books[i];
 		 break;
 	  }
@@ -232,10 +295,12 @@ const book = function(container) {
 		
 	//GET TEXT CONTENT
 	let textContainer = bookContainer.querySelector('[data-wb-text-container]');
-	let tocLargeDevice = bookContainer.querySelector('#toc-large-device');
+	let tocLarge = bookContainer.querySelector('#toc-large-device');
+	let tabInfos = bookContainer.querySelector('#tab-infos');
+	let bookCommands = bookContainer.querySelector('#book-commands');
 	let bookNavBarBottom = bookContainer.querySelector('#book-nav-bar-bottom');
 	let text = bookContainer.querySelector('[data-wb-text]');
-	let options = { method: 'GET', url: '/books' + book.path + '.html' };
+	let options = { method: 'GET', url: book.path + '.html' };
 	
 	utils.ajax(options).then( content => {
 		let div = document.createElement('div');

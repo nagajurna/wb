@@ -20,7 +20,8 @@ const authors = function(container) {
 	//go to book/read
 	let readBk = event => {
 		let b = dataStore.getData('books', event.currentTarget.id);
-		location.hash = '#' + b.path + "/read";
+		let path = b.path.replace(/^\/books\/[^\/]+/,'');
+		location.hash = '#' + path + "/read";
 	}
 	//open infos
 	let openInfos = event => {

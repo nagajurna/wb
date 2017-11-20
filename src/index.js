@@ -34,16 +34,10 @@ var index = (function() {
 	
 	let init = () => {
 		//if book/id/read 
-		if(location.hash.match(/#\/[^\/]+\/read$/)) {//if small device
-			if(window.innerWidth < 768) {
-				utils.addClass("#nav-bar-top", "hidden");
-				utils.addClass('body', 'book');//body background
-			}
-			utils.addClass('body', 'book');//body background
-			utils.addClass("#top-links", "hidden");
-			utils.addClass("#menu-open", "hidden");
-			utils.addClass('#search-open', 'hidden');
+		if(location.hash.match(/#\/[^\/]+\/read$/)) {
+			utils.addClass("#nav-bar-top", "hidden");//hide nav-bar-top
 		} else {
+			utils.removeClass("#nav-bar-top", "hidden");
 			if(window.innerWidth < 768) {
 				utils.addClass("#top-links", "hidden");
 				utils.removeClass("#menu-open", "hidden");
@@ -75,16 +69,6 @@ var index = (function() {
 		
 		searchInput();
 		
-		//HOME-LINK
-		root.querySelector('#home-link').addEventListener('click', event => {
-			event.preventDefault();
-			if(location.hash.match(/#\/[^\/]+\/read$/)) {
-				let prevLocation = dataStore.getData('location').prevLocation;
-				location.hash = prevLocation ? prevLocation : '#/';
-			} else {
-				location.hash = '#/';
-			}
-		}, false);
 	}
 	
 	//function getData
@@ -140,18 +124,9 @@ var index = (function() {
 		
 		window.addEventListener('hashchange', () => {
 			if(location.hash.match(/#\/[^\/]+\/read$/)) {
-				if(window.innerWidth < 768) {
-					utils.addClass("#nav-bar-top", "hidden");
-				}
-				utils.addClass('body', 'book');
-				utils.addClass("#top-links", "hidden");
-				utils.addClass("#menu-open", "hidden");
-				utils.addClass('#search-open', 'hidden');
+				utils.addClass("#nav-bar-top", "hidden");
 			} else {
 				utils.removeClass("#nav-bar-top", "hidden");
-				utils.removeClass('body', 'book');
-				utils.setHTML("#top-title", "");
-				utils.removeClass('#search-open', 'hidden');
 				if(window.innerWidth < 768) {
 					utils.addClass("#top-links", "hidden");
 					utils.removeClass("#menu-open", "hidden");
@@ -164,22 +139,13 @@ var index = (function() {
 		}, false);
 
 		window.addEventListener('resize', () => {
-			if(location.hash.match(/#\/[^\/]+\/read$/)) {
-				if(window.innerWidth < 768) {
-					utils.addClass("#nav-bar-top", "hidden");
-				} else {
-					utils.removeClass("#nav-bar-top", "hidden");
-				}
-				
+			//utils.removeClass("#nav-bar-top", "hidden");
+			if(window.innerWidth < 768) {
+				utils.addClass("#top-links", "hidden");
+				utils.removeClass("#menu-open", "hidden");
 			} else {
-				utils.removeClass("#nav-bar-top", "hidden");
-				if(window.innerWidth < 768) {
-					utils.addClass("#top-links", "hidden");
-					utils.removeClass("#menu-open", "hidden");
-				} else {
-					utils.removeClass("#top-links", "hidden");
-					utils.addClass("#menu-open", "hidden");
-				}
+				utils.removeClass("#top-links", "hidden");
+				utils.addClass("#menu-open", "hidden");
 			}
 		}, false);
 		

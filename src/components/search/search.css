@@ -57,6 +57,11 @@
 	margin:auto;
 }
 
+#home-container .book .logo .span2 {
+	font-variant: small-caps;
+	font-style: normal;
+}
+
 #search-container #book-btn {
 	width: 238px;
 	height: 40px;
