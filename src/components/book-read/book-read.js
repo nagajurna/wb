@@ -148,16 +148,7 @@ const book = function(container) {
 				book.toLastPage();
 			}
 		}, false);
-		
 			
-		//TAB-HOME-LINK
-		bookContainer.querySelector('#tab-home-link').addEventListener('click', event => {
-			event.preventDefault();
-			let prevLocation = dataStore.getData('location').prevLocation;
-			location.hash = prevLocation ? prevLocation : '#/';
-		}, false);
-		
-		
 		//BUTTONS FORWARD/BACKWARD
 		//large
 		let forwardLarge = bookContainer.querySelector('#forward-large');
@@ -174,10 +165,10 @@ const book = function(container) {
 		
 		//TOC		
 		let toc = bookContainer.querySelector('#toc');
-		let openToc = bookContainer.querySelectorAll('.open-toc');
+		let openTocs = bookContainer.querySelectorAll('.open-toc');
 		
-		for(let i=0; i<openToc.length; i++) {
-			openToc[i].addEventListener('click', event => {
+		for(let i=0; i<openTocs.length; i++) {
+			openTocs[i].addEventListener('click', event => {
 				toc.className = toc.className === "open" ? "" : "open";
 			}, false);
 		}
@@ -258,12 +249,16 @@ const book = function(container) {
 		}, false);
 		
 		
-		//HOME LINK
-		tabHome.addEventListener('click', event => {
-			event.preventDefault();
-			let prevLocation = dataStore.getData('location').prevLocation;
-			location.hash = prevLocation ? prevLocation : '#/';
-		}, false);
+		//HOME
+		let homeLinks = bookContainer.querySelectorAll('.home');
+		
+		for(let i=0; i<homeLinks.length; i++) {
+			homeLinks[i].addEventListener('click', event => {
+				event.preventDefault();
+				let prevLocation = dataStore.getData('location').prevLocation;
+				location.hash = prevLocation ? prevLocation : '#/';
+			}, false);
+		}
 		
 		//end loader
 		bookContainer.className = 'show';
@@ -300,14 +295,29 @@ const book = function(container) {
 	let bookCommands = bookContainer.querySelector('#book-commands');
 	let bookNavBarBottom = bookContainer.querySelector('#book-nav-bar-bottom');
 	let text = bookContainer.querySelector('[data-wb-text]');
-	let options = { method: 'GET', url: book.path + '.html' };
+	let options = { method: 'GET', url: book.path + '.css' };
 	
 	utils.ajax(options).then( content => {
+		let style = document.createElement('style');
+		style.setAttribute('type','text/css');
+		style.innerHTML = content;
+		let head = document.querySelector('head')
+		if(dataStore.getData('stylesheet')) {
+			head.replaceChild(style, head.lastChild)
+		} else {
+			head.appendChild(style);
+		}
+		dataStore.setData('stylesheet',true);
+		options = { method: 'GET', url: book.path + '.html' };
+		return utils.ajax(options);
+	})
+	.then( content => {
 		let div = document.createElement('div');
 		div.innerHTML = content;
 		text.appendChild(div);
 		init();
 	});
+	
 	
 
 };

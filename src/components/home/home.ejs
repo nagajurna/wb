@@ -10,26 +10,26 @@
 				
 				<div class="w3-col" style="text-align: center">
 					<div id="paper" style="background-image: url(<%- books[i].styles.image %>)">
-					<div id="<%= books[i].id %>" class="book w3-card-4" style="<%= books[i].styles.cover %>">
-						<p class="author" style="<%=books[i].styles.author %>"><%= books[i].authorDisplay %></p>
-						<p class="title" style="<%=books[i].styles.title %>">
-							<%- books[i].title %>
-						</p>
-						<% if(books[i].subtitle1) {%>
-						<p class="subtitle1" style="<%=books[i].styles.subtitle1 %>">
-							<%- books[i].subtitle1 %></a>
-						</p>
-						<% } %>
-						<% if(books[i].subtitle2) {%>
-						<p class="subtitle1" style="<%=books[i].styles.subtitle2 %>">
-							<%- books[i].subtitle2 %></a>
-						</p>
-						<% } %>
-						<p class="logo" style="<%=books[i].styles.logo %>">
-							<span class="span1">L&rsquo;Intermédiaire</span><br/>
-							<span class="span2">éditions</span>
-						</p>
-				   </div>
+						<div id="<%= books[i].id %>" class="book w3-card-4" style="<%= books[i].styles.cover %>">
+							<p class="author" style="<%=books[i].styles.author %>"><%= books[i].authorDisplay %></p>
+							<p class="title" style="<%=books[i].styles.title %>">
+								<%- books[i].title %>
+							</p>
+							<% if(books[i].subtitle1) {%>
+							<p class="subtitle1" style="<%=books[i].styles.subtitle1 %>">
+								<%- books[i].subtitle1 %></a>
+							</p>
+							<% } %>
+							<% if(books[i].subtitle2) {%>
+							<p class="subtitle1" style="<%=books[i].styles.subtitle2 %>">
+								<%- books[i].subtitle2 %></a>
+							</p>
+							<% } %>
+							<p class="logo" style="<%=books[i].styles.logo %>">
+								<span class="span1">L&rsquo;Intermédiaire</span><br/>
+								<span class="span2">éditions</span>
+							</p>
+					   </div>
 				   </div>
 				   <div id="book-btn" >
 						<button id="open-infos-<%= books[i].id %>" 

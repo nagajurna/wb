@@ -21,7 +21,7 @@
         "color": "#191a1a",
         "image": "/books/du_dandysme_et_de_g_brummel/du_dandysme_et_de_g_brummel_cover.jpg",
         "font": "'Noto Serif', 'Georgia', serif",
-        "cover": "padding: 16px;font-family: 'Noto Serif', 'Georgia', serif;opacity: 0.85;position: relative",
+        "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;color: #fafafa",
         "title": "padding-top: 11%; font-size: 1.3em;letter-spacing: 2px;font-variant: small-caps;color: #fafafa",
         "subtitle1": "",
@@ -44,7 +44,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 16:54:18",
-      "updated_at": "2017-11-20 12:20:48",
+      "updated_at": "2017-11-21 11:12:56",
       "id": "baf909f9-8f38-4d7f-b678-fb8ed46d41f0"
     },
     {
@@ -57,9 +57,9 @@
         "color": "#e26850",
         "image": "/books/un_roman_pour_les_cuisinieres/un_roman_pour_les_cuisinieres_cover.jpg",
         "font": "'Noto Serif', 'Georgia', serif",
-        "cover": "padding: 16px;font-family:'Noto Serif', 'Georgia', serif;opacity: 0.85;position: relative",
+        "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
-        "title": "padding-top: 9%; font-size: 1.4em;letter-spacing: 2px",
+        "title": "padding-top: 9%; font-size: 1.4em;letter-spacing: 1.5px",
         "subtitle1": "",
         "subtitle2": "",
         "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 1.5px;font-style: italic; font-size: 0.9em"
@@ -80,7 +80,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:00:53",
-      "updated_at": "2017-11-20 11:59:34",
+      "updated_at": "2017-11-21 11:13:15",
       "id": "b3e3c2e7-305f-4697-867f-3dd2417f71ed"
     },
     {
@@ -93,9 +93,9 @@
         "color": "#7b3747",
         "image": "/books/vies_imaginaires/vies_imaginaires_cover.jpg",
         "font": "'Noto Serif', 'Georgia', serif",
-        "cover": "padding: 16px 32px 16px 32px;font-family: 'Noto Serif', 'Georgia', serif;position: relative;opacity: 0.85",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
-        "title": "padding-top: 15%; font-size: 1.2em;letter-spacing: 2px;text-transform: uppercase",
+        "title": "padding-top: 18%; font-size: 1.2em;letter-spacing: 1px;text-transform: uppercase",
         "subtitle1": "",
         "subtitle2": "",
         "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 1.5px;font-style: italic; font-size: 0.9em"
@@ -116,7 +116,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:05:16",
-      "updated_at": "2017-11-20 11:59:00",
+      "updated_at": "2017-11-21 11:13:30",
       "id": "67f99f06-7af1-4dc4-9b8d-9d8f8afdc198"
     },
     {
@@ -129,7 +129,7 @@
         "color": "#cfb095",
         "image": "/books/la_croisade_des_enfants/la_croisade_des_enfants_cover.jpg",
         "font": "'Noto Serif', 'Georgia', serif",
-        "cover": "padding: 16px;font-family: 'Noto Serif', 'Georgia', serif;position: relative;opacity: 0.85",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
         "title": "padding-top: 9%; font-size: 1.4em;letter-spacing: 1.5px",
         "subtitle1": "",
@@ -152,7 +152,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:08:48",
-      "updated_at": "2017-11-20 11:58:13",
+      "updated_at": "2017-11-21 11:13:47",
       "id": "e22c5a98-e5b8-4926-8cad-fd30131868c2"
     },
     {
@@ -165,7 +165,7 @@
         "color": "#edcdc2",
         "image": "/books/mimes/mimes_cover.jpg",
         "font": "'Noto Serif', 'Georgia', serif",
-        "cover": "padding: 16px;font-family: 'Noto Serif', 'Georgia', serif;position: relative; opacity: 0.85",
+        "cover": "padding: 16px;position: relative; opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
         "title": "padding-top: 15%; font-size: 1.4em;letter-spacing: 3px;text-transform: uppercase",
         "subtitle1": "",
@@ -188,7 +188,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:11:49",
-      "updated_at": "2017-11-20 11:57:30",
+      "updated_at": "2017-11-21 11:14:03",
       "id": "f379d066-0347-4fb1-998f-2e4c214c3960"
     }
   ],

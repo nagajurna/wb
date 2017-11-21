@@ -31,26 +31,26 @@
 							
 							<div class="w3-col" style="text-align: center">
 								<div id="paper" style="background-image: url(<%- book.styles.image %>)">
-								<div id="<%= book.id %>" class="book" style="<%= book.styles.cover %>">
-									<p class="book-author" style="<%=book.styles.author %>"><%= book.authorDisplay %></p>
-									<p class="title" style="<%= book.styles.title %>">
-										<%- book.title %>
-									</p>
-									<% if(book.subtitle1) {%>
-									<p class="subtitle1" style="<%=book.styles.subtitle1 %>">
-										<%- book.subtitle1 %></a>
-									</p>
-									<% } %>
-									<% if(book.subtitle2) {%>
-									<p class="subtitle1" style="<%=book.styles.subtitle2 %>">
-										<%- book.subtitle2 %></a>
-									</p>
-									<% } %>
-									<p class="logo" style="<%=book.styles.logo %>">
-										<span class="span1">L&rsquo;Intermédiaire</span><br/>
-										<span class="span2">éditions</span></p>
-									</p>
-							   </div>
+									<div id="<%= book.id %>" class="book" style="<%= book.styles.cover %>">
+										<p class="book-author" style="<%=book.styles.author %>"><%= book.authorDisplay %></p>
+										<p class="title" style="<%= book.styles.title %>">
+											<%- book.title %>
+										</p>
+										<% if(book.subtitle1) {%>
+										<p class="subtitle1" style="<%=book.styles.subtitle1 %>">
+											<%- book.subtitle1 %></a>
+										</p>
+										<% } %>
+										<% if(book.subtitle2) {%>
+										<p class="subtitle1" style="<%=book.styles.subtitle2 %>">
+											<%- book.subtitle2 %></a>
+										</p>
+										<% } %>
+										<p class="logo" style="<%=book.styles.logo %>">
+											<span class="span1">L&rsquo;Intermédiaire</span><br/>
+											<span class="span2">éditions</span>
+										</p>
+								   </div>
 							   </div>
 							   <div id="book-btn" >
 									<button id="open-infos-<%= book.id %>" class="open-infos-btn align-right w3-button">+ d'infos</button>

@@ -22,21 +22,52 @@ BOOK NAVBAR BOTTOM
 	text-align: center;
 }
 
-#nav-bar-bottom-controls > span {
+#book-nav-bar-bottom-controls #center {
+	width: 120px;
+	margin: auto;
+}
+
+#book-nav-bar-bottom-controls #center #backward-large {
+	float: left;
+}
+
+#book-nav-bar-bottom-controls #center #forward-large {
+	float: right;
+}
+
+#book-nav-bar-bottom-controls span {
 	outline: none;
 	height: 100%;
 	background-color: transparent;
 }
 
-#book-nav-bar-bottom-controls #open-toc-large span {
+#book-nav-bar-bottom-controls #open-toc-large {
+	position: absolute;
+	top: 0px;
+	right: 0px;
 	display: inline-block;
 	padding-bottom: 10px;
+}
+
+#book-nav-bar-bottom-controls #home-large {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	display: inline-block;
+	padding-bottom: 10px;
+}
+
+@media screen and (min-width: 1366px) {
+	#book-nav-bar-bottom-controls #open-toc-large, #book-nav-bar-bottom-controls #home-large {
+		display: none;
+	}
 }
 
 /*
 BOOKCONTAINER
 */
 #bookContainer {
+	font-family: 'Georgia', serif;
 	position: relative;
 	color: #000;
 	opacity: 0.0;
@@ -75,11 +106,14 @@ TOC-LARGE-DEVICE
   position: absolute;
   top: 0px;
   right: -40%;
-  width: 30%;
-  transition: right 0.4s;
-  -webkit-transition : right 0.4s;
-  -moz-transition : right 0.4s;
-  -o-transition: right 0.4s;
+  width: 33%;
+/*
+  max-width: 500px;
+*/
+  transition: right 0.5s;
+  -webkit-transition : right 0.5s;
+  -moz-transition : right 0.5s;
+  -o-transition: right 0.5s;
   display: none;
   background-color: #fafafa;
 }
@@ -103,6 +137,7 @@ TOC-LARGE-DEVICE
 	background-color: #fafafa;
 	overflow-y: auto;
 }
+
 
 #toc-large-device-container > div {
 	background-color: #fafafa;
@@ -179,7 +214,7 @@ if toc-large-device.open : swing-container to left
 
 @media screen and (min-width: 1366px) {
 	#swing-container.left {
-		margin-right: 30%;
+		margin-right: 33%;
 	}
 }
 
@@ -200,7 +235,7 @@ if toc-large-device.open : swing-bar to left
 
 @media screen and (min-width: 1366px) {
 	#swing-bar.left {
-		margin-right: 30%;
+		margin-right: 33%;
 	}
 }
 
@@ -238,24 +273,13 @@ TOC
 	font-size: 1.4em;
 }
 
-#open-toc-large {
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	display: inline-block;
-}
 
-@media screen and (min-width: 1366px) {
-	#open-toc-large {
-		display: none;
-	}
-}
 
 #close-toc {
 	background-color: transparent;
 	line-height: 27px;
 	font-size: 2em;
-	font-family: "Times New Roman", Georgia, sans-serif;
+	font-family: 'Georgia', sans-serif;
 }
 
 #toc-title {

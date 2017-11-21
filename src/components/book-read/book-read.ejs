@@ -2,7 +2,7 @@
 	<!--
 		STARTBOOK-CONTAINER
 	-->
-	<div id="bookContainer" style="font-family: <%= book.styles.font %>">
+	<div id="bookContainer">
 		<!--
 			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366
 		-->
@@ -36,12 +36,12 @@
 				<!--
 					TEXT
 				-->
-				<div data-wb-text style="background-color: <%- book.styles.color %>; background-image: url(<%- book.styles.image %>)"></div>
+				<div data-wb-text style="background-color: <%- book.styles.color %>; background-image: url(<%- book.styles.image %>); font-family: <%= book.styles.font %>"></div>
 				<!--
 					BOTTOM (inside textContainer) : width < 768
 				-->
 				<div id="bottom">
-					<a id="home" href="/#/books/" class="w3-button w3-hover-none w3-text-gray">&larr;</a>
+					<a id="home" href="/#/books/" class="home w3-button w3-hover-none w3-text-gray">&larr;</a>
 					<span class="wb-currentByTotal-pages"></span>
 					<button type="button" id="open-toc" class="open-toc w3-button w3-hover-none w3-text-gray">&colone;</button>
 				</div>
@@ -66,9 +66,12 @@
 			<div class="w3-bar w3-large">
 				<div id="swing-bar">
 					<div id="book-nav-bar-bottom-controls">
-						<span id="backward-large" class="w3-button w3-hover-none w3-margin-right">&lt;</span>
-						<span id="forward-large" class="w3-button w3-hover-none w3-margin-left">&gt;</span>
-						<span id="open-toc-large" class="open-toc w3-button w3-hover-none"><span>&colone;</span></span>
+						<span id="home-large" class="home w3-button w3-hover-none">&larr;</span>
+						<div id="center">
+							<span id="backward-large" class="w3-button w3-hover-none">&lt;</span>
+							<span id="forward-large" class="w3-button w3-hover-none">&gt;</span>
+						</div>
+						<span id="open-toc-large" class="open-toc w3-button w3-hover-none">&colone;</span>
 					</div>
 				</div>
 			</div>
