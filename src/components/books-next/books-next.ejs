@@ -8,7 +8,7 @@
 				<%- include src/components/books-next/infos-modal.ejs -%>
 				
 				<div class="w3-col" style="text-align: center">
-					<div id="paper" style="background-image: url(<%- books[i].styles.image %>)">
+					<div id="paper" style="background-color: <%- books[i].styles.color %>; background-image: url(<%- books[i].styles.image %>)">
 					<div class="book" style="<%=books[i].styles.cover %>">
 						<p class="author" style="<%=books[i].styles.author %>"><%= books[i].authorDisplay %></p>
 						<p class="title" style="<%=books[i].styles.title %>">

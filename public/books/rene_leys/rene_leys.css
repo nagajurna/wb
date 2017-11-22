@@ -1,0 +1,48 @@
+[data-wb-text] .wb-section p:first-child {
+	padding-top: 9em;
+	margin-top: 0px;
+}
+
+[data-wb-text] #titre {
+	position: static;
+}
+
+[data-wb-text] #cover-author {
+	padding-top: 0px;
+	font-size: 1.2em;
+	font-variant: small-caps;
+	letter-spacing: 1px;
+	opacity: 0.75;
+}
+
+[data-wb-text] #cover-title {
+	margin-top: 1.5em;
+	padding-top: 8%;
+	font-size: 1.8em;
+	text-transform: uppercase;
+	line-height: 1.8em;
+	word-spacing: 0.25em;
+	letter-spacing: 3px;
+	opacity: 0.75;
+}
+
+[data-wb-text] #cover-logo {
+	position: absolute;
+	bottom: 3em;
+	left: 0px;
+	width: 100%;
+	text-align: center;
+	font-size: 1.2em;
+	letter-spacing: 2px;
+	opacity: 0.75;
+	padding-top: 0px;
+}
+
+[data-wb-text] #cover-logo #span1 {
+	font-style: italic;
+}
+
+[data-wb-text] #cover-logo #span2 {
+	font-variant: small-caps;
+}
+

@@ -34,7 +34,7 @@ const book = function(container) {
 				bookNavBarBottom.style.marginTop = '15px';
 			}
 			w = 550;
-			fontSize = 15;
+			fontSize = 16;
 		 } else {
 			 h = window.innerHeight;
 			 w = window.innerWidth;
@@ -88,7 +88,7 @@ const book = function(container) {
 					bookNavBarBottom.style.marginTop = '15px';
 				}
 				w = 550;
-				fontSize = 15;
+				fontSize = 16;
 			} else {
 				h = window.innerHeight;
 				w = window.innerWidth;

@@ -190,6 +190,42 @@
       "created_at": "2017-11-11 17:11:49",
       "updated_at": "2017-11-21 11:14:03",
       "id": "f379d066-0347-4fb1-998f-2e4c214c3960"
+    },
+    {
+      "source": {
+        "publisher": "G. Crès (Paris)",
+        "year": "1922",
+        "origin": ""
+      },
+      "styles": {
+        "color": "#BE132D",
+        "image": "/books/rene_leys/rene_leys_cover.jpg",
+        "font": "'Noto Serif', 'Georgia', serif",
+        "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 18%; font-size: 1.2em;letter-spacing: 1px;text-transform: uppercase",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 1.5px;font-style: italic; font-size: 0.9em"
+      },
+      "title": "René Leys",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Victor Segalen",
+      "year": "1922",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "description": "",
+      "path": "/books/rene_leys/rene_leys",
+      "visible": true,
+      "authors": [
+        "2ab8033b-f506-48af-8e86-5608befd3154"
+      ],
+      "contribs": [],
+      "created_at": "2017-11-22 18:50:26",
+      "updated_at": "2017-11-22 20:00:25",
+      "id": "13dc7d86-f837-4657-a690-ee3a34b90962"
     }
   ],
   "authors": [
@@ -225,6 +261,17 @@
       "created_at": "2017-11-09 22:08:44",
       "updated_at": "2017-11-14 22:58:49",
       "id": "5315cb5e-f391-467c-8ed2-035f2bce133f"
+    },
+    {
+      "name": "Victor Segalen",
+      "nameAlpha": "segalen",
+      "birth": "1878",
+      "death": "1919",
+      "description": "",
+      "visible": true,
+      "created_at": "2017-11-22 18:45:28",
+      "updated_at": "2017-11-22 18:45:28",
+      "id": "2ab8033b-f506-48af-8e86-5608befd3154"
     }
   ]
 }

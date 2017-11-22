@@ -30,7 +30,7 @@
 							<%- include src/components/authors/infos-modal.ejs -%>
 							
 							<div class="w3-col" style="text-align: center">
-								<div id="paper" style="background-image: url(<%- book.styles.image %>)">
+								<div id="paper" style="background-color: <%- book.styles.color %>; background-image: url(<%- book.styles.image %>)">
 									<div id="<%= book.id %>" class="book" style="<%= book.styles.cover %>">
 										<p class="book-author" style="<%=book.styles.author %>"><%= book.authorDisplay %></p>
 										<p class="title" style="<%= book.styles.title %>">
