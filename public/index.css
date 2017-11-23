@@ -132,7 +132,8 @@ Medium and large devices only
 }
 
 #books-link, #last-link, #next-link, #authors-link, #admin-link {
-	line-height: 31px;
+	margin-top: 10px;
+	line-height: 22px;
 	font-family: "Times New Roman", Georgia, sans-serif;
 	font-variant: small-caps;
 	letter-spacing: 1px;
@@ -159,6 +160,7 @@ Medium and large devices only
 @media only screen and (min-width: 768px) {
 	#search-open {
 		right: 0px;
+		top: 8px;
 	}
 }
 
@@ -245,8 +247,8 @@ SEARCH INPUT
 */
 
 #search-modal label {
-	font-size: 1.2em;
-	font-family: "Times New Roman", Georgia, sans-serif;
+	font-size: 1em;
+	font-family: "Verdana", serif;
 	letter-spacing: 1px;
 }
 
@@ -255,15 +257,15 @@ SEARCH INPUT
 }
 
 #search-valid {
-	font-size: 1.2em;
-	font-family: "Times New Roman", Georgia, sans-serif;
+	font-size: 1em;
+	font-family: "Verdana", sans-serif;
 	letter-spacing: 1px;
 }
 
 #search-close {
 	line-height: 27px;
-	font-size: 2em;
-	font-family: "Times New Roman", Georgia, sans-serif;
+	font-size: 1.5em;
+	font-family: "Verdana", sans-serif;
 }
 
 /*

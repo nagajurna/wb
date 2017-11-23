@@ -1,6 +1,6 @@
 
 <div id="toc-large-device" class="w3-card-4" >
-	<button id="close-toc-large-device" type="button" class="w3-btn w3-card-4 w3-white" >Table</button>
+	<button id="close-toc-large-device" type="button" class="w3-btn w3-card-4 w3-white" >&times;</button>
 	<div id="toc-large-device-container" class="toc-content">
 		<div class="w3-padding-16">
 			<p class="w3-center"><%- book.authorDisplay %></p>
@@ -11,13 +11,9 @@
 </div>
 	
 <div id="tab-infos" class="w3-card-4">
-	<button id="close-tab-infos" type="button" class="w3-btn w3-card-4 w3-white" >Infos</button>
+	<button id="close-tab-infos" type="button" class="w3-btn w3-card-4 w3-white" >&times;</button>
 	<div id="tab-infos-container">
-		   <div class="w3-padding-16">
-			  <p class="w3-center"><%- book.authorDisplay %></p>
-			  <p class="w3-center text-uppercase"><%- book.title %></p>
-		  </div>
-		  <div class="w3-container">
+		  <div class="w3-container w3-padding-16">
 			  <p><b>Titre : </b><%- book.title %></p>
 			  <% if(book.subtitle1) {%>
 				<p><b>Sous-titre : </b><%- book.subtitle1 %></p>

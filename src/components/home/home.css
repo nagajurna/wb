@@ -80,8 +80,9 @@
 /*
 MODAL (INFOS)
 */
+
 #home-container .w3-modal {
-	font-family: "Times New Roman", Georgia, serif;
+	font-family: "Verdana", serif;
 }
 
 #home-container .w3-modal #footer {
@@ -90,7 +91,7 @@ MODAL (INFOS)
 
 #home-container .w3-modal .close-infos-btn {
 	font-size: 1.1em;
-	font-family: "Times New Roman", Georgia, sans-serif;
+	font-family: "Verdana", serif;
 	letter-spacing: 1px;
 }
 

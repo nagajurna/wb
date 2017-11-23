@@ -1,6 +1,6 @@
 <div id="infos-<%= books[i].id %>" class="w3-modal" style="background-color: rgba(0,0,0,0.1)">
-	<div class="w3-modal-content w3-card" style="max-width: 500px">
-		<div class="w3-container w3-padding-16 ">
+	<div class="w3-modal-content w3-card w3-animate-top" style="max-width: 500px">
+		<div class="w3-container w3-padding-16">
 			  <p><b>Titre : </b><%- books[i].title %></p>
 			  <% if(books[i].subtitle1) {%>
 				<p><b>Sous-titre : </b><%- books[i].subtitle1 %></p>
@@ -52,7 +52,7 @@
 			  <p class="book-source"><b>Source : </b>
 				  <ul>
 					  <li>&Eacute;diteur : <%- books[i].source.publisher %></li>
-					  <li>Année de publication : <%- books[i].source.year %></li>
+					  <li>Année de parution : <%- books[i].source.year %></li>
 				  </ul>
 			  </p>
 			  <% if(books[i].description) {%>
