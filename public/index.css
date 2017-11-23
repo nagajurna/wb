@@ -99,7 +99,7 @@ When not book-read only
 #home-link {
 	position: absolute;
 	left: 0px;
-	top: 0px;
+	top: 5px;
 	margin-top: 0px;
 	line-height: 27px;
 	font-size: 1.6em;
@@ -214,7 +214,7 @@ MODAL MENU (SMALL DEVICES)
 }
 
 #menu-home-link {
-	margin-top: 0px;
+	margin-top: 5px;
 	line-height: 27px;
 	font-size: 1.6em;
 	font-style: italic;

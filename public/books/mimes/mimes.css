@@ -38,4 +38,9 @@
 	font-variant: small-caps;
 }
 
+#bookContainer span.wb-toc-item-title {
+	font-variant: small-caps;
+	font-size: 1.1em;
+}
+
 
