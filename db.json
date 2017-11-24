@@ -13,13 +13,13 @@
   "books": [
     {
       "source": {
-        "publisher": "B. Mancel (Caen)",
-        "year": "1845",
+        "publisher": "Librairie de Poulet-Malassis (Paris)",
+        "year": "1861 (2<sup>ème</sup> édition)",
         "origin": ""
       },
       "styles": {
         "color": "#191a1a",
-        "image": "/books/du_dandysme_et_de_g_brummel/du_dandysme_et_de_g_brummel_cover.jpg",
+        "image": "/books/du_dandysme_et_de_g_brummell/du_dandysme_et_de_g_brummell_cover.jpg",
         "font": "'Noto Serif', 'Georgia', serif",
         "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;color: #fafafa",
@@ -28,7 +28,7 @@
         "subtitle2": "",
         "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 1.5px;color: #fafafa;font-style: italic; font-size: 0.9em"
       },
-      "title": "Du dandysme et&nbsp;de&nbsp;G.&nbsp;Brummel",
+      "title": "Du dandysme et&nbsp;de&nbsp;G.&nbsp;Brummell",
       "subtitle1": "",
       "subtitle2": "",
       "authorDisplay": "J.-A. Barbey d’Aurevilly",
@@ -37,14 +37,14 @@
       "categories": "",
       "collection": "",
       "description": "",
-      "path": "/books/du_dandysme_et_de_g_brummel/du_dandysme_et_de_g_brummel",
-      "visible": false,
+      "path": "/books/du_dandysme_et_de_g_brummell/du_dandysme_et_de_g_brummell",
+      "visible": true,
       "authors": [
         "5315cb5e-f391-467c-8ed2-035f2bce133f"
       ],
       "contribs": [],
       "created_at": "2017-11-11 16:54:18",
-      "updated_at": "2017-11-21 11:12:56",
+      "updated_at": "2017-11-24 12:45:27",
       "id": "baf909f9-8f38-4d7f-b678-fb8ed46d41f0"
     },
     {
@@ -226,6 +226,78 @@
       "created_at": "2017-11-22 18:50:26",
       "updated_at": "2017-11-22 20:00:25",
       "id": "13dc7d86-f837-4657-a690-ee3a34b90962"
+    },
+    {
+      "source": {
+        "publisher": "Charpentier (Paris)&ensp;&ndash; &oelig;uvres complètes, pages&nbsp;1-108",
+        "year": "1844",
+        "origin": ""
+      },
+      "styles": {
+        "color": "#ad5d5d",
+        "image": "/books/voyage_autour_de_ma_chambre/voyage_autour_de_ma_chambre_cover.jpg",
+        "font": "'Noto Serif', 'Georgia', serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 9%; font-size: 1.3em;letter-spacing: 1.5px",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 1.5px;font-style: italic; font-size: 0.9em"
+      },
+      "title": "Voyage autour de&nbsp;ma&nbsp;chambre",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Xavier de&nbsp;Maistre",
+      "year": "1794",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "description": "",
+      "path": "/books/voyage_autour_de_ma_chambre/voyage_autour_de_ma_chambre",
+      "visible": false,
+      "authors": [
+        "85d79127-6f8d-44e3-8685-58015df2fb61"
+      ],
+      "contribs": [],
+      "created_at": "2017-11-24 15:43:11",
+      "updated_at": "2017-11-24 16:09:23",
+      "id": "5261f2e5-16ef-4ccb-9ade-c3e737262428"
+    },
+    {
+      "source": {
+        "publisher": "Charpentier (Paris)&ensp;&ndash; &oelig;uvres complètes, pages&nbsp;109-205",
+        "year": "1844",
+        "origin": ""
+      },
+      "styles": {
+        "color": "#004b8d",
+        "image": "/books/expedition_nocturne_autour_de_ma_chambre/expedition_nocturne_autour_de_ma_chambre_cover.jpg",
+        "font": "'Noto Serif', 'Georgia', serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 10%; font-size: 1.25em;letter-spacing: 1px",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 1.5px;font-style: italic; font-size: 0.9em"
+      },
+      "title": "Expédition nocturne autour de ma&nbsp;chambre",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Xavier de&nbsp;Maistre",
+      "year": "1825",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "description": "",
+      "path": "/books/expedition_nocturne_autour_de_ma_chambre/expedition_nocturne_autour_de_ma_chambre",
+      "visible": false,
+      "authors": [
+        "85d79127-6f8d-44e3-8685-58015df2fb61"
+      ],
+      "contribs": [],
+      "created_at": "2017-11-24 16:05:11",
+      "updated_at": "2017-11-24 16:37:19",
+      "id": "99da47e0-1e93-409e-ba88-233ef3b5ee88"
     }
   ],
   "authors": [
@@ -257,9 +329,9 @@
       "birth": "1808",
       "death": "1889",
       "description": "",
-      "visible": false,
+      "visible": true,
       "created_at": "2017-11-09 22:08:44",
-      "updated_at": "2017-11-14 22:58:49",
+      "updated_at": "2017-11-24 10:45:00",
       "id": "5315cb5e-f391-467c-8ed2-035f2bce133f"
     },
     {
@@ -272,6 +344,17 @@
       "created_at": "2017-11-22 18:45:28",
       "updated_at": "2017-11-22 18:45:28",
       "id": "2ab8033b-f506-48af-8e86-5608befd3154"
+    },
+    {
+      "name": "Xavier de Maistre",
+      "nameAlpha": "maistre",
+      "birth": "1763",
+      "death": "1852",
+      "description": "",
+      "visible": false,
+      "created_at": "2017-11-24 15:33:40",
+      "updated_at": "2017-11-24 15:33:40",
+      "id": "85d79127-6f8d-44e3-8685-58015df2fb61"
     }
   ]
 }
