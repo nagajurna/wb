@@ -22,10 +22,6 @@ body {
 	position: relative;
 }
 
-body.book {
-	overflow: hidden;
-}
-
 #loader-container {
 	position: absolute;
 	top: 0px;

@@ -36,10 +36,8 @@ var index = (function() {
 		//if book/id/read 
 		if(location.hash.match(/#\/[^\/]+\/read$/)) {
 			utils.addClass("#nav-bar-top", "hidden");//hide nav-bar-top
-			utils.addClass("#body","book");
 		} else {
 			utils.removeClass("#nav-bar-top", "hidden");
-			utils.removeClass("#body","book");
 			if(window.innerWidth < 768) {
 				utils.addClass("#top-links", "hidden");
 				utils.removeClass("#menu-open", "hidden");
@@ -130,10 +128,8 @@ var index = (function() {
 		window.addEventListener('hashchange', () => {
 			if(location.hash.match(/#\/[^\/]+\/read$/)) {
 				utils.addClass("#nav-bar-top", "hidden");
-				utils.addClass("#body","book");
 			} else {
 				utils.removeClass("#nav-bar-top", "hidden");
-				utils.removeClass("#body","book");
 				if(window.innerWidth < 768) {
 					utils.addClass("#top-links", "hidden");
 					utils.removeClass("#menu-open", "hidden");
