@@ -12,7 +12,7 @@
   <link href="/index.css" rel="stylesheet"/>
   <script src="https://www.promisejs.org/polyfills/promise-7.0.4.min.js"></script>
 </head>
-<body>
+<body id="body">
 	<div id="navigation">
 		<!-- MODAL-SEARCH -->
 		<div id="search-modal" class="w3-modal" style="background-color: rgba(0,0,0,0.1)">
@@ -67,11 +67,12 @@
 		</div>
 	</div>
 	<div id="container"></div>
-	<div id="screen"></div>
+	<div id="loader-container"></div>
+	
 	 <script>
 		setTimeout(function() {
-			document.getElementById('screen').innerHTML="<h4>loading&hellip;</h4>"
-		},1200);
+			document.getElementById('loader-container').innerHTML="<div id='loader'></div>"
+		},600);
 	</script>
 	<script src="liber.js"></script>
 </body>

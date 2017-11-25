@@ -42,7 +42,7 @@ const book = function(container) {
 			 textContainer.style.top ='0px';
 		 }
 		 
-		 //marginY is relative to line-height
+		 //marginY is relative to line-height (line-height : 1.5em)
 		 lineHeight = fontSize*1.5;
 		 marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*2;
 		 
@@ -261,10 +261,14 @@ const book = function(container) {
 		}
 		
 		//end loader
-		bookContainer.className = 'show';
+		setTimeout( function() { 
+			utils.addClass('#book-loader-container', 'hidden');
+			bookContainer.className = 'show';
+		}, 500);
 		
 	
 	}
+	
 	
 	//GET BOOK
 	let books = dataStore.getData('books');
@@ -284,6 +288,10 @@ const book = function(container) {
 	utils.bind(document.body,book);
 	//insert template in container
 	c.innerHTML = bookReadTemplate({book:book});
+	//START LOADER
+	setTimeout(function() {
+		utils.removeClass('#book-loader-container','hidden');
+	},0);
 	
 	//BOOK CONTAINER
 	const bookContainer = document.querySelector('#bookContainer');

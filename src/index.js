@@ -36,8 +36,10 @@ var index = (function() {
 		//if book/id/read 
 		if(location.hash.match(/#\/[^\/]+\/read$/)) {
 			utils.addClass("#nav-bar-top", "hidden");//hide nav-bar-top
+			utils.addClass("#body","book");
 		} else {
 			utils.removeClass("#nav-bar-top", "hidden");
+			utils.removeClass("#body","book");
 			if(window.innerWidth < 768) {
 				utils.addClass("#top-links", "hidden");
 				utils.removeClass("#menu-open", "hidden");
@@ -111,7 +113,10 @@ var index = (function() {
 		.then( resolve => {
 			//call router
 			router();
-			utils.addClass('#screen', 'hidden');
+			//loader stop
+			setTimeout( function() {
+				utils.addClass('#loader-container', 'hidden')
+			}, 1000);
 		})
 		.catch( error => {
 			console.log(error);
@@ -125,8 +130,10 @@ var index = (function() {
 		window.addEventListener('hashchange', () => {
 			if(location.hash.match(/#\/[^\/]+\/read$/)) {
 				utils.addClass("#nav-bar-top", "hidden");
+				utils.addClass("#body","book");
 			} else {
 				utils.removeClass("#nav-bar-top", "hidden");
+				utils.removeClass("#body","book");
 				if(window.innerWidth < 768) {
 					utils.addClass("#top-links", "hidden");
 					utils.removeClass("#menu-open", "hidden");
