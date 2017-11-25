@@ -3345,6 +3345,7 @@ var book = function book(container) {
 		}
 
 		//end loader
+		document.body.style.overflow = 'visible';
 		_utils2.default.addClass('#book-loader-container', 'hidden');
 
 		//show book
@@ -3368,6 +3369,8 @@ var book = function book(container) {
 
 	//GET TEMPLATE ET START LOADER
 	//insert template in container
+	document.body.style.height = window.innerHeight + 'px';
+	document.body.style.overflow = 'hidden';
 	c.innerHTML = bookReadTemplate({ book: book });
 	//START LOADER
 	setTimeout(function () {
