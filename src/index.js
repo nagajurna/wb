@@ -112,9 +112,7 @@ var index = (function() {
 			//call router
 			router();
 			//loader stop
-			setTimeout( function() {
-				utils.addClass('#loader-container', 'hidden')
-			}, 1000);
+			utils.addClass('#loader-container', 'hidden');
 		})
 		.catch( error => {
 			console.log(error);

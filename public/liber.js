@@ -1963,10 +1963,8 @@ var index = function () {
 		//if book/id/read 
 		if (location.hash.match(/#\/[^\/]+\/read$/)) {
 			_utils2.default.addClass("#nav-bar-top", "hidden"); //hide nav-bar-top
-			_utils2.default.addClass("#body", "book");
 		} else {
 			_utils2.default.removeClass("#nav-bar-top", "hidden");
-			_utils2.default.removeClass("#body", "book");
 			if (window.innerWidth < 768) {
 				_utils2.default.addClass("#top-links", "hidden");
 				_utils2.default.removeClass("#menu-open", "hidden");
@@ -2036,9 +2034,7 @@ var index = function () {
 			//call router
 			(0, _router2.default)();
 			//loader stop
-			setTimeout(function () {
-				_utils2.default.addClass('#loader-container', 'hidden');
-			}, 1000);
+			_utils2.default.addClass('#loader-container', 'hidden');
 		}).catch(function (error) {
 			console.log(error);
 		});
@@ -2051,10 +2047,8 @@ var index = function () {
 		window.addEventListener('hashchange', function () {
 			if (location.hash.match(/#\/[^\/]+\/read$/)) {
 				_utils2.default.addClass("#nav-bar-top", "hidden");
-				_utils2.default.addClass("#body", "book");
 			} else {
 				_utils2.default.removeClass("#nav-bar-top", "hidden");
-				_utils2.default.removeClass("#body", "book");
 				if (window.innerWidth < 768) {
 					_utils2.default.addClass("#top-links", "hidden");
 					_utils2.default.removeClass("#menu-open", "hidden");
@@ -3351,10 +3345,12 @@ var book = function book(container) {
 		}
 
 		//end loader
+		_utils2.default.addClass('#book-loader-container', 'hidden');
+
+		//show book
 		setTimeout(function () {
-			_utils2.default.addClass('#book-loader-container', 'hidden');
 			bookContainer.className = 'show';
-		}, 500);
+		}, 100);
 	};
 
 	//GET BOOK
@@ -3370,9 +3366,7 @@ var book = function book(container) {
 		}
 	}
 
-	//GET TEMPLATE ET PASS BOOK METADATA
-	//pass metadata to nav-bar-top
-	_utils2.default.bind(document.body, book);
+	//GET TEMPLATE ET START LOADER
 	//insert template in container
 	c.innerHTML = bookReadTemplate({ book: book });
 	//START LOADER

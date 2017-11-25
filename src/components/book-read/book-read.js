@@ -261,10 +261,12 @@ const book = function(container) {
 		}
 		
 		//end loader
+		utils.addClass('#book-loader-container', 'hidden');
+		
+		//show book
 		setTimeout( function() { 
-			utils.addClass('#book-loader-container', 'hidden');
 			bookContainer.className = 'show';
-		}, 500);
+		}, 100);
 		
 	
 	}
@@ -283,9 +285,7 @@ const book = function(container) {
 	  }
 	}
 	
-	//GET TEMPLATE ET PASS BOOK METADATA
-	//pass metadata to nav-bar-top
-	utils.bind(document.body,book);
+	//GET TEMPLATE ET START LOADER
 	//insert template in container
 	c.innerHTML = bookReadTemplate({book:book});
 	//START LOADER
