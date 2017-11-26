@@ -23,7 +23,7 @@ const utils = {
 			xmlhttp.setRequestHeader("Accept", "text/json");
 			//xmlhttp.setRequestHeader("Cache-Control", "public, max-age=86400, must-revalidate");//1 day = 86400s
 			xmlhttp.onprogress = event => {
-				if(url.match(/\.html$/) && event.lengthComputable) {
+				if(url.match(/html$/)) {
 					utils.displayProgress(event.loaded,event.total);
 				}
 			}
@@ -42,8 +42,10 @@ const utils = {
 	displayProgress: (loaded,total) => {
 		let bar = document.querySelector('#book #bar');
 		if(bar) {
-			let w = (loaded/total) *100;
-			bar.style.width = w + '%';
+			let w = (loaded/total)*100;
+			if(w>10) {
+				bar.style.width = w + '%';
+			}
 		}
 	},
 	

@@ -11,8 +11,15 @@ const book = function(container) {
 	let c = container;
 		
 	let init = function() {
+		let textContainer = bookContainer.querySelector('[data-wb-text-container]');
+		let tocLarge = bookContainer.querySelector('#toc-large-device');
+		let tabInfos = bookContainer.querySelector('#tab-infos');
+		let bookCommands = bookContainer.querySelector('#book-commands');
+		let bookNavBarBottom = bookContainer.querySelector('#book-nav-bar-bottom');
+		
 		//DIMENSIONS
 		let h, w, marginY, marginX, fontSize, lineHeight, top;
+		
 		
 		//width (responsive)
 		if(window.innerWidth >= 768) {
@@ -189,7 +196,9 @@ const book = function(container) {
 		let swingContainer = bookContainer.querySelector('#swing-container');
 		let swingBar = bookContainer.querySelector('#swing-bar');
 		let tabHome = bookContainer.querySelector('#tab-home-link');
+		
 		let toggleTocLarge = bookContainer.querySelector('#toggle-toc-large-device');
+		
 		let toggleTabInfos = bookContainer.querySelector('#toggle-tab-infos');
 		let closeTocLarge = bookContainer.querySelector('#close-toc-large-device');
 		let closeTabInfos = bookContainer.querySelector('#close-tab-infos');
@@ -264,12 +273,12 @@ const book = function(container) {
 		document.body.style.overflow = 'visible';
 		setTimeout( function() {
 			utils.addClass('#progress-page', 'hidden');
-		}, 600);
+		}, 400);
 		
 		//show book
 		setTimeout( function() { 
 			bookContainer.className = 'show';
-		}, 600);
+		}, 400);
 		
 	
 	}
@@ -300,25 +309,20 @@ const book = function(container) {
 	const bookContainer = document.querySelector('#bookContainer');
 		
 	//GET TEXT CONTENT
-	let textContainer = bookContainer.querySelector('[data-wb-text-container]');
-	let tocLarge = bookContainer.querySelector('#toc-large-device');
-	let tabInfos = bookContainer.querySelector('#tab-infos');
-	let bookCommands = bookContainer.querySelector('#book-commands');
-	let bookNavBarBottom = bookContainer.querySelector('#book-nav-bar-bottom');
 	let text = bookContainer.querySelector('[data-wb-text]');
 	let options = { method: 'GET', url: book.path + '.css' };
-	
 	utils.ajax(options).then( content => {
-		let style = document.createElement('style');
-		style.setAttribute('type','text/css');
-		style.innerHTML = content;
-		let head = document.querySelector('head')
-		if(dataStore.getData('stylesheet')) {
-			head.replaceChild(style, head.lastChild)
+		document.querySelector('#book #bar').style.width = '10%';
+		let head = document.querySelector('head');
+		if(dataStore.getData('book')) {
+			head.lastChild.innerHTML = content;
 		} else {
+			let style = document.createElement('style');
+			style.setAttribute('type','text/css');
+			style.innerHTML = content;
 			head.appendChild(style);
 		}
-		dataStore.setData('stylesheet',true);
+		dataStore.setData('book',book.id);
 		options = { method: 'GET', url: book.path + '.html' };
 		return utils.ajax(options);
 	})
