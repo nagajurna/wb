@@ -3346,12 +3346,14 @@ var book = function book(container) {
 
 		//end loader
 		document.body.style.overflow = 'visible';
-		_utils2.default.addClass('#book-loader-container', 'hidden');
+		setTimeout(function () {
+			_utils2.default.addClass('#book-loader-container', 'hidden');
+		}, 400);
 
 		//show book
 		setTimeout(function () {
 			bookContainer.className = 'show';
-		}, 100);
+		}, 400);
 	};
 
 	//GET BOOK
@@ -3373,9 +3375,7 @@ var book = function book(container) {
 	document.body.style.overflow = 'hidden';
 	c.innerHTML = bookReadTemplate({ book: book });
 	//START LOADER
-	setTimeout(function () {
-		_utils2.default.removeClass('#book-loader-container', 'hidden');
-	}, 0);
+	_utils2.default.removeClass('#book-loader-container', 'hidden');
 
 	//BOOK CONTAINER
 	var bookContainer = document.querySelector('#bookContainer');
