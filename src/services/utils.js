@@ -22,6 +22,12 @@ const utils = {
 			xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 			xmlhttp.setRequestHeader("Accept", "text/json");
 			//xmlhttp.setRequestHeader("Cache-Control", "public, max-age=86400, must-revalidate");//1 day = 86400s
+			xmlhttp.onprogress = event => {
+				if(url.match(/\.html$/) && event.lengthComputable) {
+					utils.displayProgress(event.loaded,event.total);
+				}
+			}
+			
 			if(data) {
 				xmlhttp.setRequestHeader("Content-type", "application/json");
 				xmlhttp.send(data);
@@ -31,6 +37,14 @@ const utils = {
 		});
 		
 		return promise;
+	},
+	
+	displayProgress: (loaded,total) => {
+		let bar = document.querySelector('#book #bar');
+		if(bar) {
+			let w = (loaded/total) *100;
+			bar.style.width = w + '%';
+		}
 	},
 	
 	//check role admin			

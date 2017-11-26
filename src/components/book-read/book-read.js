@@ -262,14 +262,14 @@ const book = function(container) {
 		
 		//end loader
 		document.body.style.overflow = 'visible';
-		setTimeout( function() { 
-			utils.addClass('#book-loader-container', 'hidden');
-		}, 400);
+		setTimeout( function() {
+			utils.addClass('#progress-page', 'hidden');
+		}, 600);
 		
 		//show book
 		setTimeout( function() { 
 			bookContainer.className = 'show';
-		}, 400);
+		}, 600);
 		
 	
 	}
@@ -292,9 +292,9 @@ const book = function(container) {
 	//insert template in container
 	document.body.style.height = window.innerHeight + 'px';
 	document.body.style.overflow = 'hidden';
-	c.innerHTML = bookReadTemplate({book:book});
-	//START LOADER
-	utils.removeClass('#book-loader-container','hidden');
+	c.innerHTML = bookReadTemplate({ book:book });
+	//SHOW PROGRESS BAR
+	utils.removeClass('#progress-page','hidden');
 	
 	//BOOK CONTAINER
 	const bookContainer = document.querySelector('#bookContainer');

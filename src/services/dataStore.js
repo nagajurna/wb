@@ -33,8 +33,6 @@ const dataStore = {
 			return dataStore.store;
 		}
 	}
-	
-	
 }
 
 export default dataStore;
