@@ -271,14 +271,14 @@ const book = function(container) {
 		
 		//end loader
 		document.body.style.overflow = 'visible';
-		setTimeout( function() {
-			utils.addClass('#progress-page', 'hidden');
-		}, 400);
+		setTimeout( function() { 
+			utils.addClass('#book-loader-container', 'hidden');
+		}, 800);
 		
 		//show book
 		setTimeout( function() { 
 			bookContainer.className = 'show';
-		}, 400);
+		}, 800);
 		
 	
 	}
@@ -302,8 +302,8 @@ const book = function(container) {
 	document.body.style.height = window.innerHeight + 'px';
 	document.body.style.overflow = 'hidden';
 	c.innerHTML = bookReadTemplate({ book:book });
-	//SHOW PROGRESS BAR
-	utils.removeClass('#progress-page','hidden');
+	//START LOADER
+	utils.removeClass('#book-loader-container','hidden');
 	
 	//BOOK CONTAINER
 	const bookContainer = document.querySelector('#bookContainer');
@@ -312,7 +312,6 @@ const book = function(container) {
 	let text = bookContainer.querySelector('[data-wb-text]');
 	let options = { method: 'GET', url: book.path + '.css' };
 	utils.ajax(options).then( content => {
-		document.querySelector('#book #bar').style.width = '10%';
 		let head = document.querySelector('head');
 		if(dataStore.getData('book')) {
 			head.lastChild.innerHTML = content;
