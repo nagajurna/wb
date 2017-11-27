@@ -2281,6 +2281,14 @@ var home = function home(container) {
 	//insert template in container
 	c.innerHTML = homeTemplate({ books: lBs });
 	var root = document.querySelector('#home-container');
+	//scroll after read
+	if (_dataStore2.default.getData('location').prevLocation !== undefined && _dataStore2.default.getData('location').prevLocation.match(/\/read$/)) {
+		var id = _dataStore2.default.getData('book');
+		var el = document.getElementById(id);
+		el.scrollIntoView(true);
+		var html = document.getElementsByTagName("html")[0];
+		html.scrollTop = html.scrollTop - 30;
+	}
 	//link to book/read
 	var bks = root.querySelectorAll('.book');
 	for (var i = 0; i < bks.length; i++) {
@@ -2657,6 +2665,14 @@ var search = function search(container) {
 	};
 	c.innerHTML = searchTemplate({ books: sbs.reverse(), nores: nores });
 	var root = document.querySelector('#search-container');
+	//scroll after read
+	if (_dataStore2.default.getData('location').prevLocation !== undefined && _dataStore2.default.getData('location').prevLocation.match(/\/read$/)) {
+		var id = _dataStore2.default.getData('book');
+		var el = document.getElementById(id);
+		el.scrollIntoView(true);
+		var html = document.getElementsByTagName("html")[0];
+		html.scrollTop = html.scrollTop - 30;
+	}
 	//link to book/read
 	var bks = root.querySelectorAll('.book');
 	for (var _i = 0; _i < bks.length; _i++) {
@@ -10762,6 +10778,14 @@ var authors = function authors(container) {
 	//insert template in container
 	c.innerHTML = authorsTemplate({ authors: sas, books: bs });
 	var root = document.querySelector('#authors-container');
+	//scroll after read
+	if (_dataStore2.default.getData('location').prevLocation !== undefined && _dataStore2.default.getData('location').prevLocation.match(/\/read$/)) {
+		var id = _dataStore2.default.getData('book');
+		var el = document.getElementById(id);
+		el.scrollIntoView(true);
+		var html = document.getElementsByTagName("html")[0];
+		html.scrollTop = html.scrollTop - 30;
+	}
 	//get active letter link
 	var ls = root.querySelectorAll('#letters a');
 	for (var i = 0; i < ls.length; i++) {

@@ -36,6 +36,14 @@ const authors = function(container) {
 	//insert template in container
 	c.innerHTML = authorsTemplate({ authors:sas, books: bs });
 	let root = document.querySelector('#authors-container');
+	//scroll after read
+	if(dataStore.getData('location').prevLocation!==undefined && dataStore.getData('location').prevLocation.match(/\/read$/)) {
+		let id= dataStore.getData('book');
+		let el = document.getElementById(id);
+		el.scrollIntoView(true);
+		let html = document.getElementsByTagName("html")[0];
+		html.scrollTop = html.scrollTop-30;
+	}
 	//get active letter link
 	let ls = root.querySelectorAll('#letters a');
 	for(let i=0; i<ls.length; i++) {

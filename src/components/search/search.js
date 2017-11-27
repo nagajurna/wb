@@ -64,6 +64,14 @@ const search = function(container) {
 	}
 	c.innerHTML = searchTemplate({ books: sbs.reverse(), nores: nores });
 	let root = document.querySelector('#search-container');
+	//scroll after read
+	if(dataStore.getData('location').prevLocation!==undefined && dataStore.getData('location').prevLocation.match(/\/read$/)) {
+		let id= dataStore.getData('book');
+		let el = document.getElementById(id);
+		el.scrollIntoView(true);
+		let html = document.getElementsByTagName("html")[0];
+		html.scrollTop = html.scrollTop-30;
+	}
 	//link to book/read
 	let bks = root.querySelectorAll('.book');
 	for(let i=0; i<bks.length; i++) {
