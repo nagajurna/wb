@@ -32,17 +32,17 @@
 							<div class="w3-col" style="text-align: center">
 								<div id="paper" style="background-color: <%- book.styles.color %>; background-image: url(<%- book.styles.image %>)">
 									<div id="<%= book.id %>" class="book w3-card-4" style="<%= book.styles.cover %>">
-										<p class="book-author" style="<%=book.styles.author %>"><%= book.authorDisplay %></p>
+										<p class="book-author" style="<%=book.styles.author %>"><%- book.authorDisplay %></p>
 										<p class="title" style="<%= book.styles.title %>">
 											<%- book.title %>
 										</p>
 										<% if(book.subtitle1) {%>
-										<p class="subtitle1" style="<%=book.styles.subtitle1 %>">
+										<p class="subtitle1" style="<%= book.styles.subtitle1 %>">
 											<%- book.subtitle1 %></a>
 										</p>
 										<% } %>
 										<% if(book.subtitle2) {%>
-										<p class="subtitle1" style="<%=book.styles.subtitle2 %>">
+										<p class="subtitle1" style="<%= book.styles.subtitle2 %>">
 											<%- book.subtitle2 %></a>
 										</p>
 										<% } %>

@@ -1,6 +1,5 @@
 [data-wb-text] #titre {
 	position: static;
-	color: #fafafa;
 }
 
 [data-wb-text] #cover-author {
@@ -11,11 +10,10 @@
 
 [data-wb-text] #cover-title {
 	margin-top: 1.5em;
-	padding-top: 0%;
+	padding-top: 5%;
 	font-size: 1.8em;
-	font-variant: small-caps;
 	line-height: 1.8em;
-	word-spacing: 0.2em;
+	word-spacing: 0.25em;
 	letter-spacing: 3px;
 	opacity: 0.75;
 }
@@ -39,10 +37,10 @@
 	font-variant: small-caps;
 }
 
-@media only screen and (min-width: 612px) {
+@media only screen and (min-width: 568px) {
 
 	[data-wb-text] #cover-title {
-		padding-top: 4%;
+		padding-top: 8%;
 		font-size: 1.9em;
 		line-height: 1.9em;
 		word-spacing: 0.35em;
@@ -83,7 +81,7 @@
 	}
 }
 
-[data-wb-text] .section-title, [data-wb-text] .section-subtitle {
+[data-wb-text] .section-title {
 	text-align: center;
 }
 

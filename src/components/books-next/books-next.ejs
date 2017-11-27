@@ -11,16 +11,16 @@
 					<div id="paper" style="background-color: <%= books[i].styles.color %>; background-image: url(<%- books[i].styles.image %>)">
 					<div class="book w3-card-4" style="<%=books[i].styles.cover %>">
 						<p class="author" style="<%=books[i].styles.author %>"><%- books[i].authorDisplay %></p>
-						<p class="title" style="<%=books[i].styles.title %>">
+						<p class="title" style="<%-books[i].styles.title %>">
 							<span><%- books[i].title %></span>
 						</p>
 						<% if(books[i].subtitle1) {%>
-						<p class="subtitle1" style="<%=books[i].styles.subtitle1 %>">
+						<p class="subtitle1" style="<%= books[i].styles.subtitle1 %>">
 							<%- books[i].subtitle1 %></a>
 						</p>
 						<% } %>
 						<% if(books[i].subtitle2) {%>
-						<p class="subtitle1" style="<%=books[i].styles.subtitle2 %>">
+						<p class="subtitle1" style="<%= books[i].styles.subtitle2 %>">
 							<%- books[i].subtitle2 %></a>
 						</p>
 						<% } %>
