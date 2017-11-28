@@ -332,7 +332,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 // Defining this global in .eslintrc.json would create a danger of using the global
 // unguarded in another place, it seems safer to define global only for this module
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(6), __webpack_require__(3), __webpack_require__(42), __webpack_require__(12), __webpack_require__(43), __webpack_require__(44), __webpack_require__(13), __webpack_require__(8), __webpack_require__(45), __webpack_require__(14), __webpack_require__(15), __webpack_require__(46), __webpack_require__(16), __webpack_require__(47)], __WEBPACK_AMD_DEFINE_RESULT__ = function (arr, document, getProto, _slice, concat, push, indexOf, class2type, toString, hasOwn, fnToString, ObjectFunctionString, support, DOMEval) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(6), __webpack_require__(3), __webpack_require__(43), __webpack_require__(12), __webpack_require__(44), __webpack_require__(45), __webpack_require__(13), __webpack_require__(8), __webpack_require__(46), __webpack_require__(14), __webpack_require__(15), __webpack_require__(47), __webpack_require__(16), __webpack_require__(48)], __WEBPACK_AMD_DEFINE_RESULT__ = function (arr, document, getProto, _slice, concat, push, indexOf, class2type, toString, hasOwn, fnToString, ObjectFunctionString, support, DOMEval) {
 
 	"use strict";
 
@@ -1326,7 +1326,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(49)], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(50)], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
 	"use strict";
 }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -1745,7 +1745,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
 // Initialize a jQuery object
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(3), __webpack_require__(52), __webpack_require__(53)], __WEBPACK_AMD_DEFINE_RESULT__ = function (jQuery, document, rsingleTag) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(3), __webpack_require__(53), __webpack_require__(54)], __WEBPACK_AMD_DEFINE_RESULT__ = function (jQuery, document, rsingleTag) {
 
 	"use strict";
 
@@ -2107,15 +2107,15 @@ var _bookRead = __webpack_require__(40);
 
 var _bookRead2 = _interopRequireDefault(_bookRead);
 
-var _authors = __webpack_require__(68);
+var _authors = __webpack_require__(69);
 
 var _authors2 = _interopRequireDefault(_authors);
 
-var _adminLogin = __webpack_require__(72);
+var _adminLogin = __webpack_require__(73);
 
 var _adminLogin2 = _interopRequireDefault(_adminLogin);
 
-var _adminRouter = __webpack_require__(74);
+var _adminRouter = __webpack_require__(75);
 
 var _adminRouter2 = _interopRequireDefault(_adminRouter);
 
@@ -2128,7 +2128,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //books-next(controller)
 
 //home(controller)
-var adminTemplate = __webpack_require__(113);
+var adminTemplate = __webpack_require__(114);
 //adminRouter (sub-router)
 
 //adminLogin (controller)
@@ -3087,21 +3087,25 @@ var _dataStore = __webpack_require__(2);
 
 var _dataStore2 = _interopRequireDefault(_dataStore);
 
-var _WebBook = __webpack_require__(41);
+var _localStore = __webpack_require__(41);
+
+var _localStore2 = _interopRequireDefault(_localStore);
+
+var _WebBook = __webpack_require__(42);
 
 var _WebBook2 = _interopRequireDefault(_WebBook);
 
-var _bookRead = __webpack_require__(64);
+var _bookRead = __webpack_require__(65);
 
 var _bookRead2 = _interopRequireDefault(_bookRead);
 
-var _hammerjs = __webpack_require__(66);
+var _hammerjs = __webpack_require__(67);
 
 var _hammerjs2 = _interopRequireDefault(_hammerjs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var bookReadTemplate = __webpack_require__(67);
+var bookReadTemplate = __webpack_require__(68);
 //book.js
 var book = function book(container) {
 	'use strict';
@@ -3171,6 +3175,10 @@ var book = function book(container) {
 			marginY: marginY,
 			marginX: marginX
 		});
+
+		if (_localStore2.default.getBkmrk(bk.id)) {
+			book.goToBookmark(_localStore2.default.getBkmrk(bk.id));
+		}
 
 		if (window.innerWidth >= 1366) {
 			//Toc-large height
@@ -3247,9 +3255,9 @@ var book = function book(container) {
 
 		//TOUCHES, forward, backward
 		document.addEventListener('keydown', function (event) {
-			if (event.which === 39 || event.which === 34) {
+			if (event.which === 39) {
 				book.forward();
-			} else if (event.which === 37 || event.which === 33) {
+			} else if (event.which === 37) {
 				book.backward();
 			} else if (event.which === 36) {
 				book.toFirstPage();
@@ -3363,10 +3371,18 @@ var book = function book(container) {
 		for (var _i2 = 0; _i2 < homeLinks.length; _i2++) {
 			homeLinks[_i2].addEventListener('click', function (event) {
 				event.preventDefault();
+				//save bookmark on leaving the page
+				_localStore2.default.pushBkmrk(bk.id, book.getBookmark());
 				var prevLocation = _dataStore2.default.getData('location').prevLocation;
 				location.hash = prevLocation ? prevLocation : '#/';
 			}, false);
 		}
+
+		//save bookmark on unload
+		window.addEventListener('unload', function () {
+			//bookmark
+			_localStore2.default.pushBkmrk(bk.id, book.getBookmark());
+		}, false);
 
 		//end loader
 		document.body.style.overflow = 'visible';
@@ -3381,14 +3397,14 @@ var book = function book(container) {
 	};
 
 	//GET BOOK
-	var books = _dataStore2.default.getData('books');
-	var book = void 0;
+	var bks = _dataStore2.default.getData('books');
+	var bk = void 0;
 	var loc = location.hash.replace(/(#|\/read)/g, '');
 	var title = '';
-	for (var i = 0; i < books.length; i++) {
-		title = books[i].path.replace(/^\/books\/[^\/]+/, '');
+	for (var i = 0; i < bks.length; i++) {
+		title = bks[i].path.replace(/^\/books\/[^\/]+/, '');
 		if (title === loc) {
-			book = books[i];
+			bk = bks[i];
 			break;
 		}
 	}
@@ -3397,7 +3413,7 @@ var book = function book(container) {
 	//insert template in container
 	document.body.style.height = window.innerHeight + 'px';
 	document.body.style.overflow = 'hidden';
-	c.innerHTML = bookReadTemplate({ book: book });
+	c.innerHTML = bookReadTemplate({ book: bk });
 	//START LOADER
 	_utils2.default.removeClass('#book-loader-container', 'hidden');
 
@@ -3406,7 +3422,7 @@ var book = function book(container) {
 
 	//GET TEXT CONTENT
 	var text = bookContainer.querySelector('[data-wb-text]');
-	var options = { method: 'GET', url: book.path + '.css' };
+	var options = { method: 'GET', url: bk.path + '.css' };
 	_utils2.default.ajax(options).then(function (content) {
 		var head = document.querySelector('head');
 		if (_dataStore2.default.getData('book')) {
@@ -3417,8 +3433,8 @@ var book = function book(container) {
 			style.innerHTML = content;
 			head.appendChild(style);
 		}
-		_dataStore2.default.setData('book', book.id);
-		options = { method: 'GET', url: book.path + '.html' };
+		_dataStore2.default.setData('book', bk.id);
+		options = { method: 'GET', url: bk.path + '.html' };
 		return _utils2.default.ajax(options);
 	}).then(function (content) {
 		var div = document.createElement('div');
@@ -3440,6 +3456,66 @@ exports.default = book;
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
+//localStore.js
+var localStore = {
+
+	pushBkmrk: function pushBkmrk(bkId, bkmrk) {
+		var bkmrks = [];
+		if (typeof Storage !== "undefined") {
+			//check localStorage for bkmrks array
+			if (localStorage.getItem('bkmrks')) {
+				bkmrks = JSON.parse(localStorage.getItem('bkmrks'));
+				//check for bk.id
+				var b = void 0;
+				for (var i = 0; i < bkmrks.length; i++) {
+					if (bkmrks[i].bkId === bkId) {
+						b = bkmrks[i];
+						break;
+					}
+				}
+				if (b) {
+					b.bkmrk = bkmrk;
+				} else {
+					bkmrks.push({ bkId: bkId, bkmrk: bkmrk });
+				}
+			} else {
+				var _bkmrks = [];
+				_bkmrks.push({ bkId: bkId, bkmrk: bkmrk });
+			}
+			localStorage.setItem('bkmrks', JSON.stringify(bkmrks));
+		}
+	},
+
+	getBkmrk: function getBkmrk(bkId) {
+		var bkmrks = [];
+		if (typeof Storage !== "undefined") {
+			//check localStorage for bkmrks array
+			if (localStorage.getItem('bkmrks')) {
+				bkmrks = JSON.parse(localStorage.getItem('bkmrks'));
+				//check for bk.id
+				var item = bkmrks.filter(function (o) {
+					return o.bkId === bkId;
+				})[0];
+				if (item) {
+					return item.bkmrk;
+				}
+			}
+		}
+	}
+};
+
+exports.default = localStore;
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -3447,7 +3523,7 @@ var _core = __webpack_require__(1);
 
 var _core2 = _interopRequireDefault(_core);
 
-__webpack_require__(48);
+__webpack_require__(49);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3972,6 +4048,16 @@ var WebBook = function () {
 			this.refresh();
 		}
 	}, {
+		key: 'getBookmark',
+		value: function getBookmark() {
+			return this._bookmark;
+		}
+	}, {
+		key: 'setBookmark',
+		value: function setBookmark(bookmark) {
+			this._bookmark = bookmark;
+		}
+	}, {
 		key: 'refresh',
 		value: function refresh() {
 			this.insertBookmark();
@@ -4026,7 +4112,7 @@ var WebBook = function () {
 exports.default = WebBook;
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4040,7 +4126,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4054,7 +4140,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4068,7 +4154,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4082,7 +4168,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4096,7 +4182,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4119,13 +4205,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(17), __webpack_require__(3), __webpack_require__(18), __webpack_require__(9), __webpack_require__(19), __webpack_require__(24), __webpack_require__(11), __webpack_require__(51), __webpack_require__(22), __webpack_require__(55), __webpack_require__(7) // contains
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(17), __webpack_require__(3), __webpack_require__(18), __webpack_require__(9), __webpack_require__(19), __webpack_require__(24), __webpack_require__(11), __webpack_require__(52), __webpack_require__(22), __webpack_require__(56), __webpack_require__(7) // contains
 ], __WEBPACK_AMD_DEFINE_RESULT__ = function (jQuery, access, document, documentElement, rnumnonpx, curCSS, addGetHookIf, support, nodeName) {
 
 	"use strict";
@@ -4339,13 +4425,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(50)], __WEBPACK_AMD_DEFINE_RESULT__ = function (jQuery, Sizzle) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(51)], __WEBPACK_AMD_DEFINE_RESULT__ = function (jQuery, Sizzle) {
 
 	"use strict";
 
@@ -4363,7 +4449,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6546,7 +6632,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 })(window);
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6566,7 +6652,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6583,13 +6669,13 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(13), __webpack_require__(54), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function (jQuery, indexOf, rneedsContext) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(13), __webpack_require__(55), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function (jQuery, indexOf, rneedsContext) {
 
 	"use strict";
 
@@ -6688,7 +6774,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6702,7 +6788,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6710,7 +6796,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(10), __webpack_require__(17), __webpack_require__(20), __webpack_require__(3), __webpack_require__(23), __webpack_require__(9), __webpack_require__(56), __webpack_require__(21), __webpack_require__(57), __webpack_require__(19), __webpack_require__(58), __webpack_require__(24), __webpack_require__(11), __webpack_require__(22), __webpack_require__(59), __webpack_require__(7) // contains
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(10), __webpack_require__(17), __webpack_require__(20), __webpack_require__(3), __webpack_require__(23), __webpack_require__(9), __webpack_require__(57), __webpack_require__(21), __webpack_require__(58), __webpack_require__(19), __webpack_require__(59), __webpack_require__(24), __webpack_require__(11), __webpack_require__(22), __webpack_require__(60), __webpack_require__(7) // contains
 ], __WEBPACK_AMD_DEFINE_RESULT__ = function (jQuery, pnum, access, rmargin, document, rcssNum, rnumnonpx, cssExpand, getStyles, swap, curCSS, adjustCSS, addGetHookIf, support) {
 
 	"use strict";
@@ -7107,7 +7193,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7121,7 +7207,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7157,7 +7243,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7228,13 +7314,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(3), __webpack_require__(60), __webpack_require__(61)], __WEBPACK_AMD_DEFINE_RESULT__ = function (jQuery, document) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(3), __webpack_require__(61), __webpack_require__(62)], __WEBPACK_AMD_DEFINE_RESULT__ = function (jQuery, document) {
 
 	"use strict";
 
@@ -7315,7 +7401,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7334,7 +7420,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7342,7 +7428,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(12), __webpack_require__(62)], __WEBPACK_AMD_DEFINE_RESULT__ = function (jQuery, slice) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(12), __webpack_require__(63)], __WEBPACK_AMD_DEFINE_RESULT__ = function (jQuery, slice) {
 
 	"use strict";
 
@@ -7681,13 +7767,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(63)], __WEBPACK_AMD_DEFINE_RESULT__ = function (jQuery, rnothtmlwhite) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(64)], __WEBPACK_AMD_DEFINE_RESULT__ = function (jQuery, rnothtmlwhite) {
 
 	"use strict";
 
@@ -7925,7 +8011,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7944,13 +8030,13 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(65);
+var content = __webpack_require__(66);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -7975,7 +8061,7 @@ if(false) {
 }
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(undefined);
@@ -7989,7 +8075,7 @@ exports.push([module.i, "/*\nBOOK LOADER\n*/\n\n#book-loader-container {\n\tposi
 
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10629,7 +10715,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 })(window, document, 'Hammer');
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -10717,7 +10803,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10735,13 +10821,13 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _authors = __webpack_require__(69);
+var _authors = __webpack_require__(70);
 
 var _authors2 = _interopRequireDefault(_authors);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var authorsTemplate = __webpack_require__(71);
+var authorsTemplate = __webpack_require__(72);
 //authors.js
 var authors = function authors(container) {
 	'use strict';
@@ -10818,13 +10904,13 @@ var authors = function authors(container) {
 exports.default = authors;
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(70);
+var content = __webpack_require__(71);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -10849,7 +10935,7 @@ if(false) {
 }
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)(undefined);
@@ -10863,7 +10949,7 @@ exports.push([module.i, "#authors-container {\n\tfont-family: \"Times New Roman\
 
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -11003,7 +11089,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11023,7 +11109,7 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminLoginTemplate = __webpack_require__(73);
+var adminLoginTemplate = __webpack_require__(74);
 //home.js
 var adminLogin = function adminLogin(container) {
 	'use strict';
@@ -11082,7 +11168,7 @@ var adminLogin = function adminLogin(container) {
 exports.default = adminLogin;
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -11118,7 +11204,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11132,59 +11218,59 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _adminHome = __webpack_require__(75);
+var _adminHome = __webpack_require__(76);
 
 var _adminHome2 = _interopRequireDefault(_adminHome);
 
-var _adminUsers = __webpack_require__(77);
+var _adminUsers = __webpack_require__(78);
 
 var _adminUsers2 = _interopRequireDefault(_adminUsers);
 
-var _adminUser = __webpack_require__(79);
+var _adminUser = __webpack_require__(80);
 
 var _adminUser2 = _interopRequireDefault(_adminUser);
 
-var _adminNew = __webpack_require__(81);
+var _adminNew = __webpack_require__(82);
 
 var _adminNew2 = _interopRequireDefault(_adminNew);
 
-var _adminEdit = __webpack_require__(83);
+var _adminEdit = __webpack_require__(84);
 
 var _adminEdit2 = _interopRequireDefault(_adminEdit);
 
-var _adminEditPassword = __webpack_require__(85);
+var _adminEditPassword = __webpack_require__(86);
 
 var _adminEditPassword2 = _interopRequireDefault(_adminEditPassword);
 
-var _adminBooks = __webpack_require__(87);
+var _adminBooks = __webpack_require__(88);
 
 var _adminBooks2 = _interopRequireDefault(_adminBooks);
 
-var _adminBook = __webpack_require__(89);
+var _adminBook = __webpack_require__(90);
 
 var _adminBook2 = _interopRequireDefault(_adminBook);
 
-var _adminBooksNew = __webpack_require__(91);
+var _adminBooksNew = __webpack_require__(92);
 
 var _adminBooksNew2 = _interopRequireDefault(_adminBooksNew);
 
-var _adminBookEdit = __webpack_require__(98);
+var _adminBookEdit = __webpack_require__(99);
 
 var _adminBookEdit2 = _interopRequireDefault(_adminBookEdit);
 
-var _adminAuthors = __webpack_require__(105);
+var _adminAuthors = __webpack_require__(106);
 
 var _adminAuthors2 = _interopRequireDefault(_adminAuthors);
 
-var _adminAuthor = __webpack_require__(107);
+var _adminAuthor = __webpack_require__(108);
 
 var _adminAuthor2 = _interopRequireDefault(_adminAuthor);
 
-var _adminAuthorsNew = __webpack_require__(109);
+var _adminAuthorsNew = __webpack_require__(110);
 
 var _adminAuthorsNew2 = _interopRequireDefault(_adminAuthorsNew);
 
-var _adminAuthorEdit = __webpack_require__(111);
+var _adminAuthorEdit = __webpack_require__(112);
 
 var _adminAuthorEdit2 = _interopRequireDefault(_adminAuthorEdit);
 
@@ -11278,7 +11364,7 @@ var adminRouter = function adminRouter(oldhash, newhash, data) {
 exports.default = adminRouter;
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11298,7 +11384,7 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminHomeTemplate = __webpack_require__(76);
+var adminHomeTemplate = __webpack_require__(77);
 //home.js
 var adminHome = function adminHome(container, data) {
 	'use strict';
@@ -11329,7 +11415,7 @@ var adminHome = function adminHome(container, data) {
 exports.default = adminHome;
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -11365,7 +11451,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11381,7 +11467,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminUsersTemplate = __webpack_require__(78);
+var adminUsersTemplate = __webpack_require__(79);
 //home.js
 var adminUsers = function adminUsers(container) {
 	'use strict';
@@ -11405,7 +11491,7 @@ var adminUsers = function adminUsers(container) {
 exports.default = adminUsers;
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -11447,7 +11533,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11463,7 +11549,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminUserTemplate = __webpack_require__(80);
+var adminUserTemplate = __webpack_require__(81);
 //home.js
 var adminUser = function adminUser(container) {
 	'use strict';
@@ -11521,7 +11607,7 @@ var adminUser = function adminUser(container) {
 exports.default = adminUser;
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -11557,7 +11643,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11573,7 +11659,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminNewTemplate = __webpack_require__(82);
+var adminNewTemplate = __webpack_require__(83);
 //home.js
 var adminNew = function adminNew(container) {
 	'use strict';
@@ -11633,7 +11719,7 @@ var adminNew = function adminNew(container) {
 exports.default = adminNew;
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -11669,7 +11755,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11685,7 +11771,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminEditTemplate = __webpack_require__(84);
+var adminEditTemplate = __webpack_require__(85);
 //home.js
 var adminEdit = function adminEdit(container, user) {
 	'use strict';
@@ -11745,7 +11831,7 @@ var adminEdit = function adminEdit(container, user) {
 exports.default = adminEdit;
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -11781,7 +11867,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11797,7 +11883,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminEditPasswordTemplate = __webpack_require__(86);
+var adminEditPasswordTemplate = __webpack_require__(87);
 //home.js
 var adminEditPassword = function adminEditPassword(container, user) {
 	'use strict';
@@ -11860,7 +11946,7 @@ var adminEditPassword = function adminEditPassword(container, user) {
 exports.default = adminEditPassword;
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -11896,7 +11982,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11912,7 +11998,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminBooksTemplate = __webpack_require__(88);
+var adminBooksTemplate = __webpack_require__(89);
 //home.js
 var adminBooks = function adminBooks(container) {
 	'use strict';
@@ -11936,7 +12022,7 @@ var adminBooks = function adminBooks(container) {
 exports.default = adminBooks;
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -11978,7 +12064,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11994,7 +12080,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminBookTemplate = __webpack_require__(90);
+var adminBookTemplate = __webpack_require__(91);
 //home.js
 var adminBook = function adminBook(container) {
 	'use strict';
@@ -12049,7 +12135,7 @@ var adminBook = function adminBook(container) {
 exports.default = adminBook;
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -12124,7 +12210,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12144,12 +12230,12 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminBooksNewTemplate = __webpack_require__(92);
-var modalHeaderTemplate = __webpack_require__(93);
-var searchAuthorsResultsTemplate = __webpack_require__(94);
-var selectedAuthorsTemplate = __webpack_require__(95);
-var selectedContribsTemplate = __webpack_require__(96);
-var selectedContribRoleTemplate = __webpack_require__(97);
+var adminBooksNewTemplate = __webpack_require__(93);
+var modalHeaderTemplate = __webpack_require__(94);
+var searchAuthorsResultsTemplate = __webpack_require__(95);
+var selectedAuthorsTemplate = __webpack_require__(96);
+var selectedContribsTemplate = __webpack_require__(97);
+var selectedContribRoleTemplate = __webpack_require__(98);
 //home.js
 var adminBooksNew = function adminBooksNew(container) {
 	'use strict';
@@ -12357,7 +12443,7 @@ var adminBooksNew = function adminBooksNew(container) {
 exports.default = adminBooksNew;
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -12393,7 +12479,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -12429,7 +12515,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -12471,7 +12557,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -12513,7 +12599,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 96 */
+/* 97 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -12555,7 +12641,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 97 */
+/* 98 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -12591,7 +12677,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 98 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12611,12 +12697,12 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminBookEditTemplate = __webpack_require__(99);
-var modalHeaderTemplate = __webpack_require__(100);
-var searchAuthorsResultsTemplate = __webpack_require__(101);
-var selectedAuthorsTemplate = __webpack_require__(102);
-var selectedContribsTemplate = __webpack_require__(103);
-var selectedContribRoleTemplate = __webpack_require__(104);
+var adminBookEditTemplate = __webpack_require__(100);
+var modalHeaderTemplate = __webpack_require__(101);
+var searchAuthorsResultsTemplate = __webpack_require__(102);
+var selectedAuthorsTemplate = __webpack_require__(103);
+var selectedContribsTemplate = __webpack_require__(104);
+var selectedContribRoleTemplate = __webpack_require__(105);
 //home.js
 var adminBooksNew = function adminBooksNew(container) {
 	'use strict';
@@ -12851,7 +12937,7 @@ var adminBooksNew = function adminBooksNew(container) {
 exports.default = adminBooksNew;
 
 /***/ }),
-/* 99 */
+/* 100 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -12905,7 +12991,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 100 */
+/* 101 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -12941,7 +13027,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 101 */
+/* 102 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -12983,7 +13069,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 102 */
+/* 103 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -13025,7 +13111,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -13067,7 +13153,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 104 */
+/* 105 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -13103,7 +13189,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 105 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13119,7 +13205,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorsTemplate = __webpack_require__(106);
+var adminAuthorsTemplate = __webpack_require__(107);
 //home.js
 var adminAuthors = function adminAuthors(container) {
 	'use strict';
@@ -13143,7 +13229,7 @@ var adminAuthors = function adminAuthors(container) {
 exports.default = adminAuthors;
 
 /***/ }),
-/* 106 */
+/* 107 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -13185,7 +13271,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 107 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13201,7 +13287,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorTemplate = __webpack_require__(108);
+var adminAuthorTemplate = __webpack_require__(109);
 //home.js
 var adminAuthor = function adminAuthor(container) {
 	'use strict';
@@ -13256,7 +13342,7 @@ var adminAuthor = function adminAuthor(container) {
 exports.default = adminAuthor;
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -13325,7 +13411,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13345,7 +13431,7 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorsNewTemplate = __webpack_require__(110);
+var adminAuthorsNewTemplate = __webpack_require__(111);
 //home.js
 var adminAuthorsNew = function adminAuthorsNew(container) {
 	'use strict';
@@ -13408,7 +13494,7 @@ var adminAuthorsNew = function adminAuthorsNew(container) {
 exports.default = adminAuthorsNew;
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -13444,7 +13530,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13460,7 +13546,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorEditTemplate = __webpack_require__(112);
+var adminAuthorEditTemplate = __webpack_require__(113);
 //home.js
 var adminAuthorEdit = function adminAuthorEdit(container) {
 	'use strict';
@@ -13533,7 +13619,7 @@ var adminAuthorEdit = function adminAuthorEdit(container) {
 exports.default = adminAuthorEdit;
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -13575,7 +13661,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 113 */
+/* 114 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {

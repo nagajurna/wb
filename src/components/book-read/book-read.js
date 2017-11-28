@@ -1,5 +1,6 @@
 import utils from '../../services/utils';
 import dataStore from '../../services/dataStore';
+import localStore from '../../services/localStore';
 import WebBook from '../../../lib/wb/WebBook';
 import css from './book-read.css';
 import Hammer from 'hammerjs';
@@ -68,6 +69,10 @@ const book = function(container) {
 			 marginY: marginY,
 			 marginX: marginX
 		 });
+		 
+		 if(localStore.getBkmrk(bk.id)) {
+			 book.goToBookmark(localStore.getBkmrk(bk.id));
+		 }
 		
 		if(window.innerWidth >= 1366) {
 			//Toc-large height
@@ -145,9 +150,9 @@ const book = function(container) {
 		
 		//TOUCHES, forward, backward
 		document.addEventListener('keydown', event => {
-			if(event.which===39 || event.which===34) {
-					book.forward();
-			} else if(event.which===37 || event.which===33) {
+			if(event.which===39) {
+				book.forward();
+			} else if(event.which===37) {
 				book.backward();
 			} else if(event.which===36) {
 				book.toFirstPage();
@@ -264,10 +269,18 @@ const book = function(container) {
 		for(let i=0; i<homeLinks.length; i++) {
 			homeLinks[i].addEventListener('click', event => {
 				event.preventDefault();
+				//save bookmark on leaving the page
+				localStore.pushBkmrk(bk.id, book.getBookmark());
 				let prevLocation = dataStore.getData('location').prevLocation;
 				location.hash = prevLocation ? prevLocation : '#/';
 			}, false);
 		}
+		
+		//save bookmark on unload
+		window.addEventListener('unload', function() {
+			//bookmark
+			localStore.pushBkmrk(bk.id, book.getBookmark());
+		}, false)
 		
 		//end loader
 		document.body.style.overflow = 'visible';
@@ -285,14 +298,14 @@ const book = function(container) {
 	
 	
 	//GET BOOK
-	let books = dataStore.getData('books');
-	let book;
+	let bks = dataStore.getData('books');
+	let bk;
 	let loc = location.hash.replace(/(#|\/read)/g,'');
 	let title = '';
-	for(let i = 0; i < books.length; i++) {
-		title = books[i].path.replace(/^\/books\/[^\/]+/,'');
+	for(let i = 0; i < bks.length; i++) {
+		title = bks[i].path.replace(/^\/books\/[^\/]+/,'');
 	  if(title===loc) {
-		 book = books[i];
+		 bk = bks[i];
 		 break;
 	  }
 	}
@@ -301,7 +314,7 @@ const book = function(container) {
 	//insert template in container
 	document.body.style.height = window.innerHeight + 'px';
 	document.body.style.overflow = 'hidden';
-	c.innerHTML = bookReadTemplate({ book:book });
+	c.innerHTML = bookReadTemplate({ book:bk });
 	//START LOADER
 	utils.removeClass('#book-loader-container','hidden');
 	
@@ -310,7 +323,7 @@ const book = function(container) {
 		
 	//GET TEXT CONTENT
 	let text = bookContainer.querySelector('[data-wb-text]');
-	let options = { method: 'GET', url: book.path + '.css' };
+	let options = { method: 'GET', url: bk.path + '.css' };
 	utils.ajax(options).then( content => {
 		let head = document.querySelector('head');
 		if(dataStore.getData('book')) {
@@ -321,8 +334,8 @@ const book = function(container) {
 			style.innerHTML = content;
 			head.appendChild(style);
 		}
-		dataStore.setData('book',book.id);
-		options = { method: 'GET', url: book.path + '.html' };
+		dataStore.setData('book',bk.id);
+		options = { method: 'GET', url: bk.path + '.html' };
 		return utils.ajax(options);
 	})
 	.then( content => {
