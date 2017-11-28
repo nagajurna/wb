@@ -1,3 +1,7 @@
+[data-wb-text] {
+	font-family: 'Noto Serif', 'Georgia', serif;
+}
+
 [data-wb-text] #titre {
 	position: static;
 	color: #fafafa;

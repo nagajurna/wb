@@ -1,3 +1,7 @@
+[data-wb-text] {
+	font-family: 'Noto Serif', 'Georgia', serif;
+}
+
 [data-wb-text] .wb-section p:first-child {
 	padding-top: 9em;
 	margin-top: 0px;
