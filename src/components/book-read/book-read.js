@@ -276,17 +276,19 @@ const book = function(container) {
 			}, false);
 		}
 		
-		//save bookmark on unload
-		window.addEventListener('beforeunload', function() {
-			//bookmark
-			localStore.pushBkmrk(bk.id, book.getBookmark());
-		}, false)
+		////save bookmark on unload
+		//window.addEventListener('beforeunload', function() {
+			////bookmark
+			//localStore.pushBkmrk(bk.id, book.getBookmark());
+		//}, false)
 		
-		//save bookmark on unload
-		window.addEventListener('unload', function() {
+		////save bookmark on unload
+		//window.addEventListener('unload', , false)
+		
+		window.onbeforeunload = window.onunload = function() {
 			//bookmark
 			localStore.pushBkmrk(bk.id, book.getBookmark());
-		}, false)
+		}
 		
 		//end loader
 		document.body.style.overflow = 'visible';
