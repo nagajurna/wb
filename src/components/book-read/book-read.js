@@ -143,8 +143,12 @@ const book = function(container) {
 		swipeContainer.on("swiperight swipeleft", event => {
 			if(event.type==="swipeleft") {
 				book.forward();
+				//bookmark
+				localStore.pushBkmrk(bk.id, book.getBookmark());
 			} else if(event.type==="swiperight") {
 				book.backward();
+				//bookmark
+				localStore.pushBkmrk(bk.id, book.getBookmark());
 			}
 		});
 		
@@ -152,8 +156,12 @@ const book = function(container) {
 		document.addEventListener('keydown', event => {
 			if(event.which===39) {
 				book.forward();
+				//bookmark
+				localStore.pushBkmrk(bk.id, book.getBookmark());
 			} else if(event.which===37) {
 				book.backward();
+				//bookmark
+				localStore.pushBkmrk(bk.id, book.getBookmark());
 			} else if(event.which===36) {
 				book.toFirstPage();
 			} else if(event.which===35) {
@@ -168,10 +176,14 @@ const book = function(container) {
 		
 		forwardLarge.addEventListener('click', event => {
 			book.forward();
+			//bookmark
+			localStore.pushBkmrk(bk.id, book.getBookmark());
 		}, false);
 
 		backwardLarge.addEventListener('click', event => {
 			book.backward();
+			//bookmark
+			localStore.pushBkmrk(bk.id, book.getBookmark());
 		}, false);
 		
 		
@@ -195,6 +207,8 @@ const book = function(container) {
 			tocLinks[i].addEventListener('click', () => {
 				toc.className = "";
 			}, false);
+			//bookmark
+			localStore.pushBkmrk(bk.id, book.getBookmark());
 		}
 		
 		//TAB-CONTAINER
@@ -225,6 +239,8 @@ const book = function(container) {
 				utils.removeClass('#swing-container','left');
 				utils.removeClass('#swing-bar','left');
 			}
+			//bookmark
+			localStore.pushBkmrk(bk.id, book.getBookmark());
 		}, false);
 		
 		//CLOSE TOC-LARGE-DEVICE
@@ -233,6 +249,8 @@ const book = function(container) {
 			utils.removeClass('#swing-container','left');
 			utils.removeClass('#swing-bar','left');
 			tocLarge.style.zIndex='0';
+			//bookmark
+			localStore.pushBkmrk(bk.id, book.getBookmark());
 		}, false);
 		
 		//TOGGLE TAB-INFOS
@@ -276,19 +294,12 @@ const book = function(container) {
 			}, false);
 		}
 		
-		////save bookmark on unload
-		//window.addEventListener('beforeunload', function() {
-			////bookmark
-			//localStore.pushBkmrk(bk.id, book.getBookmark());
-		//}, false)
-		
-		////save bookmark on unload
-		//window.addEventListener('unload', , false)
-		
-		window.onbeforeunload = window.onunload = function() {
+		//save bookmark on unload
+		window.addEventListener('unload', function() {
 			//bookmark
 			localStore.pushBkmrk(bk.id, book.getBookmark());
-		}
+		}, false)
+		
 		
 		//end loader
 		document.body.style.overflow = 'visible';

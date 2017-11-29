@@ -3248,8 +3248,12 @@ var book = function book(container) {
 		swipeContainer.on("swiperight swipeleft", function (event) {
 			if (event.type === "swipeleft") {
 				book.forward();
+				//bookmark
+				_localStore2.default.pushBkmrk(bk.id, book.getBookmark());
 			} else if (event.type === "swiperight") {
 				book.backward();
+				//bookmark
+				_localStore2.default.pushBkmrk(bk.id, book.getBookmark());
 			}
 		});
 
@@ -3257,8 +3261,12 @@ var book = function book(container) {
 		document.addEventListener('keydown', function (event) {
 			if (event.which === 39) {
 				book.forward();
+				//bookmark
+				_localStore2.default.pushBkmrk(bk.id, book.getBookmark());
 			} else if (event.which === 37) {
 				book.backward();
+				//bookmark
+				_localStore2.default.pushBkmrk(bk.id, book.getBookmark());
 			} else if (event.which === 36) {
 				book.toFirstPage();
 			} else if (event.which === 35) {
@@ -3273,10 +3281,14 @@ var book = function book(container) {
 
 		forwardLarge.addEventListener('click', function (event) {
 			book.forward();
+			//bookmark
+			_localStore2.default.pushBkmrk(bk.id, book.getBookmark());
 		}, false);
 
 		backwardLarge.addEventListener('click', function (event) {
 			book.backward();
+			//bookmark
+			_localStore2.default.pushBkmrk(bk.id, book.getBookmark());
 		}, false);
 
 		//TOC		
@@ -3299,6 +3311,8 @@ var book = function book(container) {
 			tocLinks[_i].addEventListener('click', function () {
 				toc.className = "";
 			}, false);
+			//bookmark
+			_localStore2.default.pushBkmrk(bk.id, book.getBookmark());
 		}
 
 		//TAB-CONTAINER
@@ -3328,6 +3342,8 @@ var book = function book(container) {
 				_utils2.default.removeClass('#swing-container', 'left');
 				_utils2.default.removeClass('#swing-bar', 'left');
 			}
+			//bookmark
+			_localStore2.default.pushBkmrk(bk.id, book.getBookmark());
 		}, false);
 
 		//CLOSE TOC-LARGE-DEVICE
@@ -3336,6 +3352,8 @@ var book = function book(container) {
 			_utils2.default.removeClass('#swing-container', 'left');
 			_utils2.default.removeClass('#swing-bar', 'left');
 			tocLarge.style.zIndex = '0';
+			//bookmark
+			_localStore2.default.pushBkmrk(bk.id, book.getBookmark());
 		}, false);
 
 		//TOGGLE TAB-INFOS
@@ -3378,19 +3396,11 @@ var book = function book(container) {
 			}, false);
 		}
 
-		////save bookmark on unload
-		//window.addEventListener('beforeunload', function() {
-		////bookmark
-		//localStore.pushBkmrk(bk.id, book.getBookmark());
-		//}, false)
-
-		////save bookmark on unload
-		//window.addEventListener('unload', , false)
-
-		window.onbeforeunload = window.onunload = function () {
+		//save bookmark on unload
+		window.addEventListener('unload', function () {
 			//bookmark
 			_localStore2.default.pushBkmrk(bk.id, book.getBookmark());
-		};
+		}, false);
 
 		//end loader
 		document.body.style.overflow = 'visible';
