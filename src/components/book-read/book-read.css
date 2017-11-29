@@ -129,7 +129,7 @@ BOOK NAV-BAR-BOTTOM-SMALL
 	height: 30px;
 	position: relative;
 	margin: auto;
-	background-color: #000;
+	background-color: #333;
 }
 
 @media screen and (min-width: 768px) {
