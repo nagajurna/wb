@@ -21,7 +21,6 @@ const localStore = {
 					bkmrks.push({ bkId: bkId, bkmrk: bkmrk });
 				}
 			} else {
-				let bkmrks = [];
 				bkmrks.push({ bkId: bkId, bkmrk: bkmrk });
 			}
 			localStorage.setItem('bkmrks', JSON.stringify(bkmrks));

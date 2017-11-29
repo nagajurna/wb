@@ -17,6 +17,7 @@ const book = function(container) {
 		let tabInfos = bookContainer.querySelector('#tab-infos');
 		let bookCommands = bookContainer.querySelector('#book-commands');
 		let bookNavBarBottom = bookContainer.querySelector('#book-nav-bar-bottom');
+		let bookNavBarBottomSmall = bookContainer.querySelector('#book-nav-bar-bottom-small');
 		
 		//DIMENSIONS
 		let h, w, marginY, marginX, fontSize, lineHeight, top;
@@ -24,6 +25,7 @@ const book = function(container) {
 		
 		//width (responsive)
 		if(window.innerWidth >= 768) {
+			utils.addClass('[data-wb-text-container]', 'w3-card-4');
 			//max-height: 720
 			if(window.innerHeight > 832) {//748 + navBarBottom height (1*44) + textContainer minimum top * 2 (2*20)
 				h = 748;
@@ -44,8 +46,10 @@ const book = function(container) {
 			w = 550;
 			fontSize = 16;
 		 } else {
-			 h = window.innerHeight;
+			 utils.removeClass('[data-wb-text-container]', 'w3-card-4');
+			 h = window.innerHeight-30;//30px = nav-bar-bottom-small height
 			 w = window.innerWidth;
+			 bookNavBarBottomSmall.style.width = w + 'px';
 			 fontSize = 14;
 			 textContainer.style.top ='0px';
 		 }
@@ -71,6 +75,7 @@ const book = function(container) {
 		 });
 		 
 		 if(localStore.getBkmrk(bk.id)) {
+			 console.log(localStore.getBkmrk(bk.id));
 			 book.goToBookmark(localStore.getBkmrk(bk.id));
 		 }
 		
@@ -82,6 +87,7 @@ const book = function(container) {
 		//on resize
 		window.addEventListener('resize', event => {
 			if(window.innerWidth >= 768) {
+				utils.addClass('[data-wb-text-container]', 'w3-card-4');
 				//max-height: 720
 				if(window.innerHeight >= 832) {//748 + navBarBottom height (1*44) + textContainer minimum top * 2 (2*20)
 					h = 748;
@@ -102,8 +108,10 @@ const book = function(container) {
 				w = 550;
 				fontSize = 16;
 			} else {
-				h = window.innerHeight;
+				utils.removeClass('[data-wb-text-container]', 'w3-card-4');
+				h = window.innerHeight-30;//30px = nav-bar-bottom-small height
 				w = window.innerWidth;
+				bookNavBarBottomSmall.style.width = w + 'px';
 				fontSize = 14;
 				textContainer.style.top ='0px';
 			}
@@ -143,12 +151,8 @@ const book = function(container) {
 		swipeContainer.on("swiperight swipeleft", event => {
 			if(event.type==="swipeleft") {
 				book.forward();
-				//bookmark
-				localStore.pushBkmrk(bk.id, book.getBookmark());
 			} else if(event.type==="swiperight") {
 				book.backward();
-				//bookmark
-				localStore.pushBkmrk(bk.id, book.getBookmark());
 			}
 		});
 		
@@ -156,12 +160,8 @@ const book = function(container) {
 		document.addEventListener('keydown', event => {
 			if(event.which===39) {
 				book.forward();
-				//bookmark
-				localStore.pushBkmrk(bk.id, book.getBookmark());
 			} else if(event.which===37) {
 				book.backward();
-				//bookmark
-				localStore.pushBkmrk(bk.id, book.getBookmark());
 			} else if(event.which===36) {
 				book.toFirstPage();
 			} else if(event.which===35) {
@@ -176,14 +176,10 @@ const book = function(container) {
 		
 		forwardLarge.addEventListener('click', event => {
 			book.forward();
-			//bookmark
-			localStore.pushBkmrk(bk.id, book.getBookmark());
 		}, false);
 
 		backwardLarge.addEventListener('click', event => {
 			book.backward();
-			//bookmark
-			localStore.pushBkmrk(bk.id, book.getBookmark());
 		}, false);
 		
 		
@@ -207,8 +203,6 @@ const book = function(container) {
 			tocLinks[i].addEventListener('click', () => {
 				toc.className = "";
 			}, false);
-			//bookmark
-			localStore.pushBkmrk(bk.id, book.getBookmark());
 		}
 		
 		//TAB-CONTAINER
@@ -239,8 +233,6 @@ const book = function(container) {
 				utils.removeClass('#swing-container','left');
 				utils.removeClass('#swing-bar','left');
 			}
-			//bookmark
-			localStore.pushBkmrk(bk.id, book.getBookmark());
 		}, false);
 		
 		//CLOSE TOC-LARGE-DEVICE
@@ -249,8 +241,6 @@ const book = function(container) {
 			utils.removeClass('#swing-container','left');
 			utils.removeClass('#swing-bar','left');
 			tocLarge.style.zIndex='0';
-			//bookmark
-			localStore.pushBkmrk(bk.id, book.getBookmark());
 		}, false);
 		
 		//TOGGLE TAB-INFOS
@@ -283,23 +273,22 @@ const book = function(container) {
 		
 		//HOME
 		let homeLinks = bookContainer.querySelectorAll('.home');
-		
 		for(let i=0; i<homeLinks.length; i++) {
 			homeLinks[i].addEventListener('click', event => {
 				event.preventDefault();
-				//save bookmark on leaving the page
-				localStore.pushBkmrk(bk.id, book.getBookmark());
 				let prevLocation = dataStore.getData('location').prevLocation;
 				location.hash = prevLocation ? prevLocation : '#/';
 			}, false);
 		}
 		
-		//save bookmark on unload
-		window.addEventListener('unload', function() {
-			//bookmark
-			localStore.pushBkmrk(bk.id, book.getBookmark());
-		}, false)
-		
+		//BOOKMARK
+		let addBookmarks = bookContainer.querySelectorAll('.add-bookmark');
+		for(let i=0; i<addBookmarks.length; i++) {
+			addBookmarks[i].addEventListener('click', event => {
+				console.log(book.getBookmark());
+				localStore.pushBkmrk(bk.id, book.getBookmark());
+			}, false);
+		}
 		
 		//end loader
 		document.body.style.overflow = 'visible';

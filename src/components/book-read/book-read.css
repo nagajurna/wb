@@ -76,17 +76,24 @@ BOOK NAVBAR BOTTOM
 	float: right;
 }
 
-#book-nav-bar-bottom-controls span {
+#book-nav-bar-bottom-controls span, #book-nav-bar-bottom-controls button {
 	outline: none;
 	height: 100%;
 	background-color: transparent;
+	display: inline-block;
 }
 
 #book-nav-bar-bottom-controls #open-toc-large {
 	position: absolute;
 	top: 0px;
 	right: 0px;
-	display: inline-block;
+	padding-bottom: 10px;
+}
+
+#book-nav-bar-bottom-controls #options-large {
+	position: absolute;
+	top: 0px;
+	right: 56px;
 	padding-bottom: 10px;
 }
 
@@ -94,14 +101,52 @@ BOOK NAVBAR BOTTOM
 	position: absolute;
 	top: 0px;
 	left: 0px;
-	display: inline-block;
+	padding-bottom: 10px;
+}
+
+#book-nav-bar-bottom-controls #add-bookmark-large {
+	position: absolute;
+	top: 0px;
+	left: 56px;
 	padding-bottom: 10px;
 }
 
 @media screen and (min-width: 1366px) {
-	#book-nav-bar-bottom-controls #open-toc-large, #book-nav-bar-bottom-controls #home-large {
+	#book-nav-bar-bottom-controls #open-toc-large, 
+	#book-nav-bar-bottom-controls #home-large, 
+	#book-nav-bar-bottom-controls #options-large, 
+	#book-nav-bar-bottom-controls #add-bookmark-large {
 		display: none;
 	}
+}
+
+/*
+BOOK NAV-BAR-BOTTOM-SMALL
+*/
+
+#book-nav-bar-bottom-small {
+	display: block;
+	height: 30px;
+	position: relative;
+	margin: auto;
+	background-color: #000;
+}
+
+@media screen and (min-width: 768px) {
+	#book-nav-bar-bottom-small {
+		display: none;
+	}
+}
+
+#book-nav-bar-bottom-small .w3-btn {
+	display: inline-block;
+	border: none;
+	background-color: transparent;
+	height: 100%;
+	padding: 3px 0px 0px 0px;
+	margin: 0px;
+	outline: none;
+	width: 24%;
 }
 
 /*
@@ -129,14 +174,6 @@ TEXTCONTAINER
 [data-wb-text-container] {
 	margin: auto;
 	background-color: #fafafa;
-}
-
-@media screen and (min-width: 768px) {
-	[data-wb-text-container] {
-/*
-		border: 1px solid rgb(204,204,204);
-*/
-	}
 }
 
 /*
@@ -184,10 +221,6 @@ TOC-LARGE-DEVICE, TAB-INFOS
 	width: 100%;
 }
 
-#tab-infos-container {
-	font-family: 'Verdana', serif;
-}
-
 #tab-infos-container p {
 	margin: 0px;
 	margin-top: 8px;
@@ -232,13 +265,12 @@ toggle toc-large-device, swing-container, swing-bar
 	font-family: 'Verdana', serif;
 }
 
-#toggle-toc-large-device, #toggle-tab-infos, #tab-home-link {
+#toggle-toc-large-device, #toggle-tab-infos, #tab-add-bookmark, #tab-home-link {
     position: absolute;
 	right: 0px;
 	width: 75px;
 	margin-right: 16px;
 	outline: none;
-	background-color: #fafafa;
 	font-size: 1em;
 }
 
@@ -250,8 +282,12 @@ toggle toc-large-device, swing-container, swing-bar
 	top: 48px;
 }
 
-#tab-home-link {
+#tab-add-bookmark {
 	top: 96px;
+}
+
+#tab-home-link {
+	top: 144px;
 }
 
 /*
@@ -324,11 +360,6 @@ TOC
 #toc > div {
 	position: relative;
 	background-color: #fafafa;
-}
-
-#open-toc {
-	float: right;
-	font-size: 1.4em;
 }
 
 #close-toc {
@@ -417,58 +448,7 @@ BOTTOM
 	height: 30px;
 	width: 100%;
 	text-align: center;
-	z-index: 500;
-	background-color: #fafafa;
-	color: #000;
-}
-
-#bottom-large {
-	position: absolute;
-	bottom: -9999px;
-	display: inline-block;
-	height: 30px;
-	width: 100%;
-	text-align: center;
-	z-index: 500;
-}
-
-@media screen and (min-width: 768px) {
-		
-	#bottom {
-		bottom: -9999px
-	}
-	
-	#bottom-large {
-		bottom: 5px;
-	}
-}
-
-#bottom button, #bottom a, #bottom span {
-	display: inline-block;
-	border: none;
 	background-color: transparent;
-	margin-right: 10px;
-	margin-left: 10px;
-	min-width: 25px;
-	height: 100%;
-	padding: 0;
-	font-size: 1.2em;
-}
-
-#bottom button.open-toc {
-	position: absolute;
-	right: 0px;
-	top: 0px;
-	font-size: 1.5em;
-}
-
-#bottom a#home {
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	text-decoration: none;
-	font-size: 2.em;
-	font-weight: 700;
 }
 
 #bottom span {
@@ -477,6 +457,10 @@ BOTTOM
 	margin: 0px;
 	margin-top: 0px;
 	font-size: 1em;
+	background-color: transparent;
+	min-width: 25px;
+	height: 100%;
+	padding: 0px 16px 0px 16px;
 }
 
 /*
