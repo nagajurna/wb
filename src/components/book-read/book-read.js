@@ -277,6 +277,12 @@ const book = function(container) {
 		}
 		
 		//save bookmark on unload
+		window.addEventListener('beforeunload', function() {
+			//bookmark
+			localStore.pushBkmrk(bk.id, book.getBookmark());
+		}, false)
+		
+		//save bookmark on unload
 		window.addEventListener('unload', function() {
 			//bookmark
 			localStore.pushBkmrk(bk.id, book.getBookmark());

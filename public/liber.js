@@ -3379,6 +3379,12 @@ var book = function book(container) {
 		}
 
 		//save bookmark on unload
+		window.addEventListener('beforeunload', function () {
+			//bookmark
+			_localStore2.default.pushBkmrk(bk.id, book.getBookmark());
+		}, false);
+
+		//save bookmark on unload
 		window.addEventListener('unload', function () {
 			//bookmark
 			_localStore2.default.pushBkmrk(bk.id, book.getBookmark());
