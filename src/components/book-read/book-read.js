@@ -387,28 +387,39 @@ const book = function(container) {
 		
 		//small
 		fontSizeInput.addEventListener('change', event => {
-			utils.removeClass('#options-modal','open');
-			utils.removeClass('#book-loader-container','hidden');
-		}, false);
-		
-		fontSizeInput.addEventListener('change', event => {
-			let size = event.target.value;
-			text.style.fontSize = size + 'px';
-			if(window.innerWidth >=768) {
-				cover.style.fontSize = '16px';
-			} else {
-				cover.style.fontSize = '14px';
-			}
-			//marginY is relative to line-height (line-height : 1.5em)
-			let lineHeight = size*1.5;
-			let marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*2;
-			book.setMarginY(marginY);
-			book.toScroll();
-			book.toBook();
-			setTimeout( function() { 
-				utils.addClass('#book-loader-container','hidden');
-			}, 400);
-			localStore.setFontSize(bk.id, size);
+			let promise =  new Promise( (resolve,reject) => {
+				utils.removeClass('#options-modal','open');
+				utils.removeClass('#book-loader-container','hidden');
+				document.body.style.overflow = 'hidden';
+				resolve('done');
+			})
+			.then( resolve => {
+				book.toScroll();
+				return  'done';
+			})
+			.then (resolve => {
+				let size = event.target.value;
+				text.style.fontSize = size + 'px';
+				if(window.innerWidth >=768) {
+					cover.style.fontSize = '16px';
+				} else {
+					cover.style.fontSize = '14px';
+				}
+			
+				//marginY is relative to line-height (line-height : 1.5em)
+				let lineHeight = size*1.5;
+				let marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*2;
+				book.setMarginY(marginY);
+				book.toBook();
+				localStore.setFontSize(bk.id, size);
+				setTimeout( function() {
+					document.body.style.overflow = 'visible'; 
+					utils.addClass('#book-loader-container','hidden');
+				}, 800);
+			})
+			.catch( error => {
+				console.log(error)
+			})
 		}, false);
 		
 		
