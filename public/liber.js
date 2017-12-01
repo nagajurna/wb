@@ -3488,13 +3488,14 @@ var book = function book(container) {
 
 		//small
 		fontSizeInput.addEventListener('change', function (event) {
-			var promise = new Promise(function (resolve, reject) {
+			var promise = new Promise(function (resolve) {
 				_utils2.default.removeClass('#options-modal', 'open');
-				_utils2.default.removeClass('#book-loader-container', 'hidden');
-				document.body.style.overflow = 'hidden';
+				console.log('done');
 				resolve('done');
 			}).then(function (resolve) {
+				_utils2.default.removeClass('#book-loader-container', 'hidden');
 				book.toScroll();
+				document.body.style.overflow = 'hidden';
 				return 'done';
 			}).then(function (resolve) {
 				var size = event.target.value;

@@ -387,14 +387,15 @@ const book = function(container) {
 		
 		//small
 		fontSizeInput.addEventListener('change', event => {
-			let promise =  new Promise( (resolve,reject) => {
+			let promise =  new Promise( resolve => {
 				utils.removeClass('#options-modal','open');
-				utils.removeClass('#book-loader-container','hidden');
-				document.body.style.overflow = 'hidden';
+				console.log('done');
 				resolve('done');
 			})
 			.then( resolve => {
+				utils.removeClass('#book-loader-container','hidden');
 				book.toScroll();
+				document.body.style.overflow = 'hidden';
 				return  'done';
 			})
 			.then (resolve => {
