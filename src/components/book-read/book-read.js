@@ -416,7 +416,7 @@ const book = function(container) {
 				setTimeout( function() {
 					document.body.style.overflow = 'visible'; 
 					utils.addClass('#book-loader-container','hidden');
-				}, 800);
+				}, 0);
 			})
 			.catch( error => {
 				console.log(error)
