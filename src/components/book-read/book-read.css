@@ -246,6 +246,11 @@ TOC-LARGE-DEVICE, TAB-OPTIONS, TAB-INFOS, HOME
 	outline: none;
 }
 
+.options-title {
+	font-variant: small-caps;
+	font-size: 1.2em;
+}
+
 
 /*
 toggle toc-large-device, swing-container, swing-bar
