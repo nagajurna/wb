@@ -3515,7 +3515,7 @@ var book = function book(container) {
 				setTimeout(function () {
 					document.body.style.overflow = 'visible';
 					_utils2.default.addClass('#book-loader-container', 'hidden');
-				}, 800);
+				}, 0);
 			}).catch(function (error) {
 				console.log(error);
 			});
