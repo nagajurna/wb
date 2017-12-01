@@ -3115,10 +3115,14 @@ var book = function book(container) {
 	var init = function init() {
 		var textContainer = bookContainer.querySelector('[data-wb-text-container]');
 		var tocLarge = bookContainer.querySelector('#toc-large-device');
+		var tabOptions = bookContainer.querySelector('#tab-options');
 		var tabInfos = bookContainer.querySelector('#tab-infos');
 		var bookCommands = bookContainer.querySelector('#book-commands');
 		var bookNavBarBottom = bookContainer.querySelector('#book-nav-bar-bottom');
 		var bookNavBarBottomSmall = bookContainer.querySelector('#book-nav-bar-bottom-small');
+		var fontSizeInputLarge = bookContainer.querySelector('#font-range-large');
+		var fontSizeInput = bookContainer.querySelector('#font-range');
+		var cover = text.querySelector("#cover.wb-section");
 
 		//DIMENSIONS
 		var h = void 0,
@@ -3139,25 +3143,33 @@ var book = function book(container) {
 				top = (window.innerHeight - 748 - 44) / 2;
 				textContainer.style.top = top - 15 + 'px';
 				tocLarge.style.marginTop = top - 15 + 'px';
-				tabInfos.style.marginTop = top + 32 + 'px';
+				tabOptions.style.marginTop = top + 33 + 'px';
+				tabInfos.style.marginTop = top + 80 + 'px';
 				bookCommands.style.top = top - 16 + 'px';
 				bookNavBarBottom.style.marginTop = top - 15 + 'px';
 			} else {
 				h = window.innerHeight - 44 - 40; //navBarBottom height (1*44) + textContainer top * 2 (2*20)
 				textContainer.style.top = '15px';
 				tocLarge.style.marginTop = '15px';
-				tabInfos.style.marginTop = '63px';
+				tabOptions.style.marginTop = '63px';
+				tabInfos.style.marginTop = '111px';
 				bookCommands.style.top = '15px';
 				bookNavBarBottom.style.marginTop = '15px';
 			}
 			w = 550;
-			fontSize = 16;
+			fontSize = _localStore2.default.getFontSize(bk.id) ? _localStore2.default.getFontSize(bk.id) : 16;
+			text.style.fontSize = fontSize + 'px';
+			cover.style.fontSize = '16px';
+			fontSizeInputLarge.value = fontSize;
 		} else {
 			_utils2.default.removeClass('[data-wb-text-container]', 'w3-card-4');
 			h = window.innerHeight - 30; //30px = nav-bar-bottom-small height
 			w = window.innerWidth;
 			bookNavBarBottomSmall.style.width = w + 'px';
-			fontSize = 14;
+			fontSize = _localStore2.default.getFontSize(bk.id) ? _localStore2.default.getFontSize(bk.id) : 14;
+			text.style.fontSize = fontSize + 'px';
+			cover.style.fontSize = '14px';
+			fontSizeInput.value = fontSize;
 			textContainer.style.top = '0px';
 		}
 
@@ -3181,7 +3193,6 @@ var book = function book(container) {
 		});
 
 		if (_localStore2.default.getBkmrk(bk.id)) {
-			console.log(_localStore2.default.getBkmrk(bk.id));
 			book.goToBookmark(_localStore2.default.getBkmrk(bk.id));
 		}
 
@@ -3201,7 +3212,8 @@ var book = function book(container) {
 					top = (window.innerHeight - 748 - 44) / 2;
 					textContainer.style.top = top - 15 + 'px';
 					tocLarge.style.marginTop = top - 15 + 'px';
-					tabInfos.style.marginTop = top + 32 + 'px';
+					tabOptions.style.marginTop = top + 33 + 'px';
+					tabInfos.style.marginTop = top + 80 + 'px';
 					bookCommands.style.top = top - 16 + 'px';
 					bookNavBarBottom.style.marginTop = top - 15 + 'px';
 				} else {
@@ -3209,17 +3221,24 @@ var book = function book(container) {
 					textContainer.style.top = '15px';
 					tocLarge.style.marginTop = '15px';
 					tabInfos.style.marginTop = '63px';
+					tabInfos.style.marginTop = '111px';
 					bookCommands.style.top = '15px';
 					bookNavBarBottom.style.marginTop = '15px';
 				}
 				w = 550;
-				fontSize = 16;
+				fontSize = _localStore2.default.getFontSize(bk.id) ? _localStore2.default.getFontSize(bk.id) : 16;
+				text.style.fontSize = fontSize + 'px';
+				cover.style.fontSize = '16px';
+				fontSizeInputLarge.value = fontSize;
 			} else {
 				_utils2.default.removeClass('[data-wb-text-container]', 'w3-card-4');
 				h = window.innerHeight - 30; //30px = nav-bar-bottom-small height
 				w = window.innerWidth;
 				bookNavBarBottomSmall.style.width = w + 'px';
-				fontSize = 14;
+				fontSize = _localStore2.default.getFontSize(bk.id) ? _localStore2.default.getFontSize(bk.id) : 14;
+				text.style.fontSize = fontSize + 'px';
+				cover.style.fontSize = '14px';
+				fontSizeInputLarge.value = fontSize;
 				textContainer.style.top = '0px';
 			}
 
@@ -3315,9 +3334,10 @@ var book = function book(container) {
 		var tabHome = bookContainer.querySelector('#tab-home-link');
 
 		var toggleTocLarge = bookContainer.querySelector('#toggle-toc-large-device');
-
+		var toggleTabOptions = bookContainer.querySelector('#toggle-tab-options');
 		var toggleTabInfos = bookContainer.querySelector('#toggle-tab-infos');
 		var closeTocLarge = bookContainer.querySelector('#close-toc-large-device');
+		var closeTabOptions = bookContainer.querySelector('#close-tab-options');
 		var closeTabInfos = bookContainer.querySelector('#close-tab-infos');
 		//TOGGLE TOC-LARGE-DEVICE
 		toggleTocLarge.addEventListener('click', function (event) {
@@ -3326,6 +3346,10 @@ var book = function book(container) {
 					tabInfos.style.zIndex = '0';
 					tocLarge.style.zIndex = '1000';
 					_utils2.default.removeClass('#tab-infos', 'open');
+				} else if (tabOptions.className.match(/open/)) {
+					tabOptions.style.zIndex = '0';
+					tocLarge.style.zIndex = '1000';
+					_utils2.default.removeClass('#tab-options', 'open');
 				}
 				_utils2.default.addClass('#toc-large-device', 'open');
 				_utils2.default.addClass('#swing-container', 'left');
@@ -3346,6 +3370,37 @@ var book = function book(container) {
 			tocLarge.style.zIndex = '0';
 		}, false);
 
+		//TOGGLE TAB-OPTIONS
+		toggleTabOptions.addEventListener('click', function (event) {
+			if (!tabOptions.className.match(/open/)) {
+				if (tocLarge.className.match(/open/)) {
+					tocLarge.style.zIndex = '0';
+					tabOptions.style.zIndex = '1000';
+					_utils2.default.removeClass('#toc-large-device', 'open');
+				} else if (tabInfos.className.match(/open/)) {
+					tabInfos.style.zIndex = '0';
+					tabOptions.style.zIndex = '1000';
+					_utils2.default.removeClass('#tab-infos', 'open');
+				}
+				_utils2.default.addClass('#tab-options', 'open');
+				_utils2.default.addClass('#swing-container', 'left');
+				_utils2.default.addClass('#swing-bar', 'left');
+			} else {
+				tabOptions.style.zIndex = '0';
+				_utils2.default.removeClass('#tab-options', 'open');
+				_utils2.default.removeClass('#swing-container', 'left');
+				_utils2.default.removeClass('#swing-bar', 'left');
+			}
+		}, false);
+
+		//CLOSE TAB-INFOS
+		closeTabOptions.addEventListener('click', function (event) {
+			_utils2.default.removeClass('#tab-options', 'open');
+			_utils2.default.removeClass('#swing-container', 'left');
+			_utils2.default.removeClass('#swing-bar', 'left');
+			tabOptions.style.zIndex = '0';
+		}, false);
+
 		//TOGGLE TAB-INFOS
 		toggleTabInfos.addEventListener('click', function (event) {
 			if (!tabInfos.className.match(/open/)) {
@@ -3353,6 +3408,10 @@ var book = function book(container) {
 					tocLarge.style.zIndex = '0';
 					tabInfos.style.zIndex = '1000';
 					_utils2.default.removeClass('#toc-large-device', 'open');
+				} else if (tabOptions.className.match(/open/)) {
+					tabOptions.style.zIndex = '0';
+					tabInfos.style.zIndex = '1000';
+					_utils2.default.removeClass('#tab-options', 'open');
 				}
 				_utils2.default.addClass('#tab-infos', 'open');
 				_utils2.default.addClass('#swing-container', 'left');
@@ -3373,6 +3432,16 @@ var book = function book(container) {
 			tabInfos.style.zIndex = '0';
 		}, false);
 
+		//OPTIONS-MODAL (small devices)
+		var optionsOpen = bookContainer.querySelector('#open-options');
+		optionsOpen.addEventListener('click', function () {
+			_utils2.default.addClass('#options-modal', 'open');
+		});
+		var optionsClose = bookContainer.querySelector('#close-options');
+		optionsClose.addEventListener('click', function () {
+			_utils2.default.removeClass('#options-modal', 'open');
+		});
+
 		//HOME
 		var homeLinks = bookContainer.querySelectorAll('.home');
 		for (var _i2 = 0; _i2 < homeLinks.length; _i2++) {
@@ -3387,8 +3456,37 @@ var book = function book(container) {
 		var addBookmarks = bookContainer.querySelectorAll('.add-bookmark');
 		for (var _i3 = 0; _i3 < addBookmarks.length; _i3++) {
 			addBookmarks[_i3].addEventListener('click', function (event) {
-				console.log(book.getBookmark());
-				_localStore2.default.pushBkmrk(bk.id, book.getBookmark());
+				_localStore2.default.setBkmrk(bk.id, book.getBookmark());
+			}, false);
+		}
+
+		//FONT-SIZE
+		var fontSizeInputs = bookContainer.querySelectorAll('.font-range');
+		for (var _i4 = 0; _i4 < fontSizeInputs.length; _i4++) {
+			fontSizeInputs[_i4].addEventListener('input', function (event) {
+				text.style.opacity = '0';
+			}, false);
+		}
+		for (var _i5 = 0; _i5 < fontSizeInputs.length; _i5++) {
+			fontSizeInputs[_i5].addEventListener('change', function (event) {
+				//text.style.opacity = '0';
+				var size = event.target.value;
+				text.style.fontSize = size + 'px';
+				if (window.innerWidth >= 768) {
+					cover.style.fontSize = '16px';
+				} else {
+					cover.style.fontSize = '14px';
+				}
+				//marginY is relative to line-height (line-height : 1.5em)
+				var lineHeight = size * 1.5;
+				var marginY = h % lineHeight !== 0 ? lineHeight * 2 + h % lineHeight / 2 : lineHeight * 2;
+				book.setMarginY(marginY);
+				book.toScroll();
+				book.toBook();
+				setTimeout(function () {
+					text.style.opacity = '1';
+				}, 0);
+				_localStore2.default.setFontSize(bk.id, size);
 			}, false);
 		}
 
@@ -3467,22 +3565,22 @@ Object.defineProperty(exports, "__esModule", {
 //localStore.js
 var localStore = {
 
-	pushBkmrk: function pushBkmrk(bkId, bkmrk) {
+	setBkmrk: function setBkmrk(bkId, bkmrk) {
 		var bkmrks = [];
 		if (typeof Storage !== "undefined") {
 			//check localStorage for bkmrks array
 			if (localStorage.getItem('bkmrks')) {
 				bkmrks = JSON.parse(localStorage.getItem('bkmrks'));
 				//check for bk.id
-				var b = void 0;
+				var item = void 0;
 				for (var i = 0; i < bkmrks.length; i++) {
 					if (bkmrks[i].bkId === bkId) {
-						b = bkmrks[i];
+						item = bkmrks[i];
 						break;
 					}
 				}
-				if (b) {
-					b.bkmrk = bkmrk;
+				if (item) {
+					item.bkmrk = bkmrk;
 				} else {
 					bkmrks.push({ bkId: bkId, bkmrk: bkmrk });
 				}
@@ -3505,6 +3603,49 @@ var localStore = {
 				})[0];
 				if (item) {
 					return item.bkmrk;
+				}
+			}
+		}
+	},
+
+	setFontSize: function setFontSize(bkId, size) {
+		var fSizes = [];
+		if (typeof Storage !== "undefined") {
+			//check localStorage for fSizes array
+			if (localStorage.getItem('fSizes')) {
+				fSizes = JSON.parse(localStorage.getItem('fSizes'));
+				//check for bk.id
+				var item = void 0;
+				for (var i = 0; i < fSizes.length; i++) {
+					if (fSizes[i].bkId === bkId) {
+						item = fSizes[i];
+						break;
+					}
+				}
+				if (item) {
+					item.size = size;
+				} else {
+					fSizes.push({ bkId: bkId, size: size });
+				}
+			} else {
+				fSizes.push({ bkId: bkId, size: size });
+			}
+			localStorage.setItem('fSizes', JSON.stringify(fSizes));
+		}
+	},
+
+	getFontSize: function getFontSize(bkId) {
+		var fSizes = [];
+		if (typeof Storage !== "undefined") {
+			//check localStorage for bkmrks array
+			if (localStorage.getItem('fSizes')) {
+				fSizes = JSON.parse(localStorage.getItem('fSizes'));
+				//check for bk.id
+				var item = fSizes.filter(function (o) {
+					return o.bkId === bkId;
+				})[0];
+				if (item) {
+					return item.size;
 				}
 			}
 		}
@@ -3693,7 +3834,7 @@ var WebBook = function () {
 			'use strict';
 
 			this.col = false;
-			var cs = this._container.style;
+			var cs = this._textContainer.style;
 			var ts = this._text.style;
 			//container
 			cs.height = "auto";
@@ -4032,6 +4173,10 @@ var WebBook = function () {
 					var _elPosition = Math.round((0, _core2.default)(elements[i]).position().left) - this.getMarginX();
 					_elPosition = _elPosition % this._containerWidth !== 0 ? _elPosition - _elPosition % this._containerWidth : _elPosition; //always at a page beginning
 					if (_elPosition === position) {
+						if (currentSection.id === 'last') {
+							this._bookmark = { sectionId: sections[0].id, el: 0 };
+							break;
+						}
 						this._bookmark = { sectionId: currentSection.id, el: i };
 						break;
 					} else if (_elPosition > position) {
@@ -8076,7 +8221,7 @@ exports = module.exports = __webpack_require__(4)(undefined);
 
 
 // module
-exports.push([module.i, "/*\nBOOK LOADER\n*/\n\n#book-loader-container {\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 0px;\n\twidth: 100%;\n\theight: 100%;\n\tbackground-color: #fafafa;\n}\n\n#book-loader-container.hidden {\n\tdisplay: none;\n}\n\n#book-loader {\n\tposition: absolute;\n\tleft: 50%;\n\ttop: 40%;\n\tz-index: 1;\n    border: 8px solid #f3f3f3; \n    border-radius: 50%;\n    width: 80px;\n    height: 80px;\n    margin: -40px 0 0 -40px;\n    -webkit-animation: spin 2s linear infinite;\n    animation: spin 2s linear infinite;\n}\n\n@-webkit-keyframes spin {\n  0% { -webkit-transform: rotate(0deg); }\n  100% { -webkit-transform: rotate(360deg); }\n}\n\n@keyframes spin {\n    0% { transform: rotate(0deg); }\n    100% { transform: rotate(360deg); }\n}\n\n/*\nBOOK NAVBAR BOTTOM\n*/\n#book-nav-bar-bottom {\n\tdisplay: none;\n\theight: 44px;\n\tposition: relative;\n}\n\n@media screen and (min-width: 768px) {\n\t#book-nav-bar-bottom {\n\t\tdisplay: block;\n\t}\n}\n\n#book-nav-bar-bottom-controls {\n\tdisplay: block;\n\tposition: relative;\n\twidth: 550px;\n\tmargin: auto;\n\theight: 44px;\n\ttext-align: center;\n}\n\n#book-nav-bar-bottom-controls #center {\n\twidth: 120px;\n\tmargin: auto;\n}\n\n#book-nav-bar-bottom-controls #center #backward-large {\n\tfloat: left;\n}\n\n#book-nav-bar-bottom-controls #center #forward-large {\n\tfloat: right;\n}\n\n#book-nav-bar-bottom-controls span, #book-nav-bar-bottom-controls button {\n\toutline: none;\n\theight: 100%;\n\tbackground-color: transparent;\n\tdisplay: inline-block;\n}\n\n#book-nav-bar-bottom-controls #open-toc-large {\n\tposition: absolute;\n\ttop: 0px;\n\tright: 0px;\n\tpadding-bottom: 10px;\n}\n\n#book-nav-bar-bottom-controls #options-large {\n\tposition: absolute;\n\ttop: 0px;\n\tright: 56px;\n\tpadding-bottom: 10px;\n}\n\n#book-nav-bar-bottom-controls #home-large {\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 0px;\n\tpadding-bottom: 10px;\n}\n\n#book-nav-bar-bottom-controls #add-bookmark-large {\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 56px;\n\tpadding-bottom: 10px;\n}\n\n@media screen and (min-width: 1366px) {\n\t#book-nav-bar-bottom-controls #open-toc-large, \n\t#book-nav-bar-bottom-controls #home-large, \n\t#book-nav-bar-bottom-controls #options-large, \n\t#book-nav-bar-bottom-controls #add-bookmark-large {\n\t\tdisplay: none;\n\t}\n}\n\n/*\nBOOK NAV-BAR-BOTTOM-SMALL\n*/\n\n#book-nav-bar-bottom-small {\n\tdisplay: block;\n\theight: 30px;\n\tposition: relative;\n\tmargin: auto;\n\tbackground-color: #333;\n}\n\n@media screen and (min-width: 768px) {\n\t#book-nav-bar-bottom-small {\n\t\tdisplay: none;\n\t}\n}\n\n#book-nav-bar-bottom-small .w3-btn {\n\tdisplay: inline-block;\n\tborder: none;\n\tbackground-color: transparent;\n\theight: 100%;\n\tpadding: 3px 0px 0px 0px;\n\tmargin: 0px;\n\toutline: none;\n\twidth: 24%;\n}\n\n/*\nBOOKCONTAINER\n*/\n#bookContainer {\n\tfont-family: 'Georgia', serif;\n\tposition: relative;\n\tcolor: #000;\n\topacity: 0.0;\n\tmargin: auto;\n\ttransition: opacity 0.8s;\n\t-webkit-transition: opacity 0.8s;\n\t-moz-transition: opacity 0.8s;\n\t-o-transition: opacity 0.8s;\n}\n\n#bookContainer.show {\n\topacity: 1.0;\n}\n\n/*\nTEXTCONTAINER\n*/\n[data-wb-text-container] {\n\tmargin: auto;\n\tbackground-color: #fafafa;\n}\n\n/*\nTOC-LARGE-DEVICE, TAB-INFOS\n*/\n\n#toc-large-device, #tab-infos {\n  position: absolute;\n  top: 0px;\n  right: -40%;\n  width: 33%;\n  transition: right 0.5s;\n  -webkit-transition : right 0.5s;\n  -moz-transition : right 0.5s;\n  -o-transition: right 0.5s;\n  display: none;\n  background-color: #fafafa;\n}\n\n@media screen and (min-width: 1366px) {\n\n\t#toc-large-device, #tab-infos {\n\t\tdisplay: block\n\t}\n\n}\n\n#toc-large-device.open, #tab-infos.open {\n\tright: 0px;\n}\n\n\n\n#toc-large-device-container, #tab-infos-container {\n\twidth: 100%;\n\tbackground-color: #fafafa;\n\toverflow-y: auto;\n}\n\n\n#toc-large-device-container > div {\n\tbackground-color: #fafafa;\n\tposition: relative;\n\theight: 100%;\n\twidth: 100%;\n}\n\n#tab-infos-container p {\n\tmargin: 0px;\n\tmargin-top: 8px;\n}\n\n#tab-infos-container ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#tab-infos-container .contrib-role {\n\ttext-transform: capitalize;\n}\n\n\n/*\ntoggle toc-large-device, swing-container, swing-bar\n*/\n\n#book-commands {\n\tposition: fixed;\n\tleft: 32px;\n\twidth: 75px;\n\tdisplay: none;\n}\n\n@media screen and (min-width: 1366px) {\n\t#book-commands {\n\t\tdisplay: block;\n\t}\n}\n\n#close-toc-large-device, #close-tab-infos {\n    position: absolute;\n\tright: 100%;\n\ttop: 0px;\n\tmargin-right: 16px;\n\toutline: none;\n\tbackground-color: #fafafa;\n\tfont-size: 1.2em;\n\tfont-family: 'Verdana', serif;\n}\n\n#toggle-toc-large-device, #toggle-tab-infos, #tab-add-bookmark, #tab-home-link {\n    position: absolute;\n\tright: 0px;\n\twidth: 75px;\n\tmargin-right: 16px;\n\toutline: none;\n\tfont-size: 1em;\n}\n\n#toggle-toc-large-device {\n\ttop: 0px;\n}\n\n#toggle-tab-infos {\n\ttop: 48px;\n}\n\n#tab-add-bookmark {\n\ttop: 96px;\n}\n\n#tab-home-link {\n\ttop: 144px;\n}\n\n/*\nif toc-large-device.open : swing-container to left\n*/\n#swing-container {\n\tmargin-right: 0px;\n\ttransition: margin-right 0.8s;\n\t-webkit-transition : margin-right 0.8s;\n\t-moz-transition : margin-right 0.8s;\n    -o-transition: margin-right 0.8s;\n\t\n}\n\n#swing-container.left {\n\t\tmargin-right: 0px;\n\t}\n\n@media screen and (min-width: 1366px) {\n\t#swing-container.left {\n\t\tmargin-right: 33%;\n\t}\n}\n\n/*\nif toc-large-device.open : swing-bar to left\n*/\n#swing-bar {\n\tmargin-right: 0px;\n\ttransition: margin-right 0.9s;\n\t-webkit-transition : margin-right 0.9s;\n\t-moz-transition : margin-right 0.9s;\n    -o-transition: margin-right 0.9s;\n}\n\n#swing-bar.left {\n\tmargin-right: 0px;\n}\n\n@media screen and (min-width: 1366px) {\n\t#swing-bar.left {\n\t\tmargin-right: 33%;\n\t}\n}\n\n/*\nTOC\n*/\n#toc {\n\tposition: absolute;\n\ttop: -1000px;\n\twidth: 100%;\n\theight: 100%;\n\tz-index: 1000;\n\toverflow-y: auto;\n/*\n\ttransition: top 0.4s;\n\t-webkit-transition : top 0.4s;\n\t-moz-transition : top 0.4s;\n    -o-transition: top 0.4s;\n*/\n\tpadding: 0px;\n\tbackground-color: #fafafa;\n}\n\n#toc.open {\n\ttop: 0px;\n}\n\n#toc > div {\n\tposition: relative;\n\tbackground-color: #fafafa;\n}\n\n#close-toc {\n\tbackground-color: transparent;\n\tline-height: 27px;\n\tfont-size: 2em;\n\tfont-family: 'Georgia', sans-serif;\n}\n\n#toc-title {\n\tmargin-bottom: 30px;\n\tmargin-top: 20px\n}\n\n#toc-title p {\n\tmargin: 8px;\n}\n/*\ntoc list\n*/\n#toc ul, #toc-large-device ul {\n\tpadding: 0px;\n}\n\n#toc li, #toc-large-device li {\n\tlist-style-type: none;\n\tpadding: .5em .5em;\n}\n\n#toc a.wb-link, #toc-large-device a.wb-link {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: gray;\n}\n\n#toc a.wb-link:hover, #toc-large-device a.wb-link:hover {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: #000;\n}\n\n#toc li.current a.wb-link, #toc-large-device li.current a.wb-link {\n\tcolor: #000;\n\toutline: none;\n\tfont-style: italic;\n}\n\n#toc [data-wb-element-page-number], #toc-large-device [data-wb-element-page-number] {\n\tfloat: right;\n}\n\n/*\nTOP\n*/\n#top {\n\tposition: absolute;\n\ttop: 0px;\n\tbox-sizing: border-box;\n\t-webkit-box-sizing: border-box;\n\t-moz-box-sizing: border-box;\n\tpadding-top: 12px;\n\ttext-align: center;\n\twidth: 100%;\n\theight: 30px;\n}\n\n#top .wb-current-section-title {\n\tdisplay: inline-block;\n\twidth: 80%;\n\twhite-space: nowrap;\n\tfont-size: 0.85em;\n\toverflow: hidden;\n\ttext-overflow: ellipsis;\n\t-o-text-overflow: ellipsis;\n}\n\n/*\nBOTTOM\n*/\n#bottom {\n\tposition: absolute;\n\tbottom: 0px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tbackground-color: transparent;\n}\n\n#bottom span {\n\tdisplay: inline-block;\n\tmin-width: 42px;\n\tmargin: 0px;\n\tmargin-top: 0px;\n\tfont-size: 1em;\n\tbackground-color: transparent;\n\tmin-width: 25px;\n\theight: 100%;\n\tpadding: 0px 16px 0px 16px;\n}\n\n/*\nTEXT\n*/\n[data-wb-text] {\n\tfont-size: 14px;\n\tline-height: 1.5em;\n\ttext-align: justify;\n\ttext-justify: inter-word;\n}\n\n@media screen and (min-width: 768px) {\n    [data-wb-text] {\n        font-size: 16px;\n        line-height: 1.5em;\n    }\n}\n\n[data-wb-text] p {\n\tmargin-bottom: 0px;\n\tmargin-top: 0px;\n\ttext-indent: 1.5em;\n}\n\n/*\nINSIDE TEXT\n*/\n/*\nTITLES\n*/\np.section-title, p.notes-title, p.wb-toc-title {\n\tfont-size: 1.25em;\n\ttext-align: left;\n\ttext-indent: 0px;\n}\n\np.notes-title {\n\tborder-bottom: 1px solid black;\n\tmargin-bottom: 0.5em;\n}\n\np.section-title {\n\tpadding-top: 3.5em;\n\tmargin-top: 0px;\n\tmargin-bottom: 1.5em;\n\ttext-indent: 0px;\n\tline-height: 2em;\n}\n\np.section-subtitle {\n\tfont-size: 1em;\n\ttext-indent: 0px;\n\tmargin-bottom: 1.5em;\n}\n\n#titre.wb-section {\n\ttext-align: center;\n\tline-height: 1.8em;\n}\n\n#cover-author, #cover-title, #cover-logo {\n\tmargin: 0px;\n\ttext-indent: 0px;\n}\n\np.note {\n\ttext-indent: 0px;\n}\n\n#fin {\n\ttext-align: center;\n\t\n}\n\n#fin p {\n\tpadding-top: 20%;\n\ttext-indent: 0px;\n}\n", ""]);
+exports.push([module.i, "/*\nBOOK LOADER\n*/\n\n#book-loader-container {\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 0px;\n\twidth: 100%;\n\theight: 100%;\n\tbackground-color: #fafafa;\n}\n\n#book-loader-container.hidden {\n\tdisplay: none;\n}\n\n#book-loader {\n\tposition: absolute;\n\tleft: 50%;\n\ttop: 40%;\n\tz-index: 1;\n    border: 8px solid #f3f3f3; \n    border-radius: 50%;\n    width: 80px;\n    height: 80px;\n    margin: -40px 0 0 -40px;\n    -webkit-animation: spin 2s linear infinite;\n    animation: spin 2s linear infinite;\n}\n\n@-webkit-keyframes spin {\n  0% { -webkit-transform: rotate(0deg); }\n  100% { -webkit-transform: rotate(360deg); }\n}\n\n@keyframes spin {\n    0% { transform: rotate(0deg); }\n    100% { transform: rotate(360deg); }\n}\n\n/*\nBOOK NAVBAR BOTTOM\n*/\n#book-nav-bar-bottom {\n\tdisplay: none;\n\theight: 44px;\n\tposition: relative;\n}\n\n@media screen and (min-width: 768px) {\n\t#book-nav-bar-bottom {\n\t\tdisplay: block;\n\t}\n}\n\n#book-nav-bar-bottom-controls {\n\tdisplay: block;\n\tposition: relative;\n\twidth: 550px;\n\tmargin: auto;\n\theight: 44px;\n\ttext-align: center;\n}\n\n#book-nav-bar-bottom-controls #center {\n\twidth: 120px;\n\tmargin: auto;\n}\n\n#book-nav-bar-bottom-controls #center #backward-large {\n\tfloat: left;\n}\n\n#book-nav-bar-bottom-controls #center #forward-large {\n\tfloat: right;\n}\n\n#book-nav-bar-bottom-controls span, #book-nav-bar-bottom-controls button {\n\toutline: none;\n\theight: 100%;\n\tbackground-color: transparent;\n\tdisplay: inline-block;\n}\n\n#book-nav-bar-bottom-controls #open-toc-large {\n\tposition: absolute;\n\ttop: 0px;\n\tright: 0px;\n\tpadding-bottom: 10px;\n}\n\n#book-nav-bar-bottom-controls #options-large {\n\tposition: absolute;\n\ttop: 0px;\n\tright: 56px;\n\tpadding-bottom: 10px;\n}\n\n#book-nav-bar-bottom-controls #home-large {\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 0px;\n\tpadding-bottom: 10px;\n}\n\n#book-nav-bar-bottom-controls #add-bookmark-large {\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 56px;\n\tpadding-bottom: 10px;\n}\n\n@media screen and (min-width: 1366px) {\n\t#book-nav-bar-bottom-controls #open-toc-large, \n\t#book-nav-bar-bottom-controls #home-large, \n\t#book-nav-bar-bottom-controls #options-large, \n\t#book-nav-bar-bottom-controls #add-bookmark-large {\n\t\tdisplay: none;\n\t}\n}\n\n/*\nBOOK NAV-BAR-BOTTOM-SMALL\n*/\n\n#book-nav-bar-bottom-small {\n\tdisplay: block;\n\theight: 30px;\n\tposition: relative;\n\tmargin: auto;\n\tbackground-color: #333;\n}\n\n@media screen and (min-width: 768px) {\n\t#book-nav-bar-bottom-small {\n\t\tdisplay: none;\n\t}\n}\n\n#book-nav-bar-bottom-small .w3-btn {\n\tdisplay: inline-block;\n\tborder: none;\n\tbackground-color: transparent;\n\theight: 100%;\n\tpadding: 3px 0px 0px 0px;\n\tmargin: 0px;\n\toutline: none;\n\twidth: 24%;\n}\n\n/*\nBOOKCONTAINER\n*/\n#bookContainer {\n\tfont-family: 'Georgia', serif;\n\tposition: relative;\n\tcolor: #000;\n\topacity: 0.0;\n\tmargin: auto;\n\ttransition: opacity 0.8s;\n\t-webkit-transition: opacity 0.8s;\n\t-moz-transition: opacity 0.8s;\n\t-o-transition: opacity 0.8s;\n}\n\n#bookContainer.show {\n\topacity: 1.0;\n}\n\n/*\nTEXTCONTAINER\n*/\n[data-wb-text-container] {\n\tmargin: auto;\n\tbackground-color: #fafafa;\n}\n\n/*\nTOC-LARGE-DEVICE, TAB-OPTIONS, TAB-INFOS, HOME\n*/\n\n#toc-large-device, #tab-infos, #tab-options {\n  position: absolute;\n  top: 0px;\n  right: -40%;\n  width: 33%;\n  transition: right 0.5s;\n  -webkit-transition : right 0.5s;\n  -moz-transition : right 0.5s;\n  -o-transition: right 0.5s;\n  display: none;\n  background-color: #fafafa;\n}\n\n@media screen and (min-width: 1366px) {\n\n\t#toc-large-device, #tab-infos, #tab-options {\n\t\tdisplay: block\n\t}\n\n}\n\n#toc-large-device.open, #tab-infos.open, #tab-options.open {\n\tright: 0px;\n}\n\n\n\n#toc-large-device-container, #tab-infos-container, #tab-options-container {\n\twidth: 100%;\n\tbackground-color: #fafafa;\n\toverflow-y: auto;\n}\n\n\n#toc-large-device-container > div {\n\tbackground-color: #fafafa;\n\tposition: relative;\n\theight: 100%;\n\twidth: 100%;\n}\n\n#tab-infos-container p {\n\tmargin: 0px;\n\tmargin-top: 8px;\n}\n\n#tab-infos-container ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#tab-infos-container .contrib-role {\n\ttext-transform: capitalize;\n}\n\n#tab-options-container {\n\ttext-align: center;\n}\n\n#tab-options-container input[type=range] {\n\tmax-width: 250px;\n\tmargin: auto;\n\toutline: none;\n}\n\n\n/*\ntoggle toc-large-device, swing-container, swing-bar\n*/\n\n#book-commands {\n\tposition: fixed;\n\tleft: 32px;\n\twidth: 75px;\n\tdisplay: none;\n}\n\n@media screen and (min-width: 1366px) {\n\t#book-commands {\n\t\tdisplay: block;\n\t}\n}\n\n#close-toc-large-device, #close-tab-infos, #close-tab-options {\n    position: absolute;\n\tright: 100%;\n\ttop: 0px;\n\tmargin-right: 16px;\n\toutline: none;\n\tbackground-color: #fafafa;\n\tfont-size: 1.2em;\n\tfont-family: 'Verdana', serif;\n}\n\n#toggle-toc-large-device, #toggle-tab-options, #toggle-tab-infos, #tab-add-bookmark, #tab-home-link {\n    position: absolute;\n\tright: 0px;\n\twidth: 80px;\n\tmargin-right: 16px;\n\toutline: none;\n\tfont-size: 1em;\n}\n\n#toggle-toc-large-device {\n\ttop: 0px;\n}\n\n#toggle-tab-options {\n\ttop: 48px;\n}\n\n#toggle-tab-infos {\n\ttop: 96px;\n}\n\n#tab-add-bookmark {\n\ttop: 144px;\n}\n\n#tab-home-link {\n\ttop: 192px;\n}\n\n/*\nif toc-large-device.open : swing-container to left\n*/\n#swing-container {\n\tmargin-right: 0px;\n\ttransition: margin-right 0.8s;\n\t-webkit-transition : margin-right 0.8s;\n\t-moz-transition : margin-right 0.8s;\n    -o-transition: margin-right 0.8s;\n\t\n}\n\n#swing-container.left {\n\t\tmargin-right: 0px;\n\t}\n\n@media screen and (min-width: 1366px) {\n\t#swing-container.left {\n\t\tmargin-right: 33%;\n\t}\n}\n\n/*\nif toc-large-device.open : swing-bar to left\n*/\n#swing-bar {\n\tmargin-right: 0px;\n\ttransition: margin-right 0.9s;\n\t-webkit-transition : margin-right 0.9s;\n\t-moz-transition : margin-right 0.9s;\n    -o-transition: margin-right 0.9s;\n}\n\n#swing-bar.left {\n\tmargin-right: 0px;\n}\n\n@media screen and (min-width: 1366px) {\n\t#swing-bar.left {\n\t\tmargin-right: 33%;\n\t}\n}\n\n/*\nOPTIONS (small devices)\n*/\n\n#options-modal {\n\tdisplay: none;\n\twidth: 100%;\n\theight: 100%;\n\tpadding: 0px;\n}\n\n#options-modal.open {\n\tdisplay: block;\n}\n\n#options-modal > div.w3-modal-content {\n\twidth: 100%;\n\theight: 100%;\n\tmargin: 0px;\n\ttext-align: center;\n}\n\n#options-modal > div.w3-modal-content h4 {\n\tfont-family: 'Georgia', sans-serif;\n}\n\n#close-options {\n\tbackground-color: transparent;\n\tline-height: 27px;\n\tfont-size: 2em;\n\tfont-family: 'Georgia', sans-serif;\n}\n\n/*\nTOC\n*/\n#toc {\n\tposition: absolute;\n\ttop: -1000px;\n\twidth: 100%;\n\theight: 100%;\n\tz-index: 1000;\n\toverflow-y: auto;\n/*\n\ttransition: top 0.4s;\n\t-webkit-transition : top 0.4s;\n\t-moz-transition : top 0.4s;\n    -o-transition: top 0.4s;\n*/\n\tpadding: 0px;\n\tbackground-color: #fafafa;\n}\n\n#toc.open {\n\ttop: 0px;\n}\n\n#toc > div {\n\tposition: relative;\n\tbackground-color: #fafafa;\n}\n\n#close-toc {\n\tbackground-color: transparent;\n\tline-height: 27px;\n\tfont-size: 2em;\n\tfont-family: 'Georgia', sans-serif;\n}\n\n#toc-title {\n\tmargin-bottom: 30px;\n\tmargin-top: 20px\n}\n\n#toc-title p {\n\tmargin: 8px;\n}\n/*\ntoc list\n*/\n#toc ul, #toc-large-device ul {\n\tpadding: 0px;\n}\n\n#toc li, #toc-large-device li {\n\tlist-style-type: none;\n\tpadding: .5em .5em;\n}\n\n#toc a.wb-link, #toc-large-device a.wb-link {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: gray;\n}\n\n#toc a.wb-link:hover, #toc-large-device a.wb-link:hover {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: #000;\n}\n\n#toc li.current a.wb-link, #toc-large-device li.current a.wb-link {\n\tcolor: #000;\n\toutline: none;\n\tfont-style: italic;\n}\n\n#toc [data-wb-element-page-number], #toc-large-device [data-wb-element-page-number] {\n\tfloat: right;\n}\n\n/*\nTOP\n*/\n#top {\n\tposition: absolute;\n\ttop: 0px;\n\tbox-sizing: border-box;\n\t-webkit-box-sizing: border-box;\n\t-moz-box-sizing: border-box;\n\tpadding-top: 12px;\n\ttext-align: center;\n\twidth: 100%;\n\theight: 30px;\n}\n\n#top .wb-current-section-title {\n\tdisplay: inline-block;\n\twidth: 80%;\n\twhite-space: nowrap;\n\tfont-size: 0.85em;\n\toverflow: hidden;\n\ttext-overflow: ellipsis;\n\t-o-text-overflow: ellipsis;\n}\n\n/*\nBOTTOM\n*/\n#bottom {\n\tposition: absolute;\n\tbottom: 0px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tbackground-color: transparent;\n}\n\n#bottom span {\n\tdisplay: inline-block;\n\tmin-width: 42px;\n\tmargin: 0px;\n\tmargin-top: 0px;\n\tfont-size: 1em;\n\tbackground-color: transparent;\n\tmin-width: 25px;\n\theight: 100%;\n\tpadding: 0px 16px 0px 16px;\n}\n\n/*\nTEXT\n*/\n[data-wb-text] {\n\tfont-size: 14px;\n\tline-height: 1.5em;\n\ttext-align: justify;\n\ttext-justify: inter-word;\n\topacity: 1;\n\ttransition: opacity 0.4s;\n\t-webkit-transition: opacity 0.4s;\n\t-moz-transition: opacity 0.4s;\n\t-o-transition: opacity 0.4s;\n}\n\n@media screen and (min-width: 768px) {\n    [data-wb-text] {\n        font-size: 16px;\n        line-height: 1.5em;\n    }\n}\n\n[data-wb-text] p {\n\tmargin-bottom: 0px;\n\tmargin-top: 0px;\n\ttext-indent: 1.5em;\n}\n\n/*\nINSIDE TEXT\n*/\n/*\nTITLES\n*/\np.section-title, p.notes-title, p.wb-toc-title {\n\tfont-size: 1.25em;\n\ttext-align: left;\n\ttext-indent: 0px;\n}\n\np.notes-title {\n\tborder-bottom: 1px solid black;\n\tmargin-bottom: 0.5em;\n}\n\np.section-title {\n\tpadding-top: 3.5em;\n\tmargin-top: 0px;\n\tmargin-bottom: 1.5em;\n\ttext-indent: 0px;\n\tline-height: 2em;\n}\n\np.section-subtitle {\n\tfont-size: 1em;\n\ttext-indent: 0px;\n\tmargin-bottom: 1.5em;\n}\n\n#cover.wb-section {\n\ttext-align: center;\n}\n\n#cover-author, #cover-title, #cover-logo {\n\tmargin: 0px;\n\ttext-indent: 0px;\n}\n\np.note {\n\ttext-indent: 0px;\n}\n\n#fin {\n\ttext-align: center;\n\t\n}\n\n#fin p {\n\tpadding-top: 20%;\n\ttext-indent: 0px;\n}\n", ""]);
 
 // exports
 
@@ -10731,7 +10876,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="book">\n	<!--\n		STARTBOOK-CONTAINER\n	-->\n	<div id="bookContainer">\n		<!--\n			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366\n		-->\n		<%- include src/components/book-read/toc-large-device.ejs -%>\n		<!--\n			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		<div id="swing-container">\n			<!--\n				START TEXT-CONTAINER\n			-->\n			<div data-wb-text-container class="w3-card-4">\n				<!--\n					TOC (inside textContainer) : width < 1366\n				-->\n				<div id="toc">\n					<div data-wb-toc class="w3-container">\n						<button id="close-toc" type="button" class="w3-button w3-text-gray w3-hover-none w3-display-topright">&times;</button>\n						<div id="toc-title" class="toc-content w3-padding-16">\n							<p class="w3-center"><%- book.authorDisplay %></p>\n							<p class="w3-center text-uppercase"><%- book.title %></p>\n						</div>\n					</div>\n				</div>\n				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text style="background-color: <%- book.styles.color %>; background-image: url(<%- book.styles.image %>)"></div>\n				<!--\n					BOTTOM (inside textContainer) : pagination\n				-->\n				<div id="bottom">\n					<span class="wb-currentByTotal-pages"></span>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM-SMALL (outside textContainer) : width < 768\n		-->\n		<div id="book-nav-bar-bottom-small" class="w3-bar">\n			<a id="home" href="/#/books/" class="home w3-btn w3-text-gray"><i class="material-icons">arrow_back</i></a>\n			<button id="add-bookmark" class="add-bookmark w3-btn w3-ripple w3-text-gray"><i class="material-icons">bookmark_border</i></button>\n			<button id="options" class="w3-btn w3-text-gray"><i class="material-icons">settings</i></button>\n			<button id="open-toc" class="open-toc w3-btn w3-text-gray"><i class="material-icons">toc</i></button>\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom">\n			<div class="w3-bar w3-large">\n				<div id="swing-bar">\n					<div id="book-nav-bar-bottom-controls">\n						<button id="home-large" class="home w3-btn w3-hover-none w3-text-gray"><i class="material-icons">arrow_back</i></button>\n						<button id="add-bookmark-large" class="add-bookmark w3-btn w3-ripple w3-hover-none w3-text-gray"><i class="material-icons">bookmark_border</i></button>\n						<div id="center">\n							<span id="backward-large" class="w3-button w3-hover-none">&lt;</span>\n							<span id="forward-large" class="w3-button w3-hover-none">&gt;</span>\n						</div>\n						<button id="options-large" class="w3-btn w3-hover-none w3-text-gray"><i class="material-icons">settings</i></button>\n						<button id="open-toc-large" class="open-toc w3-btn w3-hover-none w3-text-gray"><i class="material-icons">toc</i></button>\n					</div>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n	<div id="book-loader-container" class="hidden">\n		<div id="book-loader" style="border-top: 8px solid <%= book.styles.color %>; border-bottom: 8px solid <%= book.styles.color %>"><div>\n	</div>\n</div>\n',
+        input: '<div id="book">\n	<!--\n		STARTBOOK-CONTAINER\n	-->\n	<div id="bookContainer">\n		<!--\n			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366\n		-->\n		<%- include src/components/book-read/tabs-large-device.ejs -%>\n		<!--\n			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		<div id="swing-container">\n			<!--\n				START TEXT-CONTAINER\n			-->\n			<div data-wb-text-container class="w3-card-4">\n				<!--\n					TOC (inside textContainer) : width < 1366\n				-->\n				<div id="toc">\n					<div data-wb-toc class="w3-container">\n						<button id="close-toc" type="button" class="w3-button w3-text-gray w3-hover-none w3-display-topright">&times;</button>\n						<div id="toc-title" class="toc-content w3-padding-16 w3-border-bottom">\n							<p class="w3-center"><%- book.authorDisplay %></p>\n							<p class="w3-center text-uppercase"><%- book.title %></p>\n						</div>\n					</div>\n				</div>\n				<!--\n					OPTIONS-MODAL (inside textContainer) : width >= 1366\n				-->\n				<%- include src/components/book-read/options-modal.ejs -%>\n				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text style="background-color: <%- book.styles.color %>; background-image: url(<%- book.styles.image %>)"></div>\n				<!--\n					BOTTOM (inside textContainer) : pagination\n				-->\n				<div id="bottom">\n					<span class="wb-currentByTotal-pages"></span>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM-SMALL (outside textContainer) : width < 768\n		-->\n		<div id="book-nav-bar-bottom-small" class="w3-bar">\n			<a id="home" href="/#/books/" class="home w3-btn w3-text-gray"><i class="material-icons">arrow_back</i></a>\n			<button id="add-bookmark" class="add-bookmark w3-btn w3-ripple w3-text-gray"><i class="material-icons">bookmark_border</i></button>\n			<button id="open-options" class="w3-btn w3-text-gray"><i class="material-icons">settings</i></button>\n			<button id="open-toc" class="open-toc w3-btn w3-text-gray"><i class="material-icons">toc</i></button>\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom">\n			<div class="w3-bar w3-large">\n				<div id="swing-bar">\n					<div id="book-nav-bar-bottom-controls">\n						<button id="home-large" class="home w3-btn w3-hover-none w3-text-gray"><i class="material-icons">arrow_back</i></button>\n						<button id="add-bookmark-large" class="add-bookmark w3-btn w3-ripple w3-hover-none w3-text-gray"><i class="material-icons">bookmark_border</i></button>\n						<div id="center">\n							<span id="backward-large" class="w3-button w3-hover-none">&lt;</span>\n							<span id="forward-large" class="w3-button w3-hover-none">&gt;</span>\n						</div>\n						<button id="options-large" class="w3-btn w3-hover-none w3-text-gray"><i class="material-icons">settings</i></button>\n						<button id="open-toc-large" class="open-toc w3-btn w3-hover-none w3-text-gray"><i class="material-icons">toc</i></button>\n					</div>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n	<div id="book-loader-container" class="hidden">\n		<div id="book-loader" style="border-top: 8px solid <%= book.styles.color %>; border-bottom: 8px solid <%= book.styles.color %>"><div>\n	</div>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -10750,57 +10895,61 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
             (function() {
                 buf.push('<div id="book">\n	<!--\n		STARTBOOK-CONTAINER\n	-->\n	<div id="bookContainer">\n		<!--\n			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366\n		-->\n		' + function() {
                     var buf = [];
-                    buf.push('\n<div id="toc-large-device" class="w3-card-4" >\n	<button id="close-toc-large-device" type="button" class="w3-btn w3-card-4 w3-white" >&times;</button>\n	<div id="toc-large-device-container" class="toc-content">\n		<div class="w3-padding-16">\n			<p class="w3-center">', (__stack.lineno = 6, book.authorDisplay), '</p>\n			<p class="w3-center text-uppercase">', (__stack.lineno = 7, book.title), '</p>\n		</div>\n		<div data-wb-toc class="w3-container"></div>\n	</div>\n</div>\n	\n<div id="tab-infos" class="w3-card-4">\n	<button id="close-tab-infos" type="button" class="w3-btn w3-card-4 w3-white" >&times;</button>\n	<div id="tab-infos-container">\n		  <div class="w3-container w3-padding-16">\n			  <p><b>Titre : </b>', (__stack.lineno = 17, book.title), "</p>\n			  ");
-                    __stack.lineno = 18;
+                    buf.push('\n<div id="toc-large-device" class="w3-card-4" >\n	<button id="close-toc-large-device" type="button" class="w3-btn w3-card-4 w3-white" >&times;</button>\n	<div id="toc-large-device-container" class="toc-content">\n		<div class="w3-padding-16 w3-border-bottom">\n			<p class="w3-center">', (__stack.lineno = 6, book.authorDisplay), '</p>\n			<p class="w3-center text-uppercase">', (__stack.lineno = 7, book.title), '</p>\n		</div>\n		<div data-wb-toc class="w3-container"></div>\n	</div>\n</div>\n\n<div id="tab-options" class="w3-card-4">\n	<button id="close-tab-options" type="button" class="w3-btn w3-card-4 w3-white" >&times;</button>\n	<div id="tab-options-container">\n		<div class="w3-container w3-padding-16">\n			<p><b>Taille de la police</b></p>\n			<p class="w3-container""><input type="range" id="font-range-large" class="w3-input font-range" min="14" max="18" step="1" value="16"></p>\n		</div>\n	</div>\n</div>\n	\n<div id="tab-infos" class="w3-card-4">\n	<button id="close-tab-infos" type="button" class="w3-btn w3-card-4 w3-white" >&times;</button>\n	<div id="tab-infos-container">\n		  <div class="w3-container w3-padding-16">\n			  <p><b>Titre : </b>', (__stack.lineno = 27, book.title), "</p>\n			  ");
+                    __stack.lineno = 28;
                     if (book.subtitle1) {
-                        buf.push("\n				<p><b>Sous-titre : </b>", (__stack.lineno = 19, book.subtitle1), "</p>\n			  ");
-                        __stack.lineno = 20;
+                        buf.push("\n				<p><b>Sous-titre : </b>", (__stack.lineno = 29, book.subtitle1), "</p>\n			  ");
+                        __stack.lineno = 30;
                     }
                     buf.push("\n			  ");
-                    __stack.lineno = 21;
+                    __stack.lineno = 31;
                     if (book.subtitle2) {
-                        buf.push("\n				<p><b>Sous-sous-titre : </b>", (__stack.lineno = 22, book.subtitle2), "</p>\n			  ");
-                        __stack.lineno = 23;
+                        buf.push("\n				<p><b>Sous-sous-titre : </b>", (__stack.lineno = 32, book.subtitle2), "</p>\n			  ");
+                        __stack.lineno = 33;
                     }
-                    buf.push("\n			  <p><b>Année de parution : </b>", (__stack.lineno = 24, book.year), "</p>\n			  ");
-                    __stack.lineno = 25;
+                    buf.push("\n			  <p><b>Année de parution : </b>", (__stack.lineno = 34, book.year), "</p>\n			  ");
+                    __stack.lineno = 35;
                     if (book.authors.length > 1) {
                         buf.push("\n					<p>\n						<span><b>Auteurs :</b></span>\n						<br>\n						<ul>\n						");
-                        __stack.lineno = 30;
+                        __stack.lineno = 40;
                         for (var j = 0; j < book.authors.length; j++) {
-                            buf.push("\n							<li>\n								", (__stack.lineno = 32, book.authors[j].name), " (", (__stack.lineno = 32, book.authors[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 32, book.authors[j].death), ")\n							</li>\n						");
-                            __stack.lineno = 34;
+                            buf.push("\n							<li>\n								", (__stack.lineno = 42, book.authors[j].name), " (", (__stack.lineno = 42, book.authors[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 42, book.authors[j].death), ")\n							</li>\n						");
+                            __stack.lineno = 44;
                         }
                         buf.push("\n						</ul>\n					</p>\n			  ");
-                        __stack.lineno = 37;
+                        __stack.lineno = 47;
                     } else if (book.authors.length === 1) {
-                        buf.push("\n					<p><b>Auteur : </b>", (__stack.lineno = 38, book.authors[0].name), " (", (__stack.lineno = 38, book.authors[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 38, book.authors[0].death), ")</p>\n			  ");
-                        __stack.lineno = 39;
+                        buf.push("\n					<p><b>Auteur : </b>", (__stack.lineno = 48, book.authors[0].name), " (", (__stack.lineno = 48, book.authors[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 48, book.authors[0].death), ")</p>\n			  ");
+                        __stack.lineno = 49;
                     }
                     buf.push("\n			  ");
-                    __stack.lineno = 40;
+                    __stack.lineno = 50;
                     if (book.contribs.length > 1) {
                         buf.push("\n					<p>\n						<span><b>Contributions :</b></span>\n						<br>\n						<ul>\n						");
-                        __stack.lineno = 45;
+                        __stack.lineno = 55;
                         for (var j = 0; j < book.contribs.length; j++) {
-                            buf.push('\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 47, book.contribs[j].role), " : </span>\n								", (__stack.lineno = 48, book.contribs[j].name), " (", (__stack.lineno = 48, book.contribs[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 48, book.contribs[j].death), ")\n							</li>\n						");
-                            __stack.lineno = 50;
+                            buf.push('\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 57, book.contribs[j].role), " : </span>\n								", (__stack.lineno = 58, book.contribs[j].name), " (", (__stack.lineno = 58, book.contribs[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 58, book.contribs[j].death), ")\n							</li>\n						");
+                            __stack.lineno = 60;
                         }
                         buf.push("\n						</ul>\n					</p>\n			  ");
-                        __stack.lineno = 53;
+                        __stack.lineno = 63;
                     } else if (book.contribs.length === 1) {
-                        buf.push('\n					<p>\n						<span><b>Contribution : </b></span>\n						<br>\n						<ul>\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 59, book.contribs[0].role), " : </span>\n								", (__stack.lineno = 60, book.contribs[0].name), " (", (__stack.lineno = 60, book.contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 60, book.contribs[0].death), ")\n							</li>\n						</ul>\n					</p>\n			  ");
-                        __stack.lineno = 64;
+                        buf.push('\n					<p>\n						<span><b>Contribution : </b></span>\n						<br>\n						<ul>\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 69, book.contribs[0].role), " : </span>\n								", (__stack.lineno = 70, book.contribs[0].name), " (", (__stack.lineno = 70, book.contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 70, book.contribs[0].death), ")\n							</li>\n						</ul>\n					</p>\n			  ");
+                        __stack.lineno = 74;
                     }
-                    buf.push('\n			  <p class="book-source"><b>Source : </b>\n				  <ul>\n					  <li>&Eacute;diteur : ', (__stack.lineno = 67, book.source.publisher), "</li>\n					  <li>Année de publication : ", (__stack.lineno = 68, book.source.year), "</li>\n				  </ul>\n			  </p>\n			  ");
-                    __stack.lineno = 71;
+                    buf.push('\n			  <p class="book-source"><b>Source : </b>\n				  <ul>\n					  <li>&Eacute;diteur : ', (__stack.lineno = 77, book.source.publisher), "</li>\n					  <li>Année de publication : ", (__stack.lineno = 78, book.source.year), "</li>\n				  </ul>\n			  </p>\n			  ");
+                    __stack.lineno = 81;
                     if (book.description) {
-                        buf.push("\n			  <div>", (__stack.lineno = 72, book.description), "</div>\n			  ");
-                        __stack.lineno = 73;
+                        buf.push("\n			  <div>", (__stack.lineno = 82, book.description), "</div>\n			  ");
+                        __stack.lineno = 83;
                     }
-                    buf.push('\n		  </div>\n	</div>\n</div>\n\n<div id="book-commands">\n	<button id="toggle-toc-large-device" type="button" class="w3-btn w3-card-4 w3-white" >Table</button>\n	<button id="toggle-tab-infos" type="button" class="w3-btn w3-card-4 w3-white" >Infos</button>\n	<button id="tab-add-bookmark" type="button" class="add-bookmark w3-btn w3-ripple w3-card-4 w3-white" >Signet</button>\n	<button id="tab-home-link" type="button" class="home w3-btn w3-card-4 w3-white" >Retour</button>\n</div>\n	\n\n');
+                    buf.push('\n		  </div>\n	</div>\n</div>\n\n<div id="book-commands">\n	<button id="toggle-toc-large-device" type="button" class="w3-btn w3-card-4 w3-white" >Table</button>\n	<button id="toggle-tab-options" type="button" class="w3-btn w3-card-4 w3-white" >Options</button>\n	<button id="toggle-tab-infos" type="button" class="w3-btn w3-card-4 w3-white" >Infos</button>\n	<button id="tab-add-bookmark" type="button" class="add-bookmark w3-btn w3-ripple w3-card-4 w3-white" >Signet</button>\n	<button id="tab-home-link" type="button" class="home w3-btn w3-card-4 w3-white" >Retour</button>\n</div>\n	\n\n');
                     return buf.join("");
-                }() + '		<!--\n			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		<div id="swing-container">\n			<!--\n				START TEXT-CONTAINER\n			-->\n			<div data-wb-text-container class="w3-card-4">\n				<!--\n					TOC (inside textContainer) : width < 1366\n				-->\n				<div id="toc">\n					<div data-wb-toc class="w3-container">\n						<button id="close-toc" type="button" class="w3-button w3-text-gray w3-hover-none w3-display-topright">&times;</button>\n						<div id="toc-title" class="toc-content w3-padding-16">\n							<p class="w3-center">', (__stack.lineno = 24, book.authorDisplay), '</p>\n							<p class="w3-center text-uppercase">', (__stack.lineno = 25, book.title), '</p>\n						</div>\n					</div>\n				</div>\n				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text style="background-color: ', (__stack.lineno = 38, book.styles.color), "; background-image: url(", (__stack.lineno = 38, book.styles.image), ')"></div>\n				<!--\n					BOTTOM (inside textContainer) : pagination\n				-->\n				<div id="bottom">\n					<span class="wb-currentByTotal-pages"></span>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM-SMALL (outside textContainer) : width < 768\n		-->\n		<div id="book-nav-bar-bottom-small" class="w3-bar">\n			<a id="home" href="/#/books/" class="home w3-btn w3-text-gray"><i class="material-icons">arrow_back</i></a>\n			<button id="add-bookmark" class="add-bookmark w3-btn w3-ripple w3-text-gray"><i class="material-icons">bookmark_border</i></button>\n			<button id="options" class="w3-btn w3-text-gray"><i class="material-icons">settings</i></button>\n			<button id="open-toc" class="open-toc w3-btn w3-text-gray"><i class="material-icons">toc</i></button>\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom">\n			<div class="w3-bar w3-large">\n				<div id="swing-bar">\n					<div id="book-nav-bar-bottom-controls">\n						<button id="home-large" class="home w3-btn w3-hover-none w3-text-gray"><i class="material-icons">arrow_back</i></button>\n						<button id="add-bookmark-large" class="add-bookmark w3-btn w3-ripple w3-hover-none w3-text-gray"><i class="material-icons">bookmark_border</i></button>\n						<div id="center">\n							<span id="backward-large" class="w3-button w3-hover-none">&lt;</span>\n							<span id="forward-large" class="w3-button w3-hover-none">&gt;</span>\n						</div>\n						<button id="options-large" class="w3-btn w3-hover-none w3-text-gray"><i class="material-icons">settings</i></button>\n						<button id="open-toc-large" class="open-toc w3-btn w3-hover-none w3-text-gray"><i class="material-icons">toc</i></button>\n					</div>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n	<div id="book-loader-container" class="hidden">\n		<div id="book-loader" style="border-top: 8px solid ', escape((__stack.lineno = 86, book.styles.color)), "; border-bottom: 8px solid ", escape((__stack.lineno = 86, book.styles.color)), '"><div>\n	</div>\n</div>\n');
+                }() + '		<!--\n			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		<div id="swing-container">\n			<!--\n				START TEXT-CONTAINER\n			-->\n			<div data-wb-text-container class="w3-card-4">\n				<!--\n					TOC (inside textContainer) : width < 1366\n				-->\n				<div id="toc">\n					<div data-wb-toc class="w3-container">\n						<button id="close-toc" type="button" class="w3-button w3-text-gray w3-hover-none w3-display-topright">&times;</button>\n						<div id="toc-title" class="toc-content w3-padding-16 w3-border-bottom">\n							<p class="w3-center">', (__stack.lineno = 24, book.authorDisplay), '</p>\n							<p class="w3-center text-uppercase">', (__stack.lineno = 25, book.title), "</p>\n						</div>\n					</div>\n				</div>\n				<!--\n					OPTIONS-MODAL (inside textContainer) : width >= 1366\n				-->\n				" + function() {
+                    var buf = [];
+                    buf.push('<div id="options-modal" class="w3-modal">\n	<div class="w3-modal-content">\n		<div class="w3-container w3-padding-16">\n			<button id="close-options" type="button" class="w3-button w3-text-gray w3-hover-none w3-display-topright">&times;</button>\n			<div class="w3-padding-16 w3-border-bottom">\n				<p class="w3-center">', (__stack.lineno = 6, book.authorDisplay), '</p>\n				<p class="w3-center text-uppercase">', (__stack.lineno = 7, book.title), '</p>\n			</div>\n			<div class="w3-padding-16">\n				<p><b>Taille de la police</b></p>\n				<p class="w3-container"><input type="range" id="font-range" class="w3-input font-range" min="12" max="16" step="1" value="16"></p>\n			</div>\n		</div>\n	</div>\n</div>\n');
+                    return buf.join("");
+                }() + '				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text style="background-color: ', (__stack.lineno = 41, book.styles.color), "; background-image: url(", (__stack.lineno = 41, book.styles.image), ')"></div>\n				<!--\n					BOTTOM (inside textContainer) : pagination\n				-->\n				<div id="bottom">\n					<span class="wb-currentByTotal-pages"></span>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM-SMALL (outside textContainer) : width < 768\n		-->\n		<div id="book-nav-bar-bottom-small" class="w3-bar">\n			<a id="home" href="/#/books/" class="home w3-btn w3-text-gray"><i class="material-icons">arrow_back</i></a>\n			<button id="add-bookmark" class="add-bookmark w3-btn w3-ripple w3-text-gray"><i class="material-icons">bookmark_border</i></button>\n			<button id="open-options" class="w3-btn w3-text-gray"><i class="material-icons">settings</i></button>\n			<button id="open-toc" class="open-toc w3-btn w3-text-gray"><i class="material-icons">toc</i></button>\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom">\n			<div class="w3-bar w3-large">\n				<div id="swing-bar">\n					<div id="book-nav-bar-bottom-controls">\n						<button id="home-large" class="home w3-btn w3-hover-none w3-text-gray"><i class="material-icons">arrow_back</i></button>\n						<button id="add-bookmark-large" class="add-bookmark w3-btn w3-ripple w3-hover-none w3-text-gray"><i class="material-icons">bookmark_border</i></button>\n						<div id="center">\n							<span id="backward-large" class="w3-button w3-hover-none">&lt;</span>\n							<span id="forward-large" class="w3-button w3-hover-none">&gt;</span>\n						</div>\n						<button id="options-large" class="w3-btn w3-hover-none w3-text-gray"><i class="material-icons">settings</i></button>\n						<button id="open-toc-large" class="open-toc w3-btn w3-hover-none w3-text-gray"><i class="material-icons">toc</i></button>\n					</div>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n	<div id="book-loader-container" class="hidden">\n		<div id="book-loader" style="border-top: 8px solid ', escape((__stack.lineno = 89, book.styles.color)), "; border-bottom: 8px solid ", escape((__stack.lineno = 89, book.styles.color)), '"><div>\n	</div>\n</div>\n');
             })();
         }
         return buf.join("");

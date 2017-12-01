@@ -1,22 +1,22 @@
 //localStore.js
 const localStore = {
 	
-	pushBkmrk: (bkId, bkmrk) => {
+	setBkmrk: (bkId, bkmrk) => {
 		let bkmrks = [];
 		if (typeof(Storage) !== "undefined") {
 			//check localStorage for bkmrks array
 			if(localStorage.getItem('bkmrks')) {
 				bkmrks = JSON.parse(localStorage.getItem('bkmrks'));
 				//check for bk.id
-				let b;
+				let item;
 				for(let i=0; i<bkmrks.length; i++) {
 					if(bkmrks[i].bkId===bkId) {
-						b=bkmrks[i];
+						item=bkmrks[i];
 						break;
 					}
 				}
-				if(b) {
-					b.bkmrk = bkmrk;
+				if(item) {
+					item.bkmrk = bkmrk;
 				} else {
 					bkmrks.push({ bkId: bkId, bkmrk: bkmrk });
 				}
@@ -27,7 +27,7 @@ const localStore = {
 		}
 	},
 	
-	getBkmrk : (bkId) => {
+	getBkmrk : bkId => {
 		let bkmrks = [];
 		if (typeof(Storage) !== "undefined") {
 			//check localStorage for bkmrks array
@@ -37,6 +37,47 @@ const localStore = {
 				let item = bkmrks.filter(function(o) { return o.bkId===bkId})[0];
 				if(item) {
 					return item.bkmrk;
+				}
+			}
+		}
+	},
+	
+	setFontSize: (bkId, size) => {
+		let fSizes = [];
+		if (typeof(Storage) !== "undefined") {
+			//check localStorage for fSizes array
+			if(localStorage.getItem('fSizes')) {
+				fSizes = JSON.parse(localStorage.getItem('fSizes'));
+				//check for bk.id
+				let item;
+				for(let i=0; i<fSizes.length; i++) {
+					if(fSizes[i].bkId===bkId) {
+						item=fSizes[i];
+						break;
+					}
+				}
+				if(item) {
+					item.size = size;
+				} else {
+					fSizes.push({ bkId: bkId, size: size });
+				}
+			} else {
+				fSizes.push({ bkId: bkId, size: size });
+			}
+			localStorage.setItem('fSizes', JSON.stringify(fSizes));
+		}
+	},
+	
+	getFontSize: bkId => {
+		let fSizes = [];
+		if (typeof(Storage) !== "undefined") {
+			//check localStorage for bkmrks array
+			if(localStorage.getItem('fSizes')) {
+				fSizes = JSON.parse(localStorage.getItem('fSizes'));
+				//check for bk.id
+				let item = fSizes.filter(function(o) { return o.bkId===bkId})[0];
+				if(item) {
+					return item.size;
 				}
 			}
 		}

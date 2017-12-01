@@ -2,11 +2,21 @@
 <div id="toc-large-device" class="w3-card-4" >
 	<button id="close-toc-large-device" type="button" class="w3-btn w3-card-4 w3-white" >&times;</button>
 	<div id="toc-large-device-container" class="toc-content">
-		<div class="w3-padding-16">
+		<div class="w3-padding-16 w3-border-bottom">
 			<p class="w3-center"><%- book.authorDisplay %></p>
 			<p class="w3-center text-uppercase"><%- book.title %></p>
 		</div>
 		<div data-wb-toc class="w3-container"></div>
+	</div>
+</div>
+
+<div id="tab-options" class="w3-card-4">
+	<button id="close-tab-options" type="button" class="w3-btn w3-card-4 w3-white" >&times;</button>
+	<div id="tab-options-container">
+		<div class="w3-container w3-padding-16">
+			<p><b>Taille de la police</b></p>
+			<p class="w3-container""><input type="range" id="font-range-large" class="w3-input font-range" min="14" max="18" step="1" value="16"></p>
+		</div>
 	</div>
 </div>
 	
@@ -77,6 +87,7 @@
 
 <div id="book-commands">
 	<button id="toggle-toc-large-device" type="button" class="w3-btn w3-card-4 w3-white" >Table</button>
+	<button id="toggle-tab-options" type="button" class="w3-btn w3-card-4 w3-white" >Options</button>
 	<button id="toggle-tab-infos" type="button" class="w3-btn w3-card-4 w3-white" >Infos</button>
 	<button id="tab-add-bookmark" type="button" class="add-bookmark w3-btn w3-ripple w3-card-4 w3-white" >Signet</button>
 	<button id="tab-home-link" type="button" class="home w3-btn w3-card-4 w3-white" >Retour</button>
