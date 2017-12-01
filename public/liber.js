@@ -3490,7 +3490,6 @@ var book = function book(container) {
 		fontSizeInput.addEventListener('change', function (event) {
 			var promise = new Promise(function (resolve) {
 				_utils2.default.removeClass('#options-modal', 'open');
-				console.log('done');
 				resolve('done');
 			}).then(function (resolve) {
 				_utils2.default.removeClass('#book-loader-container', 'hidden');
@@ -3512,10 +3511,12 @@ var book = function book(container) {
 				book.setMarginY(marginY);
 				book.toBook();
 				_localStore2.default.setFontSize(bk.id, size);
+				return 'done';
+			}).then(function (resolve) {
 				setTimeout(function () {
 					document.body.style.overflow = 'visible';
 					_utils2.default.addClass('#book-loader-container', 'hidden');
-				}, 0);
+				}, 400);
 			}).catch(function (error) {
 				console.log(error);
 			});

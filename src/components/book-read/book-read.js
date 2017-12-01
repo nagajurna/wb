@@ -387,9 +387,8 @@ const book = function(container) {
 		
 		//small
 		fontSizeInput.addEventListener('change', event => {
-			let promise =  new Promise( resolve => {
+			let promise = new Promise( resolve => {
 				utils.removeClass('#options-modal','open');
-				console.log('done');
 				resolve('done');
 			})
 			.then( resolve => {
@@ -413,10 +412,13 @@ const book = function(container) {
 				book.setMarginY(marginY);
 				book.toBook();
 				localStore.setFontSize(bk.id, size);
+				return  'done';
+			})
+			.then ( resolve => {
 				setTimeout( function() {
 					document.body.style.overflow = 'visible'; 
 					utils.addClass('#book-loader-container','hidden');
-				}, 0);
+				}, 400);
 			})
 			.catch( error => {
 				console.log(error)
