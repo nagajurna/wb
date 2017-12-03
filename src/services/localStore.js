@@ -42,7 +42,7 @@ const localStore = {
 		}
 	},
 	
-	setFontSize: (bkId, size) => {
+	setFontSize: (device, size) => {
 		let fSizes = [];
 		if (typeof(Storage) !== "undefined") {
 			//check localStorage for fSizes array
@@ -51,7 +51,7 @@ const localStore = {
 				//check for bk.id
 				let item;
 				for(let i=0; i<fSizes.length; i++) {
-					if(fSizes[i].bkId===bkId) {
+					if(fSizes[i].device===device) {
 						item=fSizes[i];
 						break;
 					}
@@ -59,23 +59,23 @@ const localStore = {
 				if(item) {
 					item.size = size;
 				} else {
-					fSizes.push({ bkId: bkId, size: size });
+					fSizes.push({ device: device, size: size });
 				}
 			} else {
-				fSizes.push({ bkId: bkId, size: size });
+				fSizes.push({ device: device, size: size });
 			}
 			localStorage.setItem('fSizes', JSON.stringify(fSizes));
 		}
 	},
 	
-	getFontSize: bkId => {
+	getFontSize: device => {
 		let fSizes = [];
 		if (typeof(Storage) !== "undefined") {
 			//check localStorage for bkmrks array
 			if(localStorage.getItem('fSizes')) {
 				fSizes = JSON.parse(localStorage.getItem('fSizes'));
 				//check for bk.id
-				let item = fSizes.filter(function(o) { return o.bkId===bkId})[0];
+				let item = fSizes.filter(function(o) { return o.device===device})[0];
 				if(item) {
 					return item.size;
 				}

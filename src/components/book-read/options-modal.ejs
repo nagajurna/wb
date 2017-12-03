@@ -5,9 +5,20 @@
 			<div class="w3-padding-16 w3-border-bottom options-title">
 				<p class="w3-center">Options de&nbsp;lecture</p>
 			</div>
-			<div class="w3-padding-16">
+			<div id="font-size-container"class="w3-padding-16">
 				<p><b>Taille de la police</b></p>
-				<p class="w3-container"><input type="range" id="font-range" class="w3-input font-range" min="12" max="16" step="1" value="14"></p>
+				<div>
+					<div class="w3-row">
+						<div class="w3-col s6">
+							<p><label><input type="radio" name="fontSize" value="13"> 13 px</label></p>
+							<p><label><input type="radio" name="fontSize" value="15"> 15 px</label></p>
+						</div>
+						<div class="w3-col s6">
+							<p><label><input type="radio" name="fontSize" value="14"> 14 px</label></p>
+							<p><label><input type="radio" name="fontSize" value="16"> 16 px</label></p>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

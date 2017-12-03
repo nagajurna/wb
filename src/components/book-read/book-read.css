@@ -240,10 +240,9 @@ TOC-LARGE-DEVICE, TAB-OPTIONS, TAB-INFOS, HOME
 	text-align: center;
 }
 
-#tab-options-container input[type=range] {
+#tab-options-container #font-size-container-large {
 	max-width: 250px;
 	margin: auto;
-	outline: none;
 }
 
 .options-title {
@@ -368,6 +367,11 @@ OPTIONS (small devices)
 	text-align: center;
 }
 
+#options-modal #font-size-container {
+	width: 250px;
+	margin: auto;
+}
+
 #close-options {
 	background-color: transparent;
 	line-height: 27px;
@@ -478,6 +482,11 @@ TOP
 	overflow: hidden;
 	text-overflow: ellipsis;
 	-o-text-overflow: ellipsis;
+	opacity: 1;
+	transition: opacity 0.4s;
+	-webkit-transition: opacity 0.4s;
+	-moz-transition: opacity 0.4s;
+	-o-transition: opacity 0.4s;
 }
 
 /*
@@ -503,6 +512,11 @@ BOTTOM
 	min-width: 25px;
 	height: 100%;
 	padding: 0px 16px 0px 16px;
+	opacity: 1;
+	transition: opacity 0.4s;
+	-webkit-transition: opacity 0.4s;
+	-moz-transition: opacity 0.4s;
+	-o-transition: opacity 0.4s;
 }
 
 /*

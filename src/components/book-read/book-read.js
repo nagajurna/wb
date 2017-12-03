@@ -15,12 +15,15 @@ const book = function(container) {
 		let textContainer = bookContainer.querySelector('[data-wb-text-container]');
 		let tocLarge = bookContainer.querySelector('#toc-large-device');
 		let tabOptions = bookContainer.querySelector('#tab-options');
+		let optionsModal = bookContainer.querySelector('#options-modal');
+		let fontSizesLarge = tabOptions.querySelectorAll('[name=fontSize]');
+		let fontSizes = optionsModal.querySelectorAll('[name=fontSize]');
 		let tabInfos = bookContainer.querySelector('#tab-infos');
 		let bookCommands = bookContainer.querySelector('#book-commands');
 		let bookNavBarBottom = bookContainer.querySelector('#book-nav-bar-bottom');
 		let bookNavBarBottomSmall = bookContainer.querySelector('#book-nav-bar-bottom-small');
-		let fontSizeInputLarge = bookContainer.querySelector('#font-range-large');
-		let fontSizeInput = bookContainer.querySelector('#font-range');
+		let fontSizeValidLarge = bookContainer.querySelector('#font-size-valid-large');
+		let fontSizeValid = bookContainer.querySelector('#font-size-valid');
 		let cover = text.querySelector("#cover.wb-section");
 		
 		//DIMENSIONS
@@ -50,19 +53,27 @@ const book = function(container) {
 				bookNavBarBottom.style.marginTop = '15px';
 			}
 			w = 550;
-			fontSize = localStore.getFontSize(bk.id) ? localStore.getFontSize(bk.id) : 16;
+			fontSize = localStore.getFontSize('large') ? localStore.getFontSize('large') : 16;
 			text.style.fontSize = fontSize+'px';
 			cover.style.fontSize = '16px';
-			fontSizeInputLarge.value = fontSize;
+			for(let i=0; i<fontSizesLarge.length; i++) {
+				if(fontSizesLarge[i].value==fontSize) {
+					fontSizesLarge[i].checked=true;
+				}
+			 }
 		 } else {
 			 utils.removeClass('[data-wb-text-container]', 'w3-card-4');
 			 h = window.innerHeight-30;//30px = nav-bar-bottom-small height
 			 w = window.innerWidth;
 			 bookNavBarBottomSmall.style.width = w + 'px';
-			 fontSize = localStore.getFontSize(bk.id) ? localStore.getFontSize(bk.id) : 14;
+			 fontSize = localStore.getFontSize('small') ? localStore.getFontSize('small') : 14;
 			 text.style.fontSize = fontSize+'px';
 			 cover.style.fontSize = '14px';
-			 fontSizeInput.value = fontSize;
+			 for(let i=0; i<fontSizes.length; i++) {
+				if(fontSizes[i].value==fontSize) {
+					fontSizes[i].checked=true;
+				}
+			 }
 			 textContainer.style.top ='0px';
 		 }
 		 
@@ -119,19 +130,27 @@ const book = function(container) {
 					bookNavBarBottom.style.marginTop = '15px';
 				}
 				w = 550;
-				fontSize = localStore.getFontSize(bk.id) ? localStore.getFontSize(bk.id) : 16;
+				fontSize = localStore.getFontSize('large') ? localStore.getFontSize('large') : 16;
 				text.style.fontSize = fontSize+'px';
 				cover.style.fontSize = '16px';
-				fontSizeInputLarge.value = fontSize;
+				for(let i=0; i<fontSizesLarge.length; i++) {
+					if(fontSizesLarge[i].value==fontSize) {
+						fontSizesLarge[i].checked=true;
+					}
+				}
 			} else {
 				utils.removeClass('[data-wb-text-container]', 'w3-card-4');
 				h = window.innerHeight-30;//30px = nav-bar-bottom-small height
 				w = window.innerWidth;
 				bookNavBarBottomSmall.style.width = w + 'px';
-				fontSize = localStore.getFontSize(bk.id) ? localStore.getFontSize(bk.id) : 14;
+				fontSize = localStore.getFontSize('small') ? localStore.getFontSize('small') : 14;
 				text.style.fontSize = fontSize+'px';
 				cover.style.fontSize = '14px';
-				fontSizeInputLarge.value = fontSize;
+				for(let i=0; i<fontSizes.length; i++) {
+					if(fontSizes[i].value==fontSize) {
+						fontSizes[i].checked=true;
+					}
+				}
 				textContainer.style.top ='0px';
 			}
 			
@@ -361,70 +380,62 @@ const book = function(container) {
 		
 		//FONT-SIZE
 		//large
-		fontSizeInputLarge.addEventListener('input', event => {
-			text.style.opacity = '0';
-		}, false);
-		
-		fontSizeInputLarge.addEventListener('change', event => {
-			let size = event.target.value;
-			text.style.fontSize = size + 'px';
-			if(window.innerWidth >=768) {
-				cover.style.fontSize = '16px';
-			} else {
-				cover.style.fontSize = '14px';
-			}
-			//marginY is relative to line-height (line-height : 1.5em)
-			let lineHeight = size*1.5;
-			let marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*2;
-			book.setMarginY(marginY);
-			book.toScroll();
-			book.toBook();
-			setTimeout( function() { 
-				text.style.opacity = '1';
-			}, 0);
-			localStore.setFontSize(bk.id, size);
-		}, false);
+		for(let i=0; i<fontSizesLarge.length; i++) {
+			fontSizesLarge[i].addEventListener('click', event => {
+				let size = event.target.value;
+				localStore.setFontSize('large', size);
+				//start loader and colose modal
+				text.style.opacity = '0';
+				bookContainer.querySelector('#current-section-title').style.opacity = '0';
+				bookContainer.querySelector('#currentByTotal').style.opacity = '0';
+				setTimeout( () => {
+					//marginY is relative to line-height (line-height : 1.5em)
+					let lineHeight = size*1.5;
+					let marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*2;
+					book.setMarginY(marginY);
+					//text size
+					text.style.fontSize = size + 'px';
+					cover.style.fontSize = '16px';
+					//book
+					book.toBook();
+					//end loader
+					setTimeout( function() { 
+						text.style.opacity = '1';
+						bookContainer.querySelector('#current-section-title').style.opacity = '1';
+						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+					}, 200);
+				}, 100);
+				
+			}, false);
+		}
 		
 		//small
-		fontSizeInput.addEventListener('change', event => {
-			let promise = new Promise( resolve => {
-				utils.removeClass('#options-modal','open');
-				resolve('done');
-			})
-			.then( resolve => {
-				utils.removeClass('#book-loader-container','hidden');
-				book.toScroll();
-				document.body.style.overflow = 'hidden';
-				return  'done';
-			})
-			.then (resolve => {
+		for(let i=0; i<fontSizes.length; i++) {
+			fontSizes[i].addEventListener('click', event => {
 				let size = event.target.value;
-				text.style.fontSize = size + 'px';
-				if(window.innerWidth >=768) {
-					cover.style.fontSize = '16px';
-				} else {
+				localStore.setFontSize('small', size);
+				//start loader and colose modal
+				utils.removeClass('#book-loader-container','hidden');
+				utils.removeClass('#options-modal','open');
+				document.body.style.overflow = 'hidden';
+				setTimeout( () => {
+					//marginY is relative to line-height (line-height : 1.5em)
+					let lineHeight = size*1.5;
+					let marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*2;
+					book.setMarginY(marginY);
+					//text size
+					text.style.fontSize = size + 'px';
 					cover.style.fontSize = '14px';
-				}
-			
-				//marginY is relative to line-height (line-height : 1.5em)
-				let lineHeight = size*1.5;
-				let marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*2;
-				book.setMarginY(marginY);
-				book.toBook();
-				localStore.setFontSize(bk.id, size);
-				return  'done';
-			})
-			.then ( resolve => {
-				setTimeout( function() {
-					document.body.style.overflow = 'visible'; 
-					utils.addClass('#book-loader-container','hidden');
-				}, 400);
-			})
-			.catch( error => {
-				console.log(error)
-			})
-		}, false);
-		
+					//book
+					book.toBook();
+					//end loader
+					setTimeout( function() {
+						document.body.style.overflow = 'visible'; 
+						utils.addClass('#book-loader-container','hidden');
+					}, 400);
+				},100);
+			}, false);
+		}	
 		
 		//end loader
 		document.body.style.overflow = 'visible';

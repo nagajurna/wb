@@ -12,13 +12,24 @@
 
 <div id="tab-options" class="w3-card-4">
 	<button id="close-tab-options" type="button" class="w3-btn w3-card-4 w3-white" >&times;</button>
-	<div id="tab-options-container">
+	<div id="tab-options-container" class="w3-container">
 		<div class="w3-padding-16 w3-border-bottom">
 			<p class="w3-center options-title">Options de&nbsp;lecture</p>
 		</div>
-		<div class="w3-container w3-padding-16">
+		<div id="font-size-container-large"class="w3-padding-16">
 			<p><b>Taille de la police</b></p>
-			<p class="w3-container""><input type="range" id="font-range-large" class="w3-input font-range" min="14" max="18" step="1" value="16"></p>
+			<div>
+				<div class="w3-row">
+					<div class="w3-col s6">
+						<p><label><input type="radio" name="fontSize" value="15"> 15 px</label></p>
+						<p><label><input type="radio" name="fontSize" value="17"> 17 px</label></p>
+					</div>
+					<div class="w3-col s6">
+						<p><label><input type="radio" name="fontSize" value="16"> 16 px</label></p>
+						<p><label><input type="radio" name="fontSize" value="18"> 18 px</label></p>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
