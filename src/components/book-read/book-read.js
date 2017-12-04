@@ -500,7 +500,7 @@ const book = function(container) {
 							document.body.style.overflow = 'visible'; 
 							utils.addClass('#text-loader-container','hidden');
 						}, 200);
-					},150);
+					},200);
 				}, 100);
 			}, false);
 		}	
