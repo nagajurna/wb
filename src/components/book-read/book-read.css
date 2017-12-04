@@ -283,13 +283,25 @@ TOC-LARGE-DEVICE, TAB-OPTIONS, TAB-INFOS, HOME
 	text-align: center;
 }
 
-#tab-options-container #font-size-container-large {
-	max-width: 250px;
+#tab-options-container #font-size-container-large,
+#tab-options-container #font-family-container-large {
+	width: 250px;
 	margin: auto;
+}
+
+#tab-options-container #font-family-container-large > div {
+	text-align : left;
+	padding-left: 35px;
+}
+
+#tab-options-container label {
+	width: 50%;
+	text-align : left;
 }
 
 .options-title {
 	font-variant: small-caps;
+	letter-spacing: 1.5px;
 	font-size: 1.2em;
 }
 
@@ -487,9 +499,19 @@ options content
 	text-align: center;
 }
 
-#options #font-size-container, #options-medium #font-size-container {
+#options #font-size-container, #options-medium #font-size-container,
+#options #font-family-container, #options-medium #font-family-container {
 	width: 250px;
 	margin: auto;
+}
+
+#options #font-family-container > div, #options-medium #font-family-container > div {
+	text-align : left;
+	padding-left: 35px;
+}
+
+#options label {
+	width: 50%;
 }
 
 /*

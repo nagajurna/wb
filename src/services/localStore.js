@@ -81,7 +81,48 @@ const localStore = {
 				}
 			}
 		}
-	}
+	},
+	
+	setFont: (bkId, font) => {
+		let fonts = [];
+		if (typeof(Storage) !== "undefined") {
+			//check localStorage for fSizes array
+			if(localStorage.getItem('fonts')) {
+				fonts = JSON.parse(localStorage.getItem('fonts'));
+				//check for bk.id
+				let item;
+				for(let i=0; i<fonts.length; i++) {
+					if(fonts[i].bkId===bkId) {
+						item=fonts[i];
+						break;
+					}
+				}
+				if(item) {
+					item.font = font;
+				} else {
+					fonts.push({ bkId: bkId, font: font });
+				}
+			} else {
+				fonts.push({ bkId: bkId, font: font });
+			}
+			localStorage.setItem('fonts', JSON.stringify(fonts));
+		}
+	},
+	
+	getFont : bkId => {
+		let fonts = [];
+		if (typeof(Storage) !== "undefined") {
+			//check localStorage for bkmrks array
+			if(localStorage.getItem('fonts')) {
+				fonts = JSON.parse(localStorage.getItem('fonts'));
+				//check for bk.id
+				let item = fonts.filter(function(o) { return o.bkId===bkId})[0];
+				if(item) {
+					return item.font;
+				}
+			}
+		}
+	},
 }
 
 export default localStore;

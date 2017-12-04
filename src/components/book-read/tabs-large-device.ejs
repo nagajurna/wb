@@ -16,18 +16,35 @@
 		<div class="w3-padding-16 w3-border-bottom">
 			<p class="w3-center options-title">Options</p>
 		</div>
-		<div id="font-size-container-large"class="w3-padding-16">
+		<div id="font-family-container-large" class="w3-padding-16 w3-border-bottom">
+			<p><b>Police de&nbsp;caractère</b></p>
+			<div class="w3-row">
+				<div class="w3-col s6">
+					<p><label><input type="radio" name="fontFamily" value="<%- book.styles.font %>">&ensp;<%- book.styles.font %></label></p>
+					<% if(book.styles.font!=='Georgia') {%>
+						<p><label><input type="radio" name="fontFamily" value="Georgia">&ensp;Georgia</label></p>
+					<% } %>
+				</div>
+				<div class="w3-col s6">
+					<% if(book.styles.font!=='Noto Serif') {%>
+						<p><label><input type="radio" name="fontFamily" value="Noto Serif">&ensp;Noto Serif</label></p>
+					<% } %>
+					<% if(book.styles.font!=='Vollkorn') {%>
+						<p><label><input type="radio" name="fontFamily" value="VollKorn">&ensp;Vollkorn</label></p>
+					<% } %>
+				</div>
+			</div>
+		</div>
+		<div id="font-size-container-large" class="w3-padding-16">
 			<p><b>Taille de la police</b></p>
-			<div>
-				<div class="w3-row">
-					<div class="w3-col s6">
-						<p><label><input type="radio" name="fontSize" value="15"> 15 px</label></p>
-						<p><label><input type="radio" name="fontSize" value="17"> 17 px</label></p>
-					</div>
-					<div class="w3-col s6">
-						<p><label><input type="radio" name="fontSize" value="16"> 16 px</label></p>
-						<p><label><input type="radio" name="fontSize" value="18"> 18 px</label></p>
-					</div>
+			<div class="w3-row">
+				<div class="w3-col s6">
+					<p><label><input type="radio" name="fontSize" value="15">&ensp;15 px</label></p>
+					<p><label><input type="radio" name="fontSize" value="17">&ensp;17 px</label></p>
+				</div>
+				<div class="w3-col s6">
+					<p><label><input type="radio" name="fontSize" value="16">&ensp;16 px</label></p>
+					<p><label><input type="radio" name="fontSize" value="18">&ensp;18 px</label></p>
 				</div>
 			</div>
 		</div>

@@ -20,6 +20,9 @@ const book = function(container) {
 		let fontSizesLarge = tabOptions.querySelectorAll('[name=fontSize]');
 		let fontSizesMedium = optionsMedium.querySelectorAll('[name=fontSize]');
 		let fontSizes = options.querySelectorAll('[name=fontSize]');
+		let fontsLarge = tabOptions.querySelectorAll('[name=fontFamily]');
+		let fontsMedium = optionsMedium.querySelectorAll('[name=fontFamily]');
+		let fonts = options.querySelectorAll('[name=fontFamily]');
 		let tabInfos = bookContainer.querySelector('#tab-infos');
 		let bookCommands = bookContainer.querySelector('#book-commands');
 		let bookNavBarBottom = bookContainer.querySelector('#book-nav-bar-bottom');
@@ -29,8 +32,11 @@ const book = function(container) {
 		let cover = text.querySelector("#cover.wb-section");
 		
 		//DIMENSIONS
-		let h, w, marginY, marginX, fontSize, lineHeight, top;
+		let h, w, marginY, marginX, font, fontSize, lineHeight, top;
 		
+		//font-family
+		font = localStore.getFontSize(bk.id) ? localStore.getFontSize(bk.id) : bk.styles.font;
+		text.style.fontFamily = font;
 		
 		//width (responsive)
 		if(window.innerWidth >= 768) {
@@ -64,11 +70,21 @@ const book = function(container) {
 						fontSizesMedium[i].checked=true;
 					}
 				 }
+				 for(let i=0; i<fontsMedium.length; i++) {
+					if(fontsMedium[i].value==font) {
+						fontsMedium[i].checked=true;
+					}
+				 }
 				
 			} else {
 				for(let i=0; i<fontSizesLarge.length; i++) {
 					if(fontSizesLarge[i].value==fontSize) {
 						fontSizesLarge[i].checked=true;
+					}
+				 }
+				 for(let i=0; i<fontsLarge.length; i++) {
+					if(fontsLarge[i].value==font) {
+						fontsLarge[i].checked=true;
 					}
 				 }
 			}
@@ -80,9 +96,15 @@ const book = function(container) {
 			 fontSize = localStore.getFontSize('small') ? localStore.getFontSize('small') : 14;
 			 text.style.fontSize = fontSize+'px';
 			 cover.style.fontSize = '14px';
+			 font
 			 for(let i=0; i<fontSizes.length; i++) {
 				if(fontSizes[i].value==fontSize) {
 					fontSizes[i].checked=true;
+				}
+			 }
+			 for(let i=0; i<fonts.length; i++) {
+				if(fonts[i].value==font) {
+					fonts[i].checked=true;
 				}
 			 }
 			 textContainer.style.top ='0px';
@@ -500,8 +522,97 @@ const book = function(container) {
 							document.body.style.overflow = 'visible'; 
 							utils.addClass('#text-loader-container','hidden');
 						}, 200);
-					},200);
+					},300);
+				 }, 100);
+			}, false);
+		}
+		
+		//FONT-FAMILY
+		//large
+		for(let i=0; i<fontsLarge.length; i++) {
+			fontsLarge[i].addEventListener('click', event => {
+				let font = event.target.value;
+				localStore.setFontSize(bk.id, font);
+				//text opacity = 0
+				text.style.opacity = '0';
+				bookContainer.querySelector('#current-section-title').style.opacity = '0';
+				bookContainer.querySelector('#currentByTotal').style.opacity = '0';
+				utils.removeClass('#text-loader-container','hidden');
+				setTimeout( () => {
+					//text font
+					text.style.fontFamily = font;
+					bookContainer.querySelector('#current-section-title').style.fontFamily = font;
+					bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
+					//book
+					book.toBook();
+					//end loader
+					setTimeout( function() { 
+						utils.addClass('#text-loader-container','hidden');
+						text.style.opacity = '1';
+						bookContainer.querySelector('#current-section-title').style.opacity = '1';
+						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+					}, 200);
 				}, 100);
+				
+			}, false);
+		}
+		
+		//medium
+		for(let i=0; i<fontsMedium.length; i++) {
+			fontsMedium[i].addEventListener('click', event => {
+				let font = event.target.value;
+				localStore.setFontSize(bk.id, font);
+				setTimeout( () => {
+					optionsMedium.className = '';
+					//close modal && text opacity = 0
+					text.style.opacity = '0';
+					bookContainer.querySelector('#current-section-title').style.opacity = '0';
+					bookContainer.querySelector('#currentByTotal').style.opacity = '0';
+					utils.removeClass('#text-loader-container','hidden');
+					setTimeout( () => {
+						//text font
+						text.style.fontFamily = font;
+						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
+					    bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
+						//book
+						book.toBook();
+						//end loader
+						setTimeout( function() { 
+							utils.addClass('#text-loader-container','hidden');
+							text.style.opacity = '1';
+							bookContainer.querySelector('#current-section-title').style.opacity = '1';
+							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+						}, 200);
+					}, 150);
+				 }, 100);
+				
+			}, false);
+		}
+		
+		//small
+		for(let i=0; i<fonts.length; i++) {
+			fonts[i].addEventListener('click', event => {
+				let font = event.target.value;
+				localStore.setFontSize(bk.id, font);
+				setTimeout( () => {
+					//start loader and colose modal
+					utils.removeClass('#text-loader-container','hidden');
+					utils.removeClass('#options','open');
+					document.body.style.overflow = 'hidden';
+					setTimeout( () => {
+						//text font
+						text.style.fontFamily = font;
+						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
+					    bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
+						//book
+						book.toBook();
+						//end loader
+						setTimeout( () => {
+							document.body.style.overflow = 'visible'; 
+							utils.addClass('#text-loader-container','hidden');
+						}, 200);
+					},300);
+				 }, 100);
 			}, false);
 		}	
 		
