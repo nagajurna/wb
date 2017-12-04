@@ -2158,6 +2158,10 @@ var router = function router() {
 			(0, _booksNext2.default)(container);
 		} else if (newhash.match(/#\/[^\/]+\/read$/)) {
 			//BOOK READ
+			var html = document.getElementsByTagName("html")[0];
+			if (html.scrollTop < 50) {
+				html.scrollTop = 50;
+			}
 			(0, _bookRead2.default)(container);
 		} else if (newhash.match(/#\/authors\?(search=(A-Z))?/)) {
 			//AUTHORS
@@ -3541,7 +3545,7 @@ var book = function book(container) {
 					if (oldBkmrk.sectionId === newBmrk.sectionId && oldBkmrk.el === newBmrk.el) {
 						msg = 'Votre signet a bien été inséré.';
 					} else {
-						msg = 'Votre signet a été déplacé.';
+						msg = 'Votre signet a bien été déplacé.';
 					}
 				} else {
 					msg = 'Un signet a été ajouté.';

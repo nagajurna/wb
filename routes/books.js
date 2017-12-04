@@ -45,9 +45,8 @@ router.get('/', function(req, res, next) {
 		return books;
 	})
 	.then( books => {
-		//1 day = 86400s;
-		//res.set('Cache-Control', 'public, max-age=86400, must-revalidate');
-		//res.set('Cache-Control', 'must-revalidate');
+		//half day = 43200s;
+		res.set('Cache-Control', 'public, max-age=43200, must-revalidate');
 		res.json({ books: books });
 	})
 	.catch( err => {

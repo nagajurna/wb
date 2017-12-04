@@ -55,6 +55,8 @@ router.get('/', function(req, res, next) {
 		return authors;
 	})
 	.then ( authors => {
+		//half day = 43200s;
+		res.set('Cache-Control', 'public, max-age=43200, must-revalidate');
 		res.json({ authors: authors });
 	})
 	.catch( err => {

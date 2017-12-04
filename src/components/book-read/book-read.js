@@ -437,7 +437,7 @@ const book = function(container) {
 					if(oldBkmrk.sectionId===newBmrk.sectionId && oldBkmrk.el===newBmrk.el) {
 						msg='Votre signet a bien été inséré.';
 					} else {
-						msg = 'Votre signet a été déplacé.';
+						msg = 'Votre signet a bien été déplacé.';
 					}
 				} else {
 					msg = 'Un signet a été ajouté.';
