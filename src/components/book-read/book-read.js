@@ -15,9 +15,11 @@ const book = function(container) {
 		let textContainer = bookContainer.querySelector('[data-wb-text-container]');
 		let tocLarge = bookContainer.querySelector('#toc-large-device');
 		let tabOptions = bookContainer.querySelector('#tab-options');
-		let optionsModal = bookContainer.querySelector('#options-modal');
+		let options = bookContainer.querySelector('#options');
+		let optionsMedium = bookContainer.querySelector('#options-medium');
 		let fontSizesLarge = tabOptions.querySelectorAll('[name=fontSize]');
-		let fontSizes = optionsModal.querySelectorAll('[name=fontSize]');
+		let fontSizesMedium = optionsMedium.querySelectorAll('[name=fontSize]');
+		let fontSizes = options.querySelectorAll('[name=fontSize]');
 		let tabInfos = bookContainer.querySelector('#tab-infos');
 		let bookCommands = bookContainer.querySelector('#book-commands');
 		let bookNavBarBottom = bookContainer.querySelector('#book-nav-bar-bottom');
@@ -32,7 +34,7 @@ const book = function(container) {
 		
 		//width (responsive)
 		if(window.innerWidth >= 768) {
-			utils.addClass('[data-wb-text-container]', 'w3-card-4');
+			utils.addClass('[data-wb-text-container]', 'w3-card-2');
 			//max-height: 720
 			if(window.innerHeight > 832) {//748 + navBarBottom height (1*44) + textContainer minimum top * 2 (2*20)
 				h = 748;
@@ -56,13 +58,22 @@ const book = function(container) {
 			fontSize = localStore.getFontSize('large') ? localStore.getFontSize('large') : 16;
 			text.style.fontSize = fontSize+'px';
 			cover.style.fontSize = '16px';
-			for(let i=0; i<fontSizesLarge.length; i++) {
-				if(fontSizesLarge[i].value==fontSize) {
-					fontSizesLarge[i].checked=true;
-				}
-			 }
+			if(window.innerWidth < 1366) {
+				for(let i=0; i<fontSizesMedium.length; i++) {
+					if(fontSizesMedium[i].value==fontSize) {
+						fontSizesMedium[i].checked=true;
+					}
+				 }
+				
+			} else {
+				for(let i=0; i<fontSizesLarge.length; i++) {
+					if(fontSizesLarge[i].value==fontSize) {
+						fontSizesLarge[i].checked=true;
+					}
+				 }
+			}
 		 } else {
-			 utils.removeClass('[data-wb-text-container]', 'w3-card-4');
+			 utils.removeClass('[data-wb-text-container]', 'w3-card-2');
 			 h = window.innerHeight-30;//30px = nav-bar-bottom-small height
 			 w = window.innerWidth;
 			 bookNavBarBottomSmall.style.width = w + 'px';
@@ -109,7 +120,7 @@ const book = function(container) {
 		//on resize
 		window.addEventListener('resize', event => {
 			if(window.innerWidth >= 768) {
-				utils.addClass('[data-wb-text-container]', 'w3-card-4');
+				utils.addClass('[data-wb-text-container]', 'w3-card-2');
 				//max-height: 720
 				if(window.innerHeight >= 832) {//748 + navBarBottom height (1*44) + textContainer minimum top * 2 (2*20)
 					h = 748;
@@ -133,13 +144,22 @@ const book = function(container) {
 				fontSize = localStore.getFontSize('large') ? localStore.getFontSize('large') : 16;
 				text.style.fontSize = fontSize+'px';
 				cover.style.fontSize = '16px';
-				for(let i=0; i<fontSizesLarge.length; i++) {
-					if(fontSizesLarge[i].value==fontSize) {
-						fontSizesLarge[i].checked=true;
-					}
+				if(window.innerWidth < 1366) {
+					for(let i=0; i<fontSizesMedium.length; i++) {
+						if(fontSizesMedium[i].value==fontSize) {
+							fontSizesMedium[i].checked=true;
+						}
+					 }
+					
+				} else {
+					for(let i=0; i<fontSizesLarge.length; i++) {
+						if(fontSizesLarge[i].value==fontSize) {
+							fontSizesLarge[i].checked=true;
+						}
+					 }
 				}
 			} else {
-				utils.removeClass('[data-wb-text-container]', 'w3-card-4');
+				utils.removeClass('[data-wb-text-container]', 'w3-card-2');
 				h = window.innerHeight-30;//30px = nav-bar-bottom-small height
 				w = window.innerWidth;
 				bookNavBarBottomSmall.style.width = w + 'px';
@@ -227,21 +247,42 @@ const book = function(container) {
 		
 		for(let i=0; i<openTocs.length; i++) {
 			openTocs[i].addEventListener('click', event => {
-				toc.className = toc.className === "open" ? "" : "open";
+				toc.className = toc.className === 'open' ? '' : 'open';
 			}, false);
 		}
 		
 		toc.querySelector("#close-toc").addEventListener('click', () => {
-			toc.className = "";
+			toc.className = '';
 		}, false);
 		
 		//Close toc on click
 		let tocLinks = toc.querySelectorAll('a');
 		for(let i=0; i<tocLinks.length; i++) {
 			tocLinks[i].addEventListener('click', () => {
-				toc.className = "";
+				toc.className = '';
 			}, false);
 		}
+		
+		//OPTIONS
+		//small
+		let optionsOpen = bookContainer.querySelector('#open-options');
+		optionsOpen.addEventListener('click', () => {
+			options.className = options.className === 'open' ? '' : 'open';
+		});
+		let optionsClose = bookContainer.querySelector('#close-options');
+		optionsClose.addEventListener('click', () => {
+			options.className='';
+		});
+		//medium
+		let optionsMediumOpen = bookContainer.querySelector('#open-options-medium');
+		optionsMediumOpen.addEventListener('click', () => {
+			optionsMedium.className = optionsMedium.className === 'open' ? '' : 'open';
+		});
+		let optionsCloseMedium = bookContainer.querySelector('#close-options-medium');
+		optionsCloseMedium.addEventListener('click', () => {
+			optionsMedium.className='';
+		});
+		
 		
 		//TAB-CONTAINER
 		let swingContainer = bookContainer.querySelector('#swing-container');
@@ -346,19 +387,7 @@ const book = function(container) {
 			utils.removeClass('#swing-container','left');
 			utils.removeClass('#swing-bar','left');
 			tabInfos.style.zIndex='0';
-		}, false);
-		
-		//OPTIONS-MODAL (small devices)
-		let optionsOpen = bookContainer.querySelector('#open-options');
-		optionsOpen.addEventListener('click', () => {
-			utils.addClass('#options-modal','open');
-			
-		});
-		let optionsClose = bookContainer.querySelector('#close-options');
-		optionsClose.addEventListener('click', () => {
-			utils.removeClass('#options-modal','open');
-		});
-		
+		}, false);	
 		
 		//HOME
 		let homeLinks = bookContainer.querySelectorAll('.home');
@@ -384,10 +413,11 @@ const book = function(container) {
 			fontSizesLarge[i].addEventListener('click', event => {
 				let size = event.target.value;
 				localStore.setFontSize('large', size);
-				//start loader and colose modal
+				//text opacity = 0
 				text.style.opacity = '0';
 				bookContainer.querySelector('#current-section-title').style.opacity = '0';
 				bookContainer.querySelector('#currentByTotal').style.opacity = '0';
+				utils.removeClass('#text-loader-container','hidden');
 				setTimeout( () => {
 					//marginY is relative to line-height (line-height : 1.5em)
 					let lineHeight = size*1.5;
@@ -400,6 +430,7 @@ const book = function(container) {
 					book.toBook();
 					//end loader
 					setTimeout( function() { 
+						utils.addClass('#text-loader-container','hidden');
 						text.style.opacity = '1';
 						bookContainer.querySelector('#current-section-title').style.opacity = '1';
 						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
@@ -409,31 +440,68 @@ const book = function(container) {
 			}, false);
 		}
 		
+		//medium
+		for(let i=0; i<fontSizesMedium.length; i++) {
+			fontSizesMedium[i].addEventListener('click', event => {
+				let size = event.target.value;
+				localStore.setFontSize('large', size);
+				setTimeout( () => {
+					optionsMedium.className = '';
+					//close modal && text opacity = 0
+					text.style.opacity = '0';
+					bookContainer.querySelector('#current-section-title').style.opacity = '0';
+					bookContainer.querySelector('#currentByTotal').style.opacity = '0';
+					utils.removeClass('#text-loader-container','hidden');
+					setTimeout( () => {
+						//marginY is relative to line-height (line-height : 1.5em)
+						let lineHeight = size*1.5;
+						let marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*2;
+						book.setMarginY(marginY);
+						//text size
+						text.style.fontSize = size + 'px';
+						cover.style.fontSize = '16px';
+						//book
+						book.toBook();
+						//end loader
+						setTimeout( function() { 
+							utils.addClass('#text-loader-container','hidden');
+							text.style.opacity = '1';
+							bookContainer.querySelector('#current-section-title').style.opacity = '1';
+							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+						}, 200);
+					}, 150);
+				 }, 100);
+				
+			}, false);
+		}
+		
 		//small
 		for(let i=0; i<fontSizes.length; i++) {
 			fontSizes[i].addEventListener('click', event => {
 				let size = event.target.value;
 				localStore.setFontSize('small', size);
-				//start loader and colose modal
-				utils.removeClass('#book-loader-container','hidden');
-				utils.removeClass('#options-modal','open');
-				document.body.style.overflow = 'hidden';
 				setTimeout( () => {
-					//marginY is relative to line-height (line-height : 1.5em)
-					let lineHeight = size*1.5;
-					let marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*2;
-					book.setMarginY(marginY);
-					//text size
-					text.style.fontSize = size + 'px';
-					cover.style.fontSize = '14px';
-					//book
-					book.toBook();
-					//end loader
-					setTimeout( function() {
-						document.body.style.overflow = 'visible'; 
-						utils.addClass('#book-loader-container','hidden');
-					}, 400);
-				},100);
+					//start loader and colose modal
+					utils.removeClass('#text-loader-container','hidden');
+					utils.removeClass('#options','open');
+					document.body.style.overflow = 'hidden';
+					setTimeout( () => {
+						//marginY is relative to line-height (line-height : 1.5em)
+						let lineHeight = size*1.5;
+						let marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*2;
+						book.setMarginY(marginY);
+						//text size
+						text.style.fontSize = size + 'px';
+						cover.style.fontSize = '14px';
+						//book
+						book.toBook();
+						//end loader
+						setTimeout( () => {
+							document.body.style.overflow = 'visible'; 
+							utils.addClass('#text-loader-container','hidden');
+						}, 200);
+					},150);
+				}, 100);
 			}, false);
 		}	
 		
