@@ -3143,7 +3143,7 @@ var book = function book(container) {
 		    top = void 0;
 
 		//font-family
-		font = _localStore2.default.getFontSize(bk.id) ? _localStore2.default.getFontSize(bk.id) : bk.styles.font;
+		font = _localStore2.default.getFont() ? _localStore2.default.getFont() : bk.styles.font;
 		text.style.fontFamily = font;
 
 		//width (responsive)
@@ -3632,7 +3632,7 @@ var book = function book(container) {
 		for (var _i16 = 0; _i16 < fontsLarge.length; _i16++) {
 			fontsLarge[_i16].addEventListener('click', function (event) {
 				var font = event.target.value;
-				_localStore2.default.setFontSize(bk.id, font);
+				_localStore2.default.setFont(font);
 				//text opacity = 0
 				text.style.opacity = '0';
 				bookContainer.querySelector('#current-section-title').style.opacity = '0';
@@ -3660,7 +3660,7 @@ var book = function book(container) {
 		for (var _i17 = 0; _i17 < fontsMedium.length; _i17++) {
 			fontsMedium[_i17].addEventListener('click', function (event) {
 				var font = event.target.value;
-				_localStore2.default.setFontSize(bk.id, font);
+				_localStore2.default.setFont(font);
 				setTimeout(function () {
 					optionsMedium.className = '';
 					//close modal && text opacity = 0
@@ -3691,9 +3691,9 @@ var book = function book(container) {
 		for (var _i18 = 0; _i18 < fonts.length; _i18++) {
 			fonts[_i18].addEventListener('click', function (event) {
 				var font = event.target.value;
-				_localStore2.default.setFontSize(bk.id, font);
+				_localStore2.default.setFont(font);
 				setTimeout(function () {
-					//start loader and colose modal
+					//start loader and close modal
 					_utils2.default.removeClass('#text-loader-container', 'hidden');
 					_utils2.default.removeClass('#options', 'open');
 					document.body.style.overflow = 'hidden';
@@ -3875,45 +3875,27 @@ var localStore = {
 		}
 	},
 
-	setFont: function setFont(bkId, font) {
-		var fonts = [];
+	setFont: function setFont(f) {
+		var font = '';
 		if (typeof Storage !== "undefined") {
 			//check localStorage for fSizes array
-			if (localStorage.getItem('fonts')) {
-				fonts = JSON.parse(localStorage.getItem('fonts'));
-				//check for bk.id
-				var item = void 0;
-				for (var i = 0; i < fonts.length; i++) {
-					if (fonts[i].bkId === bkId) {
-						item = fonts[i];
-						break;
-					}
-				}
-				if (item) {
-					item.font = font;
-				} else {
-					fonts.push({ bkId: bkId, font: font });
-				}
+			if (localStorage.getItem('font')) {
+				font = JSON.parse(localStorage.getItem('font'));
+				font = f;
 			} else {
-				fonts.push({ bkId: bkId, font: font });
+				font = f;
 			}
-			localStorage.setItem('fonts', JSON.stringify(fonts));
+			localStorage.setItem('font', JSON.stringify(font));
 		}
 	},
 
-	getFont: function getFont(bkId) {
-		var fonts = [];
+	getFont: function getFont() {
+		var font = '';
 		if (typeof Storage !== "undefined") {
 			//check localStorage for bkmrks array
-			if (localStorage.getItem('fonts')) {
-				fonts = JSON.parse(localStorage.getItem('fonts'));
-				//check for bk.id
-				var item = fonts.filter(function (o) {
-					return o.bkId === bkId;
-				})[0];
-				if (item) {
-					return item.font;
-				}
+			if (localStorage.getItem('font')) {
+				font = JSON.parse(localStorage.getItem('font'));
+				return font;
 			}
 		}
 	}
@@ -11171,69 +11153,63 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                     var buf = [];
                     buf.push('\n<div id="toc-large-device" class="w3-card-2" >\n	<button id="close-toc-large-device" type="button" class="w3-btn w3-card-2 w3-white" >&times;</button>\n	<div id="toc-large-device-container" class="toc-content w3-container">\n		<div class="w3-padding-16 w3-container w3-border-bottom">\n			<p class="w3-center">', (__stack.lineno = 6, book.authorDisplay), '</p>\n			<p class="w3-center text-uppercase">', (__stack.lineno = 7, book.title), '</p>\n		</div>\n		<div data-wb-toc ></div>\n	</div>\n</div>\n\n<div id="tab-options" class="w3-card-2">\n	<button id="close-tab-options" type="button" class="w3-btn w3-card-2 w3-white" >&times;</button>\n	<div id="tab-options-container" class="w3-container">\n		<div class="w3-padding-16 w3-border-bottom">\n			<p class="w3-center options-title">Options</p>\n		</div>\n		<div id="font-family-container-large" class="w3-padding-16 w3-border-bottom">\n			<p><b>Police de&nbsp;caractère</b></p>\n			<div class="w3-row">\n				<div class="w3-col s6">\n					<p><label><input type="radio" name="fontFamily" value="', (__stack.lineno = 23, book.styles.font), '">&ensp;', (__stack.lineno = 23, book.styles.font), "</label></p>\n					");
                     __stack.lineno = 24;
-                    if (book.styles.font !== "Georgia") {
-                        buf.push('\n						<p><label><input type="radio" name="fontFamily" value="Georgia">&ensp;Georgia</label></p>\n					');
+                    if (book.styles.font !== "Noto Serif") {
+                        buf.push('\n						<p><label><input type="radio" name="fontFamily" value="Noto Serif">&ensp;Noto Serif</label></p>\n					');
                         __stack.lineno = 26;
                     }
                     buf.push('\n				</div>\n				<div class="w3-col s6">\n					');
                     __stack.lineno = 29;
-                    if (book.styles.font !== "Noto Serif") {
-                        buf.push('\n						<p><label><input type="radio" name="fontFamily" value="Noto Serif">&ensp;Noto Serif</label></p>\n					');
-                        __stack.lineno = 31;
-                    }
-                    buf.push("\n					");
-                    __stack.lineno = 32;
                     if (book.styles.font !== "Vollkorn") {
                         buf.push('\n						<p><label><input type="radio" name="fontFamily" value="VollKorn">&ensp;Vollkorn</label></p>\n					');
-                        __stack.lineno = 34;
+                        __stack.lineno = 31;
                     }
-                    buf.push('\n				</div>\n			</div>\n		</div>\n		<div id="font-size-container-large" class="w3-padding-16">\n			<p><b>Taille de la police</b></p>\n			<div class="w3-row">\n				<div class="w3-col s6">\n					<p><label><input type="radio" name="fontSize" value="15">&ensp;15 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="17">&ensp;17 px</label></p>\n				</div>\n				<div class="w3-col s6">\n					<p><label><input type="radio" name="fontSize" value="16">&ensp;16 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="18">&ensp;18 px</label></p>\n				</div>\n			</div>\n		</div>\n	</div>\n</div>\n	\n<div id="tab-infos" class="w3-card-2">\n	<button id="close-tab-infos" type="button" class="w3-btn w3-card-2 w3-white" >&times;</button>\n	<div id="tab-infos-container">\n		  <div class="w3-container w3-padding-16">\n			  <p><b>Titre : </b>', (__stack.lineno = 58, book.title), "</p>\n			  ");
-                    __stack.lineno = 59;
+                    buf.push('\n				</div>\n			</div>\n		</div>\n		<div id="font-size-container-large" class="w3-padding-16">\n			<p><b>Taille de la police</b></p>\n			<div class="w3-row">\n				<div class="w3-col s6">\n					<p><label><input type="radio" name="fontSize" value="14">&ensp;14 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="16">&ensp;16 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="18">&ensp;18 px</label></p>\n				</div>\n				<div class="w3-col s6">\n					<p><label><input type="radio" name="fontSize" value="15">&ensp;15 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="17">&ensp;17 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="19">&ensp;19 px</label></p>\n				</div>\n			</div>\n		</div>\n	</div>\n</div>\n	\n<div id="tab-infos" class="w3-card-2">\n	<button id="close-tab-infos" type="button" class="w3-btn w3-card-2 w3-white" >&times;</button>\n	<div id="tab-infos-container">\n		  <div class="w3-container w3-padding-16">\n			  <p><b>Titre : </b>', (__stack.lineno = 57, book.title), "</p>\n			  ");
+                    __stack.lineno = 58;
                     if (book.subtitle1) {
-                        buf.push("\n				<p><b>Sous-titre : </b>", (__stack.lineno = 60, book.subtitle1), "</p>\n			  ");
-                        __stack.lineno = 61;
+                        buf.push("\n				<p><b>Sous-titre : </b>", (__stack.lineno = 59, book.subtitle1), "</p>\n			  ");
+                        __stack.lineno = 60;
                     }
                     buf.push("\n			  ");
-                    __stack.lineno = 62;
+                    __stack.lineno = 61;
                     if (book.subtitle2) {
-                        buf.push("\n				<p><b>Sous-sous-titre : </b>", (__stack.lineno = 63, book.subtitle2), "</p>\n			  ");
-                        __stack.lineno = 64;
+                        buf.push("\n				<p><b>Sous-sous-titre : </b>", (__stack.lineno = 62, book.subtitle2), "</p>\n			  ");
+                        __stack.lineno = 63;
                     }
-                    buf.push("\n			  <p><b>Année de parution : </b>", (__stack.lineno = 65, book.year), "</p>\n			  ");
-                    __stack.lineno = 66;
+                    buf.push("\n			  <p><b>Année de parution : </b>", (__stack.lineno = 64, book.year), "</p>\n			  ");
+                    __stack.lineno = 65;
                     if (book.authors.length > 1) {
                         buf.push("\n					<p>\n						<span><b>Auteurs :</b></span>\n						<br>\n						<ul>\n						");
-                        __stack.lineno = 71;
+                        __stack.lineno = 70;
                         for (var j = 0; j < book.authors.length; j++) {
-                            buf.push("\n							<li>\n								", (__stack.lineno = 73, book.authors[j].name), " (", (__stack.lineno = 73, book.authors[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 73, book.authors[j].death), ")\n							</li>\n						");
-                            __stack.lineno = 75;
+                            buf.push("\n							<li>\n								", (__stack.lineno = 72, book.authors[j].name), " (", (__stack.lineno = 72, book.authors[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 72, book.authors[j].death), ")\n							</li>\n						");
+                            __stack.lineno = 74;
                         }
                         buf.push("\n						</ul>\n					</p>\n			  ");
-                        __stack.lineno = 78;
+                        __stack.lineno = 77;
                     } else if (book.authors.length === 1) {
-                        buf.push("\n					<p><b>Auteur : </b>", (__stack.lineno = 79, book.authors[0].name), " (", (__stack.lineno = 79, book.authors[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 79, book.authors[0].death), ")</p>\n			  ");
-                        __stack.lineno = 80;
+                        buf.push("\n					<p><b>Auteur : </b>", (__stack.lineno = 78, book.authors[0].name), " (", (__stack.lineno = 78, book.authors[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 78, book.authors[0].death), ")</p>\n			  ");
+                        __stack.lineno = 79;
                     }
                     buf.push("\n			  ");
-                    __stack.lineno = 81;
+                    __stack.lineno = 80;
                     if (book.contribs.length > 1) {
                         buf.push("\n					<p>\n						<span><b>Contributions :</b></span>\n						<br>\n						<ul>\n						");
-                        __stack.lineno = 86;
+                        __stack.lineno = 85;
                         for (var j = 0; j < book.contribs.length; j++) {
-                            buf.push('\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 88, book.contribs[j].role), " : </span>\n								", (__stack.lineno = 89, book.contribs[j].name), " (", (__stack.lineno = 89, book.contribs[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 89, book.contribs[j].death), ")\n							</li>\n						");
-                            __stack.lineno = 91;
+                            buf.push('\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 87, book.contribs[j].role), " : </span>\n								", (__stack.lineno = 88, book.contribs[j].name), " (", (__stack.lineno = 88, book.contribs[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 88, book.contribs[j].death), ")\n							</li>\n						");
+                            __stack.lineno = 90;
                         }
                         buf.push("\n						</ul>\n					</p>\n			  ");
-                        __stack.lineno = 94;
+                        __stack.lineno = 93;
                     } else if (book.contribs.length === 1) {
-                        buf.push('\n					<p>\n						<span><b>Contribution : </b></span>\n						<br>\n						<ul>\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 100, book.contribs[0].role), " : </span>\n								", (__stack.lineno = 101, book.contribs[0].name), " (", (__stack.lineno = 101, book.contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 101, book.contribs[0].death), ")\n							</li>\n						</ul>\n					</p>\n			  ");
-                        __stack.lineno = 105;
+                        buf.push('\n					<p>\n						<span><b>Contribution : </b></span>\n						<br>\n						<ul>\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 99, book.contribs[0].role), " : </span>\n								", (__stack.lineno = 100, book.contribs[0].name), " (", (__stack.lineno = 100, book.contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 100, book.contribs[0].death), ")\n							</li>\n						</ul>\n					</p>\n			  ");
+                        __stack.lineno = 104;
                     }
-                    buf.push('\n			  <p class="book-source"><b>Source : </b>\n				  <ul>\n					  <li>&Eacute;diteur : ', (__stack.lineno = 108, book.source.publisher), "</li>\n					  <li>Année de publication : ", (__stack.lineno = 109, book.source.year), "</li>\n				  </ul>\n			  </p>\n			  ");
-                    __stack.lineno = 112;
+                    buf.push('\n			  <p class="book-source"><b>Source : </b>\n				  <ul>\n					  <li>&Eacute;diteur : ', (__stack.lineno = 107, book.source.publisher), "</li>\n					  <li>Année de publication : ", (__stack.lineno = 108, book.source.year), "</li>\n				  </ul>\n			  </p>\n			  ");
+                    __stack.lineno = 111;
                     if (book.description) {
-                        buf.push("\n			  <div>", (__stack.lineno = 113, book.description), "</div>\n			  ");
-                        __stack.lineno = 114;
+                        buf.push("\n			  <div>", (__stack.lineno = 112, book.description), "</div>\n			  ");
+                        __stack.lineno = 113;
                     }
                     buf.push('\n		  </div>\n	</div>\n</div>\n\n<div id="book-commands">\n	<button id="toggle-toc-large-device" type="button" class="w3-btn w3-card-2 w3-white" >Table</button>\n	<button id="toggle-tab-options" type="button" class="w3-btn w3-card-2 w3-white" >Options</button>\n	<button id="toggle-tab-infos" type="button" class="w3-btn w3-card-2 w3-white" >Infos</button>\n	<button id="tab-add-bookmark" type="button" class="add-bookmark w3-btn w3-ripple w3-card-2 w3-white" >Signet</button>\n	<button id="tab-home-link" type="button" class="home w3-btn w3-card-2 w3-white" >Retour</button>\n</div>\n	\n\n');
                     return buf.join("");
@@ -11241,41 +11217,29 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                     var buf = [];
                     buf.push('<div id="options">\n	<div class="w3-container">\n		<button id="close-options" type="button" class="w3-button w3-text-gray w3-hover-none w3-display-topright">&times;</button>\n		<div class="w3-padding-16 w3-border-bottom options-title">\n			<p class="w3-center">Options</p>\n		</div>\n		<div id="font-family-container" class="w3-padding-16 w3-border-bottom">\n			<p><b>Police de&nbsp;caractère</b></p>\n			<div class="w3-row">\n				<div class="w3-col s6">\n					<p><label><input type="radio" name="fontFamily" value="', (__stack.lineno = 11, book.styles.font), '">&ensp;', (__stack.lineno = 11, book.styles.font), "</label></p>\n					");
                     __stack.lineno = 12;
-                    if (book.styles.font !== "Georgia") {
-                        buf.push('\n						<p><label><input type="radio" name="fontFamily" value="Georgia">&ensp;Georgia</label></p>\n					');
+                    if (book.styles.font !== "Noto Serif") {
+                        buf.push('\n						<p><label><input type="radio" name="fontFamily" value="Noto Serif">&ensp;Noto Serif</label></p>\n					');
                         __stack.lineno = 14;
                     }
                     buf.push('\n				</div>\n				<div class="w3-col s6">\n					');
                     __stack.lineno = 17;
-                    if (book.styles.font !== "Noto Serif") {
-                        buf.push('\n						<p><label><input type="radio" name="fontFamily" value="Noto Serif">&ensp;Noto Serif</label></p>\n					');
+                    if (book.styles.font !== "Vollkorn") {
+                        buf.push('\n						<p><label><input type="radio" name="fontFamily" value="VollKorn">&ensp;Vollkorn</label></p>\n					');
                         __stack.lineno = 19;
                     }
-                    buf.push("\n					");
-                    __stack.lineno = 20;
-                    if (book.styles.font !== "Vollkorn") {
-                        buf.push('\n						<p><label><input type="radio" name="fontFamily" value="VollKorn">&ensp;Vollkorn</label></p>\n					');
-                        __stack.lineno = 22;
-                    }
-                    buf.push('\n				</div>\n			</div>\n		</div>\n		<div id="font-size-container" class="w3-padding-16">\n			<p><b>Taille de la police</b></p>\n			<div>\n				<div class="w3-row">\n					<div class="w3-col s6">\n						<p><label><input type="radio" name="fontSize" value="13">&ensp;13 px</label></p>\n						<p><label><input type="radio" name="fontSize" value="15">&ensp;15 px</label></p>\n					</div>\n					<div class="w3-col s6">\n						<p><label><input type="radio" name="fontSize" value="14">&ensp;14 px</label></p>\n						<p><label><input type="radio" name="fontSize" value="16">&ensp;16 px</label></p>\n					</div>\n				</div>\n			</div>\n		</div>\n	</div>\n</div>\n\n<div id="options-medium">\n	<div class="w3-container">\n		<button id="close-options-medium" type="button" class="w3-button w3-text-gray w3-hover-none w3-display-topright">&times;</button>\n		<div class="w3-padding-16 w3-border-bottom options-title">\n			<p class="w3-center">Options</p>\n		</div>\n		<div id="font-family-container" class="w3-padding-16 w3-border-bottom">\n			<p><b>Police de&nbsp;caractère</b></p>\n			<div class="w3-row">\n				<div class="w3-col s6">\n					<p><label><input type="radio" name="fontFamily" value="', (__stack.lineno = 54, book.styles.font), '">&ensp;', (__stack.lineno = 54, book.styles.font), "</label></p>\n					");
-                    __stack.lineno = 55;
-                    if (book.styles.font !== "Georgia") {
-                        buf.push('\n						<p><label><input type="radio" name="fontFamily" value="Georgia">&ensp;Georgia</label></p>\n					');
-                        __stack.lineno = 57;
-                    }
-                    buf.push('\n				</div>\n				<div class="w3-col s6">\n					');
-                    __stack.lineno = 60;
+                    buf.push('\n				</div>\n			</div>\n		</div>\n		<div id="font-size-container" class="w3-padding-16">\n			<p><b>Taille de la police</b></p>\n			<div>\n				<div class="w3-row">\n					<div class="w3-col s6">\n						<p><label><input type="radio" name="fontSize" value="12">&ensp;12 px</label></p>\n						<p><label><input type="radio" name="fontSize" value="14">&ensp;14 px</label></p>\n						<p><label><input type="radio" name="fontSize" value="16">&ensp;16 px</label></p>\n					</div>\n					<div class="w3-col s6">\n						<p><label><input type="radio" name="fontSize" value="13">&ensp;13 px</label></p>\n						<p><label><input type="radio" name="fontSize" value="15">&ensp;15 px</label></p>\n						<p><label><input type="radio" name="fontSize" value="17">&ensp;17 px</label></p>\n					</div>\n				</div>\n			</div>\n		</div>\n	</div>\n</div>\n\n<div id="options-medium">\n	<div class="w3-container">\n		<button id="close-options-medium" type="button" class="w3-button w3-text-gray w3-hover-none w3-display-topright">&times;</button>\n		<div class="w3-padding-16 w3-border-bottom options-title">\n			<p class="w3-center">Options</p>\n		</div>\n		<div id="font-family-container" class="w3-padding-16 w3-border-bottom">\n			<p><b>Police de&nbsp;caractère</b></p>\n			<div class="w3-row">\n				<div class="w3-col s6">\n					<p><label><input type="radio" name="fontFamily" value="', (__stack.lineno = 53, book.styles.font), '">&ensp;', (__stack.lineno = 53, book.styles.font), "</label></p>\n					");
+                    __stack.lineno = 54;
                     if (book.styles.font !== "Noto Serif") {
                         buf.push('\n						<p><label><input type="radio" name="fontFamily" value="Noto Serif">&ensp;Noto Serif</label></p>\n					');
-                        __stack.lineno = 62;
+                        __stack.lineno = 56;
                     }
-                    buf.push("\n					");
-                    __stack.lineno = 63;
+                    buf.push('\n				</div>\n				<div class="w3-col s6">\n					');
+                    __stack.lineno = 59;
                     if (book.styles.font !== "Vollkorn") {
                         buf.push('\n						<p><label><input type="radio" name="fontFamily" value="VollKorn">&ensp;Vollkorn</label></p>\n					');
-                        __stack.lineno = 65;
+                        __stack.lineno = 61;
                     }
-                    buf.push('\n				</div>\n			</div>\n		</div>\n		<div id="font-size-container" class="w3-padding-16">\n			<p><b>Taille de la police</b></p>\n			<div>\n				<div class="w3-row">\n					<div class="w3-col s6">\n						<p><label><input type="radio" name="fontSize" value="15">&ensp;15 px</label></p>\n						<p><label><input type="radio" name="fontSize" value="17">&ensp;17 px</label></p>\n					</div>\n					<div class="w3-col s6">\n						<p><label><input type="radio" name="fontSize" value="16">&ensp;16 px</label></p>\n						<p><label><input type="radio" name="fontSize" value="18">&ensp;18 px</label></p>\n					</div>\n				</div>\n			</div>\n		</div>\n	</div>\n</div>\n');
+                    buf.push('\n				</div>\n			</div>\n		</div>\n		<div id="font-size-container" class="w3-padding-16">\n			<p><b>Taille de la police</b></p>\n			<div>\n				<div class="w3-row">\n				<div class="w3-col s6">\n					<p><label><input type="radio" name="fontSize" value="14">&ensp;14 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="16">&ensp;16 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="18">&ensp;18 px</label></p>\n				</div>\n				<div class="w3-col s6">\n					<p><label><input type="radio" name="fontSize" value="15">&ensp;15 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="17">&ensp;17 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="19">&ensp;19 px</label></p>\n				</div>\n			</div>\n			</div>\n		</div>\n	</div>\n</div>\n');
                     return buf.join("");
                 }() + '				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span id="current-section-title" class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text style="background-color: ', (__stack.lineno = 41, book.styles.color), "; background-image: url(", (__stack.lineno = 41, book.styles.image), ')"></div>\n				<!--\n					BOTTOM (inside textContainer) : pagination\n				-->\n				<div id="bottom">\n					<span id="currentByTotal" class="wb-currentByTotal-pages"></span>\n				</div>\n				<div id="text-loader-container" class="hidden">\n					<div id="text-loader"></div>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM-SMALL (outside textContainer) : width < 768\n		-->\n		<div id="book-nav-bar-bottom-small" class="w3-bar">\n			<a id="home" href="/#/books/" class="home w3-btn w3-text-gray"><i class="material-icons">arrow_back</i></a>\n			<button id="add-bookmark" class="add-bookmark w3-btn w3-ripple w3-text-gray"><i class="material-icons">bookmark_border</i></button>\n			<button id="open-options" class="w3-btn w3-text-gray"><i class="material-icons">settings</i></button>\n			<button id="open-toc" class="open-toc w3-btn w3-text-gray"><i class="material-icons">toc</i></button>\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768 && < 1366\n		-->\n		<div id="book-nav-bar-bottom">\n			<div class="w3-bar w3-large">\n				<div id="swing-bar">\n					<div id="book-nav-bar-bottom-controls">\n						<button id="home-large" class="home w3-btn w3-hover-none w3-text-gray"><i class="material-icons">arrow_back</i></button>\n						<button id="add-bookmark-large" class="add-bookmark w3-btn w3-ripple w3-hover-none w3-text-gray"><i class="material-icons">bookmark_border</i></button>\n						<div id="center">\n							<span id="backward-large" class="w3-button w3-hover-none">&lt;</span>\n							<span id="forward-large" class="w3-button w3-hover-none">&gt;</span>\n						</div>\n						<button id="open-options-medium" class="w3-btn w3-hover-none w3-text-gray"><i class="material-icons">settings</i></button>\n						<button id="open-toc-large" class="open-toc w3-btn w3-hover-none w3-text-gray"><i class="material-icons">toc</i></button>\n					</div>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n	<div id="book-loader-container" class="hidden">\n		<div id="book-loader" style="border-top: 8px solid ', escape((__stack.lineno = 92, book.styles.color)), "; border-bottom: 8px solid ", escape((__stack.lineno = 92, book.styles.color)), '"></div>\n	</div>\n</div>\n');
             })();

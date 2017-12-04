@@ -35,7 +35,7 @@ const book = function(container) {
 		let h, w, marginY, marginX, font, fontSize, lineHeight, top;
 		
 		//font-family
-		font = localStore.getFontSize(bk.id) ? localStore.getFontSize(bk.id) : bk.styles.font;
+		font = localStore.getFont() ? localStore.getFont() : bk.styles.font;
 		text.style.fontFamily = font;
 		
 		//width (responsive)
@@ -532,7 +532,7 @@ const book = function(container) {
 		for(let i=0; i<fontsLarge.length; i++) {
 			fontsLarge[i].addEventListener('click', event => {
 				let font = event.target.value;
-				localStore.setFontSize(bk.id, font);
+				localStore.setFont(font);
 				//text opacity = 0
 				text.style.opacity = '0';
 				bookContainer.querySelector('#current-section-title').style.opacity = '0';
@@ -561,7 +561,7 @@ const book = function(container) {
 		for(let i=0; i<fontsMedium.length; i++) {
 			fontsMedium[i].addEventListener('click', event => {
 				let font = event.target.value;
-				localStore.setFontSize(bk.id, font);
+				localStore.setFont(font);
 				setTimeout( () => {
 					optionsMedium.className = '';
 					//close modal && text opacity = 0
@@ -593,9 +593,9 @@ const book = function(container) {
 		for(let i=0; i<fonts.length; i++) {
 			fonts[i].addEventListener('click', event => {
 				let font = event.target.value;
-				localStore.setFontSize(bk.id, font);
+				localStore.setFont(font);
 				setTimeout( () => {
-					//start loader and colose modal
+					//start loader and close modal
 					utils.removeClass('#text-loader-container','hidden');
 					utils.removeClass('#options','open');
 					document.body.style.overflow = 'hidden';

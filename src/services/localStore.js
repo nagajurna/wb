@@ -83,43 +83,27 @@ const localStore = {
 		}
 	},
 	
-	setFont: (bkId, font) => {
-		let fonts = [];
+	setFont: f => {
+		let font = '';
 		if (typeof(Storage) !== "undefined") {
 			//check localStorage for fSizes array
-			if(localStorage.getItem('fonts')) {
-				fonts = JSON.parse(localStorage.getItem('fonts'));
-				//check for bk.id
-				let item;
-				for(let i=0; i<fonts.length; i++) {
-					if(fonts[i].bkId===bkId) {
-						item=fonts[i];
-						break;
-					}
-				}
-				if(item) {
-					item.font = font;
-				} else {
-					fonts.push({ bkId: bkId, font: font });
-				}
+			if(localStorage.getItem('font')) {
+				font = JSON.parse(localStorage.getItem('font'));
+				font = f;
 			} else {
-				fonts.push({ bkId: bkId, font: font });
+				font = f;
 			}
-			localStorage.setItem('fonts', JSON.stringify(fonts));
+			localStorage.setItem('font', JSON.stringify(font));
 		}
 	},
 	
-	getFont : bkId => {
-		let fonts = [];
+	getFont : () => {
+		let font = '';
 		if (typeof(Storage) !== "undefined") {
 			//check localStorage for bkmrks array
-			if(localStorage.getItem('fonts')) {
-				fonts = JSON.parse(localStorage.getItem('fonts'));
-				//check for bk.id
-				let item = fonts.filter(function(o) { return o.bkId===bkId})[0];
-				if(item) {
-					return item.font;
-				}
+			if(localStorage.getItem('font')) {
+				font = JSON.parse(localStorage.getItem('font'));
+				return font;
 			}
 		}
 	},
