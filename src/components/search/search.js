@@ -31,14 +31,21 @@ const search = function(container) {
 		for(let j=0; j<a.contribs.length; j++) {
 			let ab = a.contribs[j].book;
 			let ba = bs.filter(function(b) { return b.id===ab.id });
-			sbs.push(ba[0]);
+			if(ba[0] && ba[0].visible===true) {
+				sbs.push(ba[0]);
+			}
 		}
 		for(let j=0; j<a.books.length; j++) {
 			let ab = a.books[j];
 			let ba = bs.filter(function(b) { return b.id===ab.id });
-			sbs.push(ba[0]);
+			if(ba[0] && ba[0].visible===true) {
+				sbs.push(ba[0]);
+			}
 		}
 	}
+	
+	console.log(sbs);
+	console.log(sas);
 	
 	if(sbs.length===0) {
 		nores = 'Aucun résultat.'
