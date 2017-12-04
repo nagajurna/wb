@@ -37,6 +37,8 @@ const book = function(container) {
 		//font-family
 		font = localStore.getFont() ? localStore.getFont() : bk.styles.font;
 		text.style.fontFamily = font;
+		bookContainer.querySelector('#current-section-title').style.fontFamily = font;
+		bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
 		
 		//width (responsive)
 		if(window.innerWidth >= 768) {
@@ -425,7 +427,25 @@ const book = function(container) {
 		let addBookmarks = bookContainer.querySelectorAll('.add-bookmark');
 		for(let i=0; i<addBookmarks.length; i++) {
 			addBookmarks[i].addEventListener('click', event => {
-				localStore.setBkmrk(bk.id, book.getBookmark());
+				if(book.checkFirstPage()) { return; }
+				let newBmrk = book.getBookmark();
+				let bookmark = document.querySelector('#bookmark');
+				let p = bookmark.querySelector('p');
+				let msg;
+				if(localStore.getBkmrk(bk.id)) {
+					let oldBkmrk = localStore.getBkmrk(bk.id);
+					if(oldBkmrk.sectionId===newBmrk.sectionId && oldBkmrk.el===newBmrk.el) {
+						msg='Votre signet a bien été inséré.';
+					} else {
+						msg = 'Votre signet a été déplacé.';
+					}
+				} else {
+					msg = 'Un signet a été ajouté.';
+				}
+				p.innerHTML = msg;
+				localStore.setBkmrk(bk.id, newBmrk);
+				bookmark.className = 'show';
+				setTimeout(function(){ bookmark.className = bookmark.className.replace("show", ""); }, 2500);
 			}, false);
 		}
 		
