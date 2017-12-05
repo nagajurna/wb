@@ -2158,6 +2158,10 @@ var router = function router() {
 			(0, _booksNext2.default)(container);
 		} else if (newhash.match(/#\/[^\/]+\/read$/)) {
 			//BOOK READ
+			//if(document.documentElement.scrollHeight<window.outerHeight/window.devicePixelRatio) {
+			//document.documentElement.style.height=(window.outerHeight/window.devicePixelRatio)+'px';
+			//setTimeout(window.scrollTo(1,1),0);
+			//}
 			(0, _bookRead2.default)(container);
 		} else if (newhash.match(/#\/authors\?(search=(A-Z))?/)) {
 			//AUTHORS
@@ -3801,10 +3805,6 @@ var book = function book(container) {
 		var div = document.createElement('div');
 		div.innerHTML = content;
 		text.appendChild(div);
-		var html = document.getElementsByTagName("html")[0];
-		if (html.scrollTop < 100) {
-			html.scrollTop = 100;
-		}
 		init();
 	});
 };

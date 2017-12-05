@@ -696,10 +696,6 @@ const book = function(container) {
 		let div = document.createElement('div');
 		div.innerHTML = content;
 		text.appendChild(div);
-		let html = document.getElementsByTagName("html")[0];
-		if(html.scrollTop<100) {
-			html.scrollTop=100;
-		}
 		init();
 	});
 	
