@@ -2160,8 +2160,10 @@ var router = function router() {
 			//BOOK READ
 			var html = document.getElementsByTagName("html")[0];
 			if (html.scrollTop < 300) {
-				window.scrollTo(0, 300);
-				(0, _bookRead2.default)(container);
+				window.scrollBy(0, 300);
+				setTimeout(function () {
+					(0, _bookRead2.default)(container);
+				}, 0);
 			} else {
 				(0, _bookRead2.default)(container);
 			}

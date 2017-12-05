@@ -42,8 +42,11 @@ const router  = function() {
 			//BOOK READ
 			let html = document.getElementsByTagName("html")[0];
 			if(html.scrollTop<300) {
-				window.scrollTo(0,300);
-				bookRead(container)
+				window.scrollBy(0,300);
+				setTimeout( () => {
+					bookRead(container)
+					}, 0)
+				
 			} else {
 				bookRead(container);
 			}
