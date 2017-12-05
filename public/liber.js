@@ -2158,11 +2158,15 @@ var router = function router() {
 			(0, _booksNext2.default)(container);
 		} else if (newhash.match(/#\/[^\/]+\/read$/)) {
 			//BOOK READ
-			//if(document.documentElement.scrollHeight<window.outerHeight/window.devicePixelRatio) {
-			//document.documentElement.style.height=(window.outerHeight/window.devicePixelRatio)+'px';
-			//setTimeout(window.scrollTo(1,1),0);
-			//}
-			(0, _bookRead2.default)(container);
+			if (document.documentElement.scrollHeight < window.outerHeight / window.devicePixelRatio) {
+				document.documentElement.style.height = window.outerHeight / window.devicePixelRatio + 'px';
+				setTimeout(function () {
+					window.scrollTo(1, 1);
+					(0, _bookRead2.default)(container);
+				}, 0);
+			} else {
+				(0, _bookRead2.default)(container);
+			}
 		} else if (newhash.match(/#\/authors\?(search=(A-Z))?/)) {
 			//AUTHORS
 			(0, _authors2.default)(container);
