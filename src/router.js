@@ -40,6 +40,9 @@ const router  = function() {
 			
 		} else if(newhash.match(/#\/[^\/]+\/read$/)) {
 			//BOOK READ
+			if(navigator.userAgent.match(/Android/i)){
+				window.scrollTo(0,1);
+			 }
 			bookRead(container);
 			
 		

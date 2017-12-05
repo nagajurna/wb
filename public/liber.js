@@ -2158,6 +2158,9 @@ var router = function router() {
 			(0, _booksNext2.default)(container);
 		} else if (newhash.match(/#\/[^\/]+\/read$/)) {
 			//BOOK READ
+			if (navigator.userAgent.match(/Android/i)) {
+				window.scrollTo(0, 1);
+			}
 			(0, _bookRead2.default)(container);
 		} else if (newhash.match(/#\/authors\?(search=(A-Z))?/)) {
 			//AUTHORS
@@ -3207,7 +3210,7 @@ var book = function book(container) {
 			}
 		} else {
 			_utils2.default.removeClass('[data-wb-text-container]', 'w3-card-2');
-			h = window.outerHeight - 30; //30px = nav-bar-bottom-small height
+			h = window.innerHeight - 30; //30px = nav-bar-bottom-small height
 			w = window.innerWidth;
 			bookNavBarBottomSmall.style.width = w + 'px';
 			fontSize = _localStore2.default.getFontSize('small') ? _localStore2.default.getFontSize('small') : 14;
@@ -3257,7 +3260,7 @@ var book = function book(container) {
 
 		//on resize
 		window.addEventListener('resize', function (event) {
-			document.body.style.height = window.outerHeight + 'px';
+			document.body.style.height = window.innerHeight + 'px';
 			if (window.innerWidth >= 768) {
 				_utils2.default.addClass('[data-wb-text-container]', 'w3-card-2');
 				//max-height: 720
@@ -3299,7 +3302,7 @@ var book = function book(container) {
 				}
 			} else {
 				_utils2.default.removeClass('[data-wb-text-container]', 'w3-card-2');
-				h = window.outerHeight - 30; //30px = nav-bar-bottom-small height
+				h = window.innerHeight - 30; //30px = nav-bar-bottom-small height
 				w = window.innerWidth;
 				bookNavBarBottomSmall.style.width = w + 'px';
 				fontSize = _localStore2.default.getFontSize('small') ? _localStore2.default.getFontSize('small') : 14;
@@ -3773,7 +3776,7 @@ var book = function book(container) {
 
 	//GET TEMPLATE ET START LOADER
 	//insert template in container
-	document.body.style.height = window.outerHeight + 'px';
+	document.body.style.height = window.innerHeight + 'px';
 	document.body.style.overflow = 'hidden';
 	c.innerHTML = bookReadTemplate({ book: bk });
 	//START LOADER
