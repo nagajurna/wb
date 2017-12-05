@@ -2158,15 +2158,7 @@ var router = function router() {
 			(0, _booksNext2.default)(container);
 		} else if (newhash.match(/#\/[^\/]+\/read$/)) {
 			//BOOK READ
-			var html = document.getElementsByTagName("html")[0];
-			if (html.scrollTop < 300) {
-				window.scrollBy(0, 300);
-				setTimeout(function () {
-					(0, _bookRead2.default)(container);
-				}, 0);
-			} else {
-				(0, _bookRead2.default)(container);
-			}
+			(0, _bookRead2.default)(container);
 		} else if (newhash.match(/#\/authors\?(search=(A-Z))?/)) {
 			//AUTHORS
 			(0, _authors2.default)(container);
@@ -2274,6 +2266,12 @@ var home = function home(container) {
 		var b = _dataStore2.default.getData('books', event.currentTarget.id);
 		var path = b.path.replace(/^\/books\/[^\/]+/, '');
 		location.hash = '#' + path + "/read";
+		var doc = window.document;
+		var docEl = doc.documentElement;
+		var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+		if (!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+			requestFullScreen.call(docEl);
+		}
 	};
 	//open infos
 	var openInfos = function openInfos(event) {

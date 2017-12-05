@@ -40,16 +40,7 @@ const router  = function() {
 			
 		} else if(newhash.match(/#\/[^\/]+\/read$/)) {
 			//BOOK READ
-			let html = document.getElementsByTagName("html")[0];
-			if(html.scrollTop<300) {
-				window.scrollBy(0,300);
-				setTimeout( () => {
-					bookRead(container)
-					}, 0)
-				
-			} else {
-				bookRead(container);
-			}
+			bookRead(container);
 			
 		
 		} else if(newhash.match(/#\/authors\?(search=(A-Z))?/)) {
