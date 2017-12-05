@@ -42,10 +42,8 @@ const router  = function() {
 			//BOOK READ
 			let html = document.getElementsByTagName("html")[0];
 			if(html.scrollTop<300) {
-				html.scrollTop=300;
-				window.setTimeout( () => {
-					bookRead(container)
-				},1000);
+				window.scrollTo(0,300);
+				bookRead(container)
 			} else {
 				bookRead(container);
 			}
