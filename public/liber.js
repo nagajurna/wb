@@ -2158,8 +2158,15 @@ var router = function router() {
 			(0, _booksNext2.default)(container);
 		} else if (newhash.match(/#\/[^\/]+\/read$/)) {
 			//BOOK READ
-			window.scrollTo(0, 150);
-			(0, _bookRead2.default)(container);
+			var html = document.getElementsByTagName("html")[0];
+			if (html.scrollTop < 300) {
+				html.scrollTop = 300;
+				window.setTimeout(function () {
+					(0, _bookRead2.default)(container);
+				}, 1000);
+			} else {
+				(0, _bookRead2.default)(container);
+			}
 		} else if (newhash.match(/#\/authors\?(search=(A-Z))?/)) {
 			//AUTHORS
 			(0, _authors2.default)(container);
