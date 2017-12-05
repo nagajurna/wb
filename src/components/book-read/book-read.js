@@ -92,7 +92,7 @@ const book = function(container) {
 			}
 		 } else {
 			 utils.removeClass('[data-wb-text-container]', 'w3-card-2');
-			 h = window.innerHeight-30;//30px = nav-bar-bottom-small height
+			 h = window.outerHeight-30;//30px = nav-bar-bottom-small height
 			 w = window.innerWidth;
 			 bookNavBarBottomSmall.style.width = w + 'px';
 			 fontSize = localStore.getFontSize('small') ? localStore.getFontSize('small') : 14;
@@ -143,6 +143,7 @@ const book = function(container) {
 						 
 		//on resize
 		window.addEventListener('resize', event => {
+			document.body.style.height = window.outerHeight + 'px';
 			if(window.innerWidth >= 768) {
 				utils.addClass('[data-wb-text-container]', 'w3-card-2');
 				//max-height: 720
@@ -184,7 +185,7 @@ const book = function(container) {
 				}
 			} else {
 				utils.removeClass('[data-wb-text-container]', 'w3-card-2');
-				h = window.innerHeight-30;//30px = nav-bar-bottom-small height
+				h = window.outerHeight-30;//30px = nav-bar-bottom-small height
 				w = window.innerWidth;
 				bookNavBarBottomSmall.style.width = w + 'px';
 				fontSize = localStore.getFontSize('small') ? localStore.getFontSize('small') : 14;
