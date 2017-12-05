@@ -40,15 +40,8 @@ const router  = function() {
 			
 		} else if(newhash.match(/#\/[^\/]+\/read$/)) {
 			//BOOK READ
-			if(document.documentElement.scrollHeight<window.outerHeight/window.devicePixelRatio) {
-				document.documentElement.style.height=(window.outerHeight/window.devicePixelRatio)+'px';
-				setTimeout(() => {
-					window.scrollTo(1,1);
-					bookRead(container);
-				},0);
-			} else {
-				bookRead(container);
-			}
+			window.scrollTo(0,150);
+			bookRead(container);
 			
 		
 		} else if(newhash.match(/#\/authors\?(search=(A-Z))?/)) {
