@@ -2266,12 +2266,6 @@ var home = function home(container) {
 		var b = _dataStore2.default.getData('books', event.currentTarget.id);
 		var path = b.path.replace(/^\/books\/[^\/]+/, '');
 		location.hash = '#' + path + "/read";
-		var doc = window.document;
-		var docEl = doc.documentElement;
-		var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
-		if (!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
-			requestFullScreen.call(docEl);
-		}
 	};
 	//open infos
 	var openInfos = function openInfos(event) {
@@ -3778,7 +3772,7 @@ var book = function book(container) {
 
 	//GET TEMPLATE ET START LOADER
 	//insert template in container
-	document.body.style.height = window.innerHeight + 'px';
+	document.body.style.height = window.outerHeight + 'px';
 	document.body.style.overflow = 'hidden';
 	c.innerHTML = bookReadTemplate({ book: bk });
 	//START LOADER

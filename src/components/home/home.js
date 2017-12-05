@@ -18,12 +18,6 @@ const home = function(container) {
 		let b = dataStore.getData('books', event.currentTarget.id);
 		let path = b.path.replace(/^\/books\/[^\/]+/,'');
 		location.hash = '#' + path + "/read";
-		var doc = window.document;
-		var docEl = doc.documentElement;
-		var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
-		if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
-			requestFullScreen.call(docEl);
-		}
 	}
 	//open infos
 	let openInfos = event => {

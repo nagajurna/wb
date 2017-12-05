@@ -666,7 +666,7 @@ const book = function(container) {
 	
 	//GET TEMPLATE ET START LOADER
 	//insert template in container
-	document.body.style.height = window.innerHeight + 'px';
+	document.body.style.height = window.outerHeight + 'px';
 	document.body.style.overflow = 'hidden';
 	c.innerHTML = bookReadTemplate({ book:bk });
 	//START LOADER
