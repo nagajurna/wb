@@ -2158,9 +2158,6 @@ var router = function router() {
 			(0, _booksNext2.default)(container);
 		} else if (newhash.match(/#\/[^\/]+\/read$/)) {
 			//BOOK READ
-			if (navigator.userAgent.match(/Android/i)) {
-				window.scrollTo(0, 1);
-			}
 			(0, _bookRead2.default)(container);
 		} else if (newhash.match(/#\/authors\?(search=(A-Z))?/)) {
 			//AUTHORS
