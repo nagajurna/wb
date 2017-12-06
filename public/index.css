@@ -22,6 +22,12 @@ body {
 	position: relative;
 }
 
+#secret {
+	font-family: 'Vollkorn';
+	position: absolute;
+	top: -3999px;
+}
+
 #loader-container {
 	position: absolute;
 	top: 0px;

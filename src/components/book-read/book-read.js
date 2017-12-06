@@ -42,7 +42,7 @@ const book = function(container) {
 		
 		//width (responsive)
 		if(window.innerWidth >= 768) {
-			utils.addClass('[data-wb-text-container]', 'w3-card-2');
+			utils.addClass('[data-wb-text-container]', 'w3-card-4');
 			//max-height: 720
 			if(window.innerHeight > 832) {//748 + navBarBottom height (1*44) + textContainer minimum top * 2 (2*20)
 				h = 748;
@@ -91,7 +91,7 @@ const book = function(container) {
 				 }
 			}
 		 } else {
-			 utils.removeClass('[data-wb-text-container]', 'w3-card-2');
+			 utils.removeClass('[data-wb-text-container]', 'w3-card-4');
 			 h = window.innerHeight-30;//30px = nav-bar-bottom-small height
 			 w = window.innerWidth;
 			 bookNavBarBottomSmall.style.width = w + 'px';
@@ -130,11 +130,17 @@ const book = function(container) {
 			 maxWidth: w,
 			 marginY: marginY,
 			 marginX: marginX
+		 })
+		 
+		 book.toBook()
+		 .then( resolve => {
+			 if(localStore.getBkmrk(bk.id)) {
+				let bkmrk = localStore.getBkmrk(bk.id);
+				book.goToBookmark(bkmrk);
+			 }
 		 });
 		 
-		 if(localStore.getBkmrk(bk.id)) {
-			 book.goToBookmark(localStore.getBkmrk(bk.id));
-		 }
+  
 		
 		if(window.innerWidth >= 1366) {
 			//Toc-large height
@@ -145,7 +151,7 @@ const book = function(container) {
 		window.addEventListener('resize', event => {
 			document.body.style.height = window.innerHeight + 'px';
 			if(window.innerWidth >= 768) {
-				utils.addClass('[data-wb-text-container]', 'w3-card-2');
+				utils.addClass('[data-wb-text-container]', 'w3-card-4');
 				//max-height: 720
 				if(window.innerHeight >= 832) {//748 + navBarBottom height (1*44) + textContainer minimum top * 2 (2*20)
 					h = 748;
@@ -184,7 +190,7 @@ const book = function(container) {
 					 }
 				}
 			} else {
-				utils.removeClass('[data-wb-text-container]', 'w3-card-2');
+				utils.removeClass('[data-wb-text-container]', 'w3-card-4');
 				h = window.innerHeight-30;//30px = nav-bar-bottom-small height
 				w = window.innerWidth;
 				bookNavBarBottomSmall.style.width = w + 'px';
@@ -432,17 +438,17 @@ const book = function(container) {
 				let newBmrk = book.getBookmark();
 				let bookmark = document.querySelector('#bookmark');
 				let p = bookmark.querySelector('p');
-				let msg;
-				if(localStore.getBkmrk(bk.id)) {
-					let oldBkmrk = localStore.getBkmrk(bk.id);
-					if(oldBkmrk.sectionId===newBmrk.sectionId && oldBkmrk.el===newBmrk.el) {
-						msg='Votre signet a bien été inséré.';
-					} else {
-						msg = 'Votre signet a bien été déplacé.';
-					}
-				} else {
-					msg = 'Un signet a été ajouté.';
-				}
+				let msg = 'Votre signet a bien été inséré.'
+				//if(localStore.getBkmrk(bk.id)) {
+					//let oldBkmrk = localStore.getBkmrk(bk.id);
+					//if(oldBkmrk.sectionId===newBmrk.sectionId && oldBkmrk.el===newBmrk.el) {
+						//msg='Votre signet a bien été inséré.';
+					//} else {
+						//msg = 'Votre signet a bien été déplacé.';
+					//}
+				//} else {
+					//msg = 'Un signet a été ajouté.';
+				//}
 				p.innerHTML = msg;
 				localStore.setBkmrk(bk.id, newBmrk);
 				bookmark.className = 'show';
@@ -456,30 +462,33 @@ const book = function(container) {
 			fontSizesLarge[i].addEventListener('click', event => {
 				let size = event.target.value;
 				localStore.setFontSize('large', size);
-				//text opacity = 0
-				text.style.opacity = '0';
-				bookContainer.querySelector('#current-section-title').style.opacity = '0';
-				bookContainer.querySelector('#currentByTotal').style.opacity = '0';
-				utils.removeClass('#text-loader-container','hidden');
 				setTimeout( () => {
-					//marginY is relative to line-height (line-height : 1.5em)
-					let lineHeight = size*1.5;
-					let marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*2;
-					book.setMarginY(marginY);
-					//text size
-					text.style.fontSize = size + 'px';
-					cover.style.fontSize = '16px';
-					//book
-					book.toBook();
-					//end loader
-					setTimeout( function() { 
-						utils.addClass('#text-loader-container','hidden');
-						text.style.opacity = '1';
-						bookContainer.querySelector('#current-section-title').style.opacity = '1';
-						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-					}, 200);
-				}, 100);
-				
+					//text opacity = 0
+					text.style.opacity = '0';
+					bookContainer.querySelector('#current-section-title').style.opacity = '0';
+					bookContainer.querySelector('#currentByTotal').style.opacity = '0';
+					utils.removeClass('#text-loader-container','hidden');
+					setTimeout( () => {
+						//marginY is relative to line-height (line-height : 1.5em)
+						let lineHeight = size*1.5;
+						let marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*2;
+						book.setMarginY(marginY);
+						//text size
+						text.style.fontSize = size + 'px';
+						cover.style.fontSize = '16px';
+						//book
+						book.toBook()
+						.then( resolve => {
+							//end loader
+							setTimeout( function() { 
+								utils.addClass('#text-loader-container','hidden');
+								text.style.opacity = '1';
+								bookContainer.querySelector('#current-section-title').style.opacity = '1';
+								bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+							}, 100);
+						});
+					}, 150);
+				},100);
 			}, false);
 		}
 		
@@ -504,14 +513,16 @@ const book = function(container) {
 						text.style.fontSize = size + 'px';
 						cover.style.fontSize = '16px';
 						//book
-						book.toBook();
-						//end loader
-						setTimeout( function() { 
-							utils.addClass('#text-loader-container','hidden');
-							text.style.opacity = '1';
-							bookContainer.querySelector('#current-section-title').style.opacity = '1';
-							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-						}, 200);
+						book.toBook()
+						.then( resolve => {
+							//end loader
+							setTimeout( function() { 
+								utils.addClass('#text-loader-container','hidden');
+								text.style.opacity = '1';
+								bookContainer.querySelector('#current-section-title').style.opacity = '1';
+								bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+							}, 100);
+						});
 					}, 150);
 				 }, 100);
 				
@@ -537,14 +548,16 @@ const book = function(container) {
 						text.style.fontSize = size + 'px';
 						cover.style.fontSize = '14px';
 						//book
-						book.toBook();
-						//end loader
-						setTimeout( () => {
-							document.body.style.overflow = 'visible'; 
-							utils.addClass('#text-loader-container','hidden');
-						}, 200);
-					},300);
-				 }, 100);
+						book.toBook()
+						.then(resolve => {
+							//end loader
+							setTimeout( () => {
+								document.body.style.overflow = 'visible'; 
+								utils.addClass('#text-loader-container','hidden');
+							}, 100);
+						});				
+					 },300);
+				  }, 100);
 			}, false);
 		}
 		
@@ -554,27 +567,30 @@ const book = function(container) {
 			fontsLarge[i].addEventListener('click', event => {
 				let font = event.target.value;
 				localStore.setFont(font);
-				//text opacity = 0
-				text.style.opacity = '0';
-				bookContainer.querySelector('#current-section-title').style.opacity = '0';
-				bookContainer.querySelector('#currentByTotal').style.opacity = '0';
-				utils.removeClass('#text-loader-container','hidden');
 				setTimeout( () => {
-					//text font
-					text.style.fontFamily = font;
-					bookContainer.querySelector('#current-section-title').style.fontFamily = font;
-					bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
-					//book
-					book.toBook();
-					//end loader
-					setTimeout( function() { 
-						utils.addClass('#text-loader-container','hidden');
-						text.style.opacity = '1';
-						bookContainer.querySelector('#current-section-title').style.opacity = '1';
-						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-					}, 200);
+					//text opacity = 0
+					text.style.opacity = '0';
+					bookContainer.querySelector('#current-section-title').style.opacity = '0';
+					bookContainer.querySelector('#currentByTotal').style.opacity = '0';
+					utils.removeClass('#text-loader-container','hidden');
+					setTimeout( () => {
+						//text font
+						text.style.fontFamily = font;
+						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
+						bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
+						//book
+						book.toBook()
+						.then (resolve => {
+							//end loader
+							setTimeout( function() { 
+								utils.addClass('#text-loader-container','hidden');
+								text.style.opacity = '1';
+								bookContainer.querySelector('#current-section-title').style.opacity = '1';
+								bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+							}, 100);
+						});
+					 }, 150);
 				}, 100);
-				
 			}, false);
 		}
 		
@@ -596,14 +612,16 @@ const book = function(container) {
 						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
 					    bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
 						//book
-						book.toBook();
-						//end loader
-						setTimeout( function() { 
-							utils.addClass('#text-loader-container','hidden');
-							text.style.opacity = '1';
-							bookContainer.querySelector('#current-section-title').style.opacity = '1';
-							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-						}, 200);
+						book.toBook()
+						.then( resolve => {
+							//end loader
+							setTimeout( function() { 
+								utils.addClass('#text-loader-container','hidden');
+								text.style.opacity = '1';
+								bookContainer.querySelector('#current-section-title').style.opacity = '1';
+								bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+							}, 100);
+						});
 					}, 150);
 				 }, 100);
 				
@@ -626,12 +644,14 @@ const book = function(container) {
 						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
 					    bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
 						//book
-						book.toBook();
-						//end loader
-						setTimeout( () => {
-							document.body.style.overflow = 'visible'; 
-							utils.addClass('#text-loader-container','hidden');
-						}, 200);
+						book.toBook()
+						.then (resolve => {
+							//end loader
+							setTimeout( () => {
+								document.body.style.overflow = 'visible'; 
+								utils.addClass('#text-loader-container','hidden');
+							}, 100);
+						});	
 					},300);
 				 }, 100);
 			}, false);
@@ -639,12 +659,12 @@ const book = function(container) {
 		
 		//end loader
 		document.body.style.overflow = 'visible';
-		setTimeout( function() { 
+		setTimeout( () => { 
 			utils.addClass('#book-loader-container', 'hidden');
 		}, 800);
 		
 		//show book
-		setTimeout( function() { 
+		setTimeout( () => { 
 			bookContainer.className = 'show';
 		}, 800);
 		
@@ -665,12 +685,12 @@ const book = function(container) {
 	  }
 	}
 	
-	//GET TEMPLATE ET START LOADER
+	//INSERT TEMPLATE ET START LOADER
 	//insert template in container
-	document.body.style.height = window.innerHeight + 'px';
-	document.body.style.overflow = 'hidden';
 	c.innerHTML = bookReadTemplate({ book:bk });
 	//START LOADER
+	document.body.style.overflow = 'hidden';
+	document.body.style.height = window.innerHeight + 'px';
 	utils.removeClass('#book-loader-container','hidden');
 	
 	//BOOK CONTAINER

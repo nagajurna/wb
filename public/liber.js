@@ -2259,7 +2259,7 @@ var home = function home(container) {
 	//get last 12 visible books reverse order
 	var lBs = bs.filter(function (b) {
 		return b.visible;
-	}).reverse().slice(0, 12);
+	}).reverse().slice(0, 13);
 
 	//go to book/read
 	var readBk = function readBk(event) {
@@ -3157,7 +3157,7 @@ var book = function book(container) {
 
 		//width (responsive)
 		if (window.innerWidth >= 768) {
-			_utils2.default.addClass('[data-wb-text-container]', 'w3-card-2');
+			_utils2.default.addClass('[data-wb-text-container]', 'w3-card-4');
 			//max-height: 720
 			if (window.innerHeight > 832) {
 				//748 + navBarBottom height (1*44) + textContainer minimum top * 2 (2*20)
@@ -3206,7 +3206,7 @@ var book = function book(container) {
 				}
 			}
 		} else {
-			_utils2.default.removeClass('[data-wb-text-container]', 'w3-card-2');
+			_utils2.default.removeClass('[data-wb-text-container]', 'w3-card-4');
 			h = window.innerHeight - 30; //30px = nav-bar-bottom-small height
 			w = window.innerWidth;
 			bookNavBarBottomSmall.style.width = w + 'px';
@@ -3246,9 +3246,12 @@ var book = function book(container) {
 			marginX: marginX
 		});
 
-		if (_localStore2.default.getBkmrk(bk.id)) {
-			book.goToBookmark(_localStore2.default.getBkmrk(bk.id));
-		}
+		book.toBook().then(function (resolve) {
+			if (_localStore2.default.getBkmrk(bk.id)) {
+				var bkmrk = _localStore2.default.getBkmrk(bk.id);
+				book.goToBookmark(bkmrk);
+			}
+		});
 
 		if (window.innerWidth >= 1366) {
 			//Toc-large height
@@ -3259,7 +3262,7 @@ var book = function book(container) {
 		window.addEventListener('resize', function (event) {
 			document.body.style.height = window.innerHeight + 'px';
 			if (window.innerWidth >= 768) {
-				_utils2.default.addClass('[data-wb-text-container]', 'w3-card-2');
+				_utils2.default.addClass('[data-wb-text-container]', 'w3-card-4');
 				//max-height: 720
 				if (window.innerHeight >= 832) {
 					//748 + navBarBottom height (1*44) + textContainer minimum top * 2 (2*20)
@@ -3298,7 +3301,7 @@ var book = function book(container) {
 					}
 				}
 			} else {
-				_utils2.default.removeClass('[data-wb-text-container]', 'w3-card-2');
+				_utils2.default.removeClass('[data-wb-text-container]', 'w3-card-4');
 				h = window.innerHeight - 30; //30px = nav-bar-bottom-small height
 				w = window.innerWidth;
 				bookNavBarBottomSmall.style.width = w + 'px';
@@ -3543,17 +3546,17 @@ var book = function book(container) {
 				var newBmrk = book.getBookmark();
 				var bookmark = document.querySelector('#bookmark');
 				var p = bookmark.querySelector('p');
-				var msg = void 0;
-				if (_localStore2.default.getBkmrk(bk.id)) {
-					var oldBkmrk = _localStore2.default.getBkmrk(bk.id);
-					if (oldBkmrk.sectionId === newBmrk.sectionId && oldBkmrk.el === newBmrk.el) {
-						msg = 'Votre signet a bien été inséré.';
-					} else {
-						msg = 'Votre signet a bien été déplacé.';
-					}
-				} else {
-					msg = 'Un signet a été ajouté.';
-				}
+				var msg = 'Votre signet a bien été inséré.';
+				//if(localStore.getBkmrk(bk.id)) {
+				//let oldBkmrk = localStore.getBkmrk(bk.id);
+				//if(oldBkmrk.sectionId===newBmrk.sectionId && oldBkmrk.el===newBmrk.el) {
+				//msg='Votre signet a bien été inséré.';
+				//} else {
+				//msg = 'Votre signet a bien été déplacé.';
+				//}
+				//} else {
+				//msg = 'Un signet a été ajouté.';
+				//}
 				p.innerHTML = msg;
 				_localStore2.default.setBkmrk(bk.id, newBmrk);
 				bookmark.className = 'show';
@@ -3569,28 +3572,31 @@ var book = function book(container) {
 			fontSizesLarge[_i13].addEventListener('click', function (event) {
 				var size = event.target.value;
 				_localStore2.default.setFontSize('large', size);
-				//text opacity = 0
-				text.style.opacity = '0';
-				bookContainer.querySelector('#current-section-title').style.opacity = '0';
-				bookContainer.querySelector('#currentByTotal').style.opacity = '0';
-				_utils2.default.removeClass('#text-loader-container', 'hidden');
 				setTimeout(function () {
-					//marginY is relative to line-height (line-height : 1.5em)
-					var lineHeight = size * 1.5;
-					var marginY = h % lineHeight !== 0 ? lineHeight * 2 + h % lineHeight / 2 : lineHeight * 2;
-					book.setMarginY(marginY);
-					//text size
-					text.style.fontSize = size + 'px';
-					cover.style.fontSize = '16px';
-					//book
-					book.toBook();
-					//end loader
+					//text opacity = 0
+					text.style.opacity = '0';
+					bookContainer.querySelector('#current-section-title').style.opacity = '0';
+					bookContainer.querySelector('#currentByTotal').style.opacity = '0';
+					_utils2.default.removeClass('#text-loader-container', 'hidden');
 					setTimeout(function () {
-						_utils2.default.addClass('#text-loader-container', 'hidden');
-						text.style.opacity = '1';
-						bookContainer.querySelector('#current-section-title').style.opacity = '1';
-						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-					}, 200);
+						//marginY is relative to line-height (line-height : 1.5em)
+						var lineHeight = size * 1.5;
+						var marginY = h % lineHeight !== 0 ? lineHeight * 2 + h % lineHeight / 2 : lineHeight * 2;
+						book.setMarginY(marginY);
+						//text size
+						text.style.fontSize = size + 'px';
+						cover.style.fontSize = '16px';
+						//book
+						book.toBook().then(function (resolve) {
+							//end loader
+							setTimeout(function () {
+								_utils2.default.addClass('#text-loader-container', 'hidden');
+								text.style.opacity = '1';
+								bookContainer.querySelector('#current-section-title').style.opacity = '1';
+								bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+							}, 100);
+						});
+					}, 150);
 				}, 100);
 			}, false);
 		}
@@ -3616,14 +3622,15 @@ var book = function book(container) {
 						text.style.fontSize = size + 'px';
 						cover.style.fontSize = '16px';
 						//book
-						book.toBook();
-						//end loader
-						setTimeout(function () {
-							_utils2.default.addClass('#text-loader-container', 'hidden');
-							text.style.opacity = '1';
-							bookContainer.querySelector('#current-section-title').style.opacity = '1';
-							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-						}, 200);
+						book.toBook().then(function (resolve) {
+							//end loader
+							setTimeout(function () {
+								_utils2.default.addClass('#text-loader-container', 'hidden');
+								text.style.opacity = '1';
+								bookContainer.querySelector('#current-section-title').style.opacity = '1';
+								bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+							}, 100);
+						});
 					}, 150);
 				}, 100);
 			}, false);
@@ -3648,12 +3655,13 @@ var book = function book(container) {
 						text.style.fontSize = size + 'px';
 						cover.style.fontSize = '14px';
 						//book
-						book.toBook();
-						//end loader
-						setTimeout(function () {
-							document.body.style.overflow = 'visible';
-							_utils2.default.addClass('#text-loader-container', 'hidden');
-						}, 200);
+						book.toBook().then(function (resolve) {
+							//end loader
+							setTimeout(function () {
+								document.body.style.overflow = 'visible';
+								_utils2.default.addClass('#text-loader-container', 'hidden');
+							}, 100);
+						});
 					}, 300);
 				}, 100);
 			}, false);
@@ -3665,25 +3673,28 @@ var book = function book(container) {
 			fontsLarge[_i16].addEventListener('click', function (event) {
 				var font = event.target.value;
 				_localStore2.default.setFont(font);
-				//text opacity = 0
-				text.style.opacity = '0';
-				bookContainer.querySelector('#current-section-title').style.opacity = '0';
-				bookContainer.querySelector('#currentByTotal').style.opacity = '0';
-				_utils2.default.removeClass('#text-loader-container', 'hidden');
 				setTimeout(function () {
-					//text font
-					text.style.fontFamily = font;
-					bookContainer.querySelector('#current-section-title').style.fontFamily = font;
-					bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
-					//book
-					book.toBook();
-					//end loader
+					//text opacity = 0
+					text.style.opacity = '0';
+					bookContainer.querySelector('#current-section-title').style.opacity = '0';
+					bookContainer.querySelector('#currentByTotal').style.opacity = '0';
+					_utils2.default.removeClass('#text-loader-container', 'hidden');
 					setTimeout(function () {
-						_utils2.default.addClass('#text-loader-container', 'hidden');
-						text.style.opacity = '1';
-						bookContainer.querySelector('#current-section-title').style.opacity = '1';
-						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-					}, 200);
+						//text font
+						text.style.fontFamily = font;
+						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
+						bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
+						//book
+						book.toBook().then(function (resolve) {
+							//end loader
+							setTimeout(function () {
+								_utils2.default.addClass('#text-loader-container', 'hidden');
+								text.style.opacity = '1';
+								bookContainer.querySelector('#current-section-title').style.opacity = '1';
+								bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+							}, 100);
+						});
+					}, 150);
 				}, 100);
 			}, false);
 		}
@@ -3706,14 +3717,15 @@ var book = function book(container) {
 						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
 						bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
 						//book
-						book.toBook();
-						//end loader
-						setTimeout(function () {
-							_utils2.default.addClass('#text-loader-container', 'hidden');
-							text.style.opacity = '1';
-							bookContainer.querySelector('#current-section-title').style.opacity = '1';
-							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-						}, 200);
+						book.toBook().then(function (resolve) {
+							//end loader
+							setTimeout(function () {
+								_utils2.default.addClass('#text-loader-container', 'hidden');
+								text.style.opacity = '1';
+								bookContainer.querySelector('#current-section-title').style.opacity = '1';
+								bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+							}, 100);
+						});
 					}, 150);
 				}, 100);
 			}, false);
@@ -3735,12 +3747,13 @@ var book = function book(container) {
 						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
 						bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
 						//book
-						book.toBook();
-						//end loader
-						setTimeout(function () {
-							document.body.style.overflow = 'visible';
-							_utils2.default.addClass('#text-loader-container', 'hidden');
-						}, 200);
+						book.toBook().then(function (resolve) {
+							//end loader
+							setTimeout(function () {
+								document.body.style.overflow = 'visible';
+								_utils2.default.addClass('#text-loader-container', 'hidden');
+							}, 100);
+						});
 					}, 300);
 				}, 100);
 			}, false);
@@ -3771,12 +3784,12 @@ var book = function book(container) {
 		}
 	}
 
-	//GET TEMPLATE ET START LOADER
+	//INSERT TEMPLATE ET START LOADER
 	//insert template in container
-	document.body.style.height = window.innerHeight + 'px';
-	document.body.style.overflow = 'hidden';
 	c.innerHTML = bookReadTemplate({ book: bk });
 	//START LOADER
+	document.body.style.overflow = 'hidden';
+	document.body.style.height = window.innerHeight + 'px';
 	_utils2.default.removeClass('#book-loader-container', 'hidden');
 
 	//BOOK CONTAINER
@@ -4015,106 +4028,118 @@ var WebBook = function () {
 		//links : replace default with goToPage
 		this.setLinks();
 
-		if ('webkitColumnWidth' in document.body.style || 'mozColumnWidth' in document.body.style || 'columnWidth' in document.body.style) {
-			this.toBook();
-		} else {
-			this.toScroll();
-		}
+		//if('webkitColumnWidth' in document.body.style || 'mozColumnWidth' in document.body.style || 'columnWidth' in document.body.style) {
+		//this.toBook();
+		//} else {
+		//this.toScroll();
+		//}
 	}
 
 	_createClass(WebBook, [{
 		key: 'toBook',
 		value: function toBook() {
-			if ('webkitColumnWidth' in document.body.style || 'mozColumnWidth' in document.body.style || 'columnWidth' in document.body.style) {
+			var _this2 = this;
 
-				var cs = this._textContainer.style;
-				var ts = this._text.style;
-				if (ts.webkitColumns !== 'auto auto' || ts.mozColumns !== 'auto auto' || ts.columns !== 'auto auto') {
-					ts.webkitColumns = 'auto auto';
-					ts.mozColumns = 'auto auto';
-					ts.columns = 'auto auto';
-				}
+			var promise = new Promise(function (resolve, reject) {
+				if ('webkitColumnWidth' in document.body.style || 'mozColumnWidth' in document.body.style || 'columnWidth' in document.body.style) {
 
-				this.col = true;
-
-				//text-container
-				cs.boxSizing = "border-box";
-				cs.webkitBoxSizing = "border-box";
-				cs.overflow = "hidden";
-				cs.position = "relative";
-				cs.padding = "0px";
-				cs.height = this.getHeight() + "px";
-				cs.maxWidth = this.getMaxWidth() + "px"; //maxWidth : responsive
-				this._containerWidth = this._textContainer.clientWidth; //responsive
-
-				//sections
-				//hack firefox (pour offsetLeft) : minHeight = 10%
-				for (var i = 0; i < this._sections.length; i++) {
-					if (this._sections[i].style.minHeight !== "10%") {
-						this._sections[i].style.minHeight = "10%";
+					var cs = _this2._textContainer.style;
+					var ts = _this2._text.style;
+					if (ts.webkitColumns !== 'auto auto' || ts.mozColumns !== 'auto auto' || ts.columns !== 'auto auto') {
+						ts.webkitColumns = 'auto auto';
+						ts.mozColumns = 'auto auto';
+						ts.columns = 'auto auto';
 					}
-				}
-				//manual breaks
-				for (var _i = 0; _i < this._breaks.length; _i++) {
-					if (this._breaks[_i].style.marginBottom !== "300%") {
-						this._breaks[_i].style.marginBottom = "300%";
-						this._breaks[_i].style.width = "0px";
+
+					_this2.col = true;
+
+					//text-container
+					cs.boxSizing = "border-box";
+					cs.webkitBoxSizing = "border-box";
+					cs.overflow = "hidden";
+					cs.position = "relative";
+					cs.padding = "0px";
+					cs.height = _this2.getHeight() + "px";
+					cs.maxWidth = _this2.getMaxWidth() + "px"; //maxWidth : responsive
+					_this2._containerWidth = _this2._textContainer.clientWidth; //responsive
+
+					//sections
+					//hack firefox (pour offsetLeft) : minHeight = 10%
+					for (var i = 0; i < _this2._sections.length; i++) {
+						if (_this2._sections[i].style.minHeight !== "10%") {
+							_this2._sections[i].style.minHeight = "10%";
+						}
 					}
-				}
-				//last element
-				if (this._lastElement.style.marginBottom !== "300%") {
-					this._lastElement.style.marginBottom = "300%";
-				}
-
-				//text
-				ts.boxSizing = "border-box";
-				ts.webkitBoxSizing = "border-box";
-				ts.position = "absolute";
-				ts.left = 0;
-				ts.top = 0;
-				ts.height = "100%";
-				ts.width = "100%";
-				ts.paddingRight = this.getMarginX() + "px";
-				ts.paddingLeft = this.getMarginX() + "px";
-				ts.paddingTop = this.getMarginY() + "px";
-				ts.paddingBottom = this.getMarginY() + "px";
-				ts.mozColumnFill = "auto"; //important !!!
-				ts.columnFill = "auto"; //important !!!		
-				ts.webkitColumnWidth = this._containerWidth + "px";
-				ts.mozColumnWidth = this._containerWidth + "px";
-				ts.columnWidth = this._containerWidth + "px";
-				ts.mozColumnGap = this.getMarginX() * 2 + "px";
-				ts.webkitColumnGap = this.getMarginX() * 2 + "px";
-				ts.columnGap = this.getMarginX() * 2 + "px";
-
-				//getPageStart
-				this.getPageStart();
-				//info containers wb-total-pages
-				for (var _i2 = 0; _i2 < this._totalPages.length; _i2++) {
-					if (this._totalPages[_i2].innerHTML !== this.getTotalPages()) {
-						this._totalPages[_i2].innerHTML = this.getTotalPages();
+					//manual breaks
+					for (var _i = 0; _i < _this2._breaks.length; _i++) {
+						if (_this2._breaks[_i].style.marginBottom !== "300%") {
+							_this2._breaks[_i].style.marginBottom = "300%";
+							_this2._breaks[_i].style.width = "0px";
+						}
 					}
-				}
-				//containers data-wb-element-page-number
-				for (var _i3 = 0; _i3 < this._elPageNumbers.length; _i3++) {
-					var id = this._elPageNumbers[_i3].getAttribute('data-wb-element-page-number');
-					var pageNumber = this.elementPageNumber(id);
-					if (pageNumber < 1) {
-						this._elPageNumbers[_i3].innerHTML = "";
-					} else if (this._elPageNumbers[_i3].innerHTML != pageNumber) {
-						this._elPageNumbers[_i3].innerHTML = pageNumber;
+					//last element
+					if (_this2._lastElement.style.marginBottom !== "300%") {
+						_this2._lastElement.style.marginBottom = "300%";
 					}
-				}
 
-				//Go to bookmark
-				if (this._bookmark) {
-					this.goToBookmark(this._bookmark);
-					this._position = Math.round((0, _core2.default)(this._text).position().left);
-				}
+					//text
+					ts.boxSizing = "border-box";
+					ts.webkitBoxSizing = "border-box";
+					ts.position = "absolute";
+					ts.left = 0;
+					ts.top = 0;
+					ts.height = "100%";
+					ts.width = "100%";
+					ts.paddingRight = _this2.getMarginX() + "px";
+					ts.paddingLeft = _this2.getMarginX() + "px";
+					ts.paddingTop = _this2.getMarginY() + "px";
+					ts.paddingBottom = _this2.getMarginY() + "px";
+					ts.mozColumnFill = "auto"; //important !!!
+					ts.columnFill = "auto"; //important !!!		
+					ts.webkitColumnWidth = _this2._containerWidth + "px";
+					ts.mozColumnWidth = _this2._containerWidth + "px";
+					ts.columnWidth = _this2._containerWidth + "px";
+					ts.mozColumnGap = _this2.getMarginX() * 2 + "px";
+					ts.webkitColumnGap = _this2.getMarginX() * 2 + "px";
+					ts.columnGap = _this2.getMarginX() * 2 + "px";
 
-				//Refresh info containers
-				this.refresh();
-			}
+					//getPageStart
+					_this2.getPageStart();
+					//info containers wb-total-pages
+					for (var _i2 = 0; _i2 < _this2._totalPages.length; _i2++) {
+						if (_this2._totalPages[_i2].innerHTML !== _this2.getTotalPages()) {
+							_this2._totalPages[_i2].innerHTML = _this2.getTotalPages();
+						}
+					}
+
+					//Go to bookmark
+					setTimeout(function () {
+						//containers data-wb-element-page-number
+						for (var _i3 = 0; _i3 < _this2._elPageNumbers.length; _i3++) {
+							var id = _this2._elPageNumbers[_i3].getAttribute('data-wb-element-page-number');
+							var pageNumber = _this2.elementPageNumber(id);
+							if (pageNumber < 1) {
+								_this2._elPageNumbers[_i3].innerHTML = "";
+							} else if (_this2._elPageNumbers[_i3].innerHTML != pageNumber) {
+								_this2._elPageNumbers[_i3].innerHTML = pageNumber;
+							}
+							//if(i===this._elPageNumbers.length-1) {
+							//
+							//}
+						}
+					}, 0);
+
+					if (_this2._bookmark) {
+						_this2.goToBookmark(_this2._bookmark);
+						//this._position = Math.round($(this._text).position().left);
+					}
+					//Refresh info containers
+					_this2.refresh();
+					resolve('done');
+				}
+			});
+
+			return promise;
 		}
 	}, {
 		key: 'toScroll',
@@ -4211,16 +4236,16 @@ var WebBook = function () {
 	}, {
 		key: 'setLinks',
 		value: function setLinks() {
-			var _this2 = this;
+			var _this3 = this;
 
 			var links = this._bookContainer.querySelectorAll('.wb-link');
 			for (var i = 0; i < links.length; i++) {
 				links[i].addEventListener('click', function (e) {
-					if (_this2.col === true) {
+					if (_this3.col === true) {
 						e.preventDefault();
 						var href = e.currentTarget.getAttribute('href');
 						var id = href.replace(/^#/, "");
-						_this2.goToPage(_this2.elementPageNumber(id));
+						_this3.goToPage(_this3.elementPageNumber(id));
 					}
 				}, false);
 			}
@@ -4477,15 +4502,19 @@ var WebBook = function () {
 	}, {
 		key: 'goToBookmark',
 		value: function goToBookmark(bookmark) {
-			var els = this._text.querySelectorAll('#' + bookmark.sectionId + ' *');
-			var el = els[bookmark.el];
-			//position : offsetLeft of element relative to text
-			var position = Math.round((0, _core2.default)(el).position().left) - this.getMarginX();
-			position = position % this._containerWidth !== 0 ? position - position % this._containerWidth : position; //always at a page beginning
-			//text position = -position
-			this._text.style.left = -position + "px";
-			this._position = Math.round((0, _core2.default)(this._text).position().left);
-			this.refresh();
+			var _this4 = this;
+
+			setTimeout(function () {
+				var els = _this4._text.querySelectorAll('#' + bookmark.sectionId + ' *');
+				var el = els[bookmark.el];
+				//position : offsetLeft of element relative to text
+				var position = Math.round((0, _core2.default)(el).position().left) - _this4.getMarginX();
+				position = position % _this4._containerWidth !== 0 ? position - position % _this4._containerWidth : position; //always at a page beginning
+				//text position = -position
+				_this4._text.style.left = -position + "px";
+				_this4._position = Math.round((0, _core2.default)(_this4._text).position().left);
+				_this4.refresh();
+			}, 0);
 		}
 	}, {
 		key: 'getBookmark',
@@ -11164,7 +11193,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="book">\n	<!--\n		STARTBOOK-CONTAINER\n	-->\n	<div id="bookContainer">\n		<!--\n			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366\n		-->\n		<%- include src/components/book-read/tabs-large-device.ejs -%>\n		<!--\n			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		<div id="swing-container">\n			<!--\n				START TEXT-CONTAINER\n			-->\n			<div data-wb-text-container class="w3-card-2">\n				<!--\n					BOOKMARK\n				-->\n				<div id="bookmark">\n					<p>signet</p>\n				</div>\n				<!--\n					TOC (inside textContainer) : width < 1366\n				-->\n				<div id="toc">\n					<div data-wb-toc class="w3-container">\n						<button id="close-toc" type="button" class="w3-button w3-text-gray w3-hover-none w3-display-topright">&times;</button>\n						<div id="toc-title" class="toc-content w3-padding-16 w3-border-bottom">\n							<p class="w3-center"><%- book.authorDisplay %></p>\n							<p class="w3-center text-uppercase"><%- book.title %></p>\n						</div>\n					</div>\n				</div>\n				<!--\n					OPTIONS-MODAL (inside textContainer) : width >= 1366\n				-->\n				<%- include src/components/book-read/options-modal.ejs -%>\n				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span id="current-section-title" class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text style="background-color: <%- book.styles.color %>; background-image: url(<%- book.styles.image %>)"></div>\n				<!--\n					BOTTOM (inside textContainer) : pagination\n				-->\n				<div id="bottom">\n					<span id="currentByTotal" class="wb-currentByTotal-pages"></span>\n				</div>\n				<div id="text-loader-container" class="hidden">\n					<div id="text-loader"></div>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM-SMALL (outside textContainer) : width < 768\n		-->\n		<div id="book-nav-bar-bottom-small" class="w3-bar">\n			<a id="home" href="/#/books/" class="home w3-btn w3-text-gray"><i class="material-icons">arrow_back</i></a>\n			<button id="add-bookmark" class="add-bookmark w3-btn w3-ripple w3-text-gray"><i class="material-icons">bookmark_border</i></button>\n			<button id="open-options" class="w3-btn w3-text-gray"><i class="material-icons">settings</i></button>\n			<button id="open-toc" class="open-toc w3-btn w3-text-gray"><i class="material-icons">toc</i></button>\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768 && < 1366\n		-->\n		<div id="book-nav-bar-bottom">\n			<div class="w3-bar w3-large">\n				<div id="swing-bar">\n					<div id="book-nav-bar-bottom-controls">\n						<button id="home-large" class="home w3-btn w3-hover-none w3-text-gray"><i class="material-icons">arrow_back</i></button>\n						<button id="add-bookmark-large" class="add-bookmark w3-btn w3-ripple w3-hover-none w3-text-gray"><i class="material-icons">bookmark_border</i></button>\n						<div id="center">\n							<span id="backward-large" class="w3-button w3-hover-none">&lt;</span>\n							<span id="forward-large" class="w3-button w3-hover-none">&gt;</span>\n						</div>\n						<button id="open-options-medium" class="w3-btn w3-hover-none w3-text-gray"><i class="material-icons">settings</i></button>\n						<button id="open-toc-large" class="open-toc w3-btn w3-hover-none w3-text-gray"><i class="material-icons">toc</i></button>\n					</div>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n	<div id="book-loader-container" class="hidden">\n		<div id="book-loader" style="border-top: 8px solid <%= book.styles.color %>; border-bottom: 8px solid <%= book.styles.color %>"></div>\n	</div>\n</div>\n',
+        input: '<div id="book">\n	<!--\n		STARTBOOK-CONTAINER\n	-->\n	<div id="bookContainer">\n		<!--\n			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366\n		-->\n		<%- include src/components/book-read/tabs-large-device.ejs -%>\n		<!--\n			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		<div id="swing-container">\n			<!--\n				START TEXT-CONTAINER\n			-->\n			<div data-wb-text-container>\n				<!--\n					BOOKMARK\n				-->\n				<div id="bookmark">\n					<p>signet</p>\n				</div>\n				<!--\n					TOC (inside textContainer) : width < 1366\n				-->\n				<div id="toc">\n					<div data-wb-toc class="w3-container">\n						<button id="close-toc" type="button" class="w3-button w3-text-gray w3-hover-none w3-display-topright">&times;</button>\n						<div id="toc-title" class="toc-content w3-padding-16 w3-border-bottom">\n							<p class="w3-center"><%- book.authorDisplay %></p>\n							<p class="w3-center text-uppercase"><%- book.title %></p>\n						</div>\n					</div>\n				</div>\n				<!--\n					OPTIONS-MODAL (inside textContainer) : width >= 1366\n				-->\n				<%- include src/components/book-read/options-modal.ejs -%>\n				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span id="current-section-title" class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text style="background-color: <%- book.styles.color %>; background-image: url(<%- book.styles.image %>)"></div>\n				<!--\n					BOTTOM (inside textContainer) : pagination\n				-->\n				<div id="bottom">\n					<span id="currentByTotal" class="wb-currentByTotal-pages"></span>\n				</div>\n				<div id="text-loader-container" class="hidden">\n					<div id="text-loader"></div>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM-SMALL (outside textContainer) : width < 768\n		-->\n		<div id="book-nav-bar-bottom-small" class="w3-bar">\n			<a id="home" href="/#/books/" class="home w3-btn w3-text-gray"><i class="material-icons">arrow_back</i></a>\n			<button id="add-bookmark" class="add-bookmark w3-btn w3-ripple w3-text-gray"><i class="material-icons">bookmark_border</i></button>\n			<button id="open-options" class="w3-btn w3-text-gray"><i class="material-icons">settings</i></button>\n			<button id="open-toc" class="open-toc w3-btn w3-text-gray"><i class="material-icons">toc</i></button>\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768 && < 1366\n		-->\n		<div id="book-nav-bar-bottom">\n			<div class="w3-bar w3-large">\n				<div id="swing-bar">\n					<div id="book-nav-bar-bottom-controls">\n						<button id="home-large" class="home w3-btn w3-hover-none w3-text-gray"><i class="material-icons">arrow_back</i></button>\n						<button id="add-bookmark-large" class="add-bookmark w3-btn w3-ripple w3-hover-none w3-text-gray"><i class="material-icons">bookmark_border</i></button>\n						<div id="center">\n							<span id="backward-large" class="w3-button w3-hover-none">&lt;</span>\n							<span id="forward-large" class="w3-button w3-hover-none">&gt;</span>\n						</div>\n						<button id="open-options-medium" class="w3-btn w3-hover-none w3-text-gray"><i class="material-icons">settings</i></button>\n						<button id="open-toc-large" class="open-toc w3-btn w3-hover-none w3-text-gray"><i class="material-icons">toc</i></button>\n					</div>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n	<div id="book-loader-container" class="hidden">\n		<div id="book-loader" style="border-top: 8px solid <%= book.styles.color %>; border-bottom: 8px solid <%= book.styles.color %>"></div>\n	</div>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -11183,7 +11212,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
             (function() {
                 buf.push('<div id="book">\n	<!--\n		STARTBOOK-CONTAINER\n	-->\n	<div id="bookContainer">\n		<!--\n			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366\n		-->\n		' + function() {
                     var buf = [];
-                    buf.push('\n<div id="toc-large-device" class="w3-card-2" >\n	<button id="close-toc-large-device" type="button" class="w3-btn w3-card-2 w3-white" >&times;</button>\n	<div id="toc-large-device-container" class="toc-content w3-container">\n		<div class="w3-padding-16 w3-container w3-border-bottom">\n			<p class="w3-center">', (__stack.lineno = 6, book.authorDisplay), '</p>\n			<p class="w3-center text-uppercase">', (__stack.lineno = 7, book.title), '</p>\n		</div>\n		<div data-wb-toc ></div>\n	</div>\n</div>\n\n<div id="tab-options" class="w3-card-2">\n	<button id="close-tab-options" type="button" class="w3-btn w3-card-2 w3-white" >&times;</button>\n	<div id="tab-options-container" class="w3-container">\n		<div class="w3-padding-16 w3-border-bottom">\n			<p class="w3-center options-title">Options</p>\n		</div>\n		<div id="font-family-container-large" class="w3-padding-16 w3-border-bottom">\n			<p><b>Police de&nbsp;caractère</b></p>\n			<div class="w3-row">\n				<div class="w3-col s6">\n					<p><label><input type="radio" name="fontFamily" value="', (__stack.lineno = 23, book.styles.font), '">&ensp;', (__stack.lineno = 23, book.styles.font), "</label></p>\n					");
+                    buf.push('\n<div id="toc-large-device" class="w3-card-4" >\n	<button id="close-toc-large-device" type="button" class="w3-btn w3-card-4 w3-white" >&times;</button>\n	<div id="toc-large-device-container" class="toc-content w3-container">\n		<div class="w3-padding-16 w3-container w3-border-bottom">\n			<p class="w3-center">', (__stack.lineno = 6, book.authorDisplay), '</p>\n			<p class="w3-center text-uppercase">', (__stack.lineno = 7, book.title), '</p>\n		</div>\n		<div data-wb-toc ></div>\n	</div>\n</div>\n\n<div id="tab-options" class="w3-card-4">\n	<button id="close-tab-options" type="button" class="w3-btn w3-card-4 w3-white" >&times;</button>\n	<div id="tab-options-container" class="w3-container">\n		<div class="w3-padding-16 w3-border-bottom">\n			<p class="w3-center options-title">Options</p>\n		</div>\n		<div id="font-family-container-large" class="w3-padding-16 w3-border-bottom">\n			<p><b>Police de&nbsp;caractère</b></p>\n			<div class="w3-row">\n				<div class="w3-col s6">\n					<p><label><input type="radio" name="fontFamily" value="', (__stack.lineno = 23, book.styles.font), '">&ensp;', (__stack.lineno = 23, book.styles.font), "</label></p>\n					");
                     __stack.lineno = 24;
                     if (book.styles.font !== "Noto Serif") {
                         buf.push('\n						<p><label><input type="radio" name="fontFamily" value="Noto Serif">&ensp;Noto Serif</label></p>\n					');
@@ -11195,7 +11224,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                         buf.push('\n						<p><label><input type="radio" name="fontFamily" value="VollKorn">&ensp;Vollkorn</label></p>\n					');
                         __stack.lineno = 31;
                     }
-                    buf.push('\n				</div>\n			</div>\n		</div>\n		<div id="font-size-container-large" class="w3-padding-16">\n			<p><b>Taille de la police</b></p>\n			<div class="w3-row">\n				<div class="w3-col s6">\n					<p><label><input type="radio" name="fontSize" value="14">&ensp;14 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="16">&ensp;16 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="18">&ensp;18 px</label></p>\n				</div>\n				<div class="w3-col s6">\n					<p><label><input type="radio" name="fontSize" value="15">&ensp;15 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="17">&ensp;17 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="19">&ensp;19 px</label></p>\n				</div>\n			</div>\n		</div>\n	</div>\n</div>\n	\n<div id="tab-infos" class="w3-card-2">\n	<button id="close-tab-infos" type="button" class="w3-btn w3-card-2 w3-white" >&times;</button>\n	<div id="tab-infos-container">\n		  <div class="w3-container w3-padding-16">\n			  <p><b>Titre : </b>', (__stack.lineno = 57, book.title), "</p>\n			  ");
+                    buf.push('\n				</div>\n			</div>\n		</div>\n		<div id="font-size-container-large" class="w3-padding-16">\n			<p><b>Taille de la police</b></p>\n			<div class="w3-row">\n				<div class="w3-col s6">\n					<p><label><input type="radio" name="fontSize" value="14">&ensp;14 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="16">&ensp;16 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="18">&ensp;18 px</label></p>\n				</div>\n				<div class="w3-col s6">\n					<p><label><input type="radio" name="fontSize" value="15">&ensp;15 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="17">&ensp;17 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="19">&ensp;19 px</label></p>\n				</div>\n			</div>\n		</div>\n	</div>\n</div>\n	\n<div id="tab-infos" class="w3-card-4">\n	<button id="close-tab-infos" type="button" class="w3-btn w3-card-4 w3-white" >&times;</button>\n	<div id="tab-infos-container">\n		  <div class="w3-container w3-padding-16">\n			  <p><b>Titre : </b>', (__stack.lineno = 57, book.title), "</p>\n			  ");
                     __stack.lineno = 58;
                     if (book.subtitle1) {
                         buf.push("\n				<p><b>Sous-titre : </b>", (__stack.lineno = 59, book.subtitle1), "</p>\n			  ");
@@ -11243,9 +11272,9 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                         buf.push("\n			  <div>", (__stack.lineno = 112, book.description), "</div>\n			  ");
                         __stack.lineno = 113;
                     }
-                    buf.push('\n		  </div>\n	</div>\n</div>\n\n<div id="book-commands">\n	<button id="toggle-toc-large-device" type="button" class="w3-btn w3-card-2 w3-white" >Table</button>\n	<button id="toggle-tab-options" type="button" class="w3-btn w3-card-2 w3-white" >Options</button>\n	<button id="toggle-tab-infos" type="button" class="w3-btn w3-card-2 w3-white" >Infos</button>\n	<button id="tab-add-bookmark" type="button" class="add-bookmark w3-btn w3-ripple w3-card-2 w3-white" >Signet</button>\n	<button id="tab-home-link" type="button" class="home w3-btn w3-card-2 w3-white" >Retour</button>\n</div>\n	\n\n');
+                    buf.push('\n		  </div>\n	</div>\n</div>\n\n<div id="book-commands">\n	<button id="toggle-toc-large-device" type="button" class="w3-btn w3-card-4 w3-white" >Table</button>\n	<button id="toggle-tab-options" type="button" class="w3-btn w3-card-4 w3-white" >Options</button>\n	<button id="toggle-tab-infos" type="button" class="w3-btn w3-card-4 w3-white" >Infos</button>\n	<button id="tab-add-bookmark" type="button" class="add-bookmark w3-btn w3-ripple w3-card-4 w3-white" >Signet</button>\n	<button id="tab-home-link" type="button" class="home w3-btn w3-card-4 w3-white" >Retour</button>\n</div>\n	\n\n');
                     return buf.join("");
-                }() + '		<!--\n			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		<div id="swing-container">\n			<!--\n				START TEXT-CONTAINER\n			-->\n			<div data-wb-text-container class="w3-card-2">\n				<!--\n					BOOKMARK\n				-->\n				<div id="bookmark">\n					<p>signet</p>\n				</div>\n				<!--\n					TOC (inside textContainer) : width < 1366\n				-->\n				<div id="toc">\n					<div data-wb-toc class="w3-container">\n						<button id="close-toc" type="button" class="w3-button w3-text-gray w3-hover-none w3-display-topright">&times;</button>\n						<div id="toc-title" class="toc-content w3-padding-16 w3-border-bottom">\n							<p class="w3-center">', (__stack.lineno = 30, book.authorDisplay), '</p>\n							<p class="w3-center text-uppercase">', (__stack.lineno = 31, book.title), "</p>\n						</div>\n					</div>\n				</div>\n				<!--\n					OPTIONS-MODAL (inside textContainer) : width >= 1366\n				-->\n				" + function() {
+                }() + '		<!--\n			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		<div id="swing-container">\n			<!--\n				START TEXT-CONTAINER\n			-->\n			<div data-wb-text-container>\n				<!--\n					BOOKMARK\n				-->\n				<div id="bookmark">\n					<p>signet</p>\n				</div>\n				<!--\n					TOC (inside textContainer) : width < 1366\n				-->\n				<div id="toc">\n					<div data-wb-toc class="w3-container">\n						<button id="close-toc" type="button" class="w3-button w3-text-gray w3-hover-none w3-display-topright">&times;</button>\n						<div id="toc-title" class="toc-content w3-padding-16 w3-border-bottom">\n							<p class="w3-center">', (__stack.lineno = 30, book.authorDisplay), '</p>\n							<p class="w3-center text-uppercase">', (__stack.lineno = 31, book.title), "</p>\n						</div>\n					</div>\n				</div>\n				<!--\n					OPTIONS-MODAL (inside textContainer) : width >= 1366\n				-->\n				" + function() {
                     var buf = [];
                     buf.push('<div id="options">\n	<div class="w3-container">\n		<button id="close-options" type="button" class="w3-button w3-text-gray w3-hover-none w3-display-topright">&times;</button>\n		<div class="w3-padding-16 w3-border-bottom options-title">\n			<p class="w3-center">Options</p>\n		</div>\n		<div id="font-family-container" class="w3-padding-16 w3-border-bottom">\n			<p><b>Police de&nbsp;caractère</b></p>\n			<div class="w3-row">\n				<div class="w3-col s6">\n					<p><label><input type="radio" name="fontFamily" value="', (__stack.lineno = 11, book.styles.font), '">&ensp;', (__stack.lineno = 11, book.styles.font), "</label></p>\n					");
                     __stack.lineno = 12;

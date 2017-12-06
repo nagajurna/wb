@@ -11,7 +11,7 @@ const home = function(container) {
 	//Get books from dataStore
 	let bs = dataStore.getData('books');
 	//get last 12 visible books reverse order
-	let lBs = bs.filter(function(b) { return b.visible; }).reverse().slice(0,12);
+	let lBs = bs.filter(function(b) { return b.visible; }).reverse().slice(0,13);
 	
 	//go to book/read
 	let readBk = event => {

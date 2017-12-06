@@ -14,7 +14,7 @@
 
 [data-wb-text] #cover-title {
 	margin-top: 1.5em;
-	padding-top: 5%;
+	padding-top: 0%;
 	font-size: 1.8em;
 	line-height: 1.8em;
 	word-spacing: 0.25em;
@@ -24,7 +24,7 @@
 
 [data-wb-text] #cover-logo {
 	position: absolute;
-	bottom: 2.5em;
+	bottom: 0.5em;
 	left: 0px;
 	width: 100%;
 	text-align: center;
@@ -44,7 +44,7 @@
 @media only screen and (min-width: 568px) {
 
 	[data-wb-text] #cover-title {
-		padding-top: 8%;
+		padding-top: 6%;
 		font-size: 1.9em;
 		line-height: 1.9em;
 		word-spacing: 0.35em;
@@ -52,7 +52,7 @@
 	}
 	
 	[data-wb-text] #cover-logo {
-		bottom: 3em;
+		bottom: 1.5em;
 	}
 }
 
