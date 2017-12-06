@@ -11,7 +11,7 @@ const home = function(container) {
 	//Get books from dataStore
 	let bs = dataStore.getData('books');
 	//get last 12 visible books reverse order
-	let lBs = bs.filter(function(b) { return b.visible; }).reverse().slice(0,6);
+	let lBs = bs.filter(function(b) { return b.visible; }).reverse().slice(0,5);
 	
 	//go to book/read
 	let readBk = event => {
@@ -35,59 +35,66 @@ const home = function(container) {
 	c.innerHTML = homeTemplate({ books:lBs });
 	let root = document.querySelector('#home-container');
 	let list = root.querySelector('#booksList');
-	list.style.left = '0px';
 	let slideEls = root.querySelectorAll('.slide');
 	let slides = [].slice.call(slideEls);
-	let left = 0;
-	let step = 284;
-	let pos;
-	let test = 1;
+	
 	
 	for(let i=0; i<slides.length; i++) {
-		if(i==0 || i==1) {
-			utils.addClass(slides[i], 'left');
-		} else if(i===3 || i===4) {
-			utils.addClass(slides[i], 'right');
+		if(i==-0) {
+			utils.addClass(slides[i], 'prev2');
+		} else if(i===1) {
+			utils.addClass(slides[i], 'prev1');
+		} else if(i===2) {
+			utils.addClass(slides[i], 'middle');
+		} else if(i==3) {
+			utils.addClass(slides[i], 'next1');
+		} else if(i===4) {
+			utils.addClass(slides[i], 'next2');
 		}
-		slides[i].style.left = left + 'px';
-		left+=step;
 	}
 	
 	let moveSlides = event => {
-		if(event.currentTarget.className.match(/right/)) {
-			slides.unshift(slides.pop());
-		} else if(event.currentTarget.className.match(/left/)) {
-			slides.push(slides.shift());
+		if(event.currentTarget.id==='move-prev') {
+			let l = slides.pop();
+			utils.addClass(l,'prev3');
+			slides.unshift(l);
+		} else if(event.currentTarget.id==='move-next') {
+			let f = slides.shift();
+			utils.addClass(f,'next3');
+			slides.push(f);
 		}
 		
 		for(let i=0; i<slides.length; i++) {
-			utils.removeClass(slides[i], 'left');
-			utils.removeClass(slides[i], 'right');
-			if(i<=2) {
-				utils.addClass(slides[i], 'left');
-			} else if(i>=4) {
-				utils.addClass(slides[i], 'right');
+			utils.removeClass(slides[i], 'prev2');
+			utils.removeClass(slides[i], 'prev1');
+			utils.removeClass(slides[i], 'middle');
+			utils.removeClass(slides[i], 'next1');
+			utils.removeClass(slides[i], 'next2');
+			if(i===0) {
+				setTimeout( () => {
+					utils.removeClass(slides[i], 'prev3');
+					utils.addClass(slides[i], 'prev2');
+				}, 100)
+			
+			} else if(i===1) {
+				utils.addClass(slides[i], 'prev1');
+			} else if(i===2) {
+				utils.addClass(slides[i], 'middle');
+			} else if(i==3) {
+				utils.addClass(slides[i], 'next1');
+			} else if(i===4) {
+				setTimeout( () => {
+					utils.removeClass(slides[i], 'next3');
+					utils.addClass(slides[i], 'next2');
+				}, 100)
 			}
-			pos = (i*step)-(step*test);
-			slides[i].style.left = pos + 'px';
-			console.log(pos);
 		}
-		
-		
-		if(event.currentTarget.className.match(/right/)) {
-			test-=test;
-			let listPos = parseInt(list.style.left.replace('px',''));
-			listPos-=step;
-			list.style.left = listPos + 'px';
-		} else if(event.currentTarget.className.match(/left/)) {
-			test+=test;
-			let listPos = parseInt(list.style.left.replace('px',''));
-			listPos+=step;
-			list.style.left = listPos + 'px';
-		}
-		
-
 	};
+	
+	root.querySelector('#move-prev').addEventListener('click', moveSlides, false);
+	root.querySelector('#move-next').addEventListener('click', moveSlides, false);
+	
+		
 	//scroll after read
 	if(dataStore.getData('location').prevLocation!==undefined && dataStore.getData('location').prevLocation.match(/\/read$/)) {
 		let id= dataStore.getData('book');
@@ -100,7 +107,7 @@ const home = function(container) {
 	let bks = root.querySelectorAll('.book');
 	for(let i=0; i<slides.length; i++) {
 		//bks[i].addEventListener('click', readBk, false);
-		slides[i].addEventListener('click', moveSlides, false);
+		//slides[i].addEventListener('click', moveSlides, false);
 	}
 	//modal (infos)
 	//open

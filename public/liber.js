@@ -2269,7 +2269,7 @@ var home = function home(container) {
 	//get last 12 visible books reverse order
 	var lBs = bs.filter(function (b) {
 		return b.visible;
-	}).reverse().slice(0, 7);
+	}).reverse().slice(0, 5);
 
 	//go to book/read
 	var readBk = function readBk(event) {
@@ -2292,56 +2292,67 @@ var home = function home(container) {
 	c.innerHTML = homeTemplate({ books: lBs });
 	var root = document.querySelector('#home-container');
 	var list = root.querySelector('#booksList');
-	list.style.left = '0px';
 	var slideEls = root.querySelectorAll('.slide');
 	var slides = [].slice.call(slideEls);
-	var left = 0;
-	var step = 284;
-	var pos = void 0;
-	var test = 1;
 
 	for (var i = 0; i < slides.length; i++) {
-		if (i == 0 || i == 1) {
-			_utils2.default.addClass(slides[i], 'left');
-		} else if (i === 3 || i === 4) {
-			_utils2.default.addClass(slides[i], 'right');
+		if (i == -0) {
+			_utils2.default.addClass(slides[i], 'prev2');
+		} else if (i === 1) {
+			_utils2.default.addClass(slides[i], 'prev1');
+		} else if (i === 2) {
+			_utils2.default.addClass(slides[i], 'middle');
+		} else if (i == 3) {
+			_utils2.default.addClass(slides[i], 'next1');
+		} else if (i === 4) {
+			_utils2.default.addClass(slides[i], 'next2');
 		}
-		slides[i].style.left = left + 'px';
-		left += step;
 	}
 
 	var moveSlides = function moveSlides(event) {
-		if (event.currentTarget.className.match(/right/)) {
-			slides.unshift(slides.pop());
-		} else if (event.currentTarget.className.match(/left/)) {
-			slides.push(slides.shift());
+		if (event.currentTarget.id === 'move-prev') {
+			var l = slides.pop();
+			_utils2.default.addClass(l, 'prev3');
+			slides.unshift(l);
+		} else if (event.currentTarget.id === 'move-next') {
+			var f = slides.shift();
+			_utils2.default.addClass(f, 'next3');
+			slides.push(f);
 		}
+
+		var _loop = function _loop(_i) {
+			_utils2.default.removeClass(slides[_i], 'prev2');
+			_utils2.default.removeClass(slides[_i], 'prev1');
+			_utils2.default.removeClass(slides[_i], 'middle');
+			_utils2.default.removeClass(slides[_i], 'next1');
+			_utils2.default.removeClass(slides[_i], 'next2');
+			if (_i === 0) {
+				setTimeout(function () {
+					_utils2.default.removeClass(slides[_i], 'prev3');
+					_utils2.default.addClass(slides[_i], 'prev2');
+				}, 100);
+			} else if (_i === 1) {
+				_utils2.default.addClass(slides[_i], 'prev1');
+			} else if (_i === 2) {
+				_utils2.default.addClass(slides[_i], 'middle');
+			} else if (_i == 3) {
+				_utils2.default.addClass(slides[_i], 'next1');
+			} else if (_i === 4) {
+				setTimeout(function () {
+					_utils2.default.removeClass(slides[_i], 'next3');
+					_utils2.default.addClass(slides[_i], 'next2');
+				}, 100);
+			}
+		};
 
 		for (var _i = 0; _i < slides.length; _i++) {
-			_utils2.default.removeClass(slides[_i], 'left');
-			_utils2.default.removeClass(slides[_i], 'right');
-			if (_i <= 2) {
-				_utils2.default.addClass(slides[_i], 'left');
-			} else if (_i >= 4) {
-				_utils2.default.addClass(slides[_i], 'right');
-			}
-			pos = _i * step - step * test;
-			slides[_i].style.left = pos + 'px';
-			console.log(pos);
-		}
-
-		if (event.currentTarget.className.match(/right/)) {
-			test -= test;
-			var listPos = parseInt(list.style.left.replace('px', ''));
-			listPos -= step;
-			list.style.left = listPos + 'px';
-		} else if (event.currentTarget.className.match(/left/)) {
-			test += test;
-			var _listPos = parseInt(list.style.left.replace('px', ''));
-			_listPos += step;
-			list.style.left = _listPos + 'px';
+			_loop(_i);
 		}
 	};
+
+	root.querySelector('#move-prev').addEventListener('click', moveSlides, false);
+	root.querySelector('#move-next').addEventListener('click', moveSlides, false);
+
 	//scroll after read
 	if (_dataStore2.default.getData('location').prevLocation !== undefined && _dataStore2.default.getData('location').prevLocation.match(/\/read$/)) {
 		var id = _dataStore2.default.getData('book');
@@ -2352,10 +2363,10 @@ var home = function home(container) {
 	}
 	//link to book/read
 	var bks = root.querySelectorAll('.book');
-	for (var _i2 = 0; _i2 < slides.length; _i2++) {
-		//bks[i].addEventListener('click', readBk, false);
-		slides[_i2].addEventListener('click', moveSlides, false);
-	}
+	for (var _i2 = 0; _i2 < slides.length; _i2++) {}
+	//bks[i].addEventListener('click', readBk, false);
+	//slides[i].addEventListener('click', moveSlides, false);
+
 	//modal (infos)
 	//open
 	var openInfosBtns = root.querySelectorAll('.open-infos-btn');
@@ -2411,7 +2422,7 @@ exports = module.exports = __webpack_require__(4)(undefined);
 
 
 // module
-exports.push([module.i, "#home-container #top-page-header {\n\ttext-align: center;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tfont-size: 1em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1px;\n\tline-height: 25px;\n\twidth: 110px;\n\tmargin: auto;\n\tmargin-top: 32px;\n\tdisplay: block;\n}\n\n/*\n@media only screen and (min-width: 768px) {\n\t#home-container #top-page-header {\n\t\tdisplay: none;\n\t}\n}\n*/\n\n/*\n#home-container #booksList {\n\tmax-width: 568px;\n\tmargin: auto;\n}\n*/\n\n/*\n@media only screen and (min-width: 853px) {\n\t#home-container #booksList {\n\t\tmax-width: 852px;\n\t}\n}\n*/\n\n/*\n@media only screen and (min-width: 1137px) {\n\t#home-container #booksList {\n\t\tmax-width: 1136px;\n\t}\n}\n*/\n\n/*\n#home-container .w3-col {\n\twidth: 100%;\n\theight: 408px;\n\t\n}\n*/\n\n/*\n@media only screen and (min-width: 600px) {\n\t#home-container .w3-col {\n\t\twidth: 284px;\n\t}\n}\n*/\n\n/*\n#home-container #paper {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n*/\n\n/*\n#home-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n\tposition: relative;\n}\n*/\n\n/*\n#home-container .book .logo .span2 {\n\tfont-variant: small-caps;\n\tfont-style: normal;\n}\n*/\n\n/*\n#home-container #book-btn {\n\twidth: 238px;\n\theight: 40px;\n\tmargin: auto;\n\tmargin-top: 8px;\n}\n*/\n\n/*\n#home-container #book-btn button {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1.5px;\n\tbackground-color: transparent;\n}\n*/\n\n\n#home-container {\n\toverflow-x: hidden;\n}\n\n#home-container #booksList {\n/*\n\twidth: 1988;\n*/\n\theight: 468px;\n\tposition: relative;\n\tleft: 0px;\n\ttransition: left 0.5s;\n\t-webkit-transition : left 0.5s;\n\t-moz-transition : left 0.5s;\n\t-o-transition: left 0.5s;\n}\n\n#home-container .slide {\n\tposition: absolute;\n\tleft: 0px;\n\ttop: 64px;\n\twidth: 284px;\n}\n\n#home-container #paper {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#home-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n\tposition: relative;\n}\n\n\n\n/*\nMODAL (INFOS)\n*/\n\n#home-container .w3-modal {\n\tfont-family: \"Verdana\", serif;\n}\n\n#home-container .w3-modal #footer {\n\tpadding-top: 16px;\n}\n\n#home-container .w3-modal .close-infos-btn {\n\tfont-size: 1.1em;\n\tfont-family: \"Verdana\", serif;\n\tletter-spacing: 1px;\n}\n\n#home-container .w3-modal p {\n\tmargin: 0px;\n\tmargin-top: 8px;\n}\n\n#home-container .w3-modal ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#home-container .w3-modal .contrib-role {\n\ttext-transform: capitalize;\n}\n\n\n\n", ""]);
+exports.push([module.i, "#home-container #top-page-header {\n\ttext-align: center;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tfont-size: 1em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1px;\n\tline-height: 25px;\n\twidth: 110px;\n\tmargin: auto;\n\tmargin-top: 32px;\n\tdisplay: block;\n}\n\n/*\n@media only screen and (min-width: 768px) {\n\t#home-container #top-page-header {\n\t\tdisplay: none;\n\t}\n}\n*/\n\n/*\n#home-container #booksList {\n\tmax-width: 568px;\n\tmargin: auto;\n}\n*/\n\n/*\n@media only screen and (min-width: 853px) {\n\t#home-container #booksList {\n\t\tmax-width: 852px;\n\t}\n}\n*/\n\n/*\n@media only screen and (min-width: 1137px) {\n\t#home-container #booksList {\n\t\tmax-width: 1136px;\n\t}\n}\n*/\n\n/*\n#home-container .w3-col {\n\twidth: 100%;\n\theight: 408px;\n\t\n}\n*/\n\n/*\n@media only screen and (min-width: 600px) {\n\t#home-container .w3-col {\n\t\twidth: 284px;\n\t}\n}\n*/\n\n/*\n#home-container #paper {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n*/\n\n/*\n#home-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n\tposition: relative;\n}\n*/\n\n/*\n#home-container .book .logo .span2 {\n\tfont-variant: small-caps;\n\tfont-style: normal;\n}\n*/\n\n/*\n#home-container #book-btn {\n\twidth: 238px;\n\theight: 40px;\n\tmargin: auto;\n\tmargin-top: 8px;\n}\n*/\n\n/*\n#home-container #book-btn button {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1.5px;\n\tbackground-color: transparent;\n}\n*/\n\n\n#home-container {\n\twidth: 100%;\n\tpadding-left: 15%;\n\tpadding-right: 15%;\n}\n\n#home-container #booksList {\n/*\n\twidth: 1988;\n*/\n\twidth: 100%;\n\toverflow-x: visible;\n\theight: 468px;\n\tposition: relative;\n\tleft: 0px;\n\ttransition: left 0.5s;\n\t-webkit-transition : left 0.5s;\n\t-moz-transition : left 0.5s;\n\t-o-transition: left 0.5s;\n}\n\n#move-prev, #move-next {\n\tposition: absolute;\n\ttop: 64px;\n\twidth: 50%;\n\theight: 340px;\n}\n\n#move-prev {\n\tleft: 0px;\n\tmargin-left: -142px;\n}\n\n#move-next {\n\tright: 0px;\n\tmargin-right: -142px;\n}\n\n#home-container .slide {\n\tposition: absolute;\n\ttop: 64px;\n\twidth: 284px;\n\tmargin-left: -142px;\n}\n\n#home-container .slide.middle {\n\tleft: 50%;\n\ttransition: left 0.3s;\n\t-webkit-transition : left 0.3s;\n\t-moz-transition : left 0.3s;\n\t-o-transition: left 0.3s;\n}\n\n#home-container .slide.prev1 {\n\tleft: 25%;\n\ttransition: left 0.3s;\n\t-webkit-transition : left 0.3s;\n\t-moz-transition : left 0.3s;\n\t-o-transition: left 0.3s;\n}\n\n#home-container .slide.prev2 {\n\tleft: 0%;\n\topacity: 1.0;\n\ttransition: left 0.2s;\n\t-webkit-transition : left 0.2s;\n\t-moz-transition : left 0.2s;\n\t-o-transition: left 0.2s;\n}\n\n#home-container .slide.prev3 {\n\tleft: -10%;\n\topacity: 0.0;\n}\n\n#home-container .slide.next1 {\n\tleft: 75%;\n\ttransition: left 0.3s;\n\t-webkit-transition : left 0.3s;\n\t-moz-transition : left 0.3s;\n\t-o-transition: left 0.3s;\n}\n\n#home-container .slide.next2 {\n\tleft: 100%;\n\topacity: 1.0;\n\ttransition: left 0.2s;\n\t-webkit-transition : left 0.2s;\n\t-moz-transition : left 0.2s;\n\t-o-transition: left 0.2s;\n}\n\n#home-container .slide.next3 {\n\tleft: 110%;\n\topacity: 0.0;\n}\n\n\n#home-container #paper {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#home-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n\tposition: relative;\n}\n\n\n\n/*\nMODAL (INFOS)\n*/\n\n#home-container .w3-modal {\n\tfont-family: \"Verdana\", serif;\n}\n\n#home-container .w3-modal #footer {\n\tpadding-top: 16px;\n}\n\n#home-container .w3-modal .close-infos-btn {\n\tfont-size: 1.1em;\n\tfont-family: \"Verdana\", serif;\n\tletter-spacing: 1px;\n}\n\n#home-container .w3-modal p {\n\tmargin: 0px;\n\tmargin-top: 8px;\n}\n\n#home-container .w3-modal ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#home-container .w3-modal .contrib-role {\n\ttext-transform: capitalize;\n}\n\n\n\n", ""]);
 
 // exports
 
@@ -2521,7 +2532,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="home-container" class="w3-content" style="max-width: 1420px">\n\n	<div id="top-page-header" class="w3-light-gray">nouveautés</div>\n	<div id="booksList" class="w3-padding-64 w3-animate-opacity">\n		<div>\n			<% for(var i=0; i<books.length; i++) {%>\n				\n				<!-- MODAL (INFOS) -->\n				<%- include src/components/home/infos-modal.ejs -%>\n				\n				<div class="slide" style="text-align: center">\n					<div id="paper" style="background-color: <%- books[i].styles.color %>; background-image: url(<%- books[i].styles.image %>)">\n						<div id="<%= books[i].id %>" class="book" style="<%= books[i].styles.cover %>">\n							<p class="author" style="<%=books[i].styles.author %>"><%- books[i].authorDisplay %></p>\n							<p class="title" style="<%-books[i].styles.title %>">\n								<%- books[i].title %>\n							</p>\n							<% if(books[i].subtitle1) {%>\n							<p class="subtitle1" style="<%= books[i].styles.subtitle1 %>">\n								<%- books[i].subtitle1 %></a>\n							</p>\n							<% } %>\n							<% if(books[i].subtitle2) {%>\n							<p class="subtitle1" style="<%= books[i].styles.subtitle2 %>">\n								<%- books[i].subtitle2 %></a>\n							</p>\n							<% } %>\n							<p class="logo" style="<%=books[i].styles.logo %>">\n								<span class="span1">L&rsquo;Intermédiaire</span><br/>\n								<span class="span2">éditions</span>\n							</p>\n					   </div>\n				   </div>\n				   <div id="book-btn" >\n						<button id="open-infos-<%= books[i].id %>" \n						        class="open-infos-btn align-right w3-btn w3-ripple w3-hover-none" >+ d\'infos</button>\n				   </div>\n				</div>\n				\n			<% } %>\n		</div>\n	</div>\n</div>\n',
+        input: '<div id="home-container">\n\n	<div id="top-page-header" class="w3-light-gray">nouveautés</div>\n	<div id="booksList" class="w3-padding-64 w3-animate-opacity">\n		<div>\n			<% for(var i=0; i<books.length; i++) {%>\n				\n				<!-- MODAL (INFOS) -->\n				<%- include src/components/home/infos-modal.ejs -%>\n				\n				<div class="slide" style="text-align: center">\n					<div id="paper" style="background-color: <%- books[i].styles.color %>; background-image: url(<%- books[i].styles.image %>)">\n						<div id="<%= books[i].id %>" class="book" style="<%= books[i].styles.cover %>">\n							<p class="author" style="<%=books[i].styles.author %>"><%- books[i].authorDisplay %></p>\n							<p class="title" style="<%-books[i].styles.title %>">\n								<%- books[i].title %>\n							</p>\n							<% if(books[i].subtitle1) {%>\n							<p class="subtitle1" style="<%= books[i].styles.subtitle1 %>">\n								<%- books[i].subtitle1 %></a>\n							</p>\n							<% } %>\n							<% if(books[i].subtitle2) {%>\n							<p class="subtitle1" style="<%= books[i].styles.subtitle2 %>">\n								<%- books[i].subtitle2 %></a>\n							</p>\n							<% } %>\n							<p class="logo" style="<%=books[i].styles.logo %>">\n								<span class="span1">L&rsquo;Intermédiaire</span><br/>\n								<span class="span2">éditions</span>\n							</p>\n					   </div>\n				   </div>\n				   <div id="book-btn" >\n						<button id="open-infos-<%= books[i].id %>" \n						        class="open-infos-btn align-right w3-btn w3-ripple w3-hover-none" >+ d\'infos</button>\n				   </div>\n				</div>\n				\n			<% } %>\n		</div>\n		<div id="move-prev"></div>\n		<div id="move-next"></div>\n	</div>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -2538,7 +2549,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
         var buf = [];
         with (locals || {}) {
             (function() {
-                buf.push('<div id="home-container" class="w3-content" style="max-width: 1420px">\n\n	<div id="top-page-header" class="w3-light-gray">nouveautés</div>\n	<div id="booksList" class="w3-padding-64 w3-animate-opacity">\n		<div>\n			');
+                buf.push('<div id="home-container">\n\n	<div id="top-page-header" class="w3-light-gray">nouveautés</div>\n	<div id="booksList" class="w3-padding-64 w3-animate-opacity">\n		<div>\n			');
                 __stack.lineno = 6;
                 for (var i = 0; i < books.length; i++) {
                     buf.push("\n				\n				<!-- MODAL (INFOS) -->\n				" + function() {
@@ -2608,7 +2619,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                     buf.push('\n							<p class="logo" style="', escape((__stack.lineno = 27, books[i].styles.logo)), '">\n								<span class="span1">L&rsquo;Intermédiaire</span><br/>\n								<span class="span2">éditions</span>\n							</p>\n					   </div>\n				   </div>\n				   <div id="book-btn" >\n						<button id="open-infos-', escape((__stack.lineno = 34, books[i].id)), '" \n						        class="open-infos-btn align-right w3-btn w3-ripple w3-hover-none" >+ d\'infos</button>\n				   </div>\n				</div>\n				\n			');
                     __stack.lineno = 39;
                 }
-                buf.push("\n		</div>\n	</div>\n</div>\n");
+                buf.push('\n		</div>\n		<div id="move-prev"></div>\n		<div id="move-next"></div>\n	</div>\n</div>\n');
             })();
         }
         return buf.join("");
