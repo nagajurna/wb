@@ -20,6 +20,11 @@ body {
 	background-color: #fff;
 	font-size: 14px;
 	position: relative;
+	-webkit-transform: translate3d(0, 0, 0);
+}
+
+#container {
+	-webkit-transform: translate3d(0, 0, 0);
 }
 
 #loader-container {

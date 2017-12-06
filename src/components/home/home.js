@@ -11,7 +11,7 @@ const home = function(container) {
 	//Get books from dataStore
 	let bs = dataStore.getData('books');
 	//get last 12 visible books reverse order
-	let lBs = bs.filter(function(b) { return b.visible; }).reverse().slice(0,5);
+	let lBs = bs.filter(function(b) { return b.visible; }).reverse().slice(0,7);
 	
 	//go to book/read
 	let readBk = event => {
@@ -41,51 +41,61 @@ const home = function(container) {
 	
 	for(let i=0; i<slides.length; i++) {
 		if(i==-0) {
-			utils.addClass(slides[i], 'prev2');
+			utils.addClass(slides[i], 'prev3');
 		} else if(i===1) {
-			utils.addClass(slides[i], 'prev1');
+			utils.addClass(slides[i], 'prev2');
 		} else if(i===2) {
-			utils.addClass(slides[i], 'middle');
+			utils.addClass(slides[i], 'prev1');
 		} else if(i==3) {
-			utils.addClass(slides[i], 'next1');
+			utils.addClass(slides[i], 'middle');
 		} else if(i===4) {
+			utils.addClass(slides[i], 'next1');
+		} else if(i===5) {
 			utils.addClass(slides[i], 'next2');
+		} else if(i===6) {
+			utils.addClass(slides[i], 'next3');
 		}
 	}
 	
 	let moveSlides = event => {
 		if(event.currentTarget.id==='move-prev') {
 			let l = slides.pop();
-			utils.addClass(l,'prev3');
+			utils.addClass(l,'prev-hide');
 			slides.unshift(l);
 		} else if(event.currentTarget.id==='move-next') {
 			let f = slides.shift();
-			utils.addClass(f,'next3');
+			utils.addClass(f,'next-hide');
 			slides.push(f);
 		}
 		
 		for(let i=0; i<slides.length; i++) {
+			utils.removeClass(slides[i], 'prev3');
 			utils.removeClass(slides[i], 'prev2');
 			utils.removeClass(slides[i], 'prev1');
 			utils.removeClass(slides[i], 'middle');
 			utils.removeClass(slides[i], 'next1');
 			utils.removeClass(slides[i], 'next2');
+			utils.removeClass(slides[i], 'next3');
 			if(i===0) {
 				setTimeout( () => {
-					utils.removeClass(slides[i], 'prev3');
-					utils.addClass(slides[i], 'prev2');
+					utils.removeClass(slides[i], 'prev-hide');
+					utils.addClass(slides[i], 'prev3');
 				}, 100)
 			
 			} else if(i===1) {
-				utils.addClass(slides[i], 'prev1');
+				utils.addClass(slides[i], 'prev2');
 			} else if(i===2) {
-				utils.addClass(slides[i], 'middle');
+				utils.addClass(slides[i], 'prev1');
 			} else if(i==3) {
+				utils.addClass(slides[i], 'middle');
+			} else if(i==4) {
 				utils.addClass(slides[i], 'next1');
-			} else if(i===4) {
+			} else if(i==5) {
+				utils.addClass(slides[i], 'next2');
+			} else if(i===6) {
 				setTimeout( () => {
-					utils.removeClass(slides[i], 'next3');
-					utils.addClass(slides[i], 'next2');
+					utils.removeClass(slides[i], 'next-hide');
+					utils.addClass(slides[i], 'next3');
 				}, 100)
 			}
 		}
