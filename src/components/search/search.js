@@ -43,10 +43,7 @@ const search = function(container) {
 			}
 		}
 	}
-	
-	console.log(sbs);
-	console.log(sas);
-	
+		
 	if(sbs.length===0) {
 		nores = 'Aucun résultat.'
 		c.innerHTML = searchTemplate({ books: [], nores: nores });

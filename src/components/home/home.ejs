@@ -1,14 +1,14 @@
-<div id="home-container" class="w3-content" style="max-width: 1136px">
+<div id="home-container" class="w3-content" style="max-width: 1420px">
 
 	<div id="top-page-header" class="w3-light-gray">nouveautés</div>
 	<div id="booksList" class="w3-padding-64 w3-animate-opacity">
-		<div class='w3-row'>
+		<div>
 			<% for(var i=0; i<books.length; i++) {%>
 				
 				<!-- MODAL (INFOS) -->
 				<%- include src/components/home/infos-modal.ejs -%>
 				
-				<div class="w3-col" style="text-align: center">
+				<div class="slide" style="text-align: center">
 					<div id="paper" style="background-color: <%- books[i].styles.color %>; background-image: url(<%- books[i].styles.image %>)">
 						<div id="<%= books[i].id %>" class="book" style="<%= books[i].styles.cover %>">
 							<p class="author" style="<%=books[i].styles.author %>"><%- books[i].authorDisplay %></p>

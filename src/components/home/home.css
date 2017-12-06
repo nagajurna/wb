@@ -11,39 +11,118 @@
 	display: block;
 }
 
+/*
 @media only screen and (min-width: 768px) {
 	#home-container #top-page-header {
 		display: none;
 	}
 }
+*/
 
+/*
 #home-container #booksList {
 	max-width: 568px;
 	margin: auto;
 }
+*/
 
+/*
 @media only screen and (min-width: 853px) {
 	#home-container #booksList {
 		max-width: 852px;
 	}
 }
+*/
 
+/*
 @media only screen and (min-width: 1137px) {
 	#home-container #booksList {
 		max-width: 1136px;
 	}
 }
+*/
 
+/*
 #home-container .w3-col {
 	width: 100%;
 	height: 408px;
 	
 }
+*/
 
+/*
 @media only screen and (min-width: 600px) {
 	#home-container .w3-col {
 		width: 284px;
 	}
+}
+*/
+
+/*
+#home-container #paper {
+	width: 250px;
+	height: 340px;
+	margin:auto;
+}
+*/
+
+/*
+#home-container .book {
+	width: 250px;
+	height: 340px;
+	margin:auto;
+	position: relative;
+}
+*/
+
+/*
+#home-container .book .logo .span2 {
+	font-variant: small-caps;
+	font-style: normal;
+}
+*/
+
+/*
+#home-container #book-btn {
+	width: 238px;
+	height: 40px;
+	margin: auto;
+	margin-top: 8px;
+}
+*/
+
+/*
+#home-container #book-btn button {
+	font-family: "Times New Roman", Georgia, serif;
+	font-size: 1em;
+	letter-spacing: 1.5px;
+	background-color: transparent;
+}
+*/
+
+
+#home-container {
+	overflow-x: hidden;
+}
+
+#home-container #booksList {
+/*
+	width: 1988;
+*/
+	height: 468px;
+	position: relative;
+	left: 0px;
+	transition: left 0.5s;
+	-webkit-transition : left 0.5s;
+	-moz-transition : left 0.5s;
+	-o-transition: left 0.5s;
+}
+
+#home-container .slide {
+	position: absolute;
+	left: 0px;
+	top: 64px;
+	width: 284px;
 }
 
 #home-container #paper {
@@ -59,24 +138,7 @@
 	position: relative;
 }
 
-#home-container .book .logo .span2 {
-	font-variant: small-caps;
-	font-style: normal;
-}
 
-#home-container #book-btn {
-	width: 238px;
-	height: 40px;
-	margin: auto;
-	margin-top: 8px;
-}
-
-#home-container #book-btn button {
-	font-family: "Times New Roman", Georgia, serif;
-	font-size: 1em;
-	letter-spacing: 1.5px;
-	background-color: transparent;
-}
 
 /*
 MODAL (INFOS)

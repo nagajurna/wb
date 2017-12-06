@@ -143,7 +143,7 @@ const book = function(container) {
 						 
 		//on resize
 		window.addEventListener('resize', event => {
-			document.body.style.height = window.innerHeight + 'px';
+			document.body.style.height = '100%';
 			if(window.innerWidth >= 768) {
 				utils.addClass('[data-wb-text-container]', 'w3-card-2');
 				//max-height: 720
@@ -667,7 +667,7 @@ const book = function(container) {
 	
 	//GET TEMPLATE ET START LOADER
 	//insert template in container
-	document.body.style.height = window.innerHeight + 'px';
+	document.body.style.height = '100%';
 	document.body.style.overflow = 'hidden';
 	c.innerHTML = bookReadTemplate({ book:bk });
 	//START LOADER

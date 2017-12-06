@@ -218,7 +218,12 @@ const utils = {
 	},
 	
 	addClass: (selector, className) => {
-		let elements = document.querySelectorAll(selector);
+		let elements = [];
+		if(selector.nodeName) {
+			elements.push(selector);
+		} else {
+			elements = document.querySelectorAll(selector);
+		}
 		let name, array
 		for(let i=0; i< elements.length; i++) {
 			name = className;
@@ -230,7 +235,12 @@ const utils = {
 	},
 	
 	removeClass: (selector, className) => {
-		let elements = document.querySelectorAll(selector);
+		let elements = [];
+		if(selector.nodeName) {
+			elements.push(selector);
+		} else {
+			elements = document.querySelectorAll(selector);
+		}
 		let name;
 		for(let i=0; i< elements.length; i++) {
 			name = className;
