@@ -19,14 +19,14 @@
       },
       "styles": {
         "color": "#231015",
-        "image": "/books/du_dandysme_et_de_g_brummell/du_dandysme_et_de_g_brummell_cover.jpg",
+        "image": " /books/du_dandysme_et_de_g_brummell/du_dandysme_et_de_g_brummell_cover.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;color: #fafafa",
         "title": "padding-top: 11%; font-size: 1.3em;letter-spacing: 2px;font-variant: small-caps;color: #fafafa",
         "subtitle1": "",
         "subtitle2": "",
-        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 1.5px;color: #fafafa;font-style: italic; font-size: 0.9em"
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 1.5px;font-style: italic; font-size: 0.9em;color: #fafafa"
       },
       "title": "Du dandysme et&nbsp;de&nbsp;G.&nbsp;Brummell",
       "subtitle1": "",
@@ -44,7 +44,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 16:54:18",
-      "updated_at": "2017-12-04 12:38:50",
+      "updated_at": "2017-12-07 08:27:52",
       "id": "baf909f9-8f38-4d7f-b678-fb8ed46d41f0"
     },
     {
