@@ -1,45 +1,47 @@
 <div id="home-container">
-
 	<div id="top-page-header" class="w3-light-gray">nouveautés</div>
-	<div id="booksList" class="w3-padding-64">
-		<div>
-			<% for(var i=0; i<books.length; i++) {%>
-				
-				<!-- MODAL (INFOS) -->
-				<%- include src/components/home/infos-modal.ejs -%>
-				
-				<div class="slide" style="text-align: center">
-					<div id="paper" style="background-color: <%- books[i].styles.color %>; background-image: url(<%- books[i].styles.image %>)">
-						<div id="<%= books[i].id %>" class="book" style="<%= books[i].styles.cover %>">
-							<p class="author" style="<%=books[i].styles.author %>"><%- books[i].authorDisplay %></p>
-							<p class="title" style="<%-books[i].styles.title %>">
-								<%- books[i].title %>
-							</p>
-							<% if(books[i].subtitle1) {%>
-							<p class="subtitle1" style="<%= books[i].styles.subtitle1 %>">
-								<%- books[i].subtitle1 %></a>
-							</p>
-							<% } %>
-							<% if(books[i].subtitle2) {%>
-							<p class="subtitle1" style="<%= books[i].styles.subtitle2 %>">
-								<%- books[i].subtitle2 %></a>
-							</p>
-							<% } %>
-							<p class="logo" style="<%=books[i].styles.logo %>">
-								<span class="span1">L&rsquo;Intermédiaire</span><br/>
-								<span class="span2">éditions</span>
-							</p>
-					   </div>
-				   </div>
-				   <div id="book-btn" >
-						<button id="open-infos-<%= books[i].id %>" 
-						        class="open-infos-btn align-right w3-btn w3-ripple w3-hover-none" >+ d'infos</button>
-				   </div>
-				</div>
-				
-			<% } %>
+		<div id="booksList-visible">
+			<div id="booksList" class="w3-padding-64">
+		
+					<% for(var i=0; i<books.length; i++) {%>
+						
+						<!-- MODAL (INFOS) -->
+						<!--- <%- include src/components/home/infos-modal.ejs -%> ---> 
+						
+						<div class="slide" style="text-align: center">
+							<div id="paper" style="background-color: <%- books[i].styles.color %>; background-image: url(<%- books[i].styles.image %>)">
+								<div id="<%= books[i].id %>" class="book" style="<%= books[i].styles.cover %>">
+									<p class="author" style="<%=books[i].styles.author %>"><%- books[i].authorDisplay %></p>
+									<p class="title" style="<%-books[i].styles.title %>">
+										<%- books[i].title %>
+									</p>
+									<% if(books[i].subtitle1) {%>
+									<p class="subtitle1" style="<%= books[i].styles.subtitle1 %>">
+										<%- books[i].subtitle1 %></a>
+									</p>
+									<% } %>
+									<% if(books[i].subtitle2) {%>
+									<p class="subtitle1" style="<%= books[i].styles.subtitle2 %>">
+										<%- books[i].subtitle2 %></a>
+									</p>
+									<% } %>
+									<p class="logo" style="<%=books[i].styles.logo %>">
+										<span class="span1">L&rsquo;Intermédiaire</span><br/>
+										<span class="span2">éditions</span>
+									</p>
+							   </div>
+						   </div>
+						   <div id="book-btn" >
+								<button id="open-infos-<%= books[i].id %>" 
+										class="open-infos-btn align-right w3-btn w3-ripple w3-hover-none" >+ d'infos</button>
+						   </div>
+						</div>
+						
+					<% } %>
+					
+			</div>
+			<div id="move-prev"></div>
+			<div id="move-next"></div>
 		</div>
-		<div id="move-prev"></div>
-		<div id="move-next"></div>
 	</div>
 </div>

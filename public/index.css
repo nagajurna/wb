@@ -15,6 +15,7 @@ html {
     transform: translateZ(0) scale(1.0, 1.0);
     filter: blur(0);
 	-webkit-filter: blur(0);
+	font-smoothing: antialiased !important;
 }
 
 
@@ -33,6 +34,7 @@ body {
     transform: translateZ(0) scale(1.0, 1.0);
     filter: blur(0);
 	-webkit-filter: blur(0);
+	font-smoothing: antialiased !important;
 }
 
 #container {
@@ -42,6 +44,7 @@ body {
     transform: translateZ(0) scale(1.0, 1.0);
     filter: blur(0);
 	-webkit-filter: blur(0);
+	font-smoothing: antialiased !important;
 }
 
 #loader-container {
