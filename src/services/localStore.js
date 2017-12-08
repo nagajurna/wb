@@ -27,6 +27,29 @@ const localStore = {
 		}
 	},
 	
+	removeBkmrk: bkId => {
+		let bkmrks = [];
+		if (typeof(Storage) !== "undefined") {
+			//check localStorage for bkmrks array
+			if(localStorage.getItem('bkmrks')) {
+				bkmrks = JSON.parse(localStorage.getItem('bkmrks'));
+				//check for bk.id
+				let index;
+				for(let i=0; i<bkmrks.length; i++) {
+					if(bkmrks[i].bkId===bkId) {
+						index=i;
+						break;
+					}
+				}
+				//remove item
+				if(index!==undefined) {
+					bkmrks.splice(index,1);
+					localStorage.setItem('bkmrks', JSON.stringify(bkmrks));
+				}
+			}
+		}
+	},
+	
 	getBkmrk : bkId => {
 		let bkmrks = [];
 		if (typeof(Storage) !== "undefined") {
