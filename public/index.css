@@ -9,7 +9,14 @@ html {
 	margin: 0px;
 	border: none;
 	position: relative;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	-webkit-transform: translateZ(0) scale(1.0, 1.0);
+    transform: translateZ(0) scale(1.0, 1.0);
+    filter: blur(0);
+	-webkit-filter: blur(0);
 }
+
 
 body {
 	width: 100%;
@@ -20,11 +27,21 @@ body {
 	background-color: #fff;
 	font-size: 14px;
 	position: relative;
-	-webkit-transform: translate3d(0, 0, 0);
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	-webkit-transform: translateZ(0) scale(1.0, 1.0);
+    transform: translateZ(0) scale(1.0, 1.0);
+    filter: blur(0);
+	-webkit-filter: blur(0);
 }
 
 #container {
-	-webkit-transform: translate3d(0, 0, 0);
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	-webkit-transform: translateZ(0) scale(1.0, 1.0);
+    transform: translateZ(0) scale(1.0, 1.0);
+    filter: blur(0);
+	-webkit-filter: blur(0);
 }
 
 #loader-container {
