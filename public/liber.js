@@ -136,38 +136,26 @@ var utils = {
 		var links = root.querySelectorAll("a");
 		for (var i = 0; i < links.length; i++) {
 
-			if (links[i].id === 'home-link' || links[i].id === 'menu-home-link') {
-				if (location.href.match(/#\/[^\/]+\/read$/)) {
-					utils.addClass("#" + links[i].id, "w3-text-gray");
-					utils.removeClass("#" + links[i].id, "w3-text-black");
-				} else {
-					utils.addClass("#" + links[i].id, "w3-text-black");
-					utils.removeClass("#" + links[i].id, "w3-text-gray");
-				}
+			if (links[i].id === 'header-home-link' || links[i].id === 'menu-home-link') {
+				utils.addClass("#" + links[i].id, "active");
 			} else if (links[i].id === 'last-link' || links[i].id === 'menu-last-link') {
 				if (location.hash === '' || location.hash === '#/') {
-					utils.addClass("#" + links[i].id, "w3-text-black");
-					utils.removeClass("#" + links[i].id, "w3-text-gray");
+					utils.addClass("#" + links[i].id, "active");
 				} else {
-					utils.addClass("#" + links[i].id, "w3-text-gray");
-					utils.removeClass("#" + links[i].id, "w3-text-black");
+					utils.removeClass("#" + links[i].id, "active");
 				}
 			} else if (links[i].id === 'authors-link' || links[i].id === 'menu-authors-link') {
 				if (location.hash.match(/#\/authors/)) {
-					utils.addClass("#" + links[i].id, "w3-text-black");
-					utils.removeClass("#" + links[i].id, "w3-text-gray");
+					utils.addClass("#" + links[i].id, "active");
 				} else {
-					utils.addClass("#" + links[i].id, "w3-text-gray");
-					utils.removeClass("#" + links[i].id, "w3-text-black");
+					utils.removeClass("#" + links[i].id, "active");
 				}
 			} else {
 
 				if (location.href === links[i].href) {
-					utils.addClass("#" + links[i].id, "w3-text-black");
-					utils.removeClass("#" + links[i].id, "w3-text-gray");
+					utils.addClass("#" + links[i].id, "active");
 				} else {
-					utils.addClass("#" + links[i].id, "w3-text-gray");
-					utils.removeClass("#" + links[i].id, "w3-text-black");
+					utils.removeClass("#" + links[i].id, "active");
 				}
 
 				//admin-link
@@ -1972,19 +1960,20 @@ var index = function () {
 	var init = function init() {
 		//if book/id/read 
 		if (location.hash.match(/#\/[^\/]+\/read$/)) {
+			_utils2.default.addClass("#header", "hidden"); //hide header
 			_utils2.default.addClass("#nav-bar-top", "hidden"); //hide nav-bar-top
 		} else {
-			_utils2.default.removeClass("#nav-bar-top", "hidden");
-			if (window.innerWidth < 768) {
-				_utils2.default.addClass("#top-links", "hidden");
+			_utils2.default.removeClass("#header", "hidden");
+			if (window.innerWidth < 750) {
+				_utils2.default.addClass("#nav-bar-top", "hidden");
 				_utils2.default.removeClass("#menu-open", "hidden");
 			} else {
-				_utils2.default.removeClass("#top-links", "hidden");
+				_utils2.default.removeClass("#nav-bar-top", "hidden");
 				_utils2.default.addClass("#menu-open", "hidden");
 			}
 		}
 
-		root = document.querySelector("#navigation");
+		root = document.querySelector("body");
 		//MODAL MENU (small devices)
 		//open modal
 		root.querySelector("#menu-open").addEventListener("click", function () {
@@ -2056,26 +2045,27 @@ var index = function () {
 
 		window.addEventListener('hashchange', function () {
 			if (location.hash.match(/#\/[^\/]+\/read$/)) {
+				_utils2.default.addClass("#header", "hidden");
 				_utils2.default.addClass("#nav-bar-top", "hidden");
 			} else {
+				_utils2.default.removeClass("#header", "hidden");
 				_utils2.default.removeClass("#nav-bar-top", "hidden");
-				if (window.innerWidth < 768) {
-					_utils2.default.addClass("#top-links", "hidden");
+				if (window.innerWidth < 750) {
+					_utils2.default.addClass("#nav-bar-top", "hidden");
 					_utils2.default.removeClass("#menu-open", "hidden");
 				} else {
-					_utils2.default.removeClass("#top-links", "hidden");
+					_utils2.default.removeClass("#nav-bar-top", "hidden");
 					_utils2.default.addClass("#menu-open", "hidden");
 				}
 			}
 		}, false);
 
 		window.addEventListener('resize', function () {
-			//utils.removeClass("#nav-bar-top", "hidden");
-			if (window.innerWidth < 768) {
-				_utils2.default.addClass("#top-links", "hidden");
+			if (window.innerWidth < 750) {
+				_utils2.default.addClass("#nav-bar-top", "hidden");
 				_utils2.default.removeClass("#menu-open", "hidden");
 			} else {
-				_utils2.default.removeClass("#top-links", "hidden");
+				_utils2.default.removeClass("#nav-bar-top", "hidden");
 				_utils2.default.addClass("#menu-open", "hidden");
 			}
 		}, false);
@@ -2269,7 +2259,7 @@ var home = function home(container) {
 	//get last 12 visible books reverse order
 	var lBs = bs.filter(function (b) {
 		return b.visible;
-	}).reverse().slice(0, 7);
+	}).reverse().slice(0, 6);
 
 	//go to book/read
 	var readBk = function readBk(event) {
@@ -2277,116 +2267,163 @@ var home = function home(container) {
 		var path = b.path.replace(/^\/books\/[^\/]+/, '');
 		location.hash = '#' + path + "/read";
 	};
-	//open infos
-	var openInfos = function openInfos(event) {
-		var id = event.target.id.replace('open-', '');
-		document.getElementById(id).style.display = 'block';
-	};
-	//close infos
-	var closeInfos = function closeInfos(event) {
-		var id = event.target.id.replace('close-', '');
-		document.getElementById(id).style.display = 'none';
-	};
 
 	//insert template in container
 	c.innerHTML = homeTemplate({ books: lBs });
 	var root = document.querySelector('#home-container');
-	var list = root.querySelector('#booksList');
-	var slideEls = root.querySelectorAll('.slide');
-	var slides = [].slice.call(slideEls);
+	var slides = root.querySelectorAll('.slide');
+	var dots = root.querySelectorAll('.dot');
+	var index = void 0;
+	var automatic = void 0;
 
-	for (var i = 0; i < slides.length; i++) {
-		if (i == -0) {
-			_utils2.default.addClass(slides[i], 'prev3');
-		} else if (i === 1) {
-			_utils2.default.addClass(slides[i], 'prev2');
-		} else if (i === 2) {
-			_utils2.default.addClass(slides[i], 'prev1');
-		} else if (i == 3) {
-			_utils2.default.addClass(slides[i], 'middle');
-		} else if (i === 4) {
-			_utils2.default.addClass(slides[i], 'next1');
-		} else if (i === 5) {
-			_utils2.default.addClass(slides[i], 'next2');
-		} else if (i === 6) {
-			_utils2.default.addClass(slides[i], 'next3');
+	//SLIDER COMMANDS
+	//Previous
+	var prevSlide = function prevSlide(event) {
+		clearTimeout(automatic);
+		automatic = undefined;
+		if (index === 0) {
+			index = slides.length - 1;
+		} else {
+			index -= 1;
 		}
-	}
-
-	var moveSlides = function moveSlides(event) {
-		if (event.currentTarget.id === 'move-prev') {
-			var l = slides.pop();
-			_utils2.default.addClass(l, 'prev-hide');
-			slides.unshift(l);
-		} else if (event.currentTarget.id === 'move-next') {
-			var f = slides.shift();
-			_utils2.default.addClass(f, 'next-hide');
-			slides.push(f);
+		for (var i = 0; i < slides.length; i++) {
+			slides[i].style.display = 'none';
+			_utils2.default.removeClass(dots[i], 'active');
 		}
-
-		var _loop = function _loop(_i) {
-			_utils2.default.removeClass(slides[_i], 'prev3');
-			_utils2.default.removeClass(slides[_i], 'prev2');
-			_utils2.default.removeClass(slides[_i], 'prev1');
-			_utils2.default.removeClass(slides[_i], 'middle');
-			_utils2.default.removeClass(slides[_i], 'next1');
-			_utils2.default.removeClass(slides[_i], 'next2');
-			_utils2.default.removeClass(slides[_i], 'next3');
-			if (_i === 0) {
-				setTimeout(function () {
-					_utils2.default.removeClass(slides[_i], 'prev-hide');
-					_utils2.default.addClass(slides[_i], 'prev3');
-				}, 100);
-			} else if (_i === 1) {
-				_utils2.default.addClass(slides[_i], 'prev2');
-			} else if (_i === 2) {
-				_utils2.default.addClass(slides[_i], 'prev1');
-			} else if (_i == 3) {
-				_utils2.default.addClass(slides[_i], 'middle');
-			} else if (_i == 4) {
-				_utils2.default.addClass(slides[_i], 'next1');
-			} else if (_i == 5) {
-				_utils2.default.addClass(slides[_i], 'next2');
-			} else if (_i === 6) {
-				setTimeout(function () {
-					_utils2.default.removeClass(slides[_i], 'next-hide');
-					_utils2.default.addClass(slides[_i], 'next3');
-				}, 100);
-			}
-		};
-
-		for (var _i = 0; _i < slides.length; _i++) {
-			_loop(_i);
+		slides[index].style.display = 'block';
+		_utils2.default.addClass(dots[index], 'active');
+		slider();
+	};
+	//Next
+	var nextSlide = function nextSlide(event) {
+		clearTimeout(automatic);
+		automatic = undefined;
+		if (index === slides.length - 1) {
+			index = 0;
+		} else {
+			index += 1;
 		}
+		for (var i = 0; i < slides.length; i++) {
+			slides[i].style.display = 'none';
+			_utils2.default.removeClass(dots[i], 'active');
+		}
+		slides[index].style.display = 'block';
+		_utils2.default.addClass(dots[index], 'active');
+		slider();
 	};
 
-	root.querySelector('#move-prev').addEventListener('click', moveSlides, false);
-	root.querySelector('#move-next').addEventListener('click', moveSlides, false);
+	//automatic
+	var slider = function slider() {
+		automatic = setTimeout(nextSlide, 10000);
+	};
 
-	//scroll after read
+	//dots
+
+	var _loop = function _loop(i) {
+		dots[i].addEventListener('click', function (event) {
+			clearTimeout(automatic);
+			automatic = undefined;
+			index = i;
+			for (var j = 0; j < slides.length; j++) {
+				slides[j].style.display = 'none';
+				_utils2.default.removeClass(dots[j], 'active');
+			}
+			clearTimeout(automatic);
+			slides[index].style.display = 'block';
+			_utils2.default.addClass(dots[index], 'active');
+			slider();
+		}, false);
+	};
+
+	for (var i = 0; i < dots.length; i++) {
+		_loop(i);
+	}
+
+	root.querySelector('#previous').addEventListener('click', prevSlide, false);
+	root.querySelector('#next').addEventListener('click', nextSlide, false);
+
+	//window.innerWidth > 750 : slider
+	if (window.innerWidth >= 750) {
+		if (_dataStore2.default.getData('location').prevLocation !== undefined && _dataStore2.default.getData('location').prevLocation.match(/\/read$/)) {
+			var id = _dataStore2.default.getData('book');
+			for (var i = 0; i < slides.length; i++) {
+				if (slides[i].id.replace(/slide_/, '') === id) {
+					index = i;
+					break;
+				}
+			}
+		} else {
+			index = 0;
+		}
+
+		slides[index].style.display = 'block';
+		_utils2.default.addClass(dots[index], 'active');
+		slider();
+	} else {
+		clearTimeout(automatic);
+		automatic = undefined;
+	}
+	//window on resize (innerWidth < 750 : list, otherwise: slider)
+	window.addEventListener('resize', function () {
+		clearTimeout(automatic);
+		automatic = undefined;
+		if (window.innerWidth < 750) {
+			for (var _i = 0; _i < slides.length; _i++) {
+				slides[_i].style.display = 'block';
+			}
+		} else {
+			for (var _i2 = 0; _i2 < slides.length; _i2++) {
+				slides[_i2].style.display = 'none';
+			}
+			if (index === undefined) {
+				index = 0;
+			}
+			slides[index].style.display = 'block';
+			_utils2.default.addClass(dots[index], 'active');
+			slider();
+		}
+	});
+
+	//scroll after read (for list)
 	if (_dataStore2.default.getData('location').prevLocation !== undefined && _dataStore2.default.getData('location').prevLocation.match(/\/read$/)) {
-		var id = _dataStore2.default.getData('book');
-		var el = document.getElementById(id);
+		var _id = _dataStore2.default.getData('book');
+		var el = document.getElementById(_id);
 		el.scrollIntoView(true);
 		var html = document.getElementsByTagName("html")[0];
 		html.scrollTop = html.scrollTop - 30;
 	}
 	//link to book/read
 	var bks = root.querySelectorAll('.book');
-	for (var _i2 = 0; _i2 < slides.length; _i2++) {}
-	//bks[i].addEventListener('click', readBk, false);
-	//slides[i].addEventListener('click', moveSlides, false);
-
-	//modal (infos)
-	//open
-	var openInfosBtns = root.querySelectorAll('.open-infos-btn');
-	for (var _i3 = 0; _i3 < openInfosBtns.length; _i3++) {
-		openInfosBtns[_i3].addEventListener('click', openInfos, false);
+	for (var _i3 = 0; _i3 < bks.length; _i3++) {
+		bks[_i3].addEventListener('click', readBk, false);
 	}
-	//close
+
+	//MODAL (infos)
+	//open infos
+	var openInfos = function openInfos(event) {
+		clearTimeout(automatic);
+		automatic = undefined;
+		var id = event.target.id.replace('open-', '');
+		document.getElementById(id).style.display = 'block';
+	};
+	var openInfosBtns = root.querySelectorAll('.open-infos-btn');
+	for (var _i4 = 0; _i4 < openInfosBtns.length; _i4++) {
+		openInfosBtns[_i4].addEventListener('click', openInfos, false);
+	}
+
+	//close infos
+	var closeInfos = function closeInfos(event) {
+		clearTimeout(automatic);
+		automatic = undefined;
+		if (window.innerWidth >= 750) {
+			slider();
+		}
+		var id = event.target.id.replace('close-', '');
+		document.getElementById(id).style.display = 'none';
+	};
 	var closeInfosBtns = root.querySelectorAll('.close-infos-btn');
-	for (var _i4 = 0; _i4 < closeInfosBtns.length; _i4++) {
-		closeInfosBtns[_i4].addEventListener('click', closeInfos, false);
+	for (var _i5 = 0; _i5 < closeInfosBtns.length; _i5++) {
+		closeInfosBtns[_i5].addEventListener('click', closeInfos, false);
 	}
 };
 
@@ -2432,7 +2469,7 @@ exports = module.exports = __webpack_require__(4)(undefined);
 
 
 // module
-exports.push([module.i, "#home-container #top-page-header {\n\ttext-align: center;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tfont-size: 1em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1px;\n\tline-height: 25px;\n\twidth: 110px;\n\tmargin: auto;\n\tmargin-top: 32px;\n\tdisplay: block;\n}\n\n@media only screen and (min-width: 768px) {\n\t#home-container #top-page-header {\n\t\tdisplay: none;\n\t}\n}\n\n/*\n#home-container #booksList {\n\tmax-width: 568px;\n\tmargin: auto;\n}\n*/\n\n/*\n@media only screen and (min-width: 853px) {\n\t#home-container #booksList {\n\t\tmax-width: 852px;\n\t}\n}\n*/\n\n/*\n@media only screen and (min-width: 1137px) {\n\t#home-container #booksList {\n\t\tmax-width: 1136px;\n\t}\n}\n*/\n\n/*\n#home-container .w3-col {\n\twidth: 100%;\n\theight: 408px;\n\t\n}\n*/\n\n/*\n@media only screen and (min-width: 600px) {\n\t#home-container .w3-col {\n\t\twidth: 284px;\n\t}\n}\n*/\n\n/*\n#home-container #paper {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n*/\n\n/*\n#home-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n\tposition: relative;\n}\n*/\n\n/*\n#home-container .book .logo .span2 {\n\tfont-variant: small-caps;\n\tfont-style: normal;\n}\n*/\n\n/*\n#home-container #book-btn {\n\twidth: 238px;\n\theight: 40px;\n\tmargin: auto;\n\tmargin-top: 8px;\n}\n*/\n\n/*\n#home-container #book-btn button {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1.5px;\n\tbackground-color: transparent;\n}\n*/\n\n\n#home-container #booksList-visible {\n\tposition: relative;\n\twidth: 1185px;\n\theight: 638px;\n\tmargin: auto;\n\toverflow: hidden;\n\tmargin-top: 64px;\n\t-webkit-backface-visibility: hidden;\n\tbackface-visibility: hidden;\n\t-webkit-transform: translateZ(0) scale(1.0, 1.0);\n    transform: translateZ(0) scale(1.0, 1.0);\n    filter: blur(0);\n\t-webkit-filter: blur(0);\n}\n\n#home-container #booksList {\n\tposition: absolute;\n\tleft: -720px;\n\twidth: 2625px;\n\tmargin: auto;\n\toverflow: hidden;\n\theight: 638px;\n\t-webkit-backface-visibility: hidden;\n\tbackface-visibility: hidden;\n\t-webkit-transform: translateZ(0) scale(1.0, 1.0);\n    transform: translateZ(0) scale(1.0, 1.0);\n    filter: blur(0);\n\t-webkit-filter: blur(0);\n}\n\n\n\n#move-prev, #move-next {\n\tposition: absolute;\n\ttop: 64px;\n\twidth: 50%;\n\theight: 510px;\n\t-webkit-backface-visibility: hidden;\n\tbackface-visibility: hidden;\n\t-webkit-transform: translateZ(0) scale(1.0, 1.0);\n    transform: translateZ(0) scale(1.0, 1.0);\n    filter: blur(0);\n\t-webkit-filter: blur(0);\n}\n\n#move-prev {\n\tleft: 0px;\n\tmargin-left: -217.5px;\n}\n\n#move-next {\n\tright: 0px;\n\tmargin-right: -217.5px;\n}\n\n#home-container .slide {\n\tposition: absolute;\n\ttop: 64px;\n\twidth: 435px;\n\tmargin-left: -217.5px;\n\t-webkit-backface-visibility: hidden;\n\tbackface-visibility: hidden;\n\t-webkit-transform: translateZ(0) scale(1.0, 1.0);\n    transform: translateZ(0) scale(1.0, 1.0);\n    filter: blur(0);\n\t-webkit-filter: blur(0);\n\n}\n\n#home-container .slide.middle {\n\tleft: 50%;\n\ttransition: left 0.5s;\n\t-webkit-transition : left 0.5s;\n\t-moz-transition : left 0.5s;\n\t-o-transition: left 0.5s;\n}\n\n#home-container .slide.prev1 {\n\tleft: 25%;\n\ttransition: left 0.5s;\n\t-webkit-transition : left 0.5s;\n\t-moz-transition : left 0.5s;\n\t-o-transition: left 0.5s;\n}\n\n#home-container .slide.prev2 {\n\tleft: 0%;\n\ttransition: left 0.5s;\n\t-webkit-transition : left 0.5s;\n\t-moz-transition : left 0.5s;\n\t-o-transition: left 0.5s;\n}\n\n#home-container .slide.prev3 {\n\tleft: -25%;\n\topacity: 1.0;\n\ttransition: left 0.4s;\n\t-webkit-transition : left 0.4s;\n\t-moz-transition : left 0.4s;\n\t-o-transition: left 0.4s;\n}\n\n#home-container .slide.prev-hide {\n\tleft: -50%;\n\topacity: 0.0;\n}\n\n#home-container .slide.next1 {\n\tleft: 75%;\n\ttransition: left 0.5s;\n\t-webkit-transition : left 0.5s;\n\t-moz-transition : left 0.5s;\n\t-o-transition: left 0.5s;\n}\n\n#home-container .slide.next2 {\n\tleft: 100%;\n\ttransition: left 0.5s;\n\t-webkit-transition : left 0.5s;\n\t-moz-transition : left 0.5s;\n\t-o-transition: left 0.5s;\n}\n\n#home-container .slide.next3 {\n\tleft: 125%;\n\topacity: 1.0;\n\ttransition: left 0.4s;\n\t-webkit-transition : left 0.4s;\n\t-moz-transition : left 0.4s;\n\t-o-transition: left 0.4s;\n}\n\n#home-container .slide.next-hide {\n\tleft: 150%;\n\topacity: 0.0;\n}\n\n\n#home-container #paper {\n\twidth: 375px;\n\theight: 510px;\n\tmargin:auto;\n\t-webkit-backface-visibility: hidden;\n\tbackface-visibility: hidden;\n\t-webkit-transform: translateZ(0) scale(1.0, 1.0);\n    transform: translateZ(0) scale(1.0, 1.0);\n    filter: blur(0);\n\t-webkit-filter: blur(0);\n}\n\n#home-container .book {\n\twidth: 375px;\n\theight: 510px;\n\tmargin:auto;\n\tposition: relative;\n\t-webkit-backface-visibility: hidden;\n\tbackface-visibility: hidden;\n\t-webkit-transform: translateZ(0) scale(1.0, 1.0);\n    transform: translateZ(0) scale(1.0, 1.0);\n    filter: blur(0);\n\t-webkit-filter: blur(0);\n\tfont-smoothing: antialiased !important;\n}\n\n#home-container .book p {\n\t-webkit-backface-visibility: hidden;\n\tbackface-visibility: hidden;\n\t-webkit-transform: translateZ(0) scale(1.0, 1.0);\n    transform: translateZ(0) scale(1.0, 1.0);\n    filter: blur(0);\n\t-webkit-filter: blur(0);\n\tfont-smoothing: antialiased !important;\n}\n\n/*\nMODAL (INFOS)\n*/\n\n#home-container .w3-modal {\n\tfont-family: \"Verdana\", serif;\n}\n\n#home-container .w3-modal #footer {\n\tpadding-top: 16px;\n}\n\n#home-container .w3-modal .close-infos-btn {\n\tfont-size: 1.1em;\n\tfont-family: \"Verdana\", serif;\n\tletter-spacing: 1px;\n}\n\n#home-container .w3-modal p {\n\tmargin: 0px;\n\tmargin-top: 8px;\n}\n\n#home-container .w3-modal ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#home-container .w3-modal .contrib-role {\n\ttext-transform: capitalize;\n}\n\n\n\n", ""]);
+exports.push([module.i, "#home-container {\n\tmargin-top: 0px;\n}\n\n@media only screen and (min-width: 750px) {\n\t#home-container {\n\t\tmargin-top: 32px;\n\t}\n}\n\n#home-container #top-page-header {\n\ttext-align: center;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.2em;\n\tfont-variant: small-caps;\n\tletter-spacing: 4px;\n\tline-height: 25px;\n\tmargin: auto;\n\tdisplay: block;\n\tpadding: 32px 0px 32px 0px;\n}\n\n@media only screen and (min-width: 750px) {\n\t#home-container #top-page-header {\n\t\tfont-size: 1.4em;\n\t}\n}\n\n#home-container #book-btns {\n\twidth: 100%;\n\tposition: relative;\n\theight: 37px;\n}\n\n#home-container .open-infos-btn {\n\tfont-family: \"Vollkorn\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1px;\n\tbackground-color: transparent;\n\tposition: absolute;\n\tright: 0px;\n\tbottom: 0px;\n}\n\n\n#home-container #booksList-container {\n\twidth: 100%;\n\tpadding-bottom: 32px;\n\tmargin: auto;\n\tborder-bottom: 1px solid black;\n}\n\n@media only screen and (min-width: 750px) {\n\n\t#home-container #booksList-container {\n\t\twidth: 750px;\n\t}\n}\n\n#home-container #booksList {\n\tposition: relative;\n\twidth: 250px;\n\tmargin: auto;\n\tpadding: 32px 0px 32px 0px;\n}\n\n@media only screen and (min-width: 750px) {\n\t#home-container #booksList {\n\t\theight: 468px;\n\t}\n}\n\n#home-container .slide {\n\tposition: relative;\n\twidth: 250px;\n\tmargin: auto;\n\tmargin-bottom: 48px;\n\tdisplay: block;\n\ttext-align: center;\n}\n\n@media only screen and (min-width: 750px) {\n\t\n\t#home-container .slide {\n\t\tmargin-bottom: 0px;\n\t\tdisplay: none;\n\t}\n}\n\n#home-container #paper {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#home-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n\tposition: relative;\n}\n\n/* Fading animation */\n#home-container .fade {\n  -webkit-animation-name: fade;\n  -webkit-animation-duration: 1.5s;\n  animation-name: fade;\n  animation-duration: 1.5s;\n}\n\n@-webkit-keyframes fade {\n  from {opacity: .4}\n  to {opacity: 1}\n}\n\n@keyframes fade {\n  from {opacity: .4}\n  to {opacity: 1}\n}\n\n#home-container #previous {\n\tposition: absolute;\n\ttop: 45%;\n\tleft: -100px;\n\tmargin-top: -25px;\n\twidth: 50px;\n\theight: 50px;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.6em;\n\tbackground-color: transparent;\n\tdisplay: none;\n}\n\n#home-container #next {\n\tposition: absolute;\n\ttop: 45%;\n\tright: -100px;\n\tmargin-top: -25px;\n\twidth: 50px;\n\theight: 50px;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.6em;\n\tbackground-color: transparent;\n\tdisplay: none;\n}\n\n@media only screen and (min-width: 750px) {\n\t#home-container #previous {\n\t\tdisplay: inline-block;\n\t}\n\n\t#home-container #next {\n\t\tdisplay: inline-block;\n\t}\n}\n\n#home-container #dots {\n\twidth: 100%;\n\ttext-align: center;\n\tdisplay: none;\n\tpadding: 32px 0px 32px 0px;\n}\n\n#home-container .dot {\n\tcursor:pointer;\n\theight: 15px;\n\twidth: 15px;\n\tmargin: 0 2px;\n\tborder: 1px solid #333;\n\tbackground-color: transparent;\n\tborder-radius: 50%;\n\tdisplay: inline-block;\n\ttransition: background-color 0.6s ease;\n}\n\n#home-container .dot.active, #home-container .dot:hover {\n\tbackground-color: #333;\n}\n\n@media only screen and (min-width: 750px) {\n\n\t#home-container #dots {\n\t\tdisplay: block;\n\t}\n\n}\n\n/*\nMODAL (INFOS)\n*/\n\n#home-container .modal {\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tdisplay: none;\n}\n\n#home-container .modal-content {\n\tmax-width: 500px;\n}\n\n#home-container .modal-content div {\n\tpadding: 16px;\n}\n\n#home-container .modal #infos-header {\n\tposition: relative;\n\tpadding: 16px;\n\tborder-bottom: 1px solid #ddd;\n\ttext-align: center;\n}\n\n#home-container .modal .close-infos-btn {\n\tposition: absolute;\n\ttop: 0;\n\tright: 0;\n\twidth: 37px;\n\theight: 37px;\n\tfont-size: 1.5em;\n}\n\n#home-container .modal p {\n\tmargin: 0px;\n\tpadding: 8px;\n}\n\n#home-container .modal ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#home-container .modal ul li {\n\tpadding: 4px;\n}\n\n#home-container .modal .contrib-role {\n\ttext-transform: capitalize;\n}\n", ""]);
 
 // exports
 
@@ -2542,7 +2579,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="home-container">\n	<div id="top-page-header" class="w3-light-gray">nouveautés</div>\n		<div id="booksList-visible">\n			<div id="booksList" class="w3-padding-64">\n		\n					<% for(var i=0; i<books.length; i++) {%>\n						\n						<!-- MODAL (INFOS) -->\n						<!--- <%- include src/components/home/infos-modal.ejs -%> ---> \n						\n						<div class="slide" style="text-align: center">\n							<div id="paper" style="background-color: <%- books[i].styles.color %>; background-image: url(<%- books[i].styles.image %>)">\n								<div id="<%= books[i].id %>" class="book" style="<%= books[i].styles.cover %>">\n									<p class="author" style="<%=books[i].styles.author %>"><%- books[i].authorDisplay %></p>\n									<p class="title" style="<%-books[i].styles.title %>">\n										<%- books[i].title %>\n									</p>\n									<% if(books[i].subtitle1) {%>\n									<p class="subtitle1" style="<%= books[i].styles.subtitle1 %>">\n										<%- books[i].subtitle1 %></a>\n									</p>\n									<% } %>\n									<% if(books[i].subtitle2) {%>\n									<p class="subtitle1" style="<%= books[i].styles.subtitle2 %>">\n										<%- books[i].subtitle2 %></a>\n									</p>\n									<% } %>\n									<p class="logo" style="<%=books[i].styles.logo %>">\n										<span class="span1">L&rsquo;Intermédiaire</span><br/>\n										<span class="span2">éditions</span>\n									</p>\n							   </div>\n						   </div>\n						   <div id="book-btn" >\n								<button id="open-infos-<%= books[i].id %>" \n										class="open-infos-btn align-right w3-btn w3-ripple w3-hover-none" >+ d\'infos</button>\n						   </div>\n						</div>\n						\n					<% } %>\n					\n			</div>\n			<div id="move-prev"></div>\n			<div id="move-next"></div>\n		</div>\n	</div>\n</div>\n',
+        input: '<div id="home-container">\n	<div id="top-page-header">nouveautés</div>\n	<div id="booksList-container">\n		<div id="booksList">\n\n			<% for(var i=0; i<books.length; i++) {%>\n				\n				<!-- MODAL (INFOS) -->\n				<%- include src/components/home/infos-modal.ejs -%>\n				\n				<div class="slide fade" id="slide_<%= books[i].id %>">\n					<div id="paper" style="background-color: <%- books[i].styles.color %>; background-image: url(<%- books[i].styles.image %>)">\n						<div id="<%= books[i].id %>" class="book" style="<%= books[i].styles.cover %>">\n							<p class="author" style="<%=books[i].styles.author %>"><%- books[i].authorDisplay %></p>\n							<p class="title" style="<%-books[i].styles.title %>">\n								<%- books[i].title %>\n							</p>\n							<% if(books[i].subtitle1) {%>\n							<p class="subtitle1" style="<%= books[i].styles.subtitle1 %>">\n								<%- books[i].subtitle1 %></a>\n							</p>\n							<% } %>\n							<% if(books[i].subtitle2) {%>\n							<p class="subtitle1" style="<%= books[i].styles.subtitle2 %>">\n								<%- books[i].subtitle2 %></a>\n							</p>\n							<% } %>\n							<p class="logo" style="<%=books[i].styles.logo %>">\n								<span class="span1">Le Singulier</span><br/>\n								<span class="span2">éditions</span>\n							</p>\n					   </div>\n				   </div>\n				   <div id="book-btns" >\n						<button id="open-infos-<%= books[i].id %>" class="open-infos-btn btn" >Fiche</button>\n				   </div>\n				</div>\n				\n			<% } %>\n			<div id="dots">\n				<span class="dot"></span>\n				<span class="dot"></span>\n				<span class="dot"></span>\n				<span class="dot"></span>\n				<span class="dot"></span>\n				<span class="dot"></span>\n			</div>\n			<button id="previous" type="button" class="btn">&lt;</button>\n			<button id="next" type="button" class="btn">&gt;</button>\n		</div>\n	</div>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -2559,77 +2596,77 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
         var buf = [];
         with (locals || {}) {
             (function() {
-                buf.push('<div id="home-container">\n	<div id="top-page-header" class="w3-light-gray">nouveautés</div>\n		<div id="booksList-visible">\n			<div id="booksList" class="w3-padding-64">\n		\n					');
+                buf.push('<div id="home-container">\n	<div id="top-page-header">nouveautés</div>\n	<div id="booksList-container">\n		<div id="booksList">\n\n			');
                 __stack.lineno = 6;
                 for (var i = 0; i < books.length; i++) {
-                    buf.push("\n						\n						<!-- MODAL (INFOS) -->\n						<!--- " + function() {
+                    buf.push("\n				\n				<!-- MODAL (INFOS) -->\n				" + function() {
                         var buf = [];
-                        buf.push('<div id="infos-', escape((__stack.lineno = 1, books[i].id)), '" class="w3-modal" style="background-color: rgba(0,0,0,0.1)">\n	<div class="w3-modal-content w3-card w3-animate-top" style="max-width: 500px">\n		<div class="w3-container w3-padding-16 ">\n			  <p><b>Titre : </b>', (__stack.lineno = 4, books[i].title), "</p>\n			  ");
-                        __stack.lineno = 5;
+                        buf.push('<div id="infos-', escape((__stack.lineno = 1, books[i].id)), '" class="modal">\n	<div class="modal-content w3-card animate-top">\n		<div id="infos-header">\n			<button id="close-infos-', escape((__stack.lineno = 4, books[i].id)), '" type="button" class="btn close-infos-btn">&times;</button>\n			<p>', (__stack.lineno = 5, books[i].authorDisplay), '</p>\n			<p class="text-uppercase">', (__stack.lineno = 6, books[i].title), "</p>\n		</div>\n		<div>\n			  <p><b>Titre : </b>", (__stack.lineno = 9, books[i].title), "</p>\n			  ");
+                        __stack.lineno = 10;
                         if (books[i].subtitle1) {
-                            buf.push("\n				<p><b>Sous-titre : </b>", (__stack.lineno = 6, books[i].subtitle1), "</p>\n			  ");
-                            __stack.lineno = 7;
+                            buf.push("\n				<p><b>Sous-titre : </b>", (__stack.lineno = 11, books[i].subtitle1), "</p>\n			  ");
+                            __stack.lineno = 12;
                         }
                         buf.push("\n			  ");
-                        __stack.lineno = 8;
+                        __stack.lineno = 13;
                         if (books[i].subtitle2) {
-                            buf.push("\n				<p><b>Sous-sous-titre : </b>", (__stack.lineno = 9, books[i].subtitle2), "</p>\n			  ");
-                            __stack.lineno = 10;
+                            buf.push("\n				<p><b>Sous-sous-titre : </b>", (__stack.lineno = 14, books[i].subtitle2), "</p>\n			  ");
+                            __stack.lineno = 15;
                         }
-                        buf.push("\n			  <p><b>Année de parution : </b>", (__stack.lineno = 11, books[i].year), "</p>\n			  ");
-                        __stack.lineno = 12;
+                        buf.push("\n			  <p><b>Année de parution : </b>", (__stack.lineno = 16, books[i].year), "</p>\n			  ");
+                        __stack.lineno = 17;
                         if (books[i].authors.length > 1) {
                             buf.push("\n					<p>\n						<span><b>Auteurs :</b></span>\n						<br>\n						<ul>\n						");
-                            __stack.lineno = 17;
+                            __stack.lineno = 22;
                             for (var j = 0; j < books[i].authors.length; j++) {
-                                buf.push("\n							<li>\n								", (__stack.lineno = 19, books[i].authors[j].name), " (", (__stack.lineno = 19, books[i].authors[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 19, books[i].authors[j].death), ")\n							</li>\n						");
-                                __stack.lineno = 21;
+                                buf.push("\n							<li>\n								", (__stack.lineno = 24, books[i].authors[j].name), " (", (__stack.lineno = 24, books[i].authors[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 24, books[i].authors[j].death), ")\n							</li>\n						");
+                                __stack.lineno = 26;
                             }
                             buf.push("\n						</ul>\n					</p>\n			  ");
-                            __stack.lineno = 24;
+                            __stack.lineno = 29;
                         } else if (books[i].authors.length === 1) {
-                            buf.push("\n					<p><b>Auteur : </b>", (__stack.lineno = 25, books[i].authors[0].name), " (", (__stack.lineno = 25, books[i].authors[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 25, books[i].authors[0].death), ")</p>\n			  ");
-                            __stack.lineno = 26;
+                            buf.push("\n					<p><b>Auteur : </b>", (__stack.lineno = 30, books[i].authors[0].name), " (", (__stack.lineno = 30, books[i].authors[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 30, books[i].authors[0].death), ")</p>\n			  ");
+                            __stack.lineno = 31;
                         }
                         buf.push("\n			  ");
-                        __stack.lineno = 27;
+                        __stack.lineno = 32;
                         if (books[i].contribs.length > 1) {
                             buf.push("\n					<p>\n						<span><b>Contributions :</b></span>\n						<br>\n						<ul>\n						");
-                            __stack.lineno = 32;
+                            __stack.lineno = 37;
                             for (var j = 0; j < books[i].contribs.length; j++) {
-                                buf.push('\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 34, books[i].contribs[j].role), " : </span>\n								", (__stack.lineno = 35, books[i].contribs[j].name), " (", (__stack.lineno = 35, books[i].contribs[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 35, books[i].contribs[j].death), ")\n							</li>\n						");
-                                __stack.lineno = 37;
+                                buf.push('\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 39, books[i].contribs[j].role), " : </span>\n								", (__stack.lineno = 40, books[i].contribs[j].name), " (", (__stack.lineno = 40, books[i].contribs[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 40, books[i].contribs[j].death), ")\n							</li>\n						");
+                                __stack.lineno = 42;
                             }
                             buf.push("\n						</ul>\n					</p>\n			  ");
-                            __stack.lineno = 40;
+                            __stack.lineno = 45;
                         } else if (books[i].contribs.length === 1) {
-                            buf.push('\n					<p>\n						<span><b>Contribution : </b></span>\n						<br>\n						<ul>\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 46, books[i].contribs[0].role), " : </span>\n								", (__stack.lineno = 47, books[i].contribs[0].name), " (", (__stack.lineno = 47, books[i].contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 47, books[i].contribs[0].death), ")\n							</li>\n						</ul>\n					</p>\n			  ");
-                            __stack.lineno = 51;
+                            buf.push('\n					<p>\n						<span><b>Contribution : </b></span>\n						<br>\n						<ul>\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 51, books[i].contribs[0].role), " : </span>\n								", (__stack.lineno = 52, books[i].contribs[0].name), " (", (__stack.lineno = 52, books[i].contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 52, books[i].contribs[0].death), ")\n							</li>\n						</ul>\n					</p>\n			  ");
+                            __stack.lineno = 56;
                         }
-                        buf.push('\n			  <p class="book-source"><b>Source : </b>\n				  <ul>\n					  <li>&Eacute;diteur : ', (__stack.lineno = 54, books[i].source.publisher), "</li>\n					  <li>Année de parution : ", (__stack.lineno = 55, books[i].source.year), "</li>\n				  </ul>\n			  </p>\n			  ");
-                        __stack.lineno = 58;
+                        buf.push('\n			  <p class="book-source"><b>Source : </b>\n				  <ul>\n					  <li>&Eacute;diteur : ', (__stack.lineno = 59, books[i].source.publisher), "</li>\n					  <li>Année de parution : ", (__stack.lineno = 60, books[i].source.year), "</li>\n				  </ul>\n			  </p>\n			  ");
+                        __stack.lineno = 63;
                         if (books[i].description) {
-                            buf.push("\n			  <div>", (__stack.lineno = 59, books[i].description), "</div>\n			  ");
-                            __stack.lineno = 60;
+                            buf.push("\n			  <div>", (__stack.lineno = 64, books[i].description), "</div>\n			  ");
+                            __stack.lineno = 65;
                         }
-                        buf.push('\n		</div>\n		<div id=footer class="w3-container w3-border-bottom">\n			<button id="close-infos-', escape((__stack.lineno = 63, books[i].id)), '" \n					class="close-infos-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-bottomright"\n					>Fermer</button>\n		</div>\n	</div>\n</div>\n');
+                        buf.push("\n		</div>\n	</div>\n</div>\n");
                         return buf.join("");
-                    }() + ' ---> 						\n						<div class="slide" style="text-align: center">\n							<div id="paper" style="background-color: ', (__stack.lineno = 11, books[i].styles.color), "; background-image: url(", (__stack.lineno = 11, books[i].styles.image), ')">\n								<div id="', escape((__stack.lineno = 12, books[i].id)), '" class="book" style="', escape((__stack.lineno = 12, books[i].styles.cover)), '">\n									<p class="author" style="', escape((__stack.lineno = 13, books[i].styles.author)), '">', (__stack.lineno = 13, books[i].authorDisplay), '</p>\n									<p class="title" style="', (__stack.lineno = 14, books[i].styles.title), '">\n										', (__stack.lineno = 15, books[i].title), "\n									</p>\n									");
+                    }() + '				\n				<div class="slide fade" id="slide_', escape((__stack.lineno = 10, books[i].id)), '">\n					<div id="paper" style="background-color: ', (__stack.lineno = 11, books[i].styles.color), "; background-image: url(", (__stack.lineno = 11, books[i].styles.image), ')">\n						<div id="', escape((__stack.lineno = 12, books[i].id)), '" class="book" style="', escape((__stack.lineno = 12, books[i].styles.cover)), '">\n							<p class="author" style="', escape((__stack.lineno = 13, books[i].styles.author)), '">', (__stack.lineno = 13, books[i].authorDisplay), '</p>\n							<p class="title" style="', (__stack.lineno = 14, books[i].styles.title), '">\n								', (__stack.lineno = 15, books[i].title), "\n							</p>\n							");
                     __stack.lineno = 17;
                     if (books[i].subtitle1) {
-                        buf.push('\n									<p class="subtitle1" style="', escape((__stack.lineno = 18, books[i].styles.subtitle1)), '">\n										', (__stack.lineno = 19, books[i].subtitle1), "</a>\n									</p>\n									");
+                        buf.push('\n							<p class="subtitle1" style="', escape((__stack.lineno = 18, books[i].styles.subtitle1)), '">\n								', (__stack.lineno = 19, books[i].subtitle1), "</a>\n							</p>\n							");
                         __stack.lineno = 21;
                     }
-                    buf.push("\n									");
+                    buf.push("\n							");
                     __stack.lineno = 22;
                     if (books[i].subtitle2) {
-                        buf.push('\n									<p class="subtitle1" style="', escape((__stack.lineno = 23, books[i].styles.subtitle2)), '">\n										', (__stack.lineno = 24, books[i].subtitle2), "</a>\n									</p>\n									");
+                        buf.push('\n							<p class="subtitle1" style="', escape((__stack.lineno = 23, books[i].styles.subtitle2)), '">\n								', (__stack.lineno = 24, books[i].subtitle2), "</a>\n							</p>\n							");
                         __stack.lineno = 26;
                     }
-                    buf.push('\n									<p class="logo" style="', escape((__stack.lineno = 27, books[i].styles.logo)), '">\n										<span class="span1">L&rsquo;Intermédiaire</span><br/>\n										<span class="span2">éditions</span>\n									</p>\n							   </div>\n						   </div>\n						   <div id="book-btn" >\n								<button id="open-infos-', escape((__stack.lineno = 34, books[i].id)), '" \n										class="open-infos-btn align-right w3-btn w3-ripple w3-hover-none" >+ d\'infos</button>\n						   </div>\n						</div>\n						\n					');
-                    __stack.lineno = 39;
+                    buf.push('\n							<p class="logo" style="', escape((__stack.lineno = 27, books[i].styles.logo)), '">\n								<span class="span1">Le Singulier</span><br/>\n								<span class="span2">éditions</span>\n							</p>\n					   </div>\n				   </div>\n				   <div id="book-btns" >\n						<button id="open-infos-', escape((__stack.lineno = 34, books[i].id)), '" class="open-infos-btn btn" >Fiche</button>\n				   </div>\n				</div>\n				\n			');
+                    __stack.lineno = 38;
                 }
-                buf.push('\n					\n			</div>\n			<div id="move-prev"></div>\n			<div id="move-next"></div>\n		</div>\n	</div>\n</div>\n');
+                buf.push('\n			<div id="dots">\n				<span class="dot"></span>\n				<span class="dot"></span>\n				<span class="dot"></span>\n				<span class="dot"></span>\n				<span class="dot"></span>\n				<span class="dot"></span>\n			</div>\n			<button id="previous" type="button" class="btn">&lt;</button>\n			<button id="next" type="button" class="btn">&gt;</button>\n		</div>\n	</div>\n</div>\n');
             })();
         }
         return buf.join("");
@@ -2975,30 +3012,132 @@ var booksNext = function booksNext(container) {
 	var nvbs = bs.filter(function (b) {
 		return b.visible === false;
 	});
-	//open infos
-	var openInfos = function openInfos(event) {
-		var id = event.target.id.replace('open-', '');
-		document.getElementById(id).style.display = 'block';
-	};
-	//close infos
-	var closeInfos = function closeInfos(event) {
-		var id = event.target.id.replace('close-', '');
-		document.getElementById(id).style.display = 'none';
-	};
+
 	//insert template in container
 	c.innerHTML = booksNextTemplate({ books: nvbs });
 	var root = document.querySelector('#books-next-container');
+	var slides = root.querySelectorAll('.slide');
+	var dots = root.querySelectorAll('.dot');
+	var index = void 0;
+	var automatic = void 0;
 
-	//modal (infos)
-	//open
+	//SLIDER COMMANDS
+	//Previous
+	var prevSlide = function prevSlide(event) {
+		clearTimeout(automatic);
+		automatic = undefined;
+		if (index === 0) {
+			index = slides.length - 1;
+		} else {
+			index -= 1;
+		}
+		for (var i = 0; i < slides.length; i++) {
+			slides[i].style.display = 'none';
+			_utils2.default.removeClass(dots[i], 'active');
+		}
+		slides[index].style.display = 'block';
+		_utils2.default.addClass(dots[index], 'active');
+		slider();
+	};
+	//Next
+	var nextSlide = function nextSlide(event) {
+		clearTimeout(automatic);
+		automatic = undefined;
+		if (index === slides.length - 1) {
+			index = 0;
+		} else {
+			index += 1;
+		}
+		for (var i = 0; i < slides.length; i++) {
+			slides[i].style.display = 'none';
+			_utils2.default.removeClass(dots[i], 'active');
+		}
+		slides[index].style.display = 'block';
+		_utils2.default.addClass(dots[index], 'active');
+		slider();
+	};
+
+	//automatic
+	var slider = function slider() {
+		automatic = setTimeout(nextSlide, 10000);
+	};
+
+	//dots
+
+	var _loop = function _loop(i) {
+		dots[i].addEventListener('click', function (event) {
+			clearTimeout(automatic);
+			automatic = undefined;
+			index = i;
+			for (var j = 0; j < slides.length; j++) {
+				slides[j].style.display = 'none';
+				_utils2.default.removeClass(dots[j], 'active');
+			}
+			clearTimeout(automatic);
+			slides[index].style.display = 'block';
+			_utils2.default.addClass(dots[index], 'active');
+			slider();
+		}, false);
+	};
+
+	for (var i = 0; i < dots.length; i++) {
+		_loop(i);
+	}
+
+	root.querySelector('#previous').addEventListener('click', prevSlide, false);
+	root.querySelector('#next').addEventListener('click', nextSlide, false);
+
+	//window.innerWidth > 750 : slider
+	if (window.innerWidth >= 750) {
+		index = 0;
+		slides[index].style.display = 'block';
+		_utils2.default.addClass(dots[index], 'active');
+		slider();
+	}
+	//window on resize (innerWidth < 750 : list, otherwise: slider)
+	window.addEventListener('resize', function () {
+		clearTimeout(automatic);
+		automatic = undefined;
+		if (window.innerWidth < 750) {
+			for (var i = 0; i < slides.length; i++) {
+				slides[i].style.display = 'block';
+			}
+		} else {
+			for (var _i = 0; _i < slides.length; _i++) {
+				slides[_i].style.display = 'none';
+			}
+			if (index === undefined) {
+				index = 0;
+			}
+			slides[index].style.display = 'block';
+			_utils2.default.addClass(dots[index], 'active');
+			slider();
+		}
+	});
+
+	//MODAL (infos)
+	//open infos
+	var openInfos = function openInfos(event) {
+		clearTimeout(automatic);
+		automatic = undefined;
+		var id = event.target.id.replace('open-', '');
+		document.getElementById(id).style.display = 'block';
+	};
 	var openInfosBtns = root.querySelectorAll('.open-infos-btn');
 	for (var i = 0; i < openInfosBtns.length; i++) {
 		openInfosBtns[i].addEventListener('click', openInfos, false);
 	}
-	//close
+	//close infos
+	var closeInfos = function closeInfos(event) {
+		clearTimeout(automatic);
+		automatic = undefined;
+		slider();
+		var id = event.target.id.replace('close-', '');
+		document.getElementById(id).style.display = 'none';
+	};
 	var closeInfosBtns = root.querySelectorAll('.close-infos-btn');
-	for (var _i = 0; _i < closeInfosBtns.length; _i++) {
-		closeInfosBtns[_i].addEventListener('click', closeInfos, false);
+	for (var _i2 = 0; _i2 < closeInfosBtns.length; _i2++) {
+		closeInfosBtns[_i2].addEventListener('click', closeInfos, false);
 	}
 };
 
@@ -3044,7 +3183,7 @@ exports = module.exports = __webpack_require__(4)(undefined);
 
 
 // module
-exports.push([module.i, "#books-next-container #top-page-header {\n\ttext-align: center;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tfont-size: 1em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1px;\n\tline-height: 25px;\n\twidth: 100px;\n\tmargin: auto;\n\tmargin-top: 32px;\n\tdisplay: block;\n}\n\n@media only screen and (min-width: 768px) {\n\t#books-next-container #top-page-header {\n\t\tdisplay: none;\n\t}\n}\n\n#books-next-container #booksList {\n\tmax-width: 568px;\n\tmargin: auto;\n}\n\n@media only screen and (min-width: 853px) {\n\t#books-next-container #booksList {\n\t\tmax-width: 852px;\n\t}\n}\n\n@media only screen and (min-width: 1137px) {\n\t#books-next-container #booksList {\n\t\tmax-width: 1136px;\n\t}\n}\n\n#books-next-container .w3-col {\n\twidth: 100%;\n\theight: 408px;\n}\n\n@media only screen and (min-width: 600px) {\n\t#books-next-container .w3-col {\n\t\twidth: 284px;\n\t}\n}\n\n#books-next-container #paper {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#books-next-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#books-next-container .book .logo .span2 {\n\tfont-variant: small-caps;\n\tfont-style: normal;\n}\n\n#books-next-container #book-btn {\n\twidth: 238px;\n\theight: 40px;\n\tmargin: auto;\n\tmargin-top: 8px;\n}\n\n#books-next-container #book-btn button {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1.5px;\n\tbackground-color: transparent;\n}\n\n/*\nMODAL (INFOS)\n*/\n#books-next-container .w3-modal {\n\tfont-family: \"Verdana\", serif;\n}\n\n#books-next-container .w3-modal #footer {\n\tpadding-top: 16px;\n}\n\n#books-next-container .w3-modal .close-infos-btn {\n\tfont-size: 1.1em;\n\tfont-family: \"Verdana\", serif;\n\tletter-spacing: 1px;\n}\n\n#books-next-container .w3-modal p {\n\tmargin: 0px;\n\tmargin-top: 8px;\n}\n\n#books-next-container .w3-modal ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#books-next-container .w3-modal .contrib-role {\n\ttext-transform: capitalize;\n}\n\n\n\n", ""]);
+exports.push([module.i, "#books-next-container {\n\tmargin-top: 0px;\n}\n\n@media only screen and (min-width: 750px) {\n\t#books-next-container {\n\t\tmargin-top: 32px;\n\t}\n}\n\n#books-next-container #top-page-header {\n\ttext-align: center;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.2em;\n\tfont-variant: small-caps;\n\tletter-spacing: 4px;\n\tline-height: 25px;\n\tmargin: auto;\n\tdisplay: block;\n\tpadding: 32px 0px 32px 0px;\n}\n\n@media only screen and (min-width: 750px) {\n\t#books-next-container #top-page-header {\n\t\tfont-size: 1.4em;\n\t}\n}\n\n#books-next-container #book-btns {\n\twidth: 100%;\n\tposition: relative;\n\theight: 37px;\n}\n\n#books-next-container .open-infos-btn {\n\tfont-family: \"Vollkorn\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1px;\n\tbackground-color: transparent;\n\tposition: absolute;\n\tright: 0px;\n\tbottom: 0px;\n}\n\n\n#books-next-container #booksList-container {\n\twidth: 100%;\n\tpadding-bottom: 32px;\n\tmargin: auto;\n\tborder-bottom: 1px solid black;\n}\n\n@media only screen and (min-width: 750px) {\n\n\t#books-next-container #booksList-container {\n\t\twidth: 750px;\n\t}\n}\n\n#books-next-container #booksList {\n\tposition: relative;\n\twidth: 250px;\n\tmargin: auto;\n\tpadding: 32px 0px 32px 0px;\n}\n\n@media only screen and (min-width: 750px) {\n\t#books-next-container #booksList {\n\t\theight: 468px;\n\t}\n}\n\n#books-next-container .slide {\n\tposition: relative;\n\twidth: 250px;\n\tmargin: auto;\n\tmargin-bottom: 48px;\n\tdisplay: block;\n\ttext-align: center;\n}\n\n@media only screen and (min-width: 750px) {\n\t\n\t#books-next-container .slide {\n\t\tmargin-bottom: 0px;\n\t\tdisplay: none;\n\t}\n}\n\n#books-next-container #paper {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#books-next-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n\tposition: relative;\n}\n\n/* Fading animation */\n#books-next-container .fade {\n  -webkit-animation-name: fade;\n  -webkit-animation-duration: 1.5s;\n  animation-name: fade;\n  animation-duration: 1.5s;\n}\n\n@-webkit-keyframes fade {\n  from {opacity: .4}\n  to {opacity: 1}\n}\n\n@keyframes fade {\n  from {opacity: .4}\n  to {opacity: 1}\n}\n\n#books-next-container #previous {\n\tposition: absolute;\n\ttop: 45%;\n\tleft: -100px;\n\tmargin-top: -25px;\n\twidth: 50px;\n\theight: 50px;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.6em;\n\tbackground-color: transparent;\n\tdisplay: none;\n}\n\n#books-next-container #next {\n\tposition: absolute;\n\ttop: 45%;\n\tright: -100px;\n\tmargin-top: -25px;\n\twidth: 50px;\n\theight: 50px;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.6em;\n\tbackground-color: transparent;\n\tdisplay: none;\n}\n\n@media only screen and (min-width: 750px) {\n\t#books-next-container #previous {\n\t\tdisplay: inline-block;\n\t}\n\n\t#books-next-container #next {\n\t\tdisplay: inline-block;\n\t}\n}\n\n#books-next-container #dots {\n\twidth: 100%;\n\ttext-align: center;\n\tdisplay: none;\n\tpadding: 32px 0px 32px 0px;\n}\n\n#books-next-container .dot {\n\tcursor:pointer;\n\theight: 15px;\n\twidth: 15px;\n\tmargin: 0 2px;\n\tborder: 1px solid #333;\n\tbackground-color: transparent;\n\tborder-radius: 50%;\n\tdisplay: inline-block;\n\ttransition: background-color 0.6s ease;\n}\n\n#books-next-container .dot.active, #books-next-container .dot:hover {\n\tbackground-color: #333;\n}\n\n@media only screen and (min-width: 750px) {\n\n\t#books-next-container #dots {\n\t\tdisplay: block;\n\t}\n\n}\n\n/*\nMODAL (INFOS)\n*/\n\n#books-next-container .modal {\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tdisplay: none;\n}\n\n#books-next-container .modal-content {\n\tmax-width: 500px;\n}\n\n#books-next-container .modal-content div {\n\tpadding: 16px;\n}\n\n#books-next-container .modal #infos-header {\n\tposition: relative;\n\tpadding: 16px;\n\tborder-bottom: 1px solid #ddd;\n\ttext-align: center;\n}\n\n#books-next-container .modal .close-infos-btn {\n\tposition: absolute;\n\ttop: 0;\n\tright: 0;\n\twidth: 37px;\n\theight: 37px;\n\tfont-size: 1.5em;\n}\n\n#books-next-container .modal p {\n\tmargin: 0px;\n\tpadding: 8px;\n}\n\n#books-next-container .modal ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#books-next-container .modal ul li {\n\tpadding: 4px;\n}\n\n#books-next-container .modal .contrib-role {\n\ttext-transform: capitalize;\n}\n", ""]);
 
 // exports
 
@@ -3059,7 +3198,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="books-next-container" class="w3-content" style="max-width: 1200px">\n	<div id="top-page-header" class="w3-light-gray">à paraître</div>\n	<div id="booksList" class="w3-padding-64 w3-animate-opacity">\n		<div class=\'w3-row\'>\n			<% for(var i=0; i<books.length; i++) {%>\n				\n				<!-- MODAL (INFOS) -->\n				<%- include src/components/books-next/infos-modal.ejs -%>\n				\n				<div class="w3-col" style="text-align: center">\n					<div id="paper" style="background-color: <%= books[i].styles.color %>; background-image: url(<%- books[i].styles.image %>)">\n					<div class="book" style="<%=books[i].styles.cover %>">\n						<p class="author" style="<%=books[i].styles.author %>"><%- books[i].authorDisplay %></p>\n						<p class="title" style="<%-books[i].styles.title %>">\n							<span><%- books[i].title %></span>\n						</p>\n						<% if(books[i].subtitle1) {%>\n						<p class="subtitle1" style="<%= books[i].styles.subtitle1 %>">\n							<%- books[i].subtitle1 %></a>\n						</p>\n						<% } %>\n						<% if(books[i].subtitle2) {%>\n						<p class="subtitle1" style="<%= books[i].styles.subtitle2 %>">\n							<%- books[i].subtitle2 %></a>\n						</p>\n						<% } %>\n						<p class="logo" style="<%=books[i].styles.logo %>">\n							<span class="span1">L&rsquo;Intermédiaire</span><br/>\n							<span class="span2">éditions</span>\n						</p>\n				   </div>\n				   </div>\n				   <div id="book-btn" >\n						<button id="open-infos-<%= books[i].id %>" class="open-infos-btn align-right w3-btn w3-ripple w3-hover-none">+ d\'infos</button>\n				   </div>\n				</div>\n				\n			<% } %>\n		</div>\n	</div>\n</div>\n',
+        input: '<div id="books-next-container">\n	<div id="top-page-header">à paraître</div>\n	<div id="booksList-container">\n		<div id="booksList">\n		\n			<% for(var i=0; i<books.length; i++) {%>\n				\n				<!-- MODAL (INFOS) -->\n				<%- include src/components/books-next/infos-modal.ejs -%>\n				\n				<div class="slide fade" id="slide_<%= books[i].id %>">\n					<div id="paper" style="background-color: <%= books[i].styles.color %>; background-image: url(<%- books[i].styles.image %>)">\n						<div class="book" style="<%=books[i].styles.cover %>">\n							<p class="author" style="<%=books[i].styles.author %>"><%- books[i].authorDisplay %></p>\n							<p class="title" style="<%-books[i].styles.title %>">\n								<span><%- books[i].title %></span>\n							</p>\n							<% if(books[i].subtitle1) {%>\n							<p class="subtitle1" style="<%= books[i].styles.subtitle1 %>">\n								<%- books[i].subtitle1 %></a>\n							</p>\n							<% } %>\n							<% if(books[i].subtitle2) {%>\n							<p class="subtitle1" style="<%= books[i].styles.subtitle2 %>">\n								<%- books[i].subtitle2 %></a>\n							</p>\n							<% } %>\n							<p class="logo" style="<%=books[i].styles.logo %>">\n								<span class="span1">Le Singulier</span><br/>\n								<span class="span2">éditions</span>\n							</p>\n					   </div>\n				   </div>\n				   <div id="book-btns" >\n						<button id="open-infos-<%= books[i].id %>" class="open-infos-btn btn">Fiche</button>\n				   </div>\n				</div>\n				\n			<% } %>\n			<div id="dots" class="w3-padding-32">\n				<span class="dot"></span>\n				<span class="dot"></span>\n				<span class="dot"></span>\n				<span class="dot"></span>\n				<span class="dot"></span>\n				<span class="dot"></span>\n			</div>\n			<button id="previous" type="button" class="btn">&lt;</button>\n			<button id="next" type="button" class="btn">&gt;</button>\n		</div>\n	</div>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -3076,77 +3215,77 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
         var buf = [];
         with (locals || {}) {
             (function() {
-                buf.push('<div id="books-next-container" class="w3-content" style="max-width: 1200px">\n	<div id="top-page-header" class="w3-light-gray">à paraître</div>\n	<div id="booksList" class="w3-padding-64 w3-animate-opacity">\n		<div class=\'w3-row\'>\n			');
-                __stack.lineno = 5;
+                buf.push('<div id="books-next-container">\n	<div id="top-page-header">à paraître</div>\n	<div id="booksList-container">\n		<div id="booksList">\n		\n			');
+                __stack.lineno = 6;
                 for (var i = 0; i < books.length; i++) {
                     buf.push("\n				\n				<!-- MODAL (INFOS) -->\n				" + function() {
                         var buf = [];
-                        buf.push('<div id="infos-', escape((__stack.lineno = 1, books[i].id)), '" class="w3-modal" style="background-color: rgba(0,0,0,0.1)">\n	<div class="w3-modal-content w3-card w3-animate-top" style="max-width: 500px">\n		<div class="w3-container w3-padding-16">\n			  <p><b>Titre : </b>', (__stack.lineno = 4, books[i].title), "</p>\n			  ");
-                        __stack.lineno = 5;
+                        buf.push('<div id="infos-', escape((__stack.lineno = 1, books[i].id)), '" class="modal">\n	<div class="modal-content w3-card animate-top">\n		<div id="infos-header">\n			<button id="close-infos-', escape((__stack.lineno = 4, books[i].id)), '" type="button" class="btn close-infos-btn">&times;</button>\n			<p>', (__stack.lineno = 5, books[i].authorDisplay), '</p>\n			<p class="text-uppercase">', (__stack.lineno = 6, books[i].title), "</p>\n		</div>\n		<div>\n			  <p><b>Titre : </b>", (__stack.lineno = 9, books[i].title), "</p>\n			  ");
+                        __stack.lineno = 10;
                         if (books[i].subtitle1) {
-                            buf.push("\n				<p><b>Sous-titre : </b>", (__stack.lineno = 6, books[i].subtitle1), "</p>\n			  ");
-                            __stack.lineno = 7;
+                            buf.push("\n				<p><b>Sous-titre : </b>", (__stack.lineno = 11, books[i].subtitle1), "</p>\n			  ");
+                            __stack.lineno = 12;
                         }
                         buf.push("\n			  ");
-                        __stack.lineno = 8;
+                        __stack.lineno = 13;
                         if (books[i].subtitle2) {
-                            buf.push("\n				<p><b>Sous-sous-titre : </b>", (__stack.lineno = 9, books[i].subtitle2), "</p>\n			  ");
-                            __stack.lineno = 10;
+                            buf.push("\n				<p><b>Sous-sous-titre : </b>", (__stack.lineno = 14, books[i].subtitle2), "</p>\n			  ");
+                            __stack.lineno = 15;
                         }
-                        buf.push("\n			  <p><b>Année de parution : </b>", (__stack.lineno = 11, books[i].year), "</p>\n			  ");
-                        __stack.lineno = 12;
+                        buf.push("\n			  <p><b>Année de parution : </b>", (__stack.lineno = 16, books[i].year), "</p>\n			  ");
+                        __stack.lineno = 17;
                         if (books[i].authors.length > 1) {
                             buf.push("\n					<p>\n						<span><b>Auteurs :</b></span>\n						<br>\n						<ul>\n						");
-                            __stack.lineno = 17;
+                            __stack.lineno = 22;
                             for (var j = 0; j < books[i].authors.length; j++) {
-                                buf.push("\n							<li>\n								", (__stack.lineno = 19, books[i].authors[j].name), " (", (__stack.lineno = 19, books[i].authors[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 19, books[i].authors[j].death), ")\n							</li>\n						");
-                                __stack.lineno = 21;
+                                buf.push("\n							<li>\n								", (__stack.lineno = 24, books[i].authors[j].name), " (", (__stack.lineno = 24, books[i].authors[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 24, books[i].authors[j].death), ")\n							</li>\n						");
+                                __stack.lineno = 26;
                             }
                             buf.push("\n						</ul>\n					</p>\n			  ");
-                            __stack.lineno = 24;
+                            __stack.lineno = 29;
                         } else if (books[i].authors.length === 1) {
-                            buf.push("\n					<p><b>Auteur : </b>", (__stack.lineno = 25, books[i].authors[0].name), " (", (__stack.lineno = 25, books[i].authors[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 25, books[i].authors[0].death), ")</p>\n			  ");
-                            __stack.lineno = 26;
+                            buf.push("\n					<p><b>Auteur : </b>", (__stack.lineno = 30, books[i].authors[0].name), " (", (__stack.lineno = 30, books[i].authors[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 30, books[i].authors[0].death), ")</p>\n			  ");
+                            __stack.lineno = 31;
                         }
                         buf.push("\n			  ");
-                        __stack.lineno = 27;
+                        __stack.lineno = 32;
                         if (books[i].contribs.length > 1) {
                             buf.push("\n					<p>\n						<span><b>Contributions :</b></span>\n						<br>\n						<ul>\n						");
-                            __stack.lineno = 32;
+                            __stack.lineno = 37;
                             for (var j = 0; j < books[i].contribs.length; j++) {
-                                buf.push('\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 34, books[i].contribs[j].role), " : </span>\n								", (__stack.lineno = 35, books[i].contribs[j].name), " (", (__stack.lineno = 35, books[i].contribs[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 35, books[i].contribs[j].death), ")\n							</li>\n						");
-                                __stack.lineno = 37;
+                                buf.push('\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 39, books[i].contribs[j].role), " : </span>\n								", (__stack.lineno = 40, books[i].contribs[j].name), " (", (__stack.lineno = 40, books[i].contribs[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 40, books[i].contribs[j].death), ")\n							</li>\n						");
+                                __stack.lineno = 42;
                             }
                             buf.push("\n						</ul>\n					</p>\n			  ");
-                            __stack.lineno = 40;
+                            __stack.lineno = 45;
                         } else if (books[i].contribs.length === 1) {
-                            buf.push('\n					<p>\n						<span><b>Contribution : </b></span>\n						<br>\n						<ul>\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 46, books[i].contribs[0].role), " : </span>\n								", (__stack.lineno = 47, books[i].contribs[0].name), " (", (__stack.lineno = 47, books[i].contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 47, books[i].contribs[0].death), ")\n							</li>\n						</ul>\n					</p>\n			  ");
-                            __stack.lineno = 51;
+                            buf.push('\n					<p>\n						<span><b>Contribution : </b></span>\n						<br>\n						<ul>\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 51, books[i].contribs[0].role), " : </span>\n								", (__stack.lineno = 52, books[i].contribs[0].name), " (", (__stack.lineno = 52, books[i].contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 52, books[i].contribs[0].death), ")\n							</li>\n						</ul>\n					</p>\n			  ");
+                            __stack.lineno = 56;
                         }
-                        buf.push('\n			  <p class="book-source"><b>Source : </b>\n				  <ul>\n					  <li>&Eacute;diteur : ', (__stack.lineno = 54, books[i].source.publisher), "</li>\n					  <li>Année de parution : ", (__stack.lineno = 55, books[i].source.year), "</li>\n				  </ul>\n			  </p>\n			  ");
-                        __stack.lineno = 58;
+                        buf.push('\n			  <p class="book-source"><b>Source : </b>\n				  <ul>\n					  <li>&Eacute;diteur : ', (__stack.lineno = 59, books[i].source.publisher), "</li>\n					  <li>Année de parution : ", (__stack.lineno = 60, books[i].source.year), "</li>\n				  </ul>\n			  </p>\n			  ");
+                        __stack.lineno = 63;
                         if (books[i].description) {
-                            buf.push("\n			  <div>", (__stack.lineno = 59, books[i].description), "</div>\n			  ");
-                            __stack.lineno = 60;
+                            buf.push("\n			  <div>", (__stack.lineno = 64, books[i].description), "</div>\n			  ");
+                            __stack.lineno = 65;
                         }
-                        buf.push('\n		</div>\n		<div id=footer class="w3-container w3-border-bottom">\n			<button id="close-infos-', escape((__stack.lineno = 63, books[i].id)), '" \n					class="close-infos-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-bottomright"\n					>Fermer</button>\n		</div>\n	</div>\n</div>\n');
+                        buf.push("\n		</div>\n	</div>\n</div>\n");
                         return buf.join("");
-                    }() + '				\n				<div class="w3-col" style="text-align: center">\n					<div id="paper" style="background-color: ', escape((__stack.lineno = 10, books[i].styles.color)), "; background-image: url(", (__stack.lineno = 10, books[i].styles.image), ')">\n					<div class="book" style="', escape((__stack.lineno = 11, books[i].styles.cover)), '">\n						<p class="author" style="', escape((__stack.lineno = 12, books[i].styles.author)), '">', (__stack.lineno = 12, books[i].authorDisplay), '</p>\n						<p class="title" style="', (__stack.lineno = 13, books[i].styles.title), '">\n							<span>', (__stack.lineno = 14, books[i].title), "</span>\n						</p>\n						");
-                    __stack.lineno = 16;
+                    }() + '				\n				<div class="slide fade" id="slide_', escape((__stack.lineno = 10, books[i].id)), '">\n					<div id="paper" style="background-color: ', escape((__stack.lineno = 11, books[i].styles.color)), "; background-image: url(", (__stack.lineno = 11, books[i].styles.image), ')">\n						<div class="book" style="', escape((__stack.lineno = 12, books[i].styles.cover)), '">\n							<p class="author" style="', escape((__stack.lineno = 13, books[i].styles.author)), '">', (__stack.lineno = 13, books[i].authorDisplay), '</p>\n							<p class="title" style="', (__stack.lineno = 14, books[i].styles.title), '">\n								<span>', (__stack.lineno = 15, books[i].title), "</span>\n							</p>\n							");
+                    __stack.lineno = 17;
                     if (books[i].subtitle1) {
-                        buf.push('\n						<p class="subtitle1" style="', escape((__stack.lineno = 17, books[i].styles.subtitle1)), '">\n							', (__stack.lineno = 18, books[i].subtitle1), "</a>\n						</p>\n						");
-                        __stack.lineno = 20;
+                        buf.push('\n							<p class="subtitle1" style="', escape((__stack.lineno = 18, books[i].styles.subtitle1)), '">\n								', (__stack.lineno = 19, books[i].subtitle1), "</a>\n							</p>\n							");
+                        __stack.lineno = 21;
                     }
-                    buf.push("\n						");
-                    __stack.lineno = 21;
+                    buf.push("\n							");
+                    __stack.lineno = 22;
                     if (books[i].subtitle2) {
-                        buf.push('\n						<p class="subtitle1" style="', escape((__stack.lineno = 22, books[i].styles.subtitle2)), '">\n							', (__stack.lineno = 23, books[i].subtitle2), "</a>\n						</p>\n						");
-                        __stack.lineno = 25;
+                        buf.push('\n							<p class="subtitle1" style="', escape((__stack.lineno = 23, books[i].styles.subtitle2)), '">\n								', (__stack.lineno = 24, books[i].subtitle2), "</a>\n							</p>\n							");
+                        __stack.lineno = 26;
                     }
-                    buf.push('\n						<p class="logo" style="', escape((__stack.lineno = 26, books[i].styles.logo)), '">\n							<span class="span1">L&rsquo;Intermédiaire</span><br/>\n							<span class="span2">éditions</span>\n						</p>\n				   </div>\n				   </div>\n				   <div id="book-btn" >\n						<button id="open-infos-', escape((__stack.lineno = 33, books[i].id)), '" class="open-infos-btn align-right w3-btn w3-ripple w3-hover-none">+ d\'infos</button>\n				   </div>\n				</div>\n				\n			');
-                    __stack.lineno = 37;
+                    buf.push('\n							<p class="logo" style="', escape((__stack.lineno = 27, books[i].styles.logo)), '">\n								<span class="span1">Le Singulier</span><br/>\n								<span class="span2">éditions</span>\n							</p>\n					   </div>\n				   </div>\n				   <div id="book-btns" >\n						<button id="open-infos-', escape((__stack.lineno = 34, books[i].id)), '" class="open-infos-btn btn">Fiche</button>\n				   </div>\n				</div>\n				\n			');
+                    __stack.lineno = 38;
                 }
-                buf.push("\n		</div>\n	</div>\n</div>\n");
+                buf.push('\n			<div id="dots" class="w3-padding-32">\n				<span class="dot"></span>\n				<span class="dot"></span>\n				<span class="dot"></span>\n				<span class="dot"></span>\n				<span class="dot"></span>\n				<span class="dot"></span>\n			</div>\n			<button id="previous" type="button" class="btn">&lt;</button>\n			<button id="next" type="button" class="btn">&gt;</button>\n		</div>\n	</div>\n</div>\n');
             })();
         }
         return buf.join("");
@@ -11436,11 +11575,9 @@ var authors = function authors(container) {
 	var ls = root.querySelectorAll('#letters a');
 	for (var i = 0; i < ls.length; i++) {
 		if (ls[i].innerHTML === search) {
-			_utils2.default.removeClass('#' + ls[i].id, 'w3-text-gray');
-			_utils2.default.addClass('#' + ls[i].id, 'w3-text-black');
+			_utils2.default.addClass('#' + ls[i].id, 'active');
 		} else {
-			_utils2.default.removeClass('#' + ls[i].id, 'w3-text-black');
-			_utils2.default.addClass('#' + ls[i].id, 'w3-text-gray');
+			_utils2.default.removeClass('#' + ls[i].id, 'active');
 		}
 	}
 	//link to book/read
@@ -11503,7 +11640,7 @@ exports = module.exports = __webpack_require__(4)(undefined);
 
 
 // module
-exports.push([module.i, "#authors-container {\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n}\n\n#authors-container #top-page-header {\n\ttext-align: center;\n\tfont-family: \"Times New Roman\", Georgia, sans-serif;\n\tfont-size: 1em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1px;\n\tline-height: 25px;\n\twidth: 90px;\n\tmargin: auto;\n\tmargin-top: 32px;\n\tdisplay: block;\n}\n\n@media only screen and (min-width: 768px) {\n\t#authors-container #top-page-header {\n\t\tdisplay: none;\n\t}\n}\n\n#authors-container #letters {\n\ttext-align: center;\n\tline-height: 25px;\n\twidth: 320px;\n\tmargin: auto;\n}\n\n@media only screen and (min-width: 410px) {\n\t#authors-container #letters {\n\t\twidth: 410px;\n\t}\n}\n\n@media only screen and (min-width: 768px) {\n\t#authors-container #letters {\n\t\twidth: 100%;\n\t}\n}\n\n#authors-container .author {\n\tpadding-top: 8px;\n}\n\n#authors-container .author-name {\n\tmax-width: 568px;\n\tfont-size: 1.2em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1.5px;\n\tmargin-bottom: 0px;\n\tmargin-top: 0px;\n\tmargin-left: 17px;\n\tmargin-right: 17px;\n\ttext-align: center;\n}\n\n#authors-container #booksList {\n\tmax-width: 568px;\n\tmargin: auto;\n}\n\n@media only screen and (min-width: 600px) {\n\t#authors-container #booksList {\n\t\tmargin: 0px;\n\t}\n\t\n\t#authors-container .author-name {\n\t\tmax-width: 852px;\n\t\ttext-align: left;\n\t}\n}\n\n@media only screen and (min-width: 853px) {\n\t#authors-container #booksList {\n\t\tmax-width: 852px;\n\t\tmargin: 0px;\n\t}\n\t\n\t#authors-container .author-name {\n\t\tmax-width: 1136px;\n\t}\n}\n\n@media only screen and (min-width: 1137px) {\n\t#authors-container #booksList {\n\t\tmax-width: 1136px;\n\t\tmargin: 0px;\n\t}\n\t\n\t#authors-container .author-name {\n\t\tmax-width: 1136px;\n\t}\n}\n\n#authors-container .w3-col {\n\twidth: 100%;\n\theight: 408px;\n}\n\n@media only screen and (min-width: 600px) {\n\t#authors-container .w3-col {\n\t\twidth: 284px;\n\t}\n}\n\n#authors-container #paper {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#authors-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#authors-container .book .logo .span2 {\n\tfont-variant: small-caps;\n\tfont-style: normal;\n}\n\n#authors-container #book-btn {\n\twidth: 238px;\n\theight: 40px;\n\tmargin: auto;\n\tmargin-top: 8px;\n}\n\n#authors-container #book-btn button {\n\tfont-family: \"Times New Roman\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1.5px;\n\tbackground-color: transparent;\n}\n\n/*\nMODAL (INFOS)\n*/\n#authors-container .w3-modal {\n\tfont-family: \"Verdana\", serif;\n}\n\n#authors-container .w3-modal #footer {\n\tpadding-top: 16px;\n}\n\n#authors-container .w3-modal .close-infos-btn {\n\tfont-size: 1.1em;\n\tfont-family: \"Verdana\", serif;\n\tletter-spacing: 1px;\n}\n\n#authors-container .w3-modal p {\n\tmargin: 0px;\n\tmargin-top: 8px;\n}\n\n#authors-container .w3-modal ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#authors-container .w3-modal .contrib-role {\n\ttext-transform: capitalize;\n}\n\n\n", ""]);
+exports.push([module.i, "#authors-container {\n\tmargin-top: 0px;\n}\n\n@media only screen and (min-width: 750px) {\n\t#authors-container {\n\t\tmargin-top: 32px;\n\t}\n}\n\n#authors-container #top-page-header {\n\ttext-align: center;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.2em;\n\tfont-variant: small-caps;\n\tletter-spacing: 4px;\n\tline-height: 25px;\n\tmargin: auto;\n\tdisplay: block;\n\tpadding: 32px 0px 32px 0px;\n}\n\n@media only screen and (min-width: 750px) {\n\t#authors-container #top-page-header {\n\t\tfont-size: 1.4em;\n\t}\n}\n\n#authors-container #letters {\n\ttext-align: center;\n\tline-height: 37px;\n\twidth: 320px;\n\tmargin: auto;\n\tpadding: 0px;\n}\n\n@media only screen and (min-width: 410px) {\n\t#authors-container #letters {\n\t\twidth: 410px;\n\t}\n}\n\n@media only screen and (min-width: 750px) {\n\t#authors-container #letters {\n\t\twidth: 585px;\n\t}\n\t\n}\n\n#authors-container #authors-list {\n\tmax-width: 750px;\n\tmargin: auto;\n\tpadding: 48px 16px 48px 16px;\n}\n\n\n#authors-container .author {\n\tpadding-top: 8px;\n}\n\n#authors-container .author-name {\n\tmax-width: 750px;\n\ttext-align: center;\n\tfont-size: 1.2em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1.5px;\n\tpadding: 0px 16px 0px 16px;\n\ttext-align: center;\n}\n\n#authors-container .author-name a {\n\tcolor: #212121;\n}\n\n\n\n\n", ""]);
 
 // exports
 
@@ -11518,7 +11655,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="authors-container" class="w3-content" style="max-width: 1136px">\n	<div id="top-page-header" class="w3-light-gray">auteurs</div>\n	<div id="letters" class="w3-container w3-padding-32">\n		<%- include src/components/authors/authors-letters.ejs -%>\n	</div>\n	<div id="authorsList" class="w3-padding-48 w3-animate-opacity">\n		<% for(var i=0; i<authors.length; i++) {%>\n			<% if(authors[i].visible) { %>\n			<div class="author">\n				<p class="author-name w3-border-bottom"><%- authors[i].name %></p>\n				<div id="booksList" class="w3-padding-16">\n					<div class=\'w3-row\'>\n						<% var works = authors[i].books.concat(authors[i].contribs)	%>\n						<% for(var j=0; j<works.length; j++) {\n							if(works[j].role) {\n									var b = works[j].book;\n								} else {\n									var b = works[j];\n								}\n							\n							if(b.visible) {\n							for(var k=0; k<books.length; k++) {\n								if(books[k].id===b.id) {\n									var book = books[k];\n									break;\n								}\n							}%>\n							\n							<!-- MODAL (INFOS) -->\n							<%- include src/components/authors/infos-modal.ejs -%>\n							\n							<div class="w3-col" style="text-align: center">\n								<div id="paper" style="background-color: <%- book.styles.color %>; background-image: url(<%- book.styles.image %>)">\n									<div id="<%= book.id %>" class="book" style="<%= book.styles.cover %>">\n										<p class="book-author" style="<%=book.styles.author %>"><%- book.authorDisplay %></p>\n										<p class="title" style="<%= book.styles.title %>">\n											<%- book.title %>\n										</p>\n										<% if(book.subtitle1) {%>\n										<p class="subtitle1" style="<%= book.styles.subtitle1 %>">\n											<%- book.subtitle1 %></a>\n										</p>\n										<% } %>\n										<% if(book.subtitle2) {%>\n										<p class="subtitle1" style="<%= book.styles.subtitle2 %>">\n											<%- book.subtitle2 %></a>\n										</p>\n										<% } %>\n										<p class="logo" style="<%=book.styles.logo %>">\n											<span class="span1">L&rsquo;Intermédiaire</span><br/>\n											<span class="span2">éditions</span>\n										</p>\n								   </div>\n							   </div>\n							   <div id="book-btn" >\n									<button id="open-infos-<%= book.id %>" class="open-infos-btn align-right w3-btn w3-ripple w3-hover-none">+ d\'infos</button>\n							   </div>\n							</div>\n						   <% } %>\n						<% } %>\n					</div>\n				</div>\n			</div>\n			<% } %>\n		<% } %>\n	</div>\n</div>\n',
+        input: '<div id="authors-container">\n	<div id="top-page-header">auteurs</div>\n	<div id="letters">\n		<%- include src/components/authors/authors-letters.ejs -%>\n	</div>\n	<ul id="authors-list" class="ul">\n		\n		<% for(var i=0; i<authors.length; i++) {%>\n			<% if(authors[i].visible) { %>\n			<li class="author">\n				<p class="author-name"><a><%- authors[i].name %></a></p>\n			</li>\n			<% } %>\n		<% } %>\n		\n	</ul>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -11535,111 +11672,23 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
         var buf = [];
         with (locals || {}) {
             (function() {
-                buf.push('<div id="authors-container" class="w3-content" style="max-width: 1136px">\n	<div id="top-page-header" class="w3-light-gray">auteurs</div>\n	<div id="letters" class="w3-container w3-padding-32">\n		' + function() {
+                buf.push('<div id="authors-container">\n	<div id="top-page-header">auteurs</div>\n	<div id="letters">\n		' + function() {
                     var buf = [];
-                    buf.push('<a id="a" href="#/authors?q=A" class="w3-text-gray w3-hover-none w3-hover-text-black">A</a>&emsp;\n<a id="b" href="#/authors?q=B" class="w3-text-gray w3-hover-none w3-hover-text-black">B</a>&emsp;\n<a id="c" href="#/authors?q=C" class="w3-text-gray w3-hover-none w3-hover-text-black">C</a>&emsp;\n<a id="d" href="#/authors?q=D" class="w3-text-gray w3-hover-none w3-hover-text-black">D</a>&emsp;\n<a id="e" href="#/authors?q=E" class="w3-text-gray w3-hover-none w3-hover-text-black">E</a>&emsp;\n<a id="f" href="#/authors?q=F" class="w3-text-gray w3-hover-none w3-hover-text-black">F</a>&emsp;\n<a id="g" href="#/authors?q=G" class="w3-text-gray w3-hover-none w3-hover-text-black">G</a>&emsp;\n<a id="h" href="#/authors?q=H" class="w3-text-gray w3-hover-none w3-hover-text-black">H</a>&emsp;\n<a id="i" href="#/authors?q=I" class="w3-text-gray w3-hover-none w3-hover-text-black">I</a>&emsp;\n<a id="j" href="#/authors?q=J" class="w3-text-gray w3-hover-none w3-hover-text-black">J</a>&emsp;\n<a id="k" href="#/authors?q=K" class="w3-text-gray w3-hover-none w3-hover-text-black">K</a>&emsp;\n<a id="l" href="#/authors?q=L" class="w3-text-gray w3-hover-none w3-hover-text-black">L</a>&emsp;\n<a id="m" href="#/authors?q=M" class="w3-text-gray w3-hover-none w3-hover-text-black">M</a>&emsp;\n<a id="n" href="#/authors?q=N" class="w3-text-gray w3-hover-none w3-hover-text-black">N</a>&emsp;\n<a id="o" href="#/authors?q=O" class="w3-text-gray w3-hover-none w3-hover-text-black">O</a>&emsp;\n<a id="p" href="#/authors?q=P" class="w3-text-gray w3-hover-none w3-hover-text-black">P</a>&emsp;\n<a id="q" href="#/authors?q=Q" class="w3-text-gray w3-hover-none w3-hover-text-black">Q</a>&emsp;\n<a id="r" href="#/authors?q=R" class="w3-text-gray w3-hover-none w3-hover-text-black">R</a>&emsp;\n<a id="s" href="#/authors?q=S" class="w3-text-gray w3-hover-none w3-hover-text-black">S</a>&emsp;\n<a id="t" href="#/authors?q=T" class="w3-text-gray w3-hover-none w3-hover-text-black">T</a>&emsp;\n<a id="u" href="#/authors?q=U" class="w3-text-gray w3-hover-none w3-hover-text-black">U</a>&emsp;\n<a id="v" href="#/authors?q=V" class="w3-text-gray w3-hover-none w3-hover-text-black">V</a>&emsp;\n<a id="w" href="#/authors?q=W" class="w3-text-gray w3-hover-none w3-hover-text-black">W</a>&emsp;\n<a id="x" href="#/authors?q=X" class="w3-text-gray w3-hover-none w3-hover-text-black">X</a>&emsp;\n<a id="y" href="#/authors?q=Y" class="w3-text-gray w3-hover-none w3-hover-text-black">Y</a>&emsp;\n<a id="z" href="#/authors?q=Z" class="w3-text-gray w3-hover-none w3-hover-text-black">Z</a>&emsp;\n');
+                    buf.push('<a id="a" href="#/authors?q=A" >A</a>&emsp;\n<a id="b" href="#/authors?q=B" >B</a>&emsp;\n<a id="c" href="#/authors?q=C" >C</a>&emsp;\n<a id="d" href="#/authors?q=D" >D</a>&emsp;\n<a id="e" href="#/authors?q=E" >E</a>&emsp;\n<a id="f" href="#/authors?q=F" >F</a>&emsp;\n<a id="g" href="#/authors?q=G" >G</a>&emsp;\n<a id="h" href="#/authors?q=H" >H</a>&emsp;\n<a id="i" href="#/authors?q=I" >I</a>&emsp;\n<a id="j" href="#/authors?q=J" >J</a>&emsp;\n<a id="k" href="#/authors?q=K" >K</a>&emsp;\n<a id="l" href="#/authors?q=L" >L</a>&emsp;\n<a id="m" href="#/authors?q=M" >M</a>&emsp;\n<a id="n" href="#/authors?q=N" >N</a>&emsp;\n<a id="o" href="#/authors?q=O" >O</a>&emsp;\n<a id="p" href="#/authors?q=P" >P</a>&emsp;\n<a id="q" href="#/authors?q=Q" >Q</a>&emsp;\n<a id="r" href="#/authors?q=R" >R</a>&emsp;\n<a id="s" href="#/authors?q=S" >S</a>&emsp;\n<a id="t" href="#/authors?q=T" >T</a>&emsp;\n<a id="u" href="#/authors?q=U" >U</a>&emsp;\n<a id="v" href="#/authors?q=V" >V</a>&emsp;\n<a id="w" href="#/authors?q=W" >W</a>&emsp;\n<a id="x" href="#/authors?q=X" >X</a>&emsp;\n<a id="y" href="#/authors?q=Y" >Y</a>&emsp;\n<a id="z" href="#/authors?q=Z" >Z</a>&emsp;\n');
                     return buf.join("");
-                }() + '	</div>\n	<div id="authorsList" class="w3-padding-48 w3-animate-opacity">\n		');
-                __stack.lineno = 6;
+                }() + '	</div>\n	<ul id="authors-list" class="ul">\n		\n		');
+                __stack.lineno = 7;
                 for (var i = 0; i < authors.length; i++) {
                     buf.push("\n			");
-                    __stack.lineno = 7;
+                    __stack.lineno = 8;
                     if (authors[i].visible) {
-                        buf.push('\n			<div class="author">\n				<p class="author-name w3-border-bottom">', (__stack.lineno = 9, authors[i].name), '</p>\n				<div id="booksList" class="w3-padding-16">\n					<div class=\'w3-row\'>\n						');
+                        buf.push('\n			<li class="author">\n				<p class="author-name"><a>', (__stack.lineno = 10, authors[i].name), "</a></p>\n			</li>\n			");
                         __stack.lineno = 12;
-                        var works = authors[i].books.concat(authors[i].contribs);
-                        buf.push("\n						");
-                        __stack.lineno = 13;
-                        for (var j = 0; j < works.length; j++) {
-                            if (works[j].role) {
-                                var b = works[j].book;
-                            } else {
-                                var b = works[j];
-                            }
-                            if (b.visible) {
-                                for (var k = 0; k < books.length; k++) {
-                                    if (books[k].id === b.id) {
-                                        var book = books[k];
-                                        break;
-                                    }
-                                }
-                                buf.push("\n							\n							<!-- MODAL (INFOS) -->\n							" + function() {
-                                    var buf = [];
-                                    buf.push('<div id="infos-', escape((__stack.lineno = 1, book.id)), '" class="w3-modal" style="background-color: rgba(0,0,0,0.1)">\n	<div class="w3-modal-content w3-card w3-animate-top" style="max-width: 500px">\n		<div class="w3-container w3-padding-16">\n			  <p><b>Titre : </b>', (__stack.lineno = 4, book.title), "</p>\n			  ");
-                                    __stack.lineno = 5;
-                                    if (book.subtitle1) {
-                                        buf.push("\n				<p><b>Sous-titre : </b>", (__stack.lineno = 6, book.subtitle1), "</p>\n			  ");
-                                        __stack.lineno = 7;
-                                    }
-                                    buf.push("\n			  ");
-                                    __stack.lineno = 8;
-                                    if (book.subtitle2) {
-                                        buf.push("\n				<p><b>Sous-sous-titre : </b>", (__stack.lineno = 9, book.subtitle2), "</p>\n			  ");
-                                        __stack.lineno = 10;
-                                    }
-                                    buf.push("\n			  <p><b>Année de parution : </b>", (__stack.lineno = 11, book.year), "</p>\n			  ");
-                                    __stack.lineno = 12;
-                                    if (book.authors.length > 1) {
-                                        buf.push("\n					<p>\n						<span><b>Auteurs :</b></span>\n						<br>\n						<ul>\n						");
-                                        __stack.lineno = 17;
-                                        for (var j = 0; j < book.authors.length; j++) {
-                                            buf.push("\n							<li>\n								", (__stack.lineno = 19, book.authors[j].name), " (", (__stack.lineno = 19, book.authors[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 19, book.authors[j].death), ")\n							</li>\n						");
-                                            __stack.lineno = 21;
-                                        }
-                                        buf.push("\n						</ul>\n					</p>\n			  ");
-                                        __stack.lineno = 24;
-                                    } else if (book.authors.length === 1) {
-                                        buf.push("\n					<p><b>Auteur : </b>", (__stack.lineno = 25, book.authors[0].name), " (", (__stack.lineno = 25, book.authors[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 25, book.authors[0].death), ")</p>\n			  ");
-                                        __stack.lineno = 26;
-                                    }
-                                    buf.push("\n			  ");
-                                    __stack.lineno = 27;
-                                    if (book.contribs.length > 1) {
-                                        buf.push("\n					<p>\n						<span><b>Contributions :</b></span>\n						<br>\n						<ul>\n						");
-                                        __stack.lineno = 32;
-                                        for (var j = 0; j < book.contribs.length; j++) {
-                                            buf.push('\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 34, book.contribs[j].role), " : </span>\n								", (__stack.lineno = 35, book.contribs[j].name), " (", (__stack.lineno = 35, book.contribs[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 35, book.contribs[j].death), ")\n							</li>\n						");
-                                            __stack.lineno = 37;
-                                        }
-                                        buf.push("\n						</ul>\n					</p>\n			  ");
-                                        __stack.lineno = 40;
-                                    } else if (book.contribs.length === 1) {
-                                        buf.push('\n					<p>\n						<span><b>Contribution : </b></span>\n						<br>\n						<ul>\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 46, book.contribs[0].role), " : </span>\n								", (__stack.lineno = 47, book.contribs[0].name), " (", (__stack.lineno = 47, book.contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 47, book.contribs[0].death), ")\n							</li>\n						</ul>\n					</p>\n			  ");
-                                        __stack.lineno = 51;
-                                    }
-                                    buf.push('\n			  <p class="book-source"><b>Source : </b>\n				  <ul>\n					  <li>&Eacute;diteur : ', (__stack.lineno = 54, book.source.publisher), "</li>\n					  <li>Année de parution : ", (__stack.lineno = 55, book.source.year), "</li>\n				  </ul>\n			  </p>\n			  ");
-                                    __stack.lineno = 58;
-                                    if (book.description) {
-                                        buf.push("\n			  <div>", (__stack.lineno = 59, book.description), "</div>\n			  ");
-                                        __stack.lineno = 60;
-                                    }
-                                    buf.push('\n		</div>\n		<div id=footer class="w3-container w3-border-bottom">\n			<button id="close-infos-', escape((__stack.lineno = 63, book.id)), '" class="close-infos-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-bottomright">Fermer</button>\n		</div>\n	</div>\n</div>\n');
-                                    return buf.join("");
-                                }() + '							\n							<div class="w3-col" style="text-align: center">\n								<div id="paper" style="background-color: ', (__stack.lineno = 31, book.styles.color), "; background-image: url(", (__stack.lineno = 31, book.styles.image), ')">\n									<div id="', escape((__stack.lineno = 32, book.id)), '" class="book" style="', escape((__stack.lineno = 32, book.styles.cover)), '">\n										<p class="book-author" style="', escape((__stack.lineno = 33, book.styles.author)), '">', (__stack.lineno = 33, book.authorDisplay), '</p>\n										<p class="title" style="', escape((__stack.lineno = 34, book.styles.title)), '">\n											', (__stack.lineno = 35, book.title), "\n										</p>\n										");
-                                __stack.lineno = 37;
-                                if (book.subtitle1) {
-                                    buf.push('\n										<p class="subtitle1" style="', escape((__stack.lineno = 38, book.styles.subtitle1)), '">\n											', (__stack.lineno = 39, book.subtitle1), "</a>\n										</p>\n										");
-                                    __stack.lineno = 41;
-                                }
-                                buf.push("\n										");
-                                __stack.lineno = 42;
-                                if (book.subtitle2) {
-                                    buf.push('\n										<p class="subtitle1" style="', escape((__stack.lineno = 43, book.styles.subtitle2)), '">\n											', (__stack.lineno = 44, book.subtitle2), "</a>\n										</p>\n										");
-                                    __stack.lineno = 46;
-                                }
-                                buf.push('\n										<p class="logo" style="', escape((__stack.lineno = 47, book.styles.logo)), '">\n											<span class="span1">L&rsquo;Intermédiaire</span><br/>\n											<span class="span2">éditions</span>\n										</p>\n								   </div>\n							   </div>\n							   <div id="book-btn" >\n									<button id="open-infos-', escape((__stack.lineno = 54, book.id)), '" class="open-infos-btn align-right w3-btn w3-ripple w3-hover-none">+ d\'infos</button>\n							   </div>\n							</div>\n						   ');
-                                __stack.lineno = 57;
-                            }
-                            buf.push("\n						");
-                            __stack.lineno = 58;
-                        }
-                        buf.push("\n					</div>\n				</div>\n			</div>\n			");
-                        __stack.lineno = 62;
                     }
                     buf.push("\n		");
-                    __stack.lineno = 63;
+                    __stack.lineno = 13;
                 }
-                buf.push("\n	</div>\n</div>\n");
+                buf.push("\n		\n	</ul>\n</div>\n");
             })();
         }
         return buf.join("");

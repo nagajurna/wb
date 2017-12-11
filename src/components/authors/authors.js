@@ -48,11 +48,9 @@ const authors = function(container) {
 	let ls = root.querySelectorAll('#letters a');
 	for(let i=0; i<ls.length; i++) {
 		if(ls[i].innerHTML===search) {
-			utils.removeClass('#' + ls[i].id, 'w3-text-gray');
-			utils.addClass('#' + ls[i].id, 'w3-text-black')
+			utils.addClass('#' + ls[i].id, 'active')
 		} else {
-			utils.removeClass('#' + ls[i].id, 'w3-text-black');
-			utils.addClass('#' + ls[i].id, 'w3-text-gray')
+			utils.removeClass('#' + ls[i].id, 'active');
 		}
 	}
     //link to book/read

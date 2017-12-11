@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>L&rsquo;Intermédiaire</title>
+  <title>Le Singulier</title>
   <meta name="keywords" content="littérature lecture on line web book">
   <meta name="description" content="une application pour lire">
   <meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -14,63 +14,58 @@
   <script src="https://www.promisejs.org/polyfills/promise-7.0.4.min.js"></script>
 </head>
 <body id="body">
+	<!-- HEADER -->
+	<div id="header">
+		<a id="header-home-link" href="#/" class="active">le singulier</a>
+		<button id="menu-open" type="button" class="btn">&equiv;</button>
+	</div>
 	<div id="navigation">
 		<!-- MODAL-SEARCH -->
-		<div id="search-modal" class="w3-modal" style="background-color: rgba(0,0,0,0.1)">
-			<div class="w3-modal-content w3-container w3-padding-32 w3-card w3-animate-top" style="width: 500px">
+		<div id="search-modal" class="modal" style="background-color: rgba(0,0,0,0.1)">
+			<div class="modal-content w3-card w3-animate-top" style="width: 500px">
 				<button id="search-close" class="w3-button w3-text-black w3-hover-none w3-display-topright">&times;</button>
 				<div class="w3-padding-16">
 					<label>Rechercher un titre ou un auteur</label>
 					<form id="search-form" autocomplete="off">
 						<input type="text" name="search" class="w3-input w3-border">
-						<button id="search-valid" type="submit" class="w3-display-bottomright w3-button w3-text-gray w3-hover-none w3-hover-text-black">Valider</button>
+						<button id="search-valid" type="submit" class=".btn">Valider</button>
 					</form>
 				</div>
 			</div>
 		</div>
 		<!-- MODAL-MENU (SMALL DEVICES) -->
-		<div id="menu" class="w3-modal">
-		  <div class="w3-modal-content">
-			<div>
-			   <div id="menu-nav-bar" >
-				  <a id="menu-home-link" href="#/" class="align-left w3-button w3-text-black w3-hover-none w3-hover-text-black">L&rsquo;Intermédiaire</a>
-				  <button id="menu-close" class="w3-button w3-text-black w3-hover-none w3-display-topright">&times;</button>
-			  </div>
-			  <div class="w3-container" style="clear:both" >
-				<ul class="w3-ul">
-					<li><a id="menu-last-link" href="#/" class="w3-button w3-text-gray w3-hover-none w3-hover-text-black">nouveautés</a></li>
-					<li><a id="menu-next-link" href="#/tobepublished" class="w3-button w3-text-gray w3-hover-none w3-hover-text-black">à paraître</a></li>
-					<li><a id="menu-authors-link" href="#/authors?q=B" class="w3-button w3-text-gray w3-hover-none w3-hover-text-black">auteurs</a></li>
-					<li id="menu-admin-item" class="hidden">
-						<a id="menu-admin-link" href="#/admin/" class="w3-button w3-text-gray w3-hover-none w3-hover-text-black">administration</a>
-					</li>
-				</ul>
-			  </div>		  
+		<div id="menu" class="modal">
+			<div class="modal-content">
+				<div id="modal-menu-header">
+					<a id="menu-home-link" href="#/" class="active">le singulier</a>
+					<button id="menu-close" type="button" class="btn">&times;</button>
+				</div>
+				<div>
+					<ul class="ul">
+						<li><a id="menu-last-link" href="#/">nouveautés</a></li>
+						<li><a id="menu-next-link" href="#/tobepublished">à paraître</a></li>
+						<li><a id="menu-authors-link" href="#/authors?q=B">auteurs</a></li>
+						<li id="menu-admin-item" class="hidden"><a id="menu-admin-link" href="#/admin/">administration</a></li>
+					</ul>
+				</div>		  
 			</div>
-		  </div>
 		</div>
 		<!-- NAV-BAR -->
 		<div id="nav-bar-top">
-			<a id="home-link" href="#/" class="w3-button w3-text-black w3-hover-none w3-hover-text-black">L&rsquo;Intermédiaire</a>
-			<button id="menu-open" type="button" class="w3-button w3-text-black w3-hover-none">&equiv;</button>
-			<a id="search-open" href="#/search/" class="w3-button w3-hover-none"><i class="material-icons w3-text-black">search</i></a>
-			<div id="top-links" class="hidden">
+			<a id="search-open" href="#/search/" class="hidden"><i class="material-icons w3-text-black">search</i></a>
+			<div id="top-links">
 				<ul>
-					<li><a id="last-link" href="#/" class="w3-button w3-text-gray w3-hover-none w3-hover-text-black">nouveautés</a></li>
-					<li><a id="next-link" href="#/tobepublished" class="w3-button w3-text-gray w3-hover-none w3-hover-text-black">à paraître</a></li>
-					<li><a id="authors-link" href="#/authors?q=B" class="w3-button w3-text-gray w3-hover-none w3-hover-text-black">auteurs</a></li>
-					<li id="admin-item" class="hidden">
-						<a id="admin-link" href="#/admin/" class="w3-button w3-text-gray w3-hover-none w3-hover-text-black">administration</a>
-					</li>
+					<li><a id="last-link" href="#/">Nouveautés</a></li>
+					<li><a id="next-link" href="#/tobepublished">&Agrave; paraître</a></li>
+					<li><a id="authors-link" href="#/authors?q=B">Auteurs</a></li>
+					<li id="admin-item" class="hidden"><a id="admin-link" href="#/admin/">administration</a></li>
 				</ul>
 			</div>
-			
 		</div>
 	</div>
 	<div id="container"></div>
 	<div id="loader-container"></div>
-	
-	 <script>
+	<script>
 		setTimeout(function() {
 			document.getElementById('loader-container').innerHTML="<div id='loader'></div>"
 		},600);

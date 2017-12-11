@@ -11,7 +11,7 @@ const home = function(container) {
 	//Get books from dataStore
 	let bs = dataStore.getData('books');
 	//get last 12 visible books reverse order
-	let lBs = bs.filter(function(b) { return b.visible; }).reverse().slice(0,7);
+	let lBs = bs.filter(function(b) { return b.visible; }).reverse().slice(0,6);
 	
 	//go to book/read
 	let readBk = event => {
@@ -19,93 +19,120 @@ const home = function(container) {
 		let path = b.path.replace(/^\/books\/[^\/]+/,'');
 		location.hash = '#' + path + "/read";
 	}
-	//open infos
-	let openInfos = event => {
-		let id = event.target.id.replace('open-', '');
-		document.getElementById(id).style.display = 'block';
-	};
-	//close infos
-	let closeInfos = event => {
-		let id = event.target.id.replace('close-', '');
-		document.getElementById(id).style.display = 'none';
-	}
-
 	
 	//insert template in container
 	c.innerHTML = homeTemplate({ books:lBs });
 	let root = document.querySelector('#home-container');
-	let list = root.querySelector('#booksList');
-	let slideEls = root.querySelectorAll('.slide');
-	let slides = [].slice.call(slideEls);
+	let slides = root.querySelectorAll('.slide');
+	let dots = root.querySelectorAll('.dot');
+	let index;
+	let automatic;
 	
-	
-	for(let i=0; i<slides.length; i++) {
-		if(i==-0) {
-			utils.addClass(slides[i], 'prev3');
-		} else if(i===1) {
-			utils.addClass(slides[i], 'prev2');
-		} else if(i===2) {
-			utils.addClass(slides[i], 'prev1');
-		} else if(i==3) {
-			utils.addClass(slides[i], 'middle');
-		} else if(i===4) {
-			utils.addClass(slides[i], 'next1');
-		} else if(i===5) {
-			utils.addClass(slides[i], 'next2');
-		} else if(i===6) {
-			utils.addClass(slides[i], 'next3');
+	//SLIDER COMMANDS
+	//Previous
+	let prevSlide = event => {
+		clearTimeout(automatic);
+		automatic = undefined;
+		if(index===0) {
+			index=slides.length-1;
+		} else {
+			index-=1;
 		}
-	}
-	
-	let moveSlides = event => {
-		if(event.currentTarget.id==='move-prev') {
-			let l = slides.pop();
-			utils.addClass(l,'prev-hide');
-			slides.unshift(l);
-		} else if(event.currentTarget.id==='move-next') {
-			let f = slides.shift();
-			utils.addClass(f,'next-hide');
-			slides.push(f);
-		}
-		
 		for(let i=0; i<slides.length; i++) {
-			utils.removeClass(slides[i], 'prev3');
-			utils.removeClass(slides[i], 'prev2');
-			utils.removeClass(slides[i], 'prev1');
-			utils.removeClass(slides[i], 'middle');
-			utils.removeClass(slides[i], 'next1');
-			utils.removeClass(slides[i], 'next2');
-			utils.removeClass(slides[i], 'next3');
-			if(i===0) {
-				setTimeout( () => {
-					utils.removeClass(slides[i], 'prev-hide');
-					utils.addClass(slides[i], 'prev3');
-				}, 100)
-			
-			} else if(i===1) {
-				utils.addClass(slides[i], 'prev2');
-			} else if(i===2) {
-				utils.addClass(slides[i], 'prev1');
-			} else if(i==3) {
-				utils.addClass(slides[i], 'middle');
-			} else if(i==4) {
-				utils.addClass(slides[i], 'next1');
-			} else if(i==5) {
-				utils.addClass(slides[i], 'next2');
-			} else if(i===6) {
-				setTimeout( () => {
-					utils.removeClass(slides[i], 'next-hide');
-					utils.addClass(slides[i], 'next3');
-				}, 100)
-			}
+			slides[i].style.display = 'none';
+			utils.removeClass(dots[i], 'active');
 		}
+		slides[index].style.display='block';
+		utils.addClass(dots[index], 'active');
+		slider();
+	};
+	//Next
+	let nextSlide = event => {
+		clearTimeout(automatic);
+		automatic = undefined;
+		if(index===slides.length-1) {
+			index=0;
+		} else {
+			index+=1;
+		}
+		for(let i=0; i<slides.length; i++) {
+			slides[i].style.display = 'none';
+			utils.removeClass(dots[i], 'active');
+		}
+		slides[index].style.display='block';
+		utils.addClass(dots[index], 'active');
+		slider();
 	};
 	
-	root.querySelector('#move-prev').addEventListener('click', moveSlides, false);
-	root.querySelector('#move-next').addEventListener('click', moveSlides, false);
+	//automatic
+	let slider = () => {
+		automatic = setTimeout(nextSlide,10000);
+	};
+	
+	//dots
+	for(let i=0; i<dots.length; i++) {
+		dots[i].addEventListener('click', event => {
+			clearTimeout(automatic);
+			automatic = undefined;
+			index = i;
+			for(let j=0; j<slides.length; j++) {
+				slides[j].style.display = 'none';
+				utils.removeClass(dots[j], 'active');
+			}
+			clearTimeout(automatic);
+			slides[index].style.display='block';
+			utils.addClass(dots[index], 'active');
+			slider();
+		}, false);
+	}
+	
+	root.querySelector('#previous').addEventListener('click', prevSlide, false);
+	root.querySelector('#next').addEventListener('click', nextSlide, false);
+	
+	//window.innerWidth > 750 : slider
+	if(window.innerWidth >= 750) {
+		if(dataStore.getData('location').prevLocation!==undefined && dataStore.getData('location').prevLocation.match(/\/read$/)) {
+			let id= dataStore.getData('book');
+			for(let i=0; i<slides.length; i++) {
+				if(slides[i].id.replace(/slide_/,'')===id) {
+					index = i;
+					break;
+				}
+			}
+		} else {
+			index = 0;
+		}
+
+		slides[index].style.display = 'block';
+		utils.addClass(dots[index], 'active');
+		slider();
+	} else {
+		clearTimeout(automatic);
+		automatic = undefined;
+	}
+	//window on resize (innerWidth < 750 : list, otherwise: slider)
+	window.addEventListener('resize', () => {
+		clearTimeout(automatic);
+		automatic = undefined;
+		if(window.innerWidth < 750) {
+			for(let i=0; i<slides.length; i++) {
+				slides[i].style.display = 'block';
+			}
+		} else {
+			for(let i=0; i<slides.length; i++) {
+				slides[i].style.display = 'none';
+			}
+			if(index===undefined) {
+				index=0;
+			}
+			slides[index].style.display = 'block';
+			utils.addClass(dots[index], 'active');
+			slider();
+		}
+	})
 	
 		
-	//scroll after read
+	//scroll after read (for list)
 	if(dataStore.getData('location').prevLocation!==undefined && dataStore.getData('location').prevLocation.match(/\/read$/)) {
 		let id= dataStore.getData('book');
 		let el = document.getElementById(id);
@@ -115,17 +142,34 @@ const home = function(container) {
 	}
 	//link to book/read
 	let bks = root.querySelectorAll('.book');
-	for(let i=0; i<slides.length; i++) {
-		//bks[i].addEventListener('click', readBk, false);
-		//slides[i].addEventListener('click', moveSlides, false);
+	for(let i=0; i<bks.length; i++) {
+		bks[i].addEventListener('click', readBk, false);
 	}
-	//modal (infos)
-	//open
+	
+	
+	//MODAL (infos)
+	//open infos
+	let openInfos = event => {
+		clearTimeout(automatic);
+		automatic = undefined;
+		let id = event.target.id.replace('open-', '');
+		document.getElementById(id).style.display = 'block';
+	};
 	let openInfosBtns = root.querySelectorAll('.open-infos-btn');
 	for(let i=0; i<openInfosBtns.length; i++) {
 		openInfosBtns[i].addEventListener('click', openInfos, false);
 	}
-	//close
+	
+	//close infos
+	let closeInfos = event => {
+		clearTimeout(automatic);
+		automatic = undefined;
+		if(window.innerWidth >= 750) {
+			slider();
+		}
+		let id = event.target.id.replace('close-', '');
+		document.getElementById(id).style.display = 'none';
+	}
 	let closeInfosBtns = root.querySelectorAll('.close-infos-btn');
 	for(let i=0; i<closeInfosBtns.length; i++) {
 		closeInfosBtns[i].addEventListener('click', closeInfos, false);

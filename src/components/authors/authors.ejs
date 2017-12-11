@@ -1,67 +1,17 @@
-<div id="authors-container" class="w3-content" style="max-width: 1136px">
-	<div id="top-page-header" class="w3-light-gray">auteurs</div>
-	<div id="letters" class="w3-container w3-padding-32">
+<div id="authors-container">
+	<div id="top-page-header">auteurs</div>
+	<div id="letters">
 		<%- include src/components/authors/authors-letters.ejs -%>
 	</div>
-	<div id="authorsList" class="w3-padding-48 w3-animate-opacity">
+	<ul id="authors-list" class="ul">
+		
 		<% for(var i=0; i<authors.length; i++) {%>
 			<% if(authors[i].visible) { %>
-			<div class="author">
-				<p class="author-name w3-border-bottom"><%- authors[i].name %></p>
-				<div id="booksList" class="w3-padding-16">
-					<div class='w3-row'>
-						<% var works = authors[i].books.concat(authors[i].contribs)	%>
-						<% for(var j=0; j<works.length; j++) {
-							if(works[j].role) {
-									var b = works[j].book;
-								} else {
-									var b = works[j];
-								}
-							
-							if(b.visible) {
-							for(var k=0; k<books.length; k++) {
-								if(books[k].id===b.id) {
-									var book = books[k];
-									break;
-								}
-							}%>
-							
-							<!-- MODAL (INFOS) -->
-							<%- include src/components/authors/infos-modal.ejs -%>
-							
-							<div class="w3-col" style="text-align: center">
-								<div id="paper" style="background-color: <%- book.styles.color %>; background-image: url(<%- book.styles.image %>)">
-									<div id="<%= book.id %>" class="book" style="<%= book.styles.cover %>">
-										<p class="book-author" style="<%=book.styles.author %>"><%- book.authorDisplay %></p>
-										<p class="title" style="<%= book.styles.title %>">
-											<%- book.title %>
-										</p>
-										<% if(book.subtitle1) {%>
-										<p class="subtitle1" style="<%= book.styles.subtitle1 %>">
-											<%- book.subtitle1 %></a>
-										</p>
-										<% } %>
-										<% if(book.subtitle2) {%>
-										<p class="subtitle1" style="<%= book.styles.subtitle2 %>">
-											<%- book.subtitle2 %></a>
-										</p>
-										<% } %>
-										<p class="logo" style="<%=book.styles.logo %>">
-											<span class="span1">L&rsquo;Intermédiaire</span><br/>
-											<span class="span2">éditions</span>
-										</p>
-								   </div>
-							   </div>
-							   <div id="book-btn" >
-									<button id="open-infos-<%= book.id %>" class="open-infos-btn align-right w3-btn w3-ripple w3-hover-none">+ d'infos</button>
-							   </div>
-							</div>
-						   <% } %>
-						<% } %>
-					</div>
-				</div>
-			</div>
+			<li class="author">
+				<p class="author-name"><a><%- authors[i].name %></a></p>
+			</li>
 			<% } %>
 		<% } %>
-	</div>
+		
+	</ul>
 </div>

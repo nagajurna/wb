@@ -9,13 +9,6 @@ html {
 	margin: 0px;
 	border: none;
 	position: relative;
-	-webkit-backface-visibility: hidden;
-	backface-visibility: hidden;
-	-webkit-transform: translateZ(0) scale(1.0, 1.0);
-    transform: translateZ(0) scale(1.0, 1.0);
-    filter: blur(0);
-	-webkit-filter: blur(0);
-	font-smoothing: antialiased !important;
 }
 
 
@@ -28,23 +21,6 @@ body {
 	background-color: #fff;
 	font-size: 14px;
 	position: relative;
-	-webkit-backface-visibility: hidden;
-	backface-visibility: hidden;
-	-webkit-transform: translateZ(0) scale(1.0, 1.0);
-    transform: translateZ(0) scale(1.0, 1.0);
-    filter: blur(0);
-	-webkit-filter: blur(0);
-	font-smoothing: antialiased !important;
-}
-
-#container {
-	-webkit-backface-visibility: hidden;
-	backface-visibility: hidden;
-	-webkit-transform: translateZ(0) scale(1.0, 1.0);
-    transform: translateZ(0) scale(1.0, 1.0);
-    filter: blur(0);
-	-webkit-filter: blur(0);
-	font-smoothing: antialiased !important;
 }
 
 #loader-container {
@@ -88,6 +64,46 @@ body {
 }
 
 
+/*
+MODAL (generic)
+*/
+
+.modal {
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	z-index: 1;
+	background-color: rgba(0,0,0,0.1);
+}
+
+.modal-content {
+	background-color: #fafafa;
+	margin: auto;
+	margin-top: 8%;
+	overflow: auto;
+}
+
+/* top animation */
+.modal-content.animate-top {
+	-webkit-animation-name: animate-top;
+	-webkit-animation-duration: 0.6s;
+	animation-name: animate-top;
+	animation-duration: 0.6s;
+}
+
+@-webkit-keyframes animate-top {
+	from {margin: -30% auto}
+	to {margin: 8% auto}
+}
+
+@keyframes animate-top {
+	from {margin: -30% auto}
+	to {margin: 8% auto}
+}
 
 
 /*
@@ -111,9 +127,11 @@ LINKS
 */
 a {
 	text-decoration: none;
+	color: #aaa;
+	padding: 8px;
 }
 
-a:hover {
+a:hover, a.active {
 	color: #000;
 }
 
@@ -123,6 +141,69 @@ a:hover {
 
 .align-right {
 	float: right;
+}
+
+/*
+BUTTONS
+*/
+
+.btn {
+	background-color: transparent;
+	border: none;
+	color: #000;
+	display: block;
+	outline: none;
+	padding: 4px 8px 4px 8px;
+	height: 37px;
+}
+
+/*
+LIST
+*/
+.ul {
+	padding: 16px;
+	margin: 0px;
+}
+
+.ul li {
+	list-style-type: none;
+	width: 100%;
+	border-top: 1px solid #ddd;
+}
+
+.ul li:first-child {
+	border: none;
+}
+
+/*
+HEADER
+*/
+#header, #modal-menu-header {
+	position: relative;
+	max-width: 750px;
+	margin: auto;
+	margin-top: 0px;
+	padding: 16px;
+	border-bottom: 1px solid black;
+	text-align: center;
+	font-family: "Vollkorn", Georgia, sans-serif;
+	line-height: 27px;
+	font-size: 1em;
+	letter-spacing: 6px;
+	text-transform: uppercase;
+}
+
+@media only screen and (min-width: 750px) {
+	#header {
+		margin-top: 16px;
+		font-size: 1.4em;
+		letter-spacing: 10px;
+	}
+}
+
+#header.hidden {
+	position: fixed;
+	top: -1000px;
 }
 
 /*
@@ -136,7 +217,9 @@ When not book-read only
 	top: 0px;
 	height: 48px;
 	position: relative;
-	font-size: 14px
+	font-size: 14px;
+	max-width: 750px;
+	margin: auto;
 }
 
 #nav-bar-top.hidden {
@@ -144,32 +227,20 @@ When not book-read only
 	top: -1000px;
 }
 
-#home-link {
-	position: absolute;
-	left: 0px;
-	top: 5px;
-	margin-top: 0px;
-	line-height: 27px;
-	font-size: 1.6em;
-	font-style: italic;
-	letter-spacing: 2px;
-	font-family: "Times New Roman", Georgia, sans-serif;
-}
-
 /*
 Medium and large devices only
 */
 #top-links {
-	font-size: 14px;
-	width:90%;
+	width:100%;
 	margin: auto;
 	text-align: center;
-	font-size: 1.2em;
+	font-size: 1.1em;
+	border-bottom: 1px solid black;
 }
 
 #top-links ul {
 	margin: 0px;
-	padding: 0px;
+	padding: 16px 0px 16px 0px;
 	text-align: center;
 }
 
@@ -180,11 +251,11 @@ Medium and large devices only
 }
 
 #books-link, #last-link, #next-link, #authors-link, #admin-link {
-	margin-top: 10px;
+	margin-top: 0px;
 	line-height: 22px;
-	font-family: "Times New Roman", Georgia, sans-serif;
-	font-variant: small-caps;
-	letter-spacing: 1px;
+	font-family: "Vollkorn", Georgia, sans-serif;
+	letter-spacing: 2px;
+	padding: 16px 
 }
 
 #admin-item {
@@ -198,17 +269,17 @@ Medium and large devices only
 #search-open {
 	position: absolute;
 	right: 44px;
-	top: 5px;
+	top: 8px;
 	height: 42px;
 	display: inline-block;
 	padding-right: 12px;
 	padding-left: 12px;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 750px) {
 	#search-open {
 		right: 0px;
-		top: 8px;
+		top: 14px;
 	}
 }
 
@@ -219,43 +290,28 @@ Medium and large devices only
 /*
 Small devices only
 */
-#menu-open {
+#header #menu-open, #modal-menu-header #menu-close {
 	position: absolute;
 	right: 0px;
-	top: 0px;
-	height: 47px;
-	line-height: 27px;
+	top: 4px;
+	padding: 8px 16px 8px 16px;
+	height: 50px;
 	font-size: 2em;
 	font-family: "Times New Roman", 'Georgia', serif;
+}
+
+#menu-open.hidden {
+	display: none;
 }
 
 /*
 MODAL MENU (SMALL DEVICES)
 */
 
-#menu {
-	padding: 0px;
-}
-
-#menu .w3-modal-content {
+#menu .modal-content {
 	margin: 0px;
 	width: 100%;
 	height: 100%;
-}
-
-#menu .w3-modal-content > div {
-	height: 100%;
-}
-
-#menu #menu-nav-bar {
-	height: 48px;
-}
-
-#menu #menu-close {
-	height: 47px;
-	line-height: 27px;
-	font-size: 2em;
-	font-family: "Times New Roman", Georgia, sans-serif;
 }
 
 #menu ul {
@@ -263,13 +319,8 @@ MODAL MENU (SMALL DEVICES)
 	padding-top: 32px;
 }
 
-#menu-home-link {
-	margin-top: 5px;
-	line-height: 27px;
-	font-size: 1.6em;
-	font-style: italic;
-	letter-spacing: 2px;
-	font-family: "Times New Roman", Georgia, sans-serif;
+#menu ul li {
+	display: list-item;
 }
 
 #menu-admin-item {
@@ -293,6 +344,10 @@ MODAL MENU (SMALL DEVICES)
 /*
 SEARCH INPUT
 */
+#search-modal {
+	display: none;
+}
+
 
 #search-modal label {
 	font-size: 1em;
@@ -330,10 +385,10 @@ CONTENT
 	width: 100%;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 750px) {
 
 	.content {
-		max-width: 900px;
+		max-width: 750px;
 		margin: auto;
 	}
 }
@@ -354,4 +409,3 @@ ERROR MESSAGES
 	color: green;
 	font-size: 0.85em;
 }
-

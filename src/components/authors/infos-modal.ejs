@@ -1,6 +1,11 @@
-<div id="infos-<%= book.id %>" class="w3-modal" style="background-color: rgba(0,0,0,0.1)">
-	<div class="w3-modal-content w3-card w3-animate-top" style="max-width: 500px">
-		<div class="w3-container w3-padding-16">
+<div id="infos-<%= book.id %>" class="modal">
+	<div class="modal-content w3-card animate-top">
+		<div id="infos-header">
+			<button id="close-infos-<%= book.id %>" type="button" class="btn close-infos-btn">&times;</button>
+			<p><%- book.authorDisplay %></p>
+			<p class="text-uppercase"><%- book.title %></p>
+		</div>
+		<div>
 			  <p><b>Titre : </b><%- book.title %></p>
 			  <% if(book.subtitle1) {%>
 				<p><b>Sous-titre : </b><%- book.subtitle1 %></p>
@@ -58,9 +63,6 @@
 			  <% if(book.description) {%>
 			  <div><%- book.description %></div>
 			  <%}%>
-		</div>
-		<div id=footer class="w3-container w3-border-bottom">
-			<button id="close-infos-<%= book.id %>" class="close-infos-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-bottomright">Fermer</button>
 		</div>
 	</div>
 </div>

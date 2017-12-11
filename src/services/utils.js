@@ -58,41 +58,28 @@ const utils = {
 		let links = root.querySelectorAll("a");
 		for(let i=0; i<links.length; i++) {
 			
-			if(links[i].id==='home-link' || links[i].id==='menu-home-link') {
-				if(location.href.match(/#\/[^\/]+\/read$/)) {
-					utils.addClass("#" + links[i].id, "w3-text-gray");
-					utils.removeClass("#" + links[i].id, "w3-text-black");
-				} else {
-					utils.addClass("#" + links[i].id, "w3-text-black");
-					utils.removeClass("#" + links[i].id, "w3-text-gray");
-				}
-				
+			if(links[i].id==='header-home-link' || links[i].id==='menu-home-link') {
+				utils.addClass("#" + links[i].id, "active");
 			} else if(links[i].id==='last-link' || links[i].id==='menu-last-link') {
 				if(location.hash==='' || location.hash==='#/') {
-					utils.addClass("#" + links[i].id, "w3-text-black");
-					utils.removeClass("#" + links[i].id, "w3-text-gray");
+					utils.addClass("#" + links[i].id, "active");
 				} else {
-					utils.addClass("#" + links[i].id, "w3-text-gray");
-					utils.removeClass("#" + links[i].id, "w3-text-black");
+					utils.removeClass("#" + links[i].id, "active");
 				}
 				
 			} else if(links[i].id==='authors-link' || links[i].id==='menu-authors-link') {
 				if(location.hash.match(/#\/authors/)) {
-					utils.addClass("#" + links[i].id, "w3-text-black");
-					utils.removeClass("#" + links[i].id, "w3-text-gray");
+					utils.addClass("#" + links[i].id, "active");
 				} else {
-					utils.addClass("#" + links[i].id, "w3-text-gray");
-					utils.removeClass("#" + links[i].id, "w3-text-black");
+					utils.removeClass("#" + links[i].id, "active");
 				}
 				
 			} else {
 			
 				if(location.href===links[i].href) {
-					utils.addClass("#" + links[i].id, "w3-text-black");
-					utils.removeClass("#" + links[i].id, "w3-text-gray");
+					utils.addClass("#" + links[i].id, "active");
 				} else {
-					utils.addClass("#" + links[i].id, "w3-text-gray");
-					utils.removeClass("#" + links[i].id, "w3-text-black");
+					utils.removeClass("#" + links[i].id, "active");
 				}
 				
 				//admin-link
