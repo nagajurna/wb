@@ -2,16 +2,16 @@
 <!--
 	MODAL
 -->
-	<div id="modal" class="w3-modal w3-card-4">
-		<div class="w3-modal-content w3-animate-top">
-			<header class="w3-container w3-black"> 
-				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>
+	<div id="modal" class="modal">
+		<div class="modal-content animate-top container" style="max-width: 500px">
+			<header class="border-bottom"> 
+				<button id="close-modal-btn" class="btn topright" style="font-size: 1.5em">&times;</button>
 				<h4>Supprimer un ouvrage</h4>
 			</header>
-			<div  class="w3-container">
+			<div>
 				<p>Voulez-vous vraiment supprimer cet ouvrage ?</p>
 				<p><%- book.title %></p>
-				<p class="w3-right"><button type="button" id="delete-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black">Supprimer</button></p>
+				<p class="align-right"><button type="button" id="delete-btn" class="button">Supprimer</button></p>
 			</div>
 			
 		</div>
@@ -20,12 +20,12 @@
 <!--
 	MAIN
 -->
-	<h4 class="w3-container align-left w3-padding-16">Ouvrage</h4>
-	<p class="align-right w3-padding-16"><a href="/#/admin/books/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>
-	<div id="book" class="w3-container">
+	<p class="align-left padding-16"><b>Ouvrage</b></p>
+	<p class="align-right padding-16"><a href="/#/admin/books/">Retour</a></p>
+	<div id="book" style="clear: both">
 		<span class="error"><%= error %></span>
 		<span class="error" id="modal-error" data-utils-bind="{{ error }}"></span>
-		<div class="w3-border-bottom">
+		<div class="border-bottom">
 			<p><b>Titre : </b><span><%- book.title %></span></p>
 			<p><b>Sous-titre1 : </b><span><%- book.subtitle1 %></span></p>
 			<p><b>Sous-titre2 : </b><span><%- book.subtitle2 %></span></p>
@@ -37,10 +37,10 @@
 					<span><b>Auteurs :</b></span>
 				<% } %>
 			</p>
-			<ul id="authors-list" class='w3-ul'>
+			<ul id="authors-list" class='ul'>
 				<% for(var i=0; i<book.authors.length; i++) {%>
 				<li>
-					<a href='/#/admin/authors/<%= book.authors[i].id %>' class="w3-text-gray w3-hover-none w3-hover-text-black">
+					<a href='/#/admin/authors/<%= book.authors[i].id %>'>
 						<%= book.authors[i].name %>
 					</a>
 				</li>
@@ -53,10 +53,10 @@
 					<span><b>Contributeurs :</b></span>
 				<% } %>
 			</p>
-			<ul id="contribs-list" class='w3-ul'>
+			<ul id="contribs-list" class='ul'>
 				<% for(var i=0; i<book.contribs.length; i++) {%>
 				<li>
-					<a href='/#/admin/authors/<%= book.contribs[i].id %>' class="w3-text-gray w3-hover-none w3-hover-text-black">
+					<a href='/#/admin/authors/<%= book.contribs[i].id %>'>
 						<%= book.contribs[i].name %> (<%= book.contribs[i].role %>)
 					</a>
 				</li>
@@ -65,13 +65,13 @@
 			<p><b>Année de publication : </b><span><%= book.year %></span></p>
 			<p><b>Langue : </b><span><%= book.language %></span></p>
 			<p><b>Source :</b></p>
-			<ul class='w3-ul'>
+			<ul class='ul'>
 				<li><b>&Eacute;diteur : </b><span><%- book.source.publisher %></span></li>
 				<li><b>Année : </b><span><%= book.source.year %></span></li>
 				<li><b>Origine : </b><span><%= book.source.origin %></span></li>
 			</ul>
 			<p><b>Styles :</b></p>
-			<ul class='w3-ul'>
+			<ul class='ul'>
 				<li><b>Couleur : </b><span><%= book.styles.color %></span></li>
 				<li><b>Image : </b><span><%= book.styles.image %></span></li>
 				<li><b>Police : </b><span><%= book.styles.font %></span></li>
@@ -91,8 +91,8 @@
 			<p><b>Mis à jour le : </b><span><%= book.updated_at %></span></p>
 		</div>
 		<p>
-			<a href="#/admin/books/<%= book.id %>/edit" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-left">Modifier</a>
-			<button type="button" id="open-modal-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-right">Supprimer</button>
+			<a href="#/admin/books/<%= book.id %>/edit" class="button">Modifier</a>
+			<button type="button" id="open-modal-btn" class="button align-right">Supprimer</button>
 		</p>
 	</div>
 </div>

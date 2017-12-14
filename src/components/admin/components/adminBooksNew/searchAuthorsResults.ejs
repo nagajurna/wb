@@ -1,9 +1,9 @@
-<ul class="w3-ul">
+<ul class="ul">
 <% for(var i=0; i<authors.length; i++) {%>
-<li class="w3-display-container">
+<li>
 	<p id="<%= authors[i].id %>" >
 		<span><%- authors[i].name %></span> 
-		<button type="button" class="add-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-right">Ajouter</button>
+		<button type="button" class="add-btn button align-right">Ajouter</button>
 	</p>
 </li>
 <% } %>

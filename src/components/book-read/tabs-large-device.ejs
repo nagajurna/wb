@@ -1,46 +1,46 @@
 
-<div id="toc-large-device" class="w3-card-2" >
-	<button id="close-toc-large-device" type="button" class="w3-btn w3-card-2 w3-white" >&times;</button>
-	<div id="toc-large-device-container" class="toc-content w3-container">
-		<div class="w3-padding-16 w3-container w3-border-bottom">
-			<p class="w3-center"><%- book.authorDisplay %></p>
-			<p class="w3-center text-uppercase"><%- book.title %></p>
+<div id="toc-large-device" class="tab card-4" >
+	<button id="close-toc-large-device" type="button" class="btn card-4" >&times;</button>
+	<div id="toc-large-device-container">
+		<div class="header">
+			<p><%- book.authorDisplay %></p>
+			<p class="text-uppercase"><%- book.title %></p>
 		</div>
 		<div data-wb-toc ></div>
 	</div>
 </div>
 
-<div id="tab-options" class="w3-card-2">
-	<button id="close-tab-options" type="button" class="w3-btn w3-card-2 w3-white" >&times;</button>
-	<div id="tab-options-container" class="w3-container">
-		<div class="w3-padding-16 w3-border-bottom">
-			<p class="w3-center options-title">Options</p>
+<div id="tab-options" class="card-4">
+	<button id="close-tab-options" type="button" class="btn card-4" >&times;</button>
+	<div id="tab-options-container">
+		<div class="header">
+			<p class="options-title">Options</p>
 		</div>
-		<div id="font-family-container-large" class="w3-padding-16 w3-border-bottom">
+		<div id="font-family-container-large">
 			<p><b>Police de&nbsp;caractère</b></p>
-			<div class="w3-row">
-				<div class="w3-col s6">
+			<div>
+				<div class="col-left">
 					<p><label><input type="radio" name="fontFamily" value="<%- book.styles.font %>">&ensp;<%- book.styles.font %></label></p>
 					<% if(book.styles.font!=='Noto Serif') {%>
 						<p><label><input type="radio" name="fontFamily" value="Noto Serif">&ensp;Noto Serif</label></p>
 					<% } %>
 				</div>
-				<div class="w3-col s6">
+				<div class="col-right">
 					<% if(book.styles.font!=='Vollkorn') {%>
 						<p><label><input type="radio" name="fontFamily" value="VollKorn">&ensp;Vollkorn</label></p>
 					<% } %>
 				</div>
 			</div>
 		</div>
-		<div id="font-size-container-large" class="w3-padding-16">
+		<div id="font-size-container-large">
 			<p><b>Taille de la police</b></p>
-			<div class="w3-row">
-				<div class="w3-col s6">
+			<div>
+				<div class="col-left">
 					<p><label><input type="radio" name="fontSize" value="14">&ensp;14 px</label></p>
 					<p><label><input type="radio" name="fontSize" value="16">&ensp;16 px</label></p>
 					<p><label><input type="radio" name="fontSize" value="18">&ensp;18 px</label></p>
 				</div>
-				<div class="w3-col s6">
+				<div class="col-right">
 					<p><label><input type="radio" name="fontSize" value="15">&ensp;15 px</label></p>
 					<p><label><input type="radio" name="fontSize" value="17">&ensp;17 px</label></p>
 					<p><label><input type="radio" name="fontSize" value="19">&ensp;19 px</label></p>
@@ -50,77 +50,81 @@
 	</div>
 </div>
 	
-<div id="tab-infos" class="w3-card-2">
-	<button id="close-tab-infos" type="button" class="w3-btn w3-card-2 w3-white" >&times;</button>
+<div id="tab-infos" class="card-4">
+	<button id="close-tab-infos" type="button" class="btn card-4" >&times;</button>
 	<div id="tab-infos-container">
-		  <div class="w3-container w3-padding-16">
-			  <p><b>Titre : </b><%- book.title %></p>
-			  <% if(book.subtitle1) {%>
-				<p><b>Sous-titre : </b><%- book.subtitle1 %></p>
-			  <%}%>
-			  <% if(book.subtitle2) {%>
-				<p><b>Sous-sous-titre : </b><%- book.subtitle2 %></p>
-			  <%}%>
-			  <p><b>Année de parution : </b><%- book.year %></p>
-			  <% if(book.authors.length > 1) {%>
-					<p>
-						<span><b>Auteurs :</b></span>
-						<br>
-						<ul>
-						<% for(var j=0; j<book.authors.length; j++) {%>
-							<li>
-								<%- book.authors[j].name %> (<%- book.authors[j].birth %>&nbsp;&ndash; <%- book.authors[j].death %>)
-							</li>
-						<%}%>
-						</ul>
-					</p>
-			  <%} else if(book.authors.length === 1) {%>
-					<p><b>Auteur : </b><%- book.authors[0].name %> (<%- book.authors[0].birth %>&nbsp;&ndash; <%- book.authors[0].death %>)</p>
-			  <%}%>
-			  <% if(book.contribs.length > 1) {%>
-					<p>
-						<span><b>Contributions :</b></span>
-						<br>
-						<ul>
-						<% for(var j=0; j<book.contribs.length; j++) {%>
-							<li>
-								<span class="contrib-role"><%- book.contribs[j].role %> : </span>
-								<%- book.contribs[j].name %> (<%- book.contribs[j].birth %>&nbsp;&ndash; <%- book.contribs[j].death %>)
-							</li>
-						<%}%>
-						</ul>
-					</p>
-			  <%} else if(book.contribs.length === 1) {%>
-					<p>
-						<span><b>Contribution : </b></span>
-						<br>
-						<ul>
-							<li>
-								<span class="contrib-role"><%- book.contribs[0].role %> : </span>
-								<%- book.contribs[0].name %> (<%- book.contribs[0].birth %>&nbsp;&ndash; <%- book.contribs[0].death %>)
-							</li>
-						</ul>
-					</p>
-			  <%}%>
-			  <p class="book-source"><b>Source : </b>
-				  <ul>
-					  <li>&Eacute;diteur : <%- book.source.publisher %></li>
-					  <li>Année de publication : <%- book.source.year %></li>
-				  </ul>
-			  </p>
-			  <% if(book.description) {%>
-			  <div><%- book.description %></div>
-			  <%}%>
-		  </div>
+		<div class="header">
+			<p><%- book.authorDisplay %></p>
+			<p class="text-uppercase"><%- book.title %></p>
+		</div>
+		<div class="content">
+		  <p><b>Titre : </b><%- book.title %></p>
+		  <% if(book.subtitle1) {%>
+			<p><b>Sous-titre : </b><%- book.subtitle1 %></p>
+		  <%}%>
+		  <% if(book.subtitle2) {%>
+			<p><b>Sous-sous-titre : </b><%- book.subtitle2 %></p>
+		  <%}%>
+		  <p><b>Année de parution : </b><%- book.year %></p>
+		  <% if(book.authors.length > 1) {%>
+				<p>
+					<span><b>Auteurs :</b></span>
+					<br>
+					<ul>
+					<% for(var j=0; j<book.authors.length; j++) {%>
+						<li>
+							<%- book.authors[j].name %> (<%- book.authors[j].birth %>&nbsp;&ndash; <%- book.authors[j].death %>)
+						</li>
+					<%}%>
+					</ul>
+				</p>
+		  <%} else if(book.authors.length === 1) {%>
+				<p><b>Auteur : </b><%- book.authors[0].name %> (<%- book.authors[0].birth %>&nbsp;&ndash; <%- book.authors[0].death %>)</p>
+		  <%}%>
+		  <% if(book.contribs.length > 1) {%>
+				<p>
+					<span><b>Contributions :</b></span>
+					<br>
+					<ul>
+					<% for(var j=0; j<book.contribs.length; j++) {%>
+						<li>
+							<span class="contrib-role"><%- book.contribs[j].role %> : </span>
+							<%- book.contribs[j].name %> (<%- book.contribs[j].birth %>&nbsp;&ndash; <%- book.contribs[j].death %>)
+						</li>
+					<%}%>
+					</ul>
+				</p>
+		  <%} else if(book.contribs.length === 1) {%>
+				<p>
+					<span><b>Contribution : </b></span>
+					<br>
+					<ul>
+						<li>
+							<span class="contrib-role"><%- book.contribs[0].role %> : </span>
+							<%- book.contribs[0].name %> (<%- book.contribs[0].birth %>&nbsp;&ndash; <%- book.contribs[0].death %>)
+						</li>
+					</ul>
+				</p>
+		  <%}%>
+		  <p class="book-source"><b>Source : </b>
+			  <ul>
+				  <li>&Eacute;diteur : <%- book.source.publisher %></li>
+				  <li>Année de publication : <%- book.source.year %></li>
+			  </ul>
+		  </p>
+		  <% if(book.description) {%>
+		  <div><%- book.description %></div>
+		  <%}%>
+		</div>
 	</div>
 </div>
 
 <div id="book-commands">
-	<button id="toggle-toc-large-device" type="button" class="w3-btn w3-card-2 w3-white" >Table</button>
-	<button id="toggle-tab-options" type="button" class="w3-btn w3-card-2 w3-white" >Options</button>
-	<button id="toggle-tab-infos" type="button" class="w3-btn w3-card-2 w3-white" >Infos</button>
-	<button id="tab-add-bookmark" type="button" class="add-bookmark w3-btn w3-ripple w3-card-2 w3-white" >Signet</button>
-	<button id="tab-home-link" type="button" class="home w3-btn w3-card-2 w3-white" >Retour</button>
+	<button id="toggle-toc-large-device" type="button" class="btn card-2" >Table</button>
+	<button id="toggle-tab-options" type="button" class="btn card-2" >Options</button>
+	<button id="toggle-tab-infos" type="button" class="btn card-2" >Fiche</button>
+	<button id="tab-add-bookmark" type="button" class="add-bookmark btn card-2" >Signet</button>
+	<button id="tab-home-link" type="button" class="home btn card-2" >Retour</button>
 </div>
 	
 

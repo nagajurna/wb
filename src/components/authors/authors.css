@@ -1,11 +1,6 @@
 #authors-container {
-	margin-top: 0px;
-}
-
-@media only screen and (min-width: 750px) {
-	#authors-container {
-		margin-top: 32px;
-	}
+	max-width: 750px;
+	margin: auto;
 }
 
 #authors-container #top-page-header {
@@ -23,6 +18,7 @@
 @media only screen and (min-width: 750px) {
 	#authors-container #top-page-header {
 		font-size: 1.4em;
+		padding: 48px 0px 32px 0px;
 	}
 }
 
@@ -30,8 +26,8 @@
 	text-align: center;
 	line-height: 37px;
 	width: 320px;
-	margin: auto;
-	padding: 0px;
+	margin: 0px auto;
+	padding-bottom: 16px;
 }
 
 @media only screen and (min-width: 410px) {
@@ -44,33 +40,207 @@
 	#authors-container #letters {
 		width: 585px;
 	}
-	
+}
+
+#authors-container #letters a {
+	padding: 8px;
+}
+
+#authors-container #noresult {
+	width: 100%;
+	text-align: center;
+	padding-top: 48px;
+	font-family: "Vollkorn", Georgia, sans-serif;
+	font-size: 1.1em;
+	font-variant: small-caps;
+	letter-spacing: 1.5px;
+}
+
+#authors-container #authors-list {
+	min-height: 476px;
+}
+
+.auth {
+	position: relative;
+}
+
+#authors-container .previous {
+	position: absolute;
+	top: 170px;
+	left: -100px;
+	margin-top: -25px;
+	width: 50px;
+	height: 50px;
+	font-family: "Vollkorn", Georgia, sans-serif;
+	font-size: 1.6em;
+	background-color: transparent;
+	display: none;
+}
+
+#authors-container .next {
+	position: absolute;
+	top: 170px;
+	right: -100px;
+	margin-top: -25px;
+	width: 50px;
+	height: 50px;
+	font-family: "Vollkorn", Georgia, sans-serif;
+	font-size: 1.6em;
+	background-color: transparent;
+	display: none;
+}
+
+@media only screen and (min-width: 750px) {
+	#authors-container .previous {
+		display: block;
+	}
+
+	#authors-container .next {
+		display: block;
+	}
 }
 
 #authors-container #authors-list {
 	max-width: 750px;
 	margin: auto;
-	padding: 48px 16px 48px 16px;
-}
-
-
-#authors-container .author {
-	padding-top: 8px;
+	padding-bottom: 16px;
 }
 
 #authors-container .author-name {
 	max-width: 750px;
 	text-align: center;
+	font-family: "Vollkorn", Georgia, sans-serif;
 	font-size: 1.2em;
 	font-variant: small-caps;
 	letter-spacing: 1.5px;
-	padding: 0px 16px 0px 16px;
+	padding: 16px;
 	text-align: center;
 }
 
 #authors-container .author-name a {
-	color: #212121;
+	color: #000;
 }
+
+#authors-container #authors-list .books-list {
+	position: relative;
+	width: 250px;
+	margin: auto;
+}
+
+#authors-container .slide {
+	position: relative;
+	width: 250px;
+	margin: auto;
+	margin-bottom: 48px;
+	display: block;
+	text-align: center;
+}
+
+@media only screen and (min-width: 750px) {
+	
+	#authors-container .slide {
+		margin-bottom: 0px;
+		display: none;
+	}
+}
+
+#authors-container #paper {
+	width: 250px;
+	height: 340px;
+	margin:auto;
+}
+
+#authors-container .book {
+	width: 250px;
+	height: 340px;
+	margin: auto;
+	position: relative;
+}
+
+#authors-container .book .logo .span1 {
+	font-variant: small-caps;
+	font-style: normal;
+}
+
+#authors-container #book-btns {
+	width: 100%;
+	position: relative;
+	height: 37px;
+}
+
+#authors-container .open-infos-btn {
+	font-family: "Vollkorn", Georgia, serif;
+	font-size: 1em;
+	letter-spacing: 1px;
+	background-color: transparent;
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+}
+
+#authors-container .tobepublished {
+	font-family: "Vollkorn", Georgia, serif;
+	font-size: 1em;
+	letter-spacing: 1px;
+	background-color: transparent;
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+}
+
+/*
+MODAL (INFOS)
+*/
+
+#authors-container .modal {
+	font-family: "Vollkorn", Georgia, sans-serif;
+	display: none;
+}
+
+#authors-container .modal-content {
+	max-width: 500px;
+}
+
+#authors-container .modal-content div {
+	padding: 8px;
+}
+
+#authors-container .modal #infos-header {
+	position: relative;
+	padding: 16px;
+	border-bottom: 1px solid #ddd;
+	text-align: center;
+}
+
+#authors-container .modal .close-infos-btn {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 37px;
+	height: 37px;
+	font-size: 1.5em;
+}
+
+#authors-container .modal p {
+	margin: 0px;
+	padding: 8px;
+}
+
+#authors-container .modal ul {
+	margin: 0px;
+	padding-left: 10px;
+	list-style-type: none;
+}
+
+#authors-container .modal ul li {
+	padding: 4px;
+}
+
+#authors-container .modal .contrib-role {
+	text-transform: capitalize;
+}
+
+
 
 
 

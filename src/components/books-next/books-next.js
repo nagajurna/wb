@@ -18,6 +18,15 @@ const booksNext = function(container) {
 	c.innerHTML = booksNextTemplate({ books: nvbs });
 	let root = document.querySelector('#books-next-container');
 	let slides = root.querySelectorAll('.slide');
+	let dotContainer = root.querySelector('#dots');
+	for(let i=0; i<slides.length; i++) {
+		if(slides.length<2) {
+			break;
+		}
+		let dot = document.createElement('span');
+		dot.className = 'dot';
+		dotContainer.appendChild(dot);
+	}
 	let dots = root.querySelectorAll('.dot');
 	let index;
 	let automatic;
@@ -85,10 +94,19 @@ const booksNext = function(container) {
 	
 	//window.innerWidth > 750 : slider
 	if(window.innerWidth >= 750) {
+		if(slides.length<2) {
+			root.querySelector('#previous').style.display='none';
+			root.querySelector('#next').style.display='none';
+		} else {
+			root.querySelector('#previous').style.display='block';
+			root.querySelector('#next').style.display='block';
+		}
 		index = 0;
 		slides[index].style.display = 'block';
-		utils.addClass(dots[index], 'active');
-		slider();
+		if(slides.length>1) {
+			utils.addClass(dots[index], 'active');
+			slider();
+		}
 	}
 	//window on resize (innerWidth < 750 : list, otherwise: slider)
 	window.addEventListener('resize', () => {
@@ -106,8 +124,17 @@ const booksNext = function(container) {
 				index=0;
 			}
 			slides[index].style.display = 'block';
-			utils.addClass(dots[index], 'active');
-			slider();
+			if(slides.length>1) {
+				utils.addClass(dots[index], 'active');
+				slider();
+			}
+			if(slides.length<2) {
+				root.querySelector('#previous').style.display='none';
+				root.querySelector('#next').style.display='none';
+			} else {
+				root.querySelector('#previous').style.display='block';
+				root.querySelector('#next').style.display='block';
+			}
 		}
 	})
 	
@@ -117,6 +144,9 @@ const booksNext = function(container) {
 		clearTimeout(automatic);
 		automatic = undefined;
 		let id = event.target.id.replace('open-', '');
+		if(window.innerWidth < 750) {
+			document.body.style.overflowY = 'hidden';
+		}
 		document.getElementById(id).style.display = 'block';
 	};
 	let openInfosBtns = root.querySelectorAll('.open-infos-btn');
@@ -129,6 +159,9 @@ const booksNext = function(container) {
 		automatic = undefined;
 		slider();
 		let id = event.target.id.replace('close-', '');
+		if(window.innerWidth < 750) {
+			document.body.style.overflowY = 'auto';
+		}
 		document.getElementById(id).style.display = 'none';
 	}
 	let closeInfosBtns = root.querySelectorAll('.close-infos-btn');

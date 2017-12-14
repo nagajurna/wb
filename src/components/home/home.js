@@ -13,13 +13,6 @@ const home = function(container) {
 	//get last 12 visible books reverse order
 	let lBs = bs.filter(function(b) { return b.visible; }).reverse().slice(0,6);
 	
-	//go to book/read
-	let readBk = event => {
-		let b = dataStore.getData('books', event.currentTarget.id);
-		let path = b.path.replace(/^\/books\/[^\/]+/,'');
-		location.hash = '#' + path + "/read";
-	}
-	
 	//insert template in container
 	c.innerHTML = homeTemplate({ books:lBs });
 	let root = document.querySelector('#home-container');
@@ -140,7 +133,12 @@ const home = function(container) {
 		let html = document.getElementsByTagName("html")[0];
 		html.scrollTop = html.scrollTop-30;
 	}
-	//link to book/read
+	//go to book/read
+	let readBk = event => {
+		let b = dataStore.getData('books', event.currentTarget.id);
+		let path = b.path.replace(/^\/books\/[^\/]+/,'');
+		location.hash = '#' + path + "/read";
+	}
 	let bks = root.querySelectorAll('.book');
 	for(let i=0; i<bks.length; i++) {
 		bks[i].addEventListener('click', readBk, false);
@@ -153,6 +151,9 @@ const home = function(container) {
 		clearTimeout(automatic);
 		automatic = undefined;
 		let id = event.target.id.replace('open-', '');
+		if(window.innerWidth < 750) {
+			document.body.style.overflowY = 'hidden';
+		}
 		document.getElementById(id).style.display = 'block';
 	};
 	let openInfosBtns = root.querySelectorAll('.open-infos-btn');
@@ -168,6 +169,9 @@ const home = function(container) {
 			slider();
 		}
 		let id = event.target.id.replace('close-', '');
+		if(window.innerWidth < 750) {
+			document.body.style.overflowY = 'auto';
+		}
 		document.getElementById(id).style.display = 'none';
 	}
 	let closeInfosBtns = root.querySelectorAll('.close-infos-btn');

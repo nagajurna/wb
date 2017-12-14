@@ -1,24 +1,24 @@
-<div id="adminLogin" class="content">
-	<div class="w3-container w3-padding-24">
-		<h3 class="w3-container">Espace administration&ensp;&ndash;&ensp;connexion</h3>
-		<form id="adminLoginForm" class="w3-container">
+<div id="adminLogin" class="content" style="min-height: 500px;">
+	<div class="container padding-16">
+		<h3 class="container text-center">Espace administration&ensp;&ndash;&ensp;connexion</h3>
+		<form id="adminLoginForm" class="container">
 			
 			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>
 			
 			<p id="email">
 				<label>Identifiant : </label>
-				<input type="text" name="email" class="w3-input w3-border">
+				<input type="text" name="email" class="input">
 				<span class="error" data-utils-bind="{{ email }}"></span>
 			</p>
 			
 			<p id="password">
 				<label>Mot de passe : </label>
-				<input type="password" name="password" class="w3-input w3-border">
+				<input type="password" name="password" class="input">
 				<span class="error" data-utils-bind="{{ password }}"></span>
 			</p>
 			
-			<p>
-				<button type="submit" id="loginButton" class="w3-btn w3-border">Valider</button>
+			<p class="padding-16">
+				<button type="submit" id="loginButton" class="button">Valider</button>
 			</p>
 			
 		</form>

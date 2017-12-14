@@ -638,7 +638,7 @@ const book = function(container) {
 		}	
 		
 		//end loader
-		document.body.style.overflow = 'visible';
+		document.body.style.overflowY = 'visible';
 		setTimeout( function() { 
 			utils.addClass('#book-loader-container', 'hidden');
 		}, 800);
@@ -668,7 +668,7 @@ const book = function(container) {
 	//GET TEMPLATE ET START LOADER
 	//insert template in container
 	document.body.style.height = '100%';
-	document.body.style.overflow = 'hidden';
+	document.body.style.overflowY = 'hidden';
 	c.innerHTML = bookReadTemplate({ book:bk });
 	//START LOADER
 	utils.removeClass('#book-loader-container','hidden');

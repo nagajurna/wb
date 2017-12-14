@@ -1,15 +1,13 @@
 <div id="adminHome" class="content">
-	<h4 class="w3-container w3-padding-16">Accueil</h4>
-	<div class="w3-container">
-		<div class="w3-border-bottom">
-			<p><%= user.name %></p>
-			<p><%= user.email %></p></p>
-		</div>
-		<div  class="w3-border-bottom">
-			<p><a id="update-user-btn" href="/#/admin/edit/" class="w3-text-gray w3-hover-none w3-hover-text-black">Modifier profil</a></p>
-			<p><a id="update-password-btn" href="/#/admin/edit/password" class="w3-text-gray w3-hover-none w3-hover-text-black">Modifier mot de passe</a></p>
-		</div>
-		<p><a id="new-btn" href="/#/admin/new" class="w3-text-gray w3-hover-none w3-hover-text-black">Nouveau compte administrateur</a></p>
-		<p><button id="logout-btn" type="button" class="w3-button w3-text-gray w3-hover-none w3-hover-text-black" style="padding-left:0px;padding-right:0px">Déconnexion</button></p>
+	<p class="padding-16"><b>Accueil</b></p>
+	<div class="border-bottom">
+		<p><%= user.name %></p>
+		<p><%= user.email %></p></p>
 	</div>
+	<div  class="border-bottom">
+		<p><a id="update-user-btn" href="/#/admin/edit/">Modifier profil</a></p>
+		<p><a id="update-password-btn" href="/#/admin/edit/password">Modifier mot de passe</a></p>
+		<p><a id="new-btn" href="/#/admin/new" >Nouveau compte administrateur</a></p>
+	</div>
+	<p class="padding-16"><button id="logout-btn" type="button" class="button">Déconnexion</button></p>
 </div>

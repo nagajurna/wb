@@ -2,16 +2,16 @@
 <!--
 	MODAL
 -->
-	<div id="modal" class="w3-modal w3-card-4">
-		<div class="w3-modal-content w3-animate-top">
-			<header class="w3-container w3-black"> 
-				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>
+	<div id="modal" class="modal">
+		<div class="modal-content animate-top container" style="max-width: 500px">
+			<header class="border-bottom"> 
+				<button id="close-modal-btn" class="btn topright" style="font-size: 1.5em">&times;</button>
 				<h4>Supprimer un auteur</h4>
 			</header>
-			<div  class="w3-container">
+			<div>
 				<p>Voulez-vous vraiment supprimer cet auteur ?</p>
 				<p><%= author.name %></p>
-				<p class="w3-right"><button type="button" id="delete-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black">Supprimer</button></p>
+				<p class="align-right"><button type="button" id="delete-btn" class="button">Supprimer</button></p>
 			</div>
 			
 		</div>
@@ -21,12 +21,12 @@
 	MAIN
 -->
 	
-	<h4 class="w3-container align-left w3-padding-16">Auteur</h4>
-	<p class="align-right w3-padding-16"><a href="/#/admin/authors/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>
-	<div id="author" class="w3-container">
+	<p class="align-left padding-16"><b>Auteur</b></p>
+	<p class="align-right padding-16"><a href="/#/admin/authors/">Retour</a></p>
+	<div id="author" style="clear: both">
 		<span class="error"><%= error %></span>
 		<span class="error" id="modal-error" data-utils-bind="{{ error }}"></span>
-		<div class="w3-border-bottom">
+		<div class="border-bottom">
 			<p><b>Nom : </b><span><%- author.name %></span></p>
 			<p><b>Nom alphabétique : </b><span><%= author.nameAlpha %></p>
 			<p><b>Date de naissance : </b><span><%= author.birth %></p>
@@ -40,10 +40,10 @@
 			<p>
 				<span><b>Œuvres :</b></span>
 			</p>
-			<ul id="books-list" class='w3-ul'>
+			<ul id="books-list" class='ul'>
 				<% for(var i=0; i<author.books.length; i++) { %>
 				<li>
-					<a href='/#/admin/books/<%= author.books[i].id %>' class="w3-text-gray w3-hover-none w3-hover-text-black">
+					<a href='/#/admin/books/<%= author.books[i].id %>'>
 						<%- author.books[i].title %> (<%= author.books[i].year %>)
 					</a>
 				</li>
@@ -54,7 +54,7 @@
 			<p>
 				<span><b>Contributions :</b></span>
 			</p>
-			<ul id="books-list" class='w3-ul w3-margin-bottom'>
+			<ul id="books-list" class='ul margin-bottom' style="padding: 0px">
 				<% for(var i=0; i<author.contribs.length; i++) {%>
 				<li>
 					<a href='/#/admin/books/<%= author.contribs[i].book.id %>' class="w3-text-gray w3-hover-none w3-hover-text-black">
@@ -66,8 +66,8 @@
 			<% } %>
 		</div>
 		<p>
-			<a href="#/admin/authors/<%= author.id %>/edit" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-left">Modifier</a>
-			<button type="button" id="open-modal-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-right">Supprimer</button>
+			<a href="#/admin/authors/<%= author.id %>/edit">Modifier</a>
+			<button type="button" id="open-modal-btn" class="button align-right">Supprimer</button>
 		</p>
 	</div>
 </div>

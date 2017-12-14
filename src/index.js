@@ -143,12 +143,14 @@ var index = (function() {
 		}, false);
 
 		window.addEventListener('resize', () => {
-			if(window.innerWidth < 750) {
-				utils.addClass("#nav-bar-top", "hidden");
-				utils.removeClass("#menu-open", "hidden");
-			} else {
-				utils.removeClass("#nav-bar-top", "hidden");
-				utils.addClass("#menu-open", "hidden");
+			if(!location.hash.match(/#\/[^\/]+\/read$/)) {
+				if(window.innerWidth < 750) {
+					utils.addClass("#nav-bar-top", "hidden");
+					utils.removeClass("#menu-open", "hidden");
+				} else {
+					utils.removeClass("#nav-bar-top", "hidden");
+					utils.addClass("#menu-open", "hidden");
+				}
 			}
 		}, false);
 		

@@ -1,11 +1,6 @@
 #books-next-container {
-	margin-top: 0px;
-}
-
-@media only screen and (min-width: 750px) {
-	#books-next-container {
-		margin-top: 32px;
-	}
+	max-width: 750px;
+	margin: auto;
 }
 
 #books-next-container #top-page-header {
@@ -17,12 +12,13 @@
 	line-height: 25px;
 	margin: auto;
 	display: block;
-	padding: 32px 0px 32px 0px;
+	padding: 32px 0px;
 }
 
 @media only screen and (min-width: 750px) {
 	#books-next-container #top-page-header {
 		font-size: 1.4em;
+		padding: 48px 0px;
 	}
 }
 
@@ -42,10 +38,9 @@
 	bottom: 0px;
 }
 
-
 #books-next-container #booksList-container {
 	width: 100%;
-	padding-bottom: 32px;
+	padding-bottom: 0px;
 	margin: auto;
 }
 
@@ -60,12 +55,12 @@
 	position: relative;
 	width: 250px;
 	margin: auto;
-	padding: 32px 0px 32px 0px;
+	padding: 0px 0px 0px 0px;
 }
 
 @media only screen and (min-width: 750px) {
 	#books-next-container #booksList {
-		height: 468px;
+		height: 460px;
 	}
 }
 
@@ -99,27 +94,14 @@
 	position: relative;
 }
 
-/* Fading animation */
-#books-next-container .fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
-
-@-webkit-keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
-}
-
-@keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
+#books-next-container .book .logo .span1 {
+	font-variant: small-caps;
+	font-style: normal;
 }
 
 #books-next-container #previous {
 	position: absolute;
-	top: 45%;
+	top: 170px;
 	left: -100px;
 	margin-top: -25px;
 	width: 50px;
@@ -132,7 +114,7 @@
 
 #books-next-container #next {
 	position: absolute;
-	top: 45%;
+	top: 170px;
 	right: -100px;
 	margin-top: -25px;
 	width: 50px;
@@ -198,7 +180,7 @@ MODAL (INFOS)
 }
 
 #books-next-container .modal-content div {
-	padding: 16px;
+	padding: 8px;
 }
 
 #books-next-container .modal #infos-header {

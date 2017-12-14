@@ -85,11 +85,9 @@ const utils = {
 				//admin-link
 				if(location.hash.match(/#\/admin/)) {
 					if(links[i].href.match(/#\/admin/)) {
-						utils.addClass("#" + links[i].id, "w3-text-black");
-						utils.removeClass("#" + links[i].id, "w3-text-gray");
+						utils.addClass("#" + links[i].id, "active");
 					} else {
-						utils.addClass("#" + links[i].id, "w3-text-gray");
-						utils.removeClass("#" + links[i].id, "w3-text-black");
+						utils.removeClass("#" + links[i].id, "active");
 					}
 				}
 			}
@@ -101,55 +99,42 @@ const utils = {
 		let adminLinks = adminRoot.querySelectorAll("a");
 		for(let i=0; i<adminLinks.length; i++) {
 			if(location.href===adminLinks[i].href) {
-				utils.addClass("#" + adminLinks[i].id, "w3-text-black");
-				utils.removeClass("#" + adminLinks[i].id, "w3-text-gray");
+				utils.addClass("#" + adminLinks[i].id, "active");
 			} else {
-				utils.addClass("#" + adminLinks[i].id, "w3-text-gray");
-				utils.removeClass("#" + adminLinks[i].id, "w3-text-black");
+				utils.removeClass("#" + adminLinks[i].id, "active");
 			}
 			
 			//admin-books
 			if(location.hash.match(/#\/admin\/books\//)) {
 				if(adminLinks[i].href.match(/#\/admin\/books\//)) {
-					utils.addClass("#" + adminLinks[i].id, "w3-text-black");
-					utils.removeClass("#" + adminLinks[i].id, "w3-text-gray");
+					utils.addClass("#" + adminLinks[i].id, "active");
 				} else {
-					utils.addClass("#" + adminLinks[i].id, "w3-text-gray");
-					utils.removeClass("#" + adminLinks[i].id, "w3-text-black");
+					utils.removeClass("#" + adminLinks[i].id, "active");
 				}
 				
 			//admin-authors	
 			} else if(location.hash.match(/#\/admin\/authors\//)) {
 				if(adminLinks[i].href.match(/#\/admin\/authors\//)) {
-					utils.addClass("#" + adminLinks[i].id, "w3-text-black");
-					utils.removeClass("#" + adminLinks[i].id, "w3-text-gray");
+					utils.addClass("#" + adminLinks[i].id, "active");
 				} else {
-					utils.addClass("#" + adminLinks[i].id, "w3-text-gray");
-					utils.removeClass("#" + adminLinks[i].id, "w3-text-black");
+					utils.removeClass("#" + adminLinks[i].id, "active");
 				}
 			//admin-users	
 			} else if(location.hash.match(/#\/admin\/users\//)) {
 				if(adminLinks[i].href.match(/#\/admin\/users\//)) {
-					utils.addClass("#" + adminLinks[i].id, "w3-text-black");
-					utils.removeClass("#" + adminLinks[i].id, "w3-text-gray");
+					utils.addClass("#" + adminLinks[i].id, "active");
 				} else {
-					utils.addClass("#" + adminLinks[i].id, "w3-text-gray");
-					utils.removeClass("#" + adminLinks[i].id, "w3-text-black");
+					utils.removeClass("#" + adminLinks[i].id, "active");
 				}
 			//admin-home	
 			} else if(location.hash.match(/#\/admin\/.+/)) {
 				if(adminLinks[i].hash==='#/admin/') {
-					utils.addClass("#" + adminLinks[i].id, "w3-text-black");
-					utils.removeClass("#" + adminLinks[i].id, "w3-text-gray");
+					utils.addClass("#" + adminLinks[i].id, "active");
 				} else {
-					utils.addClass("#" + adminLinks[i].id, "w3-text-gray");
-					utils.removeClass("#" + adminLinks[i].id, "w3-text-black");
+					utils.removeClass("#" + adminLinks[i].id, "active");
 				}
 			}
-			
 		}
-		
-		
 	},
 	
 	setHTML: (selector,content) => {

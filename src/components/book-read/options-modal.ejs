@@ -1,34 +1,34 @@
 <div id="options">
-	<div class="w3-container">
-		<button id="close-options" type="button" class="w3-button w3-text-gray w3-hover-none w3-display-topright">&times;</button>
-		<div class="w3-padding-16 w3-border-bottom options-title">
-			<p class="w3-center">Options</p>
+	<div>
+		<button id="close-options" type="button" class="btn">&times;</button>
+		<div class="options-header">
+			<p>Options</p>
 		</div>
-		<div id="font-family-container" class="w3-padding-16 w3-border-bottom">
+		<div id="font-family-container">
 			<p><b>Police de&nbsp;caractère</b></p>
-			<div class="w3-row">
-				<div class="w3-col s6">
+			<div>
+				<div class="col-left">
 					<p><label><input type="radio" name="fontFamily" value="<%- book.styles.font %>">&ensp;<%- book.styles.font %></label></p>
 					<% if(book.styles.font!=='Noto Serif') {%>
 						<p><label><input type="radio" name="fontFamily" value="Noto Serif">&ensp;Noto Serif</label></p>
 					<% } %>
 				</div>
-				<div class="w3-col s6">
+				<div class="col-right">
 					<% if(book.styles.font!=='Vollkorn') {%>
 						<p><label><input type="radio" name="fontFamily" value="VollKorn">&ensp;Vollkorn</label></p>
 					<% } %>
 				</div>
 			</div>
 		</div>
-		<div id="font-size-container" class="w3-padding-16">
+		<div id="font-size-container">
 			<p><b>Taille de la police</b></p>
 			<div>
-				<div class="w3-row">
-					<div class="w3-col s6">
+				<div>
+					<div class="col-left">
 						<p><label><input type="radio" name="fontSize" value="13">&ensp;13 px</label></p>
 						<p><label><input type="radio" name="fontSize" value="15">&ensp;15 px</label></p>
 					</div>
-					<div class="w3-col s6">
+					<div class="col-right">
 						<p><label><input type="radio" name="fontSize" value="14">&ensp;14 px</label></p>
 						<p><label><input type="radio" name="fontSize" value="16">&ensp;16 px</label></p>
 					</div>
@@ -39,42 +39,40 @@
 </div>
 
 <div id="options-medium">
-	<div class="w3-container">
-		<button id="close-options-medium" type="button" class="w3-button w3-text-gray w3-hover-none w3-display-topright">&times;</button>
-		<div class="w3-padding-16 w3-border-bottom options-title">
-			<p class="w3-center">Options</p>
+	<div>
+		<button id="close-options-medium" type="button" class="btn">&times;</button>
+		<div class="options-header">
+			<p>Options</p>
 		</div>
-		<div id="font-family-container" class="w3-padding-16 w3-border-bottom">
+		<div id="font-family-container">
 			<p><b>Police de&nbsp;caractère</b></p>
-			<div class="w3-row">
-				<div class="w3-col s6">
+			<div>
+				<div class="col-left">
 					<p><label><input type="radio" name="fontFamily" value="<%- book.styles.font %>">&ensp;<%- book.styles.font %></label></p>
 					<% if(book.styles.font!=='Noto Serif') {%>
 						<p><label><input type="radio" name="fontFamily" value="Noto Serif">&ensp;Noto Serif</label></p>
 					<% } %>
 				</div>
-				<div class="w3-col s6">
+				<div class="col-right">
 					<% if(book.styles.font!=='Vollkorn') {%>
 						<p><label><input type="radio" name="fontFamily" value="VollKorn">&ensp;Vollkorn</label></p>
 					<% } %>
 				</div>
 			</div>
 		</div>
-		<div id="font-size-container" class="w3-padding-16">
+		<div id="font-size-container">
 			<p><b>Taille de la police</b></p>
 			<div>
-				<div class="w3-row">
-				<div class="w3-col s6">
+				<div class="col-left">
 					<p><label><input type="radio" name="fontSize" value="14">&ensp;14 px</label></p>
 					<p><label><input type="radio" name="fontSize" value="16">&ensp;16 px</label></p>
 					<p><label><input type="radio" name="fontSize" value="18">&ensp;18 px</label></p>
 				</div>
-				<div class="w3-col s6">
+				<div class="col-right">
 					<p><label><input type="radio" name="fontSize" value="15">&ensp;15 px</label></p>
 					<p><label><input type="radio" name="fontSize" value="17">&ensp;17 px</label></p>
 					<p><label><input type="radio" name="fontSize" value="19">&ensp;19 px</label></p>
 				</div>
-			</div>
 			</div>
 		</div>
 	</div>

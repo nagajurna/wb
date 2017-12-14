@@ -1,4 +1,4 @@
-<div id="books-next-container">
+<div id="books-next-container" class="fade">
 	<div id="top-page-header">à paraître</div>
 	<div id="booksList-container">
 		<div id="booksList">
@@ -37,16 +37,11 @@
 				</div>
 				
 			<% } %>
-			<div id="dots" class="w3-padding-32">
-				<span class="dot"></span>
-				<span class="dot"></span>
-				<span class="dot"></span>
-				<span class="dot"></span>
-				<span class="dot"></span>
-				<span class="dot"></span>
-			</div>
+			<div id="dots"></div>
 			<button id="previous" type="button" class="btn">&lt;</button>
 			<button id="next" type="button" class="btn">&gt;</button>
 		</div>
 	</div>
+	<!-- FOOTER -->
+	<%- include src/components/footer.ejs -%>
 </div>

@@ -30,7 +30,7 @@ router.get('/', function(req, res, next) {
 		let books = resolve.books;
 		for(let i=0; i<authors.length; i++) {
 			let author = authors[i];
-			let authorsArray = books.filter(function(book) { return book.authors.indexOf(author.id) >=0; })
+			let authorsArray = books.filter(function(book) { return book.authors.indexOf(author.id) >=0; });
 			let contribsArray = books.filter(function(book) { 
 				let contrib = book.contribs.find(function(contrib) { return contrib.id === author.id;});
 				if(contrib) {

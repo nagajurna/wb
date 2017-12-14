@@ -1,17 +1,67 @@
-<div id="authors-container">
+<div id="authors-container" class="fade">
 	<div id="top-page-header">auteurs</div>
-	<div id="letters">
-		<%- include src/components/authors/authors-letters.ejs -%>
-	</div>
-	<ul id="authors-list" class="ul">
-		
-		<% for(var i=0; i<authors.length; i++) {%>
-			<% if(authors[i].visible) { %>
-			<li class="author">
-				<p class="author-name"><a><%- authors[i].name %></a></p>
-			</li>
+	<div id="authors-list">
+		<div id="letters">
+			<%- include src/components/authors/authors-letters.ejs -%>
+		</div>
+		<div>
+			
+			<% if(authors.length===0) {%>
+				<p id="noresult">aucun résultat.</p>
+			<%}%>
+			
+			<% for(var i=0; i<authors.length; i++) {%>
+				<% if(authors[i].visible) { %>
+				<div class="auth" id="auth_<%= i %>">
+					<p class="author-name"><a href="#/authors/<%= authors[i].id %>"><%- authors[i].name %></a></p>
+					<div class="books-list">
+						<button class="previous btn" type="button">&lt;</button>
+						<button class="next btn" type="button">&gt;</button>
+					<% for(var j=0; j<authors[i].works.length; j++) {%>
+						<% var work = authors[i].works[j] %>
+						
+						<!-- MODAL (INFOS) -->
+						<%- include src/components/authors/infos-modal.ejs -%>
+						
+						<div class="slide fade slides_<%= i %>" id="slide_<%= work.id %>">
+							<div id="paper" style="background-color: <%- work.styles.color %>; background-image: url(<%- work.styles.image %>)">
+								<div id="<%= work.id %>" class="book" style="<%= work.styles.cover %>">
+									<p class="author" style="<%=work.styles.author %>"><%- work.authorDisplay %></p>
+									<p class="title" style="<%-work.styles.title %>">
+										<%- work.title %>
+									</p>
+									<% if(work.subtitle1) {%>
+									<p class="subtitle1" style="<%= work.styles.subtitle1 %>">
+										<%- work.subtitle1 %></a>
+									</p>
+									<% } %>
+									<% if(work.subtitle2) {%>
+									<p class="subtitle1" style="<%= work.styles.subtitle2 %>">
+										<%- work.subtitle2 %></a>
+									</p>
+									<% } %>
+									<p class="logo" style="<%=work.styles.logo %>">
+										<span class="span1">Le Singulier</span><br/>
+										<span class="span2">éditions</span>
+									</p>
+							   </div>
+						   </div>
+						   <div id="book-btns" >
+								<% if(!work.visible) {%>
+									<button class="tobepublished btn">&Agrave; paraître</button>
+								<%}%>
+								<button id="open-infos-<%= work.id %>" class="open-infos-btn btn" >Fiche</button>
+						   </div>
+						</div>
+					
+					<%}%>
+					</div>
+				</div>
+				<% } %>
 			<% } %>
-		<% } %>
-		
-	</ul>
+			
+		</div>
+	</div>
+	<!-- FOOTER -->
+	<%- include src/components/footer.ejs -%>
 </div>
