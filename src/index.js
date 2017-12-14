@@ -35,19 +35,20 @@ var index = (function() {
 	let init = () => {
 		//if book/id/read 
 		if(location.hash.match(/#\/[^\/]+\/read$/)) {
+			utils.addClass("#header", "hidden");//hide header
 			utils.addClass("#nav-bar-top", "hidden");//hide nav-bar-top
 		} else {
-			utils.removeClass("#nav-bar-top", "hidden");
-			if(window.innerWidth < 768) {
-				utils.addClass("#top-links", "hidden");
+			utils.removeClass("#header", "hidden");
+			if(window.innerWidth < 750) {
+				utils.addClass("#nav-bar-top", "hidden");
 				utils.removeClass("#menu-open", "hidden");
 			} else {
-				utils.removeClass("#top-links", "hidden");
+				utils.removeClass("#nav-bar-top", "hidden");
 				utils.addClass("#menu-open", "hidden");
 			}
 		}
 		
-		root = document.querySelector("#navigation");
+		root = document.querySelector("body");
 		//MODAL MENU (small devices)
 		//open modal
 		root.querySelector("#menu-open").addEventListener("click", () => {
@@ -125,14 +126,16 @@ var index = (function() {
 		
 		window.addEventListener('hashchange', () => {
 			if(location.hash.match(/#\/[^\/]+\/read$/)) {
+				utils.addClass("#header", "hidden");
 				utils.addClass("#nav-bar-top", "hidden");
 			} else {
+				utils.removeClass("#header", "hidden");
 				utils.removeClass("#nav-bar-top", "hidden");
-				if(window.innerWidth < 768) {
-					utils.addClass("#top-links", "hidden");
+				if(window.innerWidth < 750) {
+					utils.addClass("#nav-bar-top", "hidden");
 					utils.removeClass("#menu-open", "hidden");
 				} else {
-					utils.removeClass("#top-links", "hidden");
+					utils.removeClass("#nav-bar-top", "hidden");
 					utils.addClass("#menu-open", "hidden");
 				}
 			}
@@ -140,13 +143,14 @@ var index = (function() {
 		}, false);
 
 		window.addEventListener('resize', () => {
-			//utils.removeClass("#nav-bar-top", "hidden");
-			if(window.innerWidth < 768) {
-				utils.addClass("#top-links", "hidden");
-				utils.removeClass("#menu-open", "hidden");
-			} else {
-				utils.removeClass("#top-links", "hidden");
-				utils.addClass("#menu-open", "hidden");
+			if(!location.hash.match(/#\/[^\/]+\/read$/)) {
+				if(window.innerWidth < 750) {
+					utils.addClass("#nav-bar-top", "hidden");
+					utils.removeClass("#menu-open", "hidden");
+				} else {
+					utils.removeClass("#nav-bar-top", "hidden");
+					utils.addClass("#menu-open", "hidden");
+				}
 			}
 		}, false);
 		

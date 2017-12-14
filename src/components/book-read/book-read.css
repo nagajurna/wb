@@ -99,6 +99,7 @@ SIGNET
 	font-family: 'Verdana', sans-serif;
 }
 
+
 #bookmark.show {
 	visibility: visible;
 	-webkit-animation: fadein 0.5s, fadeout 0.5s 2s;
@@ -142,7 +143,6 @@ BOOK NAVBAR BOTTOM
 
 #book-nav-bar-bottom-controls {
 	position: relative;
-	display: block;
 	height: 44px;
 	width: 550px;
 	margin: auto;
@@ -151,15 +151,18 @@ BOOK NAVBAR BOTTOM
 
 #book-nav-bar-bottom-controls #center {
 	width: 120px;
+	height: 100%;
 	margin: auto;
 }
 
 #book-nav-bar-bottom-controls #center #backward-large {
 	float: left;
+	font-size: 1.6em;
 }
 
 #book-nav-bar-bottom-controls #center #forward-large {
 	float: right;
+	font-size: 1.6em;
 }
 
 #book-nav-bar-bottom-controls span, #book-nav-bar-bottom-controls button {
@@ -167,6 +170,7 @@ BOOK NAVBAR BOTTOM
 	height: 100%;
 	background-color: transparent;
 	display: inline-block;
+	color: #000;
 }
 
 #book-nav-bar-bottom-controls #open-toc-large {
@@ -216,6 +220,7 @@ BOOK NAV-BAR-BOTTOM-SMALL
 	position: relative;
 	margin: auto;
 	background-color: #333;
+	text-align: center;
 }
 
 @media screen and (min-width: 768px) {
@@ -224,7 +229,7 @@ BOOK NAV-BAR-BOTTOM-SMALL
 	}
 }
 
-#book-nav-bar-bottom-small .w3-btn {
+#book-nav-bar-bottom-small .btn {
 	display: inline-block;
 	border: none;
 	background-color: transparent;
@@ -233,6 +238,7 @@ BOOK NAV-BAR-BOTTOM-SMALL
 	margin: 0px;
 	outline: none;
 	width: 24%;
+	color: rgb(132,132,132);
 }
 
 /*
@@ -284,32 +290,45 @@ TOC-LARGE-DEVICE, TAB-OPTIONS, TAB-INFOS, HOME
 	#toc-large-device, #tab-infos, #tab-options {
 		display: block
 	}
-
 }
 
 #toc-large-device.open, #tab-infos.open, #tab-options.open {
 	right: 0px;
 }
 
-
-
 #toc-large-device-container, #tab-infos-container, #tab-options-container {
 	width: 100%;
 	background-color: #fafafa;
 	overflow-y: auto;
+	padding: 0px 16px;
 }
 
+#toc-large-device-container .header, #tab-infos-container .header, #tab-options-container .header {
+	padding: 16px;
+	border-bottom: 1px solid #ddd;
+	text-align: center;
+}
 
-#toc-large-device-container > div {
+/*
+toc-large-device
+*/
+#toc-large-device-container [data-wb-toc] {
 	background-color: #fafafa;
 	position: relative;
 	height: 100%;
 	width: 100%;
 }
 
+/*
+tab-infos
+*/
+#tab-infos-container .content {
+	padding: 16px 0px;
+}
+
 #tab-infos-container p {
 	margin: 0px;
-	margin-top: 8px;
+	padding: 8px;
 }
 
 #tab-infos-container ul {
@@ -318,23 +337,46 @@ TOC-LARGE-DEVICE, TAB-OPTIONS, TAB-INFOS, HOME
 	list-style-type: none;
 }
 
+#tab-infos-container ul li {
+	padding: .5em .5em;
+}
+
 #tab-infos-container .contrib-role {
 	text-transform: capitalize;
 }
 
+/*
+tab-options
+*/
 #tab-options-container {
-	text-align: center;
+	text-align : center;
+	padding-bottom: 16px;
 }
 
 #tab-options-container #font-size-container-large,
 #tab-options-container #font-family-container-large {
-	width: 250px;
+	width: 215px;
 	margin: auto;
+	padding: 16px 0px;
 }
 
-#tab-options-container #font-family-container-large > div {
-	text-align : left;
-	padding-left: 35px;
+#tab-options-container #font-family-container-large > p,
+#tab-options-container #font-size-container-large > p {
+	margin-bottom: 7px;
+}
+
+#tab-options-container .col-left {
+	float: left;
+	width: 50%;
+}
+
+#tab-options-container .col-right {
+	float: right;
+	width: 50%;
+}
+
+#tab-options-container #font-size-container-large {
+	clear: both;
 }
 
 #tab-options-container label {
@@ -342,7 +384,7 @@ TOC-LARGE-DEVICE, TAB-OPTIONS, TAB-INFOS, HOME
 	text-align : left;
 }
 
-.options-title {
+#tab-options-container .options-title {
 	font-variant: small-caps;
 	letter-spacing: 1.5px;
 	font-size: 1.2em;
@@ -351,8 +393,6 @@ TOC-LARGE-DEVICE, TAB-OPTIONS, TAB-INFOS, HOME
 /*
 BOOK COMMANDS
 */
-
-
 #book-commands {
 	position: fixed;
 	left: 32px;
@@ -370,20 +410,27 @@ BOOK COMMANDS
     position: absolute;
 	right: 100%;
 	top: 0px;
+	height: 37px;
 	margin-right: 16px;
 	outline: none;
 	background-color: #fafafa;
+	font-family: 'Georgia', serif;
 	font-size: 1.2em;
-	font-family: 'Verdana', serif;
 }
 
-#toggle-toc-large-device, #toggle-tab-options, #toggle-tab-infos, #tab-add-bookmark, #tab-home-link {
+#book-commands button {
     position: absolute;
 	right: 0px;
 	width: 80px;
+	height: 37px;
 	margin-right: 16px;
 	outline: none;
+	font-family: 'Georgia', serif;
 	font-size: 1em;
+}
+
+#book-commands button:hover {
+	box-shadow: 2px 3px 6px 2px rgba(0,0,0,0.2)
 }
 
 #toggle-toc-large-device {
@@ -407,10 +454,10 @@ BOOK COMMANDS
 }
 
 /*
-toggle toc-large-device, swing-container, swing-bar
+swing-container, swing-bar
 */
 /*
-if toc-large-device.open : swing-container to left
+if tab.open : swing-container to left
 */
 #swing-container {
 	margin-right: 0px;
@@ -432,7 +479,7 @@ if toc-large-device.open : swing-container to left
 }
 
 /*
-if toc-large-device.open : swing-bar to left
+if tab.open : swing-bar to left
 */
 #swing-bar {
 	margin-right: 0px;
@@ -476,31 +523,37 @@ TOC, OPTIONS (< 1366px)
 	top: 0px;
 }
 
-
-
 #toc > div, #options > div, #options-medium > div {
-	position: relative;
 	background-color: #fafafa;
+	padding: 0px 16px;
 }
 
 #close-toc, #close-options, #close-options-medium {
-	background-color: transparent;
+	position: absolute;
+	right: 0;
+	top: 0;
 	line-height: 27px;
 	font-size: 2em;
 	font-family: 'Georgia', sans-serif;
+	color: #bbb;
+	padding: 8px 16px;
 }
 
-#toc-title {
+/*
+toc
+*/
+#toc-header {
 	margin-bottom: 30px;
-	margin-top: 20px
+	margin-top: 20px;
+	padding: 16px 0px;
+	border-bottom: 1px solid #ddd;
+	text-align: center;
 }
 
-#toc-title p {
+#toc-header p {
 	margin: 8px;
 }
-/*
-toc list
-*/
+
 #toc ul, #toc-large-device ul {
 	padding: 0px;
 }
@@ -515,6 +568,7 @@ toc list
 	width: 100%;
 	border: none;
 	color: gray;
+	padding: 0px;
 }
 
 #toc a.wb-link:hover, #toc-large-device a.wb-link:hover {
@@ -534,23 +588,43 @@ toc list
 	float: right;
 }
 
-
 /*
 options content
 */
-#options > div, #options-medium > div {
+#options, #options-medium {
 	text-align: center;
+}
+
+#options .options-header, #options-medium .options-header {
+	padding: 16px 0px;
+	border-bottom: 1px solid #ddd;
+	letter-spacing: 1.5px;
 }
 
 #options #font-size-container, #options-medium #font-size-container,
 #options #font-family-container, #options-medium #font-family-container {
-	width: 250px;
+	width: 215px;
 	margin: auto;
+	padding: 16px 0px;
 }
 
-#options #font-family-container > div, #options-medium #font-family-container > div {
-	text-align : left;
-	padding-left: 35px;
+#options #font-family-container > p, #options-medium #font-family-container > p,
+#options #font-size-container > p, #options-medium #font-size-container > p {
+	margin-bottom: 7px;
+}
+
+#options .col-left, #options-medium .col-left {
+	float: left;
+	width: 50%;
+}
+
+#options .col-right, #options-medium .col-right {
+	float: right;
+	width: 50%;
+}
+
+#options #font-size-container, #options-medium #font-size-container {
+	clear: both;
 }
 
 #options label {

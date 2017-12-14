@@ -58,51 +58,36 @@ const utils = {
 		let links = root.querySelectorAll("a");
 		for(let i=0; i<links.length; i++) {
 			
-			if(links[i].id==='home-link' || links[i].id==='menu-home-link') {
-				if(location.href.match(/#\/[^\/]+\/read$/)) {
-					utils.addClass("#" + links[i].id, "w3-text-gray");
-					utils.removeClass("#" + links[i].id, "w3-text-black");
-				} else {
-					utils.addClass("#" + links[i].id, "w3-text-black");
-					utils.removeClass("#" + links[i].id, "w3-text-gray");
-				}
-				
+			if(links[i].id==='header-home-link' || links[i].id==='menu-home-link') {
+				utils.addClass("#" + links[i].id, "active");
 			} else if(links[i].id==='last-link' || links[i].id==='menu-last-link') {
 				if(location.hash==='' || location.hash==='#/') {
-					utils.addClass("#" + links[i].id, "w3-text-black");
-					utils.removeClass("#" + links[i].id, "w3-text-gray");
+					utils.addClass("#" + links[i].id, "active");
 				} else {
-					utils.addClass("#" + links[i].id, "w3-text-gray");
-					utils.removeClass("#" + links[i].id, "w3-text-black");
+					utils.removeClass("#" + links[i].id, "active");
 				}
 				
 			} else if(links[i].id==='authors-link' || links[i].id==='menu-authors-link') {
 				if(location.hash.match(/#\/authors/)) {
-					utils.addClass("#" + links[i].id, "w3-text-black");
-					utils.removeClass("#" + links[i].id, "w3-text-gray");
+					utils.addClass("#" + links[i].id, "active");
 				} else {
-					utils.addClass("#" + links[i].id, "w3-text-gray");
-					utils.removeClass("#" + links[i].id, "w3-text-black");
+					utils.removeClass("#" + links[i].id, "active");
 				}
 				
 			} else {
 			
 				if(location.href===links[i].href) {
-					utils.addClass("#" + links[i].id, "w3-text-black");
-					utils.removeClass("#" + links[i].id, "w3-text-gray");
+					utils.addClass("#" + links[i].id, "active");
 				} else {
-					utils.addClass("#" + links[i].id, "w3-text-gray");
-					utils.removeClass("#" + links[i].id, "w3-text-black");
+					utils.removeClass("#" + links[i].id, "active");
 				}
 				
 				//admin-link
 				if(location.hash.match(/#\/admin/)) {
 					if(links[i].href.match(/#\/admin/)) {
-						utils.addClass("#" + links[i].id, "w3-text-black");
-						utils.removeClass("#" + links[i].id, "w3-text-gray");
+						utils.addClass("#" + links[i].id, "active");
 					} else {
-						utils.addClass("#" + links[i].id, "w3-text-gray");
-						utils.removeClass("#" + links[i].id, "w3-text-black");
+						utils.removeClass("#" + links[i].id, "active");
 					}
 				}
 			}
@@ -114,55 +99,42 @@ const utils = {
 		let adminLinks = adminRoot.querySelectorAll("a");
 		for(let i=0; i<adminLinks.length; i++) {
 			if(location.href===adminLinks[i].href) {
-				utils.addClass("#" + adminLinks[i].id, "w3-text-black");
-				utils.removeClass("#" + adminLinks[i].id, "w3-text-gray");
+				utils.addClass("#" + adminLinks[i].id, "active");
 			} else {
-				utils.addClass("#" + adminLinks[i].id, "w3-text-gray");
-				utils.removeClass("#" + adminLinks[i].id, "w3-text-black");
+				utils.removeClass("#" + adminLinks[i].id, "active");
 			}
 			
 			//admin-books
 			if(location.hash.match(/#\/admin\/books\//)) {
 				if(adminLinks[i].href.match(/#\/admin\/books\//)) {
-					utils.addClass("#" + adminLinks[i].id, "w3-text-black");
-					utils.removeClass("#" + adminLinks[i].id, "w3-text-gray");
+					utils.addClass("#" + adminLinks[i].id, "active");
 				} else {
-					utils.addClass("#" + adminLinks[i].id, "w3-text-gray");
-					utils.removeClass("#" + adminLinks[i].id, "w3-text-black");
+					utils.removeClass("#" + adminLinks[i].id, "active");
 				}
 				
 			//admin-authors	
 			} else if(location.hash.match(/#\/admin\/authors\//)) {
 				if(adminLinks[i].href.match(/#\/admin\/authors\//)) {
-					utils.addClass("#" + adminLinks[i].id, "w3-text-black");
-					utils.removeClass("#" + adminLinks[i].id, "w3-text-gray");
+					utils.addClass("#" + adminLinks[i].id, "active");
 				} else {
-					utils.addClass("#" + adminLinks[i].id, "w3-text-gray");
-					utils.removeClass("#" + adminLinks[i].id, "w3-text-black");
+					utils.removeClass("#" + adminLinks[i].id, "active");
 				}
 			//admin-users	
 			} else if(location.hash.match(/#\/admin\/users\//)) {
 				if(adminLinks[i].href.match(/#\/admin\/users\//)) {
-					utils.addClass("#" + adminLinks[i].id, "w3-text-black");
-					utils.removeClass("#" + adminLinks[i].id, "w3-text-gray");
+					utils.addClass("#" + adminLinks[i].id, "active");
 				} else {
-					utils.addClass("#" + adminLinks[i].id, "w3-text-gray");
-					utils.removeClass("#" + adminLinks[i].id, "w3-text-black");
+					utils.removeClass("#" + adminLinks[i].id, "active");
 				}
 			//admin-home	
 			} else if(location.hash.match(/#\/admin\/.+/)) {
 				if(adminLinks[i].hash==='#/admin/') {
-					utils.addClass("#" + adminLinks[i].id, "w3-text-black");
-					utils.removeClass("#" + adminLinks[i].id, "w3-text-gray");
+					utils.addClass("#" + adminLinks[i].id, "active");
 				} else {
-					utils.addClass("#" + adminLinks[i].id, "w3-text-gray");
-					utils.removeClass("#" + adminLinks[i].id, "w3-text-black");
+					utils.removeClass("#" + adminLinks[i].id, "active");
 				}
 			}
-			
 		}
-		
-		
 	},
 	
 	setHTML: (selector,content) => {
@@ -218,7 +190,12 @@ const utils = {
 	},
 	
 	addClass: (selector, className) => {
-		let elements = document.querySelectorAll(selector);
+		let elements = [];
+		if(selector.nodeName) {
+			elements.push(selector);
+		} else {
+			elements = document.querySelectorAll(selector);
+		}
 		let name, array
 		for(let i=0; i< elements.length; i++) {
 			name = className;
@@ -230,7 +207,12 @@ const utils = {
 	},
 	
 	removeClass: (selector, className) => {
-		let elements = document.querySelectorAll(selector);
+		let elements = [];
+		if(selector.nodeName) {
+			elements.push(selector);
+		} else {
+			elements = document.querySelectorAll(selector);
+		}
 		let name;
 		for(let i=0; i< elements.length; i++) {
 			name = className;

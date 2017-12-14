@@ -2,16 +2,16 @@
 <!--
 	MODAL
 -->
-	<div id="modal" class="w3-modal w3-card-4">
-		<div class="w3-modal-content w3-animate-top">
-			<header class="w3-container w3-black"> 
-				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>
+	<div id="modal" class="modal">
+		<div class="modal-content animate-top container" style="max-width: 500px">
+			<header class="border-bottom"> 
+				<button id="close-modal-btn" class="btn topright" style="font-size: 1.5em">&times;</button>
 				<h4>Supprimer un utilisateur</h4>
 			</header>
-			<div  class="w3-container">
-				<p>Voulez-vous vraiment supprimer cet utilisateur ?</p>
+			<div>
+				<p>Voulez-vous vraiment supprimer cet utilisateur&nbsp;?</p>
 				<p><%= user.email %></p>
-				<p class="w3-right"><button type="button" id="delete-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black">Supprimer</button></p>
+				<p class="align-right"><button type="button" id="delete-btn" class="button">Supprimer</button></p>
 			</div>
 			
 		</div>
@@ -19,18 +19,18 @@
 <!--
 	MAIN
 -->
-	<h4 class="w3-container align-left w3-padding-16">Utilisateur</h4>
-	<p class="align-right w3-padding-16"><a href="/#/admin/users/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>
-	<div id="user" class="w3-container">
+	<p class="align-left padding-16"><b>Utilisateur</b></p>
+	<p class="align-right padding-16"><a href="/#/admin/users/">Retour</a></p>
+	<div id="user" style="clear:both">
 		<span class="error"><%= error %></span>
 		<span class="error" id="modal-error" data-utils-bind="{{ error }}"></span>
-		<div class="w3-border-bottom">
+		<div class="border-bottom">
 			<p><b>Nom : </b><%= user.name %></p>
 			<p><b>Email : </b><%= user.email %></p>
 			<p><b>Admin : </b><%= user.admin %></p>
 			<p><b>Créé le : </b><%= user.created_at %></p>
 			<p><b>Mis à jour le : </b><%= user.updated_at %></p>
 		</div>
-		<p><button type="button" id="open-modal-btn" class="w3-button w3-border w3-text-gray w3-hover-none w3-hover-text-black w3-right">Supprimer</button></p>
+		<p class="padding-16"><button type="button" id="open-modal-btn" class="button">Supprimer</button></p>
 	</div>
 </div>

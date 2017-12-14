@@ -41,7 +41,6 @@ const router  = function() {
 		} else if(newhash.match(/#\/[^\/]+\/read$/)) {
 			//BOOK READ
 			bookRead(container);
-			
 		
 		} else if(newhash.match(/#\/authors\?(search=(A-Z))?/)) {
 			//AUTHORS

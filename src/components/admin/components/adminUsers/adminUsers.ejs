@@ -1,15 +1,13 @@
 <div id="adminUsers" class="content">
-	<h4 class="w3-container w3-padding-16 align-left">Utilisateurs</h4>
-	<div style="clear:both">
-		<span class="error"><%= error %></span>
-		<ul id="users-list" class='w3-ul'>
-			<% for(var i=0; i<users.length; i++) {%>
-			<li>
-				<p id='<%= users[i].id %>'>
-					<a href='/#/admin/users/<%= users[i].id %>' class='w3-text-gray w3-hover-none w3-hover-text-black'><%= users[i].email %></a>
-				</p>
-			</li>
-			<% } %>
-		</ul>
-	</div>
+	<p style="padding-top: 16px; margin-bottom: 0px"><b>Utilisateurs</b></p>
+	<span class="error"><%= error %></span>
+	<ul id="users-list" class='ul' style="padding: 0px;">
+		<% for(var i=0; i<users.length; i++) {%>
+		<li>
+			<p id='<%= users[i].id %>'>
+				<a href='/#/admin/users/<%= users[i].id %>'><%= users[i].email %></a>
+			</p>
+		</li>
+		<% } %>
+	</ul>
 </div>

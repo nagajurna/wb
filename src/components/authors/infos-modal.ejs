@@ -1,66 +1,68 @@
-<div id="infos-<%= book.id %>" class="w3-modal" style="background-color: rgba(0,0,0,0.1)">
-	<div class="w3-modal-content w3-card w3-animate-top" style="max-width: 500px">
-		<div class="w3-container w3-padding-16">
-			  <p><b>Titre : </b><%- book.title %></p>
-			  <% if(book.subtitle1) {%>
-				<p><b>Sous-titre : </b><%- book.subtitle1 %></p>
+<div id="infos-<%= work.id %>" class="modal">
+	<div class="modal-content w3-card animate-top">
+		<div id="infos-header">
+			<button id="close-infos-<%= work.id %>" type="button" class="btn close-infos-btn">&times;</button>
+			<p><%- work.authorDisplay %></p>
+			<p class="text-uppercase"><%- work.title %></p>
+		</div>
+		<div>
+			  <p><b>Titre : </b><%- work.title %></p>
+			  <% if(work.subtitle1) {%>
+				<p><b>Sous-titre : </b><%- work.subtitle1 %></p>
 			  <%}%>
-			  <% if(book.subtitle2) {%>
-				<p><b>Sous-sous-titre : </b><%- book.subtitle2 %></p>
+			  <% if(work.subtitle2) {%>
+				<p><b>Sous-sous-titre : </b><%- work.subtitle2 %></p>
 			  <%}%>
-			  <p><b>Année de parution : </b><%- book.year %></p>
-			  <% if(book.authors.length > 1) {%>
+			  <p><b>Année de parution : </b><%- work.year %></p>
+			  <% if(work.authors.length > 1) {%>
 					<p>
 						<span><b>Auteurs :</b></span>
 						<br>
 						<ul>
-						<% for(var j=0; j<book.authors.length; j++) {%>
+						<% for(var j=0; j<work.authors.length; j++) {%>
 							<li>
-								<%- book.authors[j].name %> (<%- book.authors[j].birth %>&nbsp;&ndash; <%- book.authors[j].death %>)
+								<%- work.authors[j].name %> (<%- work.authors[j].birth %>&nbsp;&ndash; <%- work.authors[j].death %>)
 							</li>
 						<%}%>
 						</ul>
 					</p>
-			  <%} else if(book.authors.length === 1) {%>
-					<p><b>Auteur : </b><%- book.authors[0].name %> (<%- book.authors[0].birth %>&nbsp;&ndash; <%- book.authors[0].death %>)</p>
+			  <%} else if(work.authors.length === 1) {%>
+					<p><b>Auteur : </b><%- work.authors[0].name %> (<%- work.authors[0].birth %>&nbsp;&ndash; <%- work.authors[0].death %>)</p>
 			  <%}%>
-			  <% if(book.contribs.length > 1) {%>
+			  <% if(work.contribs.length > 1) {%>
 					<p>
 						<span><b>Contributions :</b></span>
 						<br>
 						<ul>
-						<% for(var j=0; j<book.contribs.length; j++) {%>
+						<% for(var j=0; j<work.contribs.length; j++) {%>
 							<li>
-								<span class="contrib-role"><%- book.contribs[j].role %> : </span>
-								<%- book.contribs[j].name %> (<%- book.contribs[j].birth %>&nbsp;&ndash; <%- book.contribs[j].death %>)
+								<span class="contrib-role"><%- work.contribs[j].role %> : </span>
+								<%- work.contribs[j].name %> (<%- work.contribs[j].birth %>&nbsp;&ndash; <%- work.contribs[j].death %>)
 							</li>
 						<%}%>
 						</ul>
 					</p>
-			  <%} else if(book.contribs.length === 1) {%>
+			  <%} else if(work.contribs.length === 1) {%>
 					<p>
 						<span><b>Contribution : </b></span>
 						<br>
 						<ul>
 							<li>
-								<span class="contrib-role"><%- book.contribs[0].role %> : </span>
-								<%- book.contribs[0].name %> (<%- book.contribs[0].birth %>&nbsp;&ndash; <%- book.contribs[0].death %>)
+								<span class="contrib-role"><%- work.contribs[0].role %> : </span>
+								<%- work.contribs[0].name %> (<%- work.contribs[0].birth %>&nbsp;&ndash; <%- work.contribs[0].death %>)
 							</li>
 						</ul>
 					</p>
 			  <%}%>
 			  <p class="book-source"><b>Source : </b>
 				  <ul>
-					  <li>&Eacute;diteur : <%- book.source.publisher %></li>
-					  <li>Année de parution : <%- book.source.year %></li>
+					  <li>&Eacute;diteur : <%- work.source.publisher %></li>
+					  <li>Année de parution : <%- work.source.year %></li>
 				  </ul>
 			  </p>
-			  <% if(book.description) {%>
-			  <div><%- book.description %></div>
+			  <% if(work.description) {%>
+			  <div><%- work.description %></div>
 			  <%}%>
-		</div>
-		<div id=footer class="w3-container w3-border-bottom">
-			<button id="close-infos-<%= book.id %>" class="close-infos-btn w3-button w3-text-gray w3-hover-none w3-hover-text-black w3-display-bottomright">Fermer</button>
 		</div>
 	</div>
 </div>

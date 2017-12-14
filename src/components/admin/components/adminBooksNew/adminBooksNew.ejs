@@ -2,15 +2,15 @@
 <!--
 	MODAL
 -->
-	<div id="modal" class="w3-modal w3-card-4">
-		<div class="w3-modal-content w3-animate-top">
-			<header class="w3-container w3-black"> 
-				<span id="close-modal-btn" class="w3-button w3-display-topright">&times;</span>
+	<div id="modal" class="modal">
+		<div class="modal-content animate-top container" style="max-width: 500px">
+			<header class="border-bottom"> 
+				<button id="close-modal-btn" class="btn topright" style="font-size: 1.5em">&times;</button>
 				<h4>Rechercher un auteur</h4>
 			</header>
-			<div class="w3-container">
+			<div>
 				<p id="search">
-				<input type="text" name="search" class="w3-input w3-border">
+				<input type="text" name="search" class="input">
 				<span class="error" data-utils-bind="{{ error }}"></span>
 				</p>
 				<div id="results" style="min-height:150px"></div>
@@ -21,157 +21,157 @@
 <!--
 	MAIN
 -->
-	<h4 class="w3-container align-left w3-padding-16">Ajouter un ouvrage</h4>
-	<p class="align-right w3-padding-16"><a href="/#/admin/books/" class="w3-text-gray w3-hover-none w3-hover-text-black">Retour</a></p>
-	<div class="w3-container">
+	<p class="align-left padding-16"><b>Ajouter un ouvrage</b></p>
+	<p class="align-right padding-16"><a href="/#/admin/books/">Retour</a></p>
+	<div style="clear: both">
 		<form id="adminBooksNewForm">
 			
 			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>
 			
 			<p id="title">
 				<label>Titre * : </label>
-				<input type="text" name="title" class="w3-input w3-border">
+				<input type="text" name="title" class="input">
 				<span class="error" data-utils-bind="{{ title }}"></span>
 			</p>
 			
 			<p id="subtitle1">
 				<label>Sous-titre 1 : </label>
-				<input type="text" name="subtitle1" class="w3-input w3-border">
+				<input type="text" name="subtitle1" class="input">
 			</p>
 			
 			<p id="subtitle2">
 				<label>Sous-titre 2 : </label>
-				<input type="text" name="subtitle2" class="w3-input w3-border">
+				<input type="text" name="subtitle2" class="input">
 			</p>
 			
 			<p id="authorDisplay">
 				<label>Auteur (libellé) * : </label>
-				<input type="text" name="authorDisplay" class="w3-input w3-border">
+				<input type="text" name="authorDisplay" class="input">
 				<span class="error" data-utils-bind="{{ authorDisplay }}"></span>
 			</p>
 			
-			<div id="authors" class="w3-margin-bottom w3-border-bottom">
-				<div class="w3-margin-bottom" style="min-height:100px">
+			<div id="authors" class="margin-bottom border-bottom">
+				<div class="margin-bottom" style="min-height:100px">
 					<p>
 						<label class="align-left">Auteurs * : </label>
-						<a href="/#/authors" id="auteur" class="align-right w3-text-gray w3-hover-none w3-hover-text-black open-modal-btn">Rechercher</a>
+						<a href="/#/authors" id="auteur" class="align-right open-modal-btn">Rechercher</a>
 					</p>
 					
-					<ul id="authorsContainer" class="w3-ul w3-padding-32"></ul>
+					<ul id="authorsContainer" class="ul padding-32"></ul>
 					<span class="error" data-utils-bind="{{ authors }}"></span>
 				</div>
 				
 			</div>
 			
-			<div id="contribs" class="w3-margin-bottom w3-border-bottom">
-				<div class="w3-margin-bottom" style="min-height:100px">
+			<div id="contribs" class="margin-bottom border-bottom">
+				<div class="margin-bottom" style="min-height:100px">
 					<p>
 						<label class="align-left">Contributeurs : </label>
-						<a href="/#/contribs" id="contributeur" class="align-right w3-text-gray w3-hover-none w3-hover-text-black open-modal-btn">Rechercher</a>
+						<a href="/#/contribs" id="contributeur" class="align-right open-modal-btn">Rechercher</a>
 					</p>
 					
-					<ul id="contribsContainer" class="w3-ul w3-padding-32"></ul>
+					<ul id="contribsContainer" class="ul padding-32"></ul>
 				</div>
 				
 			</div>
 			
 			<p id="year">
 				<label>Année de publication * : </label>
-				<input type="text" name="year" class="w3-input w3-border">
+				<input type="text" name="year" class="input">
 				<span class="error" data-utils-bind="{{ year }}"></span>
 			</p>
 			
 			<p id="language">
 				<label>Langue * : </label>
-				<input type="text" name="language" class="w3-input w3-border">
+				<input type="text" name="language" class="input">
 				<span class="error" data-utils-bind="{{ language }}"></span>
 			</p>
 			
 			<p id="categories">
 				<label>Catégories : </label>
-				<input type="text" name="categories" class="w3-input w3-border">
+				<input type="text" name="categories" class="input">
 				<span class="error" data-utils-bind="{{ categories }}"></span>
 			</p>
 			
 			<p id="collection">
 				<label>Collection : </label>
-				<input type="text" name="collection" class="w3-input w3-border">
+				<input type="text" name="collection" class="input">
 				<span class="error" data-utils-bind="{{ collection }}"></span>
 			</p>
 			
 			<p id="source-publisher">
 				<label>Source - éditeur : </label>
-				<input type="text" name="source-publisher" class="w3-input w3-border">
+				<input type="text" name="source-publisher" class="input">
 			</p>
 			
 			<p id="source-year">
 				<label>Source - année de publication : </label>
-				<input type="text" name="source-year" class="w3-input w3-border">
+				<input type="text" name="source-year" class="input">
 			</p>
 			
 			<p id="source-origin">
 				<label>Source - origine : </label>
-				<input type="text" name="source-origin" class="w3-input w3-border">
+				<input type="text" name="source-origin" class="input">
 			</p>
 			
 			<p id="styles-color">
 				<label>Styles - couleur : </label>
-				<input type="text" name="styles-color" class="w3-input w3-border" >
+				<input type="text" name="styles-color" class="input" >
 			</p>
 			
 			<p id="styles-image">
 				<label>Styles - image : </label>
-				<input type="text" name="styles-image" class="w3-input w3-border" >
+				<input type="text" name="styles-image" class="input" >
 			</p>
 			
 			<p id="styles-font">
 				<label>Styles - police : </label>
-				<input type="text" name="styles-font" class="w3-input w3-border" >
+				<input type="text" name="styles-font" class="input" >
 			</p>
 			
 			<p id="styles-cover">
 				<label>Styles - couverture : </label>
-				<input type="text" name="styles-cover" class="w3-input w3-border" >
+				<input type="text" name="styles-cover" class="input" >
 			</p>
 			
 			<p id="styles-author">
 				<label>Styles - auteur : </label>
-				<input type="text" name="styles-author" class="w3-input w3-border" >
+				<input type="text" name="styles-author" class="input" >
 			</p>
 			
 			<p id="styles-title">
 				<label>Styles - titre : </label>
-				<input type="text" name="styles-title" class="w3-input w3-border" >
+				<input type="text" name="styles-title" class="input" >
 			</p>
 			
 			<p id="styles-subtitle1">
 				<label>Styles - sous-titre1 : </label>
-				<input type="text" name="styles-subtitle1" class="w3-input w3-border" >
+				<input type="text" name="styles-subtitle1" class="input" >
 			</p>
 			
 			<p id="styles-subtitle2">
 				<label>Styles - sous-titre2 : </label>
-				<input type="text" name="styles-subtitle2" class="w3-input w3-border" >
+				<input type="text" name="styles-subtitle2" class="input" >
 			</p>
 			
 			<p id="styles-subtitle2">
 				<label>Styles - sous-titre2 : </label>
-				<input type="text" name="styles-subtitle2" class="w3-input w3-border" >
+				<input type="text" name="styles-subtitle2" class="input" >
 			</p>
 			
 			<p id="styles-logo">
 				<label>Styles - logo : </label>
-				<input type="text" name="styles-logo" class="w3-input w3-border" >
+				<input type="text" name="styles-logo" class="input" >
 			</p>
 			
 			<p id="description">
 				<label>Description : </label>
-				<textarea type="text" name="description" class="w3-input w3-border"></textarea>
+				<textarea type="text" name="description" class="input" style="display: block; width: 100%"></textarea>
 			</p>
 			
 			<p id="path">
 				<label>Path * : </label>
-				<input type="text" name="path" class="w3-input w3-border">
+				<input type="text" name="path" class="input">
 				<span class="error" data-utils-bind="{{ path }}"></span>
 			</p>
 			
@@ -179,8 +179,8 @@
 				<label><input type="checkbox" name="visible" > Visible</label>
 			</p>
 			
-			<p class="w3-padding-24">
-				<button type="submit" class="w3-btn w3-border">Valider</button>
+			<p class="padding-16">
+				<button type="submit" class="button">Valider</button>
 			</p>
 			
 		</form>

@@ -149,7 +149,7 @@ const book = function(container) {
 						 
 		//on resize
 		window.addEventListener('resize', event => {
-			document.body.style.height = window.innerHeight + 'px';
+			document.body.style.height = '100%';
 			if(window.innerWidth >= 768) {
 				utils.addClass('[data-wb-text-container]', 'w3-card-4');
 				//max-height: 720
@@ -648,8 +648,8 @@ const book = function(container) {
 		}	
 		
 		//end loader
-		document.body.style.overflow = 'visible';
-		setTimeout( () => { 
+		document.body.style.overflowY = 'visible';
+		setTimeout( function() { 
 			utils.addClass('#book-loader-container', 'hidden');
 		}, 800);
 		
@@ -677,6 +677,8 @@ const book = function(container) {
 	
 	//INSERT TEMPLATE ET START LOADER
 	//insert template in container
+	document.body.style.height = '100%';
+	document.body.style.overflowY = 'hidden';
 	c.innerHTML = bookReadTemplate({ book:bk });
 	//START LOADER
 	document.body.style.overflow = 'hidden';
