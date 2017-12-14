@@ -428,22 +428,12 @@ const book = function(container) {
 		let addBookmarks = bookContainer.querySelectorAll('.add-bookmark');
 		for(let i=0; i<addBookmarks.length; i++) {
 			addBookmarks[i].addEventListener('click', event => {
-				if(book.checkFirstPage()) { return; }
+				if(book.checkFirstPage()) { 
+					localStore.removeBkmrk(bk.id);
+					return;
+				}
 				let newBmrk = book.getBookmark();
 				let bookmark = document.querySelector('#bookmark');
-				let p = bookmark.querySelector('p');
-				let msg;
-				if(localStore.getBkmrk(bk.id)) {
-					let oldBkmrk = localStore.getBkmrk(bk.id);
-					if(oldBkmrk.sectionId===newBmrk.sectionId && oldBkmrk.el===newBmrk.el) {
-						msg='Votre signet a bien été inséré.';
-					} else {
-						msg = 'Votre signet a bien été déplacé.';
-					}
-				} else {
-					msg = 'Un signet a été ajouté.';
-				}
-				p.innerHTML = msg;
 				localStore.setBkmrk(bk.id, newBmrk);
 				bookmark.className = 'show';
 				setTimeout(function(){ bookmark.className = bookmark.className.replace("show", ""); }, 2500);

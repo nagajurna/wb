@@ -160,7 +160,7 @@ const authors = function(container) {
 		let el = document.getElementById(id);
 		el.scrollIntoView(true);
 		let html = document.getElementsByTagName("html")[0];
-		html.scrollTop = html.scrollTop-30;
+		html.scrollTop = html.scrollTop-40;
 	}
 	//get active letter link
 	let ls = root.querySelectorAll('#letters a');

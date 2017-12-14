@@ -131,7 +131,7 @@ const home = function(container) {
 		let el = document.getElementById(id);
 		el.scrollIntoView(true);
 		let html = document.getElementsByTagName("html")[0];
-		html.scrollTop = html.scrollTop-30;
+		html.scrollTop = html.scrollTop-40;
 	}
 	//go to book/read
 	let readBk = event => {
