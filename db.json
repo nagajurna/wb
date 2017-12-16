@@ -18,7 +18,7 @@
         "origin": ""
       },
       "styles": {
-        "color": "#231015",
+        "color": "rgba(52, 24, 30, 0.8)",
         "image": " /books/du_dandysme_et_de_g_brummell/du_dandysme_et_de_g_brummell_cover.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
@@ -44,7 +44,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 16:54:18",
-      "updated_at": "2017-12-07 08:27:52",
+      "updated_at": "2017-12-16 11:43:32",
       "id": "baf909f9-8f38-4d7f-b678-fb8ed46d41f0"
     },
     {
@@ -54,7 +54,7 @@
         "origin": ""
       },
       "styles": {
-        "color": "#e26850",
+        "color": "rgba(226, 104, 80, 0.8)",
         "image": "/books/un_roman_pour_les_cuisinieres/un_roman_pour_les_cuisinieres_cover.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
@@ -80,7 +80,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:00:53",
-      "updated_at": "2017-12-04 12:39:04",
+      "updated_at": "2017-12-16 11:43:47",
       "id": "b3e3c2e7-305f-4697-867f-3dd2417f71ed"
     },
     {
@@ -90,7 +90,7 @@
         "origin": ""
       },
       "styles": {
-        "color": "#7b3747",
+        "color": "rgba(123, 55, 71, 0.8)",
         "image": "/books/vies_imaginaires/vies_imaginaires_cover.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
@@ -116,7 +116,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:05:16",
-      "updated_at": "2017-12-04 12:39:21",
+      "updated_at": "2017-12-16 11:45:12",
       "id": "67f99f06-7af1-4dc4-9b8d-9d8f8afdc198"
     },
     {
@@ -126,7 +126,7 @@
         "origin": ""
       },
       "styles": {
-        "color": "#cfb095",
+        "color": "rgba(207, 176, 149, 0.8)",
         "image": "/books/la_croisade_des_enfants/la_croisade_des_enfants_cover.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
@@ -152,7 +152,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:08:48",
-      "updated_at": "2017-12-04 12:39:35",
+      "updated_at": "2017-12-16 11:46:14",
       "id": "e22c5a98-e5b8-4926-8cad-fd30131868c2"
     },
     {
@@ -162,7 +162,7 @@
         "origin": ""
       },
       "styles": {
-        "color": "#edcdc2",
+        "color": "rgba(237, 205, 194, 0.8)",
         "image": "/books/mimes/mimes_cover.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative; opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
@@ -188,7 +188,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:11:49",
-      "updated_at": "2017-12-04 12:39:51",
+      "updated_at": "2017-12-16 11:47:17",
       "id": "f379d066-0347-4fb1-998f-2e4c214c3960"
     },
     {
@@ -198,7 +198,7 @@
         "origin": ""
       },
       "styles": {
-        "color": "#BE132D",
+        "color": "rgba(190, 19, 45, 0.8)",
         "image": "/books/rene_leys/rene_leys_cover.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
@@ -224,7 +224,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-22 18:50:26",
-      "updated_at": "2017-12-08 21:12:46",
+      "updated_at": "2017-12-16 11:47:56",
       "id": "13dc7d86-f837-4657-a690-ee3a34b90962"
     },
     {
@@ -234,7 +234,7 @@
         "origin": ""
       },
       "styles": {
-        "color": "#955251",
+        "color": "rgba(149, 82, 81, 0.8)",
         "image": "/books/voyage_autour_de_ma_chambre/voyage_autour_de_ma_chambre_cover.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
@@ -260,7 +260,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-24 15:43:11",
-      "updated_at": "2017-12-08 21:11:30",
+      "updated_at": "2017-12-16 11:48:40",
       "id": "5261f2e5-16ef-4ccb-9ade-c3e737262428"
     },
     {
@@ -270,7 +270,7 @@
         "origin": ""
       },
       "styles": {
-        "color": "#633636",
+        "color": "rgba(115, 63, 63, 0.8)",
         "image": "/books/expedition_nocturne_autour_de_ma_chambre/expedition_nocturne_autour_de_ma_chambre_cover.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
@@ -290,14 +290,86 @@
       "collection": "",
       "description": "",
       "path": "/books/expedition_nocturne_autour_de_ma_chambre/expedition_nocturne_autour_de_ma_chambre",
-      "visible": false,
+      "visible": true,
       "authors": [
         "85d79127-6f8d-44e3-8685-58015df2fb61"
       ],
       "contribs": [],
       "created_at": "2017-11-24 16:05:11",
-      "updated_at": "2017-12-04 12:40:33",
+      "updated_at": "2017-12-16 15:54:11",
       "id": "99da47e0-1e93-409e-ba88-233ef3b5ee88"
+    },
+    {
+      "source": {
+        "publisher": "Michel Lévy fréres (Paris)",
+        "year": "1858",
+        "origin": ""
+      },
+      "styles": {
+        "color": "rgba(90, 114, 71, 0.8)",
+        "image": "/books/valperi_tome_un/valperi_tome_un_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "font-size: 1.4em;letter-spacing: 1.5px; padding-top: 8px; margin-bottom: 8px",
+        "subtitle1": "font-size: 0.9em;letter-spacing: 1px",
+        "subtitle2": "font-size: 1em;letter-spacing: 1.5px; font-variant: small-caps",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 1.5px;font-style: italic; font-size: 0.9em"
+      },
+      "title": "Valpéri",
+      "subtitle1": "Mémoires d'un&nbsp;gentilhomme du&nbsp;siècle dernier",
+      "subtitle2": "tome&nbsp;premier",
+      "authorDisplay": "Paul de Molènes",
+      "year": "1845",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "description": "",
+      "path": "/books/valperi_tome_un/valperi_tome_un",
+      "visible": false,
+      "authors": [
+        "17bb9413-eaee-4760-9d11-cdc96977efef"
+      ],
+      "contribs": [],
+      "created_at": "2017-12-16 12:11:26",
+      "updated_at": "2017-12-16 15:06:36",
+      "id": "b5bba6b3-930b-458c-853a-24c49dc2856c"
+    },
+    {
+      "source": {
+        "publisher": "Michel Lévy Fréres (Paris)",
+        "year": "1858",
+        "origin": ""
+      },
+      "styles": {
+        "color": "rgba(90, 114, 71, 0.8)",
+        "image": "/books/valperi_tome_second/valperi_tome_second_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "font-size: 1.4em;letter-spacing: 1.5px; padding-top: 8px; margin-bottom: 8px",
+        "subtitle1": "font-size: 0.9em;letter-spacing: 1px",
+        "subtitle2": "font-size: 1em;letter-spacing: 1.5px; font-variant: small-caps",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 1.5px;font-style: italic; font-size: 0.9em"
+      },
+      "title": "Valpéri",
+      "subtitle1": "Mémoires d'un&nbsp;gentilhomme du&nbsp;siècle dernier",
+      "subtitle2": "tome&nbsp;second",
+      "authorDisplay": "Paul de Molènes",
+      "year": "1845",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "description": "",
+      "path": " /books/valperi_tome_second/valperi_tome_second",
+      "visible": false,
+      "authors": [
+        "17bb9413-eaee-4760-9d11-cdc96977efef"
+      ],
+      "contribs": [],
+      "created_at": "2017-12-16 12:26:44",
+      "updated_at": "2017-12-16 15:07:15",
+      "id": "debf7127-e92e-4349-9c8d-0eee1f6daaed"
     }
   ],
   "authors": [
@@ -355,6 +427,17 @@
       "created_at": "2017-11-24 15:33:40",
       "updated_at": "2017-11-27 18:26:36",
       "id": "85d79127-6f8d-44e3-8685-58015df2fb61"
+    },
+    {
+      "name": "Paul de Molènes",
+      "nameAlpha": "molenes",
+      "birth": "1821",
+      "death": "1862",
+      "description": "",
+      "visible": true,
+      "created_at": "2017-12-16 11:58:59",
+      "updated_at": "2017-12-16 11:58:59",
+      "id": "17bb9413-eaee-4760-9d11-cdc96977efef"
     }
   ]
 }

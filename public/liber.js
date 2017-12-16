@@ -2595,53 +2595,53 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                 for (var i = 0; i < books.length; i++) {
                     buf.push("\n				\n				<!-- MODAL (INFOS) -->\n				" + function() {
                         var buf = [];
-                        buf.push('<div id="infos-', escape((__stack.lineno = 1, books[i].id)), '" class="modal">\n	<div class="modal-content w3-card animate-top">\n		<div id="infos-header">\n			<button id="close-infos-', escape((__stack.lineno = 4, books[i].id)), '" type="button" class="btn close-infos-btn">&times;</button>\n			<p>', (__stack.lineno = 5, books[i].authorDisplay), '</p>\n			<p class="text-uppercase">', (__stack.lineno = 6, books[i].title), "</p>\n		</div>\n		<div>\n			  <p><b>Titre : </b>", (__stack.lineno = 9, books[i].title), "</p>\n			  ");
+                        buf.push('<div id="infos-', escape((__stack.lineno = 1, books[i].id)), '" class="modal">\n	<div class="modal-content w3-card animate-top">\n		<div id="infos-header">\n			<button id="close-infos-', escape((__stack.lineno = 4, books[i].id)), '" type="button" class="btn close-infos-btn">&times;</button>\n			<p>', (__stack.lineno = 5, books[i].authorDisplay), '</p>\n			<p class="text-uppercase">', (__stack.lineno = 6, books[i].title), "</p>\n		</div>\n		<div>\n			  <p><b>Titre : </b>", (__stack.lineno = 9, books[i].title), "\n				  ");
                         __stack.lineno = 10;
                         if (books[i].subtitle1) {
-                            buf.push("\n				<p><b>Sous-titre : </b>", (__stack.lineno = 11, books[i].subtitle1), "</p>\n			  ");
+                            buf.push("\n					<span> &mdash;&nbsp;", (__stack.lineno = 11, books[i].subtitle1), "</span>\n				  ");
                             __stack.lineno = 12;
                         }
-                        buf.push("\n			  ");
+                        buf.push("\n				  ");
                         __stack.lineno = 13;
                         if (books[i].subtitle2) {
-                            buf.push("\n				<p><b>Sous-sous-titre : </b>", (__stack.lineno = 14, books[i].subtitle2), "</p>\n			  ");
+                            buf.push("\n					<span> &mdash;&nbsp;", (__stack.lineno = 14, books[i].subtitle2), "</span>\n				  ");
                             __stack.lineno = 15;
                         }
-                        buf.push("\n			  <p><b>Année de parution : </b>", (__stack.lineno = 16, books[i].year), "</p>\n			  ");
-                        __stack.lineno = 17;
+                        buf.push("\n			  </p>\n			  <p><b>Année de parution : </b>", (__stack.lineno = 17, books[i].year), "</p>\n			  ");
+                        __stack.lineno = 18;
                         if (books[i].authors.length > 1) {
                             buf.push("\n					<p>\n						<span><b>Auteurs :</b></span>\n						<br>\n						<ul>\n						");
-                            __stack.lineno = 22;
+                            __stack.lineno = 23;
                             for (var j = 0; j < books[i].authors.length; j++) {
-                                buf.push("\n							<li>\n								", (__stack.lineno = 24, books[i].authors[j].name), " (", (__stack.lineno = 24, books[i].authors[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 24, books[i].authors[j].death), ")\n							</li>\n						");
-                                __stack.lineno = 26;
+                                buf.push("\n							<li>\n								", (__stack.lineno = 25, books[i].authors[j].name), " (", (__stack.lineno = 25, books[i].authors[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 25, books[i].authors[j].death), ")\n							</li>\n						");
+                                __stack.lineno = 27;
                             }
                             buf.push("\n						</ul>\n					</p>\n			  ");
-                            __stack.lineno = 29;
+                            __stack.lineno = 30;
                         } else if (books[i].authors.length === 1) {
-                            buf.push("\n					<p><b>Auteur : </b>", (__stack.lineno = 30, books[i].authors[0].name), " (", (__stack.lineno = 30, books[i].authors[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 30, books[i].authors[0].death), ")</p>\n			  ");
-                            __stack.lineno = 31;
+                            buf.push("\n					<p><b>Auteur : </b>", (__stack.lineno = 31, books[i].authors[0].name), " (", (__stack.lineno = 31, books[i].authors[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 31, books[i].authors[0].death), ")</p>\n			  ");
+                            __stack.lineno = 32;
                         }
                         buf.push("\n			  ");
-                        __stack.lineno = 32;
+                        __stack.lineno = 33;
                         if (books[i].contribs.length > 1) {
                             buf.push("\n					<p>\n						<span><b>Contributions :</b></span>\n						<br>\n						<ul>\n						");
-                            __stack.lineno = 37;
+                            __stack.lineno = 38;
                             for (var j = 0; j < books[i].contribs.length; j++) {
-                                buf.push('\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 39, books[i].contribs[j].role), " : </span>\n								", (__stack.lineno = 40, books[i].contribs[j].name), " (", (__stack.lineno = 40, books[i].contribs[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 40, books[i].contribs[j].death), ")\n							</li>\n						");
-                                __stack.lineno = 42;
+                                buf.push('\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 40, books[i].contribs[j].role), " : </span>\n								", (__stack.lineno = 41, books[i].contribs[j].name), " (", (__stack.lineno = 41, books[i].contribs[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 41, books[i].contribs[j].death), ")\n							</li>\n						");
+                                __stack.lineno = 43;
                             }
                             buf.push("\n						</ul>\n					</p>\n			  ");
-                            __stack.lineno = 45;
+                            __stack.lineno = 46;
                         } else if (books[i].contribs.length === 1) {
-                            buf.push('\n					<p>\n						<span><b>Contribution : </b></span>\n						<br>\n						<ul>\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 51, books[i].contribs[0].role), " : </span>\n								", (__stack.lineno = 52, books[i].contribs[0].name), " (", (__stack.lineno = 52, books[i].contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 52, books[i].contribs[0].death), ")\n							</li>\n						</ul>\n					</p>\n			  ");
-                            __stack.lineno = 56;
+                            buf.push('\n					<p>\n						<span><b>Contribution : </b></span>\n						<br>\n						<ul>\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 52, books[i].contribs[0].role), " : </span>\n								", (__stack.lineno = 53, books[i].contribs[0].name), " (", (__stack.lineno = 53, books[i].contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 53, books[i].contribs[0].death), ")\n							</li>\n						</ul>\n					</p>\n			  ");
+                            __stack.lineno = 57;
                         }
-                        buf.push('\n			  <p class="book-source"><b>Source : </b>\n				  <ul>\n					  <li>&Eacute;diteur : ', (__stack.lineno = 59, books[i].source.publisher), "</li>\n					  <li>Année de parution : ", (__stack.lineno = 60, books[i].source.year), "</li>\n				  </ul>\n			  </p>\n			  ");
-                        __stack.lineno = 63;
+                        buf.push('\n			  <p class="book-source"><b>Source : </b>\n				  <ul>\n					  <li>&Eacute;diteur : ', (__stack.lineno = 60, books[i].source.publisher), "</li>\n					  <li>Année de parution : ", (__stack.lineno = 61, books[i].source.year), "</li>\n				  </ul>\n			  </p>\n			  ");
+                        __stack.lineno = 64;
                         if (books[i].description) {
-                            buf.push("\n			  <div>", (__stack.lineno = 64, books[i].description), "</div>\n			  ");
-                            __stack.lineno = 65;
+                            buf.push("\n			  <div>", (__stack.lineno = 65, books[i].description), "</div>\n			  ");
+                            __stack.lineno = 66;
                         }
                         buf.push("\n		</div>\n	</div>\n</div>\n");
                         return buf.join("");
@@ -3251,53 +3251,53 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                 for (var i = 0; i < books.length; i++) {
                     buf.push("\n				\n				<!-- MODAL (INFOS) -->\n				" + function() {
                         var buf = [];
-                        buf.push('<div id="infos-', escape((__stack.lineno = 1, books[i].id)), '" class="modal">\n	<div class="modal-content w3-card animate-top">\n		<div id="infos-header">\n			<button id="close-infos-', escape((__stack.lineno = 4, books[i].id)), '" type="button" class="btn close-infos-btn">&times;</button>\n			<p>', (__stack.lineno = 5, books[i].authorDisplay), '</p>\n			<p class="text-uppercase">', (__stack.lineno = 6, books[i].title), "</p>\n		</div>\n		<div>\n			  <p><b>Titre : </b>", (__stack.lineno = 9, books[i].title), "</p>\n			  ");
+                        buf.push('<div id="infos-', escape((__stack.lineno = 1, books[i].id)), '" class="modal">\n	<div class="modal-content w3-card animate-top">\n		<div id="infos-header">\n			<button id="close-infos-', escape((__stack.lineno = 4, books[i].id)), '" type="button" class="btn close-infos-btn">&times;</button>\n			<p>', (__stack.lineno = 5, books[i].authorDisplay), '</p>\n			<p class="text-uppercase">', (__stack.lineno = 6, books[i].title), "</p>\n		</div>\n		<div>\n			  <p><b>Titre : </b>", (__stack.lineno = 9, books[i].title), "\n				  ");
                         __stack.lineno = 10;
                         if (books[i].subtitle1) {
-                            buf.push("\n				<p><b>Sous-titre : </b>", (__stack.lineno = 11, books[i].subtitle1), "</p>\n			  ");
+                            buf.push("\n					<span> &mdash;&nbsp;", (__stack.lineno = 11, books[i].subtitle1), "</span>\n				  ");
                             __stack.lineno = 12;
                         }
-                        buf.push("\n			  ");
+                        buf.push("\n				  ");
                         __stack.lineno = 13;
                         if (books[i].subtitle2) {
-                            buf.push("\n				<p><b>Sous-sous-titre : </b>", (__stack.lineno = 14, books[i].subtitle2), "</p>\n			  ");
+                            buf.push("\n					<span> &mdash;&nbsp;", (__stack.lineno = 14, books[i].subtitle2), "</span>\n				  ");
                             __stack.lineno = 15;
                         }
-                        buf.push("\n			  <p><b>Année de parution : </b>", (__stack.lineno = 16, books[i].year), "</p>\n			  ");
-                        __stack.lineno = 17;
+                        buf.push("\n			  </p>\n			  <p><b>Année de parution : </b>", (__stack.lineno = 17, books[i].year), "</p>\n			  ");
+                        __stack.lineno = 18;
                         if (books[i].authors.length > 1) {
                             buf.push("\n					<p>\n						<span><b>Auteurs :</b></span>\n						<br>\n						<ul>\n						");
-                            __stack.lineno = 22;
+                            __stack.lineno = 23;
                             for (var j = 0; j < books[i].authors.length; j++) {
-                                buf.push("\n							<li>\n								", (__stack.lineno = 24, books[i].authors[j].name), " (", (__stack.lineno = 24, books[i].authors[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 24, books[i].authors[j].death), ")\n							</li>\n						");
-                                __stack.lineno = 26;
+                                buf.push("\n							<li>\n								", (__stack.lineno = 25, books[i].authors[j].name), " (", (__stack.lineno = 25, books[i].authors[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 25, books[i].authors[j].death), ")\n							</li>\n						");
+                                __stack.lineno = 27;
                             }
                             buf.push("\n						</ul>\n					</p>\n			  ");
-                            __stack.lineno = 29;
+                            __stack.lineno = 30;
                         } else if (books[i].authors.length === 1) {
-                            buf.push("\n					<p><b>Auteur : </b>", (__stack.lineno = 30, books[i].authors[0].name), " (", (__stack.lineno = 30, books[i].authors[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 30, books[i].authors[0].death), ")</p>\n			  ");
-                            __stack.lineno = 31;
+                            buf.push("\n					<p><b>Auteur : </b>", (__stack.lineno = 31, books[i].authors[0].name), " (", (__stack.lineno = 31, books[i].authors[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 31, books[i].authors[0].death), ")</p>\n			  ");
+                            __stack.lineno = 32;
                         }
                         buf.push("\n			  ");
-                        __stack.lineno = 32;
+                        __stack.lineno = 33;
                         if (books[i].contribs.length > 1) {
                             buf.push("\n					<p>\n						<span><b>Contributions :</b></span>\n						<br>\n						<ul>\n						");
-                            __stack.lineno = 37;
+                            __stack.lineno = 38;
                             for (var j = 0; j < books[i].contribs.length; j++) {
-                                buf.push('\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 39, books[i].contribs[j].role), " : </span>\n								", (__stack.lineno = 40, books[i].contribs[j].name), " (", (__stack.lineno = 40, books[i].contribs[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 40, books[i].contribs[j].death), ")\n							</li>\n						");
-                                __stack.lineno = 42;
+                                buf.push('\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 40, books[i].contribs[j].role), " : </span>\n								", (__stack.lineno = 41, books[i].contribs[j].name), " (", (__stack.lineno = 41, books[i].contribs[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 41, books[i].contribs[j].death), ")\n							</li>\n						");
+                                __stack.lineno = 43;
                             }
                             buf.push("\n						</ul>\n					</p>\n			  ");
-                            __stack.lineno = 45;
+                            __stack.lineno = 46;
                         } else if (books[i].contribs.length === 1) {
-                            buf.push('\n					<p>\n						<span><b>Contribution : </b></span>\n						<br>\n						<ul>\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 51, books[i].contribs[0].role), " : </span>\n								", (__stack.lineno = 52, books[i].contribs[0].name), " (", (__stack.lineno = 52, books[i].contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 52, books[i].contribs[0].death), ")\n							</li>\n						</ul>\n					</p>\n			  ");
-                            __stack.lineno = 56;
+                            buf.push('\n					<p>\n						<span><b>Contribution : </b></span>\n						<br>\n						<ul>\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 52, books[i].contribs[0].role), " : </span>\n								", (__stack.lineno = 53, books[i].contribs[0].name), " (", (__stack.lineno = 53, books[i].contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 53, books[i].contribs[0].death), ")\n							</li>\n						</ul>\n					</p>\n			  ");
+                            __stack.lineno = 57;
                         }
-                        buf.push('\n			  <p class="book-source"><b>Source : </b>\n				  <ul>\n					  <li>&Eacute;diteur : ', (__stack.lineno = 59, books[i].source.publisher), "</li>\n					  <li>Année de parution : ", (__stack.lineno = 60, books[i].source.year), "</li>\n				  </ul>\n			  </p>\n			  ");
-                        __stack.lineno = 63;
+                        buf.push('\n			  <p class="book-source"><b>Source : </b>\n				  <ul>\n					  <li>&Eacute;diteur : ', (__stack.lineno = 60, books[i].source.publisher), "</li>\n					  <li>Année de parution : ", (__stack.lineno = 61, books[i].source.year), "</li>\n				  </ul>\n			  </p>\n			  ");
+                        __stack.lineno = 64;
                         if (books[i].description) {
-                            buf.push("\n			  <div>", (__stack.lineno = 64, books[i].description), "</div>\n			  ");
-                            __stack.lineno = 65;
+                            buf.push("\n			  <div>", (__stack.lineno = 65, books[i].description), "</div>\n			  ");
+                            __stack.lineno = 66;
                         }
                         buf.push("\n		</div>\n	</div>\n</div>\n");
                         return buf.join("");
@@ -11491,53 +11491,53 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                         buf.push('\n						<p><label><input type="radio" name="fontFamily" value="VollKorn">&ensp;Vollkorn</label></p>\n					');
                         __stack.lineno = 31;
                     }
-                    buf.push('\n				</div>\n			</div>\n		</div>\n		<div id="font-size-container-large">\n			<p><b>Taille de la police</b></p>\n			<div>\n				<div class="col-left">\n					<p><label><input type="radio" name="fontSize" value="14">&ensp;14 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="16">&ensp;16 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="18">&ensp;18 px</label></p>\n				</div>\n				<div class="col-right">\n					<p><label><input type="radio" name="fontSize" value="15">&ensp;15 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="17">&ensp;17 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="19">&ensp;19 px</label></p>\n				</div>\n			</div>\n		</div>\n	</div>\n</div>\n	\n\n<div id="tab-infos" class="card-4">\n	<button id="close-tab-infos" type="button" class="btn card-4" >&times;</button>\n	<div id="tab-infos-container">\n		<div class="header">\n			<p>', (__stack.lineno = 58, book.authorDisplay), '</p>\n			<p class="text-uppercase">', (__stack.lineno = 59, book.title), '</p>\n		</div>\n		<div class="content">\n		  <p><b>Titre : </b>', (__stack.lineno = 62, book.title), "</p>\n		  ");
+                    buf.push('\n				</div>\n			</div>\n		</div>\n		<div id="font-size-container-large">\n			<p><b>Taille de la police</b></p>\n			<div>\n				<div class="col-left">\n					<p><label><input type="radio" name="fontSize" value="14">&ensp;14 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="16">&ensp;16 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="18">&ensp;18 px</label></p>\n				</div>\n				<div class="col-right">\n					<p><label><input type="radio" name="fontSize" value="15">&ensp;15 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="17">&ensp;17 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="19">&ensp;19 px</label></p>\n				</div>\n			</div>\n		</div>\n	</div>\n</div>\n	\n\n<div id="tab-infos" class="card-4">\n	<button id="close-tab-infos" type="button" class="btn card-4" >&times;</button>\n	<div id="tab-infos-container">\n		<div class="header">\n			<p>', (__stack.lineno = 58, book.authorDisplay), '</p>\n			<p class="text-uppercase">', (__stack.lineno = 59, book.title), '</p>\n		</div>\n		<div class="content">\n		  <p><b>Titre : </b>', (__stack.lineno = 62, book.title), "\n			  ");
                     __stack.lineno = 63;
                     if (book.subtitle1) {
-                        buf.push("\n			<p><b>Sous-titre : </b>", (__stack.lineno = 64, book.subtitle1), "</p>\n		  ");
+                        buf.push("\n				<span> &mdash;&nbsp;", (__stack.lineno = 64, book.subtitle1), "</span>\n			  ");
                         __stack.lineno = 65;
                     }
-                    buf.push("\n		  ");
+                    buf.push("\n			  ");
                     __stack.lineno = 66;
                     if (book.subtitle2) {
-                        buf.push("\n			<p><b>Sous-sous-titre : </b>", (__stack.lineno = 67, book.subtitle2), "</p>\n		  ");
+                        buf.push("\n				<span> &mdash;&nbsp;", (__stack.lineno = 67, book.subtitle2), "</span>\n			  ");
                         __stack.lineno = 68;
                     }
-                    buf.push("\n		  <p><b>Année de parution : </b>", (__stack.lineno = 69, book.year), "</p>\n		  ");
-                    __stack.lineno = 70;
+                    buf.push("\n		  </p>\n		  <p><b>Année de parution : </b>", (__stack.lineno = 70, book.year), "</p>\n		  ");
+                    __stack.lineno = 71;
                     if (book.authors.length > 1) {
                         buf.push("\n				<p>\n					<span><b>Auteurs :</b></span>\n					<br>\n					<ul>\n					");
-                        __stack.lineno = 75;
+                        __stack.lineno = 76;
                         for (var j = 0; j < book.authors.length; j++) {
-                            buf.push("\n						<li>\n							", (__stack.lineno = 77, book.authors[j].name), " (", (__stack.lineno = 77, book.authors[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 77, book.authors[j].death), ")\n						</li>\n					");
-                            __stack.lineno = 79;
+                            buf.push("\n						<li>\n							", (__stack.lineno = 78, book.authors[j].name), " (", (__stack.lineno = 78, book.authors[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 78, book.authors[j].death), ")\n						</li>\n					");
+                            __stack.lineno = 80;
                         }
                         buf.push("\n					</ul>\n				</p>\n		  ");
-                        __stack.lineno = 82;
+                        __stack.lineno = 83;
                     } else if (book.authors.length === 1) {
-                        buf.push("\n				<p><b>Auteur : </b>", (__stack.lineno = 83, book.authors[0].name), " (", (__stack.lineno = 83, book.authors[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 83, book.authors[0].death), ")</p>\n		  ");
-                        __stack.lineno = 84;
+                        buf.push("\n				<p><b>Auteur : </b>", (__stack.lineno = 84, book.authors[0].name), " (", (__stack.lineno = 84, book.authors[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 84, book.authors[0].death), ")</p>\n		  ");
+                        __stack.lineno = 85;
                     }
                     buf.push("\n		  ");
-                    __stack.lineno = 85;
+                    __stack.lineno = 86;
                     if (book.contribs.length > 1) {
                         buf.push("\n				<p>\n					<span><b>Contributions :</b></span>\n					<br>\n					<ul>\n					");
-                        __stack.lineno = 90;
+                        __stack.lineno = 91;
                         for (var j = 0; j < book.contribs.length; j++) {
-                            buf.push('\n						<li>\n							<span class="contrib-role">', (__stack.lineno = 92, book.contribs[j].role), " : </span>\n							", (__stack.lineno = 93, book.contribs[j].name), " (", (__stack.lineno = 93, book.contribs[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 93, book.contribs[j].death), ")\n						</li>\n					");
-                            __stack.lineno = 95;
+                            buf.push('\n						<li>\n							<span class="contrib-role">', (__stack.lineno = 93, book.contribs[j].role), " : </span>\n							", (__stack.lineno = 94, book.contribs[j].name), " (", (__stack.lineno = 94, book.contribs[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 94, book.contribs[j].death), ")\n						</li>\n					");
+                            __stack.lineno = 96;
                         }
                         buf.push("\n					</ul>\n				</p>\n		  ");
-                        __stack.lineno = 98;
+                        __stack.lineno = 99;
                     } else if (book.contribs.length === 1) {
-                        buf.push('\n				<p>\n					<span><b>Contribution : </b></span>\n					<br>\n					<ul>\n						<li>\n							<span class="contrib-role">', (__stack.lineno = 104, book.contribs[0].role), " : </span>\n							", (__stack.lineno = 105, book.contribs[0].name), " (", (__stack.lineno = 105, book.contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 105, book.contribs[0].death), ")\n						</li>\n					</ul>\n				</p>\n		  ");
-                        __stack.lineno = 109;
+                        buf.push('\n				<p>\n					<span><b>Contribution : </b></span>\n					<br>\n					<ul>\n						<li>\n							<span class="contrib-role">', (__stack.lineno = 105, book.contribs[0].role), " : </span>\n							", (__stack.lineno = 106, book.contribs[0].name), " (", (__stack.lineno = 106, book.contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 106, book.contribs[0].death), ")\n						</li>\n					</ul>\n				</p>\n		  ");
+                        __stack.lineno = 110;
                     }
-                    buf.push('\n		  <p class="book-source"><b>Source : </b>\n			  <ul>\n				  <li>&Eacute;diteur : ', (__stack.lineno = 112, book.source.publisher), "</li>\n				  <li>Année de publication : ", (__stack.lineno = 113, book.source.year), "</li>\n			  </ul>\n		  </p>\n		  ");
-                    __stack.lineno = 116;
+                    buf.push('\n		  <p class="book-source"><b>Source : </b>\n			  <ul>\n				  <li>&Eacute;diteur : ', (__stack.lineno = 113, book.source.publisher), "</li>\n				  <li>Année de publication : ", (__stack.lineno = 114, book.source.year), "</li>\n			  </ul>\n		  </p>\n		  ");
+                    __stack.lineno = 117;
                     if (book.description) {
-                        buf.push("\n		  <div>", (__stack.lineno = 117, book.description), "</div>\n		  ");
-                        __stack.lineno = 118;
+                        buf.push("\n		  <div>", (__stack.lineno = 118, book.description), "</div>\n		  ");
+                        __stack.lineno = 119;
                     }
                     buf.push('\n		</div>\n	</div>\n</div>\n\n<div id="book-commands">\n	<button id="toggle-toc-large-device" type="button" class="btn card-2" >Table</button>\n	<button id="toggle-tab-options" type="button" class="btn card-2" >Options</button>\n	<button id="toggle-tab-infos" type="button" class="btn card-2" >Fiche</button>\n	<button id="tab-add-bookmark" type="button" class="add-bookmark btn card-2" >Signet</button>\n	<button id="tab-home-link" type="button" class="home btn card-2" >Retour</button>\n</div>\n	\n\n');
                     return buf.join("");
@@ -11909,53 +11909,53 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                             var work = authors[i].works[j];
                             buf.push("\n						\n						<!-- MODAL (INFOS) -->\n						" + function() {
                                 var buf = [];
-                                buf.push('<div id="infos-', escape((__stack.lineno = 1, work.id)), '" class="modal">\n	<div class="modal-content w3-card animate-top">\n		<div id="infos-header">\n			<button id="close-infos-', escape((__stack.lineno = 4, work.id)), '" type="button" class="btn close-infos-btn">&times;</button>\n			<p>', (__stack.lineno = 5, work.authorDisplay), '</p>\n			<p class="text-uppercase">', (__stack.lineno = 6, work.title), "</p>\n		</div>\n		<div>\n			  <p><b>Titre : </b>", (__stack.lineno = 9, work.title), "</p>\n			  ");
+                                buf.push('<div id="infos-', escape((__stack.lineno = 1, work.id)), '" class="modal">\n	<div class="modal-content w3-card animate-top">\n		<div id="infos-header">\n			<button id="close-infos-', escape((__stack.lineno = 4, work.id)), '" type="button" class="btn close-infos-btn">&times;</button>\n			<p>', (__stack.lineno = 5, work.authorDisplay), '</p>\n			<p class="text-uppercase">', (__stack.lineno = 6, work.title), "</p>\n		</div>\n		<div>\n			  <p><b>Titre : </b>", (__stack.lineno = 9, work.title), "\n				  ");
                                 __stack.lineno = 10;
                                 if (work.subtitle1) {
-                                    buf.push("\n				<p><b>Sous-titre : </b>", (__stack.lineno = 11, work.subtitle1), "</p>\n			  ");
+                                    buf.push("\n					<span> &mdash;&nbsp;", (__stack.lineno = 11, work.subtitle1), "</span>\n				  ");
                                     __stack.lineno = 12;
                                 }
-                                buf.push("\n			  ");
+                                buf.push("\n				  ");
                                 __stack.lineno = 13;
                                 if (work.subtitle2) {
-                                    buf.push("\n				<p><b>Sous-sous-titre : </b>", (__stack.lineno = 14, work.subtitle2), "</p>\n			  ");
+                                    buf.push("\n					<span> &mdash;&nbsp;", (__stack.lineno = 14, work.subtitle2), "</span>\n				  ");
                                     __stack.lineno = 15;
                                 }
-                                buf.push("\n			  <p><b>Année de parution : </b>", (__stack.lineno = 16, work.year), "</p>\n			  ");
-                                __stack.lineno = 17;
+                                buf.push("\n			  </p>\n			  <p><b>Année de parution : </b>", (__stack.lineno = 17, work.year), "</p>\n			  ");
+                                __stack.lineno = 18;
                                 if (work.authors.length > 1) {
                                     buf.push("\n					<p>\n						<span><b>Auteurs :</b></span>\n						<br>\n						<ul>\n						");
-                                    __stack.lineno = 22;
+                                    __stack.lineno = 23;
                                     for (var j = 0; j < work.authors.length; j++) {
-                                        buf.push("\n							<li>\n								", (__stack.lineno = 24, work.authors[j].name), " (", (__stack.lineno = 24, work.authors[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 24, work.authors[j].death), ")\n							</li>\n						");
-                                        __stack.lineno = 26;
+                                        buf.push("\n							<li>\n								", (__stack.lineno = 25, work.authors[j].name), " (", (__stack.lineno = 25, work.authors[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 25, work.authors[j].death), ")\n							</li>\n						");
+                                        __stack.lineno = 27;
                                     }
                                     buf.push("\n						</ul>\n					</p>\n			  ");
-                                    __stack.lineno = 29;
+                                    __stack.lineno = 30;
                                 } else if (work.authors.length === 1) {
-                                    buf.push("\n					<p><b>Auteur : </b>", (__stack.lineno = 30, work.authors[0].name), " (", (__stack.lineno = 30, work.authors[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 30, work.authors[0].death), ")</p>\n			  ");
-                                    __stack.lineno = 31;
+                                    buf.push("\n					<p><b>Auteur : </b>", (__stack.lineno = 31, work.authors[0].name), " (", (__stack.lineno = 31, work.authors[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 31, work.authors[0].death), ")</p>\n			  ");
+                                    __stack.lineno = 32;
                                 }
                                 buf.push("\n			  ");
-                                __stack.lineno = 32;
+                                __stack.lineno = 33;
                                 if (work.contribs.length > 1) {
                                     buf.push("\n					<p>\n						<span><b>Contributions :</b></span>\n						<br>\n						<ul>\n						");
-                                    __stack.lineno = 37;
+                                    __stack.lineno = 38;
                                     for (var j = 0; j < work.contribs.length; j++) {
-                                        buf.push('\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 39, work.contribs[j].role), " : </span>\n								", (__stack.lineno = 40, work.contribs[j].name), " (", (__stack.lineno = 40, work.contribs[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 40, work.contribs[j].death), ")\n							</li>\n						");
-                                        __stack.lineno = 42;
+                                        buf.push('\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 40, work.contribs[j].role), " : </span>\n								", (__stack.lineno = 41, work.contribs[j].name), " (", (__stack.lineno = 41, work.contribs[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 41, work.contribs[j].death), ")\n							</li>\n						");
+                                        __stack.lineno = 43;
                                     }
                                     buf.push("\n						</ul>\n					</p>\n			  ");
-                                    __stack.lineno = 45;
+                                    __stack.lineno = 46;
                                 } else if (work.contribs.length === 1) {
-                                    buf.push('\n					<p>\n						<span><b>Contribution : </b></span>\n						<br>\n						<ul>\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 51, work.contribs[0].role), " : </span>\n								", (__stack.lineno = 52, work.contribs[0].name), " (", (__stack.lineno = 52, work.contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 52, work.contribs[0].death), ")\n							</li>\n						</ul>\n					</p>\n			  ");
-                                    __stack.lineno = 56;
+                                    buf.push('\n					<p>\n						<span><b>Contribution : </b></span>\n						<br>\n						<ul>\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 52, work.contribs[0].role), " : </span>\n								", (__stack.lineno = 53, work.contribs[0].name), " (", (__stack.lineno = 53, work.contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 53, work.contribs[0].death), ")\n							</li>\n						</ul>\n					</p>\n			  ");
+                                    __stack.lineno = 57;
                                 }
-                                buf.push('\n			  <p class="book-source"><b>Source : </b>\n				  <ul>\n					  <li>&Eacute;diteur : ', (__stack.lineno = 59, work.source.publisher), "</li>\n					  <li>Année de parution : ", (__stack.lineno = 60, work.source.year), "</li>\n				  </ul>\n			  </p>\n			  ");
-                                __stack.lineno = 63;
+                                buf.push('\n			  <p class="book-source"><b>Source : </b>\n				  <ul>\n					  <li>&Eacute;diteur : ', (__stack.lineno = 60, work.source.publisher), "</li>\n					  <li>Année de parution : ", (__stack.lineno = 61, work.source.year), "</li>\n				  </ul>\n			  </p>\n			  ");
+                                __stack.lineno = 64;
                                 if (work.description) {
-                                    buf.push("\n			  <div>", (__stack.lineno = 64, work.description), "</div>\n			  ");
-                                    __stack.lineno = 65;
+                                    buf.push("\n			  <div>", (__stack.lineno = 65, work.description), "</div>\n			  ");
+                                    __stack.lineno = 66;
                                 }
                                 buf.push("\n		</div>\n	</div>\n</div>\n");
                                 return buf.join("");
