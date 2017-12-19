@@ -26,7 +26,7 @@
     "morgan": "1.9.0",
     "q": "1.5.1",
     "serve-favicon": "2.4.5",
-    "session-file-store": "1.1.2"
+    "session-file-store": "1.2.0"
   },
   "devDependencies": {
     "babel-core": "6.26.0",
@@ -34,13 +34,13 @@
     "babel-preset-env": "1.6.1",
     "css-loader": "0.28.7",
     "ejs-compiled-loader": "1.1.0",
-    "file-loader": "1.1.5",
+    "file-loader": "1.1.6",
     "html-loader": "0.5.1",
     "jquery": "3.2.1",
-    "style-loader": "0.19.0",
-    "uglify-js": "3.1.9",
-    "uglifyjs-webpack-plugin": "1.0.1",
-    "webpack": "3.8.1"
+    "style-loader": "0.19.1",
+    "uglify-js": "3.2.2",
+    "uglifyjs-webpack-plugin": "1.1.4",
+    "webpack": "3.10.0"
   },
   "engines": {
     "node": "6.4.0"

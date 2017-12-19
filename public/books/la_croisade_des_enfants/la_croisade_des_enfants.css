@@ -2,6 +2,11 @@
 	font-family: 'Noto Serif', 'Georgia', serif;
 }
 
+[data-wb-text].cover {
+	background-color: rgba(207, 176, 149, 0.8);
+	background-image: url("/books/la_croisade_des_enfants/la_croisade_des_enfants_cover.jpg");
+}
+
 [data-wb-text] #cover {
 	position: static;
 }

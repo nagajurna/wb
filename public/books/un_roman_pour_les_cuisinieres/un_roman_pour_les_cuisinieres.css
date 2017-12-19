@@ -2,6 +2,11 @@
 	font-family: 'Noto Serif', 'Georgia', serif;
 }
 
+[data-wb-text].cover {
+	background-color: rgba(226, 104, 80, 0.8);
+	background-image: url("/books/un_roman_pour_les_cuisinieres/un_roman_pour_les_cuisinieres_cover.jpg");
+}
+
 [data-wb-text] #cover {
 	position: static;
 }

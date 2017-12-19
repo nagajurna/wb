@@ -318,7 +318,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 // Defining this global in .eslintrc.json would create a danger of using the global
 // unguarded in another place, it seems safer to define global only for this module
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(6), __webpack_require__(3), __webpack_require__(43), __webpack_require__(12), __webpack_require__(44), __webpack_require__(45), __webpack_require__(13), __webpack_require__(8), __webpack_require__(46), __webpack_require__(14), __webpack_require__(15), __webpack_require__(47), __webpack_require__(16), __webpack_require__(48)], __WEBPACK_AMD_DEFINE_RESULT__ = function (arr, document, getProto, _slice, concat, push, indexOf, class2type, toString, hasOwn, fnToString, ObjectFunctionString, support, DOMEval) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(6), __webpack_require__(3), __webpack_require__(43), __webpack_require__(12), __webpack_require__(44), __webpack_require__(45), __webpack_require__(13), __webpack_require__(8), __webpack_require__(46), __webpack_require__(14), __webpack_require__(15), __webpack_require__(47), __webpack_require__(16), __webpack_require__(48)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (arr, document, getProto, _slice, concat, push, indexOf, class2type, toString, hasOwn, fnToString, ObjectFunctionString, support, DOMEval) {
 
 	"use strict";
 
@@ -771,7 +771,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 	}
 
 	return jQuery;
-}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -830,11 +830,11 @@ exports.default = dataStore;
 "use strict";
 var __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+!(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
 	"use strict";
 
 	return window.document;
-}.call(exports, __webpack_require__, exports, module),
+}).call(exports, __webpack_require__, exports, module),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -989,7 +989,7 @@ module.exports = function(list, options) {
 
 	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
 	// tags it will allow on a page
-	if (!options.singleton) options.singleton = isOldIE();
+	if (!options.singleton && typeof options.singleton !== "boolean") options.singleton = isOldIE();
 
 	// By default, add <style> tags to the <head> element
 	if (!options.insertInto) options.insertInto = "head";
@@ -1298,11 +1298,11 @@ function updateLink (link, options, obj) {
 "use strict";
 var __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+!(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
 	"use strict";
 
 	return [];
-}.call(exports, __webpack_require__, exports, module),
+}).call(exports, __webpack_require__, exports, module),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -1312,9 +1312,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(50)], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(50)], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
 	"use strict";
-}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -1324,13 +1324,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+!(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
 	"use strict";
 
 	// [[Class]] -> type pairs
 
 	return {};
-}.call(exports, __webpack_require__, exports, module),
+}).call(exports, __webpack_require__, exports, module),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -1340,11 +1340,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(10)], __WEBPACK_AMD_DEFINE_RESULT__ = function (pnum) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(10)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (pnum) {
 	"use strict";
 
 	return new RegExp("^(" + pnum + ")(?!px)[a-z%]+$", "i");
-}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -1354,12 +1354,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+!(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
 	"use strict";
 
 	return (/[+-]?(?:\d*\.|)\d+(?:[eE][+-]?\d+|)/.source
 	);
-}.call(exports, __webpack_require__, exports, module),
+}).call(exports, __webpack_require__, exports, module),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -1369,7 +1369,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(3), __webpack_require__(18), __webpack_require__(16)], __WEBPACK_AMD_DEFINE_RESULT__ = function (jQuery, document, documentElement, support) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(3), __webpack_require__(18), __webpack_require__(16)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, document, documentElement, support) {
 
 	"use strict";
 
@@ -1449,7 +1449,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 	})();
 
 	return support;
-}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -1459,11 +1459,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = function (arr) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (arr) {
 	"use strict";
 
 	return arr.slice;
-}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -1473,11 +1473,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = function (arr) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (arr) {
 	"use strict";
 
 	return arr.indexOf;
-}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -1487,11 +1487,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(8)], __WEBPACK_AMD_DEFINE_RESULT__ = function (class2type) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(8)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (class2type) {
 	"use strict";
 
 	return class2type.hasOwnProperty;
-}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -1501,11 +1501,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(14)], __WEBPACK_AMD_DEFINE_RESULT__ = function (hasOwn) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(14)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (hasOwn) {
 	"use strict";
 
 	return hasOwn.toString;
-}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -1515,13 +1515,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+!(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
 	"use strict";
 
 	// All support tests are defined in their respective modules.
 
 	return {};
-}.call(exports, __webpack_require__, exports, module),
+}).call(exports, __webpack_require__, exports, module),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -1531,7 +1531,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (jQuery) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery) {
 
 	"use strict";
 
@@ -1594,7 +1594,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 	};
 
 	return access;
-}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -1604,11 +1604,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(3)], __WEBPACK_AMD_DEFINE_RESULT__ = function (document) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(3)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (document) {
 	"use strict";
 
 	return document.documentElement;
-}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -1619,7 +1619,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
 !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(9), __webpack_require__(20), __webpack_require__(21), __webpack_require__(11), __webpack_require__(7) // Get jQuery.contains
-], __WEBPACK_AMD_DEFINE_RESULT__ = function (jQuery, rnumnonpx, rmargin, getStyles, support) {
+], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, rnumnonpx, rmargin, getStyles, support) {
 
 	"use strict";
 
@@ -1679,7 +1679,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 	}
 
 	return curCSS;
-}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -1689,12 +1689,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+!(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
 	"use strict";
 
 	return (/^margin/
 	);
-}.call(exports, __webpack_require__, exports, module),
+}).call(exports, __webpack_require__, exports, module),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -1704,7 +1704,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+!(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
 	"use strict";
 
 	return function (elem) {
@@ -1720,7 +1720,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 
 		return view.getComputedStyle(elem);
 	};
-}.call(exports, __webpack_require__, exports, module),
+}).call(exports, __webpack_require__, exports, module),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -1731,7 +1731,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
 // Initialize a jQuery object
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(3), __webpack_require__(53), __webpack_require__(54)], __WEBPACK_AMD_DEFINE_RESULT__ = function (jQuery, document, rsingleTag) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(3), __webpack_require__(53), __webpack_require__(54)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, document, rsingleTag) {
 
 	"use strict";
 
@@ -1843,7 +1843,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 	rootjQuery = jQuery(document);
 
 	return init;
-}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -1853,12 +1853,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(10)], __WEBPACK_AMD_DEFINE_RESULT__ = function (pnum) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(10)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (pnum) {
 
 	"use strict";
 
 	return new RegExp("^(?:([+-])=|)(" + pnum + ")([a-z%]*)$", "i");
-}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -1868,7 +1868,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+!(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
 
 	"use strict";
 
@@ -1892,7 +1892,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 	}
 
 	return addGetHookIf;
-}.call(exports, __webpack_require__, exports, module),
+}).call(exports, __webpack_require__, exports, module),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -3373,7 +3373,7 @@ var book = function book(container) {
 
 	var c = container;
 
-	var init = function init() {
+	var init = function init(content) {
 		var textContainer = bookContainer.querySelector('[data-wb-text-container]');
 		var tocLarge = bookContainer.querySelector('#toc-large-device');
 		var tabOptions = bookContainer.querySelector('#tab-options');
@@ -3391,7 +3391,7 @@ var book = function book(container) {
 		var bookNavBarBottomSmall = bookContainer.querySelector('#book-nav-bar-bottom-small');
 		var fontSizeValidLarge = bookContainer.querySelector('#font-size-valid-large');
 		var fontSizeValid = bookContainer.querySelector('#font-size-valid');
-		var cover = text.querySelector("#cover.wb-section");
+		//let cover = text.querySelector("#cover.wb-section");
 
 		//DIMENSIONS
 		var h = void 0,
@@ -3435,7 +3435,7 @@ var book = function book(container) {
 			w = 550;
 			fontSize = _localStore2.default.getFontSize('large') ? _localStore2.default.getFontSize('large') : 16;
 			text.style.fontSize = fontSize + 'px';
-			cover.style.fontSize = '16px';
+			//cover.style.fontSize = '16px';
 			if (window.innerWidth < 1366) {
 				for (var i = 0; i < fontSizesMedium.length; i++) {
 					if (fontSizesMedium[i].value == fontSize) {
@@ -3466,7 +3466,7 @@ var book = function book(container) {
 			bookNavBarBottomSmall.style.width = w + 'px';
 			fontSize = _localStore2.default.getFontSize('small') ? _localStore2.default.getFontSize('small') : 14;
 			text.style.fontSize = fontSize + 'px';
-			cover.style.fontSize = '14px';
+			//cover.style.fontSize = '14px';
 			font;
 			for (var _i4 = 0; _i4 < fontSizes.length; _i4++) {
 				if (fontSizes[_i4].value == fontSize) {
@@ -3497,14 +3497,17 @@ var book = function book(container) {
 			height: h,
 			maxWidth: w,
 			marginY: marginY,
-			marginX: marginX
+			marginX: marginX,
+			text: content
 		});
 
-		book.toBook().then(function (resolve) {
+		book.init().then(function (resolve) {
 			if (_localStore2.default.getBkmrk(bk.id)) {
 				var bkmrk = _localStore2.default.getBkmrk(bk.id);
 				book.goToBookmark(bkmrk);
 			}
+		}).catch(function (error) {
+			console.log(error);
 		});
 
 		if (window.innerWidth >= 1366) {
@@ -3540,7 +3543,7 @@ var book = function book(container) {
 				w = 550;
 				fontSize = _localStore2.default.getFontSize('large') ? _localStore2.default.getFontSize('large') : 16;
 				text.style.fontSize = fontSize + 'px';
-				cover.style.fontSize = '16px';
+				//cover.style.fontSize = '16px';
 				if (window.innerWidth < 1366) {
 					for (var _i6 = 0; _i6 < fontSizesMedium.length; _i6++) {
 						if (fontSizesMedium[_i6].value == fontSize) {
@@ -3561,7 +3564,7 @@ var book = function book(container) {
 				bookNavBarBottomSmall.style.width = w + 'px';
 				fontSize = _localStore2.default.getFontSize('small') ? _localStore2.default.getFontSize('small') : 14;
 				text.style.fontSize = fontSize + 'px';
-				cover.style.fontSize = '14px';
+				//cover.style.fontSize = '14px';
 				for (var _i8 = 0; _i8 < fontSizes.length; _i8++) {
 					if (fontSizes[_i8].value == fontSize) {
 						fontSizes[_i8].checked = true;
@@ -3593,7 +3596,7 @@ var book = function book(container) {
 			book.setMarginX(marginX);
 
 			if (book.col === true) {
-				book.toBook();
+				book.init();
 			}
 		}, false);
 
@@ -3794,10 +3797,10 @@ var book = function book(container) {
 		var addBookmarks = bookContainer.querySelectorAll('.add-bookmark');
 		for (var _i12 = 0; _i12 < addBookmarks.length; _i12++) {
 			addBookmarks[_i12].addEventListener('click', function (event) {
-				if (book.checkFirstPage()) {
-					_localStore2.default.removeBkmrk(bk.id);
-					return;
-				}
+				//if(book.checkFirstPage()) { 
+				//localStore.removeBkmrk(bk.id);
+				//return;
+				//}
 				var newBmrk = book.getBookmark();
 				var bookmark = document.querySelector('#bookmark');
 				_localStore2.default.setBkmrk(bk.id, newBmrk);
@@ -3827,9 +3830,9 @@ var book = function book(container) {
 						book.setMarginY(marginY);
 						//text size
 						text.style.fontSize = size + 'px';
-						cover.style.fontSize = '16px';
+						//cover.style.fontSize = '16px';
 						//book
-						book.toBook().then(function (resolve) {
+						book.init().then(function (resolve) {
 							//end loader
 							setTimeout(function () {
 								_utils2.default.addClass('#text-loader-container', 'hidden');
@@ -3862,9 +3865,9 @@ var book = function book(container) {
 						book.setMarginY(marginY);
 						//text size
 						text.style.fontSize = size + 'px';
-						cover.style.fontSize = '16px';
+						//cover.style.fontSize = '16px';
 						//book
-						book.toBook().then(function (resolve) {
+						book.init().then(function (resolve) {
 							//end loader
 							setTimeout(function () {
 								_utils2.default.addClass('#text-loader-container', 'hidden');
@@ -3895,16 +3898,16 @@ var book = function book(container) {
 						book.setMarginY(marginY);
 						//text size
 						text.style.fontSize = size + 'px';
-						cover.style.fontSize = '14px';
+						//cover.style.fontSize = '14px';
 						//book
-						book.toBook().then(function (resolve) {
+						book.init().then(function (resolve) {
 							//end loader
 							setTimeout(function () {
 								document.body.style.overflow = 'visible';
 								_utils2.default.addClass('#text-loader-container', 'hidden');
 							}, 100);
 						});
-					}, 300);
+					}, 150);
 				}, 100);
 			}, false);
 		}
@@ -3927,7 +3930,7 @@ var book = function book(container) {
 						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
 						bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
 						//book
-						book.toBook().then(function (resolve) {
+						book.init().then(function (resolve) {
 							//end loader
 							setTimeout(function () {
 								_utils2.default.addClass('#text-loader-container', 'hidden');
@@ -3959,7 +3962,7 @@ var book = function book(container) {
 						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
 						bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
 						//book
-						book.toBook().then(function (resolve) {
+						book.init().then(function (resolve) {
 							//end loader
 							setTimeout(function () {
 								_utils2.default.addClass('#text-loader-container', 'hidden');
@@ -3989,14 +3992,14 @@ var book = function book(container) {
 						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
 						bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
 						//book
-						book.toBook().then(function (resolve) {
+						book.init().then(function (resolve) {
 							//end loader
 							setTimeout(function () {
 								document.body.style.overflow = 'visible';
 								_utils2.default.addClass('#text-loader-container', 'hidden');
 							}, 100);
 						});
-					}, 300);
+					}, 150);
 				}, 100);
 			}, false);
 		}
@@ -4028,12 +4031,12 @@ var book = function book(container) {
 
 	//INSERT TEMPLATE ET START LOADER
 	//insert template in container
-	document.body.style.height = '100%';
-	document.body.style.overflowY = 'hidden';
+	//document.body.style.height = '100%';
 	c.innerHTML = bookReadTemplate({ book: bk });
 	//START LOADER
-	document.body.style.overflow = 'hidden';
-	document.body.style.height = window.innerHeight + 'px';
+	//document.body.style.overflowY = 'hidden';
+	//document.body.style.height = window.innerHeight + 'px';
+	document.body.style.overflowY = 'hidden';
 	_utils2.default.removeClass('#book-loader-container', 'hidden');
 
 	//BOOK CONTAINER
@@ -4056,10 +4059,12 @@ var book = function book(container) {
 		options = { method: 'GET', url: bk.path + '.html' };
 		return _utils2.default.ajax(options);
 	}).then(function (content) {
-		var div = document.createElement('div');
-		div.innerHTML = content;
-		text.appendChild(div);
-		init();
+		//let div = document.createElement('div');
+		//div.innerHTML = content;
+		//text.appendChild(div);
+		init(content);
+	}).catch(function (error) {
+		console.log(error);
 	});
 };
 
@@ -4246,30 +4251,37 @@ var WebBook = function () {
 		this._bookContainer = bookContainer;
 		this._textContainer = bookContainer.querySelector('[data-wb-text-container]');
 		this._text = bookContainer.querySelector('[data-wb-text]');
-		//options
+		//options height, width, marginX, marginY
 		this._height = options.height;
 		this._width = options.maxWidth;
 		this._marginX = options.marginX === undefined ? 35 : options.marginX;
 		this._marginY = options.marginY === undefined ? 20 : options.marginY;
-		//init position, col ,containerWidth and bookmark
+		//init position, col ,containerWidth, bookmark, startPage, sectionsIndex, parentSection, pages_total
 		this._position = 0;
 		this.col = true; //default true = toBook()
-		this._bookmark = 0;
+		this._bookmark = null;
 		this._containerWidth = null;
-		//this.lastBreak is used as a ghost page
-		this._lastBreak = document.createElement('DIV');
-		this._lastBreak.className = 'wb-text-break';
-		this._text.appendChild(this._lastBreak);
+		this._startPage = 0;
+		this._sectionsIndex = 0;
+		this._parentSection = null;
+		this._pages_total = 0;
 		//this._lastElement is used as landmark
 		this._lastElement = document.createElement('DIV');
 		this._lastElement.className = 'wb-section wb-no-toc';
-		this._lastElement.id = 'last';
+		this._lastElement.id = 'wb-last';
 		var p = document.createElement('P');
 		p.innerHTML = '&nbsp;'; //not empty (for mozColumns)
 		this._lastElement.appendChild(p);
-		this._text.appendChild(this._lastElement);
-		//sections
-		this._sections = this._text.querySelectorAll('.wb-section');
+		//options text
+		this._div = document.createElement("DIV");
+		this._div.innerHTML = options.text;
+		this._div.appendChild(this._lastElement);
+		//SECTIONS
+		this._sections = this._div.querySelectorAll('.wb-section');
+		//TOCS CONTAINER + TOCS INIT
+		this._tocs = this._bookContainer.querySelectorAll('[data-wb-toc]');
+		//getTocs before querying this.elPageNumbers
+		this.getTocs();
 		//sections without wb-no-toc
 		this._tocSections = [];
 		for (var i = 0; i < this._sections.length; i++) {
@@ -4277,136 +4289,123 @@ var WebBook = function () {
 				this._tocSections.push(this._sections[i]);
 			}
 		}
-		//breaks
-		this._breaks = this._text.querySelectorAll('.wb-text-break');
-
-		//toc
-		this._tocs = this._bookContainer.querySelectorAll('[data-wb-toc]');
-		//getTocs before querying this.elPageNumbers
-		this.getTocs();
-		//infos containers
+		//INFOS CONTAINERS
 		this._currentPages = this._bookContainer.querySelectorAll('.wb-current-page');
 		this._totalPages = this._bookContainer.querySelectorAll('.wb-total-pages');
 		this._currentTotalPages = this._bookContainer.querySelectorAll('.wb-currentByTotal-pages');
 		this._elPageNumbers = this._bookContainer.querySelectorAll('[data-wb-element-page-number]');
 		this._sectionTitles = this._bookContainer.querySelectorAll('.wb-current-section-title');
-		//start pagination
-		this._startPage = 0;
-		//links : replace default with goToPage
-		this.setLinks();
-
-		//if('webkitColumnWidth' in document.body.style || 'mozColumnWidth' in document.body.style || 'columnWidth' in document.body.style) {
-		//this.toBook();
-		//} else {
-		//this.toScroll();
-		//}
+		//set bookContainer links : replace default with goToElement
+		this.setBookLinks();
 	}
 
 	_createClass(WebBook, [{
-		key: 'toBook',
-		value: function toBook() {
-			var _this2 = this;
+		key: 'init',
+		value: function init() {
+			var _this = this;
 
 			var promise = new Promise(function (resolve, reject) {
 				if ('webkitColumnWidth' in document.body.style || 'mozColumnWidth' in document.body.style || 'columnWidth' in document.body.style) {
 
-					var cs = _this2._textContainer.style;
-					var ts = _this2._text.style;
-					if (ts.webkitColumns !== 'auto auto' || ts.mozColumns !== 'auto auto' || ts.columns !== 'auto auto') {
-						ts.webkitColumns = 'auto auto';
-						ts.mozColumns = 'auto auto';
-						ts.columns = 'auto auto';
+					_this._text.innerHTML = '';
+					_this._text.appendChild(_this._div);
+
+					_this.toBook();
+
+					//pagination start
+					_this.getPageStart();
+					//book total number of pages
+					_this.pages_total = _this.getBookTotalPages();
+					//array : for each section, starting page;
+					_this._sections_page_start = [];
+					for (var i = 0; i < _this._sections.length; i++) {
+						var item = {};
+						item.id = _this._sections[i].id;
+						item.page_start = _this.elementPageNumber(item.id);
+						_this._sections_page_start.push(item);
 					}
 
-					_this2.col = true;
-
-					//text-container
-					cs.boxSizing = "border-box";
-					cs.webkitBoxSizing = "border-box";
-					cs.overflow = "hidden";
-					cs.position = "relative";
-					cs.padding = "0px";
-					cs.height = _this2.getHeight() + "px";
-					cs.maxWidth = _this2.getMaxWidth() + "px"; //maxWidth : responsive
-					_this2._containerWidth = _this2._textContainer.clientWidth; //responsive
-
-					//sections
-					//hack firefox (pour offsetLeft) : minHeight = 10%
-					for (var i = 0; i < _this2._sections.length; i++) {
-						if (_this2._sections[i].style.minHeight !== "10%") {
-							_this2._sections[i].style.minHeight = "10%";
-						}
-					}
-					//manual breaks
-					for (var _i = 0; _i < _this2._breaks.length; _i++) {
-						if (_this2._breaks[_i].style.marginBottom !== "300%") {
-							_this2._breaks[_i].style.marginBottom = "300%";
-							_this2._breaks[_i].style.width = "0px";
-						}
-					}
-					//last element
-					if (_this2._lastElement.style.marginBottom !== "300%") {
-						_this2._lastElement.style.marginBottom = "300%";
-					}
-
-					//text
-					ts.boxSizing = "border-box";
-					ts.webkitBoxSizing = "border-box";
-					ts.position = "absolute";
-					ts.left = 0;
-					ts.top = 0;
-					ts.height = "100%";
-					ts.width = "100%";
-					ts.paddingRight = _this2.getMarginX() + "px";
-					ts.paddingLeft = _this2.getMarginX() + "px";
-					ts.paddingTop = _this2.getMarginY() + "px";
-					ts.paddingBottom = _this2.getMarginY() + "px";
-					ts.mozColumnFill = "auto"; //important !!!
-					ts.columnFill = "auto"; //important !!!		
-					ts.webkitColumnWidth = _this2._containerWidth + "px";
-					ts.mozColumnWidth = _this2._containerWidth + "px";
-					ts.columnWidth = _this2._containerWidth + "px";
-					ts.mozColumnGap = _this2.getMarginX() * 2 + "px";
-					ts.webkitColumnGap = _this2.getMarginX() * 2 + "px";
-					ts.columnGap = _this2.getMarginX() * 2 + "px";
-
-					//getPageStart
-					_this2.getPageStart();
-					//info containers wb-total-pages
-					for (var _i2 = 0; _i2 < _this2._totalPages.length; _i2++) {
-						if (_this2._totalPages[_i2].innerHTML !== _this2.getTotalPages()) {
-							_this2._totalPages[_i2].innerHTML = _this2.getTotalPages();
+					//containers data-wb-element-page-number
+					for (var _i = 0; _i < _this._elPageNumbers.length; _i++) {
+						var id = _this._elPageNumbers[_i].getAttribute('data-wb-element-page-number');
+						var pageNumber = _this.elementPageNumber(id);
+						if (pageNumber < 1) {
+							_this._elPageNumbers[_i].innerHTML = "";
+						} else if (_this._elPageNumbers[_i].innerHTML != pageNumber) {
+							_this._elPageNumbers[_i].innerHTML = pageNumber;
 						}
 					}
 
-					//Go to bookmark
-					setTimeout(function () {
-						//containers data-wb-element-page-number
-						for (var _i3 = 0; _i3 < _this2._elPageNumbers.length; _i3++) {
-							var id = _this2._elPageNumbers[_i3].getAttribute('data-wb-element-page-number');
-							var pageNumber = _this2.elementPageNumber(id);
-							if (pageNumber < 1) {
-								_this2._elPageNumbers[_i3].innerHTML = "";
-							} else if (_this2._elPageNumbers[_i3].innerHTML != pageNumber) {
-								_this2._elPageNumbers[_i3].innerHTML = pageNumber;
-							}
-							//if(i===this._elPageNumbers.length-1) {
-							//
-							//}
-						}
-					}, 0);
-
-					if (_this2._bookmark) {
-						_this2.goToBookmark(_this2._bookmark);
-						//this._position = Math.round($(this._text).position().left);
+					if (_this._bookmark) {
+						_this.goToBookmark(_this._bookmark);
+						_this._position = Math.round((0, _core2.default)(_this._text).position().left);
+					} else {
+						_this.nextSection(_this._sectionsIndex);
 					}
-					//Refresh info containers
-					_this2.refresh();
-					resolve('done');
+					_this.refresh();
+
+					resolve('book done');
+				} else {
+
+					reject('no column');
 				}
 			});
 
 			return promise;
+		}
+	}, {
+		key: 'toBook',
+		value: function toBook() {
+
+			for (var i = 0; i < this._sections.length; i++) {
+				this._sections[i].style.marginBottom = "300%";
+				//hack firefox (pour offsetLeft) : minHeight = 10%
+				if (this._sections[i].style.minHeight !== "10%") {
+					this._sections[i].style.minHeight = "10%";
+				}
+			}
+
+			var cs = this._textContainer.style;
+			var ts = this._text.style;
+
+			if (ts.webkitColumns !== 'auto auto' || ts.mozColumns !== 'auto auto' || ts.columns !== 'auto auto') {
+				ts.webkitColumns = 'auto auto';
+				ts.mozColumns = 'auto auto';
+				ts.columns = 'auto auto';
+			}
+
+			this.col = true;
+
+			//text-container
+			cs.boxSizing = "border-box";
+			cs.webkitBoxSizing = "border-box";
+			cs.overflow = "hidden";
+			cs.position = "relative";
+			cs.padding = "0px";
+			cs.height = this.getHeight() + "px";
+			cs.maxWidth = this.getMaxWidth() + "px"; //maxWidth : responsive
+			this._containerWidth = this._textContainer.clientWidth; //responsive
+
+			//text
+			ts.boxSizing = "border-box";
+			ts.webkitBoxSizing = "border-box";
+			ts.position = "absolute";
+			ts.left = 0;
+			ts.top = 0;
+			ts.height = "100%";
+			ts.width = "100%";
+			ts.paddingRight = this.getMarginX() + "px";
+			ts.paddingLeft = this.getMarginX() + "px";
+			ts.paddingTop = this.getMarginY() + "px";
+			ts.paddingBottom = this.getMarginY() + "px";
+			ts.mozColumnFill = "auto"; //important !!!
+			ts.columnFill = "auto"; //important !!!		
+			ts.webkitColumnWidth = this._containerWidth + "px";
+			ts.mozColumnWidth = this._containerWidth + "px";
+			ts.columnWidth = this._containerWidth + "px";
+			ts.mozColumnGap = this.getMarginX() * 2 + "px";
+			ts.webkitColumnGap = this.getMarginX() * 2 + "px";
+			ts.columnGap = this.getMarginX() * 2 + "px";
 		}
 	}, {
 		key: 'toScroll',
@@ -4439,19 +4438,19 @@ var WebBook = function () {
 				this._sections[i].style.minHeight = "0";
 			}
 			//manual breaks
-			for (var _i4 = 0; _i4 < this._breaks.length; _i4++) {
-				this._breaks[_i4].style.marginBottom = "0";
+			for (var _i2 = 0; _i2 < this._breaks.length; _i2++) {
+				this._breaks[_i2].style.marginBottom = "0";
 			}
 			//last element
 			this._lastElement.style.marginBottom = "0px";
 
 			//wb-total-pages empty
-			for (var _i5 = 0; _i5 < this._totalPages.length; _i5++) {
-				this._totalPages[_i5].innerHTML = "";
+			for (var _i3 = 0; _i3 < this._totalPages.length; _i3++) {
+				this._totalPages[_i3].innerHTML = "";
 			}
 			//data-wb-element-page-number empty
-			for (var _i6 = 0; _i6 < this._elPageNumbers.length; _i6++) {
-				this._elPageNumbers[_i6].innerHTML = "";
+			for (var _i4 = 0; _i4 < this._elPageNumbers.length; _i4++) {
+				this._elPageNumbers[_i4].innerHTML = "";
 			}
 
 			this.refresh();
@@ -4501,26 +4500,111 @@ var WebBook = function () {
 			return this._marginY;
 		}
 	}, {
-		key: 'setLinks',
-		value: function setLinks() {
-			var _this3 = this;
+		key: 'setBookLinks',
+		value: function setBookLinks() {
+			var _this2 = this;
 
 			var links = this._bookContainer.querySelectorAll('.wb-link');
+			for (var i = 0; i < links.length; i++) {
+				links[i].addEventListener('click', function (e) {
+					if (_this2.col === true) {
+						e.preventDefault();
+						var href = e.currentTarget.getAttribute('href');
+						var id = href.replace(/^#/, "");
+						_this2.goToElement(id);
+					}
+				}, false);
+			}
+		}
+	}, {
+		key: 'setSectionLinks',
+		value: function setSectionLinks() {
+			var _this3 = this;
+
+			var section = this._text.querySelectorAll('.wb-section')[0];
+			var links = section.querySelectorAll('.wb-link');
 			for (var i = 0; i < links.length; i++) {
 				links[i].addEventListener('click', function (e) {
 					if (_this3.col === true) {
 						e.preventDefault();
 						var href = e.currentTarget.getAttribute('href');
 						var id = href.replace(/^#/, "");
-						_this3.goToPage(_this3.elementPageNumber(id));
+						_this3.goToElement(id);
 					}
 				}, false);
 			}
 		}
 	}, {
+		key: 'nextSection',
+		value: function nextSection(index) {
+			if (this._sections[index].id === 'wb-last') {
+				return;
+			}
+			this._sectionsIndex = index;
+			this._text.innerHTML = '';
+			//this._sections[this._sectionsIndex].style.marginBottom = "300%";
+			this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
+			//this._lastElement.marginBottom = "300%";
+			this._text.appendChild(this._lastElement.cloneNode(true));
+			this.setSectionLinks();
+			this.toBook();
+			this._position = 0;
+			this._text.style.left = this._position + "px";
+			this.refresh();
+		}
+	}, {
+		key: 'prevSection',
+		value: function prevSection(index) {
+			if (index < 0) {
+				return;
+			}
+			this._sectionsIndex = index;
+			this._text.innerHTML = '';
+			//this._sections[this._sectionsIndex].style.marginBottom = "300%";
+			this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
+			//this._lastElement.marginBottom = "300%";
+			this._text.appendChild(this._lastElement.cloneNode(true));
+			this.setSectionLinks();
+			this.toBook();
+			this.goToPage(this.getSectionTotalPages() - this._startPage);
+			this.refresh();
+		}
+	}, {
+		key: 'goToElement',
+		value: function goToElement(id) {
+			for (var i = 0; i < this._sections.length; i++) {
+				if (this._sections[i].id === id) {
+					this.nextSection(i);
+					break;
+				} else if (this._sections[i].querySelector('#' + id)) {
+					this._sectionsIndex = i;
+					if (this._sections[this._sectionsIndex].id !== this._text.querySelectorAll('.wb-section')[0].id) {
+						this._text.innerHTML = '';
+						this._sections[this._sectionsIndex].style.marginBottom = this._sections[this._sectionsIndex].className.match(/wb-break/) ? "300%" : "0%";
+						this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
+						this._lastElement.marginBottom = "300%";
+						this._text.appendChild(this._lastElement.cloneNode(true));
+						this.setSectionLinks();
+						this.toBook();
+					}
+					this.goToPage(this.elementPageNumber(id));
+					this.refresh();
+					break;
+				}
+			}
+		}
+	}, {
+		key: 'getParentSectionId',
+		value: function getParentSectionId() {
+			var sections = this._text.querySelectorAll('.wb-section');
+			return sections[0].id;
+		}
+	}, {
 		key: 'forward',
 		value: function forward() {
-			if (Math.round((0, _core2.default)(this._lastElement).position().left) + this._position > this._containerWidth + this.getMarginX()) {
+			if (this.getSectionTotalPages() === this.getPageNumber()) {
+				this.nextSection(this._sectionsIndex + 1);
+			} else {
 				this._position = Math.round((0, _core2.default)(this._text).position().left);
 				this._position -= this._containerWidth;
 				this._text.style.left = this._position + "px";
@@ -4530,7 +4614,9 @@ var WebBook = function () {
 	}, {
 		key: 'backward',
 		value: function backward() {
-			if (this._position < 0) {
+			if (this.getPageNumber() == 1) {
+				this.prevSection(this._sectionsIndex - 1);
+			} else {
 				this._position = Math.round((0, _core2.default)(this._text).position().left);
 				this._position += this._containerWidth;
 				this._text.style.left = this._position + "px";
@@ -4540,20 +4626,14 @@ var WebBook = function () {
 	}, {
 		key: 'toFirstPage',
 		value: function toFirstPage() {
-			if (this._position < 0) {
-				this._position = 0;
-				this._text.style.left = this._position + "px";
-				this.refresh();
-			}
+			this.nextSection(0);
+			this.refresh();
 		}
 	}, {
 		key: 'toLastPage',
 		value: function toLastPage() {
-			if (Math.round((0, _core2.default)(this._lastElement).position().left) + this._position > this._containerWidth + this.getMarginX()) {
-				this._position = this._containerWidth + this.getMarginX() - Math.round((0, _core2.default)(this._lastElement).position().left);
-				this._text.style.left = this._position + "px";
-				this.refresh();
-			}
+			this.prevSection(this._sections.length - 2);
+			this.refresh();
 		}
 	}, {
 		key: 'getPageStart',
@@ -4561,7 +4641,7 @@ var WebBook = function () {
 			var index = void 0,
 			    startIndex = void 0;
 			for (var i = 0; i < this._sections.length; i++) {
-				if (this._sections[i].className.match(/wb-no-page/)) {
+				if (this._sections[i] && this._sections[i].className.match(/wb-no-page/)) {
 					index = i;
 				} else {
 					if (index !== undefined && startIndex === undefined) {
@@ -4587,12 +4667,19 @@ var WebBook = function () {
 			//this._position/this._containerWidth is start of a page : start 0 is page 1,... (so : +1)
 			var pageNumber = Math.abs(Math.floor(this._position / this._containerWidth)) + 1;
 			//this._startPage (pagination start)
-			pageNumber = pageNumber - this._startPage;
+			pageNumber = pageNumber;
 			return pageNumber;
 		}
 	}, {
-		key: 'getTotalPages',
-		value: function getTotalPages() {
+		key: 'getSectionTotalPages',
+		value: function getSectionTotalPages() {
+			var totalPages = Math.floor(Math.round((0, _core2.default)(this._text.lastElementChild).position().left) / this._containerWidth);
+			totalPages = totalPages;
+			return totalPages;
+		}
+	}, {
+		key: 'getBookTotalPages',
+		value: function getBookTotalPages() {
 			var totalPages = Math.floor(Math.round((0, _core2.default)(this._lastElement).position().left) / this._containerWidth);
 			totalPages = totalPages - this._startPage;
 			return totalPages;
@@ -4600,13 +4687,12 @@ var WebBook = function () {
 	}, {
 		key: 'goToPage',
 		value: function goToPage(number) {
-			number = number < 1 - this._startPage ? 1 - this._startPage : number;
-			number = number > this.getTotalPages() ? this.getTotalPages() : number;
+			//number = number<1-this._startPage ? 1-this._startPage : number;
+			//number= number>this.getTotalPages() ? this.getTotalPages() : number;
 			number = number + this._startPage;
 			var position = this._containerWidth * (number - 1);
 			this._text.style.left = -position + "px";
 			this._position = Math.round((0, _core2.default)(this._text).position().left);
-			this.refresh();
 		}
 	}, {
 		key: 'elementPageNumber',
@@ -4614,8 +4700,11 @@ var WebBook = function () {
 			var el = void 0;
 			if (this._text.querySelector('#' + id).className.match(/wb-section/)) {
 				el = this._text.querySelector('#' + id + ' p:first-child');
-			} else {
+			} else if (this._text.querySelector('#' + id)) {
 				el = this._text.querySelector('#' + id);
+			}
+			if (!el) {
+				return '';
 			}
 			var elPosition = Math.round((0, _core2.default)(el).position().left) - this.getMarginX();
 			elPosition = elPosition % this._containerWidth !== 0 ? elPosition - elPosition % this._containerWidth : elPosition; //always at a page beginning
@@ -4626,20 +4715,12 @@ var WebBook = function () {
 	}, {
 		key: 'getSectionTitle',
 		value: function getSectionTitle() {
-			var position = -this._position;
 			var title = void 0;
-			for (var i = 0; i < this._sections.length; i++) {
-				var id = this._sections[i].id;
-				if (this.getPageNumber() < this.elementPageNumber(id)) {
-					var prevSectionId = this._sections[i - 1].id;
-					if (this.getPageNumber() === this.elementPageNumber(prevSectionId)) {
-						//title from second page of section (= not with section-title)
-						title = "";
-					} else {
-						title = this._sections[i - 1].getAttribute('data-wb-title') ? this._sections[i - 1].getAttribute('data-wb-title') : this._sections[i - 1].title;
-					}
-					break;
-				}
+			var sections = this._text.querySelectorAll('.wb-section');
+			if (this.getPageNumber() == 1) {
+				title = "";
+			} else {
+				title = sections[0].getAttribute('data-wb-title') ? sections[0].getAttribute('data-wb-title') : sections[0].title;
 			}
 			return title;
 		}
@@ -4706,30 +4787,18 @@ var WebBook = function () {
 	}, {
 		key: 'getTocsCurrentSection',
 		value: function getTocsCurrentSection() {
-			var sections = [].slice.call(this._sections);
-			var _this = this;
-			var doneSections = sections.filter(function (section) {
-				return _this.elementPageNumber(section.id) <= _this.getPageNumber();
-			});
-			var currentSection = doneSections[doneSections.length - 1];
+			var currentSection = this._text.querySelectorAll('.wb-section')[0];
 			if (currentSection) {
 				for (var i = 0; i < this._tocs.length; i++) {
 					var toc = this._tocs[i];
-					var links = [].slice.call(toc.querySelectorAll('a'));
-					var link = links.filter(function (l) {
-						return l.getAttribute('href').replace(/^#/, '') === currentSection.id;
-					});
-					var currentLink = links.filter(function (l) {
-						return l.parentElement.className.match(/current/);
-					});
-					if (!currentLink[0]) {
-						if (link[0]) {
-							link[0].parentElement.className += ' current';
-						}
-					} else if (currentLink[0] && currentLink[0] !== link[0]) {
-						currentLink[0].parentElement.className = currentLink[0].parentElement.className.replace(/ current/, '');
-						if (link[0]) {
-							link[0].parentElement.className += ' current';
+					var links = toc.querySelectorAll('a');
+					for (var j = 0; j < links.length; j++) {
+						if (links[j].getAttribute('href').replace(/^#/, '') === currentSection.id) {
+							if (!links[j].parentElement.className.match(/current/)) {
+								links[j].parentElement.className += ' current';
+							}
+						} else if (links[j].parentElement.className.match(/current/)) {
+							links[j].parentElement.className = links[i].parentElement.className.replace(/ current/, '');
 						}
 					}
 				}
@@ -4738,23 +4807,17 @@ var WebBook = function () {
 	}, {
 		key: 'insertBookmark',
 		value: function insertBookmark() {
-			//get current section
-			var sections = [].slice.call(this._sections);
-			var _this = this;
-			var doneSections = sections.filter(function (section) {
-				return _this.elementPageNumber(section.id) <= _this.getPageNumber();
-			});
-			var currentSection = doneSections[doneSections.length - 1];
+			var currentSection = this._text.querySelectorAll('.wb-section')[0];
 			if (currentSection) {
-				var elements = document.querySelectorAll('#' + currentSection.id + ' *');
+				var elements = currentSection.querySelectorAll('*');
 				var position = Math.abs(this._position);
 				var elPosition = void 0;
 				for (var i = 0; i < elements.length; i++) {
 					var _elPosition = Math.round((0, _core2.default)(elements[i]).position().left) - this.getMarginX();
 					_elPosition = _elPosition % this._containerWidth !== 0 ? _elPosition - _elPosition % this._containerWidth : _elPosition; //always at a page beginning
 					if (_elPosition === position) {
-						if (currentSection.id === 'last') {
-							this._bookmark = { sectionId: sections[0].id, el: 0 };
+						if (currentSection.id === 'wb-last') {
+							this._bookmark = { sectionId: currentSection.id, el: elements.length - 1 };
 							break;
 						}
 						this._bookmark = { sectionId: currentSection.id, el: i };
@@ -4769,19 +4832,31 @@ var WebBook = function () {
 	}, {
 		key: 'goToBookmark',
 		value: function goToBookmark(bookmark) {
-			var _this4 = this;
-
-			setTimeout(function () {
-				var els = _this4._text.querySelectorAll('#' + bookmark.sectionId + ' *');
-				var el = els[bookmark.el];
-				//position : offsetLeft of element relative to text
-				var position = Math.round((0, _core2.default)(el).position().left) - _this4.getMarginX();
-				position = position % _this4._containerWidth !== 0 ? position - position % _this4._containerWidth : position; //always at a page beginning
-				//text position = -position
-				_this4._text.style.left = -position + "px";
-				_this4._position = Math.round((0, _core2.default)(_this4._text).position().left);
-				_this4.refresh();
-			}, 0);
+			for (var i = 0; i < this._sections.length; i++) {
+				if (this._sections[i].id === bookmark.sectionId) {
+					//if(this._sections[i].id!==this._text.querySelectorAll('.wb-section')[0].id) {
+					this._sectionsIndex = i;
+					this._text.innerHTML = '';
+					//this._sections[this._sectionsIndex].style.marginBottom = "300%";
+					this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
+					//this._lastElement.marginBottom = "300%";
+					this._text.appendChild(this._lastElement.cloneNode(true));
+					this.setSectionLinks();
+					this.toBook();
+					//}
+					var currentSection = this._text.querySelectorAll('.wb-section')[0];
+					var elements = currentSection.querySelectorAll('*');
+					var element = elements[bookmark.el];
+					//position : offsetLeft of element relative to text
+					var position = Math.round((0, _core2.default)(element).position().left) - this.getMarginX();
+					position = position % this._containerWidth !== 0 ? position - position % this._containerWidth : position; //always at a page beginning
+					//text position = -position
+					this._text.style.left = -position + "px";
+					this._position = Math.round((0, _core2.default)(this._text).position().left);
+					this.refresh();
+					break;
+				}
+			}
 		}
 	}, {
 		key: 'getBookmark',
@@ -4794,9 +4869,23 @@ var WebBook = function () {
 			this._bookmark = bookmark;
 		}
 	}, {
+		key: 'getCover',
+		value: function getCover() {
+			if (this._sectionsIndex === 0 && this.getPageNumber() == 1) {
+				if (!this._text.className.match(/cover/)) {
+					this._text.className += ' cover';
+				}
+			} else {
+				if (this._text.className.match(/cover/)) {
+					this._text.className = this._text.className.replace(/ cover/, '');
+				}
+			}
+		}
+	}, {
 		key: 'refresh',
 		value: function refresh() {
 			this.insertBookmark();
+			this.getCover();
 
 			if (this.col === false) {
 
@@ -4804,12 +4893,12 @@ var WebBook = function () {
 					this._currentPages[i].innerHTML = "";
 				}
 
-				for (var _i7 = 0; _i7 < this._currentTotalPages.length; _i7++) {
-					this._currentTotalPages[_i7].innerHTML = "";
+				for (var _i5 = 0; _i5 < this._currentTotalPages.length; _i5++) {
+					this._currentTotalPages[_i5].innerHTML = "";
 				}
 
-				for (var _i8 = 0; _i8 < this._sectionTitles.length; _i8++) {
-					this._sectionTitles[_i8].innerHTML = "";
+				for (var _i6 = 0; _i6 < this._sectionTitles.length; _i6++) {
+					this._sectionTitles[_i6].innerHTML = "";
 				}
 			} else {
 
@@ -4817,25 +4906,29 @@ var WebBook = function () {
 					this.getTocsCurrentSection();
 				}
 				//containers wb-current-page
-				for (var _i9 = 0; _i9 < this._currentPages.length; _i9++) {
-					if (this.getPageNumber() < 1) {
-						this._currentPages[_i9].innerHTML = "";
-					} else if (this._currentPages[_i9].innerHTML !== this.getPageNumber()) {
-						this._currentPages[_i9].innerHTML = this.getPageNumber();
+				for (var _i7 = 0; _i7 < this._currentPages.length; _i7++) {
+					var pageNumber = this._sections_page_start[this._sectionsIndex].page_start + this.getPageNumber() - 1;
+					if (pageNumber < 1) {
+						this._currentPages[_i7].innerHTML = "";
+					} else if (this._currentPages[_i7].innerHTML !== pageNumber) {
+						this._currentPages[_i7].innerHTML = pageNumber;
 					}
 				}
 				//containers wbcurrentByTotal-pages
-				for (var _i10 = 0; _i10 < this._currentTotalPages.length; _i10++) {
-					if (this.getPageNumber() < 1) {
-						this._currentTotalPages[_i10].innerHTML = "";
-					} else if (this._currentTotalPages[_i10].innerHTML !== this.getPageNumber() + "/" + this.getTotalPages()) {
-						this._currentTotalPages[_i10].innerHTML = this.getPageNumber() + "/" + this.getTotalPages();
+				for (var _i8 = 0; _i8 < this._currentTotalPages.length; _i8++) {
+					var sectionId = this.getParentSectionId();
+					var section = this._text.querySelectorAll('#' + sectionId)[0];
+					var _pageNumber = this._sections_page_start[this._sectionsIndex].page_start + this.getPageNumber() - 1;
+					if (_pageNumber < 1 || section.className.match(/wb-page-no-display/)) {
+						this._currentTotalPages[_i8].innerHTML = "";
+					} else if (this._currentTotalPages[_i8].innerHTML !== _pageNumber + "/" + this.pages_total) {
+						this._currentTotalPages[_i8].innerHTML = _pageNumber + "/" + this.pages_total;
 					}
 				}
 				//containers wb-current-section-title
-				for (var _i11 = 0; _i11 < this._sectionTitles.length; _i11++) {
-					if (this._sectionTitles[_i11].innerHTML != this.getSectionTitle()) {
-						this._sectionTitles[_i11].innerHTML = this.getSectionTitle();
+				for (var _i9 = 0; _i9 < this._sectionTitles.length; _i9++) {
+					if (this._sectionTitles[_i9].innerHTML != this.getSectionTitle()) {
+						this._sectionTitles[_i9].innerHTML = this.getSectionTitle();
 					}
 				}
 			}
@@ -4854,11 +4947,11 @@ exports.default = WebBook;
 "use strict";
 var __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+!(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
 	"use strict";
 
 	return Object.getPrototypeOf;
-}.call(exports, __webpack_require__, exports, module),
+}).call(exports, __webpack_require__, exports, module),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -4868,11 +4961,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = function (arr) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (arr) {
 	"use strict";
 
 	return arr.concat;
-}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -4882,11 +4975,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = function (arr) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (arr) {
 	"use strict";
 
 	return arr.push;
-}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -4896,11 +4989,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(8)], __WEBPACK_AMD_DEFINE_RESULT__ = function (class2type) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(8)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (class2type) {
 	"use strict";
 
 	return class2type.toString;
-}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -4910,11 +5003,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(15)], __WEBPACK_AMD_DEFINE_RESULT__ = function (fnToString) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(15)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (fnToString) {
 	"use strict";
 
 	return fnToString.call(Object);
-}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -4924,7 +5017,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(3)], __WEBPACK_AMD_DEFINE_RESULT__ = function (document) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(3)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (document) {
 	"use strict";
 
 	function DOMEval(code, doc) {
@@ -4937,7 +5030,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 	}
 
 	return DOMEval;
-}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -4948,7 +5041,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
 !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(17), __webpack_require__(3), __webpack_require__(18), __webpack_require__(9), __webpack_require__(19), __webpack_require__(24), __webpack_require__(11), __webpack_require__(52), __webpack_require__(22), __webpack_require__(56), __webpack_require__(7) // contains
-], __WEBPACK_AMD_DEFINE_RESULT__ = function (jQuery, access, document, documentElement, rnumnonpx, curCSS, addGetHookIf, support, nodeName) {
+], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, access, document, documentElement, rnumnonpx, curCSS, addGetHookIf, support, nodeName) {
 
 	"use strict";
 
@@ -5157,7 +5250,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 	});
 
 	return jQuery;
-}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -5167,7 +5260,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(51)], __WEBPACK_AMD_DEFINE_RESULT__ = function (jQuery, Sizzle) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(51)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, Sizzle) {
 
 	"use strict";
 
@@ -5181,7 +5274,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 	jQuery.isXMLDoc = Sizzle.isXML;
 	jQuery.contains = Sizzle.contains;
 	jQuery.escapeSelector = Sizzle.escape;
-}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -7354,9 +7447,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 	};
 
 	if (true) {
-		!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+		!(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
 			return Sizzle;
-		}.call(exports, __webpack_require__, exports, module),
+		}).call(exports, __webpack_require__, exports, module),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 		// Sizzle requires that there be a global window in Common-JS like environments
 	} else if (typeof module !== "undefined" && module.exports) {
@@ -7374,7 +7467,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+!(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
 
   "use strict";
 
@@ -7384,7 +7477,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
   };
 
   return nodeName;
-}.call(exports, __webpack_require__, exports, module),
+}).call(exports, __webpack_require__, exports, module),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -7394,14 +7487,14 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+!(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
 	"use strict";
 
 	// Match a standalone tag
 
 	return (/^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i
 	);
-}.call(exports, __webpack_require__, exports, module),
+}).call(exports, __webpack_require__, exports, module),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -7411,7 +7504,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(13), __webpack_require__(55), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function (jQuery, indexOf, rneedsContext) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(13), __webpack_require__(55), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, indexOf, rneedsContext) {
 
 	"use strict";
 
@@ -7506,7 +7599,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 			typeof selector === "string" && rneedsContext.test(selector) ? jQuery(selector) : selector || [], false).length;
 		}
 	});
-}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -7516,11 +7609,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function (jQuery) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery) {
 	"use strict";
 
 	return jQuery.expr.match.needsContext;
-}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -7533,7 +7626,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(10), __webpack_require__(17), __webpack_require__(20), __webpack_require__(3), __webpack_require__(23), __webpack_require__(9), __webpack_require__(57), __webpack_require__(21), __webpack_require__(58), __webpack_require__(19), __webpack_require__(59), __webpack_require__(24), __webpack_require__(11), __webpack_require__(22), __webpack_require__(60), __webpack_require__(7) // contains
-], __WEBPACK_AMD_DEFINE_RESULT__ = function (jQuery, pnum, access, rmargin, document, rcssNum, rnumnonpx, cssExpand, getStyles, swap, curCSS, adjustCSS, addGetHookIf, support) {
+], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, pnum, access, rmargin, document, rcssNum, rnumnonpx, cssExpand, getStyles, swap, curCSS, adjustCSS, addGetHookIf, support) {
 
 	"use strict";
 
@@ -7925,7 +8018,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 	});
 
 	return jQuery;
-}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -7935,11 +8028,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 "use strict";
 var __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+!(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
 	"use strict";
 
 	return ["Top", "Right", "Bottom", "Left"];
-}.call(exports, __webpack_require__, exports, module),
+}).call(exports, __webpack_require__, exports, module),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -7949,7 +8042,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+!(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
 
 	"use strict";
 
@@ -7975,7 +8068,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 
 		return ret;
 	};
-}.call(exports, __webpack_require__, exports, module),
+}).call(exports, __webpack_require__, exports, module),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -7985,7 +8078,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(23)], __WEBPACK_AMD_DEFINE_RESULT__ = function (jQuery, rcssNum) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(23)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, rcssNum) {
 
 	"use strict";
 
@@ -8046,7 +8139,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 	}
 
 	return adjustCSS;
-}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -8056,7 +8149,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(3), __webpack_require__(61), __webpack_require__(62)], __WEBPACK_AMD_DEFINE_RESULT__ = function (jQuery, document) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(3), __webpack_require__(61), __webpack_require__(62)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, document) {
 
 	"use strict";
 
@@ -8133,7 +8226,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 		// A fallback to window.onload, that will always work
 		window.addEventListener("load", completed);
 	}
-}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -8143,7 +8236,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (jQuery) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery) {
 
 	"use strict";
 
@@ -8152,7 +8245,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 			throw error;
 		});
 	};
-}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -8164,7 +8257,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(12), __webpack_require__(63)], __WEBPACK_AMD_DEFINE_RESULT__ = function (jQuery, slice) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(12), __webpack_require__(63)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, slice) {
 
 	"use strict";
 
@@ -8499,7 +8592,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 	});
 
 	return jQuery;
-}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -8509,7 +8602,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(64)], __WEBPACK_AMD_DEFINE_RESULT__ = function (jQuery, rnothtmlwhite) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(64)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, rnothtmlwhite) {
 
 	"use strict";
 
@@ -8743,7 +8836,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 	};
 
 	return jQuery;
-}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -8753,7 +8846,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+!(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
 	"use strict";
 
 	// Only count HTML whitespace
@@ -8762,7 +8855,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 
 	return (/[^\x20\t\r\n\f]+/g
 	);
-}.call(exports, __webpack_require__, exports, module),
+}).call(exports, __webpack_require__, exports, module),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
@@ -11439,9 +11532,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     freeGlobal.Hammer = Hammer;
 
     if (true) {
-        !(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+        !(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
             return Hammer;
-        }.call(exports, __webpack_require__, exports, module),
+        }).call(exports, __webpack_require__, exports, module),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
     } else if (typeof module != 'undefined' && module.exports) {
         module.exports = Hammer;
@@ -11460,7 +11553,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="book">\n	<!--\n		STARTBOOK-CONTAINER\n	-->\n	<div id="bookContainer">\n		<!--\n			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366\n		-->\n		<%- include src/components/book-read/tabs-large-device.ejs -%>\n		<!--\n			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		<div id="swing-container">\n			<!--\n				START TEXT-CONTAINER\n			-->\n			<div data-wb-text-container class="card-4">\n				<!--\n					BOOKMARK\n				-->\n				<div id="bookmark">\n					<p><i class="material-icons">bookmark_border</i></p>\n				</div>\n				<!--\n					TOC (inside textContainer) : width < 1366\n				-->\n				<div id="toc">\n					<div data-wb-toc >\n						<button id="close-toc" type="button" class="btn">&times;</button>\n						<div id="toc-header">\n							<p><%- book.authorDisplay %></p>\n							<p class="text-uppercase"><%- book.title %></p>\n						</div>\n					</div>\n				</div>\n				<!--\n					OPTIONS-MODAL (inside textContainer) : width >= 1366\n				-->\n				<%- include src/components/book-read/options-modal.ejs -%>\n				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span id="current-section-title" class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text style="background-color: <%- book.styles.color %>; background-image: url(<%- book.styles.image %>)"></div>\n				<!--\n					BOTTOM (inside textContainer) : pagination\n				-->\n				<div id="bottom">\n					<span id="currentByTotal" class="wb-currentByTotal-pages"></span>\n				</div>\n				<div id="text-loader-container" class="hidden">\n					<div id="text-loader"></div>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM-SMALL (outside textContainer) : width < 768\n		-->\n		<div id="book-nav-bar-bottom-small">\n			<a id="home" href="/#/books/" class="home btn"><i class="material-icons">arrow_back</i></a>\n			<button id="add-bookmark" class="add-bookmark btn"><i class="material-icons">bookmark_border</i></button>\n			<button id="open-options" class="btn"><i class="material-icons">settings</i></button>\n			<button id="open-toc" class="open-toc btn"><i class="material-icons">toc</i></button>\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom">\n			<div id="swing-bar">\n				<div id="book-nav-bar-bottom-controls">\n					<button id="home-large" class="home btn"><i class="material-icons">arrow_back</i></button>\n					<button id="add-bookmark-large" class="add-bookmark btn"><i class="material-icons">bookmark_border</i></button>\n					<div id="center">\n						<button id="backward-large" class="btn">&lt;</button>\n						<button id="forward-large" class="btn">&gt;</button>\n					</div>\n					<button id="open-options-medium" class="btn"><i class="material-icons">settings</i></button>\n					<button id="open-toc-large" class="open-toc btn"><i class="material-icons">toc</i></button>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n	<div id="book-loader-container" class="hidden">\n		<div id="book-loader" style="border-top: 8px solid <%= book.styles.color %>; border-bottom: 8px solid <%= book.styles.color %>"></div>\n	</div>\n</div>\n',
+        input: '<div id="book">\n	<!--\n		STARTBOOK-CONTAINER\n	-->\n	<div id="bookContainer">\n		<!--\n			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366\n		-->\n		<%- include src/components/book-read/tabs-large-device.ejs -%>\n		<!--\n			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		<div id="swing-container">\n			<!--\n				START TEXT-CONTAINER\n			-->\n			<div data-wb-text-container class="card-4">\n				<!--\n					BOOKMARK\n				-->\n				<div id="bookmark">\n					<p><i class="material-icons">bookmark_border</i></p>\n				</div>\n				<!--\n					TOC (inside textContainer) : width < 1366\n				-->\n				<div id="toc">\n					<div data-wb-toc >\n						<button id="close-toc" type="button" class="btn">&times;</button>\n						<div id="toc-header">\n							<p><%- book.authorDisplay %></p>\n							<p class="text-uppercase"><%- book.title %></p>\n						</div>\n					</div>\n				</div>\n				<!--\n					OPTIONS-MODAL (inside textContainer) : width >= 1366\n				-->\n				<%- include src/components/book-read/options-modal.ejs -%>\n				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span id="current-section-title" class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text></div>\n				<!--\n					BOTTOM (inside textContainer) : pagination\n				-->\n				<div id="bottom">\n					<span id="currentByTotal" class="wb-currentByTotal-pages"></span>\n				</div>\n				<div id="text-loader-container" class="hidden">\n					<div id="text-loader"></div>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM-SMALL (outside textContainer) : width < 768\n		-->\n		<div id="book-nav-bar-bottom-small">\n			<a id="home" href="/#/books/" class="home btn"><i class="material-icons">arrow_back</i></a>\n			<button id="add-bookmark" class="add-bookmark btn"><i class="material-icons">bookmark_border</i></button>\n			<button id="open-options" class="btn"><i class="material-icons">settings</i></button>\n			<button id="open-toc" class="open-toc btn"><i class="material-icons">toc</i></button>\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom">\n			<div id="swing-bar">\n				<div id="book-nav-bar-bottom-controls">\n					<button id="home-large" class="home btn"><i class="material-icons">arrow_back</i></button>\n					<button id="add-bookmark-large" class="add-bookmark btn"><i class="material-icons">bookmark_border</i></button>\n					<div id="center">\n						<button id="backward-large" class="btn">&lt;</button>\n						<button id="forward-large" class="btn">&gt;</button>\n					</div>\n					<button id="open-options-medium" class="btn"><i class="material-icons">settings</i></button>\n					<button id="open-toc-large" class="open-toc btn"><i class="material-icons">toc</i></button>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n	<div id="book-loader-container" class="hidden">\n		<div id="book-loader" style="border-top: 8px solid <%= book.styles.color %>; border-bottom: 8px solid <%= book.styles.color %>"></div>\n	</div>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -11569,7 +11662,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                     }
                     buf.push('\n				</div>\n			</div>\n		</div>\n		<div id="font-size-container">\n			<p><b>Taille de la police</b></p>\n			<div>\n				<div class="col-left">\n					<p><label><input type="radio" name="fontSize" value="14">&ensp;14 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="16">&ensp;16 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="18">&ensp;18 px</label></p>\n				</div>\n				<div class="col-right">\n					<p><label><input type="radio" name="fontSize" value="15">&ensp;15 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="17">&ensp;17 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="19">&ensp;19 px</label></p>\n				</div>\n			</div>\n		</div>\n	</div>\n</div>\n');
                     return buf.join("");
-                }() + '				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span id="current-section-title" class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text style="background-color: ', (__stack.lineno = 47, book.styles.color), "; background-image: url(", (__stack.lineno = 47, book.styles.image), ')"></div>\n				<!--\n					BOTTOM (inside textContainer) : pagination\n				-->\n				<div id="bottom">\n					<span id="currentByTotal" class="wb-currentByTotal-pages"></span>\n				</div>\n				<div id="text-loader-container" class="hidden">\n					<div id="text-loader"></div>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM-SMALL (outside textContainer) : width < 768\n		-->\n		<div id="book-nav-bar-bottom-small">\n			<a id="home" href="/#/books/" class="home btn"><i class="material-icons">arrow_back</i></a>\n			<button id="add-bookmark" class="add-bookmark btn"><i class="material-icons">bookmark_border</i></button>\n			<button id="open-options" class="btn"><i class="material-icons">settings</i></button>\n			<button id="open-toc" class="open-toc btn"><i class="material-icons">toc</i></button>\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom">\n			<div id="swing-bar">\n				<div id="book-nav-bar-bottom-controls">\n					<button id="home-large" class="home btn"><i class="material-icons">arrow_back</i></button>\n					<button id="add-bookmark-large" class="add-bookmark btn"><i class="material-icons">bookmark_border</i></button>\n					<div id="center">\n						<button id="backward-large" class="btn">&lt;</button>\n						<button id="forward-large" class="btn">&gt;</button>\n					</div>\n					<button id="open-options-medium" class="btn"><i class="material-icons">settings</i></button>\n					<button id="open-toc-large" class="open-toc btn"><i class="material-icons">toc</i></button>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n	<div id="book-loader-container" class="hidden">\n		<div id="book-loader" style="border-top: 8px solid ', escape((__stack.lineno = 96, book.styles.color)), "; border-bottom: 8px solid ", escape((__stack.lineno = 96, book.styles.color)), '"></div>\n	</div>\n</div>\n');
+                }() + '				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span id="current-section-title" class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text></div>\n				<!--\n					BOTTOM (inside textContainer) : pagination\n				-->\n				<div id="bottom">\n					<span id="currentByTotal" class="wb-currentByTotal-pages"></span>\n				</div>\n				<div id="text-loader-container" class="hidden">\n					<div id="text-loader"></div>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM-SMALL (outside textContainer) : width < 768\n		-->\n		<div id="book-nav-bar-bottom-small">\n			<a id="home" href="/#/books/" class="home btn"><i class="material-icons">arrow_back</i></a>\n			<button id="add-bookmark" class="add-bookmark btn"><i class="material-icons">bookmark_border</i></button>\n			<button id="open-options" class="btn"><i class="material-icons">settings</i></button>\n			<button id="open-toc" class="open-toc btn"><i class="material-icons">toc</i></button>\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom">\n			<div id="swing-bar">\n				<div id="book-nav-bar-bottom-controls">\n					<button id="home-large" class="home btn"><i class="material-icons">arrow_back</i></button>\n					<button id="add-bookmark-large" class="add-bookmark btn"><i class="material-icons">bookmark_border</i></button>\n					<div id="center">\n						<button id="backward-large" class="btn">&lt;</button>\n						<button id="forward-large" class="btn">&gt;</button>\n					</div>\n					<button id="open-options-medium" class="btn"><i class="material-icons">settings</i></button>\n					<button id="open-toc-large" class="open-toc btn"><i class="material-icons">toc</i></button>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n	<div id="book-loader-container" class="hidden">\n		<div id="book-loader" style="border-top: 8px solid ', escape((__stack.lineno = 96, book.styles.color)), "; border-bottom: 8px solid ", escape((__stack.lineno = 96, book.styles.color)), '"></div>\n	</div>\n</div>\n');
             })();
         }
         return buf.join("");

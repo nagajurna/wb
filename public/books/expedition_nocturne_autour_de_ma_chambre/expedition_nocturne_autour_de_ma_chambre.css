@@ -2,6 +2,11 @@
 	font-family: 'Noto Serif', 'Georgia', serif;
 }
 
+[data-wb-text].cover {
+	background-color: rgba(115, 63, 63, 0.8);
+	background-image: url("/books/expedition_nocturne_autour_de_ma_chambre/expedition_nocturne_autour_de_ma_chambre_cover.jpg");
+}
+
 [data-wb-text] #cover {
 	position: static;
 }

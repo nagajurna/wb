@@ -224,7 +224,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-22 18:50:26",
-      "updated_at": "2017-12-16 11:47:56",
+      "updated_at": "2017-12-16 20:29:27",
       "id": "13dc7d86-f837-4657-a690-ee3a34b90962"
     },
     {
@@ -275,7 +275,7 @@
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
-        "title": "padding-top: 10%; font-size: 1.25em;letter-spacing: 1px",
+        "title": "padding-top: 10%; font-size: 1.2em;letter-spacing: 1px",
         "subtitle1": "",
         "subtitle2": "",
         "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 1.5px;font-style: italic; font-size: 0.9em"
@@ -296,7 +296,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-24 16:05:11",
-      "updated_at": "2017-12-16 15:54:11",
+      "updated_at": "2017-12-16 20:03:07",
       "id": "99da47e0-1e93-409e-ba88-233ef3b5ee88"
     },
     {

@@ -11,7 +11,7 @@ const book = function(container) {
 	
 	let c = container;
 	
-	let init = function() {
+	let init = function(content) {
 		let textContainer = bookContainer.querySelector('[data-wb-text-container]');
 		let tocLarge = bookContainer.querySelector('#toc-large-device');
 		let tabOptions = bookContainer.querySelector('#tab-options');
@@ -29,7 +29,7 @@ const book = function(container) {
 		let bookNavBarBottomSmall = bookContainer.querySelector('#book-nav-bar-bottom-small');
 		let fontSizeValidLarge = bookContainer.querySelector('#font-size-valid-large');
 		let fontSizeValid = bookContainer.querySelector('#font-size-valid');
-		let cover = text.querySelector("#cover.wb-section");
+		//let cover = text.querySelector("#cover.wb-section");
 		
 		//DIMENSIONS
 		let h, w, marginY, marginX, font, fontSize, lineHeight, top;
@@ -65,7 +65,7 @@ const book = function(container) {
 			w = 550;
 			fontSize = localStore.getFontSize('large') ? localStore.getFontSize('large') : 16;
 			text.style.fontSize = fontSize+'px';
-			cover.style.fontSize = '16px';
+			//cover.style.fontSize = '16px';
 			if(window.innerWidth < 1366) {
 				for(let i=0; i<fontSizesMedium.length; i++) {
 					if(fontSizesMedium[i].value==fontSize) {
@@ -97,7 +97,7 @@ const book = function(container) {
 			 bookNavBarBottomSmall.style.width = w + 'px';
 			 fontSize = localStore.getFontSize('small') ? localStore.getFontSize('small') : 14;
 			 text.style.fontSize = fontSize+'px';
-			 cover.style.fontSize = '14px';
+			 //cover.style.fontSize = '14px';
 			 font
 			 for(let i=0; i<fontSizes.length; i++) {
 				if(fontSizes[i].value==fontSize) {
@@ -129,15 +129,19 @@ const book = function(container) {
 			 height: h,
 			 maxWidth: w,
 			 marginY: marginY,
-			 marginX: marginX
+			 marginX: marginX,
+			 text: content
 		 })
 		 
-		 book.toBook()
+		 book.init()
 		 .then( resolve => {
 			 if(localStore.getBkmrk(bk.id)) {
 				let bkmrk = localStore.getBkmrk(bk.id);
 				book.goToBookmark(bkmrk);
 			 }
+		 })
+		 .catch(error => {
+			 console.log(error);
 		 });
 		 
   
@@ -174,7 +178,7 @@ const book = function(container) {
 				w = 550;
 				fontSize = localStore.getFontSize('large') ? localStore.getFontSize('large') : 16;
 				text.style.fontSize = fontSize+'px';
-				cover.style.fontSize = '16px';
+				//cover.style.fontSize = '16px';
 				if(window.innerWidth < 1366) {
 					for(let i=0; i<fontSizesMedium.length; i++) {
 						if(fontSizesMedium[i].value==fontSize) {
@@ -196,7 +200,7 @@ const book = function(container) {
 				bookNavBarBottomSmall.style.width = w + 'px';
 				fontSize = localStore.getFontSize('small') ? localStore.getFontSize('small') : 14;
 				text.style.fontSize = fontSize+'px';
-				cover.style.fontSize = '14px';
+				//cover.style.fontSize = '14px';
 				for(let i=0; i<fontSizes.length; i++) {
 					if(fontSizes[i].value==fontSize) {
 						fontSizes[i].checked=true;
@@ -228,7 +232,7 @@ const book = function(container) {
 			book.setMarginX(marginX);
 			
 			if(book.col===true) {
-				book.toBook();
+				book.init();
 			}
 		
 		}, false);
@@ -434,10 +438,10 @@ const book = function(container) {
 		let addBookmarks = bookContainer.querySelectorAll('.add-bookmark');
 		for(let i=0; i<addBookmarks.length; i++) {
 			addBookmarks[i].addEventListener('click', event => {
-				if(book.checkFirstPage()) { 
-					localStore.removeBkmrk(bk.id);
-					return;
-				}
+				//if(book.checkFirstPage()) { 
+					//localStore.removeBkmrk(bk.id);
+					//return;
+				//}
 				let newBmrk = book.getBookmark();
 				let bookmark = document.querySelector('#bookmark');
 				localStore.setBkmrk(bk.id, newBmrk);
@@ -465,9 +469,9 @@ const book = function(container) {
 						book.setMarginY(marginY);
 						//text size
 						text.style.fontSize = size + 'px';
-						cover.style.fontSize = '16px';
+						//cover.style.fontSize = '16px';
 						//book
-						book.toBook()
+						book.init()
 						.then( resolve => {
 							//end loader
 							setTimeout( function() { 
@@ -501,9 +505,9 @@ const book = function(container) {
 						book.setMarginY(marginY);
 						//text size
 						text.style.fontSize = size + 'px';
-						cover.style.fontSize = '16px';
+						//cover.style.fontSize = '16px';
 						//book
-						book.toBook()
+						book.init()
 						.then( resolve => {
 							//end loader
 							setTimeout( function() { 
@@ -536,9 +540,9 @@ const book = function(container) {
 						book.setMarginY(marginY);
 						//text size
 						text.style.fontSize = size + 'px';
-						cover.style.fontSize = '14px';
+						//cover.style.fontSize = '14px';
 						//book
-						book.toBook()
+						book.init()
 						.then(resolve => {
 							//end loader
 							setTimeout( () => {
@@ -546,7 +550,7 @@ const book = function(container) {
 								utils.addClass('#text-loader-container','hidden');
 							}, 100);
 						});				
-					 },300);
+					 },150);
 				  }, 100);
 			}, false);
 		}
@@ -569,7 +573,7 @@ const book = function(container) {
 						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
 						bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
 						//book
-						book.toBook()
+						book.init()
 						.then (resolve => {
 							//end loader
 							setTimeout( function() { 
@@ -602,7 +606,7 @@ const book = function(container) {
 						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
 					    bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
 						//book
-						book.toBook()
+						book.init()
 						.then( resolve => {
 							//end loader
 							setTimeout( function() { 
@@ -634,7 +638,7 @@ const book = function(container) {
 						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
 					    bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
 						//book
-						book.toBook()
+						book.init()
 						.then (resolve => {
 							//end loader
 							setTimeout( () => {
@@ -642,7 +646,7 @@ const book = function(container) {
 								utils.addClass('#text-loader-container','hidden');
 							}, 100);
 						});	
-					},300);
+					},150);
 				 }, 100);
 			}, false);
 		}	
@@ -677,12 +681,12 @@ const book = function(container) {
 	
 	//INSERT TEMPLATE ET START LOADER
 	//insert template in container
-	document.body.style.height = '100%';
-	document.body.style.overflowY = 'hidden';
+	//document.body.style.height = '100%';
 	c.innerHTML = bookReadTemplate({ book:bk });
 	//START LOADER
-	document.body.style.overflow = 'hidden';
-	document.body.style.height = window.innerHeight + 'px';
+	//document.body.style.overflowY = 'hidden';
+	//document.body.style.height = window.innerHeight + 'px';
+	document.body.style.overflowY = 'hidden';
 	utils.removeClass('#book-loader-container','hidden');
 	
 	//BOOK CONTAINER
@@ -706,10 +710,13 @@ const book = function(container) {
 		return utils.ajax(options);
 	})
 	.then( content => {
-		let div = document.createElement('div');
-		div.innerHTML = content;
-		text.appendChild(div);
-		init();
+		//let div = document.createElement('div');
+		//div.innerHTML = content;
+		//text.appendChild(div);
+		init(content);
+	})
+	.catch( error => {
+		console.log(error);
 	});
 	
 	
