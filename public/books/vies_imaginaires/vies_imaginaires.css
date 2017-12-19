@@ -40,11 +40,7 @@
 	opacity: 0.75;
 }
 
-[data-wb-text] #cover-logo #span1 {
-	font-style: italic;
-}
-
-[data-wb-text] #cover-logo #span2 {
+[data-wb-text] #cover-logo #span {
 	font-variant: small-caps;
 }
 
@@ -79,5 +75,8 @@
 
 }
 
-
+[data-wb-text] #fin {
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
 

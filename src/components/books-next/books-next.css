@@ -94,7 +94,7 @@
 	position: relative;
 }
 
-#books-next-container .book .logo .span1 {
+#books-next-container .book .logo .span {
 	font-variant: small-caps;
 	font-style: normal;
 }

@@ -361,6 +361,29 @@ FOOTER
 	text-align: center;
 }
 
+#footer img {
+	width: 125px;
+	height: auto;
+}
+
+#footer #mention {
+	font-variant: small-caps;
+	letter-spacing: 1px;
+}
+
+#footer #logo {
+	margin-bottom: 0px;
+}
+
+#footer #contact {
+	margin-top: 0px;
+}
+
+#footer #mail {
+/*
+	border-bottom: 1px solid black;
+*/
+}
 
 /*
 NAV-BAR-TOP
