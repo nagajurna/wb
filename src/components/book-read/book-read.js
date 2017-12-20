@@ -456,7 +456,7 @@ const book = function(container) {
 			fontSizesLarge[i].addEventListener('click', event => {
 				let size = event.target.value;
 				localStore.setFontSize('large', size);
-				setTimeout( () => {
+				//setTimeout( () => {
 					//text opacity = 0
 					text.style.opacity = '0';
 					bookContainer.querySelector('#current-section-title').style.opacity = '0';
@@ -474,15 +474,21 @@ const book = function(container) {
 						book.init()
 						.then( resolve => {
 							//end loader
-							setTimeout( function() { 
+							////setTimeout( function() { 
 								utils.addClass('#text-loader-container','hidden');
 								text.style.opacity = '1';
 								bookContainer.querySelector('#current-section-title').style.opacity = '1';
 								bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-							}, 100);
+							////}, 100);
+						})
+						.catch( error => {
+							utils.addClass('#text-loader-container','hidden');
+							text.style.opacity = '1';
+							bookContainer.querySelector('#current-section-title').style.opacity = '1';
+							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
 						});
-					}, 150);
-				},100);
+					}, 100);
+				//},100);
 			}, false);
 		}
 		
@@ -491,7 +497,7 @@ const book = function(container) {
 			fontSizesMedium[i].addEventListener('click', event => {
 				let size = event.target.value;
 				localStore.setFontSize('large', size);
-				setTimeout( () => {
+				//setTimeout( () => {
 					optionsMedium.className = '';
 					//close modal && text opacity = 0
 					text.style.opacity = '0';
@@ -510,15 +516,21 @@ const book = function(container) {
 						book.init()
 						.then( resolve => {
 							//end loader
-							setTimeout( function() { 
+							//setTimeout( function() { 
 								utils.addClass('#text-loader-container','hidden');
 								text.style.opacity = '1';
 								bookContainer.querySelector('#current-section-title').style.opacity = '1';
 								bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-							}, 100);
+							//}, 100);
+						})
+						.catch( error => {
+							utils.addClass('#text-loader-container','hidden');
+							text.style.opacity = '1';
+							bookContainer.querySelector('#current-section-title').style.opacity = '1';
+							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
 						});
-					}, 150);
-				 }, 100);
+					}, 100);
+				 //}, 100);
 				
 			}, false);
 		}
@@ -528,8 +540,8 @@ const book = function(container) {
 			fontSizes[i].addEventListener('click', event => {
 				let size = event.target.value;
 				localStore.setFontSize('small', size);
-				setTimeout( () => {
-					//start loader and colose modal
+				//setTimeout( () => {
+					//start loader and close modal
 					utils.removeClass('#text-loader-container','hidden');
 					utils.removeClass('#options','open');
 					document.body.style.overflow = 'hidden';
@@ -545,13 +557,17 @@ const book = function(container) {
 						book.init()
 						.then(resolve => {
 							//end loader
-							setTimeout( () => {
+							//setTimeout( () => {
 								document.body.style.overflow = 'visible'; 
 								utils.addClass('#text-loader-container','hidden');
-							}, 100);
-						});				
-					 },150);
-				  }, 100);
+							//}, 100);
+						})
+						.catch( error => {
+							document.body.style.overflow = 'visible'; 
+							utils.addClass('#text-loader-container','hidden');
+						});		
+					 },100);
+				  //}, 100);
 			}, false);
 		}
 		
@@ -561,7 +577,7 @@ const book = function(container) {
 			fontsLarge[i].addEventListener('click', event => {
 				let font = event.target.value;
 				localStore.setFont(font);
-				setTimeout( () => {
+				//setTimeout( () => {
 					//text opacity = 0
 					text.style.opacity = '0';
 					bookContainer.querySelector('#current-section-title').style.opacity = '0';
@@ -576,15 +592,21 @@ const book = function(container) {
 						book.init()
 						.then (resolve => {
 							//end loader
-							setTimeout( function() { 
+							//setTimeout( function() { 
 								utils.addClass('#text-loader-container','hidden');
 								text.style.opacity = '1';
 								bookContainer.querySelector('#current-section-title').style.opacity = '1';
 								bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-							}, 100);
+							//}, 100);
+						})
+						.catch( error => {
+							utils.addClass('#text-loader-container','hidden');
+							text.style.opacity = '1';
+							bookContainer.querySelector('#current-section-title').style.opacity = '1';
+							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
 						});
-					 }, 150);
-				}, 100);
+					 }, 100);
+				//}, 100);
 			}, false);
 		}
 		
@@ -593,7 +615,7 @@ const book = function(container) {
 			fontsMedium[i].addEventListener('click', event => {
 				let font = event.target.value;
 				localStore.setFont(font);
-				setTimeout( () => {
+				//setTimeout( () => {
 					optionsMedium.className = '';
 					//close modal && text opacity = 0
 					text.style.opacity = '0';
@@ -609,15 +631,21 @@ const book = function(container) {
 						book.init()
 						.then( resolve => {
 							//end loader
-							setTimeout( function() { 
+							//setTimeout( function() { 
 								utils.addClass('#text-loader-container','hidden');
 								text.style.opacity = '1';
 								bookContainer.querySelector('#current-section-title').style.opacity = '1';
 								bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-							}, 100);
+							//}, 100);
+						})
+						.catch( error => {
+							utils.addClass('#text-loader-container','hidden');
+							text.style.opacity = '1';
+							bookContainer.querySelector('#current-section-title').style.opacity = '1';
+							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
 						});
-					}, 150);
-				 }, 100);
+					}, 100);
+				 //}, 100);
 				
 			}, false);
 		}
@@ -627,7 +655,7 @@ const book = function(container) {
 			fonts[i].addEventListener('click', event => {
 				let font = event.target.value;
 				localStore.setFont(font);
-				setTimeout( () => {
+				//setTimeout( () => {
 					//start loader and close modal
 					utils.removeClass('#text-loader-container','hidden');
 					utils.removeClass('#options','open');
@@ -641,13 +669,17 @@ const book = function(container) {
 						book.init()
 						.then (resolve => {
 							//end loader
-							setTimeout( () => {
+							//setTimeout( () => {
 								document.body.style.overflow = 'visible'; 
 								utils.addClass('#text-loader-container','hidden');
-							}, 100);
-						});	
-					},150);
-				 }, 100);
+							//}, 100);
+						})
+						.catch( error => {
+							document.body.style.overflow = 'visible'; 
+							utils.addClass('#text-loader-container','hidden');
+						});
+					},100);
+				 //}, 100);
 			}, false);
 		}	
 		
