@@ -29,7 +29,7 @@
 
 [data-wb-text] #cover-logo {
 	position: absolute;
-	bottom: 0.5em;
+	bottom: 2em;
 	left: 0px;
 	width: 100%;
 	text-align: center;
@@ -47,13 +47,14 @@
 	[data-wb-text] #cover-title {
 		padding-top: 6%;
 		font-size: 1.9em;
-		line-height: 1.9em;
-		word-spacing: 0.35em;
+		word-spacing: 0.15em;
 		letter-spacing: 3px;
 	}
 	
 	[data-wb-text] #cover-logo {
 		bottom: 1.5em;
+		font-size: 1.4em;
+		letter-spacing: 6px;
 	}
 }
 

@@ -86,10 +86,13 @@ const home = function(container) {
 	if(window.innerWidth >= 750) {
 		if(dataStore.getData('location').prevLocation!==undefined && dataStore.getData('location').prevLocation.match(/\/read$/)) {
 			let id= dataStore.getData('book');
+			
 			for(let i=0; i<slides.length; i++) {
 				if(slides[i].id.replace(/slide_/,'')===id) {
 					index = i;
 					break;
+				} else {
+					index = 0;
 				}
 			}
 		} else {
@@ -129,9 +132,11 @@ const home = function(container) {
 	if(dataStore.getData('location').prevLocation!==undefined && dataStore.getData('location').prevLocation.match(/\/read$/)) {
 		let id= dataStore.getData('book');
 		let el = document.getElementById(id);
-		el.scrollIntoView(true);
-		let html = document.getElementsByTagName("html")[0];
-		html.scrollTop = html.scrollTop-40;
+		if(el) {
+			el.scrollIntoView(true);
+			let html = document.getElementsByTagName("html")[0];
+			html.scrollTop = html.scrollTop-40;
+		}
 	}
 	//go to book/read
 	let readBk = event => {

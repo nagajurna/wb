@@ -2329,10 +2329,13 @@ var home = function home(container) {
 	if (window.innerWidth >= 750) {
 		if (_dataStore2.default.getData('location').prevLocation !== undefined && _dataStore2.default.getData('location').prevLocation.match(/\/read$/)) {
 			var id = _dataStore2.default.getData('book');
+
 			for (var i = 0; i < slides.length; i++) {
 				if (slides[i].id.replace(/slide_/, '') === id) {
 					index = i;
 					break;
+				} else {
+					index = 0;
 				}
 			}
 		} else {
@@ -2371,9 +2374,11 @@ var home = function home(container) {
 	if (_dataStore2.default.getData('location').prevLocation !== undefined && _dataStore2.default.getData('location').prevLocation.match(/\/read$/)) {
 		var _id = _dataStore2.default.getData('book');
 		var el = document.getElementById(_id);
-		el.scrollIntoView(true);
-		var html = document.getElementsByTagName("html")[0];
-		html.scrollTop = html.scrollTop - 40;
+		if (el) {
+			el.scrollIntoView(true);
+			var html = document.getElementsByTagName("html")[0];
+			html.scrollTop = html.scrollTop - 40;
+		}
 	}
 	//go to book/read
 	var readBk = function readBk(event) {
