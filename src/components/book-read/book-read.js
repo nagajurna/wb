@@ -139,6 +139,11 @@ const book = function(container) {
 				let bkmrk = localStore.getBkmrk(bk.id);
 				book.goToBookmark(bkmrk);
 			 }
+			setTimeout( function() {
+				document.body.style.overflowY = 'visible';
+				utils.addClass('#book-loader-container', 'hidden');
+				bookContainer.className = 'show';
+			}, 400);
 		 })
 		 .catch(error => {
 			 console.log(error);
@@ -456,39 +461,34 @@ const book = function(container) {
 			fontSizesLarge[i].addEventListener('click', event => {
 				let size = event.target.value;
 				localStore.setFontSize('large', size);
-				//setTimeout( () => {
-					//text opacity = 0
-					text.style.opacity = '0';
-					bookContainer.querySelector('#current-section-title').style.opacity = '0';
-					bookContainer.querySelector('#currentByTotal').style.opacity = '0';
-					utils.removeClass('#text-loader-container','hidden');
-					setTimeout( () => {
-						//marginY is relative to line-height (line-height : 1.5em)
-						let lineHeight = size*1.5;
-						let marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*2;
-						book.setMarginY(marginY);
-						//text size
-						text.style.fontSize = size + 'px';
-						//cover.style.fontSize = '16px';
-						//book
-						book.init()
-						.then( resolve => {
-							//end loader
-							////setTimeout( function() { 
-								utils.addClass('#text-loader-container','hidden');
-								text.style.opacity = '1';
-								bookContainer.querySelector('#current-section-title').style.opacity = '1';
-								bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-							////}, 100);
-						})
-						.catch( error => {
-							utils.addClass('#text-loader-container','hidden');
-							text.style.opacity = '1';
-							bookContainer.querySelector('#current-section-title').style.opacity = '1';
-							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-						});
-					}, 100);
-				//},100);
+				text.style.opacity = '0';
+				bookContainer.querySelector('#current-section-title').style.opacity = '0';
+				bookContainer.querySelector('#currentByTotal').style.opacity = '0';
+				utils.removeClass('#text-loader-container','hidden');
+				setTimeout( () => {
+					//marginY is relative to line-height (line-height : 1.5em)
+					let lineHeight = size*1.5;
+					let marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*2;
+					book.setMarginY(marginY);
+					//text size
+					text.style.fontSize = size + 'px';
+					//cover.style.fontSize = '16px';
+					//book
+					book.init()
+					.then( resolve => {
+						//end loader
+						utils.addClass('#text-loader-container','hidden');
+						text.style.opacity = '1';
+						bookContainer.querySelector('#current-section-title').style.opacity = '1';
+						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+					})
+					.catch( error => {
+						utils.addClass('#text-loader-container','hidden');
+						text.style.opacity = '1';
+						bookContainer.querySelector('#current-section-title').style.opacity = '1';
+						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+					});
+				}, 100);
 			}, false);
 		}
 		
@@ -497,41 +497,36 @@ const book = function(container) {
 			fontSizesMedium[i].addEventListener('click', event => {
 				let size = event.target.value;
 				localStore.setFontSize('large', size);
-				//setTimeout( () => {
-					optionsMedium.className = '';
-					//close modal && text opacity = 0
-					text.style.opacity = '0';
-					bookContainer.querySelector('#current-section-title').style.opacity = '0';
-					bookContainer.querySelector('#currentByTotal').style.opacity = '0';
-					utils.removeClass('#text-loader-container','hidden');
-					setTimeout( () => {
-						//marginY is relative to line-height (line-height : 1.5em)
-						let lineHeight = size*1.5;
-						let marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*2;
-						book.setMarginY(marginY);
-						//text size
-						text.style.fontSize = size + 'px';
-						//cover.style.fontSize = '16px';
-						//book
-						book.init()
-						.then( resolve => {
-							//end loader
-							//setTimeout( function() { 
-								utils.addClass('#text-loader-container','hidden');
-								text.style.opacity = '1';
-								bookContainer.querySelector('#current-section-title').style.opacity = '1';
-								bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-							//}, 100);
-						})
-						.catch( error => {
-							utils.addClass('#text-loader-container','hidden');
-							text.style.opacity = '1';
-							bookContainer.querySelector('#current-section-title').style.opacity = '1';
-							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-						});
-					}, 100);
-				 //}, 100);
-				
+				//close modal && text opacity = 0
+				optionsMedium.className = '';
+				text.style.opacity = '0';
+				bookContainer.querySelector('#current-section-title').style.opacity = '0';
+				bookContainer.querySelector('#currentByTotal').style.opacity = '0';
+				utils.removeClass('#text-loader-container','hidden');
+				setTimeout( () => {
+					//marginY is relative to line-height (line-height : 1.5em)
+					let lineHeight = size*1.5;
+					let marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*2;
+					book.setMarginY(marginY);
+					//text size
+					text.style.fontSize = size + 'px';
+					//cover.style.fontSize = '16px';
+					//book
+					book.init()
+					.then( resolve => {
+						//end loader
+						utils.addClass('#text-loader-container','hidden');
+						text.style.opacity = '1';
+						bookContainer.querySelector('#current-section-title').style.opacity = '1';
+						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+					})
+					.catch( error => {
+						utils.addClass('#text-loader-container','hidden');
+						text.style.opacity = '1';
+						bookContainer.querySelector('#current-section-title').style.opacity = '1';
+						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+					});
+				}, 100);
 			}, false);
 		}
 		
@@ -540,34 +535,30 @@ const book = function(container) {
 			fontSizes[i].addEventListener('click', event => {
 				let size = event.target.value;
 				localStore.setFontSize('small', size);
-				//setTimeout( () => {
-					//start loader and close modal
-					utils.removeClass('#text-loader-container','hidden');
-					utils.removeClass('#options','open');
-					document.body.style.overflow = 'hidden';
-					setTimeout( () => {
-						//marginY is relative to line-height (line-height : 1.5em)
-						let lineHeight = size*1.5;
-						let marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*2;
-						book.setMarginY(marginY);
-						//text size
-						text.style.fontSize = size + 'px';
-						//cover.style.fontSize = '14px';
-						//book
-						book.init()
-						.then(resolve => {
-							//end loader
-							//setTimeout( () => {
-								document.body.style.overflow = 'visible'; 
-								utils.addClass('#text-loader-container','hidden');
-							//}, 100);
-						})
-						.catch( error => {
-							document.body.style.overflow = 'visible'; 
-							utils.addClass('#text-loader-container','hidden');
-						});		
-					 },100);
-				  //}, 100);
+				//start loader and close modal
+				utils.removeClass('#text-loader-container','hidden');
+				utils.removeClass('#options','open');
+				document.body.style.overflow = 'hidden';
+				setTimeout( () => {
+					//marginY is relative to line-height (line-height : 1.5em)
+					let lineHeight = size*1.5;
+					let marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*2;
+					book.setMarginY(marginY);
+					//text size
+					text.style.fontSize = size + 'px';
+					//cover.style.fontSize = '14px';
+					//book
+					book.init()
+					.then(resolve => {
+						//end loader
+						document.body.style.overflow = 'visible'; 
+						utils.addClass('#text-loader-container','hidden');
+					})
+					.catch( error => {
+						document.body.style.overflow = 'visible'; 
+						utils.addClass('#text-loader-container','hidden');
+					});		
+				 },100);
 			}, false);
 		}
 		
@@ -577,36 +568,31 @@ const book = function(container) {
 			fontsLarge[i].addEventListener('click', event => {
 				let font = event.target.value;
 				localStore.setFont(font);
-				//setTimeout( () => {
-					//text opacity = 0
-					text.style.opacity = '0';
-					bookContainer.querySelector('#current-section-title').style.opacity = '0';
-					bookContainer.querySelector('#currentByTotal').style.opacity = '0';
-					utils.removeClass('#text-loader-container','hidden');
-					setTimeout( () => {
-						//text font
-						text.style.fontFamily = font;
-						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
-						bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
-						//book
-						book.init()
-						.then (resolve => {
-							//end loader
-							//setTimeout( function() { 
-								utils.addClass('#text-loader-container','hidden');
-								text.style.opacity = '1';
-								bookContainer.querySelector('#current-section-title').style.opacity = '1';
-								bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-							//}, 100);
-						})
-						.catch( error => {
-							utils.addClass('#text-loader-container','hidden');
-							text.style.opacity = '1';
-							bookContainer.querySelector('#current-section-title').style.opacity = '1';
-							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-						});
-					 }, 100);
-				//}, 100);
+				text.style.opacity = '0';
+				bookContainer.querySelector('#current-section-title').style.opacity = '0';
+				bookContainer.querySelector('#currentByTotal').style.opacity = '0';
+				utils.removeClass('#text-loader-container','hidden');
+				setTimeout( () => {
+					//text font
+					text.style.fontFamily = font;
+					bookContainer.querySelector('#current-section-title').style.fontFamily = font;
+					bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
+					//book
+					book.init()
+					.then (resolve => {
+						//end loader
+						utils.addClass('#text-loader-container','hidden');
+						text.style.opacity = '1';
+						bookContainer.querySelector('#current-section-title').style.opacity = '1';
+						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+					})
+					.catch( error => {
+						utils.addClass('#text-loader-container','hidden');
+						text.style.opacity = '1';
+						bookContainer.querySelector('#current-section-title').style.opacity = '1';
+						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+					});
+				 }, 100);
 			}, false);
 		}
 		
@@ -615,38 +601,33 @@ const book = function(container) {
 			fontsMedium[i].addEventListener('click', event => {
 				let font = event.target.value;
 				localStore.setFont(font);
-				//setTimeout( () => {
-					optionsMedium.className = '';
-					//close modal && text opacity = 0
-					text.style.opacity = '0';
-					bookContainer.querySelector('#current-section-title').style.opacity = '0';
-					bookContainer.querySelector('#currentByTotal').style.opacity = '0';
-					utils.removeClass('#text-loader-container','hidden');
-					setTimeout( () => {
-						//text font
-						text.style.fontFamily = font;
-						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
-					    bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
-						//book
-						book.init()
-						.then( resolve => {
-							//end loader
-							//setTimeout( function() { 
-								utils.addClass('#text-loader-container','hidden');
-								text.style.opacity = '1';
-								bookContainer.querySelector('#current-section-title').style.opacity = '1';
-								bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-							//}, 100);
-						})
-						.catch( error => {
-							utils.addClass('#text-loader-container','hidden');
-							text.style.opacity = '1';
-							bookContainer.querySelector('#current-section-title').style.opacity = '1';
-							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-						});
-					}, 100);
-				 //}, 100);
-				
+				//close modal && text opacity = 0
+				optionsMedium.className = '';
+				text.style.opacity = '0';
+				bookContainer.querySelector('#current-section-title').style.opacity = '0';
+				bookContainer.querySelector('#currentByTotal').style.opacity = '0';
+				utils.removeClass('#text-loader-container','hidden');
+				setTimeout( () => {
+					//text font
+					text.style.fontFamily = font;
+					bookContainer.querySelector('#current-section-title').style.fontFamily = font;
+					bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
+					//book
+					book.init()
+					.then( resolve => {
+						//end loader
+						utils.addClass('#text-loader-container','hidden');
+						text.style.opacity = '1';
+						bookContainer.querySelector('#current-section-title').style.opacity = '1';
+						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+					})
+					.catch( error => {
+						utils.addClass('#text-loader-container','hidden');
+						text.style.opacity = '1';
+						bookContainer.querySelector('#current-section-title').style.opacity = '1';
+						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+					});
+				}, 100);
 			}, false);
 		}
 		
@@ -655,46 +636,29 @@ const book = function(container) {
 			fonts[i].addEventListener('click', event => {
 				let font = event.target.value;
 				localStore.setFont(font);
-				//setTimeout( () => {
-					//start loader and close modal
-					utils.removeClass('#text-loader-container','hidden');
-					utils.removeClass('#options','open');
-					document.body.style.overflow = 'hidden';
-					setTimeout( () => {
-						//text font
-						text.style.fontFamily = font;
-						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
-					    bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
-						//book
-						book.init()
-						.then (resolve => {
-							//end loader
-							//setTimeout( () => {
-								document.body.style.overflow = 'visible'; 
-								utils.addClass('#text-loader-container','hidden');
-							//}, 100);
-						})
-						.catch( error => {
-							document.body.style.overflow = 'visible'; 
-							utils.addClass('#text-loader-container','hidden');
-						});
-					},100);
-				 //}, 100);
+				//start loader and close modal
+				utils.removeClass('#text-loader-container','hidden');
+				utils.removeClass('#options','open');
+				document.body.style.overflow = 'hidden';
+				setTimeout( () => {
+					//text font
+					text.style.fontFamily = font;
+					bookContainer.querySelector('#current-section-title').style.fontFamily = font;
+					bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
+					//book
+					book.init()
+					.then (resolve => {
+						//end loader
+						document.body.style.overflow = 'visible'; 
+						utils.addClass('#text-loader-container','hidden');
+					})
+					.catch( error => {
+						document.body.style.overflow = 'visible'; 
+						utils.addClass('#text-loader-container','hidden');
+					});
+				},100);
 			}, false);
 		}	
-		
-		//end loader
-		document.body.style.overflowY = 'visible';
-		setTimeout( function() { 
-			utils.addClass('#book-loader-container', 'hidden');
-		}, 800);
-		
-		//show book
-		setTimeout( () => { 
-			bookContainer.className = 'show';
-		}, 800);
-		
-	
 	}
 	
 	

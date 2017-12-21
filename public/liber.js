@@ -3511,6 +3511,11 @@ var book = function book(container) {
 				var bkmrk = _localStore2.default.getBkmrk(bk.id);
 				book.goToBookmark(bkmrk);
 			}
+			setTimeout(function () {
+				document.body.style.overflowY = 'visible';
+				_utils2.default.addClass('#book-loader-container', 'hidden');
+				bookContainer.className = 'show';
+			}, 400);
 		}).catch(function (error) {
 			console.log(error);
 		});
@@ -3822,8 +3827,6 @@ var book = function book(container) {
 			fontSizesLarge[_i13].addEventListener('click', function (event) {
 				var size = event.target.value;
 				_localStore2.default.setFontSize('large', size);
-				//setTimeout( () => {
-				//text opacity = 0
 				text.style.opacity = '0';
 				bookContainer.querySelector('#current-section-title').style.opacity = '0';
 				bookContainer.querySelector('#currentByTotal').style.opacity = '0';
@@ -3839,12 +3842,10 @@ var book = function book(container) {
 					//book
 					book.init().then(function (resolve) {
 						//end loader
-						////setTimeout( function() { 
 						_utils2.default.addClass('#text-loader-container', 'hidden');
 						text.style.opacity = '1';
 						bookContainer.querySelector('#current-section-title').style.opacity = '1';
 						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-						////}, 100);
 					}).catch(function (error) {
 						_utils2.default.addClass('#text-loader-container', 'hidden');
 						text.style.opacity = '1';
@@ -3852,7 +3853,6 @@ var book = function book(container) {
 						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
 					});
 				}, 100);
-				//},100);
 			}, false);
 		}
 
@@ -3861,9 +3861,8 @@ var book = function book(container) {
 			fontSizesMedium[_i14].addEventListener('click', function (event) {
 				var size = event.target.value;
 				_localStore2.default.setFontSize('large', size);
-				//setTimeout( () => {
-				optionsMedium.className = '';
 				//close modal && text opacity = 0
+				optionsMedium.className = '';
 				text.style.opacity = '0';
 				bookContainer.querySelector('#current-section-title').style.opacity = '0';
 				bookContainer.querySelector('#currentByTotal').style.opacity = '0';
@@ -3879,12 +3878,10 @@ var book = function book(container) {
 					//book
 					book.init().then(function (resolve) {
 						//end loader
-						//setTimeout( function() { 
 						_utils2.default.addClass('#text-loader-container', 'hidden');
 						text.style.opacity = '1';
 						bookContainer.querySelector('#current-section-title').style.opacity = '1';
 						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-						//}, 100);
 					}).catch(function (error) {
 						_utils2.default.addClass('#text-loader-container', 'hidden');
 						text.style.opacity = '1';
@@ -3892,7 +3889,6 @@ var book = function book(container) {
 						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
 					});
 				}, 100);
-				//}, 100);
 			}, false);
 		}
 
@@ -3901,7 +3897,6 @@ var book = function book(container) {
 			fontSizes[_i15].addEventListener('click', function (event) {
 				var size = event.target.value;
 				_localStore2.default.setFontSize('small', size);
-				//setTimeout( () => {
 				//start loader and close modal
 				_utils2.default.removeClass('#text-loader-container', 'hidden');
 				_utils2.default.removeClass('#options', 'open');
@@ -3917,16 +3912,13 @@ var book = function book(container) {
 					//book
 					book.init().then(function (resolve) {
 						//end loader
-						//setTimeout( () => {
 						document.body.style.overflow = 'visible';
 						_utils2.default.addClass('#text-loader-container', 'hidden');
-						//}, 100);
 					}).catch(function (error) {
 						document.body.style.overflow = 'visible';
 						_utils2.default.addClass('#text-loader-container', 'hidden');
 					});
 				}, 100);
-				//}, 100);
 			}, false);
 		}
 
@@ -3936,8 +3928,6 @@ var book = function book(container) {
 			fontsLarge[_i16].addEventListener('click', function (event) {
 				var font = event.target.value;
 				_localStore2.default.setFont(font);
-				//setTimeout( () => {
-				//text opacity = 0
 				text.style.opacity = '0';
 				bookContainer.querySelector('#current-section-title').style.opacity = '0';
 				bookContainer.querySelector('#currentByTotal').style.opacity = '0';
@@ -3950,12 +3940,10 @@ var book = function book(container) {
 					//book
 					book.init().then(function (resolve) {
 						//end loader
-						//setTimeout( function() { 
 						_utils2.default.addClass('#text-loader-container', 'hidden');
 						text.style.opacity = '1';
 						bookContainer.querySelector('#current-section-title').style.opacity = '1';
 						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-						//}, 100);
 					}).catch(function (error) {
 						_utils2.default.addClass('#text-loader-container', 'hidden');
 						text.style.opacity = '1';
@@ -3963,7 +3951,6 @@ var book = function book(container) {
 						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
 					});
 				}, 100);
-				//}, 100);
 			}, false);
 		}
 
@@ -3972,9 +3959,8 @@ var book = function book(container) {
 			fontsMedium[_i17].addEventListener('click', function (event) {
 				var font = event.target.value;
 				_localStore2.default.setFont(font);
-				//setTimeout( () => {
-				optionsMedium.className = '';
 				//close modal && text opacity = 0
+				optionsMedium.className = '';
 				text.style.opacity = '0';
 				bookContainer.querySelector('#current-section-title').style.opacity = '0';
 				bookContainer.querySelector('#currentByTotal').style.opacity = '0';
@@ -3987,12 +3973,10 @@ var book = function book(container) {
 					//book
 					book.init().then(function (resolve) {
 						//end loader
-						//setTimeout( function() { 
 						_utils2.default.addClass('#text-loader-container', 'hidden');
 						text.style.opacity = '1';
 						bookContainer.querySelector('#current-section-title').style.opacity = '1';
 						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-						//}, 100);
 					}).catch(function (error) {
 						_utils2.default.addClass('#text-loader-container', 'hidden');
 						text.style.opacity = '1';
@@ -4000,7 +3984,6 @@ var book = function book(container) {
 						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
 					});
 				}, 100);
-				//}, 100);
 			}, false);
 		}
 
@@ -4009,7 +3992,6 @@ var book = function book(container) {
 			fonts[_i18].addEventListener('click', function (event) {
 				var font = event.target.value;
 				_localStore2.default.setFont(font);
-				//setTimeout( () => {
 				//start loader and close modal
 				_utils2.default.removeClass('#text-loader-container', 'hidden');
 				_utils2.default.removeClass('#options', 'open');
@@ -4022,29 +4004,15 @@ var book = function book(container) {
 					//book
 					book.init().then(function (resolve) {
 						//end loader
-						//setTimeout( () => {
 						document.body.style.overflow = 'visible';
 						_utils2.default.addClass('#text-loader-container', 'hidden');
-						//}, 100);
 					}).catch(function (error) {
 						document.body.style.overflow = 'visible';
 						_utils2.default.addClass('#text-loader-container', 'hidden');
 					});
 				}, 100);
-				//}, 100);
 			}, false);
 		}
-
-		//end loader
-		document.body.style.overflowY = 'visible';
-		setTimeout(function () {
-			_utils2.default.addClass('#book-loader-container', 'hidden');
-		}, 800);
-
-		//show book
-		setTimeout(function () {
-			bookContainer.className = 'show';
-		}, 800);
 	};
 
 	//GET BOOK
