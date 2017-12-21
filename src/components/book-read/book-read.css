@@ -238,7 +238,10 @@ BOOK NAV-BAR-BOTTOM-SMALL
 	margin: 0px;
 	outline: none;
 	width: 24%;
-	color: rgb(132,132,132);
+}
+
+#book-nav-bar-bottom-small .material-icons {
+	color: rgba(132, 132, 132, 1);
 }
 
 /*

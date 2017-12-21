@@ -174,6 +174,7 @@ const authors = function(container) {
     //link to book/read
 	let readBk = event => {
 		let b = dataStore.getData('books', event.currentTarget.id);
+		if(!b.visible) { return; }
 		let path = b.path.replace(/^\/books\/[^\/]+/,'');
 		location.hash = '#' + path + "/read";
 	}
