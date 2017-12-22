@@ -728,6 +728,11 @@ INSIDE TEXT
 /*
 TITLES
 */
+
+[data-wb-text] #cover {
+	opacity: 0.9;
+}
+
 p.section-title, p.notes-title, p.wb-toc-title {
 	font-size: 1.25em;
 	text-align: left;

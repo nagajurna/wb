@@ -18,7 +18,7 @@ body {
 	padding: 0px;
 	margin: 0px;
 	border: none;
-	background-color: #fff;
+	background-color: #fafafa;
 	font-size: 14px;
 	position: relative;
 	overflow-x: hidden;
@@ -270,6 +270,11 @@ PADDING, MARGIN
 	padding-bottom: 32px;
 }
 
+.padding-48 {
+	padding-top: 48px;
+	padding-bottom: 48px;
+}
+
 margin-bottom {
 	margin-bottom: 16px
 }
@@ -322,7 +327,7 @@ HEADER
 	font-family: "Vollkorn", Georgia, sans-serif;
 	line-height: 27px;
 	font-size: 1em;
-	letter-spacing: 6px;
+	letter-spacing: 8px;
 	text-transform: uppercase;
 }
 
@@ -361,18 +366,29 @@ FOOTER
 	text-align: center;
 }
 
-#footer img {
-	width: 125px;
-	height: auto;
-}
-
 #footer #mention {
 	font-variant: small-caps;
 	letter-spacing: 1px;
 }
 
+#footer #brand p {
+	margin: 0px;
+}
+
 #footer #logo {
-	margin-bottom: 0px;
+	font-size: 3em;
+}
+
+#footer #name {
+	font-variant: small-caps;
+	font-size : 1.4em;
+	letter-spacing: 6px;
+	padding-top: 16px;
+}
+
+#footer #editions {
+	font-style: italic;
+	letter-spacing: 4px;
 }
 
 #footer #contact {

@@ -157,9 +157,13 @@
 	position: relative;
 }
 
-#authors-container .book .logo .span {
+#authors-container .book .logo .span1 {
+	font-size: 2em;
+	margin-bottom: 16px;
+}
+
+#authors-container .book .logo .span2 {
 	font-variant: small-caps;
-	font-style: normal;
 }
 
 #authors-container #book-btns {

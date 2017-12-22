@@ -95,9 +95,13 @@
 	position: relative;
 }
 
-#home-container .book .logo .span {
+#home-container .book .logo .span1 {
+	font-size: 2em;
+	margin-bottom: 16px;
+}
+
+#home-container .book .logo .span2 {
 	font-variant: small-caps;
-	font-style: normal;
 }
 
 #home-container #previous {

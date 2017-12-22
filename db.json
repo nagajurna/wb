@@ -18,15 +18,15 @@
         "origin": ""
       },
       "styles": {
-        "color": "rgba(52, 24, 30, 0.8)",
+        "color": "rgba(35, 16, 20, 0.8)",
         "image": " /books/du_dandysme_et_de_g_brummell/du_dandysme_et_de_g_brummell_cover.jpg",
         "font": "Noto Serif",
-        "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
-        "author": "font-size: 1em;letter-spacing: 1px;color: #fafafa",
-        "title": "padding-top: 11%; font-size: 1.3em;letter-spacing: 2px;font-variant: small-caps;color: #fafafa",
+        "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif; color: #fafafa",
+        "author": "font-size: 1em;letter-spacing: 1px;",
+        "title": "padding-top: 11%; font-size: 1.3em;letter-spacing: 2px;font-variant: small-caps;",
         "subtitle1": "",
         "subtitle2": "",
-        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 1.5px;font-style: italic; font-size: 1em;color: #fafafa"
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em;"
       },
       "title": "Du dandysme et&nbsp;de&nbsp;G.&nbsp;Brummell",
       "subtitle1": "",
@@ -44,7 +44,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 16:54:18",
-      "updated_at": "2017-12-20 07:15:44",
+      "updated_at": "2017-12-22 06:36:17",
       "id": "baf909f9-8f38-4d7f-b678-fb8ed46d41f0"
     },
     {
@@ -62,7 +62,7 @@
         "title": "padding-top: 9%; font-size: 1.4em;letter-spacing: 1.5px",
         "subtitle1": "",
         "subtitle2": "",
-        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 1.5px;font-style: italic; font-size: 1em"
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
       },
       "title": "Un Roman pour les&nbsp;cuisinières",
       "subtitle1": "",
@@ -80,7 +80,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:00:53",
-      "updated_at": "2017-12-19 18:08:35",
+      "updated_at": "2017-12-21 22:57:04",
       "id": "b3e3c2e7-305f-4697-867f-3dd2417f71ed"
     },
     {
@@ -98,7 +98,7 @@
         "title": "padding-top: 18%; font-size: 1.2em;letter-spacing: 1px;text-transform: uppercase",
         "subtitle1": "",
         "subtitle2": "",
-        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 1.5px;font-style: italic; font-size: 1em"
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
       },
       "title": "Vies imaginaires",
       "subtitle1": "",
@@ -116,7 +116,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:05:16",
-      "updated_at": "2017-12-19 18:08:54",
+      "updated_at": "2017-12-21 22:56:42",
       "id": "67f99f06-7af1-4dc4-9b8d-9d8f8afdc198"
     },
     {
@@ -134,7 +134,7 @@
         "title": "padding-top: 9%; font-size: 1.4em;letter-spacing: 1.5px",
         "subtitle1": "",
         "subtitle2": "",
-        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 1.5px;font-style: italic; font-size: 1em"
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
       },
       "title": "La Croisade des&nbsp;enfants",
       "subtitle1": "",
@@ -152,7 +152,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:08:48",
-      "updated_at": "2017-12-19 18:09:10",
+      "updated_at": "2017-12-21 22:56:19",
       "id": "e22c5a98-e5b8-4926-8cad-fd30131868c2"
     },
     {
@@ -170,7 +170,7 @@
         "title": "padding-top: 15%; font-size: 1.4em;letter-spacing: 3px;text-transform: uppercase",
         "subtitle1": "",
         "subtitle2": "",
-        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 1.5px;font-style: italic; font-size: 1em"
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
       },
       "title": "Mimes",
       "subtitle1": "",
@@ -188,7 +188,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:11:49",
-      "updated_at": "2017-12-19 18:09:26",
+      "updated_at": "2017-12-21 22:55:55",
       "id": "f379d066-0347-4fb1-998f-2e4c214c3960"
     },
     {
@@ -206,7 +206,7 @@
         "title": "padding-top: 18%; font-size: 1.2em;letter-spacing: 1px;text-transform: uppercase",
         "subtitle1": "",
         "subtitle2": "",
-        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 1.5px;font-style: italic; font-size: 1em"
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
       },
       "title": "René Leys",
       "subtitle1": "",
@@ -224,7 +224,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-22 18:50:26",
-      "updated_at": "2017-12-19 18:09:43",
+      "updated_at": "2017-12-21 22:55:15",
       "id": "13dc7d86-f837-4657-a690-ee3a34b90962"
     },
     {
@@ -242,7 +242,7 @@
         "title": "padding-top: 9%; font-size: 1.3em;letter-spacing: 1.5px",
         "subtitle1": "",
         "subtitle2": "",
-        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 1.5px;font-style: italic; font-size: 1em"
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
       },
       "title": "Voyage autour de&nbsp;ma&nbsp;chambre",
       "subtitle1": "",
@@ -260,7 +260,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-24 15:43:11",
-      "updated_at": "2017-12-19 18:09:59",
+      "updated_at": "2017-12-21 22:53:29",
       "id": "5261f2e5-16ef-4ccb-9ade-c3e737262428"
     },
     {
@@ -278,7 +278,7 @@
         "title": "padding-top: 10%; font-size: 1.2em;letter-spacing: 1px",
         "subtitle1": "",
         "subtitle2": "",
-        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 1.5px;font-style: italic; font-size: 1em"
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
       },
       "title": "Expédition nocturne autour de ma&nbsp;chambre",
       "subtitle1": "",
@@ -296,7 +296,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-24 16:05:11",
-      "updated_at": "2017-12-19 18:10:22",
+      "updated_at": "2017-12-21 22:53:47",
       "id": "99da47e0-1e93-409e-ba88-233ef3b5ee88"
     },
     {
@@ -314,7 +314,7 @@
         "title": "font-size: 1.2em;letter-spacing: 1.5px; padding-top: 8px; margin-bottom: 8px",
         "subtitle1": "font-size: 0.9em;letter-spacing: 1px",
         "subtitle2": "font-size: 1em;letter-spacing: 1.5px; font-variant: small-caps",
-        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 1.5px;font-style: italic; font-size: 1em"
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
       },
       "title": "Valpéri",
       "subtitle1": "Mémoires d'un&nbsp;gentilhomme du&nbsp;siècle dernier",
@@ -332,7 +332,7 @@
       ],
       "contribs": [],
       "created_at": "2017-12-16 12:11:26",
-      "updated_at": "2017-12-19 18:11:11",
+      "updated_at": "2017-12-21 22:54:22",
       "id": "b5bba6b3-930b-458c-853a-24c49dc2856c"
     },
     {
@@ -350,7 +350,7 @@
         "title": "font-size: 1.2em;letter-spacing: 1.5px; padding-top: 8px; margin-bottom: 8px",
         "subtitle1": "font-size: 0.9em;letter-spacing: 1px",
         "subtitle2": "font-size: 1em;letter-spacing: 1.5px; font-variant: small-caps",
-        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 1.5px;font-style: italic; font-size: 1em"
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
       },
       "title": "Valpéri",
       "subtitle1": "Mémoires d'un&nbsp;gentilhomme du&nbsp;siècle dernier",
@@ -368,7 +368,7 @@
       ],
       "contribs": [],
       "created_at": "2017-12-16 12:26:44",
-      "updated_at": "2017-12-19 18:11:35",
+      "updated_at": "2017-12-21 22:54:49",
       "id": "debf7127-e92e-4349-9c8d-0eee1f6daaed"
     }
   ],

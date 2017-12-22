@@ -94,9 +94,13 @@
 	position: relative;
 }
 
-#books-next-container .book .logo .span {
+#books-next-container .book .logo .span1 {
+	font-size: 2em;
+	margin-bottom: 16px;
+}
+
+#books-next-container .book .logo .span2 {
 	font-variant: small-caps;
-	font-style: normal;
 }
 
 #books-next-container #previous {
