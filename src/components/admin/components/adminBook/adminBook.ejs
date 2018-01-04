@@ -64,11 +64,15 @@
 			</ul>
 			<p><b>Année de publication : </b><span><%= book.year %></span></p>
 			<p><b>Langue : </b><span><%= book.language %></span></p>
-			<p><b>Source :</b></p>
+			<p><b>Sources :</b></p>
 			<ul class='ul'>
-				<li><b>&Eacute;diteur : </b><span><%- book.source.publisher %></span></li>
-				<li><b>Année : </b><span><%= book.source.year %></span></li>
-				<li><b>Origine : </b><span><%= book.source.origin %></span></li>
+			<% for(var i=0; i<book.sources.length; i++) {%>
+				<li>
+					<p id="<%= i %>" >
+						<span><%- book.sources[i] %></span>
+					</p>
+				</li>
+			<% } %>
 			</ul>
 			<p><b>Styles :</b></p>
 			<ul class='ul'>

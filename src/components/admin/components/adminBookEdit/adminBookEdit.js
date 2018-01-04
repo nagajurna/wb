@@ -6,6 +6,7 @@ let searchAuthorsResultsTemplate = require('./searchAuthorsResults.ejs');
 let selectedAuthorsTemplate = require('./selectedAuthors.ejs');
 let selectedContribsTemplate = require('./selectedContribs.ejs');
 let selectedContribRoleTemplate = require('./selectedContribRole.ejs');
+let sourcesTemplate = require('./sources.ejs');
 //home.js
 const adminBooksNew = function(container) {
 	'use strict';
@@ -26,6 +27,7 @@ const adminBooksNew = function(container) {
 			let json = "";//search : string json to compare with response
 			let selectedAuthorsDisplay = [], selectedAuthors = [];
 			let selectedContribsDisplay = [], selectedContribs = [];
+			let sources = [];
 			//init authors
 			for(let i=0; i<book.authors.length; i++) {
 				selectedAuthors.push(book.authors[i].id);
@@ -36,8 +38,15 @@ const adminBooksNew = function(container) {
 				selectedContribs.push(book.contribs[i]);
 				selectedContribsDisplay.push(book.contribs[i]);
 			}
+			//init sources
+			for(let i=0; i<book.sources.length; i++) {
+				sources.push(book.sources[i]);
+			}
 			//insert template in container
-			c.innerHTML = adminBookEditTemplate({ book: book, selectedAuthors: selectedAuthorsDisplay, selectedContribs: selectedContribsDisplay });
+			c.innerHTML = adminBookEditTemplate({ book: book, 
+												  selectedAuthors: selectedAuthorsDisplay, 
+												  selectedContribs: selectedContribsDisplay, 
+												  sources: sources });
 			//ELEMENTS
 			//rootElement
 			const root = document.querySelector('#adminBookEdit');
@@ -48,6 +57,8 @@ const adminBooksNew = function(container) {
 			const modal = root.querySelector('#modal');
 			let searchInput = modal.querySelector('input');
 			let results = modal.querySelector('#results');
+			//source modal
+			const sourceModal = root.querySelector('#source_modal');
 			//authors, contribs containers
 			let authorsContainer = root.querySelector('#authorsContainer');
 			let contribsContainer = root.querySelector('#contribsContainer');
@@ -92,9 +103,7 @@ const adminBooksNew = function(container) {
 				book.language = form.querySelector('[name=language]').value;
 				book.categories = form.querySelector('[name=categories]').value;
 				book.collection = form.querySelector('[name=collection]').value;
-				book.source.publisher = form.querySelector('[name=source-publisher]').value;
-				book.source.year = form.querySelector('[name=source-year]').value;
-				book.source.origin = form.querySelector('[name=source-origin]').value;
+				book.sources = sources;
 				book.styles.color = form.querySelector('[name=styles-color').value;
 				book.styles.image = form.querySelector('[name=styles-image').value;
 				book.styles.font = form.querySelector('[name=styles-font').value;
@@ -177,6 +186,24 @@ const adminBooksNew = function(container) {
 			
 			searchInput.addEventListener('keyup',onkeyup,false);
 			
+			//SOURCE MODAL
+			//open source modal
+			let openSourceModal = event => {
+				event.preventDefault();
+				sourceModal.style.display = 'block';
+			}
+			
+			let openSourceModalBtn = document.querySelector('#open-source-modal-btn');
+			openSourceModalBtn.addEventListener('click', openSourceModal,false);
+			
+			//close source modal
+			let closeSourceModal = event => {
+				sourceModal.style.display = 'none';
+			}
+			
+			let closeSourceModalBtn = document.querySelector('#close-source-modal-btn');
+			closeSourceModalBtn.addEventListener('click', closeSourceModal,false);
+			
 			//ADD SELECTED AUTHORS/CONTRIBS
 			function addAuth(event) {
 				let id = event.target.parentElement.id;
@@ -232,6 +259,31 @@ const adminBooksNew = function(container) {
 						deleteBtns[i].addEventListener('click', deleteAuth, false);
 					}
 				}
+			}
+			
+			//ADD SOURCE
+			function addSource(event) {
+				let src = sourceModal.querySelector('[name=source]').value;
+				sources.push(src);
+				sourcesContainer.innerHTML = sourcesTemplate({ sources: sources });
+				let deleteSourceBtn = sourcesContainer.querySelectorAll('.delete-source-btn')
+				for(let i=0; i<deleteSourceBtn.length; i++) {
+					deleteSourceBtn[i].addEventListener('click', deleteSource, false);
+				} 	
+			}
+			
+			let addSourceBtn = document.querySelector('#add-source-btn');
+			addSourceBtn.addEventListener('click', addSource, false);
+			
+			//DELETE SOURCE
+			function deleteSource(event) {
+				let index = event.target.parentElement.id;
+				sources.splice(index,1);
+				sourcesContainer.innerHTML = sourcesTemplate({ sources: sources });
+				let deleteSourceBtn = sourcesContainer.querySelectorAll('.delete-source-btn')
+				for(let i=0; i<deleteSourceBtn.length; i++) {
+					deleteSourceBtn[i].addEventListener('click', deleteSource, false);
+				} 	
 			}
 			
 		}

@@ -19,6 +19,25 @@
 		</div>
 	</div>
 <!--
+	SOURCES MODAL
+-->
+	<div id="source_modal" class="modal">
+		<div class="modal-content animate-top container" style="max-width: 500px">
+			<header class="border-bottom"> 
+				<button id="close-source-modal-btn" class="btn topright" style="font-size: 1.5em">&times;</button>
+				<h4>Ajouter une source</h4>
+			</header>
+			<div class="padding-32">
+				<p>
+				<input type="text" name="source" class="input">
+				<span class="error" data-utils-bind="{{ error }}"></span>
+				</p>
+				<button type="button" id="add-source-btn" class="button align-right">Ajouter</button>
+			</div>
+			
+		</div>
+	</div>
+<!--
 	MAIN
 -->
 	<p class="align-left padding-16"><b>Ajouter un ouvrage</b></p>
@@ -99,20 +118,16 @@
 				<span class="error" data-utils-bind="{{ collection }}"></span>
 			</p>
 			
-			<p id="source-publisher">
-				<label>Source - éditeur : </label>
-				<input type="text" name="source-publisher" class="input">
-			</p>
-			
-			<p id="source-year">
-				<label>Source - année de publication : </label>
-				<input type="text" name="source-year" class="input">
-			</p>
-			
-			<p id="source-origin">
-				<label>Source - origine : </label>
-				<input type="text" name="source-origin" class="input">
-			</p>
+			<div id="sources">
+				<div class="margin-bottom" style="min-height:100px">
+					<p>
+						<label class="align-left">Sources : </label>
+						<a href="/#/source" id="open-source-modal-btn" class="align-right">Ajouter</a>
+					</p>
+					
+					<ul id="sourcesContainer" class="ul padding-32"></ul>
+				</div>
+			</div>
 			
 			<p id="styles-color">
 				<label>Styles - couleur : </label>
@@ -147,11 +162,6 @@
 			<p id="styles-subtitle1">
 				<label>Styles - sous-titre1 : </label>
 				<input type="text" name="styles-subtitle1" class="input" >
-			</p>
-			
-			<p id="styles-subtitle2">
-				<label>Styles - sous-titre2 : </label>
-				<input type="text" name="styles-subtitle2" class="input" >
 			</p>
 			
 			<p id="styles-subtitle2">

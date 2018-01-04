@@ -2118,7 +2118,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //books-next(controller)
 
 //home(controller)
-var adminTemplate = __webpack_require__(114);
+var adminTemplate = __webpack_require__(116);
 //adminRouter (sub-router)
 
 //adminLogin (controller)
@@ -2642,11 +2642,26 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                             buf.push('\n					<p>\n						<span><b>Contribution : </b></span>\n						<br>\n						<ul>\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 52, books[i].contribs[0].role), " : </span>\n								", (__stack.lineno = 53, books[i].contribs[0].name), " (", (__stack.lineno = 53, books[i].contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 53, books[i].contribs[0].death), ")\n							</li>\n						</ul>\n					</p>\n			  ");
                             __stack.lineno = 57;
                         }
-                        buf.push('\n			  <p class="book-source"><b>Source : </b>\n				  <ul>\n					  <li>&Eacute;diteur : ', (__stack.lineno = 60, books[i].source.publisher), "</li>\n					  <li>Année de parution : ", (__stack.lineno = 61, books[i].source.year), "</li>\n				  </ul>\n			  </p>\n			  ");
-                        __stack.lineno = 64;
+                        buf.push('\n			  <p class="book-source">\n			  ');
+                        __stack.lineno = 59;
+                        if (books[i].sources.length > 1) {
+                            buf.push("\n				<b>Sources :</b>\n			  ");
+                            __stack.lineno = 61;
+                        } else {
+                            buf.push("\n				<b>Source :</b>\n			  ");
+                            __stack.lineno = 63;
+                        }
+                        buf.push("\n				<ul>\n				");
+                        __stack.lineno = 65;
+                        for (var j = 0; j < books[i].sources.length; j++) {
+                            buf.push("\n					<li><span>", (__stack.lineno = 66, books[i].sources[j]), "</span></li>\n				");
+                            __stack.lineno = 67;
+                        }
+                        buf.push("\n				</ul>\n			  </p>\n			  ");
+                        __stack.lineno = 70;
                         if (books[i].description) {
-                            buf.push("\n			  <div>", (__stack.lineno = 65, books[i].description), "</div>\n			  ");
-                            __stack.lineno = 66;
+                            buf.push("\n			  <div>", (__stack.lineno = 71, books[i].description), "</div>\n			  ");
+                            __stack.lineno = 72;
                         }
                         buf.push("\n		</div>\n	</div>\n</div>\n");
                         return buf.join("");
@@ -3298,11 +3313,26 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                             buf.push('\n					<p>\n						<span><b>Contribution : </b></span>\n						<br>\n						<ul>\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 52, books[i].contribs[0].role), " : </span>\n								", (__stack.lineno = 53, books[i].contribs[0].name), " (", (__stack.lineno = 53, books[i].contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 53, books[i].contribs[0].death), ")\n							</li>\n						</ul>\n					</p>\n			  ");
                             __stack.lineno = 57;
                         }
-                        buf.push('\n			  <p class="book-source"><b>Source : </b>\n				  <ul>\n					  <li>&Eacute;diteur : ', (__stack.lineno = 60, books[i].source.publisher), "</li>\n					  <li>Année de parution : ", (__stack.lineno = 61, books[i].source.year), "</li>\n				  </ul>\n			  </p>\n			  ");
-                        __stack.lineno = 64;
+                        buf.push('\n			  <p class="book-source">\n			  ');
+                        __stack.lineno = 59;
+                        if (books[i].sources.length > 1) {
+                            buf.push("\n				<b>Sources :</b>\n			  ");
+                            __stack.lineno = 61;
+                        } else {
+                            buf.push("\n				<b>Source :</b>\n			  ");
+                            __stack.lineno = 63;
+                        }
+                        buf.push("\n				<ul>\n				");
+                        __stack.lineno = 65;
+                        for (var j = 0; j < books[i].sources.length; j++) {
+                            buf.push("\n					<li><span>", (__stack.lineno = 66, books[i].sources[j]), "</span></li>\n				");
+                            __stack.lineno = 67;
+                        }
+                        buf.push("\n				</ul>\n			  </p>\n			  ");
+                        __stack.lineno = 70;
                         if (books[i].description) {
-                            buf.push("\n			  <div>", (__stack.lineno = 65, books[i].description), "</div>\n			  ");
-                            __stack.lineno = 66;
+                            buf.push("\n			  <div>", (__stack.lineno = 71, books[i].description), "</div>\n			  ");
+                            __stack.lineno = 72;
                         }
                         buf.push("\n		</div>\n	</div>\n</div>\n");
                         return buf.join("");
@@ -4273,21 +4303,28 @@ var WebBook = function () {
 		this._lastElement.appendChild(p);
 		//options text
 		this._div = document.createElement("DIV");
+		this._div.id = 'wb_div';
 		this._div.innerHTML = options.text;
 		this._div.appendChild(this._lastElement);
+		//div container
+		this._divContainer = document.createElement('DIV');
+		this._divContainer.appendChild(this._div);
 		//SECTIONS
-		this._sections = this._div.querySelectorAll('.wb-section');
+		//main sections
+		this._sections = this._divContainer.querySelectorAll('#wb_div > .wb-section');
+		//main sections + nested sections
+		this._sectionsToc = this._div.querySelectorAll('.wb-section');
+		//sections without wb-no-toc
+		this._tocSections = [];
+		for (var i = 0; i < this._sectionsToc.length; i++) {
+			if (!this._sectionsToc[i].className.match(/wb-no-toc/)) {
+				this._tocSections.push(this._sectionsToc[i]);
+			}
+		}
 		//TOCS CONTAINER + TOCS INIT
 		this._tocs = this._bookContainer.querySelectorAll('[data-wb-toc]');
 		//getTocs before querying this.elPageNumbers
 		this.getTocs();
-		//sections without wb-no-toc
-		this._tocSections = [];
-		for (var i = 0; i < this._sections.length; i++) {
-			if (!this._sections[i].className.match(/wb-no-toc/)) {
-				this._tocSections.push(this._sections[i]);
-			}
-		}
 		//INFOS CONTAINERS
 		this._currentPages = this._bookContainer.querySelectorAll('.wb-current-page');
 		this._totalPages = this._bookContainer.querySelectorAll('.wb-total-pages');
@@ -4357,7 +4394,10 @@ var WebBook = function () {
 		value: function toBook() {
 			var sections = this._text.querySelectorAll('.wb-section');
 			for (var i = 0; i < sections.length; i++) {
-				sections[i].style.marginBottom = "300%";
+				if (!sections[i].className.match(/wb-no-break/)) {
+					//possibly, for nested sections
+					sections[i].style.marginBottom = "300%";
+				}
 				//hack firefox (pour offsetLeft) : minHeight = 10%
 				if (sections[i].style.minHeight !== "10%") {
 					sections[i].style.minHeight = "10%";
@@ -4436,20 +4476,16 @@ var WebBook = function () {
 			for (var i = 0; i < this._sections.length; i++) {
 				this._sections[i].style.minHeight = "0";
 			}
-			//manual breaks
-			for (var _i2 = 0; _i2 < this._breaks.length; _i2++) {
-				this._breaks[_i2].style.marginBottom = "0";
-			}
 			//last element
 			this._lastElement.style.marginBottom = "0px";
 
 			//wb-total-pages empty
-			for (var _i3 = 0; _i3 < this._totalPages.length; _i3++) {
-				this._totalPages[_i3].innerHTML = "";
+			for (var _i2 = 0; _i2 < this._totalPages.length; _i2++) {
+				this._totalPages[_i2].innerHTML = "";
 			}
 			//data-wb-element-page-number empty
-			for (var _i4 = 0; _i4 < this._elPageNumbers.length; _i4++) {
-				this._elPageNumbers[_i4].innerHTML = "";
+			for (var _i3 = 0; _i3 < this._elPageNumbers.length; _i3++) {
+				this._elPageNumbers[_i3].innerHTML = "";
 			}
 
 			this.refresh();
@@ -4541,9 +4577,7 @@ var WebBook = function () {
 			}
 			this._sectionsIndex = index;
 			this._text.innerHTML = '';
-			//this._sections[this._sectionsIndex].style.marginBottom = "300%";
 			this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
-			//this._lastElement.marginBottom = "300%";
 			this._text.appendChild(this._lastElement.cloneNode(true));
 			this.setSectionLinks();
 			this.toBook();
@@ -4559,9 +4593,7 @@ var WebBook = function () {
 			}
 			this._sectionsIndex = index;
 			this._text.innerHTML = '';
-			//this._sections[this._sectionsIndex].style.marginBottom = "300%";
 			this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
-			//this._lastElement.marginBottom = "300%";
 			this._text.appendChild(this._lastElement.cloneNode(true));
 			this.setSectionLinks();
 			this.toBook();
@@ -4579,9 +4611,7 @@ var WebBook = function () {
 					this._sectionsIndex = i;
 					if (this._sections[this._sectionsIndex].id !== this._text.querySelectorAll('.wb-section')[0].id) {
 						this._text.innerHTML = '';
-						//this._sections[this._sectionsIndex].style.marginBottom = this._sections[this._sectionsIndex].className.match(/wb-break/) ? "300%" : "0%";
 						this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
-						//this._lastElement.marginBottom = "300%";
 						this._text.appendChild(this._lastElement.cloneNode(true));
 						this.setSectionLinks();
 						this.toBook();
@@ -4714,13 +4744,37 @@ var WebBook = function () {
 	}, {
 		key: 'getSectionTitle',
 		value: function getSectionTitle() {
-			var title = void 0;
-			var sections = this._text.querySelectorAll('.wb-section');
-			if (this.getPageNumber() == 1) {
-				title = "";
+			var title = "";
+			var section = this._text.querySelectorAll('.wb-section')[0];
+			if (section.querySelectorAll('.wb-section').length !== 0 && this._text.querySelectorAll('.wb-section-title').length !== 0) {
+				//nested sections
+				var sects = this._text.querySelectorAll('.wb-section-title');
+				var sections = [].slice.call(sects);
+				sections.push(this._lastElement);
+				for (var i = 0; i < sections.length; i++) {
+					var id = sections[i].id;
+					if (this.getPageNumber() < this.elementPageNumber(id) + this._startPage) {
+						if (this.getPageNumber() === this.elementPageNumber(sections[i - 1].id) + this._startPage) {
+							title = "";
+						} else {
+							title = sections[i - 1].getAttribute('data-wb-title') ? sections[i - 1].getAttribute('data-wb-title') : sections[i - 1].title;
+						}
+						break;
+					}
+				}
 			} else {
-				title = sections[0].getAttribute('data-wb-title') ? sections[0].getAttribute('data-wb-title') : sections[0].title;
+				//non nested sections
+				if (this.getPageNumber() == 1) {
+					title = "";
+				} else {
+					if (!section.className.match(/wb-no-title/)) {
+						title = section.getAttribute('data-wb-title') ? section.getAttribute('data-wb-title') : section.title;
+					} else {
+						title = "";
+					}
+				}
 			}
+
 			return title;
 		}
 	}, {
@@ -4740,32 +4794,29 @@ var WebBook = function () {
 			var content = document.createElement('div');
 			var list = document.createElement('ul');
 			list.setAttribute('class', 'wb-toc-list');
-			for (var i = 0; i < this._sections.length; i++) {
-				var section = this._sections[i];
-				if (!section.className.match(/wb-no-toc/)) {
-					var item = document.createElement('li');
-					item.setAttribute('class', 'wb-toc-item');
-					if (!section.className.match(/wb-toc-no-page-number/)) {
-						var link = document.createElement('a');
-						link.setAttribute('href', '#' + section.id);
-						link.setAttribute('class', 'wb-link');
-						item.appendChild(link);
-						var title = document.createElement('span');
-						title.setAttribute('class', 'wb-toc-item-title');
-						title.innerHTML = section.getAttribute('data-wb-title-toc') ? section.getAttribute('data-wb-title-toc') : section.title;
-						link.appendChild(title);
-						var page = document.createElement('span');
-						page.setAttribute('class', 'wb-toc-item-page-number');
-						page.setAttribute('data-wb-element-page-number', section.id);
-						link.appendChild(page);
-					} else {
-						var _title = document.createElement('span');
-						_title.setAttribute('class', 'wb-toc-item-title');
-						_title.innerHTML = section.getAttribute('data-wb-title-toc') ? section.getAttribute('data-wb-title-toc') : section.title;
-						item.appendChild(_title);
-					}
-					list.appendChild(item);
+			for (var i = 0; i < this._tocSections.length; i++) {
+				var section = this._tocSections[i];
+				var item = document.createElement('li');
+				item.setAttribute('class', 'wb-toc-item');
+				var link = document.createElement('a');
+				link.setAttribute('href', '#' + section.id);
+				link.setAttribute('class', 'wb-link');
+				item.appendChild(link);
+				var title = document.createElement('span');
+				if (section.getAttribute('data-wb-class')) {
+					title.setAttribute('class', 'wb-toc-item-title ' + section.getAttribute('data-wb-class'));
+				} else {
+					title.setAttribute('class', 'wb-toc-item-title');
 				}
+				title.innerHTML = section.getAttribute('data-wb-title-toc') ? section.getAttribute('data-wb-title-toc') : section.title;
+				link.appendChild(title);
+				if (!section.className.match(/wb-toc-no-page-number/)) {
+					var page = document.createElement('span');
+					page.setAttribute('class', 'wb-toc-item-page-number');
+					page.setAttribute('data-wb-element-page-number', section.id);
+					link.appendChild(page);
+				}
+				list.appendChild(item);
 			}
 			content.appendChild(list);
 			toc.appendChild(content);
@@ -4786,10 +4837,28 @@ var WebBook = function () {
 	}, {
 		key: 'getTocsCurrentSection',
 		value: function getTocsCurrentSection() {
-			var currentSection = this._text.querySelectorAll('.wb-section')[0];
+			var currentSection = void 0;
+			var section = this._text.querySelectorAll('.wb-section')[0];
+			if (section.querySelectorAll('.wb-section').length !== 0) {
+				//nested sections
+				var sects = this._text.querySelectorAll('.wb-section');
+				var sections = [].slice.call(sects);
+				sections.push(this._lastElement);
+				for (var i = 0; i < sections.length; i++) {
+					var id = sections[i].id;
+					if (this.getPageNumber() < this.elementPageNumber(id) + this._startPage) {
+						currentSection = sections[i - 1];
+						break;
+					}
+				}
+			} else {
+				//non-nested sections
+				currentSection = section;
+			}
+
 			if (currentSection) {
-				for (var i = 0; i < this._tocs.length; i++) {
-					var toc = this._tocs[i];
+				for (var _i4 = 0; _i4 < this._tocs.length; _i4++) {
+					var toc = this._tocs[_i4];
 					var links = toc.querySelectorAll('a');
 					for (var j = 0; j < links.length; j++) {
 						if (links[j].getAttribute('href').replace(/^#/, '') === currentSection.id) {
@@ -4797,7 +4866,7 @@ var WebBook = function () {
 								links[j].parentElement.className += ' current';
 							}
 						} else if (links[j].parentElement.className.match(/current/)) {
-							links[j].parentElement.className = links[i].parentElement.className.replace(/ current/, '');
+							links[j].parentElement.className = links[_i4].parentElement.className.replace(/ current/, '');
 						}
 					}
 				}
@@ -4808,7 +4877,7 @@ var WebBook = function () {
 		value: function insertBookmark() {
 			var currentSection = this._text.querySelectorAll('.wb-section')[0];
 			if (currentSection) {
-				var elements = currentSection.querySelectorAll('*');
+				var elements = currentSection.querySelectorAll(':not(.wb-section)');
 				var position = Math.abs(this._position);
 				var elPosition = void 0;
 				for (var i = 0; i < elements.length; i++) {
@@ -4844,7 +4913,7 @@ var WebBook = function () {
 					this.toBook();
 					//}
 					var currentSection = this._text.querySelectorAll('.wb-section')[0];
-					var elements = currentSection.querySelectorAll('*');
+					var elements = currentSection.querySelectorAll(':not(.wb-section)');
 					var element = elements[bookmark.el];
 					//position : offsetLeft of element relative to text
 					var position = Math.round((0, _core2.default)(element).position().left) - this.getMarginX();
@@ -11625,11 +11694,26 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                         buf.push('\n				<p>\n					<span><b>Contribution : </b></span>\n					<br>\n					<ul>\n						<li>\n							<span class="contrib-role">', (__stack.lineno = 105, book.contribs[0].role), " : </span>\n							", (__stack.lineno = 106, book.contribs[0].name), " (", (__stack.lineno = 106, book.contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 106, book.contribs[0].death), ")\n						</li>\n					</ul>\n				</p>\n		  ");
                         __stack.lineno = 110;
                     }
-                    buf.push('\n		  <p class="book-source"><b>Source : </b>\n			  <ul>\n				  <li>&Eacute;diteur : ', (__stack.lineno = 113, book.source.publisher), "</li>\n				  <li>Année de publication : ", (__stack.lineno = 114, book.source.year), "</li>\n			  </ul>\n		  </p>\n		  ");
-                    __stack.lineno = 117;
+                    buf.push('\n		  <p class="book-source">\n			  ');
+                    __stack.lineno = 112;
+                    if (book.sources.length > 1) {
+                        buf.push("\n				<b>Sources :</b>\n			  ");
+                        __stack.lineno = 114;
+                    } else {
+                        buf.push("\n				<b>Source :</b>\n			  ");
+                        __stack.lineno = 116;
+                    }
+                    buf.push("\n				<ul>\n				");
+                    __stack.lineno = 118;
+                    for (var j = 0; j < book.sources.length; j++) {
+                        buf.push("\n					<li><span>", (__stack.lineno = 119, book.sources[j]), "</span></li>\n				");
+                        __stack.lineno = 120;
+                    }
+                    buf.push("\n				</ul>\n			  </p>\n		  ");
+                    __stack.lineno = 123;
                     if (book.description) {
-                        buf.push("\n		  <div>", (__stack.lineno = 118, book.description), "</div>\n		  ");
-                        __stack.lineno = 119;
+                        buf.push("\n		  <div>", (__stack.lineno = 124, book.description), "</div>\n		  ");
+                        __stack.lineno = 125;
                     }
                     buf.push('\n		</div>\n	</div>\n</div>\n\n<div id="book-commands">\n	<button id="toggle-toc-large-device" type="button" class="btn card-2" >Table</button>\n	<button id="toggle-tab-options" type="button" class="btn card-2" >Options</button>\n	<button id="toggle-tab-infos" type="button" class="btn card-2" >Fiche</button>\n	<button id="tab-add-bookmark" type="button" class="add-bookmark btn card-2" >Signet</button>\n	<button id="tab-home-link" type="button" class="home btn card-2" >Retour</button>\n</div>\n	\n\n');
                     return buf.join("");
@@ -12046,11 +12130,26 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                                     buf.push('\n					<p>\n						<span><b>Contribution : </b></span>\n						<br>\n						<ul>\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 52, work.contribs[0].role), " : </span>\n								", (__stack.lineno = 53, work.contribs[0].name), " (", (__stack.lineno = 53, work.contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 53, work.contribs[0].death), ")\n							</li>\n						</ul>\n					</p>\n			  ");
                                     __stack.lineno = 57;
                                 }
-                                buf.push('\n			  <p class="book-source"><b>Source : </b>\n				  <ul>\n					  <li>&Eacute;diteur : ', (__stack.lineno = 60, work.source.publisher), "</li>\n					  <li>Année de parution : ", (__stack.lineno = 61, work.source.year), "</li>\n				  </ul>\n			  </p>\n			  ");
-                                __stack.lineno = 64;
+                                buf.push('\n			  <p class="book-source">\n			  ');
+                                __stack.lineno = 59;
+                                if (work.sources.length > 1) {
+                                    buf.push("\n				<b>Sources :</b>\n			  ");
+                                    __stack.lineno = 61;
+                                } else {
+                                    buf.push("\n				<b>Source :</b>\n			  ");
+                                    __stack.lineno = 63;
+                                }
+                                buf.push("\n				<ul>\n				");
+                                __stack.lineno = 65;
+                                for (var k = 0; k < work.sources.length; k++) {
+                                    buf.push("\n					<li><span>", (__stack.lineno = 66, work.sources[k]), "</span></li>\n				");
+                                    __stack.lineno = 67;
+                                }
+                                buf.push("\n				</ul>\n			  </p>\n			  ");
+                                __stack.lineno = 70;
                                 if (work.description) {
-                                    buf.push("\n			  <div>", (__stack.lineno = 65, work.description), "</div>\n			  ");
-                                    __stack.lineno = 66;
+                                    buf.push("\n			  <div>", (__stack.lineno = 71, work.description), "</div>\n			  ");
+                                    __stack.lineno = 72;
                                 }
                                 buf.push("\n		</div>\n	</div>\n</div>\n");
                                 return buf.join("");
@@ -12260,23 +12359,23 @@ var _adminBooksNew = __webpack_require__(92);
 
 var _adminBooksNew2 = _interopRequireDefault(_adminBooksNew);
 
-var _adminBookEdit = __webpack_require__(99);
+var _adminBookEdit = __webpack_require__(100);
 
 var _adminBookEdit2 = _interopRequireDefault(_adminBookEdit);
 
-var _adminAuthors = __webpack_require__(106);
+var _adminAuthors = __webpack_require__(108);
 
 var _adminAuthors2 = _interopRequireDefault(_adminAuthors);
 
-var _adminAuthor = __webpack_require__(108);
+var _adminAuthor = __webpack_require__(110);
 
 var _adminAuthor2 = _interopRequireDefault(_adminAuthor);
 
-var _adminAuthorsNew = __webpack_require__(110);
+var _adminAuthorsNew = __webpack_require__(112);
 
 var _adminAuthorsNew2 = _interopRequireDefault(_adminAuthorsNew);
 
-var _adminAuthorEdit = __webpack_require__(112);
+var _adminAuthorEdit = __webpack_require__(114);
 
 var _adminAuthorEdit2 = _interopRequireDefault(_adminAuthorEdit);
 
@@ -13150,7 +13249,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="adminBook" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="modal">\n		<div class="modal-content animate-top container" style="max-width: 500px">\n			<header class="border-bottom"> \n				<button id="close-modal-btn" class="btn topright" style="font-size: 1.5em">&times;</button>\n				<h4>Supprimer un ouvrage</h4>\n			</header>\n			<div>\n				<p>Voulez-vous vraiment supprimer cet ouvrage ?</p>\n				<p><%- book.title %></p>\n				<p class="align-right"><button type="button" id="delete-btn" class="button">Supprimer</button></p>\n			</div>\n			\n		</div>\n	</div>\n\n<!--\n	MAIN\n-->\n	<p class="align-left padding-16"><b>Ouvrage</b></p>\n	<p class="align-right padding-16"><a href="/#/admin/books/">Retour</a></p>\n	<div id="book" style="clear: both">\n		<span class="error"><%= error %></span>\n		<span class="error" id="modal-error" data-utils-bind="{{ error }}"></span>\n		<div class="border-bottom">\n			<p><b>Titre : </b><span><%- book.title %></span></p>\n			<p><b>Sous-titre1 : </b><span><%- book.subtitle1 %></span></p>\n			<p><b>Sous-titre2 : </b><span><%- book.subtitle2 %></span></p>\n			<p><b>Auteur (libellé) : </b><span><%- book.authorDisplay %></span></p>\n			<p>\n				<% if (book.authors.length===1) { %>\n					<span><b>Auteur :</b></span>\n				<% } else { %>\n					<span><b>Auteurs :</b></span>\n				<% } %>\n			</p>\n			<ul id="authors-list" class=\'ul\'>\n				<% for(var i=0; i<book.authors.length; i++) {%>\n				<li>\n					<a href=\'/#/admin/authors/<%= book.authors[i].id %>\'>\n						<%= book.authors[i].name %>\n					</a>\n				</li>\n				<% } %>\n			</ul>\n			<p>\n				<% if (book.contribs.length===1) { %>\n					<span><b>Contributeur :</b></span>\n				<% } else { %>\n					<span><b>Contributeurs :</b></span>\n				<% } %>\n			</p>\n			<ul id="contribs-list" class=\'ul\'>\n				<% for(var i=0; i<book.contribs.length; i++) {%>\n				<li>\n					<a href=\'/#/admin/authors/<%= book.contribs[i].id %>\'>\n						<%= book.contribs[i].name %> (<%= book.contribs[i].role %>)\n					</a>\n				</li>\n				<% } %>\n			</ul>\n			<p><b>Année de publication : </b><span><%= book.year %></span></p>\n			<p><b>Langue : </b><span><%= book.language %></span></p>\n			<p><b>Source :</b></p>\n			<ul class=\'ul\'>\n				<li><b>&Eacute;diteur : </b><span><%- book.source.publisher %></span></li>\n				<li><b>Année : </b><span><%= book.source.year %></span></li>\n				<li><b>Origine : </b><span><%= book.source.origin %></span></li>\n			</ul>\n			<p><b>Styles :</b></p>\n			<ul class=\'ul\'>\n				<li><b>Couleur : </b><span><%= book.styles.color %></span></li>\n				<li><b>Image : </b><span><%= book.styles.image %></span></li>\n				<li><b>Police : </b><span><%= book.styles.font %></span></li>\n				<li><b>Couverture : </b><span><%= book.styles.cover %></span></li>\n				<li><b>Auteur : </b><span><%= book.styles.author %></span></li>\n				<li><b>Titre : </b><span><%= book.styles.title %></span></li>\n				<li><b>Sous-titre1 : </b><span><%= book.styles.subtitle1 %></span></li>\n				<li><b>Sous-titre2 : </b><span><%= book.styles.subtitle2 %></span></li>\n				<li><b>Logo : </b><span><%= book.styles.logo %></span></li>\n			</ul>\n			<p><b>Collection : </b><span><%= book.collection %></span></p>\n			<p><b>Description :</b></p>\n			<div><%= book.description %></div>\n			<p><b>Path : </b><span><%= book.path %></span></p>\n			<p><b>Visible : </b><span><% if(book.visible===true) {%>oui<%} else {%>non<%}%></span></p>\n			<p><b>Créé le : </b><span><%= book.created_at %></span></p>\n			<p><b>Mis à jour le : </b><span><%= book.updated_at %></span></p>\n		</div>\n		<p>\n			<a href="#/admin/books/<%= book.id %>/edit" class="button">Modifier</a>\n			<button type="button" id="open-modal-btn" class="button align-right">Supprimer</button>\n		</p>\n	</div>\n</div>\n',
+        input: '<div id="adminBook" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="modal">\n		<div class="modal-content animate-top container" style="max-width: 500px">\n			<header class="border-bottom"> \n				<button id="close-modal-btn" class="btn topright" style="font-size: 1.5em">&times;</button>\n				<h4>Supprimer un ouvrage</h4>\n			</header>\n			<div>\n				<p>Voulez-vous vraiment supprimer cet ouvrage ?</p>\n				<p><%- book.title %></p>\n				<p class="align-right"><button type="button" id="delete-btn" class="button">Supprimer</button></p>\n			</div>\n			\n		</div>\n	</div>\n\n<!--\n	MAIN\n-->\n	<p class="align-left padding-16"><b>Ouvrage</b></p>\n	<p class="align-right padding-16"><a href="/#/admin/books/">Retour</a></p>\n	<div id="book" style="clear: both">\n		<span class="error"><%= error %></span>\n		<span class="error" id="modal-error" data-utils-bind="{{ error }}"></span>\n		<div class="border-bottom">\n			<p><b>Titre : </b><span><%- book.title %></span></p>\n			<p><b>Sous-titre1 : </b><span><%- book.subtitle1 %></span></p>\n			<p><b>Sous-titre2 : </b><span><%- book.subtitle2 %></span></p>\n			<p><b>Auteur (libellé) : </b><span><%- book.authorDisplay %></span></p>\n			<p>\n				<% if (book.authors.length===1) { %>\n					<span><b>Auteur :</b></span>\n				<% } else { %>\n					<span><b>Auteurs :</b></span>\n				<% } %>\n			</p>\n			<ul id="authors-list" class=\'ul\'>\n				<% for(var i=0; i<book.authors.length; i++) {%>\n				<li>\n					<a href=\'/#/admin/authors/<%= book.authors[i].id %>\'>\n						<%= book.authors[i].name %>\n					</a>\n				</li>\n				<% } %>\n			</ul>\n			<p>\n				<% if (book.contribs.length===1) { %>\n					<span><b>Contributeur :</b></span>\n				<% } else { %>\n					<span><b>Contributeurs :</b></span>\n				<% } %>\n			</p>\n			<ul id="contribs-list" class=\'ul\'>\n				<% for(var i=0; i<book.contribs.length; i++) {%>\n				<li>\n					<a href=\'/#/admin/authors/<%= book.contribs[i].id %>\'>\n						<%= book.contribs[i].name %> (<%= book.contribs[i].role %>)\n					</a>\n				</li>\n				<% } %>\n			</ul>\n			<p><b>Année de publication : </b><span><%= book.year %></span></p>\n			<p><b>Langue : </b><span><%= book.language %></span></p>\n			<p><b>Sources :</b></p>\n			<ul class=\'ul\'>\n			<% for(var i=0; i<book.sources.length; i++) {%>\n				<li>\n					<p id="<%= i %>" >\n						<span><%- book.sources[i] %></span>\n					</p>\n				</li>\n			<% } %>\n			</ul>\n			<p><b>Styles :</b></p>\n			<ul class=\'ul\'>\n				<li><b>Couleur : </b><span><%= book.styles.color %></span></li>\n				<li><b>Image : </b><span><%= book.styles.image %></span></li>\n				<li><b>Police : </b><span><%= book.styles.font %></span></li>\n				<li><b>Couverture : </b><span><%= book.styles.cover %></span></li>\n				<li><b>Auteur : </b><span><%= book.styles.author %></span></li>\n				<li><b>Titre : </b><span><%= book.styles.title %></span></li>\n				<li><b>Sous-titre1 : </b><span><%= book.styles.subtitle1 %></span></li>\n				<li><b>Sous-titre2 : </b><span><%= book.styles.subtitle2 %></span></li>\n				<li><b>Logo : </b><span><%= book.styles.logo %></span></li>\n			</ul>\n			<p><b>Collection : </b><span><%= book.collection %></span></p>\n			<p><b>Description :</b></p>\n			<div><%= book.description %></div>\n			<p><b>Path : </b><span><%= book.path %></span></p>\n			<p><b>Visible : </b><span><% if(book.visible===true) {%>oui<%} else {%>non<%}%></span></p>\n			<p><b>Créé le : </b><span><%= book.created_at %></span></p>\n			<p><b>Mis à jour le : </b><span><%= book.updated_at %></span></p>\n		</div>\n		<p>\n			<a href="#/admin/books/<%= book.id %>/edit" class="button">Modifier</a>\n			<button type="button" id="open-modal-btn" class="button align-right">Supprimer</button>\n		</p>\n	</div>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -13197,16 +13296,22 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                     buf.push("\n				<li>\n					<a href='/#/admin/authors/", escape((__stack.lineno = 59, book.contribs[i].id)), "'>\n						", escape((__stack.lineno = 60, book.contribs[i].name)), " (", escape((__stack.lineno = 60, book.contribs[i].role)), ")\n					</a>\n				</li>\n				");
                     __stack.lineno = 63;
                 }
-                buf.push("\n			</ul>\n			<p><b>Année de publication : </b><span>", escape((__stack.lineno = 65, book.year)), "</span></p>\n			<p><b>Langue : </b><span>", escape((__stack.lineno = 66, book.language)), "</span></p>\n			<p><b>Source :</b></p>\n			<ul class='ul'>\n				<li><b>&Eacute;diteur : </b><span>", (__stack.lineno = 69, book.source.publisher), "</span></li>\n				<li><b>Année : </b><span>", escape((__stack.lineno = 70, book.source.year)), "</span></li>\n				<li><b>Origine : </b><span>", escape((__stack.lineno = 71, book.source.origin)), "</span></li>\n			</ul>\n			<p><b>Styles :</b></p>\n			<ul class='ul'>\n				<li><b>Couleur : </b><span>", escape((__stack.lineno = 75, book.styles.color)), "</span></li>\n				<li><b>Image : </b><span>", escape((__stack.lineno = 76, book.styles.image)), "</span></li>\n				<li><b>Police : </b><span>", escape((__stack.lineno = 77, book.styles.font)), "</span></li>\n				<li><b>Couverture : </b><span>", escape((__stack.lineno = 78, book.styles.cover)), "</span></li>\n				<li><b>Auteur : </b><span>", escape((__stack.lineno = 79, book.styles.author)), "</span></li>\n				<li><b>Titre : </b><span>", escape((__stack.lineno = 80, book.styles.title)), "</span></li>\n				<li><b>Sous-titre1 : </b><span>", escape((__stack.lineno = 81, book.styles.subtitle1)), "</span></li>\n				<li><b>Sous-titre2 : </b><span>", escape((__stack.lineno = 82, book.styles.subtitle2)), "</span></li>\n				<li><b>Logo : </b><span>", escape((__stack.lineno = 83, book.styles.logo)), "</span></li>\n			</ul>\n			<p><b>Collection : </b><span>", escape((__stack.lineno = 85, book.collection)), "</span></p>\n			<p><b>Description :</b></p>\n			<div>", escape((__stack.lineno = 87, book.description)), "</div>\n			<p><b>Path : </b><span>", escape((__stack.lineno = 88, book.path)), "</span></p>\n			<p><b>Visible : </b><span>");
-                __stack.lineno = 89;
+                buf.push("\n			</ul>\n			<p><b>Année de publication : </b><span>", escape((__stack.lineno = 65, book.year)), "</span></p>\n			<p><b>Langue : </b><span>", escape((__stack.lineno = 66, book.language)), "</span></p>\n			<p><b>Sources :</b></p>\n			<ul class='ul'>\n			");
+                __stack.lineno = 69;
+                for (var i = 0; i < book.sources.length; i++) {
+                    buf.push('\n				<li>\n					<p id="', escape((__stack.lineno = 71, i)), '" >\n						<span>', (__stack.lineno = 72, book.sources[i]), "</span>\n					</p>\n				</li>\n			");
+                    __stack.lineno = 75;
+                }
+                buf.push("\n			</ul>\n			<p><b>Styles :</b></p>\n			<ul class='ul'>\n				<li><b>Couleur : </b><span>", escape((__stack.lineno = 79, book.styles.color)), "</span></li>\n				<li><b>Image : </b><span>", escape((__stack.lineno = 80, book.styles.image)), "</span></li>\n				<li><b>Police : </b><span>", escape((__stack.lineno = 81, book.styles.font)), "</span></li>\n				<li><b>Couverture : </b><span>", escape((__stack.lineno = 82, book.styles.cover)), "</span></li>\n				<li><b>Auteur : </b><span>", escape((__stack.lineno = 83, book.styles.author)), "</span></li>\n				<li><b>Titre : </b><span>", escape((__stack.lineno = 84, book.styles.title)), "</span></li>\n				<li><b>Sous-titre1 : </b><span>", escape((__stack.lineno = 85, book.styles.subtitle1)), "</span></li>\n				<li><b>Sous-titre2 : </b><span>", escape((__stack.lineno = 86, book.styles.subtitle2)), "</span></li>\n				<li><b>Logo : </b><span>", escape((__stack.lineno = 87, book.styles.logo)), "</span></li>\n			</ul>\n			<p><b>Collection : </b><span>", escape((__stack.lineno = 89, book.collection)), "</span></p>\n			<p><b>Description :</b></p>\n			<div>", escape((__stack.lineno = 91, book.description)), "</div>\n			<p><b>Path : </b><span>", escape((__stack.lineno = 92, book.path)), "</span></p>\n			<p><b>Visible : </b><span>");
+                __stack.lineno = 93;
                 if (book.visible === true) {
                     buf.push("oui");
-                    __stack.lineno = 89;
+                    __stack.lineno = 93;
                 } else {
                     buf.push("non");
-                    __stack.lineno = 89;
+                    __stack.lineno = 93;
                 }
-                buf.push("</span></p>\n			<p><b>Créé le : </b><span>", escape((__stack.lineno = 90, book.created_at)), "</span></p>\n			<p><b>Mis à jour le : </b><span>", escape((__stack.lineno = 91, book.updated_at)), '</span></p>\n		</div>\n		<p>\n			<a href="#/admin/books/', escape((__stack.lineno = 94, book.id)), '/edit" class="button">Modifier</a>\n			<button type="button" id="open-modal-btn" class="button align-right">Supprimer</button>\n		</p>\n	</div>\n</div>\n');
+                buf.push("</span></p>\n			<p><b>Créé le : </b><span>", escape((__stack.lineno = 94, book.created_at)), "</span></p>\n			<p><b>Mis à jour le : </b><span>", escape((__stack.lineno = 95, book.updated_at)), '</span></p>\n		</div>\n		<p>\n			<a href="#/admin/books/', escape((__stack.lineno = 98, book.id)), '/edit" class="button">Modifier</a>\n			<button type="button" id="open-modal-btn" class="button align-right">Supprimer</button>\n		</p>\n	</div>\n</div>\n');
             })();
         }
         return buf.join("");
@@ -13242,6 +13347,7 @@ var searchAuthorsResultsTemplate = __webpack_require__(95);
 var selectedAuthorsTemplate = __webpack_require__(96);
 var selectedContribsTemplate = __webpack_require__(97);
 var selectedContribRoleTemplate = __webpack_require__(98);
+var sourcesTemplate = __webpack_require__(99);
 //home.js
 var adminBooksNew = function adminBooksNew(container) {
 	'use strict';
@@ -13261,6 +13367,8 @@ var adminBooksNew = function adminBooksNew(container) {
 	var modal = root.querySelector('#modal');
 	var searchInput = modal.querySelector('input');
 	var results = modal.querySelector('#results');
+	//source modal
+	var sourceModal = root.querySelector('#source_modal');
 	//authors, contribs containers
 	var authorsContainer = root.querySelector('#authorsContainer');
 	var contribsContainer = root.querySelector('#contribsContainer');
@@ -13271,6 +13379,7 @@ var adminBooksNew = function adminBooksNew(container) {
 	    selectedAuthors = [];
 	var selectedContribsDisplay = [],
 	    selectedContribs = [];
+	var sources = [];
 	var json = ""; //search : string json to compare with response
 
 	//CLEAR ERRORS ON INPUT
@@ -13308,9 +13417,7 @@ var adminBooksNew = function adminBooksNew(container) {
 		book.language = form.querySelector('[name=language]').value;
 		book.categories = form.querySelector('[name=categories]').value;
 		book.collection = form.querySelector('[name=collection]').value;
-		book.source.publisher = form.querySelector('[name=source-publisher]').value;
-		book.source.year = form.querySelector('[name=source-year]').value;
-		book.source.origin = form.querySelector('[name=source-origin]').value;
+		book.sources = sources;
 		book.styles.color = form.querySelector('[name=styles-color').value;
 		book.styles.image = form.querySelector('[name=styles-image').value;
 		book.styles.font = form.querySelector('[name=styles-font').value;
@@ -13390,6 +13497,24 @@ var adminBooksNew = function adminBooksNew(container) {
 
 	searchInput.addEventListener('keyup', onkeyup, false);
 
+	//SOURCE MODAL
+	//open source modal
+	var openSourceModal = function openSourceModal(event) {
+		event.preventDefault();
+		sourceModal.style.display = 'block';
+	};
+
+	var openSourceModalBtn = document.querySelector('#open-source-modal-btn');
+	openSourceModalBtn.addEventListener('click', openSourceModal, false);
+
+	//close source modal
+	var closeSourceModal = function closeSourceModal(event) {
+		sourceModal.style.display = 'none';
+	};
+
+	var closeSourceModalBtn = document.querySelector('#close-source-modal-btn');
+	closeSourceModalBtn.addEventListener('click', closeSourceModal, false);
+
 	//ADD SELECTED AUTHORS/CONTRIBS
 	function addAuth(event) {
 		var id = event.target.parentElement.id;
@@ -13444,6 +13569,31 @@ var adminBooksNew = function adminBooksNew(container) {
 			}
 		}
 	}
+
+	//ADD SOURCE
+	function addSource(event) {
+		var src = sourceModal.querySelector('[name=source]').value;
+		sources.push(src);
+		sourcesContainer.innerHTML = sourcesTemplate({ sources: sources });
+		var deleteSourceBtn = sourcesContainer.querySelectorAll('.delete-source-btn');
+		for (var _i7 = 0; _i7 < deleteSourceBtn.length; _i7++) {
+			deleteSourceBtn[_i7].addEventListener('click', deleteSource, false);
+		}
+	}
+
+	var addSourceBtn = document.querySelector('#add-source-btn');
+	addSourceBtn.addEventListener('click', addSource, false);
+
+	//DELETE SOURCE
+	function deleteSource(event) {
+		var index = event.target.parentElement.id;
+		sources.splice(index, 1);
+		sourcesContainer.innerHTML = sourcesTemplate({ sources: sources });
+		var deleteSourceBtn = sourcesContainer.querySelectorAll('.delete-source-btn');
+		for (var _i8 = 0; _i8 < deleteSourceBtn.length; _i8++) {
+			deleteSourceBtn[_i8].addEventListener('click', deleteSource, false);
+		}
+	}
 };
 
 exports.default = adminBooksNew;
@@ -13458,7 +13608,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="adminBooksNew" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="modal">\n		<div class="modal-content animate-top container" style="max-width: 500px">\n			<header class="border-bottom"> \n				<button id="close-modal-btn" class="btn topright" style="font-size: 1.5em">&times;</button>\n				<h4>Rechercher un auteur</h4>\n			</header>\n			<div>\n				<p id="search">\n				<input type="text" name="search" class="input">\n				<span class="error" data-utils-bind="{{ error }}"></span>\n				</p>\n				<div id="results" style="min-height:150px"></div>\n			</div>\n			\n		</div>\n	</div>\n<!--\n	MAIN\n-->\n	<p class="align-left padding-16"><b>Ajouter un ouvrage</b></p>\n	<p class="align-right padding-16"><a href="/#/admin/books/">Retour</a></p>\n	<div style="clear: both">\n		<form id="adminBooksNewForm">\n			\n			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>\n			\n			<p id="title">\n				<label>Titre * : </label>\n				<input type="text" name="title" class="input">\n				<span class="error" data-utils-bind="{{ title }}"></span>\n			</p>\n			\n			<p id="subtitle1">\n				<label>Sous-titre 1 : </label>\n				<input type="text" name="subtitle1" class="input">\n			</p>\n			\n			<p id="subtitle2">\n				<label>Sous-titre 2 : </label>\n				<input type="text" name="subtitle2" class="input">\n			</p>\n			\n			<p id="authorDisplay">\n				<label>Auteur (libellé) * : </label>\n				<input type="text" name="authorDisplay" class="input">\n				<span class="error" data-utils-bind="{{ authorDisplay }}"></span>\n			</p>\n			\n			<div id="authors" class="margin-bottom border-bottom">\n				<div class="margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Auteurs * : </label>\n						<a href="/#/authors" id="auteur" class="align-right open-modal-btn">Rechercher</a>\n					</p>\n					\n					<ul id="authorsContainer" class="ul padding-32"></ul>\n					<span class="error" data-utils-bind="{{ authors }}"></span>\n				</div>\n				\n			</div>\n			\n			<div id="contribs" class="margin-bottom border-bottom">\n				<div class="margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Contributeurs : </label>\n						<a href="/#/contribs" id="contributeur" class="align-right open-modal-btn">Rechercher</a>\n					</p>\n					\n					<ul id="contribsContainer" class="ul padding-32"></ul>\n				</div>\n				\n			</div>\n			\n			<p id="year">\n				<label>Année de publication * : </label>\n				<input type="text" name="year" class="input">\n				<span class="error" data-utils-bind="{{ year }}"></span>\n			</p>\n			\n			<p id="language">\n				<label>Langue * : </label>\n				<input type="text" name="language" class="input">\n				<span class="error" data-utils-bind="{{ language }}"></span>\n			</p>\n			\n			<p id="categories">\n				<label>Catégories : </label>\n				<input type="text" name="categories" class="input">\n				<span class="error" data-utils-bind="{{ categories }}"></span>\n			</p>\n			\n			<p id="collection">\n				<label>Collection : </label>\n				<input type="text" name="collection" class="input">\n				<span class="error" data-utils-bind="{{ collection }}"></span>\n			</p>\n			\n			<p id="source-publisher">\n				<label>Source - éditeur : </label>\n				<input type="text" name="source-publisher" class="input">\n			</p>\n			\n			<p id="source-year">\n				<label>Source - année de publication : </label>\n				<input type="text" name="source-year" class="input">\n			</p>\n			\n			<p id="source-origin">\n				<label>Source - origine : </label>\n				<input type="text" name="source-origin" class="input">\n			</p>\n			\n			<p id="styles-color">\n				<label>Styles - couleur : </label>\n				<input type="text" name="styles-color" class="input" >\n			</p>\n			\n			<p id="styles-image">\n				<label>Styles - image : </label>\n				<input type="text" name="styles-image" class="input" >\n			</p>\n			\n			<p id="styles-font">\n				<label>Styles - police : </label>\n				<input type="text" name="styles-font" class="input" >\n			</p>\n			\n			<p id="styles-cover">\n				<label>Styles - couverture : </label>\n				<input type="text" name="styles-cover" class="input" >\n			</p>\n			\n			<p id="styles-author">\n				<label>Styles - auteur : </label>\n				<input type="text" name="styles-author" class="input" >\n			</p>\n			\n			<p id="styles-title">\n				<label>Styles - titre : </label>\n				<input type="text" name="styles-title" class="input" >\n			</p>\n			\n			<p id="styles-subtitle1">\n				<label>Styles - sous-titre1 : </label>\n				<input type="text" name="styles-subtitle1" class="input" >\n			</p>\n			\n			<p id="styles-subtitle2">\n				<label>Styles - sous-titre2 : </label>\n				<input type="text" name="styles-subtitle2" class="input" >\n			</p>\n			\n			<p id="styles-subtitle2">\n				<label>Styles - sous-titre2 : </label>\n				<input type="text" name="styles-subtitle2" class="input" >\n			</p>\n			\n			<p id="styles-logo">\n				<label>Styles - logo : </label>\n				<input type="text" name="styles-logo" class="input" >\n			</p>\n			\n			<p id="description">\n				<label>Description : </label>\n				<textarea type="text" name="description" class="input" style="display: block; width: 100%"></textarea>\n			</p>\n			\n			<p id="path">\n				<label>Path * : </label>\n				<input type="text" name="path" class="input">\n				<span class="error" data-utils-bind="{{ path }}"></span>\n			</p>\n			\n			<p id="visible">\n				<label><input type="checkbox" name="visible" > Visible</label>\n			</p>\n			\n			<p class="padding-16">\n				<button type="submit" class="button">Valider</button>\n			</p>\n			\n		</form>\n	</div>\n</div>\n',
+        input: '<div id="adminBooksNew" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="modal">\n		<div class="modal-content animate-top container" style="max-width: 500px">\n			<header class="border-bottom"> \n				<button id="close-modal-btn" class="btn topright" style="font-size: 1.5em">&times;</button>\n				<h4>Rechercher un auteur</h4>\n			</header>\n			<div>\n				<p id="search">\n				<input type="text" name="search" class="input">\n				<span class="error" data-utils-bind="{{ error }}"></span>\n				</p>\n				<div id="results" style="min-height:150px"></div>\n			</div>\n			\n		</div>\n	</div>\n<!--\n	SOURCES MODAL\n-->\n	<div id="source_modal" class="modal">\n		<div class="modal-content animate-top container" style="max-width: 500px">\n			<header class="border-bottom"> \n				<button id="close-source-modal-btn" class="btn topright" style="font-size: 1.5em">&times;</button>\n				<h4>Ajouter une source</h4>\n			</header>\n			<div class="padding-32">\n				<p>\n				<input type="text" name="source" class="input">\n				<span class="error" data-utils-bind="{{ error }}"></span>\n				</p>\n				<button type="button" id="add-source-btn" class="button align-right">Ajouter</button>\n			</div>\n			\n		</div>\n	</div>\n<!--\n	MAIN\n-->\n	<p class="align-left padding-16"><b>Ajouter un ouvrage</b></p>\n	<p class="align-right padding-16"><a href="/#/admin/books/">Retour</a></p>\n	<div style="clear: both">\n		<form id="adminBooksNewForm">\n			\n			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>\n			\n			<p id="title">\n				<label>Titre * : </label>\n				<input type="text" name="title" class="input">\n				<span class="error" data-utils-bind="{{ title }}"></span>\n			</p>\n			\n			<p id="subtitle1">\n				<label>Sous-titre 1 : </label>\n				<input type="text" name="subtitle1" class="input">\n			</p>\n			\n			<p id="subtitle2">\n				<label>Sous-titre 2 : </label>\n				<input type="text" name="subtitle2" class="input">\n			</p>\n			\n			<p id="authorDisplay">\n				<label>Auteur (libellé) * : </label>\n				<input type="text" name="authorDisplay" class="input">\n				<span class="error" data-utils-bind="{{ authorDisplay }}"></span>\n			</p>\n			\n			<div id="authors" class="margin-bottom border-bottom">\n				<div class="margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Auteurs * : </label>\n						<a href="/#/authors" id="auteur" class="align-right open-modal-btn">Rechercher</a>\n					</p>\n					\n					<ul id="authorsContainer" class="ul padding-32"></ul>\n					<span class="error" data-utils-bind="{{ authors }}"></span>\n				</div>\n				\n			</div>\n			\n			<div id="contribs" class="margin-bottom border-bottom">\n				<div class="margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Contributeurs : </label>\n						<a href="/#/contribs" id="contributeur" class="align-right open-modal-btn">Rechercher</a>\n					</p>\n					\n					<ul id="contribsContainer" class="ul padding-32"></ul>\n				</div>\n				\n			</div>\n			\n			<p id="year">\n				<label>Année de publication * : </label>\n				<input type="text" name="year" class="input">\n				<span class="error" data-utils-bind="{{ year }}"></span>\n			</p>\n			\n			<p id="language">\n				<label>Langue * : </label>\n				<input type="text" name="language" class="input">\n				<span class="error" data-utils-bind="{{ language }}"></span>\n			</p>\n			\n			<p id="categories">\n				<label>Catégories : </label>\n				<input type="text" name="categories" class="input">\n				<span class="error" data-utils-bind="{{ categories }}"></span>\n			</p>\n			\n			<p id="collection">\n				<label>Collection : </label>\n				<input type="text" name="collection" class="input">\n				<span class="error" data-utils-bind="{{ collection }}"></span>\n			</p>\n			\n			<div id="sources">\n				<div class="margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Sources : </label>\n						<a href="/#/source" id="open-source-modal-btn" class="align-right">Ajouter</a>\n					</p>\n					\n					<ul id="sourcesContainer" class="ul padding-32"></ul>\n				</div>\n			</div>\n			\n			<p id="styles-color">\n				<label>Styles - couleur : </label>\n				<input type="text" name="styles-color" class="input" >\n			</p>\n			\n			<p id="styles-image">\n				<label>Styles - image : </label>\n				<input type="text" name="styles-image" class="input" >\n			</p>\n			\n			<p id="styles-font">\n				<label>Styles - police : </label>\n				<input type="text" name="styles-font" class="input" >\n			</p>\n			\n			<p id="styles-cover">\n				<label>Styles - couverture : </label>\n				<input type="text" name="styles-cover" class="input" >\n			</p>\n			\n			<p id="styles-author">\n				<label>Styles - auteur : </label>\n				<input type="text" name="styles-author" class="input" >\n			</p>\n			\n			<p id="styles-title">\n				<label>Styles - titre : </label>\n				<input type="text" name="styles-title" class="input" >\n			</p>\n			\n			<p id="styles-subtitle1">\n				<label>Styles - sous-titre1 : </label>\n				<input type="text" name="styles-subtitle1" class="input" >\n			</p>\n			\n			<p id="styles-subtitle2">\n				<label>Styles - sous-titre2 : </label>\n				<input type="text" name="styles-subtitle2" class="input" >\n			</p>\n			\n			<p id="styles-logo">\n				<label>Styles - logo : </label>\n				<input type="text" name="styles-logo" class="input" >\n			</p>\n			\n			<p id="description">\n				<label>Description : </label>\n				<textarea type="text" name="description" class="input" style="display: block; width: 100%"></textarea>\n			</p>\n			\n			<p id="path">\n				<label>Path * : </label>\n				<input type="text" name="path" class="input">\n				<span class="error" data-utils-bind="{{ path }}"></span>\n			</p>\n			\n			<p id="visible">\n				<label><input type="checkbox" name="visible" > Visible</label>\n			</p>\n			\n			<p class="padding-16">\n				<button type="submit" class="button">Valider</button>\n			</p>\n			\n		</form>\n	</div>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -13475,7 +13625,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
         var buf = [];
         with (locals || {}) {
             (function() {
-                buf.push('<div id="adminBooksNew" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="modal">\n		<div class="modal-content animate-top container" style="max-width: 500px">\n			<header class="border-bottom"> \n				<button id="close-modal-btn" class="btn topright" style="font-size: 1.5em">&times;</button>\n				<h4>Rechercher un auteur</h4>\n			</header>\n			<div>\n				<p id="search">\n				<input type="text" name="search" class="input">\n				<span class="error" data-utils-bind="{{ error }}"></span>\n				</p>\n				<div id="results" style="min-height:150px"></div>\n			</div>\n			\n		</div>\n	</div>\n<!--\n	MAIN\n-->\n	<p class="align-left padding-16"><b>Ajouter un ouvrage</b></p>\n	<p class="align-right padding-16"><a href="/#/admin/books/">Retour</a></p>\n	<div style="clear: both">\n		<form id="adminBooksNewForm">\n			\n			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>\n			\n			<p id="title">\n				<label>Titre * : </label>\n				<input type="text" name="title" class="input">\n				<span class="error" data-utils-bind="{{ title }}"></span>\n			</p>\n			\n			<p id="subtitle1">\n				<label>Sous-titre 1 : </label>\n				<input type="text" name="subtitle1" class="input">\n			</p>\n			\n			<p id="subtitle2">\n				<label>Sous-titre 2 : </label>\n				<input type="text" name="subtitle2" class="input">\n			</p>\n			\n			<p id="authorDisplay">\n				<label>Auteur (libellé) * : </label>\n				<input type="text" name="authorDisplay" class="input">\n				<span class="error" data-utils-bind="{{ authorDisplay }}"></span>\n			</p>\n			\n			<div id="authors" class="margin-bottom border-bottom">\n				<div class="margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Auteurs * : </label>\n						<a href="/#/authors" id="auteur" class="align-right open-modal-btn">Rechercher</a>\n					</p>\n					\n					<ul id="authorsContainer" class="ul padding-32"></ul>\n					<span class="error" data-utils-bind="{{ authors }}"></span>\n				</div>\n				\n			</div>\n			\n			<div id="contribs" class="margin-bottom border-bottom">\n				<div class="margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Contributeurs : </label>\n						<a href="/#/contribs" id="contributeur" class="align-right open-modal-btn">Rechercher</a>\n					</p>\n					\n					<ul id="contribsContainer" class="ul padding-32"></ul>\n				</div>\n				\n			</div>\n			\n			<p id="year">\n				<label>Année de publication * : </label>\n				<input type="text" name="year" class="input">\n				<span class="error" data-utils-bind="{{ year }}"></span>\n			</p>\n			\n			<p id="language">\n				<label>Langue * : </label>\n				<input type="text" name="language" class="input">\n				<span class="error" data-utils-bind="{{ language }}"></span>\n			</p>\n			\n			<p id="categories">\n				<label>Catégories : </label>\n				<input type="text" name="categories" class="input">\n				<span class="error" data-utils-bind="{{ categories }}"></span>\n			</p>\n			\n			<p id="collection">\n				<label>Collection : </label>\n				<input type="text" name="collection" class="input">\n				<span class="error" data-utils-bind="{{ collection }}"></span>\n			</p>\n			\n			<p id="source-publisher">\n				<label>Source - éditeur : </label>\n				<input type="text" name="source-publisher" class="input">\n			</p>\n			\n			<p id="source-year">\n				<label>Source - année de publication : </label>\n				<input type="text" name="source-year" class="input">\n			</p>\n			\n			<p id="source-origin">\n				<label>Source - origine : </label>\n				<input type="text" name="source-origin" class="input">\n			</p>\n			\n			<p id="styles-color">\n				<label>Styles - couleur : </label>\n				<input type="text" name="styles-color" class="input" >\n			</p>\n			\n			<p id="styles-image">\n				<label>Styles - image : </label>\n				<input type="text" name="styles-image" class="input" >\n			</p>\n			\n			<p id="styles-font">\n				<label>Styles - police : </label>\n				<input type="text" name="styles-font" class="input" >\n			</p>\n			\n			<p id="styles-cover">\n				<label>Styles - couverture : </label>\n				<input type="text" name="styles-cover" class="input" >\n			</p>\n			\n			<p id="styles-author">\n				<label>Styles - auteur : </label>\n				<input type="text" name="styles-author" class="input" >\n			</p>\n			\n			<p id="styles-title">\n				<label>Styles - titre : </label>\n				<input type="text" name="styles-title" class="input" >\n			</p>\n			\n			<p id="styles-subtitle1">\n				<label>Styles - sous-titre1 : </label>\n				<input type="text" name="styles-subtitle1" class="input" >\n			</p>\n			\n			<p id="styles-subtitle2">\n				<label>Styles - sous-titre2 : </label>\n				<input type="text" name="styles-subtitle2" class="input" >\n			</p>\n			\n			<p id="styles-subtitle2">\n				<label>Styles - sous-titre2 : </label>\n				<input type="text" name="styles-subtitle2" class="input" >\n			</p>\n			\n			<p id="styles-logo">\n				<label>Styles - logo : </label>\n				<input type="text" name="styles-logo" class="input" >\n			</p>\n			\n			<p id="description">\n				<label>Description : </label>\n				<textarea type="text" name="description" class="input" style="display: block; width: 100%"></textarea>\n			</p>\n			\n			<p id="path">\n				<label>Path * : </label>\n				<input type="text" name="path" class="input">\n				<span class="error" data-utils-bind="{{ path }}"></span>\n			</p>\n			\n			<p id="visible">\n				<label><input type="checkbox" name="visible" > Visible</label>\n			</p>\n			\n			<p class="padding-16">\n				<button type="submit" class="button">Valider</button>\n			</p>\n			\n		</form>\n	</div>\n</div>\n');
+                buf.push('<div id="adminBooksNew" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="modal">\n		<div class="modal-content animate-top container" style="max-width: 500px">\n			<header class="border-bottom"> \n				<button id="close-modal-btn" class="btn topright" style="font-size: 1.5em">&times;</button>\n				<h4>Rechercher un auteur</h4>\n			</header>\n			<div>\n				<p id="search">\n				<input type="text" name="search" class="input">\n				<span class="error" data-utils-bind="{{ error }}"></span>\n				</p>\n				<div id="results" style="min-height:150px"></div>\n			</div>\n			\n		</div>\n	</div>\n<!--\n	SOURCES MODAL\n-->\n	<div id="source_modal" class="modal">\n		<div class="modal-content animate-top container" style="max-width: 500px">\n			<header class="border-bottom"> \n				<button id="close-source-modal-btn" class="btn topright" style="font-size: 1.5em">&times;</button>\n				<h4>Ajouter une source</h4>\n			</header>\n			<div class="padding-32">\n				<p>\n				<input type="text" name="source" class="input">\n				<span class="error" data-utils-bind="{{ error }}"></span>\n				</p>\n				<button type="button" id="add-source-btn" class="button align-right">Ajouter</button>\n			</div>\n			\n		</div>\n	</div>\n<!--\n	MAIN\n-->\n	<p class="align-left padding-16"><b>Ajouter un ouvrage</b></p>\n	<p class="align-right padding-16"><a href="/#/admin/books/">Retour</a></p>\n	<div style="clear: both">\n		<form id="adminBooksNewForm">\n			\n			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>\n			\n			<p id="title">\n				<label>Titre * : </label>\n				<input type="text" name="title" class="input">\n				<span class="error" data-utils-bind="{{ title }}"></span>\n			</p>\n			\n			<p id="subtitle1">\n				<label>Sous-titre 1 : </label>\n				<input type="text" name="subtitle1" class="input">\n			</p>\n			\n			<p id="subtitle2">\n				<label>Sous-titre 2 : </label>\n				<input type="text" name="subtitle2" class="input">\n			</p>\n			\n			<p id="authorDisplay">\n				<label>Auteur (libellé) * : </label>\n				<input type="text" name="authorDisplay" class="input">\n				<span class="error" data-utils-bind="{{ authorDisplay }}"></span>\n			</p>\n			\n			<div id="authors" class="margin-bottom border-bottom">\n				<div class="margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Auteurs * : </label>\n						<a href="/#/authors" id="auteur" class="align-right open-modal-btn">Rechercher</a>\n					</p>\n					\n					<ul id="authorsContainer" class="ul padding-32"></ul>\n					<span class="error" data-utils-bind="{{ authors }}"></span>\n				</div>\n				\n			</div>\n			\n			<div id="contribs" class="margin-bottom border-bottom">\n				<div class="margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Contributeurs : </label>\n						<a href="/#/contribs" id="contributeur" class="align-right open-modal-btn">Rechercher</a>\n					</p>\n					\n					<ul id="contribsContainer" class="ul padding-32"></ul>\n				</div>\n				\n			</div>\n			\n			<p id="year">\n				<label>Année de publication * : </label>\n				<input type="text" name="year" class="input">\n				<span class="error" data-utils-bind="{{ year }}"></span>\n			</p>\n			\n			<p id="language">\n				<label>Langue * : </label>\n				<input type="text" name="language" class="input">\n				<span class="error" data-utils-bind="{{ language }}"></span>\n			</p>\n			\n			<p id="categories">\n				<label>Catégories : </label>\n				<input type="text" name="categories" class="input">\n				<span class="error" data-utils-bind="{{ categories }}"></span>\n			</p>\n			\n			<p id="collection">\n				<label>Collection : </label>\n				<input type="text" name="collection" class="input">\n				<span class="error" data-utils-bind="{{ collection }}"></span>\n			</p>\n			\n			<div id="sources">\n				<div class="margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Sources : </label>\n						<a href="/#/source" id="open-source-modal-btn" class="align-right">Ajouter</a>\n					</p>\n					\n					<ul id="sourcesContainer" class="ul padding-32"></ul>\n				</div>\n			</div>\n			\n			<p id="styles-color">\n				<label>Styles - couleur : </label>\n				<input type="text" name="styles-color" class="input" >\n			</p>\n			\n			<p id="styles-image">\n				<label>Styles - image : </label>\n				<input type="text" name="styles-image" class="input" >\n			</p>\n			\n			<p id="styles-font">\n				<label>Styles - police : </label>\n				<input type="text" name="styles-font" class="input" >\n			</p>\n			\n			<p id="styles-cover">\n				<label>Styles - couverture : </label>\n				<input type="text" name="styles-cover" class="input" >\n			</p>\n			\n			<p id="styles-author">\n				<label>Styles - auteur : </label>\n				<input type="text" name="styles-author" class="input" >\n			</p>\n			\n			<p id="styles-title">\n				<label>Styles - titre : </label>\n				<input type="text" name="styles-title" class="input" >\n			</p>\n			\n			<p id="styles-subtitle1">\n				<label>Styles - sous-titre1 : </label>\n				<input type="text" name="styles-subtitle1" class="input" >\n			</p>\n			\n			<p id="styles-subtitle2">\n				<label>Styles - sous-titre2 : </label>\n				<input type="text" name="styles-subtitle2" class="input" >\n			</p>\n			\n			<p id="styles-logo">\n				<label>Styles - logo : </label>\n				<input type="text" name="styles-logo" class="input" >\n			</p>\n			\n			<p id="description">\n				<label>Description : </label>\n				<textarea type="text" name="description" class="input" style="display: block; width: 100%"></textarea>\n			</p>\n			\n			<p id="path">\n				<label>Path * : </label>\n				<input type="text" name="path" class="input">\n				<span class="error" data-utils-bind="{{ path }}"></span>\n			</p>\n			\n			<p id="visible">\n				<label><input type="checkbox" name="visible" > Visible</label>\n			</p>\n			\n			<p class="padding-16">\n				<button type="submit" class="button">Valider</button>\n			</p>\n			\n		</form>\n	</div>\n</div>\n');
             })();
         }
         return buf.join("");
@@ -13684,6 +13834,48 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 
 /***/ }),
 /* 99 */
+/***/ (function(module, exports) {
+
+module.exports = function anonymous(locals, filters, escape, rethrow) {
+    escape = escape || function(html) {
+        return String(html).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+    };
+    var __stack = {
+        lineno: 1,
+        input: '<% for(var i=0; i<sources.length; i++) {%>\n<li>\n	<p id="<%= i %>" >\n		<span><%- sources[i] %></span>\n		<button type="button" class="delete-source-btn button align-right">Supprimer</button>\n	</p>\n</li>\n<% } %>\n',
+        filename: "."
+    };
+    function rethrow(err, str, filename, lineno) {
+        var lines = str.split("\n"), start = Math.max(lineno - 3, 0), end = Math.min(lines.length, lineno + 3);
+        var context = lines.slice(start, end).map(function(line, i) {
+            var curr = i + start + 1;
+            return (curr == lineno ? " >> " : "    ") + curr + "| " + line;
+        }).join("\n");
+        err.path = filename;
+        err.message = (filename || "ejs") + ":" + lineno + "\n" + context + "\n\n" + err.message;
+        throw err;
+    }
+    try {
+        var buf = [];
+        with (locals || {}) {
+            (function() {
+                buf.push("");
+                __stack.lineno = 1;
+                for (var i = 0; i < sources.length; i++) {
+                    buf.push('\n<li>\n	<p id="', escape((__stack.lineno = 3, i)), '" >\n		<span>', (__stack.lineno = 4, sources[i]), '</span>\n		<button type="button" class="delete-source-btn button align-right">Supprimer</button>\n	</p>\n</li>\n');
+                    __stack.lineno = 8;
+                }
+                buf.push("\n");
+            })();
+        }
+        return buf.join("");
+    } catch (err) {
+        rethrow(err, __stack.input, __stack.filename, __stack.lineno);
+    }
+}
+
+/***/ }),
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13703,12 +13895,13 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminBookEditTemplate = __webpack_require__(100);
-var modalHeaderTemplate = __webpack_require__(101);
-var searchAuthorsResultsTemplate = __webpack_require__(102);
-var selectedAuthorsTemplate = __webpack_require__(103);
-var selectedContribsTemplate = __webpack_require__(104);
-var selectedContribRoleTemplate = __webpack_require__(105);
+var adminBookEditTemplate = __webpack_require__(101);
+var modalHeaderTemplate = __webpack_require__(102);
+var searchAuthorsResultsTemplate = __webpack_require__(103);
+var selectedAuthorsTemplate = __webpack_require__(104);
+var selectedContribsTemplate = __webpack_require__(105);
+var selectedContribRoleTemplate = __webpack_require__(106);
+var sourcesTemplate = __webpack_require__(107);
 //home.js
 var adminBooksNew = function adminBooksNew(container) {
 	'use strict';
@@ -13754,9 +13947,7 @@ var adminBooksNew = function adminBooksNew(container) {
 				book.language = form.querySelector('[name=language]').value;
 				book.categories = form.querySelector('[name=categories]').value;
 				book.collection = form.querySelector('[name=collection]').value;
-				book.source.publisher = form.querySelector('[name=source-publisher]').value;
-				book.source.year = form.querySelector('[name=source-year]').value;
-				book.source.origin = form.querySelector('[name=source-origin]').value;
+				book.sources = sources;
 				book.styles.color = form.querySelector('[name=styles-color').value;
 				book.styles.image = form.querySelector('[name=styles-image').value;
 				book.styles.font = form.querySelector('[name=styles-font').value;
@@ -13798,8 +13989,8 @@ var adminBooksNew = function adminBooksNew(container) {
 						}
 
 						var addBtns = modal.querySelectorAll('.add-btn');
-						for (var _i5 = 0; _i5 < addBtns.length; _i5++) {
-							addBtns[_i5].addEventListener('click', addAuth, false);
+						for (var _i6 = 0; _i6 < addBtns.length; _i6++) {
+							addBtns[_i6].addEventListener('click', addAuth, false);
 						}
 					}
 				}).catch(function (err) {
@@ -13819,8 +14010,8 @@ var adminBooksNew = function adminBooksNew(container) {
 					authorsContainer.innerHTML = selectedAuthorsTemplate({ selectedAuthors: selectedAuthorsDisplay });
 					closeModal();
 					var _deleteBtns = authorsContainer.querySelectorAll('.delete-btn');
-					for (var _i6 = 0; _i6 < _deleteBtns.length; _i6++) {
-						_deleteBtns[_i6].addEventListener('click', deleteAuth, false);
+					for (var _i7 = 0; _i7 < _deleteBtns.length; _i7++) {
+						_deleteBtns[_i7].addEventListener('click', deleteAuth, false);
 					}
 				} else if (authType === 'contributeur') {
 					_utils2.default.addClass('#search', 'hidden');
@@ -13832,8 +14023,8 @@ var adminBooksNew = function adminBooksNew(container) {
 						contribsContainer.innerHTML = selectedContribsTemplate({ selectedContribs: selectedContribsDisplay });
 						closeModal();
 						var deleteBtns = contribsContainer.querySelectorAll('.delete-btn');
-						for (var _i7 = 0; _i7 < deleteBtns.length; _i7++) {
-							deleteBtns[_i7].addEventListener('click', deleteAuth, false);
+						for (var _i8 = 0; _i8 < deleteBtns.length; _i8++) {
+							deleteBtns[_i8].addEventListener('click', deleteAuth, false);
 						}
 					}, false);
 				}
@@ -13851,17 +14042,41 @@ var adminBooksNew = function adminBooksNew(container) {
 					selectedAuthorsDisplay.splice(index, 1);
 					authorsContainer.innerHTML = selectedAuthorsTemplate({ selectedAuthors: selectedAuthorsDisplay });
 					var _deleteBtns2 = authorsContainer.querySelectorAll('.delete-btn');
-					for (var _i8 = 0; _i8 < _deleteBtns2.length; _i8++) {
-						_deleteBtns2[_i8].addEventListener('click', deleteAuth, false);
+					for (var _i9 = 0; _i9 < _deleteBtns2.length; _i9++) {
+						_deleteBtns2[_i9].addEventListener('click', deleteAuth, false);
 					}
 				} else if (authType === 'contributeur') {
 					selectedContribs.splice(index, 1);
 					selectedContribsDisplay.splice(index, 1);
 					contribsContainer.innerHTML = selectedContribsTemplate({ selectedContribs: selectedContribsDisplay });
 					var _deleteBtns3 = contribsContainer.querySelectorAll('.delete-btn');
-					for (var _i9 = 0; _i9 < _deleteBtns3.length; _i9++) {
-						_deleteBtns3[_i9].addEventListener('click', deleteAuth, false);
+					for (var _i10 = 0; _i10 < _deleteBtns3.length; _i10++) {
+						_deleteBtns3[_i10].addEventListener('click', deleteAuth, false);
 					}
+				}
+			};
+
+			//ADD SOURCE
+
+
+			var addSource = function addSource(event) {
+				var src = sourceModal.querySelector('[name=source]').value;
+				sources.push(src);
+				sourcesContainer.innerHTML = sourcesTemplate({ sources: sources });
+				var deleteSourceBtn = sourcesContainer.querySelectorAll('.delete-source-btn');
+				for (var _i11 = 0; _i11 < deleteSourceBtn.length; _i11++) {
+					deleteSourceBtn[_i11].addEventListener('click', deleteSource, false);
+				}
+			};
+
+			//DELETE SOURCE
+			var deleteSource = function deleteSource(event) {
+				var index = event.target.parentElement.id;
+				sources.splice(index, 1);
+				sourcesContainer.innerHTML = sourcesTemplate({ sources: sources });
+				var deleteSourceBtn = sourcesContainer.querySelectorAll('.delete-source-btn');
+				for (var _i12 = 0; _i12 < deleteSourceBtn.length; _i12++) {
+					deleteSourceBtn[_i12].addEventListener('click', deleteSource, false);
 				}
 			};
 
@@ -13873,6 +14088,7 @@ var adminBooksNew = function adminBooksNew(container) {
 			    selectedAuthors = [];
 			var selectedContribsDisplay = [],
 			    selectedContribs = [];
+			var sources = [];
 			//init authors
 			for (var i = 0; i < book.authors.length; i++) {
 				selectedAuthors.push(book.authors[i].id);
@@ -13883,8 +14099,15 @@ var adminBooksNew = function adminBooksNew(container) {
 				selectedContribs.push(book.contribs[_i]);
 				selectedContribsDisplay.push(book.contribs[_i]);
 			}
+			//init sources
+			for (var _i2 = 0; _i2 < book.sources.length; _i2++) {
+				sources.push(book.sources[_i2]);
+			}
 			//insert template in container
-			c.innerHTML = adminBookEditTemplate({ book: book, selectedAuthors: selectedAuthorsDisplay, selectedContribs: selectedContribsDisplay });
+			c.innerHTML = adminBookEditTemplate({ book: book,
+				selectedAuthors: selectedAuthorsDisplay,
+				selectedContribs: selectedContribsDisplay,
+				sources: sources });
 			//ELEMENTS
 			//rootElement
 			var root = document.querySelector('#adminBookEdit');
@@ -13895,17 +14118,19 @@ var adminBooksNew = function adminBooksNew(container) {
 			var modal = root.querySelector('#modal');
 			var searchInput = modal.querySelector('input');
 			var results = modal.querySelector('#results');
+			//source modal
+			var sourceModal = root.querySelector('#source_modal');
 			//authors, contribs containers
 			var authorsContainer = root.querySelector('#authorsContainer');
 			var contribsContainer = root.querySelector('#contribsContainer');
 			//attach deleAuth to form
 			var deleteBtns = form.querySelectorAll('.delete-btn');
-			for (var _i2 = 0; _i2 < deleteBtns.length; _i2++) {
-				deleteBtns[_i2].addEventListener('click', deleteAuth, false);
+			for (var _i3 = 0; _i3 < deleteBtns.length; _i3++) {
+				deleteBtns[_i3].addEventListener('click', deleteAuth, false);
 			}
 
-			for (var _i3 = 0; _i3 < inputs.length; _i3++) {
-				inputs[_i3].addEventListener('input', onInput, false);
+			for (var _i4 = 0; _i4 < inputs.length; _i4++) {
+				inputs[_i4].addEventListener('input', onInput, false);
 			}
 
 			form.addEventListener('submit', onSubmit, false);
@@ -13921,8 +14146,8 @@ var adminBooksNew = function adminBooksNew(container) {
 			};
 
 			var openModalBtns = root.querySelectorAll('.open-modal-btn');
-			for (var _i4 = 0; _i4 < openModalBtns.length; _i4++) {
-				openModalBtns[_i4].addEventListener('click', openModal, false);
+			for (var _i5 = 0; _i5 < openModalBtns.length; _i5++) {
+				openModalBtns[_i5].addEventListener('click', openModal, false);
 			}
 
 			//close modal
@@ -13936,6 +14161,27 @@ var adminBooksNew = function adminBooksNew(container) {
 			closeModalBtn.addEventListener('click', closeModal, false);
 
 			searchInput.addEventListener('keyup', onkeyup, false);
+
+			//SOURCE MODAL
+			//open source modal
+			var openSourceModal = function openSourceModal(event) {
+				event.preventDefault();
+				sourceModal.style.display = 'block';
+			};
+
+			var openSourceModalBtn = document.querySelector('#open-source-modal-btn');
+			openSourceModalBtn.addEventListener('click', openSourceModal, false);
+
+			//close source modal
+			var closeSourceModal = function closeSourceModal(event) {
+				sourceModal.style.display = 'none';
+			};
+
+			var closeSourceModalBtn = document.querySelector('#close-source-modal-btn');
+			closeSourceModalBtn.addEventListener('click', closeSourceModal, false);
+
+			var addSourceBtn = document.querySelector('#add-source-btn');
+			addSourceBtn.addEventListener('click', addSource, false);
 		}
 	});
 };
@@ -13943,7 +14189,7 @@ var adminBooksNew = function adminBooksNew(container) {
 exports.default = adminBooksNew;
 
 /***/ }),
-/* 100 */
+/* 101 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -13952,7 +14198,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="adminBookEdit" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="modal">\n		<div class="modal-content animate-top container" style="max-width: 500px">\n			<header class="border-bottom"> \n				<button id="close-modal-btn" class="btn topright" style="font-size: 1.5em">&times;</button>\n				<h4>Rechercher un auteur</h4>\n			</header>\n			<div>\n				<p id="search">\n				<input type="text" name="search" class="input">\n				<span class="error" data-utils-bind="{{ error }}"></span>\n				</p>\n				<div id="results" style="min-height:150px"></div>\n			</div>\n			\n		</div>\n	</div>\n<!--\n	MAIN\n-->\n	<p class="align-left padding-16"><b>Modifier un ouvrage</b></p>\n	<p class="align-right padding-16"><a href="/#/admin/books/<%= book.id %>">Retour</a></p>\n	<div style="clear: both">\n		<form id="adminBookEditForm">\n			\n			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>\n			\n			<p id="title">\n				<label>Titre * : </label>\n				<input type="text" name="title" class="input" value="<%= book.title %>" >\n				<span class="error" data-utils-bind="{{ title }}"></span>\n			</p>\n			\n			<p id="subtitle1">\n				<label>Sous-titre 1 : </label>\n				<input type="text" name="subtitle1" class="input" value="<%= book.subtitle1 %>" >\n			</p>\n			\n			<p id="subtitle2">\n				<label>Sous-titre 2 : </label>\n				<input type="text" name="subtitle2" class="input" value="<%= book.subtitle2 %>" >\n			</p>\n			\n			<p id="authorDisplay">\n				<label>Auteur (libellé) * : </label>\n				<input type="text" name="authorDisplay" class="input" value="<%= book.authorDisplay %>" >\n				<span class="error" data-utils-bind="{{ authorDisplay }}"></span>\n			</p>\n			\n			<div id="authors" class="margin-bottom border-bottom">\n				<div class="margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Auteurs * : </label>\n						<button type="button" id="auteur" class="button align-right open-modal-btn">Rechercher</button>\n					</p>\n					\n					<ul id="authorsContainer" class="ul padding-32">\n						<% for(var i=0; i<selectedAuthors.length; i++) {%>\n						<li>\n							<p data-key="<%= selectedAuthors[i].id %>" id="<%= i %>" >\n								<span><%= selectedAuthors[i].name %></span>\n								<button type="button" id="auteur" class="delete-btn button align-right">Supprimer</button>\n								<span style="clear: both"></span>\n							</p>\n						</li>\n						<% } %>\n					</ul>\n					<span class="error" data-utils-bind="{{ authors }}"></span>\n				</div>\n				\n			</div>\n			\n			<div id="contribs" class="margin-bottom border-bottom">\n				<div class="margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Contributeurs : </label>\n						<button type="button" id="contributeur" class="button align-right open-modal-btn">Rechercher</button>\n					</p>\n					\n					<ul id="contribsContainer" class="ul padding-32">\n						<% for(var i=0; i<selectedContribs.length; i++) {%>\n						<li>\n							<p data-key="<%= selectedContribs[i].id %>" id="<%= i %>" >\n								<span><%= selectedContribs[i].name %> </span>\n								<span>(<%= selectedContribs[i].role %>)</span>\n								<button type="button" id="contributeur" class="delete-btn button align-right">Supprimer</button>\n								<span style="clear: both"></span>\n							</p>\n						</li>\n						<% } %>\n					</ul>\n				</div>\n				\n			</div>\n			\n			<p id="year">\n				<label>Année de publication * : </label>\n				<input type="text" name="year" class="input" value="<%= book.year %>" >\n				<span class="error" data-utils-bind="{{ year }}"></span>\n			</p>\n			\n			<p id="language">\n				<label>Langue * : </label>\n				<input type="text" name="language" class="input" value="<%= book.language %>" >\n				<span class="error" data-utils-bind="{{ language }}"></span>\n			</p>\n			\n			<p id="categories">\n				<label>Catégories : </label>\n				<input type="text" name="categories" class="input" value="<%= book.categories %>" >\n				<span class="error" data-utils-bind="{{ categories }}"></span>\n			</p>\n			\n			<p id="collection">\n				<label>Collection : </label>\n				<input type="text" name="collection" class="input" value="<%= book.collection %>" >\n				<span class="error" data-utils-bind="{{ collection }}"></span>\n			</p>\n			\n			<p id="source-publisher">\n				<label>Source - éditeur : </label>\n				<input type="text" name="source-publisher" class="input" value="<%= book.source.publisher %>" >\n			</p>\n			\n			<p id="source-year">\n				<label>Source - année de publication : </label>\n				<input type="text" name="source-year" class="input" value="<%= book.source.year %>" >\n			</p>\n			\n			<p id="source-origin">\n				<label>Source - origine : </label>\n				<input type="text" name="source-origin" class="input" value="<%= book.source.origin %>" >\n			</p>\n			\n			<p id="styles-color">\n				<label>Styles - couleur : </label>\n				<input type="text" name="styles-color" class="input" value="<%= book.styles.color %>" >\n			</p>\n			\n			<p id="styles-image">\n				<label>Styles - image : </label>\n				<input type="text" name="styles-image" class="input" value="<%= book.styles.image %>" >\n			</p>\n			\n			<p id="styles-font">\n				<label>Styles - police : </label>\n				<input type="text" name="styles-font" class="input" value="<%= book.styles.font %>" >\n			</p>\n			\n			<p id="styles-cover">\n				<label>Styles - couverture : </label>\n				<input type="text" name="styles-cover" class="input" value="<%= book.styles.cover %>" >\n			</p>\n			\n			<p id="styles-author">\n				<label>Styles - auteur : </label>\n				<input type="text" name="styles-author" class="input" value="<%= book.styles.author %>" >\n			</p>\n			\n			<p id="styles-title">\n				<label>Styles - titre : </label>\n				<input type="text" name="styles-title" class="input" value="<%= book.styles.title %>" >\n			</p>\n			\n			<p id="styles-subtitle1">\n				<label>Styles - sous-titre1 : </label>\n				<input type="text" name="styles-subtitle1" class="input" value="<%= book.styles.subtitle1 %>" >\n			</p>\n			\n			<p id="styles-subtitle2">\n				<label>Styles - sous-titre2 : </label>\n				<input type="text" name="styles-subtitle2" class="input" value="<%= book.styles.subtitle2 %>" >\n			</p>\n			\n			<p id="styles-logo">\n				<label>Styles - logo : </label>\n				<input type="text" name="styles-logo" class="input" value="<%= book.styles.logo %>" >\n			</p>\n			\n			<p id="description">\n				<label>Description : </label>\n				<textarea type="text" name="description" value="<%= book.description %>" style="display: block; width: 100%; margin-top: 4px"></textarea>\n			</p>\n			\n			<p id="path">\n				<label>Path * : </label>\n				<input type="text" name="path" class="input" value="<%= book.path %>" >\n				<span class="error" data-utils-bind="{{ path }}"></span>\n			</p>\n			\n			<p id="visible">\n				<label><input type="checkbox" name="visible" <% if(book.visible) {%> checked <%}%> > Visible</label>\n			</p>\n			\n			<p class="padding-16">\n				<button type="submit" class="button">Valider</button>\n			</p>\n			\n		</form>\n	</div>\n</div>\n',
+        input: '<div id="adminBookEdit" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="modal">\n		<div class="modal-content animate-top container" style="max-width: 500px">\n			<header class="border-bottom"> \n				<button id="close-modal-btn" class="btn topright" style="font-size: 1.5em">&times;</button>\n				<h4>Rechercher un auteur</h4>\n			</header>\n			<div>\n				<p id="search">\n				<input type="text" name="search" class="input">\n				<span class="error" data-utils-bind="{{ error }}"></span>\n				</p>\n				<div id="results" style="min-height:150px"></div>\n			</div>\n			\n		</div>\n	</div>\n<!--\n	SOURCES MODAL\n-->\n	<div id="source_modal" class="modal">\n		<div class="modal-content animate-top container" style="max-width: 500px">\n			<header class="border-bottom"> \n				<button id="close-source-modal-btn" class="btn topright" style="font-size: 1.5em">&times;</button>\n				<h4>Ajouter une source</h4>\n			</header>\n			<div class="padding-32">\n				<p>\n				<input type="text" name="source" class="input">\n				<span class="error" data-utils-bind="{{ error }}"></span>\n				</p>\n				<button type="button" id="add-source-btn" class="button align-right">Ajouter</button>\n			</div>\n			\n		</div>\n	</div>\n<!--\n	MAIN\n-->\n	<p class="align-left padding-16"><b>Modifier un ouvrage</b></p>\n	<p class="align-right padding-16"><a href="/#/admin/books/<%= book.id %>">Retour</a></p>\n	<div style="clear: both">\n		<form id="adminBookEditForm">\n			\n			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>\n			\n			<p id="title">\n				<label>Titre * : </label>\n				<input type="text" name="title" class="input" value="<%= book.title %>" >\n				<span class="error" data-utils-bind="{{ title }}"></span>\n			</p>\n			\n			<p id="subtitle1">\n				<label>Sous-titre 1 : </label>\n				<input type="text" name="subtitle1" class="input" value="<%= book.subtitle1 %>" >\n			</p>\n			\n			<p id="subtitle2">\n				<label>Sous-titre 2 : </label>\n				<input type="text" name="subtitle2" class="input" value="<%= book.subtitle2 %>" >\n			</p>\n			\n			<p id="authorDisplay">\n				<label>Auteur (libellé) * : </label>\n				<input type="text" name="authorDisplay" class="input" value="<%= book.authorDisplay %>" >\n				<span class="error" data-utils-bind="{{ authorDisplay }}"></span>\n			</p>\n			\n			<div id="authors" class="margin-bottom border-bottom">\n				<div class="margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Auteurs * : </label>\n						<button type="button" id="auteur" class="button align-right open-modal-btn">Rechercher</button>\n					</p>\n					\n					<ul id="authorsContainer" class="ul padding-32">\n						<% for(var i=0; i<selectedAuthors.length; i++) {%>\n						<li>\n							<p data-key="<%= selectedAuthors[i].id %>" id="<%= i %>" >\n								<span><%= selectedAuthors[i].name %></span>\n								<button type="button" id="auteur" class="delete-btn button align-right">Supprimer</button>\n								<span style="clear: both"></span>\n							</p>\n						</li>\n						<% } %>\n					</ul>\n					<span class="error" data-utils-bind="{{ authors }}"></span>\n				</div>\n				\n			</div>\n			\n			<div id="contribs" class="margin-bottom border-bottom">\n				<div class="margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Contributeurs : </label>\n						<button type="button" id="contributeur" class="button align-right open-modal-btn">Rechercher</button>\n					</p>\n					\n					<ul id="contribsContainer" class="ul padding-32">\n						<% for(var i=0; i<selectedContribs.length; i++) {%>\n						<li>\n							<p data-key="<%= selectedContribs[i].id %>" id="<%= i %>" >\n								<span><%= selectedContribs[i].name %> </span>\n								<span>(<%= selectedContribs[i].role %>)</span>\n								<button type="button" id="contributeur" class="delete-btn button align-right">Supprimer</button>\n								<span style="clear: both"></span>\n							</p>\n						</li>\n						<% } %>\n					</ul>\n				</div>\n				\n			</div>\n			\n			<p id="year">\n				<label>Année de publication * : </label>\n				<input type="text" name="year" class="input" value="<%= book.year %>" >\n				<span class="error" data-utils-bind="{{ year }}"></span>\n			</p>\n			\n			<p id="language">\n				<label>Langue * : </label>\n				<input type="text" name="language" class="input" value="<%= book.language %>" >\n				<span class="error" data-utils-bind="{{ language }}"></span>\n			</p>\n			\n			<p id="categories">\n				<label>Catégories : </label>\n				<input type="text" name="categories" class="input" value="<%= book.categories %>" >\n				<span class="error" data-utils-bind="{{ categories }}"></span>\n			</p>\n			\n			<p id="collection">\n				<label>Collection : </label>\n				<input type="text" name="collection" class="input" value="<%= book.collection %>" >\n				<span class="error" data-utils-bind="{{ collection }}"></span>\n			</p>\n			\n			<div id="sources">\n				<div class="margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Sources : </label>\n						<a href="/#/source" id="open-source-modal-btn" class="align-right">Ajouter</a>\n					</p>\n					\n					<ul id="sourcesContainer" class="ul padding-32">\n					<% for(var i=0; i<sources.length; i++) {%>\n						<li>\n							<p id="<%= i %>" >\n								<span><%- sources[i] %></span>\n								<button type="button" class="delete-source-btn button align-right">Supprimer</button>\n							</p>\n						</li>\n					<% } %>\n					</ul>\n				</div>\n			</div>\n			\n			<p id="styles-color">\n				<label>Styles - couleur : </label>\n				<input type="text" name="styles-color" class="input" value="<%= book.styles.color %>" >\n			</p>\n			\n			<p id="styles-image">\n				<label>Styles - image : </label>\n				<input type="text" name="styles-image" class="input" value="<%= book.styles.image %>" >\n			</p>\n			\n			<p id="styles-font">\n				<label>Styles - police : </label>\n				<input type="text" name="styles-font" class="input" value="<%= book.styles.font %>" >\n			</p>\n			\n			<p id="styles-cover">\n				<label>Styles - couverture : </label>\n				<input type="text" name="styles-cover" class="input" value="<%= book.styles.cover %>" >\n			</p>\n			\n			<p id="styles-author">\n				<label>Styles - auteur : </label>\n				<input type="text" name="styles-author" class="input" value="<%= book.styles.author %>" >\n			</p>\n			\n			<p id="styles-title">\n				<label>Styles - titre : </label>\n				<input type="text" name="styles-title" class="input" value="<%= book.styles.title %>" >\n			</p>\n			\n			<p id="styles-subtitle1">\n				<label>Styles - sous-titre1 : </label>\n				<input type="text" name="styles-subtitle1" class="input" value="<%= book.styles.subtitle1 %>" >\n			</p>\n			\n			<p id="styles-subtitle2">\n				<label>Styles - sous-titre2 : </label>\n				<input type="text" name="styles-subtitle2" class="input" value="<%= book.styles.subtitle2 %>" >\n			</p>\n			\n			<p id="styles-logo">\n				<label>Styles - logo : </label>\n				<input type="text" name="styles-logo" class="input" value="<%= book.styles.logo %>" >\n			</p>\n			\n			<p id="description">\n				<label>Description : </label>\n				<textarea type="text" name="description" value="<%= book.description %>" style="display: block; width: 100%; margin-top: 4px"></textarea>\n			</p>\n			\n			<p id="path">\n				<label>Path * : </label>\n				<input type="text" name="path" class="input" value="<%= book.path %>" >\n				<span class="error" data-utils-bind="{{ path }}"></span>\n			</p>\n			\n			<p id="visible">\n				<label><input type="checkbox" name="visible" <% if(book.visible) {%> checked <%}%> > Visible</label>\n			</p>\n			\n			<p class="padding-16">\n				<button type="submit" class="button">Valider</button>\n			</p>\n			\n		</form>\n	</div>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -13969,23 +14215,29 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
         var buf = [];
         with (locals || {}) {
             (function() {
-                buf.push('<div id="adminBookEdit" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="modal">\n		<div class="modal-content animate-top container" style="max-width: 500px">\n			<header class="border-bottom"> \n				<button id="close-modal-btn" class="btn topright" style="font-size: 1.5em">&times;</button>\n				<h4>Rechercher un auteur</h4>\n			</header>\n			<div>\n				<p id="search">\n				<input type="text" name="search" class="input">\n				<span class="error" data-utils-bind="{{ error }}"></span>\n				</p>\n				<div id="results" style="min-height:150px"></div>\n			</div>\n			\n		</div>\n	</div>\n<!--\n	MAIN\n-->\n	<p class="align-left padding-16"><b>Modifier un ouvrage</b></p>\n	<p class="align-right padding-16"><a href="/#/admin/books/', escape((__stack.lineno = 25, book.id)), '">Retour</a></p>\n	<div style="clear: both">\n		<form id="adminBookEditForm">\n			\n			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>\n			\n			<p id="title">\n				<label>Titre * : </label>\n				<input type="text" name="title" class="input" value="', escape((__stack.lineno = 33, book.title)), '" >\n				<span class="error" data-utils-bind="{{ title }}"></span>\n			</p>\n			\n			<p id="subtitle1">\n				<label>Sous-titre 1 : </label>\n				<input type="text" name="subtitle1" class="input" value="', escape((__stack.lineno = 39, book.subtitle1)), '" >\n			</p>\n			\n			<p id="subtitle2">\n				<label>Sous-titre 2 : </label>\n				<input type="text" name="subtitle2" class="input" value="', escape((__stack.lineno = 44, book.subtitle2)), '" >\n			</p>\n			\n			<p id="authorDisplay">\n				<label>Auteur (libellé) * : </label>\n				<input type="text" name="authorDisplay" class="input" value="', escape((__stack.lineno = 49, book.authorDisplay)), '" >\n				<span class="error" data-utils-bind="{{ authorDisplay }}"></span>\n			</p>\n			\n			<div id="authors" class="margin-bottom border-bottom">\n				<div class="margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Auteurs * : </label>\n						<button type="button" id="auteur" class="button align-right open-modal-btn">Rechercher</button>\n					</p>\n					\n					<ul id="authorsContainer" class="ul padding-32">\n						');
-                __stack.lineno = 61;
+                buf.push('<div id="adminBookEdit" class="content">\n<!--\n	MODAL\n-->\n	<div id="modal" class="modal">\n		<div class="modal-content animate-top container" style="max-width: 500px">\n			<header class="border-bottom"> \n				<button id="close-modal-btn" class="btn topright" style="font-size: 1.5em">&times;</button>\n				<h4>Rechercher un auteur</h4>\n			</header>\n			<div>\n				<p id="search">\n				<input type="text" name="search" class="input">\n				<span class="error" data-utils-bind="{{ error }}"></span>\n				</p>\n				<div id="results" style="min-height:150px"></div>\n			</div>\n			\n		</div>\n	</div>\n<!--\n	SOURCES MODAL\n-->\n	<div id="source_modal" class="modal">\n		<div class="modal-content animate-top container" style="max-width: 500px">\n			<header class="border-bottom"> \n				<button id="close-source-modal-btn" class="btn topright" style="font-size: 1.5em">&times;</button>\n				<h4>Ajouter une source</h4>\n			</header>\n			<div class="padding-32">\n				<p>\n				<input type="text" name="source" class="input">\n				<span class="error" data-utils-bind="{{ error }}"></span>\n				</p>\n				<button type="button" id="add-source-btn" class="button align-right">Ajouter</button>\n			</div>\n			\n		</div>\n	</div>\n<!--\n	MAIN\n-->\n	<p class="align-left padding-16"><b>Modifier un ouvrage</b></p>\n	<p class="align-right padding-16"><a href="/#/admin/books/', escape((__stack.lineno = 44, book.id)), '">Retour</a></p>\n	<div style="clear: both">\n		<form id="adminBookEditForm">\n			\n			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>\n			\n			<p id="title">\n				<label>Titre * : </label>\n				<input type="text" name="title" class="input" value="', escape((__stack.lineno = 52, book.title)), '" >\n				<span class="error" data-utils-bind="{{ title }}"></span>\n			</p>\n			\n			<p id="subtitle1">\n				<label>Sous-titre 1 : </label>\n				<input type="text" name="subtitle1" class="input" value="', escape((__stack.lineno = 58, book.subtitle1)), '" >\n			</p>\n			\n			<p id="subtitle2">\n				<label>Sous-titre 2 : </label>\n				<input type="text" name="subtitle2" class="input" value="', escape((__stack.lineno = 63, book.subtitle2)), '" >\n			</p>\n			\n			<p id="authorDisplay">\n				<label>Auteur (libellé) * : </label>\n				<input type="text" name="authorDisplay" class="input" value="', escape((__stack.lineno = 68, book.authorDisplay)), '" >\n				<span class="error" data-utils-bind="{{ authorDisplay }}"></span>\n			</p>\n			\n			<div id="authors" class="margin-bottom border-bottom">\n				<div class="margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Auteurs * : </label>\n						<button type="button" id="auteur" class="button align-right open-modal-btn">Rechercher</button>\n					</p>\n					\n					<ul id="authorsContainer" class="ul padding-32">\n						');
+                __stack.lineno = 80;
                 for (var i = 0; i < selectedAuthors.length; i++) {
-                    buf.push('\n						<li>\n							<p data-key="', escape((__stack.lineno = 63, selectedAuthors[i].id)), '" id="', escape((__stack.lineno = 63, i)), '" >\n								<span>', escape((__stack.lineno = 64, selectedAuthors[i].name)), '</span>\n								<button type="button" id="auteur" class="delete-btn button align-right">Supprimer</button>\n								<span style="clear: both"></span>\n							</p>\n						</li>\n						');
-                    __stack.lineno = 69;
+                    buf.push('\n						<li>\n							<p data-key="', escape((__stack.lineno = 82, selectedAuthors[i].id)), '" id="', escape((__stack.lineno = 82, i)), '" >\n								<span>', escape((__stack.lineno = 83, selectedAuthors[i].name)), '</span>\n								<button type="button" id="auteur" class="delete-btn button align-right">Supprimer</button>\n								<span style="clear: both"></span>\n							</p>\n						</li>\n						');
+                    __stack.lineno = 88;
                 }
                 buf.push('\n					</ul>\n					<span class="error" data-utils-bind="{{ authors }}"></span>\n				</div>\n				\n			</div>\n			\n			<div id="contribs" class="margin-bottom border-bottom">\n				<div class="margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Contributeurs : </label>\n						<button type="button" id="contributeur" class="button align-right open-modal-btn">Rechercher</button>\n					</p>\n					\n					<ul id="contribsContainer" class="ul padding-32">\n						');
-                __stack.lineno = 84;
+                __stack.lineno = 103;
                 for (var i = 0; i < selectedContribs.length; i++) {
-                    buf.push('\n						<li>\n							<p data-key="', escape((__stack.lineno = 86, selectedContribs[i].id)), '" id="', escape((__stack.lineno = 86, i)), '" >\n								<span>', escape((__stack.lineno = 87, selectedContribs[i].name)), " </span>\n								<span>(", escape((__stack.lineno = 88, selectedContribs[i].role)), ')</span>\n								<button type="button" id="contributeur" class="delete-btn button align-right">Supprimer</button>\n								<span style="clear: both"></span>\n							</p>\n						</li>\n						');
-                    __stack.lineno = 93;
+                    buf.push('\n						<li>\n							<p data-key="', escape((__stack.lineno = 105, selectedContribs[i].id)), '" id="', escape((__stack.lineno = 105, i)), '" >\n								<span>', escape((__stack.lineno = 106, selectedContribs[i].name)), " </span>\n								<span>(", escape((__stack.lineno = 107, selectedContribs[i].role)), ')</span>\n								<button type="button" id="contributeur" class="delete-btn button align-right">Supprimer</button>\n								<span style="clear: both"></span>\n							</p>\n						</li>\n						');
+                    __stack.lineno = 112;
                 }
-                buf.push('\n					</ul>\n				</div>\n				\n			</div>\n			\n			<p id="year">\n				<label>Année de publication * : </label>\n				<input type="text" name="year" class="input" value="', escape((__stack.lineno = 101, book.year)), '" >\n				<span class="error" data-utils-bind="{{ year }}"></span>\n			</p>\n			\n			<p id="language">\n				<label>Langue * : </label>\n				<input type="text" name="language" class="input" value="', escape((__stack.lineno = 107, book.language)), '" >\n				<span class="error" data-utils-bind="{{ language }}"></span>\n			</p>\n			\n			<p id="categories">\n				<label>Catégories : </label>\n				<input type="text" name="categories" class="input" value="', escape((__stack.lineno = 113, book.categories)), '" >\n				<span class="error" data-utils-bind="{{ categories }}"></span>\n			</p>\n			\n			<p id="collection">\n				<label>Collection : </label>\n				<input type="text" name="collection" class="input" value="', escape((__stack.lineno = 119, book.collection)), '" >\n				<span class="error" data-utils-bind="{{ collection }}"></span>\n			</p>\n			\n			<p id="source-publisher">\n				<label>Source - éditeur : </label>\n				<input type="text" name="source-publisher" class="input" value="', escape((__stack.lineno = 125, book.source.publisher)), '" >\n			</p>\n			\n			<p id="source-year">\n				<label>Source - année de publication : </label>\n				<input type="text" name="source-year" class="input" value="', escape((__stack.lineno = 130, book.source.year)), '" >\n			</p>\n			\n			<p id="source-origin">\n				<label>Source - origine : </label>\n				<input type="text" name="source-origin" class="input" value="', escape((__stack.lineno = 135, book.source.origin)), '" >\n			</p>\n			\n			<p id="styles-color">\n				<label>Styles - couleur : </label>\n				<input type="text" name="styles-color" class="input" value="', escape((__stack.lineno = 140, book.styles.color)), '" >\n			</p>\n			\n			<p id="styles-image">\n				<label>Styles - image : </label>\n				<input type="text" name="styles-image" class="input" value="', escape((__stack.lineno = 145, book.styles.image)), '" >\n			</p>\n			\n			<p id="styles-font">\n				<label>Styles - police : </label>\n				<input type="text" name="styles-font" class="input" value="', escape((__stack.lineno = 150, book.styles.font)), '" >\n			</p>\n			\n			<p id="styles-cover">\n				<label>Styles - couverture : </label>\n				<input type="text" name="styles-cover" class="input" value="', escape((__stack.lineno = 155, book.styles.cover)), '" >\n			</p>\n			\n			<p id="styles-author">\n				<label>Styles - auteur : </label>\n				<input type="text" name="styles-author" class="input" value="', escape((__stack.lineno = 160, book.styles.author)), '" >\n			</p>\n			\n			<p id="styles-title">\n				<label>Styles - titre : </label>\n				<input type="text" name="styles-title" class="input" value="', escape((__stack.lineno = 165, book.styles.title)), '" >\n			</p>\n			\n			<p id="styles-subtitle1">\n				<label>Styles - sous-titre1 : </label>\n				<input type="text" name="styles-subtitle1" class="input" value="', escape((__stack.lineno = 170, book.styles.subtitle1)), '" >\n			</p>\n			\n			<p id="styles-subtitle2">\n				<label>Styles - sous-titre2 : </label>\n				<input type="text" name="styles-subtitle2" class="input" value="', escape((__stack.lineno = 175, book.styles.subtitle2)), '" >\n			</p>\n			\n			<p id="styles-logo">\n				<label>Styles - logo : </label>\n				<input type="text" name="styles-logo" class="input" value="', escape((__stack.lineno = 180, book.styles.logo)), '" >\n			</p>\n			\n			<p id="description">\n				<label>Description : </label>\n				<textarea type="text" name="description" value="', escape((__stack.lineno = 185, book.description)), '" style="display: block; width: 100%; margin-top: 4px"></textarea>\n			</p>\n			\n			<p id="path">\n				<label>Path * : </label>\n				<input type="text" name="path" class="input" value="', escape((__stack.lineno = 190, book.path)), '" >\n				<span class="error" data-utils-bind="{{ path }}"></span>\n			</p>\n			\n			<p id="visible">\n				<label><input type="checkbox" name="visible" ');
-                __stack.lineno = 195;
+                buf.push('\n					</ul>\n				</div>\n				\n			</div>\n			\n			<p id="year">\n				<label>Année de publication * : </label>\n				<input type="text" name="year" class="input" value="', escape((__stack.lineno = 120, book.year)), '" >\n				<span class="error" data-utils-bind="{{ year }}"></span>\n			</p>\n			\n			<p id="language">\n				<label>Langue * : </label>\n				<input type="text" name="language" class="input" value="', escape((__stack.lineno = 126, book.language)), '" >\n				<span class="error" data-utils-bind="{{ language }}"></span>\n			</p>\n			\n			<p id="categories">\n				<label>Catégories : </label>\n				<input type="text" name="categories" class="input" value="', escape((__stack.lineno = 132, book.categories)), '" >\n				<span class="error" data-utils-bind="{{ categories }}"></span>\n			</p>\n			\n			<p id="collection">\n				<label>Collection : </label>\n				<input type="text" name="collection" class="input" value="', escape((__stack.lineno = 138, book.collection)), '" >\n				<span class="error" data-utils-bind="{{ collection }}"></span>\n			</p>\n			\n			<div id="sources">\n				<div class="margin-bottom" style="min-height:100px">\n					<p>\n						<label class="align-left">Sources : </label>\n						<a href="/#/source" id="open-source-modal-btn" class="align-right">Ajouter</a>\n					</p>\n					\n					<ul id="sourcesContainer" class="ul padding-32">\n					');
+                __stack.lineno = 150;
+                for (var i = 0; i < sources.length; i++) {
+                    buf.push('\n						<li>\n							<p id="', escape((__stack.lineno = 152, i)), '" >\n								<span>', (__stack.lineno = 153, sources[i]), '</span>\n								<button type="button" class="delete-source-btn button align-right">Supprimer</button>\n							</p>\n						</li>\n					');
+                    __stack.lineno = 157;
+                }
+                buf.push('\n					</ul>\n				</div>\n			</div>\n			\n			<p id="styles-color">\n				<label>Styles - couleur : </label>\n				<input type="text" name="styles-color" class="input" value="', escape((__stack.lineno = 164, book.styles.color)), '" >\n			</p>\n			\n			<p id="styles-image">\n				<label>Styles - image : </label>\n				<input type="text" name="styles-image" class="input" value="', escape((__stack.lineno = 169, book.styles.image)), '" >\n			</p>\n			\n			<p id="styles-font">\n				<label>Styles - police : </label>\n				<input type="text" name="styles-font" class="input" value="', escape((__stack.lineno = 174, book.styles.font)), '" >\n			</p>\n			\n			<p id="styles-cover">\n				<label>Styles - couverture : </label>\n				<input type="text" name="styles-cover" class="input" value="', escape((__stack.lineno = 179, book.styles.cover)), '" >\n			</p>\n			\n			<p id="styles-author">\n				<label>Styles - auteur : </label>\n				<input type="text" name="styles-author" class="input" value="', escape((__stack.lineno = 184, book.styles.author)), '" >\n			</p>\n			\n			<p id="styles-title">\n				<label>Styles - titre : </label>\n				<input type="text" name="styles-title" class="input" value="', escape((__stack.lineno = 189, book.styles.title)), '" >\n			</p>\n			\n			<p id="styles-subtitle1">\n				<label>Styles - sous-titre1 : </label>\n				<input type="text" name="styles-subtitle1" class="input" value="', escape((__stack.lineno = 194, book.styles.subtitle1)), '" >\n			</p>\n			\n			<p id="styles-subtitle2">\n				<label>Styles - sous-titre2 : </label>\n				<input type="text" name="styles-subtitle2" class="input" value="', escape((__stack.lineno = 199, book.styles.subtitle2)), '" >\n			</p>\n			\n			<p id="styles-logo">\n				<label>Styles - logo : </label>\n				<input type="text" name="styles-logo" class="input" value="', escape((__stack.lineno = 204, book.styles.logo)), '" >\n			</p>\n			\n			<p id="description">\n				<label>Description : </label>\n				<textarea type="text" name="description" value="', escape((__stack.lineno = 209, book.description)), '" style="display: block; width: 100%; margin-top: 4px"></textarea>\n			</p>\n			\n			<p id="path">\n				<label>Path * : </label>\n				<input type="text" name="path" class="input" value="', escape((__stack.lineno = 214, book.path)), '" >\n				<span class="error" data-utils-bind="{{ path }}"></span>\n			</p>\n			\n			<p id="visible">\n				<label><input type="checkbox" name="visible" ');
+                __stack.lineno = 219;
                 if (book.visible) {
                     buf.push(" checked ");
-                    __stack.lineno = 195;
+                    __stack.lineno = 219;
                 }
                 buf.push(' > Visible</label>\n			</p>\n			\n			<p class="padding-16">\n				<button type="submit" class="button">Valider</button>\n			</p>\n			\n		</form>\n	</div>\n</div>\n');
             })();
@@ -13997,7 +14249,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 101 */
+/* 102 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -14033,7 +14285,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 102 */
+/* 103 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -14075,7 +14327,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -14117,7 +14369,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 104 */
+/* 105 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -14159,7 +14411,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 105 */
+/* 106 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -14195,7 +14447,49 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 106 */
+/* 107 */
+/***/ (function(module, exports) {
+
+module.exports = function anonymous(locals, filters, escape, rethrow) {
+    escape = escape || function(html) {
+        return String(html).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+    };
+    var __stack = {
+        lineno: 1,
+        input: '<% for(var i=0; i<sources.length; i++) {%>\n<li>\n	<p id="<%= i %>" >\n		<span><%- sources[i] %></span>\n		<button type="button" class="delete-source-btn button align-right">Supprimer</button>\n	</p>\n</li>\n<% } %>\n',
+        filename: "."
+    };
+    function rethrow(err, str, filename, lineno) {
+        var lines = str.split("\n"), start = Math.max(lineno - 3, 0), end = Math.min(lines.length, lineno + 3);
+        var context = lines.slice(start, end).map(function(line, i) {
+            var curr = i + start + 1;
+            return (curr == lineno ? " >> " : "    ") + curr + "| " + line;
+        }).join("\n");
+        err.path = filename;
+        err.message = (filename || "ejs") + ":" + lineno + "\n" + context + "\n\n" + err.message;
+        throw err;
+    }
+    try {
+        var buf = [];
+        with (locals || {}) {
+            (function() {
+                buf.push("");
+                __stack.lineno = 1;
+                for (var i = 0; i < sources.length; i++) {
+                    buf.push('\n<li>\n	<p id="', escape((__stack.lineno = 3, i)), '" >\n		<span>', (__stack.lineno = 4, sources[i]), '</span>\n		<button type="button" class="delete-source-btn button align-right">Supprimer</button>\n	</p>\n</li>\n');
+                    __stack.lineno = 8;
+                }
+                buf.push("\n");
+            })();
+        }
+        return buf.join("");
+    } catch (err) {
+        rethrow(err, __stack.input, __stack.filename, __stack.lineno);
+    }
+}
+
+/***/ }),
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14211,7 +14505,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorsTemplate = __webpack_require__(107);
+var adminAuthorsTemplate = __webpack_require__(109);
 //home.js
 var adminAuthors = function adminAuthors(container) {
 	'use strict';
@@ -14235,7 +14529,7 @@ var adminAuthors = function adminAuthors(container) {
 exports.default = adminAuthors;
 
 /***/ }),
-/* 107 */
+/* 109 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -14277,7 +14571,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 108 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14293,7 +14587,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorTemplate = __webpack_require__(109);
+var adminAuthorTemplate = __webpack_require__(111);
 //home.js
 var adminAuthor = function adminAuthor(container) {
 	'use strict';
@@ -14348,7 +14642,7 @@ var adminAuthor = function adminAuthor(container) {
 exports.default = adminAuthor;
 
 /***/ }),
-/* 109 */
+/* 111 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -14417,7 +14711,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 110 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14437,7 +14731,7 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorsNewTemplate = __webpack_require__(111);
+var adminAuthorsNewTemplate = __webpack_require__(113);
 //home.js
 var adminAuthorsNew = function adminAuthorsNew(container) {
 	'use strict';
@@ -14500,7 +14794,7 @@ var adminAuthorsNew = function adminAuthorsNew(container) {
 exports.default = adminAuthorsNew;
 
 /***/ }),
-/* 111 */
+/* 113 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -14536,7 +14830,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 112 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14552,7 +14846,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorEditTemplate = __webpack_require__(113);
+var adminAuthorEditTemplate = __webpack_require__(115);
 //home.js
 var adminAuthorEdit = function adminAuthorEdit(container) {
 	'use strict';
@@ -14625,7 +14919,7 @@ var adminAuthorEdit = function adminAuthorEdit(container) {
 exports.default = adminAuthorEdit;
 
 /***/ }),
-/* 113 */
+/* 115 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -14667,7 +14961,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 114 */
+/* 116 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {

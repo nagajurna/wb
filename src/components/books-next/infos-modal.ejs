@@ -55,11 +55,17 @@
 						</ul>
 					</p>
 			  <%}%>
-			  <p class="book-source"><b>Source : </b>
-				  <ul>
-					  <li>&Eacute;diteur : <%- books[i].source.publisher %></li>
-					  <li>Année de parution : <%- books[i].source.year %></li>
-				  </ul>
+			  <p class="book-source">
+			  <% if(books[i].sources.length > 1) {%>
+				<b>Sources :</b>
+			  <%} else {%>
+				<b>Source :</b>
+			  <%}%>
+				<ul>
+				<% for(var j=0; j<books[i].sources.length; j++) {%>
+					<li><span><%- books[i].sources[j] %></span></li>
+				<% } %>
+				</ul>
 			  </p>
 			  <% if(books[i].description) {%>
 			  <div><%- books[i].description %></div>

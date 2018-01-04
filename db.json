@@ -12,11 +12,6 @@
   ],
   "books": [
     {
-      "source": {
-        "publisher": "Librairie de Poulet-Malassis (Paris)",
-        "year": "1861 (2<sup>ème</sup> édition)",
-        "origin": ""
-      },
       "styles": {
         "color": "rgba(35, 16, 20, 0.8)",
         "image": " /books/du_dandysme_et_de_g_brummell/du_dandysme_et_de_g_brummell_cover.jpg",
@@ -44,15 +39,13 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 16:54:18",
-      "updated_at": "2017-12-22 06:36:17",
-      "id": "baf909f9-8f38-4d7f-b678-fb8ed46d41f0"
+      "updated_at": "2018-01-04 14:25:28",
+      "id": "baf909f9-8f38-4d7f-b678-fb8ed46d41f0",
+      "sources": [
+        "Du dandysme et de G. Brummel (2<sup>e</sup> éd.), par J.-A. Barbey d' Aurevilly – Librairie de Poulet-Malassis, Paris, 1861."
+      ]
     },
     {
-      "source": {
-        "publisher": "Eugène Renduel (Paris)",
-        "year": "1834",
-        "origin": ""
-      },
       "styles": {
         "color": "rgba(226, 104, 80, 0.8)",
         "image": "/books/un_roman_pour_les_cuisinieres/un_roman_pour_les_cuisinieres_cover.jpg",
@@ -80,15 +73,13 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:00:53",
-      "updated_at": "2017-12-21 22:57:04",
-      "id": "b3e3c2e7-305f-4697-867f-3dd2417f71ed"
+      "updated_at": "2018-01-04 13:27:45",
+      "id": "b3e3c2e7-305f-4697-867f-3dd2417f71ed",
+      "sources": [
+        "Un Roman pour les cuisinières, par Émile Cabanon – Eugène Renduel, Paris, 1834."
+      ]
     },
     {
-      "source": {
-        "publisher": "G. Charpentier et E. Fasquelle (Paris)",
-        "year": "1896",
-        "origin": ""
-      },
       "styles": {
         "color": "rgba(123, 55, 71, 0.8)",
         "image": "/books/vies_imaginaires/vies_imaginaires_cover.jpg",
@@ -116,15 +107,13 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:05:16",
-      "updated_at": "2017-12-21 22:56:42",
-      "id": "67f99f06-7af1-4dc4-9b8d-9d8f8afdc198"
+      "updated_at": "2018-01-04 13:46:02",
+      "id": "67f99f06-7af1-4dc4-9b8d-9d8f8afdc198",
+      "sources": [
+        "Vies imaginaires, par Marcel Schwob &ndash;&nbsp;G. Charpentier et E. Fasquelle, Paris, 1896."
+      ]
     },
     {
-      "source": {
-        "publisher": "La Lampe de&nbsp;Psyché, Mercure de&nbsp;France (Paris)&ensp;&ndash;&ensp;pages&nbsp;71-109",
-        "year": "1925",
-        "origin": ""
-      },
       "styles": {
         "color": "rgba(207, 176, 149, 0.8)",
         "image": "/books/la_croisade_des_enfants/la_croisade_des_enfants_cover.jpg",
@@ -152,15 +141,13 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:08:48",
-      "updated_at": "2017-12-21 22:56:19",
-      "id": "e22c5a98-e5b8-4926-8cad-fd30131868c2"
+      "updated_at": "2018-01-04 13:51:54",
+      "id": "e22c5a98-e5b8-4926-8cad-fd30131868c2",
+      "sources": [
+        "La lampe de Psyché (9<sup>e</sup> éd.), par Marcel Schwob – Mercure de France, Paris, 1925 (p. 71-109)."
+      ]
     },
     {
-      "source": {
-        "publisher": "La Lampe de&nbsp;Psyché, Mercure de&nbsp;France (Paris) – pages&nbsp;7-70",
-        "year": "1925",
-        "origin": ""
-      },
       "styles": {
         "color": "rgba(237, 205, 194, 0.8)",
         "image": "/books/mimes/mimes_cover.jpg",
@@ -188,15 +175,13 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:11:49",
-      "updated_at": "2017-12-21 22:55:55",
-      "id": "f379d066-0347-4fb1-998f-2e4c214c3960"
+      "updated_at": "2018-01-04 13:53:01",
+      "id": "f379d066-0347-4fb1-998f-2e4c214c3960",
+      "sources": [
+        "La lampe de Psyché (9<sup>e</sup> éd.), par Marcel Schwob – Mercure de France, Paris, 1925 (p. 7-70)."
+      ]
     },
     {
-      "source": {
-        "publisher": "G. Crès (Paris)",
-        "year": "1922",
-        "origin": ""
-      },
       "styles": {
         "color": "rgba(190, 19, 45, 0.8)",
         "image": "/books/rene_leys/rene_leys_cover.jpg",
@@ -224,15 +209,13 @@
       ],
       "contribs": [],
       "created_at": "2017-11-22 18:50:26",
-      "updated_at": "2017-12-21 22:55:15",
-      "id": "13dc7d86-f837-4657-a690-ee3a34b90962"
+      "updated_at": "2018-01-04 13:56:04",
+      "id": "13dc7d86-f837-4657-a690-ee3a34b90962",
+      "sources": [
+        "René Leys, par Victor Segalen &ndash;&nbsp;G. Crès, Paris, 1922."
+      ]
     },
     {
-      "source": {
-        "publisher": "Charpentier (Paris) – œuvres complètes, pages 1-108",
-        "year": "1844",
-        "origin": ""
-      },
       "styles": {
         "color": "rgba(149, 82, 81, 0.8)",
         "image": "/books/voyage_autour_de_ma_chambre/voyage_autour_de_ma_chambre_cover.jpg",
@@ -260,15 +243,14 @@
       ],
       "contribs": [],
       "created_at": "2017-11-24 15:43:11",
-      "updated_at": "2017-12-21 22:53:29",
-      "id": "5261f2e5-16ef-4ccb-9ade-c3e737262428"
+      "updated_at": "2018-01-04 15:01:10",
+      "id": "5261f2e5-16ef-4ccb-9ade-c3e737262428",
+      "sources": [
+        "Voyage autour de ma chambre , suivi du Lépreux de la cité d'Aoste . Nouvelle édition d'après celle de Saint-Pétersbourg (1812) revue et augmentée –&nbsp;Delaunay, Paris, 1817 (p. 17-150).",
+        "Œuvres complètes du Cte Xavier de Maistre , nouvelle édition –&nbsp;Charpentier, Paris, 1844 (p. 1-108)."
+      ]
     },
     {
-      "source": {
-        "publisher": "Charpentier (Paris)&ensp;&ndash; &oelig;uvres complètes, pages&nbsp;109-205",
-        "year": "1844",
-        "origin": ""
-      },
       "styles": {
         "color": "rgba(115, 63, 63, 0.8)",
         "image": "/books/expedition_nocturne_autour_de_ma_chambre/expedition_nocturne_autour_de_ma_chambre_cover.jpg",
@@ -296,8 +278,11 @@
       ],
       "contribs": [],
       "created_at": "2017-11-24 16:05:11",
-      "updated_at": "2017-12-21 22:53:47",
-      "id": "99da47e0-1e93-409e-ba88-233ef3b5ee88"
+      "updated_at": "2018-01-04 15:01:57",
+      "id": "99da47e0-1e93-409e-ba88-233ef3b5ee88",
+      "sources": [
+        "Œuvres complètes du Cte Xavier de Maistre , nouvelle édition –&nbsp;Charpentier, Paris, 1844 (p. 109-205)"
+      ]
     },
     {
       "source": {
@@ -332,15 +317,14 @@
       ],
       "contribs": [],
       "created_at": "2017-12-16 12:11:26",
-      "updated_at": "2017-12-21 22:54:22",
-      "id": "b5bba6b3-930b-458c-853a-24c49dc2856c"
+      "updated_at": "2018-01-04 14:20:28",
+      "id": "b5bba6b3-930b-458c-853a-24c49dc2856c",
+      "sources": [
+        "Valpéri, mémoires d'un gentilhomme du siècle dernier, par G. de Molènes &ndash;&nbsp;W. Coquebert, Paris, 1845 (2 vol.).",
+        "Mémoires d'un gentilhomme du siècle dernier, Valpéri, par Paul de Molènes &ndash;&nbsp;Michel Lévy frères, Paris, 1858."
+      ]
     },
     {
-      "source": {
-        "publisher": "Michel Lévy Fréres (Paris)",
-        "year": "1858",
-        "origin": ""
-      },
       "styles": {
         "color": "rgba(90, 114, 71, 0.8)",
         "image": "/books/valperi_tome_second/valperi_tome_second_cover.jpg",
@@ -368,8 +352,47 @@
       ],
       "contribs": [],
       "created_at": "2017-12-16 12:26:44",
-      "updated_at": "2017-12-21 22:54:49",
-      "id": "debf7127-e92e-4349-9c8d-0eee1f6daaed"
+      "updated_at": "2018-01-04 14:54:51",
+      "id": "debf7127-e92e-4349-9c8d-0eee1f6daaed",
+      "sources": [
+        "Valpéri, mémoires d'un gentilhomme du siècle dernier, par G. de Molènes – W. Coquebert, Paris, 1845 (2 vol.).",
+        "Mémoires d'un gentilhomme du siècle dernier, Valpéri, par Paul de Molènes – Michel Lévy frères, Paris, 1858."
+      ]
+    },
+    {
+      "styles": {
+        "color": "rgba(216, 174, 71, 0.8)",
+        "image": "/books/le_roi_au_masque_d_or/le_roi_au_masque_d_or_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding: 9% 15px 0px 15px; font-size: 1.3em;letter-spacing: 1,5px",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Le Roi au&nbsp;Masque&nbsp;d'Or",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Marcel Schwob",
+      "year": "1892",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "description": "",
+      "path": "/books/le_roi_au_masque_d_or/le_roi_au_masque_d_or",
+      "visible": true,
+      "authors": [
+        "6e757154-155a-4518-add7-b3e5cfd9e3ca"
+      ],
+      "contribs": [],
+      "created_at": "2017-12-28 18:20:55",
+      "updated_at": "2018-01-04 17:18:22",
+      "id": "b4033b6c-d13c-4b32-8767-f6b6939a76d2",
+      "sources": [
+        "Le roi au masque d 'or, par Marcel Schwob &ndash;&nbsp;Paul Ollendorf, Paris, 1893."
+      ],
+      "source": {}
     }
   ],
   "authors": [
