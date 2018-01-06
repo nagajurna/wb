@@ -243,12 +243,13 @@
       ],
       "contribs": [],
       "created_at": "2017-11-24 15:43:11",
-      "updated_at": "2018-01-04 15:01:10",
+      "updated_at": "2018-01-06 14:06:23",
       "id": "5261f2e5-16ef-4ccb-9ade-c3e737262428",
       "sources": [
         "Voyage autour de ma chambre , suivi du Lépreux de la cité d'Aoste . Nouvelle édition d'après celle de Saint-Pétersbourg (1812) revue et augmentée –&nbsp;Delaunay, Paris, 1817 (p. 17-150).",
-        "Œuvres complètes du Cte Xavier de Maistre , nouvelle édition –&nbsp;Charpentier, Paris, 1844 (p. 1-108)."
-      ]
+        "Œuvres complètes du Cte Xavier de Maistre, nouvelle édition – Charpentier, Paris, 1844 (p. 1-108)."
+      ],
+      "source": {}
     },
     {
       "styles": {
@@ -278,18 +279,15 @@
       ],
       "contribs": [],
       "created_at": "2017-11-24 16:05:11",
-      "updated_at": "2018-01-04 15:01:57",
+      "updated_at": "2018-01-06 14:00:23",
       "id": "99da47e0-1e93-409e-ba88-233ef3b5ee88",
       "sources": [
-        "Œuvres complètes du Cte Xavier de Maistre , nouvelle édition –&nbsp;Charpentier, Paris, 1844 (p. 109-205)"
-      ]
+        "Œuvres complètes du Cte Xavier de Maistre, nouvelle édition –&nbsp;Charpentier, Paris, 1844 (p. 109-205)"
+      ],
+      "source": {}
     },
     {
-      "source": {
-        "publisher": "Michel Lévy fréres (Paris)",
-        "year": "1858",
-        "origin": ""
-      },
+      "source": {},
       "styles": {
         "color": "rgba(90, 114, 71, 0.8)",
         "image": "/books/valperi_tome_un/valperi_tome_un_cover.jpg",
@@ -311,13 +309,13 @@
       "collection": "",
       "description": "",
       "path": "/books/valperi_tome_un/valperi_tome_un",
-      "visible": false,
+      "visible": true,
       "authors": [
         "17bb9413-eaee-4760-9d11-cdc96977efef"
       ],
       "contribs": [],
       "created_at": "2017-12-16 12:11:26",
-      "updated_at": "2018-01-04 14:20:28",
+      "updated_at": "2018-01-06 16:24:31",
       "id": "b5bba6b3-930b-458c-853a-24c49dc2856c",
       "sources": [
         "Valpéri, mémoires d'un gentilhomme du siècle dernier, par G. de Molènes &ndash;&nbsp;W. Coquebert, Paris, 1845 (2 vol.).",
@@ -345,19 +343,20 @@
       "categories": "",
       "collection": "",
       "description": "",
-      "path": " /books/valperi_tome_second/valperi_tome_second",
-      "visible": false,
+      "path": "/books/valperi_tome_second/valperi_tome_second",
+      "visible": true,
       "authors": [
         "17bb9413-eaee-4760-9d11-cdc96977efef"
       ],
       "contribs": [],
       "created_at": "2017-12-16 12:26:44",
-      "updated_at": "2018-01-04 14:54:51",
+      "updated_at": "2018-01-06 16:45:25",
       "id": "debf7127-e92e-4349-9c8d-0eee1f6daaed",
       "sources": [
         "Valpéri, mémoires d'un gentilhomme du siècle dernier, par G. de Molènes – W. Coquebert, Paris, 1845 (2 vol.).",
         "Mémoires d'un gentilhomme du siècle dernier, Valpéri, par Paul de Molènes – Michel Lévy frères, Paris, 1858."
-      ]
+      ],
+      "source": {}
     },
     {
       "styles": {
@@ -397,7 +396,7 @@
     {
       "source": {},
       "styles": {
-        "color": "rgba(149, 222, 227,0.8)",
+        "color": "rgba(247, 202, 201,0.8)",
         "image": "/books/point_de_lendemain/point_de_lendemain_cover.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
@@ -427,7 +426,7 @@
       ],
       "contribs": [],
       "created_at": "2018-01-05 10:22:33",
-      "updated_at": "2018-01-05 10:26:33",
+      "updated_at": "2018-01-06 11:03:44",
       "id": "5613a3f6-f3c3-44bc-afe7-0027a8aaa4fb"
     },
     {
@@ -464,6 +463,55 @@
       "created_at": "2018-01-05 12:03:22",
       "updated_at": "2018-01-05 12:12:16",
       "id": "ec1a6d73-639c-4ac3-a5b7-47effcc1c072"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(173, 93, 93, 0.8)",
+        "image": " /books/les_derniers_jours_de_kant/les_derniers_jours_de_kant_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 9%; font-size: 1.2em;letter-spacing: 1.5px",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Les Derniers Jours d'Emmanuel&nbsp;Kant",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Thomas de Quincey",
+      "year": "1827 (1899 pour la traduction)",
+      "language": "français/anglais",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Les derniers Jours d'Immanuel Kant &ndash;&nbsp;La Vogue, Nouvelle Série, Paris, avril-juin 1899.",
+        "Gallery of the german prose classics. By the english opium-eater. N° III Kant – Blackwood's Edinburgh magazine, volume 21, 1827 February (p.&nbsp;133-158)."
+      ],
+      "description": "",
+      "path": "/books/les_derniers_jours_de_kant/les_derniers_jours_de_kant",
+      "visible": false,
+      "authors": [
+        "fffaaff6-45c7-4f81-81a9-12a372c9a972"
+      ],
+      "contribs": [
+        {
+          "name": "Marcel Schwob",
+          "nameAlpha": "schwob",
+          "birth": "1867",
+          "death": "1905",
+          "description": "",
+          "created_at": "2017-11-05 12:36:33",
+          "updated_at": "2017-11-06 16:25:38",
+          "id": "6e757154-155a-4518-add7-b3e5cfd9e3ca",
+          "visible": true,
+          "role": "préface, traduction"
+        }
+      ],
+      "created_at": "2018-01-06 11:42:28",
+      "updated_at": "2018-01-06 14:00:56",
+      "id": "a61aae9d-336d-4635-8979-094b99e8a315"
     }
   ],
   "authors": [
@@ -554,6 +602,17 @@
       "created_at": "2018-01-05 11:51:38",
       "updated_at": "2018-01-05 12:03:35",
       "id": "c3fda5b6-0d71-4f2d-a2e1-c8c034b7d309"
+    },
+    {
+      "name": "Thomas de Quincey",
+      "nameAlpha": "quincey",
+      "birth": "1785",
+      "death": "1859",
+      "description": "",
+      "visible": true,
+      "created_at": "2018-01-06 11:05:37",
+      "updated_at": "2018-01-06 11:44:25",
+      "id": "fffaaff6-45c7-4f81-81a9-12a372c9a972"
     }
   ]
 }

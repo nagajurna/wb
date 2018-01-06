@@ -203,6 +203,19 @@ MODAL (INFOS)
 	font-size: 1.5em;
 }
 
+#books-next-container #content {
+	max-height: 330px;
+	overflow: auto;
+}
+
+@media only screen and (min-height: 600px) {
+	#books-next-container #content {
+		max-height: 450px;
+		overflow: auto;
+	}
+
+}
+
 #books-next-container .modal p {
 	margin: 0px;
 	padding: 8px;

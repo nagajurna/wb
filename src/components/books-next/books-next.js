@@ -157,7 +157,9 @@ const booksNext = function(container) {
 	let closeInfos = event => {
 		clearTimeout(automatic);
 		automatic = undefined;
-		slider();
+		if(window.innerWidth >= 750) {
+			slider();
+		}
 		let id = event.target.id.replace('close-', '');
 		if(window.innerWidth < 750) {
 			document.body.style.overflowY = 'auto';

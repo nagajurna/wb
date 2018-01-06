@@ -225,6 +225,19 @@ MODAL (INFOS)
 	font-size: 1.5em;
 }
 
+#authors-container #content {
+	max-height: 330px;
+	overflow: auto;
+}
+
+@media only screen and (min-height: 600px) {
+	#authors-container #content {
+		max-height: 450px;
+		overflow: auto;
+	}
+
+}
+
 #authors-container .modal p {
 	margin: 0px;
 	padding: 8px;
