@@ -300,7 +300,7 @@
         "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
       },
       "title": "Valpéri",
-      "subtitle1": "Mémoires d'un&nbsp;gentilhomme du&nbsp;siècle dernier",
+      "subtitle1": "Mémoires d'un&nbsp;gentilhomme du&nbsp;siècle&nbsp;dernier",
       "subtitle2": "tome&nbsp;premier",
       "authorDisplay": "Paul de Molènes",
       "year": "1845",
@@ -315,7 +315,7 @@
       ],
       "contribs": [],
       "created_at": "2017-12-16 12:11:26",
-      "updated_at": "2018-01-06 16:24:31",
+      "updated_at": "2018-01-08 17:12:23",
       "id": "b5bba6b3-930b-458c-853a-24c49dc2856c",
       "sources": [
         "Valpéri, mémoires d'un gentilhomme du siècle dernier, par G. de Molènes &ndash;&nbsp;W. Coquebert, Paris, 1845 (2 vol.).",
@@ -335,7 +335,7 @@
         "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
       },
       "title": "Valpéri",
-      "subtitle1": "Mémoires d'un&nbsp;gentilhomme du&nbsp;siècle dernier",
+      "subtitle1": "Mémoires d'un&nbsp;gentilhomme du&nbsp;siècle&nbsp;dernier",
       "subtitle2": "tome&nbsp;second",
       "authorDisplay": "Paul de Molènes",
       "year": "1845",
@@ -350,7 +350,7 @@
       ],
       "contribs": [],
       "created_at": "2017-12-16 12:26:44",
-      "updated_at": "2018-01-06 16:45:25",
+      "updated_at": "2018-01-08 17:12:46",
       "id": "debf7127-e92e-4349-9c8d-0eee1f6daaed",
       "sources": [
         "Valpéri, mémoires d'un gentilhomme du siècle dernier, par G. de Molènes – W. Coquebert, Paris, 1845 (2 vol.).",
@@ -365,7 +365,7 @@
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
-        "title": "padding: 9% 15px 0px 15px; font-size: 1.3em;letter-spacing: 1,5px",
+        "title": "padding: 9% 15px 0px 15px; font-size: 1.2em;letter-spacing: 1,5px; text-transform: uppercase; line-height: 1.8em",
         "subtitle1": "",
         "subtitle2": "",
         "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
@@ -386,7 +386,7 @@
       ],
       "contribs": [],
       "created_at": "2017-12-28 18:20:55",
-      "updated_at": "2018-01-04 17:18:22",
+      "updated_at": "2018-01-08 18:44:38",
       "id": "b4033b6c-d13c-4b32-8767-f6b6939a76d2",
       "sources": [
         "Le roi au masque d 'or, par Marcel Schwob &ndash;&nbsp;Paul Ollendorf, Paris, 1893."
@@ -420,13 +420,13 @@
       ],
       "description": "",
       "path": "/books/point_de_lendemain/point_de_lendemain",
-      "visible": false,
+      "visible": true,
       "authors": [
         "8e5736c1-be7d-462f-ac41-5771f8405595"
       ],
       "contribs": [],
       "created_at": "2018-01-05 10:22:33",
-      "updated_at": "2018-01-06 11:03:44",
+      "updated_at": "2018-01-08 17:11:38",
       "id": "5613a3f6-f3c3-44bc-afe7-0027a8aaa4fb"
     },
     {

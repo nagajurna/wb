@@ -19,9 +19,10 @@
 
 [data-wb-text] #cover-title {
 	margin-top: 1.5em;
-	padding-top: 0%;
-	font-size: 1.8em;
-	line-height: 1.8em;
+	padding-top: 4%;
+	text-transform: uppercase;
+	font-size: 1.5em;
+	line-height: 2em;
 	word-spacing: 0.25em;
 	letter-spacing: 3px;
 	opacity: 0.75;
@@ -59,8 +60,7 @@
 
 	[data-wb-text] #cover-title {
 		padding-top: 8%;
-		font-size: 1.9em;
-		line-height: 1.9em;
+		font-size: 1.7em;
 		word-spacing: 0.2em;
 		letter-spacing: 3px;
 	}
@@ -78,7 +78,7 @@
 
 	[data-wb-text] #cover-title {
 		padding-top: 6%;
-		font-size: 1.9em;
+		font-size: 1.7em;
 		word-spacing: 0.35em;
 		letter-spacing: 3px;
 	}
@@ -101,8 +101,8 @@
 	}
 
 	[data-wb-text] #cover-title {
-		padding-top: 10%;
-		font-size: 2em;
+		padding: 10% 10% 0px 10%;
+		font-size: 1.7em;
 		line-height: 2em;
 	}
 }

@@ -587,8 +587,14 @@ toc
 	font-style: italic;
 }
 
+#toc .wb-toc-item-title, #toc-large-device .wb-toc-item-title {
+	float: left;
+	vertical-align: bottom;
+}
+
 #toc [data-wb-element-page-number], #toc-large-device [data-wb-element-page-number] {
 	float: right;
+	vertical-align: bottom;
 }
 
 /*
