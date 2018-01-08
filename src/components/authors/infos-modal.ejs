@@ -4,6 +4,12 @@
 			<button id="close-infos-<%= work.id %>" type="button" class="btn close-infos-btn">&times;</button>
 			<p><%- work.authorDisplay %></p>
 			<p class="text-uppercase"><%- work.title %></p>
+			  <% if(work.subtitle1) {%>
+				<p><%- work.subtitle1 %></p>
+			  <%}%>
+			  <% if(work.subtitle2) {%>
+				<p class="text-small-caps"><%- work.subtitle2 %></p>
+			 <%}%>
 		</div>
 		<div id="content">
 			  <p><b>Titre : </b><%- work.title %>

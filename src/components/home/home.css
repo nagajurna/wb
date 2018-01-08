@@ -182,6 +182,8 @@ MODAL (INFOS)
 
 #home-container .modal-content {
 	max-width: 500px;
+	max-height: 90%;
+	overflow: auto;
 }
 
 #home-container .modal-content div {
@@ -204,18 +206,6 @@ MODAL (INFOS)
 	font-size: 1.5em;
 }
 
-#home-container #content {
-	max-height: 350px;
-	overflow: auto;
-}
-
-@media only screen and (min-height: 600px) {
-	#home-container #content {
-		max-height: 450px;
-		overflow: auto;
-	}
-
-}
 
 #home-container .modal p {
 	margin: 0px;

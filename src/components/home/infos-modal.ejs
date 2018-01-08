@@ -4,6 +4,12 @@
 			<button id="close-infos-<%= books[i].id %>" type="button" class="btn close-infos-btn">&times;</button>
 			<p><%- books[i].authorDisplay %></p>
 			<p class="text-uppercase"><%- books[i].title %></p>
+			  <% if(books[i].subtitle1) {%>
+				<p><%- books[i].subtitle1 %></p>
+			  <%}%>
+			  <% if(books[i].subtitle2) {%>
+				<p class="text-small-caps"><%- books[i].subtitle2 %></p>
+			 <%}%>
 		</div>
 		<div id="content">
 			  <p><b>Titre : </b><%- books[i].title %>

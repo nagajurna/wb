@@ -5,6 +5,12 @@
 		<div class="header">
 			<p><%- book.authorDisplay %></p>
 			<p class="text-uppercase"><%- book.title %></p>
+			  <% if(book.subtitle1) {%>
+				<p><%- book.subtitle1 %></p>
+			  <%}%>
+			  <% if(book.subtitle2) {%>
+				<p class="text-small-caps"><%- book.subtitle2 %></p>
+			 <%}%>
 		</div>
 		<div data-wb-toc ></div>
 	</div>
@@ -57,6 +63,12 @@
 		<div class="header">
 			<p><%- book.authorDisplay %></p>
 			<p class="text-uppercase"><%- book.title %></p>
+			  <% if(book.subtitle1) {%>
+				<p><%- book.subtitle1 %></p>
+			  <%}%>
+			  <% if(book.subtitle2) {%>
+				<p class="text-small-caps"><%- book.subtitle2 %></p>
+			 <%}%>
 		</div>
 		<div class="content">
 		  <p><b>Titre : </b><%- book.title %>

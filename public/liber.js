@@ -2468,7 +2468,7 @@ exports = module.exports = __webpack_require__(4)(undefined);
 
 
 // module
-exports.push([module.i, "#home-container {\n\tmax-width: 750px;\n\tmargin: auto;\n}\n\n#home-container #top-page-header {\n\ttext-align: center;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.2em;\n\tfont-variant: small-caps;\n\tletter-spacing: 4px;\n\tline-height: 25px;\n\tmargin: auto;\n\tdisplay: block;\n\tpadding: 32px 0px;\n}\n\n@media only screen and (min-width: 750px) {\n\t#home-container #top-page-header {\n\t\tfont-size: 1.4em;\n\t\tpadding: 48px 0px;\n\t}\n}\n\n#home-container #book-btns {\n\twidth: 100%;\n\tposition: relative;\n\theight: 37px;\n}\n\n#home-container .open-infos-btn {\n\tfont-family: \"Vollkorn\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1px;\n\tbackground-color: transparent;\n\tposition: absolute;\n\tright: 0px;\n\tbottom: 0px;\n}\n\n\n#home-container #booksList-container {\n\twidth: 100%;\n\tpadding-bottom: 0px;\n\tmargin: auto;\n}\n\n@media only screen and (min-width: 750px) {\n\n\t#home-container #booksList-container {\n\t\twidth: 750px;\n\t}\n}\n\n#home-container #booksList {\n\tposition: relative;\n\twidth: 250px;\n\tmargin: auto;\n\tpadding: 0px 0px 0px 0px;\n}\n\n@media only screen and (min-width: 750px) {\n\t#home-container #booksList {\n\t\theight: 460px;\n\t}\n}\n\n#home-container .slide {\n\tposition: relative;\n\twidth: 250px;\n\tmargin: auto;\n\tmargin-bottom: 48px;\n\tdisplay: block;\n\ttext-align: center;\n}\n\n@media only screen and (min-width: 750px) {\n\t\n\t#home-container .slide {\n\t\tmargin-bottom: 0px;\n\t\tdisplay: none;\n\t}\n}\n\n#home-container #paper {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#home-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin: auto;\n\tposition: relative;\n}\n\n#home-container .book .logo .span1 {\n\tfont-size: 2em;\n\tmargin-bottom: 16px;\n}\n\n#home-container .book .logo .span2 {\n\tfont-variant: small-caps;\n}\n\n#home-container #previous {\n\tposition: absolute;\n\ttop: 170px;\n\tleft: -100px;\n\tmargin-top: -25px;\n\twidth: 50px;\n\theight: 50px;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.6em;\n\tbackground-color: transparent;\n\tdisplay: none;\n}\n\n#home-container #next {\n\tposition: absolute;\n\ttop: 170px;\n\tright: -100px;\n\tmargin-top: -25px;\n\twidth: 50px;\n\theight: 50px;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.6em;\n\tbackground-color: transparent;\n\tdisplay: none;\n}\n\n@media only screen and (min-width: 750px) {\n\t#home-container #previous {\n\t\tdisplay: inline-block;\n\t}\n\n\t#home-container #next {\n\t\tdisplay: inline-block;\n\t}\n}\n\n#home-container #dots {\n\twidth: 100%;\n\ttext-align: center;\n\tdisplay: none;\n\tpadding: 32px 0px 32px 0px;\n}\n\n#home-container .dot {\n\tcursor:pointer;\n\theight: 15px;\n\twidth: 15px;\n\tmargin: 0 2px;\n\tborder: 1px solid #333;\n\tbackground-color: transparent;\n\tborder-radius: 50%;\n\tdisplay: inline-block;\n\ttransition: background-color 0.6s ease;\n}\n\n#home-container .dot.active, #home-container .dot:hover {\n\tbackground-color: #333;\n}\n\n@media only screen and (min-width: 750px) {\n\n\t#home-container #dots {\n\t\tdisplay: block;\n\t}\n\n}\n\n/*\nMODAL (INFOS)\n*/\n\n#home-container .modal {\n\tfont-family: 'Georgia', sans-serif;\n\tdisplay: none;\n}\n\n#home-container .modal-content {\n\tmax-width: 500px;\n}\n\n#home-container .modal-content div {\n\tpadding: 8px;\n}\n\n#home-container .modal #infos-header {\n\tposition: relative;\n\tpadding: 16px;\n\tborder-bottom: 1px solid #ddd;\n\ttext-align: center;\n}\n\n#home-container .modal .close-infos-btn {\n\tposition: absolute;\n\ttop: 0;\n\tright: 0;\n\twidth: 37px;\n\theight: 37px;\n\tfont-size: 1.5em;\n}\n\n#home-container #content {\n\tmax-height: 350px;\n\toverflow: auto;\n}\n\n@media only screen and (min-height: 600px) {\n\t#home-container #content {\n\t\tmax-height: 450px;\n\t\toverflow: auto;\n\t}\n\n}\n\n#home-container .modal p {\n\tmargin: 0px;\n\tpadding: 8px;\n}\n\n#home-container .modal ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#home-container .modal ul li {\n\tpadding: 4px;\n}\n\n#home-container .modal .contrib-role {\n\ttext-transform: capitalize;\n}\n\n", ""]);
+exports.push([module.i, "#home-container {\n\tmax-width: 750px;\n\tmargin: auto;\n}\n\n#home-container #top-page-header {\n\ttext-align: center;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.2em;\n\tfont-variant: small-caps;\n\tletter-spacing: 4px;\n\tline-height: 25px;\n\tmargin: auto;\n\tdisplay: block;\n\tpadding: 32px 0px;\n}\n\n@media only screen and (min-width: 750px) {\n\t#home-container #top-page-header {\n\t\tfont-size: 1.4em;\n\t\tpadding: 48px 0px;\n\t}\n}\n\n#home-container #book-btns {\n\twidth: 100%;\n\tposition: relative;\n\theight: 37px;\n}\n\n#home-container .open-infos-btn {\n\tfont-family: \"Vollkorn\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1px;\n\tbackground-color: transparent;\n\tposition: absolute;\n\tright: 0px;\n\tbottom: 0px;\n}\n\n\n#home-container #booksList-container {\n\twidth: 100%;\n\tpadding-bottom: 0px;\n\tmargin: auto;\n}\n\n@media only screen and (min-width: 750px) {\n\n\t#home-container #booksList-container {\n\t\twidth: 750px;\n\t}\n}\n\n#home-container #booksList {\n\tposition: relative;\n\twidth: 250px;\n\tmargin: auto;\n\tpadding: 0px 0px 0px 0px;\n}\n\n@media only screen and (min-width: 750px) {\n\t#home-container #booksList {\n\t\theight: 460px;\n\t}\n}\n\n#home-container .slide {\n\tposition: relative;\n\twidth: 250px;\n\tmargin: auto;\n\tmargin-bottom: 48px;\n\tdisplay: block;\n\ttext-align: center;\n}\n\n@media only screen and (min-width: 750px) {\n\t\n\t#home-container .slide {\n\t\tmargin-bottom: 0px;\n\t\tdisplay: none;\n\t}\n}\n\n#home-container #paper {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#home-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin: auto;\n\tposition: relative;\n}\n\n#home-container .book .logo .span1 {\n\tfont-size: 2em;\n\tmargin-bottom: 16px;\n}\n\n#home-container .book .logo .span2 {\n\tfont-variant: small-caps;\n}\n\n#home-container #previous {\n\tposition: absolute;\n\ttop: 170px;\n\tleft: -100px;\n\tmargin-top: -25px;\n\twidth: 50px;\n\theight: 50px;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.6em;\n\tbackground-color: transparent;\n\tdisplay: none;\n}\n\n#home-container #next {\n\tposition: absolute;\n\ttop: 170px;\n\tright: -100px;\n\tmargin-top: -25px;\n\twidth: 50px;\n\theight: 50px;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.6em;\n\tbackground-color: transparent;\n\tdisplay: none;\n}\n\n@media only screen and (min-width: 750px) {\n\t#home-container #previous {\n\t\tdisplay: inline-block;\n\t}\n\n\t#home-container #next {\n\t\tdisplay: inline-block;\n\t}\n}\n\n#home-container #dots {\n\twidth: 100%;\n\ttext-align: center;\n\tdisplay: none;\n\tpadding: 32px 0px 32px 0px;\n}\n\n#home-container .dot {\n\tcursor:pointer;\n\theight: 15px;\n\twidth: 15px;\n\tmargin: 0 2px;\n\tborder: 1px solid #333;\n\tbackground-color: transparent;\n\tborder-radius: 50%;\n\tdisplay: inline-block;\n\ttransition: background-color 0.6s ease;\n}\n\n#home-container .dot.active, #home-container .dot:hover {\n\tbackground-color: #333;\n}\n\n@media only screen and (min-width: 750px) {\n\n\t#home-container #dots {\n\t\tdisplay: block;\n\t}\n\n}\n\n/*\nMODAL (INFOS)\n*/\n\n#home-container .modal {\n\tfont-family: 'Georgia', sans-serif;\n\tdisplay: none;\n}\n\n#home-container .modal-content {\n\tmax-width: 500px;\n\tmax-height: 90%;\n\toverflow: auto;\n}\n\n#home-container .modal-content div {\n\tpadding: 8px;\n}\n\n#home-container .modal #infos-header {\n\tposition: relative;\n\tpadding: 16px;\n\tborder-bottom: 1px solid #ddd;\n\ttext-align: center;\n}\n\n#home-container .modal .close-infos-btn {\n\tposition: absolute;\n\ttop: 0;\n\tright: 0;\n\twidth: 37px;\n\theight: 37px;\n\tfont-size: 1.5em;\n}\n\n\n#home-container .modal p {\n\tmargin: 0px;\n\tpadding: 8px;\n}\n\n#home-container .modal ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#home-container .modal ul li {\n\tpadding: 4px;\n}\n\n#home-container .modal .contrib-role {\n\ttext-transform: capitalize;\n}\n\n", ""]);
 
 // exports
 
@@ -2600,68 +2600,80 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                 for (var i = 0; i < books.length; i++) {
                     buf.push("\n				\n				<!-- MODAL (INFOS) -->\n				" + function() {
                         var buf = [];
-                        buf.push('<div id="infos-', escape((__stack.lineno = 1, books[i].id)), '" class="modal">\n	<div class="modal-content w3-card animate-top">\n		<div id="infos-header">\n			<button id="close-infos-', escape((__stack.lineno = 4, books[i].id)), '" type="button" class="btn close-infos-btn">&times;</button>\n			<p>', (__stack.lineno = 5, books[i].authorDisplay), '</p>\n			<p class="text-uppercase">', (__stack.lineno = 6, books[i].title), '</p>\n		</div>\n		<div id="content">\n			  <p><b>Titre : </b>', (__stack.lineno = 9, books[i].title), "\n				  ");
-                        __stack.lineno = 10;
+                        buf.push('<div id="infos-', escape((__stack.lineno = 1, books[i].id)), '" class="modal">\n	<div class="modal-content w3-card animate-top">\n		<div id="infos-header">\n			<button id="close-infos-', escape((__stack.lineno = 4, books[i].id)), '" type="button" class="btn close-infos-btn">&times;</button>\n			<p>', (__stack.lineno = 5, books[i].authorDisplay), '</p>\n			<p class="text-uppercase">', (__stack.lineno = 6, books[i].title), "</p>\n			  ");
+                        __stack.lineno = 7;
                         if (books[i].subtitle1) {
-                            buf.push("\n					<span> &mdash;&nbsp;", (__stack.lineno = 11, books[i].subtitle1), "</span>\n				  ");
-                            __stack.lineno = 12;
-                        }
-                        buf.push("\n				  ");
-                        __stack.lineno = 13;
-                        if (books[i].subtitle2) {
-                            buf.push("\n					<span> &mdash;&nbsp;", (__stack.lineno = 14, books[i].subtitle2), "</span>\n				  ");
-                            __stack.lineno = 15;
-                        }
-                        buf.push("\n			  </p>\n			  <p><b>Année de parution : </b>", (__stack.lineno = 17, books[i].year), "</p>\n			  ");
-                        __stack.lineno = 18;
-                        if (books[i].authors.length > 1) {
-                            buf.push("\n					<p>\n						<span><b>Auteurs :</b></span>\n						<br>\n						<ul>\n						");
-                            __stack.lineno = 23;
-                            for (var j = 0; j < books[i].authors.length; j++) {
-                                buf.push("\n							<li>\n								", (__stack.lineno = 25, books[i].authors[j].name), " (", (__stack.lineno = 25, books[i].authors[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 25, books[i].authors[j].death), ")\n							</li>\n						");
-                                __stack.lineno = 27;
-                            }
-                            buf.push("\n						</ul>\n					</p>\n			  ");
-                            __stack.lineno = 30;
-                        } else if (books[i].authors.length === 1) {
-                            buf.push("\n					<p><b>Auteur : </b>", (__stack.lineno = 31, books[i].authors[0].name), " (", (__stack.lineno = 31, books[i].authors[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 31, books[i].authors[0].death), ")</p>\n			  ");
-                            __stack.lineno = 32;
+                            buf.push("\n				<p>", (__stack.lineno = 8, books[i].subtitle1), "</p>\n			  ");
+                            __stack.lineno = 9;
                         }
                         buf.push("\n			  ");
-                        __stack.lineno = 33;
-                        if (books[i].contribs.length > 1) {
-                            buf.push("\n					<p>\n						<span><b>Contributions :</b></span>\n						<br>\n						<ul>\n						");
-                            __stack.lineno = 38;
-                            for (var j = 0; j < books[i].contribs.length; j++) {
-                                buf.push('\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 40, books[i].contribs[j].role), " : </span>\n								", (__stack.lineno = 41, books[i].contribs[j].name), " (", (__stack.lineno = 41, books[i].contribs[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 41, books[i].contribs[j].death), ")\n							</li>\n						");
-                                __stack.lineno = 43;
+                        __stack.lineno = 10;
+                        if (books[i].subtitle2) {
+                            buf.push('\n				<p class="text-small-caps">', (__stack.lineno = 11, books[i].subtitle2), "</p>\n			 ");
+                            __stack.lineno = 12;
+                        }
+                        buf.push('\n		</div>\n		<div id="content">\n			  <p><b>Titre : </b>', (__stack.lineno = 15, books[i].title), "\n				  ");
+                        __stack.lineno = 16;
+                        if (books[i].subtitle1) {
+                            buf.push("\n					<span> &mdash;&nbsp;", (__stack.lineno = 17, books[i].subtitle1), "</span>\n				  ");
+                            __stack.lineno = 18;
+                        }
+                        buf.push("\n				  ");
+                        __stack.lineno = 19;
+                        if (books[i].subtitle2) {
+                            buf.push("\n					<span> &mdash;&nbsp;", (__stack.lineno = 20, books[i].subtitle2), "</span>\n				  ");
+                            __stack.lineno = 21;
+                        }
+                        buf.push("\n			  </p>\n			  <p><b>Année de parution : </b>", (__stack.lineno = 23, books[i].year), "</p>\n			  ");
+                        __stack.lineno = 24;
+                        if (books[i].authors.length > 1) {
+                            buf.push("\n					<p>\n						<span><b>Auteurs :</b></span>\n						<br>\n						<ul>\n						");
+                            __stack.lineno = 29;
+                            for (var j = 0; j < books[i].authors.length; j++) {
+                                buf.push("\n							<li>\n								", (__stack.lineno = 31, books[i].authors[j].name), " (", (__stack.lineno = 31, books[i].authors[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 31, books[i].authors[j].death), ")\n							</li>\n						");
+                                __stack.lineno = 33;
                             }
                             buf.push("\n						</ul>\n					</p>\n			  ");
-                            __stack.lineno = 46;
-                        } else if (books[i].contribs.length === 1) {
-                            buf.push('\n					<p>\n						<span><b>Contribution : </b></span>\n						<br>\n						<ul>\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 52, books[i].contribs[0].role), " : </span>\n								", (__stack.lineno = 53, books[i].contribs[0].name), " (", (__stack.lineno = 53, books[i].contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 53, books[i].contribs[0].death), ")\n							</li>\n						</ul>\n					</p>\n			  ");
-                            __stack.lineno = 57;
+                            __stack.lineno = 36;
+                        } else if (books[i].authors.length === 1) {
+                            buf.push("\n					<p><b>Auteur : </b>", (__stack.lineno = 37, books[i].authors[0].name), " (", (__stack.lineno = 37, books[i].authors[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 37, books[i].authors[0].death), ")</p>\n			  ");
+                            __stack.lineno = 38;
                         }
-                        buf.push('\n			  <p class="book-source">\n			  ');
-                        __stack.lineno = 59;
-                        if (books[i].sources.length > 1) {
-                            buf.push("\n				<b>Sources :</b>\n			  ");
-                            __stack.lineno = 61;
-                        } else {
-                            buf.push("\n				<b>Source :</b>\n			  ");
+                        buf.push("\n			  ");
+                        __stack.lineno = 39;
+                        if (books[i].contribs.length > 1) {
+                            buf.push("\n					<p>\n						<span><b>Contributions :</b></span>\n						<br>\n						<ul>\n						");
+                            __stack.lineno = 44;
+                            for (var j = 0; j < books[i].contribs.length; j++) {
+                                buf.push('\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 46, books[i].contribs[j].role), " : </span>\n								", (__stack.lineno = 47, books[i].contribs[j].name), " (", (__stack.lineno = 47, books[i].contribs[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 47, books[i].contribs[j].death), ")\n							</li>\n						");
+                                __stack.lineno = 49;
+                            }
+                            buf.push("\n						</ul>\n					</p>\n			  ");
+                            __stack.lineno = 52;
+                        } else if (books[i].contribs.length === 1) {
+                            buf.push('\n					<p>\n						<span><b>Contribution : </b></span>\n						<br>\n						<ul>\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 58, books[i].contribs[0].role), " : </span>\n								", (__stack.lineno = 59, books[i].contribs[0].name), " (", (__stack.lineno = 59, books[i].contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 59, books[i].contribs[0].death), ")\n							</li>\n						</ul>\n					</p>\n			  ");
                             __stack.lineno = 63;
                         }
-                        buf.push("\n				<ul>\n				");
+                        buf.push('\n			  <p class="book-source">\n			  ');
                         __stack.lineno = 65;
-                        for (var j = 0; j < books[i].sources.length; j++) {
-                            buf.push("\n					<li><span>", (__stack.lineno = 66, books[i].sources[j]), "</span></li>\n				");
+                        if (books[i].sources.length > 1) {
+                            buf.push("\n				<b>Sources :</b>\n			  ");
                             __stack.lineno = 67;
+                        } else {
+                            buf.push("\n				<b>Source :</b>\n			  ");
+                            __stack.lineno = 69;
+                        }
+                        buf.push("\n				<ul>\n				");
+                        __stack.lineno = 71;
+                        for (var j = 0; j < books[i].sources.length; j++) {
+                            buf.push("\n					<li><span>", (__stack.lineno = 72, books[i].sources[j]), "</span></li>\n				");
+                            __stack.lineno = 73;
                         }
                         buf.push("\n				</ul>\n			  </p>\n			  ");
-                        __stack.lineno = 70;
+                        __stack.lineno = 76;
                         if (books[i].description) {
-                            buf.push("\n			  <div>", (__stack.lineno = 71, books[i].description), "</div>\n			  ");
-                            __stack.lineno = 72;
+                            buf.push("\n			  <div>", (__stack.lineno = 77, books[i].description), "</div>\n			  ");
+                            __stack.lineno = 78;
                         }
                         buf.push("\n		</div>\n	</div>\n</div>\n");
                         return buf.join("");
@@ -3236,7 +3248,7 @@ exports = module.exports = __webpack_require__(4)(undefined);
 
 
 // module
-exports.push([module.i, "#books-next-container {\n\tmax-width: 750px;\n\tmargin: auto;\n}\n\n#books-next-container #top-page-header {\n\ttext-align: center;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.2em;\n\tfont-variant: small-caps;\n\tletter-spacing: 4px;\n\tline-height: 25px;\n\tmargin: auto;\n\tdisplay: block;\n\tpadding: 32px 0px;\n}\n\n@media only screen and (min-width: 750px) {\n\t#books-next-container #top-page-header {\n\t\tfont-size: 1.4em;\n\t\tpadding: 48px 0px;\n\t}\n}\n\n#books-next-container #book-btns {\n\twidth: 100%;\n\tposition: relative;\n\theight: 37px;\n}\n\n#books-next-container .open-infos-btn {\n\tfont-family: \"Vollkorn\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1px;\n\tbackground-color: transparent;\n\tposition: absolute;\n\tright: 0px;\n\tbottom: 0px;\n}\n\n#books-next-container #booksList-container {\n\twidth: 100%;\n\tpadding-bottom: 0px;\n\tmargin: auto;\n}\n\n@media only screen and (min-width: 750px) {\n\n\t#books-next-container #booksList-container {\n\t\twidth: 750px;\n\t}\n}\n\n#books-next-container #booksList {\n\tposition: relative;\n\twidth: 250px;\n\tmargin: auto;\n\tpadding: 0px 0px 0px 0px;\n}\n\n@media only screen and (min-width: 750px) {\n\t#books-next-container #booksList {\n\t\theight: 460px;\n\t}\n}\n\n#books-next-container .slide {\n\tposition: relative;\n\twidth: 250px;\n\tmargin: auto;\n\tmargin-bottom: 48px;\n\tdisplay: block;\n\ttext-align: center;\n}\n\n@media only screen and (min-width: 750px) {\n\t\n\t#books-next-container .slide {\n\t\tmargin-bottom: 0px;\n\t\tdisplay: none;\n\t}\n}\n\n#books-next-container #paper {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#books-next-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n\tposition: relative;\n}\n\n#books-next-container .book .logo .span1 {\n\tfont-size: 2em;\n\tmargin-bottom: 16px;\n}\n\n#books-next-container .book .logo .span2 {\n\tfont-variant: small-caps;\n}\n\n#books-next-container #previous {\n\tposition: absolute;\n\ttop: 170px;\n\tleft: -100px;\n\tmargin-top: -25px;\n\twidth: 50px;\n\theight: 50px;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.6em;\n\tbackground-color: transparent;\n\tdisplay: none;\n}\n\n#books-next-container #next {\n\tposition: absolute;\n\ttop: 170px;\n\tright: -100px;\n\tmargin-top: -25px;\n\twidth: 50px;\n\theight: 50px;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.6em;\n\tbackground-color: transparent;\n\tdisplay: none;\n}\n\n@media only screen and (min-width: 750px) {\n\t#books-next-container #previous {\n\t\tdisplay: inline-block;\n\t}\n\n\t#books-next-container #next {\n\t\tdisplay: inline-block;\n\t}\n}\n\n#books-next-container #dots {\n\twidth: 100%;\n\ttext-align: center;\n\tdisplay: none;\n\tpadding: 32px 0px 32px 0px;\n}\n\n#books-next-container .dot {\n\tcursor:pointer;\n\theight: 15px;\n\twidth: 15px;\n\tmargin: 0 2px;\n\tborder: 1px solid #333;\n\tbackground-color: transparent;\n\tborder-radius: 50%;\n\tdisplay: inline-block;\n\ttransition: background-color 0.6s ease;\n}\n\n#books-next-container .dot.active, #books-next-container .dot:hover {\n\tbackground-color: #333;\n}\n\n@media only screen and (min-width: 750px) {\n\n\t#books-next-container #dots {\n\t\tdisplay: block;\n\t}\n\n}\n\n/*\nMODAL (INFOS)\n*/\n\n#books-next-container .modal {\n\tfont-family: 'Georgia', sans-serif;\n\tdisplay: none;\n}\n\n#books-next-container .modal-content {\n\tmax-width: 500px;\n}\n\n#books-next-container .modal-content div {\n\tpadding: 8px;\n}\n\n#books-next-container .modal #infos-header {\n\tposition: relative;\n\tpadding: 16px;\n\tborder-bottom: 1px solid #ddd;\n\ttext-align: center;\n}\n\n#books-next-container .modal .close-infos-btn {\n\tposition: absolute;\n\ttop: 0;\n\tright: 0;\n\twidth: 37px;\n\theight: 37px;\n\tfont-size: 1.5em;\n}\n\n#books-next-container #content {\n\tmax-height: 330px;\n\toverflow: auto;\n}\n\n@media only screen and (min-height: 600px) {\n\t#books-next-container #content {\n\t\tmax-height: 450px;\n\t\toverflow: auto;\n\t}\n\n}\n\n#books-next-container .modal p {\n\tmargin: 0px;\n\tpadding: 8px;\n}\n\n#books-next-container .modal ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#books-next-container .modal ul li {\n\tpadding: 4px;\n}\n\n#books-next-container .modal .contrib-role {\n\ttext-transform: capitalize;\n}\n", ""]);
+exports.push([module.i, "#books-next-container {\n\tmax-width: 750px;\n\tmargin: auto;\n}\n\n#books-next-container #top-page-header {\n\ttext-align: center;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.2em;\n\tfont-variant: small-caps;\n\tletter-spacing: 4px;\n\tline-height: 25px;\n\tmargin: auto;\n\tdisplay: block;\n\tpadding: 32px 0px;\n}\n\n@media only screen and (min-width: 750px) {\n\t#books-next-container #top-page-header {\n\t\tfont-size: 1.4em;\n\t\tpadding: 48px 0px;\n\t}\n}\n\n#books-next-container #book-btns {\n\twidth: 100%;\n\tposition: relative;\n\theight: 37px;\n}\n\n#books-next-container .open-infos-btn {\n\tfont-family: \"Vollkorn\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1px;\n\tbackground-color: transparent;\n\tposition: absolute;\n\tright: 0px;\n\tbottom: 0px;\n}\n\n#books-next-container #booksList-container {\n\twidth: 100%;\n\tpadding-bottom: 0px;\n\tmargin: auto;\n}\n\n@media only screen and (min-width: 750px) {\n\n\t#books-next-container #booksList-container {\n\t\twidth: 750px;\n\t}\n}\n\n#books-next-container #booksList {\n\tposition: relative;\n\twidth: 250px;\n\tmargin: auto;\n\tpadding: 0px 0px 0px 0px;\n}\n\n@media only screen and (min-width: 750px) {\n\t#books-next-container #booksList {\n\t\theight: 460px;\n\t}\n}\n\n#books-next-container .slide {\n\tposition: relative;\n\twidth: 250px;\n\tmargin: auto;\n\tmargin-bottom: 48px;\n\tdisplay: block;\n\ttext-align: center;\n}\n\n@media only screen and (min-width: 750px) {\n\t\n\t#books-next-container .slide {\n\t\tmargin-bottom: 0px;\n\t\tdisplay: none;\n\t}\n}\n\n#books-next-container #paper {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#books-next-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n\tposition: relative;\n}\n\n#books-next-container .book .logo .span1 {\n\tfont-size: 2em;\n\tmargin-bottom: 16px;\n}\n\n#books-next-container .book .logo .span2 {\n\tfont-variant: small-caps;\n}\n\n#books-next-container #previous {\n\tposition: absolute;\n\ttop: 170px;\n\tleft: -100px;\n\tmargin-top: -25px;\n\twidth: 50px;\n\theight: 50px;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.6em;\n\tbackground-color: transparent;\n\tdisplay: none;\n}\n\n#books-next-container #next {\n\tposition: absolute;\n\ttop: 170px;\n\tright: -100px;\n\tmargin-top: -25px;\n\twidth: 50px;\n\theight: 50px;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.6em;\n\tbackground-color: transparent;\n\tdisplay: none;\n}\n\n@media only screen and (min-width: 750px) {\n\t#books-next-container #previous {\n\t\tdisplay: inline-block;\n\t}\n\n\t#books-next-container #next {\n\t\tdisplay: inline-block;\n\t}\n}\n\n#books-next-container #dots {\n\twidth: 100%;\n\ttext-align: center;\n\tdisplay: none;\n\tpadding: 32px 0px 32px 0px;\n}\n\n#books-next-container .dot {\n\tcursor:pointer;\n\theight: 15px;\n\twidth: 15px;\n\tmargin: 0 2px;\n\tborder: 1px solid #333;\n\tbackground-color: transparent;\n\tborder-radius: 50%;\n\tdisplay: inline-block;\n\ttransition: background-color 0.6s ease;\n}\n\n#books-next-container .dot.active, #books-next-container .dot:hover {\n\tbackground-color: #333;\n}\n\n@media only screen and (min-width: 750px) {\n\n\t#books-next-container #dots {\n\t\tdisplay: block;\n\t}\n\n}\n\n/*\nMODAL (INFOS)\n*/\n\n#books-next-container .modal {\n\tfont-family: 'Georgia', sans-serif;\n\tdisplay: none;\n}\n\n#books-next-container .modal-content {\n\tmax-width: 500px;\n\tmax-height: 90%;\n\toverflow: auto;\n}\n\n#books-next-container .modal-content div {\n\tpadding: 8px;\n}\n\n#books-next-container .modal #infos-header {\n\tposition: relative;\n\tpadding: 16px;\n\tborder-bottom: 1px solid #ddd;\n\ttext-align: center;\n}\n\n#books-next-container .modal .close-infos-btn {\n\tposition: absolute;\n\ttop: 0;\n\tright: 0;\n\twidth: 37px;\n\theight: 37px;\n\tfont-size: 1.5em;\n}\n\n#books-next-container #content {\n\tmax-height: 330px;\n\toverflow: auto;\n}\n\n@media only screen and (min-height: 600px) {\n\t#books-next-container #content {\n\t\tmax-height: 450px;\n\t\toverflow: auto;\n\t}\n\n}\n\n#books-next-container .modal p {\n\tmargin: 0px;\n\tpadding: 8px;\n}\n\n#books-next-container .modal ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#books-next-container .modal ul li {\n\tpadding: 4px;\n}\n\n#books-next-container .modal .contrib-role {\n\ttext-transform: capitalize;\n}\n", ""]);
 
 // exports
 
@@ -3273,68 +3285,80 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                 for (var i = 0; i < books.length; i++) {
                     buf.push("\n				\n				<!-- MODAL (INFOS) -->\n				" + function() {
                         var buf = [];
-                        buf.push('<div id="infos-', escape((__stack.lineno = 1, books[i].id)), '" class="modal">\n	<div class="modal-content w3-card animate-top">\n		<div id="infos-header">\n			<button id="close-infos-', escape((__stack.lineno = 4, books[i].id)), '" type="button" class="btn close-infos-btn">&times;</button>\n			<p>', (__stack.lineno = 5, books[i].authorDisplay), '</p>\n			<p class="text-uppercase">', (__stack.lineno = 6, books[i].title), '</p>\n		</div>\n		<div id="content">\n			  <p><b>Titre : </b>', (__stack.lineno = 9, books[i].title), "\n				  ");
-                        __stack.lineno = 10;
+                        buf.push('<div id="infos-', escape((__stack.lineno = 1, books[i].id)), '" class="modal">\n	<div class="modal-content w3-card animate-top">\n		<div id="infos-header">\n			<button id="close-infos-', escape((__stack.lineno = 4, books[i].id)), '" type="button" class="btn close-infos-btn">&times;</button>\n			<p>', (__stack.lineno = 5, books[i].authorDisplay), '</p>\n			<p class="text-uppercase">', (__stack.lineno = 6, books[i].title), "</p>\n			  ");
+                        __stack.lineno = 7;
                         if (books[i].subtitle1) {
-                            buf.push("\n					<span> &mdash;&nbsp;", (__stack.lineno = 11, books[i].subtitle1), "</span>\n				  ");
-                            __stack.lineno = 12;
-                        }
-                        buf.push("\n				  ");
-                        __stack.lineno = 13;
-                        if (books[i].subtitle2) {
-                            buf.push("\n					<span> &mdash;&nbsp;", (__stack.lineno = 14, books[i].subtitle2), "</span>\n				  ");
-                            __stack.lineno = 15;
-                        }
-                        buf.push("\n			  </p>\n			  <p><b>Année de parution : </b>", (__stack.lineno = 17, books[i].year), "</p>\n			  ");
-                        __stack.lineno = 18;
-                        if (books[i].authors.length > 1) {
-                            buf.push("\n					<p>\n						<span><b>Auteurs :</b></span>\n						<br>\n						<ul>\n						");
-                            __stack.lineno = 23;
-                            for (var j = 0; j < books[i].authors.length; j++) {
-                                buf.push("\n							<li>\n								", (__stack.lineno = 25, books[i].authors[j].name), " (", (__stack.lineno = 25, books[i].authors[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 25, books[i].authors[j].death), ")\n							</li>\n						");
-                                __stack.lineno = 27;
-                            }
-                            buf.push("\n						</ul>\n					</p>\n			  ");
-                            __stack.lineno = 30;
-                        } else if (books[i].authors.length === 1) {
-                            buf.push("\n					<p><b>Auteur : </b>", (__stack.lineno = 31, books[i].authors[0].name), " (", (__stack.lineno = 31, books[i].authors[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 31, books[i].authors[0].death), ")</p>\n			  ");
-                            __stack.lineno = 32;
+                            buf.push("\n				<p>", (__stack.lineno = 8, books[i].subtitle1), "</p>\n			  ");
+                            __stack.lineno = 9;
                         }
                         buf.push("\n			  ");
-                        __stack.lineno = 33;
-                        if (books[i].contribs.length > 1) {
-                            buf.push("\n					<p>\n						<span><b>Contributions :</b></span>\n						<br>\n						<ul>\n						");
-                            __stack.lineno = 38;
-                            for (var j = 0; j < books[i].contribs.length; j++) {
-                                buf.push('\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 40, books[i].contribs[j].role), " : </span>\n								", (__stack.lineno = 41, books[i].contribs[j].name), " (", (__stack.lineno = 41, books[i].contribs[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 41, books[i].contribs[j].death), ")\n							</li>\n						");
-                                __stack.lineno = 43;
+                        __stack.lineno = 10;
+                        if (books[i].subtitle2) {
+                            buf.push('\n				<p class="text-small-caps">', (__stack.lineno = 11, books[i].subtitle2), "</p>\n			 ");
+                            __stack.lineno = 12;
+                        }
+                        buf.push('\n		</div>\n		<div id="content">\n			  <p><b>Titre : </b>', (__stack.lineno = 15, books[i].title), "\n				  ");
+                        __stack.lineno = 16;
+                        if (books[i].subtitle1) {
+                            buf.push("\n					<span> &mdash;&nbsp;", (__stack.lineno = 17, books[i].subtitle1), "</span>\n				  ");
+                            __stack.lineno = 18;
+                        }
+                        buf.push("\n				  ");
+                        __stack.lineno = 19;
+                        if (books[i].subtitle2) {
+                            buf.push("\n					<span> &mdash;&nbsp;", (__stack.lineno = 20, books[i].subtitle2), "</span>\n				  ");
+                            __stack.lineno = 21;
+                        }
+                        buf.push("\n			  </p>\n			  <p><b>Année de parution : </b>", (__stack.lineno = 23, books[i].year), "</p>\n			  ");
+                        __stack.lineno = 24;
+                        if (books[i].authors.length > 1) {
+                            buf.push("\n					<p>\n						<span><b>Auteurs :</b></span>\n						<br>\n						<ul>\n						");
+                            __stack.lineno = 29;
+                            for (var j = 0; j < books[i].authors.length; j++) {
+                                buf.push("\n							<li>\n								", (__stack.lineno = 31, books[i].authors[j].name), " (", (__stack.lineno = 31, books[i].authors[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 31, books[i].authors[j].death), ")\n							</li>\n						");
+                                __stack.lineno = 33;
                             }
                             buf.push("\n						</ul>\n					</p>\n			  ");
-                            __stack.lineno = 46;
-                        } else if (books[i].contribs.length === 1) {
-                            buf.push('\n					<p>\n						<span><b>Contribution : </b></span>\n						<br>\n						<ul>\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 52, books[i].contribs[0].role), " : </span>\n								", (__stack.lineno = 53, books[i].contribs[0].name), " (", (__stack.lineno = 53, books[i].contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 53, books[i].contribs[0].death), ")\n							</li>\n						</ul>\n					</p>\n			  ");
-                            __stack.lineno = 57;
+                            __stack.lineno = 36;
+                        } else if (books[i].authors.length === 1) {
+                            buf.push("\n					<p><b>Auteur : </b>", (__stack.lineno = 37, books[i].authors[0].name), " (", (__stack.lineno = 37, books[i].authors[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 37, books[i].authors[0].death), ")</p>\n			  ");
+                            __stack.lineno = 38;
                         }
-                        buf.push('\n			  <p class="book-source">\n			  ');
-                        __stack.lineno = 59;
-                        if (books[i].sources.length > 1) {
-                            buf.push("\n				<b>Sources :</b>\n			  ");
-                            __stack.lineno = 61;
-                        } else {
-                            buf.push("\n				<b>Source :</b>\n			  ");
+                        buf.push("\n			  ");
+                        __stack.lineno = 39;
+                        if (books[i].contribs.length > 1) {
+                            buf.push("\n					<p>\n						<span><b>Contributions :</b></span>\n						<br>\n						<ul>\n						");
+                            __stack.lineno = 44;
+                            for (var j = 0; j < books[i].contribs.length; j++) {
+                                buf.push('\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 46, books[i].contribs[j].role), " : </span>\n								", (__stack.lineno = 47, books[i].contribs[j].name), " (", (__stack.lineno = 47, books[i].contribs[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 47, books[i].contribs[j].death), ")\n							</li>\n						");
+                                __stack.lineno = 49;
+                            }
+                            buf.push("\n						</ul>\n					</p>\n			  ");
+                            __stack.lineno = 52;
+                        } else if (books[i].contribs.length === 1) {
+                            buf.push('\n					<p>\n						<span><b>Contribution : </b></span>\n						<br>\n						<ul>\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 58, books[i].contribs[0].role), " : </span>\n								", (__stack.lineno = 59, books[i].contribs[0].name), " (", (__stack.lineno = 59, books[i].contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 59, books[i].contribs[0].death), ")\n							</li>\n						</ul>\n					</p>\n			  ");
                             __stack.lineno = 63;
                         }
-                        buf.push("\n				<ul>\n				");
+                        buf.push('\n			  <p class="book-source">\n			  ');
                         __stack.lineno = 65;
-                        for (var j = 0; j < books[i].sources.length; j++) {
-                            buf.push("\n					<li><span>", (__stack.lineno = 66, books[i].sources[j]), "</span></li>\n				");
+                        if (books[i].sources.length > 1) {
+                            buf.push("\n				<b>Sources :</b>\n			  ");
                             __stack.lineno = 67;
+                        } else {
+                            buf.push("\n				<b>Source :</b>\n			  ");
+                            __stack.lineno = 69;
+                        }
+                        buf.push("\n				<ul>\n				");
+                        __stack.lineno = 71;
+                        for (var j = 0; j < books[i].sources.length; j++) {
+                            buf.push("\n					<li><span>", (__stack.lineno = 72, books[i].sources[j]), "</span></li>\n				");
+                            __stack.lineno = 73;
                         }
                         buf.push("\n				</ul>\n			  </p>\n			  ");
-                        __stack.lineno = 70;
+                        __stack.lineno = 76;
                         if (books[i].description) {
-                            buf.push("\n			  <div>", (__stack.lineno = 71, books[i].description), "</div>\n			  ");
-                            __stack.lineno = 72;
+                            buf.push("\n			  <div>", (__stack.lineno = 77, books[i].description), "</div>\n			  ");
+                            __stack.lineno = 78;
                         }
                         buf.push("\n		</div>\n	</div>\n</div>\n");
                         return buf.join("");
@@ -11623,7 +11647,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="book">\n	<!--\n		STARTBOOK-CONTAINER\n	-->\n	<div id="bookContainer">\n		<!--\n			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366\n		-->\n		<%- include src/components/book-read/tabs-large-device.ejs -%>\n		<!--\n			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		<div id="swing-container">\n			<!--\n				START TEXT-CONTAINER\n			-->\n			<div data-wb-text-container class="card-4">\n				<!--\n					BOOKMARK\n				-->\n				<div id="bookmark">\n					<p><i class="material-icons">bookmark_border</i></p>\n				</div>\n				<!--\n					TOC (inside textContainer) : width < 1366\n				-->\n				<div id="toc">\n					<div data-wb-toc >\n						<button id="close-toc" type="button" class="btn">&times;</button>\n						<div id="toc-header">\n							<p><%- book.authorDisplay %></p>\n							<p class="text-uppercase"><%- book.title %></p>\n						</div>\n					</div>\n				</div>\n				<!--\n					OPTIONS-MODAL (inside textContainer) : width >= 1366\n				-->\n				<%- include src/components/book-read/options-modal.ejs -%>\n				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span id="current-section-title" class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text></div>\n				<!--\n					BOTTOM (inside textContainer) : pagination\n				-->\n				<div id="bottom">\n					<span id="currentByTotal" class="wb-currentByTotal-pages"></span>\n				</div>\n				<div id="text-loader-container" class="hidden">\n					<div id="text-loader"></div>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM-SMALL (outside textContainer) : width < 768\n		-->\n		<div id="book-nav-bar-bottom-small">\n			<a id="home" href="/#/books/" class="home btn"><i class="material-icons">arrow_back</i></a>\n			<button id="add-bookmark" class="add-bookmark btn"><i class="material-icons">bookmark_border</i></button>\n			<button id="open-options" class="btn"><i class="material-icons">settings</i></button>\n			<button id="open-toc" class="open-toc btn"><i class="material-icons">toc</i></button>\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom">\n			<div id="swing-bar">\n				<div id="book-nav-bar-bottom-controls">\n					<button id="home-large" class="home btn"><i class="material-icons">arrow_back</i></button>\n					<button id="add-bookmark-large" class="add-bookmark btn"><i class="material-icons">bookmark_border</i></button>\n					<div id="center">\n						<button id="backward-large" class="btn">&lt;</button>\n						<button id="forward-large" class="btn">&gt;</button>\n					</div>\n					<button id="open-options-medium" class="btn"><i class="material-icons">settings</i></button>\n					<button id="open-toc-large" class="open-toc btn"><i class="material-icons">toc</i></button>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n	<div id="book-loader-container" class="hidden">\n		<div id="book-loader" style="border-top: 8px solid <%= book.styles.color %>; border-bottom: 8px solid <%= book.styles.color %>"></div>\n	</div>\n</div>\n',
+        input: '<div id="book">\n	<!--\n		STARTBOOK-CONTAINER\n	-->\n	<div id="bookContainer">\n		<!--\n			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366\n		-->\n		<%- include src/components/book-read/tabs-large-device.ejs -%>\n		<!--\n			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		<div id="swing-container">\n			<!--\n				START TEXT-CONTAINER\n			-->\n			<div data-wb-text-container class="card-4">\n				<!--\n					BOOKMARK\n				-->\n				<div id="bookmark">\n					<p><i class="material-icons">bookmark_border</i></p>\n				</div>\n				<!--\n					TOC (inside textContainer) : width < 1366\n				-->\n				<div id="toc">\n					<div data-wb-toc >\n						<button id="close-toc" type="button" class="btn">&times;</button>\n						<div id="toc-header">\n							<p><%- book.authorDisplay %></p>\n							<p class="text-uppercase"><%- book.title %></p>\n							<% if(book.subtitle1) {%>\n								<p><%- book.subtitle1 %></p>\n							<%}%>\n							<% if(book.subtitle2) {%>\n								<p class="text-small-caps"><%- book.subtitle2 %></p>\n							<%}%>\n						</div>\n					</div>\n				</div>\n				<!--\n					OPTIONS-MODAL (inside textContainer) : width >= 1366\n				-->\n				<%- include src/components/book-read/options-modal.ejs -%>\n				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span id="current-section-title" class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text></div>\n				<!--\n					BOTTOM (inside textContainer) : pagination\n				-->\n				<div id="bottom">\n					<span id="currentByTotal" class="wb-currentByTotal-pages"></span>\n				</div>\n				<div id="text-loader-container" class="hidden">\n					<div id="text-loader"></div>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM-SMALL (outside textContainer) : width < 768\n		-->\n		<div id="book-nav-bar-bottom-small">\n			<a id="home" href="/#/books/" class="home btn"><i class="material-icons">arrow_back</i></a>\n			<button id="add-bookmark" class="add-bookmark btn"><i class="material-icons">bookmark_border</i></button>\n			<button id="open-options" class="btn"><i class="material-icons">settings</i></button>\n			<button id="open-toc" class="open-toc btn"><i class="material-icons">toc</i></button>\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom">\n			<div id="swing-bar">\n				<div id="book-nav-bar-bottom-controls">\n					<button id="home-large" class="home btn"><i class="material-icons">arrow_back</i></button>\n					<button id="add-bookmark-large" class="add-bookmark btn"><i class="material-icons">bookmark_border</i></button>\n					<div id="center">\n						<button id="backward-large" class="btn">&lt;</button>\n						<button id="forward-large" class="btn">&gt;</button>\n					</div>\n					<button id="open-options-medium" class="btn"><i class="material-icons">settings</i></button>\n					<button id="open-toc-large" class="open-toc btn"><i class="material-icons">toc</i></button>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n	<div id="book-loader-container" class="hidden">\n		<div id="book-loader" style="border-top: 8px solid <%= book.styles.color %>; border-bottom: 8px solid <%= book.styles.color %>"></div>\n	</div>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -11642,84 +11666,120 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
             (function() {
                 buf.push('<div id="book">\n	<!--\n		STARTBOOK-CONTAINER\n	-->\n	<div id="bookContainer">\n		<!--\n			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366\n		-->\n		' + function() {
                     var buf = [];
-                    buf.push('\n<div id="toc-large-device" class="tab card-4" >\n	<button id="close-toc-large-device" type="button" class="btn card-4" >&times;</button>\n	<div id="toc-large-device-container">\n		<div class="header">\n			<p>', (__stack.lineno = 6, book.authorDisplay), '</p>\n			<p class="text-uppercase">', (__stack.lineno = 7, book.title), '</p>\n		</div>\n		<div data-wb-toc ></div>\n	</div>\n</div>\n\n<div id="tab-options" class="card-4">\n	<button id="close-tab-options" type="button" class="btn card-4" >&times;</button>\n	<div id="tab-options-container">\n		<div class="header">\n			<p class="options-title">Options</p>\n		</div>\n		<div id="font-family-container-large">\n			<p><b>Police de&nbsp;caractère</b></p>\n			<div>\n				<div class="col-left">\n					<p><label><input type="radio" name="fontFamily" value="', (__stack.lineno = 23, book.styles.font), '">&ensp;', (__stack.lineno = 23, book.styles.font), "</label></p>\n					");
-                    __stack.lineno = 24;
-                    if (book.styles.font !== "Noto Serif") {
-                        buf.push('\n						<p><label><input type="radio" name="fontFamily" value="Noto Serif">&ensp;Noto Serif</label></p>\n					');
-                        __stack.lineno = 26;
-                    }
-                    buf.push('\n				</div>\n				<div class="col-right">\n					');
-                    __stack.lineno = 29;
-                    if (book.styles.font !== "Vollkorn") {
-                        buf.push('\n						<p><label><input type="radio" name="fontFamily" value="VollKorn">&ensp;Vollkorn</label></p>\n					');
-                        __stack.lineno = 31;
-                    }
-                    buf.push('\n				</div>\n			</div>\n		</div>\n		<div id="font-size-container-large">\n			<p><b>Taille de la police</b></p>\n			<div>\n				<div class="col-left">\n					<p><label><input type="radio" name="fontSize" value="14">&ensp;14 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="16">&ensp;16 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="18">&ensp;18 px</label></p>\n				</div>\n				<div class="col-right">\n					<p><label><input type="radio" name="fontSize" value="15">&ensp;15 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="17">&ensp;17 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="19">&ensp;19 px</label></p>\n				</div>\n			</div>\n		</div>\n	</div>\n</div>\n	\n\n<div id="tab-infos" class="card-4">\n	<button id="close-tab-infos" type="button" class="btn card-4" >&times;</button>\n	<div id="tab-infos-container">\n		<div class="header">\n			<p>', (__stack.lineno = 58, book.authorDisplay), '</p>\n			<p class="text-uppercase">', (__stack.lineno = 59, book.title), '</p>\n		</div>\n		<div class="content">\n		  <p><b>Titre : </b>', (__stack.lineno = 62, book.title), "\n			  ");
-                    __stack.lineno = 63;
+                    buf.push('\n<div id="toc-large-device" class="tab card-4" >\n	<button id="close-toc-large-device" type="button" class="btn card-4" >&times;</button>\n	<div id="toc-large-device-container">\n		<div class="header">\n			<p>', (__stack.lineno = 6, book.authorDisplay), '</p>\n			<p class="text-uppercase">', (__stack.lineno = 7, book.title), "</p>\n			  ");
+                    __stack.lineno = 8;
                     if (book.subtitle1) {
-                        buf.push("\n				<span> &mdash;&nbsp;", (__stack.lineno = 64, book.subtitle1), "</span>\n			  ");
-                        __stack.lineno = 65;
+                        buf.push("\n				<p>", (__stack.lineno = 9, book.subtitle1), "</p>\n			  ");
+                        __stack.lineno = 10;
                     }
                     buf.push("\n			  ");
-                    __stack.lineno = 66;
+                    __stack.lineno = 11;
                     if (book.subtitle2) {
-                        buf.push("\n				<span> &mdash;&nbsp;", (__stack.lineno = 67, book.subtitle2), "</span>\n			  ");
+                        buf.push('\n				<p class="text-small-caps">', (__stack.lineno = 12, book.subtitle2), "</p>\n			 ");
+                        __stack.lineno = 13;
+                    }
+                    buf.push('\n		</div>\n		<div data-wb-toc ></div>\n	</div>\n</div>\n\n<div id="tab-options" class="card-4">\n	<button id="close-tab-options" type="button" class="btn card-4" >&times;</button>\n	<div id="tab-options-container">\n		<div class="header">\n			<p class="options-title">Options</p>\n		</div>\n		<div id="font-family-container-large">\n			<p><b>Police de&nbsp;caractère</b></p>\n			<div>\n				<div class="col-left">\n					<p><label><input type="radio" name="fontFamily" value="', (__stack.lineno = 29, book.styles.font), '">&ensp;', (__stack.lineno = 29, book.styles.font), "</label></p>\n					");
+                    __stack.lineno = 30;
+                    if (book.styles.font !== "Noto Serif") {
+                        buf.push('\n						<p><label><input type="radio" name="fontFamily" value="Noto Serif">&ensp;Noto Serif</label></p>\n					');
+                        __stack.lineno = 32;
+                    }
+                    buf.push('\n				</div>\n				<div class="col-right">\n					');
+                    __stack.lineno = 35;
+                    if (book.styles.font !== "Vollkorn") {
+                        buf.push('\n						<p><label><input type="radio" name="fontFamily" value="VollKorn">&ensp;Vollkorn</label></p>\n					');
+                        __stack.lineno = 37;
+                    }
+                    buf.push('\n				</div>\n			</div>\n		</div>\n		<div id="font-size-container-large">\n			<p><b>Taille de la police</b></p>\n			<div>\n				<div class="col-left">\n					<p><label><input type="radio" name="fontSize" value="14">&ensp;14 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="16">&ensp;16 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="18">&ensp;18 px</label></p>\n				</div>\n				<div class="col-right">\n					<p><label><input type="radio" name="fontSize" value="15">&ensp;15 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="17">&ensp;17 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="19">&ensp;19 px</label></p>\n				</div>\n			</div>\n		</div>\n	</div>\n</div>\n	\n\n<div id="tab-infos" class="card-4">\n	<button id="close-tab-infos" type="button" class="btn card-4" >&times;</button>\n	<div id="tab-infos-container">\n		<div class="header">\n			<p>', (__stack.lineno = 64, book.authorDisplay), '</p>\n			<p class="text-uppercase">', (__stack.lineno = 65, book.title), "</p>\n			  ");
+                    __stack.lineno = 66;
+                    if (book.subtitle1) {
+                        buf.push("\n				<p>", (__stack.lineno = 67, book.subtitle1), "</p>\n			  ");
                         __stack.lineno = 68;
                     }
-                    buf.push("\n		  </p>\n		  <p><b>Année de parution : </b>", (__stack.lineno = 70, book.year), "</p>\n		  ");
-                    __stack.lineno = 71;
+                    buf.push("\n			  ");
+                    __stack.lineno = 69;
+                    if (book.subtitle2) {
+                        buf.push('\n				<p class="text-small-caps">', (__stack.lineno = 70, book.subtitle2), "</p>\n			 ");
+                        __stack.lineno = 71;
+                    }
+                    buf.push('\n		</div>\n		<div class="content">\n		  <p><b>Titre : </b>', (__stack.lineno = 74, book.title), "\n			  ");
+                    __stack.lineno = 75;
+                    if (book.subtitle1) {
+                        buf.push("\n				<span> &mdash;&nbsp;", (__stack.lineno = 76, book.subtitle1), "</span>\n			  ");
+                        __stack.lineno = 77;
+                    }
+                    buf.push("\n			  ");
+                    __stack.lineno = 78;
+                    if (book.subtitle2) {
+                        buf.push("\n				<span> &mdash;&nbsp;", (__stack.lineno = 79, book.subtitle2), "</span>\n			  ");
+                        __stack.lineno = 80;
+                    }
+                    buf.push("\n		  </p>\n		  <p><b>Année de parution : </b>", (__stack.lineno = 82, book.year), "</p>\n		  ");
+                    __stack.lineno = 83;
                     if (book.authors.length > 1) {
                         buf.push("\n				<p>\n					<span><b>Auteurs :</b></span>\n					<br>\n					<ul>\n					");
-                        __stack.lineno = 76;
+                        __stack.lineno = 88;
                         for (var j = 0; j < book.authors.length; j++) {
-                            buf.push("\n						<li>\n							", (__stack.lineno = 78, book.authors[j].name), " (", (__stack.lineno = 78, book.authors[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 78, book.authors[j].death), ")\n						</li>\n					");
-                            __stack.lineno = 80;
+                            buf.push("\n						<li>\n							", (__stack.lineno = 90, book.authors[j].name), " (", (__stack.lineno = 90, book.authors[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 90, book.authors[j].death), ")\n						</li>\n					");
+                            __stack.lineno = 92;
                         }
                         buf.push("\n					</ul>\n				</p>\n		  ");
-                        __stack.lineno = 83;
+                        __stack.lineno = 95;
                     } else if (book.authors.length === 1) {
-                        buf.push("\n				<p><b>Auteur : </b>", (__stack.lineno = 84, book.authors[0].name), " (", (__stack.lineno = 84, book.authors[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 84, book.authors[0].death), ")</p>\n		  ");
-                        __stack.lineno = 85;
+                        buf.push("\n				<p><b>Auteur : </b>", (__stack.lineno = 96, book.authors[0].name), " (", (__stack.lineno = 96, book.authors[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 96, book.authors[0].death), ")</p>\n		  ");
+                        __stack.lineno = 97;
                     }
                     buf.push("\n		  ");
-                    __stack.lineno = 86;
+                    __stack.lineno = 98;
                     if (book.contribs.length > 1) {
                         buf.push("\n				<p>\n					<span><b>Contributions :</b></span>\n					<br>\n					<ul>\n					");
-                        __stack.lineno = 91;
+                        __stack.lineno = 103;
                         for (var j = 0; j < book.contribs.length; j++) {
-                            buf.push('\n						<li>\n							<span class="contrib-role">', (__stack.lineno = 93, book.contribs[j].role), " : </span>\n							", (__stack.lineno = 94, book.contribs[j].name), " (", (__stack.lineno = 94, book.contribs[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 94, book.contribs[j].death), ")\n						</li>\n					");
-                            __stack.lineno = 96;
+                            buf.push('\n						<li>\n							<span class="contrib-role">', (__stack.lineno = 105, book.contribs[j].role), " : </span>\n							", (__stack.lineno = 106, book.contribs[j].name), " (", (__stack.lineno = 106, book.contribs[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 106, book.contribs[j].death), ")\n						</li>\n					");
+                            __stack.lineno = 108;
                         }
                         buf.push("\n					</ul>\n				</p>\n		  ");
-                        __stack.lineno = 99;
+                        __stack.lineno = 111;
                     } else if (book.contribs.length === 1) {
-                        buf.push('\n				<p>\n					<span><b>Contribution : </b></span>\n					<br>\n					<ul>\n						<li>\n							<span class="contrib-role">', (__stack.lineno = 105, book.contribs[0].role), " : </span>\n							", (__stack.lineno = 106, book.contribs[0].name), " (", (__stack.lineno = 106, book.contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 106, book.contribs[0].death), ")\n						</li>\n					</ul>\n				</p>\n		  ");
-                        __stack.lineno = 110;
+                        buf.push('\n				<p>\n					<span><b>Contribution : </b></span>\n					<br>\n					<ul>\n						<li>\n							<span class="contrib-role">', (__stack.lineno = 117, book.contribs[0].role), " : </span>\n							", (__stack.lineno = 118, book.contribs[0].name), " (", (__stack.lineno = 118, book.contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 118, book.contribs[0].death), ")\n						</li>\n					</ul>\n				</p>\n		  ");
+                        __stack.lineno = 122;
                     }
                     buf.push('\n		  <p class="book-source">\n			  ');
-                    __stack.lineno = 112;
+                    __stack.lineno = 124;
                     if (book.sources.length > 1) {
                         buf.push("\n				<b>Sources :</b>\n			  ");
-                        __stack.lineno = 114;
+                        __stack.lineno = 126;
                     } else {
                         buf.push("\n				<b>Source :</b>\n			  ");
-                        __stack.lineno = 116;
+                        __stack.lineno = 128;
                     }
                     buf.push("\n				<ul>\n				");
-                    __stack.lineno = 118;
+                    __stack.lineno = 130;
                     for (var j = 0; j < book.sources.length; j++) {
-                        buf.push("\n					<li><span>", (__stack.lineno = 119, book.sources[j]), "</span></li>\n				");
-                        __stack.lineno = 120;
+                        buf.push("\n					<li><span>", (__stack.lineno = 131, book.sources[j]), "</span></li>\n				");
+                        __stack.lineno = 132;
                     }
                     buf.push("\n				</ul>\n			  </p>\n		  ");
-                    __stack.lineno = 123;
+                    __stack.lineno = 135;
                     if (book.description) {
-                        buf.push("\n		  <div>", (__stack.lineno = 124, book.description), "</div>\n		  ");
-                        __stack.lineno = 125;
+                        buf.push("\n		  <div>", (__stack.lineno = 136, book.description), "</div>\n		  ");
+                        __stack.lineno = 137;
                     }
                     buf.push('\n		</div>\n	</div>\n</div>\n\n<div id="book-commands">\n	<button id="toggle-toc-large-device" type="button" class="btn card-2" >Table</button>\n	<button id="toggle-tab-options" type="button" class="btn card-2" >Options</button>\n	<button id="toggle-tab-infos" type="button" class="btn card-2" >Fiche</button>\n	<button id="tab-add-bookmark" type="button" class="add-bookmark btn card-2" >Signet</button>\n	<button id="tab-home-link" type="button" class="home btn card-2" >Retour</button>\n</div>\n	\n\n');
                     return buf.join("");
-                }() + '		<!--\n			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		<div id="swing-container">\n			<!--\n				START TEXT-CONTAINER\n			-->\n			<div data-wb-text-container class="card-4">\n				<!--\n					BOOKMARK\n				-->\n				<div id="bookmark">\n					<p><i class="material-icons">bookmark_border</i></p>\n				</div>\n				<!--\n					TOC (inside textContainer) : width < 1366\n				-->\n				<div id="toc">\n					<div data-wb-toc >\n						<button id="close-toc" type="button" class="btn">&times;</button>\n						<div id="toc-header">\n							<p>', (__stack.lineno = 30, book.authorDisplay), '</p>\n							<p class="text-uppercase">', (__stack.lineno = 31, book.title), "</p>\n						</div>\n					</div>\n				</div>\n				<!--\n					OPTIONS-MODAL (inside textContainer) : width >= 1366\n				-->\n				" + function() {
+                }() + '		<!--\n			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		<div id="swing-container">\n			<!--\n				START TEXT-CONTAINER\n			-->\n			<div data-wb-text-container class="card-4">\n				<!--\n					BOOKMARK\n				-->\n				<div id="bookmark">\n					<p><i class="material-icons">bookmark_border</i></p>\n				</div>\n				<!--\n					TOC (inside textContainer) : width < 1366\n				-->\n				<div id="toc">\n					<div data-wb-toc >\n						<button id="close-toc" type="button" class="btn">&times;</button>\n						<div id="toc-header">\n							<p>', (__stack.lineno = 30, book.authorDisplay), '</p>\n							<p class="text-uppercase">', (__stack.lineno = 31, book.title), "</p>\n							");
+                __stack.lineno = 32;
+                if (book.subtitle1) {
+                    buf.push("\n								<p>", (__stack.lineno = 33, book.subtitle1), "</p>\n							");
+                    __stack.lineno = 34;
+                }
+                buf.push("\n							");
+                __stack.lineno = 35;
+                if (book.subtitle2) {
+                    buf.push('\n								<p class="text-small-caps">', (__stack.lineno = 36, book.subtitle2), "</p>\n							");
+                    __stack.lineno = 37;
+                }
+                buf.push("\n						</div>\n					</div>\n				</div>\n				<!--\n					OPTIONS-MODAL (inside textContainer) : width >= 1366\n				-->\n				" + function() {
                     var buf = [];
                     buf.push('<div id="options">\n	<div>\n		<button id="close-options" type="button" class="btn">&times;</button>\n		<div class="options-header">\n			<p>Options</p>\n		</div>\n		<div id="font-family-container">\n			<p><b>Police de&nbsp;caractère</b></p>\n			<div>\n				<div class="col-left">\n					<p><label><input type="radio" name="fontFamily" value="', (__stack.lineno = 11, book.styles.font), '">&ensp;', (__stack.lineno = 11, book.styles.font), "</label></p>\n					");
                     __stack.lineno = 12;
@@ -11747,7 +11807,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                     }
                     buf.push('\n				</div>\n			</div>\n		</div>\n		<div id="font-size-container">\n			<p><b>Taille de la police</b></p>\n			<div>\n				<div class="col-left">\n					<p><label><input type="radio" name="fontSize" value="14">&ensp;14 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="16">&ensp;16 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="18">&ensp;18 px</label></p>\n				</div>\n				<div class="col-right">\n					<p><label><input type="radio" name="fontSize" value="15">&ensp;15 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="17">&ensp;17 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="19">&ensp;19 px</label></p>\n				</div>\n			</div>\n		</div>\n	</div>\n</div>\n');
                     return buf.join("");
-                }() + '				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span id="current-section-title" class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text></div>\n				<!--\n					BOTTOM (inside textContainer) : pagination\n				-->\n				<div id="bottom">\n					<span id="currentByTotal" class="wb-currentByTotal-pages"></span>\n				</div>\n				<div id="text-loader-container" class="hidden">\n					<div id="text-loader"></div>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM-SMALL (outside textContainer) : width < 768\n		-->\n		<div id="book-nav-bar-bottom-small">\n			<a id="home" href="/#/books/" class="home btn"><i class="material-icons">arrow_back</i></a>\n			<button id="add-bookmark" class="add-bookmark btn"><i class="material-icons">bookmark_border</i></button>\n			<button id="open-options" class="btn"><i class="material-icons">settings</i></button>\n			<button id="open-toc" class="open-toc btn"><i class="material-icons">toc</i></button>\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom">\n			<div id="swing-bar">\n				<div id="book-nav-bar-bottom-controls">\n					<button id="home-large" class="home btn"><i class="material-icons">arrow_back</i></button>\n					<button id="add-bookmark-large" class="add-bookmark btn"><i class="material-icons">bookmark_border</i></button>\n					<div id="center">\n						<button id="backward-large" class="btn">&lt;</button>\n						<button id="forward-large" class="btn">&gt;</button>\n					</div>\n					<button id="open-options-medium" class="btn"><i class="material-icons">settings</i></button>\n					<button id="open-toc-large" class="open-toc btn"><i class="material-icons">toc</i></button>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n	<div id="book-loader-container" class="hidden">\n		<div id="book-loader" style="border-top: 8px solid ', escape((__stack.lineno = 96, book.styles.color)), "; border-bottom: 8px solid ", escape((__stack.lineno = 96, book.styles.color)), '"></div>\n	</div>\n</div>\n');
+                }() + '				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span id="current-section-title" class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text></div>\n				<!--\n					BOTTOM (inside textContainer) : pagination\n				-->\n				<div id="bottom">\n					<span id="currentByTotal" class="wb-currentByTotal-pages"></span>\n				</div>\n				<div id="text-loader-container" class="hidden">\n					<div id="text-loader"></div>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM-SMALL (outside textContainer) : width < 768\n		-->\n		<div id="book-nav-bar-bottom-small">\n			<a id="home" href="/#/books/" class="home btn"><i class="material-icons">arrow_back</i></a>\n			<button id="add-bookmark" class="add-bookmark btn"><i class="material-icons">bookmark_border</i></button>\n			<button id="open-options" class="btn"><i class="material-icons">settings</i></button>\n			<button id="open-toc" class="open-toc btn"><i class="material-icons">toc</i></button>\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom">\n			<div id="swing-bar">\n				<div id="book-nav-bar-bottom-controls">\n					<button id="home-large" class="home btn"><i class="material-icons">arrow_back</i></button>\n					<button id="add-bookmark-large" class="add-bookmark btn"><i class="material-icons">bookmark_border</i></button>\n					<div id="center">\n						<button id="backward-large" class="btn">&lt;</button>\n						<button id="forward-large" class="btn">&gt;</button>\n					</div>\n					<button id="open-options-medium" class="btn"><i class="material-icons">settings</i></button>\n					<button id="open-toc-large" class="open-toc btn"><i class="material-icons">toc</i></button>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n	<div id="book-loader-container" class="hidden">\n		<div id="book-loader" style="border-top: 8px solid ', escape((__stack.lineno = 102, book.styles.color)), "; border-bottom: 8px solid ", escape((__stack.lineno = 102, book.styles.color)), '"></div>\n	</div>\n</div>\n');
             })();
         }
         return buf.join("");
@@ -12034,7 +12094,7 @@ exports = module.exports = __webpack_require__(4)(undefined);
 
 
 // module
-exports.push([module.i, "#authors-container {\n\tmax-width: 750px;\n\tmargin: auto;\n}\n\n#authors-container #top-page-header {\n\ttext-align: center;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.2em;\n\tfont-variant: small-caps;\n\tletter-spacing: 4px;\n\tline-height: 25px;\n\tmargin: auto;\n\tdisplay: block;\n\tpadding: 32px 0px 32px 0px;\n}\n\n@media only screen and (min-width: 750px) {\n\t#authors-container #top-page-header {\n\t\tfont-size: 1.4em;\n\t\tpadding: 48px 0px 32px 0px;\n\t}\n}\n\n#authors-container #letters {\n\ttext-align: center;\n\tline-height: 37px;\n\twidth: 320px;\n\tmargin: 0px auto;\n\tpadding-bottom: 16px;\n}\n\n@media only screen and (min-width: 410px) {\n\t#authors-container #letters {\n\t\twidth: 410px;\n\t}\n}\n\n@media only screen and (min-width: 750px) {\n\t#authors-container #letters {\n\t\twidth: 585px;\n\t}\n}\n\n#authors-container #letters a {\n\tpadding: 8px;\n}\n\n#authors-container #noresult {\n\twidth: 100%;\n\ttext-align: center;\n\tpadding-top: 48px;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.1em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1.5px;\n}\n\n#authors-container #authors-list {\n\tmin-height: 476px;\n}\n\n.auth {\n\tposition: relative;\n}\n\n#authors-container .previous {\n\tposition: absolute;\n\ttop: 170px;\n\tleft: -100px;\n\tmargin-top: -25px;\n\twidth: 50px;\n\theight: 50px;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.6em;\n\tbackground-color: transparent;\n\tdisplay: none;\n}\n\n#authors-container .next {\n\tposition: absolute;\n\ttop: 170px;\n\tright: -100px;\n\tmargin-top: -25px;\n\twidth: 50px;\n\theight: 50px;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.6em;\n\tbackground-color: transparent;\n\tdisplay: none;\n}\n\n@media only screen and (min-width: 750px) {\n\t#authors-container .previous {\n\t\tdisplay: block;\n\t}\n\n\t#authors-container .next {\n\t\tdisplay: block;\n\t}\n}\n\n#authors-container #authors-list {\n\tmax-width: 750px;\n\tmargin: auto;\n\tpadding-bottom: 16px;\n}\n\n#authors-container .author-name {\n\tmax-width: 750px;\n\ttext-align: center;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.2em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1.5px;\n\tpadding: 16px;\n\ttext-align: center;\n}\n\n#authors-container .author-name a {\n\tcolor: #000;\n}\n\n#authors-container #authors-list .books-list {\n\tposition: relative;\n\twidth: 250px;\n\tmargin: auto;\n}\n\n#authors-container .slide {\n\tposition: relative;\n\twidth: 250px;\n\tmargin: auto;\n\tmargin-bottom: 48px;\n\tdisplay: block;\n\ttext-align: center;\n}\n\n@media only screen and (min-width: 750px) {\n\t\n\t#authors-container .slide {\n\t\tmargin-bottom: 0px;\n\t\tdisplay: none;\n\t}\n}\n\n#authors-container #paper {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#authors-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin: auto;\n\tposition: relative;\n}\n\n#authors-container .book .logo .span1 {\n\tfont-size: 2em;\n\tmargin-bottom: 16px;\n}\n\n#authors-container .book .logo .span2 {\n\tfont-variant: small-caps;\n}\n\n#authors-container #book-btns {\n\twidth: 100%;\n\tposition: relative;\n\theight: 37px;\n}\n\n#authors-container .open-infos-btn {\n\tfont-family: \"Vollkorn\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1px;\n\tbackground-color: transparent;\n\tposition: absolute;\n\tright: 0px;\n\tbottom: 0px;\n}\n\n#authors-container .tobepublished {\n\tfont-family: \"Vollkorn\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1px;\n\tbackground-color: transparent;\n\tposition: absolute;\n\tleft: 0px;\n\tbottom: 0px;\n}\n\n/*\nMODAL (INFOS)\n*/\n\n#authors-container .modal {\n\tfont-family: 'Georgia', sans-serif;\n\tdisplay: none;\n}\n\n#authors-container .modal-content {\n\tmax-width: 500px;\n}\n\n#authors-container .modal-content div {\n\tpadding: 8px;\n}\n\n#authors-container .modal #infos-header {\n\tposition: relative;\n\tpadding: 16px;\n\tborder-bottom: 1px solid #ddd;\n\ttext-align: center;\n}\n\n#authors-container .modal .close-infos-btn {\n\tposition: absolute;\n\ttop: 0;\n\tright: 0;\n\twidth: 37px;\n\theight: 37px;\n\tfont-size: 1.5em;\n}\n\n#authors-container #content {\n\tmax-height: 330px;\n\toverflow: auto;\n}\n\n@media only screen and (min-height: 600px) {\n\t#authors-container #content {\n\t\tmax-height: 450px;\n\t\toverflow: auto;\n\t}\n\n}\n\n#authors-container .modal p {\n\tmargin: 0px;\n\tpadding: 8px;\n}\n\n#authors-container .modal ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#authors-container .modal ul li {\n\tpadding: 4px;\n}\n\n#authors-container .modal .contrib-role {\n\ttext-transform: capitalize;\n}\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "#authors-container {\n\tmax-width: 750px;\n\tmargin: auto;\n}\n\n#authors-container #top-page-header {\n\ttext-align: center;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.2em;\n\tfont-variant: small-caps;\n\tletter-spacing: 4px;\n\tline-height: 25px;\n\tmargin: auto;\n\tdisplay: block;\n\tpadding: 32px 0px 32px 0px;\n}\n\n@media only screen and (min-width: 750px) {\n\t#authors-container #top-page-header {\n\t\tfont-size: 1.4em;\n\t\tpadding: 48px 0px 32px 0px;\n\t}\n}\n\n#authors-container #letters {\n\ttext-align: center;\n\tline-height: 37px;\n\twidth: 320px;\n\tmargin: 0px auto;\n\tpadding-bottom: 16px;\n}\n\n@media only screen and (min-width: 410px) {\n\t#authors-container #letters {\n\t\twidth: 410px;\n\t}\n}\n\n@media only screen and (min-width: 750px) {\n\t#authors-container #letters {\n\t\twidth: 585px;\n\t}\n}\n\n#authors-container #letters a {\n\tpadding: 8px;\n}\n\n#authors-container #noresult {\n\twidth: 100%;\n\ttext-align: center;\n\tpadding-top: 48px;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.1em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1.5px;\n}\n\n#authors-container #authors-list {\n\tmin-height: 476px;\n}\n\n.auth {\n\tposition: relative;\n}\n\n#authors-container .previous {\n\tposition: absolute;\n\ttop: 170px;\n\tleft: -100px;\n\tmargin-top: -25px;\n\twidth: 50px;\n\theight: 50px;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.6em;\n\tbackground-color: transparent;\n\tdisplay: none;\n}\n\n#authors-container .next {\n\tposition: absolute;\n\ttop: 170px;\n\tright: -100px;\n\tmargin-top: -25px;\n\twidth: 50px;\n\theight: 50px;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.6em;\n\tbackground-color: transparent;\n\tdisplay: none;\n}\n\n@media only screen and (min-width: 750px) {\n\t#authors-container .previous {\n\t\tdisplay: block;\n\t}\n\n\t#authors-container .next {\n\t\tdisplay: block;\n\t}\n}\n\n#authors-container #authors-list {\n\tmax-width: 750px;\n\tmargin: auto;\n\tpadding-bottom: 16px;\n}\n\n#authors-container .author-name {\n\tmax-width: 750px;\n\ttext-align: center;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.2em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1.5px;\n\tpadding: 16px;\n\ttext-align: center;\n}\n\n#authors-container .author-name a {\n\tcolor: #000;\n}\n\n#authors-container #authors-list .books-list {\n\tposition: relative;\n\twidth: 250px;\n\tmargin: auto;\n}\n\n#authors-container .slide {\n\tposition: relative;\n\twidth: 250px;\n\tmargin: auto;\n\tmargin-bottom: 48px;\n\tdisplay: block;\n\ttext-align: center;\n}\n\n@media only screen and (min-width: 750px) {\n\t\n\t#authors-container .slide {\n\t\tmargin-bottom: 0px;\n\t\tdisplay: none;\n\t}\n}\n\n#authors-container #paper {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#authors-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin: auto;\n\tposition: relative;\n}\n\n#authors-container .book .logo .span1 {\n\tfont-size: 2em;\n\tmargin-bottom: 16px;\n}\n\n#authors-container .book .logo .span2 {\n\tfont-variant: small-caps;\n}\n\n#authors-container #book-btns {\n\twidth: 100%;\n\tposition: relative;\n\theight: 37px;\n}\n\n#authors-container .open-infos-btn {\n\tfont-family: \"Vollkorn\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1px;\n\tbackground-color: transparent;\n\tposition: absolute;\n\tright: 0px;\n\tbottom: 0px;\n}\n\n#authors-container .tobepublished {\n\tfont-family: \"Vollkorn\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1px;\n\tbackground-color: transparent;\n\tposition: absolute;\n\tleft: 0px;\n\tbottom: 0px;\n}\n\n/*\nMODAL (INFOS)\n*/\n\n#authors-container .modal {\n\tfont-family: 'Georgia', sans-serif;\n\tdisplay: none;\n}\n\n#authors-container .modal-content {\n\tmax-width: 500px;\n\tmax-height: 90%;\n\toverflow: auto;\n}\n\n#authors-container .modal-content div {\n\tpadding: 8px;\n}\n\n#authors-container .modal #infos-header {\n\tposition: relative;\n\tpadding: 16px;\n\tborder-bottom: 1px solid #ddd;\n\ttext-align: center;\n}\n\n#authors-container .modal .close-infos-btn {\n\tposition: absolute;\n\ttop: 0;\n\tright: 0;\n\twidth: 37px;\n\theight: 37px;\n\tfont-size: 1.5em;\n}\n\n#authors-container .modal p {\n\tmargin: 0px;\n\tpadding: 8px;\n}\n\n#authors-container .modal ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#authors-container .modal ul li {\n\tpadding: 4px;\n}\n\n#authors-container .modal .contrib-role {\n\ttext-transform: capitalize;\n}\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -12090,68 +12150,80 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                             var work = authors[i].works[j];
                             buf.push("\n						\n						<!-- MODAL (INFOS) -->\n						" + function() {
                                 var buf = [];
-                                buf.push('<div id="infos-', escape((__stack.lineno = 1, work.id)), '" class="modal">\n	<div class="modal-content w3-card animate-top">\n		<div id="infos-header">\n			<button id="close-infos-', escape((__stack.lineno = 4, work.id)), '" type="button" class="btn close-infos-btn">&times;</button>\n			<p>', (__stack.lineno = 5, work.authorDisplay), '</p>\n			<p class="text-uppercase">', (__stack.lineno = 6, work.title), '</p>\n		</div>\n		<div id="content">\n			  <p><b>Titre : </b>', (__stack.lineno = 9, work.title), "\n				  ");
-                                __stack.lineno = 10;
+                                buf.push('<div id="infos-', escape((__stack.lineno = 1, work.id)), '" class="modal">\n	<div class="modal-content w3-card animate-top">\n		<div id="infos-header">\n			<button id="close-infos-', escape((__stack.lineno = 4, work.id)), '" type="button" class="btn close-infos-btn">&times;</button>\n			<p>', (__stack.lineno = 5, work.authorDisplay), '</p>\n			<p class="text-uppercase">', (__stack.lineno = 6, work.title), "</p>\n			  ");
+                                __stack.lineno = 7;
                                 if (work.subtitle1) {
-                                    buf.push("\n					<span> &mdash;&nbsp;", (__stack.lineno = 11, work.subtitle1), "</span>\n				  ");
-                                    __stack.lineno = 12;
-                                }
-                                buf.push("\n				  ");
-                                __stack.lineno = 13;
-                                if (work.subtitle2) {
-                                    buf.push("\n					<span> &mdash;&nbsp;", (__stack.lineno = 14, work.subtitle2), "</span>\n				  ");
-                                    __stack.lineno = 15;
-                                }
-                                buf.push("\n			  </p>\n			  <p><b>Année de parution : </b>", (__stack.lineno = 17, work.year), "</p>\n			  ");
-                                __stack.lineno = 18;
-                                if (work.authors.length > 1) {
-                                    buf.push("\n					<p>\n						<span><b>Auteurs :</b></span>\n						<br>\n						<ul>\n						");
-                                    __stack.lineno = 23;
-                                    for (var j = 0; j < work.authors.length; j++) {
-                                        buf.push("\n							<li>\n								", (__stack.lineno = 25, work.authors[j].name), " (", (__stack.lineno = 25, work.authors[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 25, work.authors[j].death), ")\n							</li>\n						");
-                                        __stack.lineno = 27;
-                                    }
-                                    buf.push("\n						</ul>\n					</p>\n			  ");
-                                    __stack.lineno = 30;
-                                } else if (work.authors.length === 1) {
-                                    buf.push("\n					<p><b>Auteur : </b>", (__stack.lineno = 31, work.authors[0].name), " (", (__stack.lineno = 31, work.authors[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 31, work.authors[0].death), ")</p>\n			  ");
-                                    __stack.lineno = 32;
+                                    buf.push("\n				<p>", (__stack.lineno = 8, work.subtitle1), "</p>\n			  ");
+                                    __stack.lineno = 9;
                                 }
                                 buf.push("\n			  ");
-                                __stack.lineno = 33;
-                                if (work.contribs.length > 1) {
-                                    buf.push("\n					<p>\n						<span><b>Contributions :</b></span>\n						<br>\n						<ul>\n						");
-                                    __stack.lineno = 38;
-                                    for (var j = 0; j < work.contribs.length; j++) {
-                                        buf.push('\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 40, work.contribs[j].role), " : </span>\n								", (__stack.lineno = 41, work.contribs[j].name), " (", (__stack.lineno = 41, work.contribs[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 41, work.contribs[j].death), ")\n							</li>\n						");
-                                        __stack.lineno = 43;
+                                __stack.lineno = 10;
+                                if (work.subtitle2) {
+                                    buf.push('\n				<p class="text-small-caps">', (__stack.lineno = 11, work.subtitle2), "</p>\n			 ");
+                                    __stack.lineno = 12;
+                                }
+                                buf.push('\n		</div>\n		<div id="content">\n			  <p><b>Titre : </b>', (__stack.lineno = 15, work.title), "\n				  ");
+                                __stack.lineno = 16;
+                                if (work.subtitle1) {
+                                    buf.push("\n					<span> &mdash;&nbsp;", (__stack.lineno = 17, work.subtitle1), "</span>\n				  ");
+                                    __stack.lineno = 18;
+                                }
+                                buf.push("\n				  ");
+                                __stack.lineno = 19;
+                                if (work.subtitle2) {
+                                    buf.push("\n					<span> &mdash;&nbsp;", (__stack.lineno = 20, work.subtitle2), "</span>\n				  ");
+                                    __stack.lineno = 21;
+                                }
+                                buf.push("\n			  </p>\n			  <p><b>Année de parution : </b>", (__stack.lineno = 23, work.year), "</p>\n			  ");
+                                __stack.lineno = 24;
+                                if (work.authors.length > 1) {
+                                    buf.push("\n					<p>\n						<span><b>Auteurs :</b></span>\n						<br>\n						<ul>\n						");
+                                    __stack.lineno = 29;
+                                    for (var j = 0; j < work.authors.length; j++) {
+                                        buf.push("\n							<li>\n								", (__stack.lineno = 31, work.authors[j].name), " (", (__stack.lineno = 31, work.authors[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 31, work.authors[j].death), ")\n							</li>\n						");
+                                        __stack.lineno = 33;
                                     }
                                     buf.push("\n						</ul>\n					</p>\n			  ");
-                                    __stack.lineno = 46;
-                                } else if (work.contribs.length === 1) {
-                                    buf.push('\n					<p>\n						<span><b>Contribution : </b></span>\n						<br>\n						<ul>\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 52, work.contribs[0].role), " : </span>\n								", (__stack.lineno = 53, work.contribs[0].name), " (", (__stack.lineno = 53, work.contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 53, work.contribs[0].death), ")\n							</li>\n						</ul>\n					</p>\n			  ");
-                                    __stack.lineno = 57;
+                                    __stack.lineno = 36;
+                                } else if (work.authors.length === 1) {
+                                    buf.push("\n					<p><b>Auteur : </b>", (__stack.lineno = 37, work.authors[0].name), " (", (__stack.lineno = 37, work.authors[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 37, work.authors[0].death), ")</p>\n			  ");
+                                    __stack.lineno = 38;
                                 }
-                                buf.push('\n			  <p class="book-source">\n			  ');
-                                __stack.lineno = 59;
-                                if (work.sources.length > 1) {
-                                    buf.push("\n				<b>Sources :</b>\n			  ");
-                                    __stack.lineno = 61;
-                                } else {
-                                    buf.push("\n				<b>Source :</b>\n			  ");
+                                buf.push("\n			  ");
+                                __stack.lineno = 39;
+                                if (work.contribs.length > 1) {
+                                    buf.push("\n					<p>\n						<span><b>Contributions :</b></span>\n						<br>\n						<ul>\n						");
+                                    __stack.lineno = 44;
+                                    for (var j = 0; j < work.contribs.length; j++) {
+                                        buf.push('\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 46, work.contribs[j].role), " : </span>\n								", (__stack.lineno = 47, work.contribs[j].name), " (", (__stack.lineno = 47, work.contribs[j].birth), "&nbsp;&ndash; ", (__stack.lineno = 47, work.contribs[j].death), ")\n							</li>\n						");
+                                        __stack.lineno = 49;
+                                    }
+                                    buf.push("\n						</ul>\n					</p>\n			  ");
+                                    __stack.lineno = 52;
+                                } else if (work.contribs.length === 1) {
+                                    buf.push('\n					<p>\n						<span><b>Contribution : </b></span>\n						<br>\n						<ul>\n							<li>\n								<span class="contrib-role">', (__stack.lineno = 58, work.contribs[0].role), " : </span>\n								", (__stack.lineno = 59, work.contribs[0].name), " (", (__stack.lineno = 59, work.contribs[0].birth), "&nbsp;&ndash; ", (__stack.lineno = 59, work.contribs[0].death), ")\n							</li>\n						</ul>\n					</p>\n			  ");
                                     __stack.lineno = 63;
                                 }
-                                buf.push("\n				<ul>\n				");
+                                buf.push('\n			  <p class="book-source">\n			  ');
                                 __stack.lineno = 65;
-                                for (var k = 0; k < work.sources.length; k++) {
-                                    buf.push("\n					<li><span>", (__stack.lineno = 66, work.sources[k]), "</span></li>\n				");
+                                if (work.sources.length > 1) {
+                                    buf.push("\n				<b>Sources :</b>\n			  ");
                                     __stack.lineno = 67;
+                                } else {
+                                    buf.push("\n				<b>Source :</b>\n			  ");
+                                    __stack.lineno = 69;
+                                }
+                                buf.push("\n				<ul>\n				");
+                                __stack.lineno = 71;
+                                for (var k = 0; k < work.sources.length; k++) {
+                                    buf.push("\n					<li><span>", (__stack.lineno = 72, work.sources[k]), "</span></li>\n				");
+                                    __stack.lineno = 73;
                                 }
                                 buf.push("\n				</ul>\n			  </p>\n			  ");
-                                __stack.lineno = 70;
+                                __stack.lineno = 76;
                                 if (work.description) {
-                                    buf.push("\n			  <div>", (__stack.lineno = 71, work.description), "</div>\n			  ");
-                                    __stack.lineno = 72;
+                                    buf.push("\n			  <div>", (__stack.lineno = 77, work.description), "</div>\n			  ");
+                                    __stack.lineno = 78;
                                 }
                                 buf.push("\n		</div>\n	</div>\n</div>\n");
                                 return buf.join("");

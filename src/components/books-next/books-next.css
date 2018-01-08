@@ -181,6 +181,8 @@ MODAL (INFOS)
 
 #books-next-container .modal-content {
 	max-width: 500px;
+	max-height: 90%;
+	overflow: auto;
 }
 
 #books-next-container .modal-content div {
