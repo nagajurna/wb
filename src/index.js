@@ -68,7 +68,7 @@ var index = (function() {
 			}, false);
 		}
 		
-		searchInput();
+		//searchInput();
 		
 	}
 	

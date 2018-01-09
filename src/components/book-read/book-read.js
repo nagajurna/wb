@@ -237,7 +237,7 @@ const book = function(container) {
 			book.setMarginX(marginX);
 			
 			if(book.col===true) {
-				book.init();
+				book.reinit();
 			}
 		
 		}, false);
