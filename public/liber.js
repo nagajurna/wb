@@ -4378,35 +4378,38 @@ var WebBook = function () {
 					_this.getPageStart();
 					//book total number of pages
 					_this.pages_total = _this.getBookTotalPages();
-					//array : for each section, starting page;
-					_this._sections_page_start = [];
-					for (var i = 0; i < _this._sections.length; i++) {
-						var item = {};
-						item.id = _this._sections[i].id;
-						item.page_start = _this.elementPageNumber(item.id);
-						_this._sections_page_start.push(item);
-					}
 
-					//containers data-wb-element-page-number
-					for (var _i = 0; _i < _this._elPageNumbers.length; _i++) {
-						var id = _this._elPageNumbers[_i].getAttribute('data-wb-element-page-number');
-						var pageNumber = _this.elementPageNumber(id);
-						if (pageNumber < 1) {
-							_this._elPageNumbers[_i].innerHTML = "";
-						} else if (_this._elPageNumbers[_i].innerHTML != pageNumber) {
-							_this._elPageNumbers[_i].innerHTML = pageNumber;
+					setTimeout(function () {
+						//array : for each section, starting page;
+						_this._sections_page_start = [];
+						for (var i = 0; i < _this._sections.length; i++) {
+							var item = {};
+							item.id = _this._sections[i].id;
+							item.page_start = _this.elementPageNumber(item.id);
+							_this._sections_page_start.push(item);
 						}
-					}
 
-					if (_this._bookmark) {
-						_this.goToBookmark(_this._bookmark);
-						_this._position = Math.round((0, _core2.default)(_this._text).position().left);
-					} else {
-						_this.nextSection(_this._sectionsIndex);
-					}
-					_this.refresh();
+						//containers data-wb-element-page-number
+						for (var _i = 0; _i < _this._elPageNumbers.length; _i++) {
+							var id = _this._elPageNumbers[_i].getAttribute('data-wb-element-page-number');
+							var pageNumber = _this.elementPageNumber(id);
+							if (pageNumber < 1) {
+								_this._elPageNumbers[_i].innerHTML = "";
+							} else if (_this._elPageNumbers[_i].innerHTML != pageNumber) {
+								_this._elPageNumbers[_i].innerHTML = pageNumber;
+							}
+						}
 
-					resolve('book done');
+						if (_this._bookmark) {
+							_this.goToBookmark(_this._bookmark);
+							_this._position = Math.round((0, _core2.default)(_this._text).position().left);
+						} else {
+							_this.nextSection(_this._sectionsIndex);
+						}
+						_this.refresh();
+
+						resolve('book done');
+					}, 0);
 				} else {
 
 					reject('no column');
