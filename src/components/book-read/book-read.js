@@ -474,7 +474,7 @@ const book = function(container) {
 					text.style.fontSize = size + 'px';
 					//cover.style.fontSize = '16px';
 					//book
-					book.init()
+					book.reinit()
 					.then( resolve => {
 						//end loader
 						utils.addClass('#text-loader-container','hidden');
@@ -512,7 +512,7 @@ const book = function(container) {
 					text.style.fontSize = size + 'px';
 					//cover.style.fontSize = '16px';
 					//book
-					book.init()
+					book.reinit()
 					.then( resolve => {
 						//end loader
 						utils.addClass('#text-loader-container','hidden');
@@ -548,7 +548,7 @@ const book = function(container) {
 					text.style.fontSize = size + 'px';
 					//cover.style.fontSize = '14px';
 					//book
-					book.init()
+					book.reinit()
 					.then(resolve => {
 						//end loader
 						document.body.style.overflow = 'visible'; 
@@ -578,7 +578,7 @@ const book = function(container) {
 					bookContainer.querySelector('#current-section-title').style.fontFamily = font;
 					bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
 					//book
-					book.init()
+					book.reinit()
 					.then (resolve => {
 						//end loader
 						utils.addClass('#text-loader-container','hidden');
@@ -613,7 +613,7 @@ const book = function(container) {
 					bookContainer.querySelector('#current-section-title').style.fontFamily = font;
 					bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
 					//book
-					book.init()
+					book.reinit()
 					.then( resolve => {
 						//end loader
 						utils.addClass('#text-loader-container','hidden');
@@ -646,7 +646,7 @@ const book = function(container) {
 					bookContainer.querySelector('#current-section-title').style.fontFamily = font;
 					bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
 					//book
-					book.init()
+					book.reinit()
 					.then (resolve => {
 						//end loader
 						document.body.style.overflow = 'visible'; 

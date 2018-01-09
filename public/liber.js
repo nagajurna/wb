@@ -3896,7 +3896,7 @@ var book = function book(container) {
 					text.style.fontSize = size + 'px';
 					//cover.style.fontSize = '16px';
 					//book
-					book.init().then(function (resolve) {
+					book.reinit().then(function (resolve) {
 						//end loader
 						_utils2.default.addClass('#text-loader-container', 'hidden');
 						text.style.opacity = '1';
@@ -3932,7 +3932,7 @@ var book = function book(container) {
 					text.style.fontSize = size + 'px';
 					//cover.style.fontSize = '16px';
 					//book
-					book.init().then(function (resolve) {
+					book.reinit().then(function (resolve) {
 						//end loader
 						_utils2.default.addClass('#text-loader-container', 'hidden');
 						text.style.opacity = '1';
@@ -3966,7 +3966,7 @@ var book = function book(container) {
 					text.style.fontSize = size + 'px';
 					//cover.style.fontSize = '14px';
 					//book
-					book.init().then(function (resolve) {
+					book.reinit().then(function (resolve) {
 						//end loader
 						document.body.style.overflow = 'visible';
 						_utils2.default.addClass('#text-loader-container', 'hidden');
@@ -3994,7 +3994,7 @@ var book = function book(container) {
 					bookContainer.querySelector('#current-section-title').style.fontFamily = font;
 					bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
 					//book
-					book.init().then(function (resolve) {
+					book.reinit().then(function (resolve) {
 						//end loader
 						_utils2.default.addClass('#text-loader-container', 'hidden');
 						text.style.opacity = '1';
@@ -4027,7 +4027,7 @@ var book = function book(container) {
 					bookContainer.querySelector('#current-section-title').style.fontFamily = font;
 					bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
 					//book
-					book.init().then(function (resolve) {
+					book.reinit().then(function (resolve) {
 						//end loader
 						_utils2.default.addClass('#text-loader-container', 'hidden');
 						text.style.opacity = '1';
@@ -4058,7 +4058,7 @@ var book = function book(container) {
 					bookContainer.querySelector('#current-section-title').style.fontFamily = font;
 					bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
 					//book
-					book.init().then(function (resolve) {
+					book.reinit().then(function (resolve) {
 						//end loader
 						document.body.style.overflow = 'visible';
 						_utils2.default.addClass('#text-loader-container', 'hidden');
