@@ -4374,12 +4374,12 @@ var WebBook = function () {
 
 					_this.toBook();
 
-					//pagination start
-					_this.getPageStart();
-					//book total number of pages
-					_this.pages_total = _this.getBookTotalPages();
-
 					setTimeout(function () {
+						//pagination start
+						_this.getPageStart();
+						//book total number of pages
+						_this.pages_total = _this.getBookTotalPages();
+						console.log(_this.pages_total);
 						//array : for each section, starting page;
 						_this._sections_page_start = [];
 						for (var i = 0; i < _this._sections.length; i++) {
@@ -4902,6 +4902,13 @@ var WebBook = function () {
 			}
 		}
 	}, {
+		key: 'getElementPosition',
+		value: function getElementPosition(element) {
+			var pos = Math.round((0, _core2.default)(element).position().left) - this.getMarginX();
+			pos = pos % this._containerWidth !== 0 ? pos - pos % this._containerWidth : pos; //always at a page beginning
+			return pos;
+		}
+	}, {
 		key: 'insertBookmark',
 		value: function insertBookmark() {
 			var currentSection = this._text.querySelectorAll('.wb-section')[0];
@@ -4910,8 +4917,9 @@ var WebBook = function () {
 				var position = Math.abs(this._position);
 				var elPosition = void 0;
 				for (var i = 0; i < elements.length; i++) {
-					var _elPosition = Math.round((0, _core2.default)(elements[i]).position().left) - this.getMarginX();
-					_elPosition = _elPosition % this._containerWidth !== 0 ? _elPosition - _elPosition % this._containerWidth : _elPosition; //always at a page beginning
+					var _elPosition = this.getElementPosition(elements[i]);
+					//let elPosition = Math.round($(elements[i]).position().left)-this.getMarginX();
+					//elPosition = (elPosition%this._containerWidth!==0 ? elPosition-elPosition%this._containerWidth : elPosition);//always at a page beginning
 					if (_elPosition === position) {
 						if (currentSection.id === 'wb-last') {
 							this._bookmark = { sectionId: currentSection.id, el: elements.length - 1 };
@@ -4945,8 +4953,9 @@ var WebBook = function () {
 					var elements = currentSection.querySelectorAll(':not(.wb-section)');
 					var element = elements[bookmark.el];
 					//position : offsetLeft of element relative to text
-					var position = Math.round((0, _core2.default)(element).position().left) - this.getMarginX();
-					position = position % this._containerWidth !== 0 ? position - position % this._containerWidth : position; //always at a page beginning
+					var position = this.getElementPosition(element);
+					//let position = Math.round($(element).position().left)-this.getMarginX();
+					//position = (position%this._containerWidth!==0 ? position-position%this._containerWidth : position);//always at a page beginning
 					//text position = -position
 					this._text.style.left = -position + "px";
 					this._position = Math.round((0, _core2.default)(this._text).position().left);
@@ -5013,8 +5022,7 @@ var WebBook = function () {
 				}
 				//containers wbcurrentByTotal-pages
 				for (var _i8 = 0; _i8 < this._currentTotalPages.length; _i8++) {
-					var sectionId = this.getParentSectionId();
-					var section = this._text.querySelectorAll('#' + sectionId)[0];
+					var section = this._text.querySelectorAll('.wb-section')[0];
 					var _pageNumber = this._sections_page_start[this._sectionsIndex].page_start + this.getPageNumber() - 1;
 					if (_pageNumber < 1 || section.className.match(/wb-page-no-display/)) {
 						this._currentTotalPages[_i8].innerHTML = "";
