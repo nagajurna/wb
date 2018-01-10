@@ -133,7 +133,6 @@ const book = function(container) {
 			 marginX: marginX,
 			 text: content
 		 })
-		 
 		 book.init()
 		 .then( resolve => {
 			 if(localStore.getBkmrk(bk.id)) {
@@ -144,7 +143,7 @@ const book = function(container) {
 				document.body.style.overflowY = 'visible';
 				utils.addClass('#book-loader-container', 'hidden');
 				bookContainer.className = 'show';
-			}, 400);
+			}, 100);
 		 })
 		 .catch(error => {
 			 console.log(error);
