@@ -4382,7 +4382,7 @@ var WebBook = function () {
 
 					_this.toBook();
 
-					setTimeout(function () {
+					var fctInit = function fctInit() {
 						//pagination start
 						_this.getPageStart();
 						//book total number of pages
@@ -4416,7 +4416,9 @@ var WebBook = function () {
 						_this.refresh();
 
 						resolve('book done');
-					}, 50);
+					};
+
+					_this.toBook(fctInit);
 				} else {
 
 					reject('no column');
@@ -4481,7 +4483,7 @@ var WebBook = function () {
 		}
 	}, {
 		key: 'toBook',
-		value: function toBook() {
+		value: function toBook(cb) {
 
 			var cs = this._textContainer.style;
 			var ts = this._text.style;
@@ -4526,6 +4528,10 @@ var WebBook = function () {
 			ts.mozColumnGap = marginX * 2 + "px";
 			ts.webkitColumnGap = marginX * 2 + "px";
 			ts.columnGap = marginX * 2 + "px";
+
+			if (cb) {
+				setTimeout(cb, 50);
+			}
 		}
 	}, {
 		key: 'toScroll',
