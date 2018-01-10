@@ -31,20 +31,13 @@ app.use(session({
 }));
 //express.static
 let halfDay = 43200000;
-app.use(function(req, res, next) {
-	if(req.path.match(/\.html\.gz/)) {
-		console.log('gzip');
-		res.set('content-Encoding', 'gzip');
-	}
-	next();
-});
-app.use(express.static('public', { maxAge: 0 }));
+app.use(express.static('public', { maxAge: halfDay }));
 //body-parser
 app.use(bodyParser.json());
 //serve-favicon
 app.use(favicon(__dirname + '/public/favicon.ico'));
 //routes
-app.use('/',index);
+//app.use('/',index);
 app.use('/users', users);
 app.use('/books', books);
 app.use('/authors', authors);

@@ -3427,8 +3427,6 @@ var _hammerjs2 = _interopRequireDefault(_hammerjs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//import decompressResponse from 'decompress-response';
-
 var bookReadTemplate = __webpack_require__(68);
 //book.js
 var book = function book(container) {
@@ -4113,14 +4111,9 @@ var book = function book(container) {
 			head.appendChild(style);
 		}
 		_dataStore2.default.setData('book', bk.id);
-		options = { method: 'GET', url: bk.path + '.html.gz' };
+		options = { method: 'GET', url: bk.path + '.html' };
 		return _utils2.default.ajax(options);
 	}).then(function (content) {
-		//let div = document.createElement('div');
-		//div.innerHTML = content;
-		//text.appendChild(div);
-		//console.log(content);
-		//content = decompressResponse(content);
 		init(content);
 	}).catch(function (error) {
 		console.log(error);

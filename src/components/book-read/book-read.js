@@ -4,7 +4,6 @@ import localStore from '../../services/localStore';
 import WebBook from '../../../lib/wb/WebBook';
 import css from './book-read.css';
 import Hammer from 'hammerjs';
-//import decompressResponse from 'decompress-response';
 
 let bookReadTemplate = require('./book-read.ejs');
 //book.js
@@ -704,15 +703,10 @@ const book = function(container) {
 			head.appendChild(style);
 		}
 		dataStore.setData('book',bk.id);
-		options = { method: 'GET', url: bk.path + '.html.gz' };
+		options = { method: 'GET', url: bk.path + '.html' };
 		return utils.ajax(options);
 	})
 	.then( content => {
-		//let div = document.createElement('div');
-		//div.innerHTML = content;
-		//text.appendChild(div);
-		//console.log(content);
-		//content = decompressResponse(content);
 		init(content);
 	})
 	.catch( error => {
