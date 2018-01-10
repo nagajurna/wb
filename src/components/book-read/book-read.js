@@ -4,7 +4,7 @@ import localStore from '../../services/localStore';
 import WebBook from '../../../lib/wb/WebBook';
 import css from './book-read.css';
 import Hammer from 'hammerjs';
-import decompressResponse from 'decompress-response';
+//import decompressResponse from 'decompress-response';
 
 let bookReadTemplate = require('./book-read.ejs');
 //book.js
@@ -711,7 +711,7 @@ const book = function(container) {
 		//let div = document.createElement('div');
 		//div.innerHTML = content;
 		//text.appendChild(div);
-		console.log(bk.path);
+		//console.log(content);
 		//content = decompressResponse(content);
 		init(content);
 	})

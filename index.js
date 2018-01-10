@@ -34,11 +34,11 @@ let halfDay = 43200000;
 app.use(function(req, res, next) {
 	if(req.path.match(/\.html\.gz/)) {
 		console.log('gzip');
-		res.set('Content-Encoding', 'gzip');
+		res.set('content-Encoding', 'gzip');
 	}
 	next();
 });
-app.use(express.static('public', { maxAge: halfDay }));
+app.use(express.static('public', { maxAge: 0 }));
 //body-parser
 app.use(bodyParser.json());
 //serve-favicon
