@@ -27,12 +27,12 @@ module.exports = {
 		  }
 		}
 	  ]
-  }
-  //plugins: [
-	  //new UglifyJSPlugin({
-		  //sourceMap: true
-	  //})
-  //]
+  },
+  plugins: [
+	  new UglifyJSPlugin({
+		  sourceMap: true
+	  })
+  ]
 
 };
 
