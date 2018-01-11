@@ -3472,7 +3472,7 @@ var book = function book(container) {
 
 		//width (responsive)
 		if (window.innerWidth >= 768) {
-			_utils2.default.addClass('[data-wb-text-container]', 'w3-card-4');
+			_utils2.default.addClass('[data-wb-text-container]', 'card-4');
 			//max-height: 720
 			if (window.innerHeight > 832) {
 				//748 + navBarBottom height (1*44) + textContainer minimum top * 2 (2*20)
@@ -3553,6 +3553,504 @@ var book = function book(container) {
 			marginX = 25;
 		}
 
+		var settings = function settings() {
+
+			if (window.innerWidth >= 1366) {
+				//Toc-large height
+				bookContainer.querySelector("#toc-large-device div").style.maxHeight = h + "px";
+			}
+
+			//on resize
+			window.addEventListener('resize', function (event) {
+				document.body.style.height = '100%';
+				if (window.innerWidth >= 768) {
+					_utils2.default.addClass('[data-wb-text-container]', 'card-4');
+					//max-height: 720
+					if (window.innerHeight >= 832) {
+						//748 + navBarBottom height (1*44) + textContainer minimum top * 2 (2*20)
+						h = 748;
+						top = (window.innerHeight - 748 - 44) / 2;
+						textContainer.style.top = top - 15 + 'px';
+						tocLarge.style.marginTop = top - 15 + 'px';
+						tabOptions.style.marginTop = top + 33 + 'px';
+						tabInfos.style.marginTop = top + 80 + 'px';
+						bookCommands.style.top = top - 16 + 'px';
+						bookNavBarBottom.style.marginTop = top - 15 + 'px';
+					} else {
+						h = window.innerHeight - 44 - 40; //navBars height *2 (2*44) + textContainer top * 2 (2*20)
+						textContainer.style.top = '15px';
+						tocLarge.style.marginTop = '15px';
+						tabInfos.style.marginTop = '63px';
+						tabInfos.style.marginTop = '111px';
+						bookCommands.style.top = '15px';
+						bookNavBarBottom.style.marginTop = '15px';
+					}
+					w = 550;
+					fontSize = _localStore2.default.getFontSize('large') ? _localStore2.default.getFontSize('large') : 16;
+					text.style.fontSize = fontSize + 'px';
+					//cover.style.fontSize = '16px';
+					if (window.innerWidth < 1366) {
+						for (var _i6 = 0; _i6 < fontSizesMedium.length; _i6++) {
+							if (fontSizesMedium[_i6].value == fontSize) {
+								fontSizesMedium[_i6].checked = true;
+							}
+						}
+					} else {
+						for (var _i7 = 0; _i7 < fontSizesLarge.length; _i7++) {
+							if (fontSizesLarge[_i7].value == fontSize) {
+								fontSizesLarge[_i7].checked = true;
+							}
+						}
+					}
+				} else {
+					_utils2.default.removeClass('[data-wb-text-container]', 'card-4');
+					h = window.innerHeight - 30; //30px = nav-bar-bottom-small height
+					w = window.innerWidth;
+					bookNavBarBottomSmall.style.width = w + 'px';
+					fontSize = _localStore2.default.getFontSize('small') ? _localStore2.default.getFontSize('small') : 14;
+					text.style.fontSize = fontSize + 'px';
+					//cover.style.fontSize = '14px';
+					for (var _i8 = 0; _i8 < fontSizes.length; _i8++) {
+						if (fontSizes[_i8].value == fontSize) {
+							fontSizes[_i8].checked = true;
+						}
+					}
+					textContainer.style.top = '0px';
+				}
+
+				if (window.innerWidth >= 1366) {
+					//Toc-large height
+					bookContainer.querySelector("#toc-large-device div").style.maxHeight = h + "px";
+				}
+
+				//marginY is relative to line-height
+				lineHeight = fontSize * 1.5;
+				marginY = h % lineHeight !== 0 ? lineHeight * 2 + h % lineHeight / 2 : lineHeight * 2;
+
+				//marginX : smaller for very small devices
+				if (window.innerWidth > 420) {
+					marginX = 50;
+				} else {
+					marginX = 25;
+				}
+
+				//set new dimensions
+				book.setHeight(h);
+				book.setMaxWidth(w);
+				book.setMarginY(marginY);
+				book.setMarginX(marginX);
+
+				if (book.col === true) {
+					book.reinit();
+				}
+			}, false);
+
+			//SWIPE - forward, backward on swipe left and right (hammer.js)
+			// all sizes
+			var swipeContainer = new _hammerjs2.default(bookContainer.querySelector('[data-wb-text-container]'));
+			swipeContainer.on("swiperight swipeleft", function (event) {
+				if (event.type === "swipeleft") {
+					book.forward();
+				} else if (event.type === "swiperight") {
+					book.backward();
+				}
+			});
+
+			//TOUCHES, forward, backward (medium and large sizes)
+			document.addEventListener('keydown', function (event) {
+				if (event.which === 39) {
+					book.forward();
+				} else if (event.which === 37) {
+					book.backward();
+				} else if (event.which === 36) {
+					book.toFirstPage();
+				} else if (event.which === 35) {
+					book.toLastPage();
+				}
+			}, false);
+
+			//BUTTONS FORWARD/BACKWARD
+			//large
+			var forwardLarge = bookContainer.querySelector('#forward-large');
+			var backwardLarge = bookContainer.querySelector('#backward-large');
+
+			forwardLarge.addEventListener('click', function (event) {
+				book.forward();
+			}, false);
+
+			backwardLarge.addEventListener('click', function (event) {
+				book.backward();
+			}, false);
+
+			//TOC		
+			var toc = bookContainer.querySelector('#toc');
+			var openTocs = bookContainer.querySelectorAll('.open-toc');
+
+			for (var _i9 = 0; _i9 < openTocs.length; _i9++) {
+				openTocs[_i9].addEventListener('click', function (event) {
+					toc.className = toc.className === 'open' ? '' : 'open';
+				}, false);
+			}
+
+			toc.querySelector("#close-toc").addEventListener('click', function () {
+				toc.className = '';
+			}, false);
+
+			//Close toc on click
+			var tocLinks = toc.querySelectorAll('a');
+			for (var _i10 = 0; _i10 < tocLinks.length; _i10++) {
+				tocLinks[_i10].addEventListener('click', function () {
+					toc.className = '';
+				}, false);
+			}
+
+			//OPTIONS
+			//small
+			var optionsOpen = bookContainer.querySelector('#open-options');
+			optionsOpen.addEventListener('click', function () {
+				options.className = options.className === 'open' ? '' : 'open';
+			});
+			var optionsClose = bookContainer.querySelector('#close-options');
+			optionsClose.addEventListener('click', function () {
+				options.className = '';
+			});
+			//medium
+			var optionsMediumOpen = bookContainer.querySelector('#open-options-medium');
+			optionsMediumOpen.addEventListener('click', function () {
+				optionsMedium.className = optionsMedium.className === 'open' ? '' : 'open';
+			});
+			var optionsCloseMedium = bookContainer.querySelector('#close-options-medium');
+			optionsCloseMedium.addEventListener('click', function () {
+				optionsMedium.className = '';
+			});
+
+			//TAB-CONTAINER
+			var swingContainer = bookContainer.querySelector('#swing-container');
+			var swingBar = bookContainer.querySelector('#swing-bar');
+			var tabHome = bookContainer.querySelector('#tab-home-link');
+
+			var toggleTocLarge = bookContainer.querySelector('#toggle-toc-large-device');
+			var toggleTabOptions = bookContainer.querySelector('#toggle-tab-options');
+			var toggleTabInfos = bookContainer.querySelector('#toggle-tab-infos');
+			var closeTocLarge = bookContainer.querySelector('#close-toc-large-device');
+			var closeTabOptions = bookContainer.querySelector('#close-tab-options');
+			var closeTabInfos = bookContainer.querySelector('#close-tab-infos');
+
+			//TOGGLE TOC-LARGE-DEVICE
+			toggleTocLarge.addEventListener('click', function (event) {
+				if (!tocLarge.className.match(/open/)) {
+					if (tabInfos.className.match(/open/)) {
+						tabInfos.style.zIndex = '0';
+						tocLarge.style.zIndex = '1000';
+						_utils2.default.removeClass('#tab-infos', 'open');
+					} else if (tabOptions.className.match(/open/)) {
+						tabOptions.style.zIndex = '0';
+						tocLarge.style.zIndex = '1000';
+						_utils2.default.removeClass('#tab-options', 'open');
+					}
+					_utils2.default.addClass('#toc-large-device', 'open');
+					_utils2.default.addClass('#swing-container', 'left');
+					_utils2.default.addClass('#swing-bar', 'left');
+				} else {
+					tocLarge.style.zIndex = '0';
+					_utils2.default.removeClass('#toc-large-device', 'open');
+					_utils2.default.removeClass('#swing-container', 'left');
+					_utils2.default.removeClass('#swing-bar', 'left');
+				}
+			}, false);
+
+			//CLOSE TOC-LARGE-DEVICE
+			closeTocLarge.addEventListener('click', function (event) {
+				_utils2.default.removeClass('#toc-large-device', 'open');
+				_utils2.default.removeClass('#swing-container', 'left');
+				_utils2.default.removeClass('#swing-bar', 'left');
+				tocLarge.style.zIndex = '0';
+			}, false);
+
+			//TOGGLE TAB-OPTIONS
+			toggleTabOptions.addEventListener('click', function (event) {
+				if (!tabOptions.className.match(/open/)) {
+					if (tocLarge.className.match(/open/)) {
+						tocLarge.style.zIndex = '0';
+						tabOptions.style.zIndex = '1000';
+						_utils2.default.removeClass('#toc-large-device', 'open');
+					} else if (tabInfos.className.match(/open/)) {
+						tabInfos.style.zIndex = '0';
+						tabOptions.style.zIndex = '1000';
+						_utils2.default.removeClass('#tab-infos', 'open');
+					}
+					_utils2.default.addClass('#tab-options', 'open');
+					_utils2.default.addClass('#swing-container', 'left');
+					_utils2.default.addClass('#swing-bar', 'left');
+				} else {
+					tabOptions.style.zIndex = '0';
+					_utils2.default.removeClass('#tab-options', 'open');
+					_utils2.default.removeClass('#swing-container', 'left');
+					_utils2.default.removeClass('#swing-bar', 'left');
+				}
+			}, false);
+
+			//CLOSE TAB-OPTIONS
+			closeTabOptions.addEventListener('click', function (event) {
+				_utils2.default.removeClass('#tab-options', 'open');
+				_utils2.default.removeClass('#swing-container', 'left');
+				_utils2.default.removeClass('#swing-bar', 'left');
+				tabOptions.style.zIndex = '0';
+			}, false);
+
+			//TOGGLE TAB-INFOS
+			toggleTabInfos.addEventListener('click', function (event) {
+				if (!tabInfos.className.match(/open/)) {
+					if (tocLarge.className.match(/open/)) {
+						tocLarge.style.zIndex = '0';
+						tabInfos.style.zIndex = '1000';
+						_utils2.default.removeClass('#toc-large-device', 'open');
+					} else if (tabOptions.className.match(/open/)) {
+						tabOptions.style.zIndex = '0';
+						tabInfos.style.zIndex = '1000';
+						_utils2.default.removeClass('#tab-options', 'open');
+					}
+					_utils2.default.addClass('#tab-infos', 'open');
+					_utils2.default.addClass('#swing-container', 'left');
+					_utils2.default.addClass('#swing-bar', 'left');
+				} else {
+					tabInfos.style.zIndex = '0';
+					_utils2.default.removeClass('#tab-infos', 'open');
+					_utils2.default.removeClass('#swing-container', 'left');
+					_utils2.default.removeClass('#swing-bar', 'left');
+				}
+			}, false);
+
+			//CLOSE TAB-INFOS
+			closeTabInfos.addEventListener('click', function (event) {
+				_utils2.default.removeClass('#tab-infos', 'open');
+				_utils2.default.removeClass('#swing-container', 'left');
+				_utils2.default.removeClass('#swing-bar', 'left');
+				tabInfos.style.zIndex = '0';
+			}, false);
+
+			//HOME (all sizes)
+			var homeLinks = bookContainer.querySelectorAll('.home');
+			for (var _i11 = 0; _i11 < homeLinks.length; _i11++) {
+				homeLinks[_i11].addEventListener('click', function (event) {
+					event.preventDefault();
+					var prevLocation = _dataStore2.default.getData('location').prevLocation;
+					location.hash = prevLocation ? prevLocation : '#/';
+				}, false);
+			}
+
+			//BOOKMARK (all sizes)
+			var addBookmarks = bookContainer.querySelectorAll('.add-bookmark');
+			for (var _i12 = 0; _i12 < addBookmarks.length; _i12++) {
+				addBookmarks[_i12].addEventListener('click', function (event) {
+					//if(book.checkFirstPage()) { 
+					//localStore.removeBkmrk(bk.id);
+					//return;
+					//}
+					var newBmrk = book.getBookmark();
+					var bookmark = document.querySelector('#bookmark');
+					_localStore2.default.setBkmrk(bk.id, newBmrk);
+					bookmark.className = 'show';
+					setTimeout(function () {
+						bookmark.className = bookmark.className.replace("show", "");
+					}, 2500);
+				}, false);
+			}
+
+			//FONT-SIZE
+			//large
+			for (var _i13 = 0; _i13 < fontSizesLarge.length; _i13++) {
+				fontSizesLarge[_i13].addEventListener('click', function (event) {
+					var size = event.target.value;
+					_localStore2.default.setFontSize('large', size);
+					text.style.opacity = '0';
+					bookContainer.querySelector('#current-section-title').style.opacity = '0';
+					bookContainer.querySelector('#currentByTotal').style.opacity = '0';
+					_utils2.default.removeClass('#text-loader-container', 'hidden');
+					setTimeout(function () {
+						//marginY is relative to line-height (line-height : 1.5em)
+						var lineHeight = size * 1.5;
+						var marginY = h % lineHeight !== 0 ? lineHeight * 2 + h % lineHeight / 2 : lineHeight * 2;
+						book.setMarginY(marginY);
+						//text size
+						text.style.fontSize = size + 'px';
+						//cover.style.fontSize = '16px';
+						//book
+						book.reinit().then(function (resolve) {
+							//end loader
+							_utils2.default.addClass('#text-loader-container', 'hidden');
+							text.style.opacity = '1';
+							bookContainer.querySelector('#current-section-title').style.opacity = '1';
+							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+						}).catch(function (error) {
+							_utils2.default.addClass('#text-loader-container', 'hidden');
+							text.style.opacity = '1';
+							bookContainer.querySelector('#current-section-title').style.opacity = '1';
+							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+						});
+					}, 100);
+				}, false);
+			}
+
+			//medium
+			for (var _i14 = 0; _i14 < fontSizesMedium.length; _i14++) {
+				fontSizesMedium[_i14].addEventListener('click', function (event) {
+					var size = event.target.value;
+					_localStore2.default.setFontSize('large', size);
+					//close modal && text opacity = 0
+					optionsMedium.className = '';
+					text.style.opacity = '0';
+					bookContainer.querySelector('#current-section-title').style.opacity = '0';
+					bookContainer.querySelector('#currentByTotal').style.opacity = '0';
+					_utils2.default.removeClass('#text-loader-container', 'hidden');
+					setTimeout(function () {
+						//marginY is relative to line-height (line-height : 1.5em)
+						var lineHeight = size * 1.5;
+						var marginY = h % lineHeight !== 0 ? lineHeight * 2 + h % lineHeight / 2 : lineHeight * 2;
+						book.setMarginY(marginY);
+						//text size
+						text.style.fontSize = size + 'px';
+						//cover.style.fontSize = '16px';
+						//book
+						book.reinit().then(function (resolve) {
+							//end loader
+							_utils2.default.addClass('#text-loader-container', 'hidden');
+							text.style.opacity = '1';
+							bookContainer.querySelector('#current-section-title').style.opacity = '1';
+							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+						}).catch(function (error) {
+							_utils2.default.addClass('#text-loader-container', 'hidden');
+							text.style.opacity = '1';
+							bookContainer.querySelector('#current-section-title').style.opacity = '1';
+							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+						});
+					}, 100);
+				}, false);
+			}
+
+			//small
+			for (var _i15 = 0; _i15 < fontSizes.length; _i15++) {
+				fontSizes[_i15].addEventListener('click', function (event) {
+					var size = event.target.value;
+					_localStore2.default.setFontSize('small', size);
+					//start loader and close modal
+					_utils2.default.removeClass('#text-loader-container', 'hidden');
+					_utils2.default.removeClass('#options', 'open');
+					document.body.style.overflow = 'hidden';
+					setTimeout(function () {
+						//marginY is relative to line-height (line-height : 1.5em)
+						var lineHeight = size * 1.5;
+						var marginY = h % lineHeight !== 0 ? lineHeight * 2 + h % lineHeight / 2 : lineHeight * 2;
+						book.setMarginY(marginY);
+						//text size
+						text.style.fontSize = size + 'px';
+						//cover.style.fontSize = '14px';
+						//book
+						book.reinit().then(function (resolve) {
+							//end loader
+							document.body.style.overflow = 'visible';
+							_utils2.default.addClass('#text-loader-container', 'hidden');
+						}).catch(function (error) {
+							document.body.style.overflow = 'visible';
+							_utils2.default.addClass('#text-loader-container', 'hidden');
+						});
+					}, 100);
+				}, false);
+			}
+
+			//FONT-FAMILY
+			//large
+			for (var _i16 = 0; _i16 < fontsLarge.length; _i16++) {
+				fontsLarge[_i16].addEventListener('click', function (event) {
+					var font = event.target.value;
+					_localStore2.default.setFont(font);
+					text.style.opacity = '0';
+					bookContainer.querySelector('#current-section-title').style.opacity = '0';
+					bookContainer.querySelector('#currentByTotal').style.opacity = '0';
+					_utils2.default.removeClass('#text-loader-container', 'hidden');
+					setTimeout(function () {
+						//text font
+						text.style.fontFamily = font;
+						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
+						bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
+						//book
+						book.reinit().then(function (resolve) {
+							//end loader
+							_utils2.default.addClass('#text-loader-container', 'hidden');
+							text.style.opacity = '1';
+							bookContainer.querySelector('#current-section-title').style.opacity = '1';
+							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+						}).catch(function (error) {
+							_utils2.default.addClass('#text-loader-container', 'hidden');
+							text.style.opacity = '1';
+							bookContainer.querySelector('#current-section-title').style.opacity = '1';
+							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+						});
+					}, 100);
+				}, false);
+			}
+
+			//medium
+			for (var _i17 = 0; _i17 < fontsMedium.length; _i17++) {
+				fontsMedium[_i17].addEventListener('click', function (event) {
+					var font = event.target.value;
+					_localStore2.default.setFont(font);
+					//close modal && text opacity = 0
+					optionsMedium.className = '';
+					text.style.opacity = '0';
+					bookContainer.querySelector('#current-section-title').style.opacity = '0';
+					bookContainer.querySelector('#currentByTotal').style.opacity = '0';
+					_utils2.default.removeClass('#text-loader-container', 'hidden');
+					setTimeout(function () {
+						//text font
+						text.style.fontFamily = font;
+						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
+						bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
+						//book
+						book.reinit().then(function (resolve) {
+							//end loader
+							_utils2.default.addClass('#text-loader-container', 'hidden');
+							text.style.opacity = '1';
+							bookContainer.querySelector('#current-section-title').style.opacity = '1';
+							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+						}).catch(function (error) {
+							_utils2.default.addClass('#text-loader-container', 'hidden');
+							text.style.opacity = '1';
+							bookContainer.querySelector('#current-section-title').style.opacity = '1';
+							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+						});
+					}, 100);
+				}, false);
+			}
+
+			//small
+			for (var _i18 = 0; _i18 < fonts.length; _i18++) {
+				fonts[_i18].addEventListener('click', function (event) {
+					var font = event.target.value;
+					_localStore2.default.setFont(font);
+					//start loader and close modal
+					_utils2.default.removeClass('#text-loader-container', 'hidden');
+					_utils2.default.removeClass('#options', 'open');
+					document.body.style.overflow = 'hidden';
+					setTimeout(function () {
+						//text font
+						text.style.fontFamily = font;
+						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
+						bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
+						//book
+						book.reinit().then(function (resolve) {
+							//end loader
+							document.body.style.overflow = 'visible';
+							_utils2.default.addClass('#text-loader-container', 'hidden');
+						}).catch(function (error) {
+							document.body.style.overflow = 'visible';
+							_utils2.default.addClass('#text-loader-container', 'hidden');
+						});
+					}, 100);
+				}, false);
+			}
+		};
+
 		//new Book
 		var book = new _WebBook2.default(bookContainer, {
 			height: h,
@@ -3561,513 +4059,26 @@ var book = function book(container) {
 			marginX: marginX,
 			text: content
 		});
+
 		book.init().then(function (resolve) {
 			if (_localStore2.default.getBkmrk(bk.id)) {
 				var bkmrk = _localStore2.default.getBkmrk(bk.id);
 				book.goToBookmark(bkmrk);
 			}
-			setTimeout(function () {
-				document.body.style.overflowY = 'visible';
-				_utils2.default.addClass('#book-loader-container', 'hidden');
-				bookContainer.className = 'show';
-			}, 100);
+
+			return 'done';
+		}).then(function (resolve) {
+			settings();
+			return 'done';
+		}).then(function (resolve) {
+			//setTimeout( function() {
+			document.body.style.overflowY = 'visible';
+			_utils2.default.addClass('#book-loader-container', 'hidden');
+			bookContainer.className = 'show';
+			//}, 100);
 		}).catch(function (error) {
 			console.log(error);
 		});
-
-		if (window.innerWidth >= 1366) {
-			//Toc-large height
-			bookContainer.querySelector("#toc-large-device div").style.maxHeight = h + "px";
-		}
-
-		//on resize
-		window.addEventListener('resize', function (event) {
-			document.body.style.height = '100%';
-			if (window.innerWidth >= 768) {
-				_utils2.default.addClass('[data-wb-text-container]', 'w3-card-4');
-				//max-height: 720
-				if (window.innerHeight >= 832) {
-					//748 + navBarBottom height (1*44) + textContainer minimum top * 2 (2*20)
-					h = 748;
-					top = (window.innerHeight - 748 - 44) / 2;
-					textContainer.style.top = top - 15 + 'px';
-					tocLarge.style.marginTop = top - 15 + 'px';
-					tabOptions.style.marginTop = top + 33 + 'px';
-					tabInfos.style.marginTop = top + 80 + 'px';
-					bookCommands.style.top = top - 16 + 'px';
-					bookNavBarBottom.style.marginTop = top - 15 + 'px';
-				} else {
-					h = window.innerHeight - 44 - 40; //navBars height *2 (2*44) + textContainer top * 2 (2*20)
-					textContainer.style.top = '15px';
-					tocLarge.style.marginTop = '15px';
-					tabInfos.style.marginTop = '63px';
-					tabInfos.style.marginTop = '111px';
-					bookCommands.style.top = '15px';
-					bookNavBarBottom.style.marginTop = '15px';
-				}
-				w = 550;
-				fontSize = _localStore2.default.getFontSize('large') ? _localStore2.default.getFontSize('large') : 16;
-				text.style.fontSize = fontSize + 'px';
-				//cover.style.fontSize = '16px';
-				if (window.innerWidth < 1366) {
-					for (var _i6 = 0; _i6 < fontSizesMedium.length; _i6++) {
-						if (fontSizesMedium[_i6].value == fontSize) {
-							fontSizesMedium[_i6].checked = true;
-						}
-					}
-				} else {
-					for (var _i7 = 0; _i7 < fontSizesLarge.length; _i7++) {
-						if (fontSizesLarge[_i7].value == fontSize) {
-							fontSizesLarge[_i7].checked = true;
-						}
-					}
-				}
-			} else {
-				_utils2.default.removeClass('[data-wb-text-container]', 'w3-card-4');
-				h = window.innerHeight - 30; //30px = nav-bar-bottom-small height
-				w = window.innerWidth;
-				bookNavBarBottomSmall.style.width = w + 'px';
-				fontSize = _localStore2.default.getFontSize('small') ? _localStore2.default.getFontSize('small') : 14;
-				text.style.fontSize = fontSize + 'px';
-				//cover.style.fontSize = '14px';
-				for (var _i8 = 0; _i8 < fontSizes.length; _i8++) {
-					if (fontSizes[_i8].value == fontSize) {
-						fontSizes[_i8].checked = true;
-					}
-				}
-				textContainer.style.top = '0px';
-			}
-
-			if (window.innerWidth >= 1366) {
-				//Toc-large height
-				bookContainer.querySelector("#toc-large-device div").style.maxHeight = h + "px";
-			}
-
-			//marginY is relative to line-height
-			lineHeight = fontSize * 1.5;
-			marginY = h % lineHeight !== 0 ? lineHeight * 2 + h % lineHeight / 2 : lineHeight * 2;
-
-			//marginX : smaller for very small devices
-			if (window.innerWidth > 420) {
-				marginX = 50;
-			} else {
-				marginX = 25;
-			}
-
-			//set new dimensions
-			book.setHeight(h);
-			book.setMaxWidth(w);
-			book.setMarginY(marginY);
-			book.setMarginX(marginX);
-
-			if (book.col === true) {
-				book.reinit();
-			}
-		}, false);
-
-		//SWIPE - forward, backward on swipe left and right (hammer.js)
-		// small devices
-		var swipeContainer = new _hammerjs2.default(bookContainer.querySelector('[data-wb-text-container]'));
-		swipeContainer.on("swiperight swipeleft", function (event) {
-			if (event.type === "swipeleft") {
-				book.forward();
-			} else if (event.type === "swiperight") {
-				book.backward();
-			}
-		});
-
-		//TOUCHES, forward, backward
-		document.addEventListener('keydown', function (event) {
-			if (event.which === 39) {
-				book.forward();
-			} else if (event.which === 37) {
-				book.backward();
-			} else if (event.which === 36) {
-				book.toFirstPage();
-			} else if (event.which === 35) {
-				book.toLastPage();
-			}
-		}, false);
-
-		//BUTTONS FORWARD/BACKWARD
-		//large
-		var forwardLarge = bookContainer.querySelector('#forward-large');
-		var backwardLarge = bookContainer.querySelector('#backward-large');
-
-		forwardLarge.addEventListener('click', function (event) {
-			book.forward();
-		}, false);
-
-		backwardLarge.addEventListener('click', function (event) {
-			book.backward();
-		}, false);
-
-		//TOC		
-		var toc = bookContainer.querySelector('#toc');
-		var openTocs = bookContainer.querySelectorAll('.open-toc');
-
-		for (var _i9 = 0; _i9 < openTocs.length; _i9++) {
-			openTocs[_i9].addEventListener('click', function (event) {
-				toc.className = toc.className === 'open' ? '' : 'open';
-			}, false);
-		}
-
-		toc.querySelector("#close-toc").addEventListener('click', function () {
-			toc.className = '';
-		}, false);
-
-		//Close toc on click
-		var tocLinks = toc.querySelectorAll('a');
-		for (var _i10 = 0; _i10 < tocLinks.length; _i10++) {
-			tocLinks[_i10].addEventListener('click', function () {
-				toc.className = '';
-			}, false);
-		}
-
-		//OPTIONS
-		//small
-		var optionsOpen = bookContainer.querySelector('#open-options');
-		optionsOpen.addEventListener('click', function () {
-			options.className = options.className === 'open' ? '' : 'open';
-		});
-		var optionsClose = bookContainer.querySelector('#close-options');
-		optionsClose.addEventListener('click', function () {
-			options.className = '';
-		});
-		//medium
-		var optionsMediumOpen = bookContainer.querySelector('#open-options-medium');
-		optionsMediumOpen.addEventListener('click', function () {
-			optionsMedium.className = optionsMedium.className === 'open' ? '' : 'open';
-		});
-		var optionsCloseMedium = bookContainer.querySelector('#close-options-medium');
-		optionsCloseMedium.addEventListener('click', function () {
-			optionsMedium.className = '';
-		});
-
-		//TAB-CONTAINER
-		var swingContainer = bookContainer.querySelector('#swing-container');
-		var swingBar = bookContainer.querySelector('#swing-bar');
-		var tabHome = bookContainer.querySelector('#tab-home-link');
-
-		var toggleTocLarge = bookContainer.querySelector('#toggle-toc-large-device');
-		var toggleTabOptions = bookContainer.querySelector('#toggle-tab-options');
-		var toggleTabInfos = bookContainer.querySelector('#toggle-tab-infos');
-		var closeTocLarge = bookContainer.querySelector('#close-toc-large-device');
-		var closeTabOptions = bookContainer.querySelector('#close-tab-options');
-		var closeTabInfos = bookContainer.querySelector('#close-tab-infos');
-		//TOGGLE TOC-LARGE-DEVICE
-		toggleTocLarge.addEventListener('click', function (event) {
-			if (!tocLarge.className.match(/open/)) {
-				if (tabInfos.className.match(/open/)) {
-					tabInfos.style.zIndex = '0';
-					tocLarge.style.zIndex = '1000';
-					_utils2.default.removeClass('#tab-infos', 'open');
-				} else if (tabOptions.className.match(/open/)) {
-					tabOptions.style.zIndex = '0';
-					tocLarge.style.zIndex = '1000';
-					_utils2.default.removeClass('#tab-options', 'open');
-				}
-				_utils2.default.addClass('#toc-large-device', 'open');
-				_utils2.default.addClass('#swing-container', 'left');
-				_utils2.default.addClass('#swing-bar', 'left');
-			} else {
-				tocLarge.style.zIndex = '0';
-				_utils2.default.removeClass('#toc-large-device', 'open');
-				_utils2.default.removeClass('#swing-container', 'left');
-				_utils2.default.removeClass('#swing-bar', 'left');
-			}
-		}, false);
-
-		//CLOSE TOC-LARGE-DEVICE
-		closeTocLarge.addEventListener('click', function (event) {
-			_utils2.default.removeClass('#toc-large-device', 'open');
-			_utils2.default.removeClass('#swing-container', 'left');
-			_utils2.default.removeClass('#swing-bar', 'left');
-			tocLarge.style.zIndex = '0';
-		}, false);
-
-		//TOGGLE TAB-OPTIONS
-		toggleTabOptions.addEventListener('click', function (event) {
-			if (!tabOptions.className.match(/open/)) {
-				if (tocLarge.className.match(/open/)) {
-					tocLarge.style.zIndex = '0';
-					tabOptions.style.zIndex = '1000';
-					_utils2.default.removeClass('#toc-large-device', 'open');
-				} else if (tabInfos.className.match(/open/)) {
-					tabInfos.style.zIndex = '0';
-					tabOptions.style.zIndex = '1000';
-					_utils2.default.removeClass('#tab-infos', 'open');
-				}
-				_utils2.default.addClass('#tab-options', 'open');
-				_utils2.default.addClass('#swing-container', 'left');
-				_utils2.default.addClass('#swing-bar', 'left');
-			} else {
-				tabOptions.style.zIndex = '0';
-				_utils2.default.removeClass('#tab-options', 'open');
-				_utils2.default.removeClass('#swing-container', 'left');
-				_utils2.default.removeClass('#swing-bar', 'left');
-			}
-		}, false);
-
-		//CLOSE TAB-INFOS
-		closeTabOptions.addEventListener('click', function (event) {
-			_utils2.default.removeClass('#tab-options', 'open');
-			_utils2.default.removeClass('#swing-container', 'left');
-			_utils2.default.removeClass('#swing-bar', 'left');
-			tabOptions.style.zIndex = '0';
-		}, false);
-
-		//TOGGLE TAB-INFOS
-		toggleTabInfos.addEventListener('click', function (event) {
-			if (!tabInfos.className.match(/open/)) {
-				if (tocLarge.className.match(/open/)) {
-					tocLarge.style.zIndex = '0';
-					tabInfos.style.zIndex = '1000';
-					_utils2.default.removeClass('#toc-large-device', 'open');
-				} else if (tabOptions.className.match(/open/)) {
-					tabOptions.style.zIndex = '0';
-					tabInfos.style.zIndex = '1000';
-					_utils2.default.removeClass('#tab-options', 'open');
-				}
-				_utils2.default.addClass('#tab-infos', 'open');
-				_utils2.default.addClass('#swing-container', 'left');
-				_utils2.default.addClass('#swing-bar', 'left');
-			} else {
-				tabInfos.style.zIndex = '0';
-				_utils2.default.removeClass('#tab-infos', 'open');
-				_utils2.default.removeClass('#swing-container', 'left');
-				_utils2.default.removeClass('#swing-bar', 'left');
-			}
-		}, false);
-
-		//CLOSE TAB-INFOS
-		closeTabInfos.addEventListener('click', function (event) {
-			_utils2.default.removeClass('#tab-infos', 'open');
-			_utils2.default.removeClass('#swing-container', 'left');
-			_utils2.default.removeClass('#swing-bar', 'left');
-			tabInfos.style.zIndex = '0';
-		}, false);
-
-		//HOME
-		var homeLinks = bookContainer.querySelectorAll('.home');
-		for (var _i11 = 0; _i11 < homeLinks.length; _i11++) {
-			homeLinks[_i11].addEventListener('click', function (event) {
-				event.preventDefault();
-				var prevLocation = _dataStore2.default.getData('location').prevLocation;
-				location.hash = prevLocation ? prevLocation : '#/';
-			}, false);
-		}
-
-		//BOOKMARK
-		var addBookmarks = bookContainer.querySelectorAll('.add-bookmark');
-		for (var _i12 = 0; _i12 < addBookmarks.length; _i12++) {
-			addBookmarks[_i12].addEventListener('click', function (event) {
-				//if(book.checkFirstPage()) { 
-				//localStore.removeBkmrk(bk.id);
-				//return;
-				//}
-				var newBmrk = book.getBookmark();
-				var bookmark = document.querySelector('#bookmark');
-				_localStore2.default.setBkmrk(bk.id, newBmrk);
-				bookmark.className = 'show';
-				setTimeout(function () {
-					bookmark.className = bookmark.className.replace("show", "");
-				}, 2500);
-			}, false);
-		}
-
-		//FONT-SIZE
-		//large
-		for (var _i13 = 0; _i13 < fontSizesLarge.length; _i13++) {
-			fontSizesLarge[_i13].addEventListener('click', function (event) {
-				var size = event.target.value;
-				_localStore2.default.setFontSize('large', size);
-				text.style.opacity = '0';
-				bookContainer.querySelector('#current-section-title').style.opacity = '0';
-				bookContainer.querySelector('#currentByTotal').style.opacity = '0';
-				_utils2.default.removeClass('#text-loader-container', 'hidden');
-				setTimeout(function () {
-					//marginY is relative to line-height (line-height : 1.5em)
-					var lineHeight = size * 1.5;
-					var marginY = h % lineHeight !== 0 ? lineHeight * 2 + h % lineHeight / 2 : lineHeight * 2;
-					book.setMarginY(marginY);
-					//text size
-					text.style.fontSize = size + 'px';
-					//cover.style.fontSize = '16px';
-					//book
-					book.reinit().then(function (resolve) {
-						//end loader
-						_utils2.default.addClass('#text-loader-container', 'hidden');
-						text.style.opacity = '1';
-						bookContainer.querySelector('#current-section-title').style.opacity = '1';
-						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-					}).catch(function (error) {
-						_utils2.default.addClass('#text-loader-container', 'hidden');
-						text.style.opacity = '1';
-						bookContainer.querySelector('#current-section-title').style.opacity = '1';
-						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-					});
-				}, 100);
-			}, false);
-		}
-
-		//medium
-		for (var _i14 = 0; _i14 < fontSizesMedium.length; _i14++) {
-			fontSizesMedium[_i14].addEventListener('click', function (event) {
-				var size = event.target.value;
-				_localStore2.default.setFontSize('large', size);
-				//close modal && text opacity = 0
-				optionsMedium.className = '';
-				text.style.opacity = '0';
-				bookContainer.querySelector('#current-section-title').style.opacity = '0';
-				bookContainer.querySelector('#currentByTotal').style.opacity = '0';
-				_utils2.default.removeClass('#text-loader-container', 'hidden');
-				setTimeout(function () {
-					//marginY is relative to line-height (line-height : 1.5em)
-					var lineHeight = size * 1.5;
-					var marginY = h % lineHeight !== 0 ? lineHeight * 2 + h % lineHeight / 2 : lineHeight * 2;
-					book.setMarginY(marginY);
-					//text size
-					text.style.fontSize = size + 'px';
-					//cover.style.fontSize = '16px';
-					//book
-					book.reinit().then(function (resolve) {
-						//end loader
-						_utils2.default.addClass('#text-loader-container', 'hidden');
-						text.style.opacity = '1';
-						bookContainer.querySelector('#current-section-title').style.opacity = '1';
-						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-					}).catch(function (error) {
-						_utils2.default.addClass('#text-loader-container', 'hidden');
-						text.style.opacity = '1';
-						bookContainer.querySelector('#current-section-title').style.opacity = '1';
-						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-					});
-				}, 100);
-			}, false);
-		}
-
-		//small
-		for (var _i15 = 0; _i15 < fontSizes.length; _i15++) {
-			fontSizes[_i15].addEventListener('click', function (event) {
-				var size = event.target.value;
-				_localStore2.default.setFontSize('small', size);
-				//start loader and close modal
-				_utils2.default.removeClass('#text-loader-container', 'hidden');
-				_utils2.default.removeClass('#options', 'open');
-				document.body.style.overflow = 'hidden';
-				setTimeout(function () {
-					//marginY is relative to line-height (line-height : 1.5em)
-					var lineHeight = size * 1.5;
-					var marginY = h % lineHeight !== 0 ? lineHeight * 2 + h % lineHeight / 2 : lineHeight * 2;
-					book.setMarginY(marginY);
-					//text size
-					text.style.fontSize = size + 'px';
-					//cover.style.fontSize = '14px';
-					//book
-					book.reinit().then(function (resolve) {
-						//end loader
-						document.body.style.overflow = 'visible';
-						_utils2.default.addClass('#text-loader-container', 'hidden');
-					}).catch(function (error) {
-						document.body.style.overflow = 'visible';
-						_utils2.default.addClass('#text-loader-container', 'hidden');
-					});
-				}, 100);
-			}, false);
-		}
-
-		//FONT-FAMILY
-		//large
-		for (var _i16 = 0; _i16 < fontsLarge.length; _i16++) {
-			fontsLarge[_i16].addEventListener('click', function (event) {
-				var font = event.target.value;
-				_localStore2.default.setFont(font);
-				text.style.opacity = '0';
-				bookContainer.querySelector('#current-section-title').style.opacity = '0';
-				bookContainer.querySelector('#currentByTotal').style.opacity = '0';
-				_utils2.default.removeClass('#text-loader-container', 'hidden');
-				setTimeout(function () {
-					//text font
-					text.style.fontFamily = font;
-					bookContainer.querySelector('#current-section-title').style.fontFamily = font;
-					bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
-					//book
-					book.reinit().then(function (resolve) {
-						//end loader
-						_utils2.default.addClass('#text-loader-container', 'hidden');
-						text.style.opacity = '1';
-						bookContainer.querySelector('#current-section-title').style.opacity = '1';
-						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-					}).catch(function (error) {
-						_utils2.default.addClass('#text-loader-container', 'hidden');
-						text.style.opacity = '1';
-						bookContainer.querySelector('#current-section-title').style.opacity = '1';
-						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-					});
-				}, 100);
-			}, false);
-		}
-
-		//medium
-		for (var _i17 = 0; _i17 < fontsMedium.length; _i17++) {
-			fontsMedium[_i17].addEventListener('click', function (event) {
-				var font = event.target.value;
-				_localStore2.default.setFont(font);
-				//close modal && text opacity = 0
-				optionsMedium.className = '';
-				text.style.opacity = '0';
-				bookContainer.querySelector('#current-section-title').style.opacity = '0';
-				bookContainer.querySelector('#currentByTotal').style.opacity = '0';
-				_utils2.default.removeClass('#text-loader-container', 'hidden');
-				setTimeout(function () {
-					//text font
-					text.style.fontFamily = font;
-					bookContainer.querySelector('#current-section-title').style.fontFamily = font;
-					bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
-					//book
-					book.reinit().then(function (resolve) {
-						//end loader
-						_utils2.default.addClass('#text-loader-container', 'hidden');
-						text.style.opacity = '1';
-						bookContainer.querySelector('#current-section-title').style.opacity = '1';
-						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-					}).catch(function (error) {
-						_utils2.default.addClass('#text-loader-container', 'hidden');
-						text.style.opacity = '1';
-						bookContainer.querySelector('#current-section-title').style.opacity = '1';
-						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-					});
-				}, 100);
-			}, false);
-		}
-
-		//small
-		for (var _i18 = 0; _i18 < fonts.length; _i18++) {
-			fonts[_i18].addEventListener('click', function (event) {
-				var font = event.target.value;
-				_localStore2.default.setFont(font);
-				//start loader and close modal
-				_utils2.default.removeClass('#text-loader-container', 'hidden');
-				_utils2.default.removeClass('#options', 'open');
-				document.body.style.overflow = 'hidden';
-				setTimeout(function () {
-					//text font
-					text.style.fontFamily = font;
-					bookContainer.querySelector('#current-section-title').style.fontFamily = font;
-					bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
-					//book
-					book.reinit().then(function (resolve) {
-						//end loader
-						document.body.style.overflow = 'visible';
-						_utils2.default.addClass('#text-loader-container', 'hidden');
-					}).catch(function (error) {
-						document.body.style.overflow = 'visible';
-						_utils2.default.addClass('#text-loader-container', 'hidden');
-					});
-				}, 100);
-			}, false);
-		}
 	};
 
 	//GET BOOK
@@ -4380,11 +4391,9 @@ var WebBook = function () {
 						}
 					}
 
-					_this.toBook();
-
 					var fctInit = function fctInit() {
 						//pagination start
-						_this.getPageStart();
+						_this._startPage = _this.getPageStart();
 						//book total number of pages
 						_this.pages_total = _this.getBookTotalPages();
 						//array : for each section, starting page;
@@ -4441,7 +4450,7 @@ var WebBook = function () {
 					_this2.toBook();
 
 					//pagination start
-					_this2.getPageStart();
+					_this2._startPage = _this2.getPageStart();
 					//book total number of pages
 					_this2.pages_total = _this2.getBookTotalPages();
 					//array : for each section, starting page;
@@ -4520,6 +4529,7 @@ var WebBook = function () {
 			ts.paddingLeft = marginX + "px";
 			ts.paddingTop = marginY + "px";
 			ts.paddingBottom = marginY + "px";
+			ts.webkitColumnFill = "auto"; //important !!!
 			ts.mozColumnFill = "auto"; //important !!!
 			ts.columnFill = "auto"; //important !!!		
 			ts.webkitColumnWidth = this._containerWidth + "px";
@@ -4755,7 +4765,8 @@ var WebBook = function () {
 		key: 'getPageStart',
 		value: function getPageStart() {
 			var index = void 0,
-			    startIndex = void 0;
+			    startIndex = void 0,
+			    startPage = void 0;
 			for (var i = 0; i < this._sections.length; i++) {
 				if (this._sections[i] && this._sections[i].className.match(/wb-no-page/)) {
 					index = i;
@@ -4767,12 +4778,14 @@ var WebBook = function () {
 							var el = this._text.querySelector('#' + id + ' p:first-child');
 							var elPosition = Math.round((0, _core2.default)(el).position().left) - this.getMarginX();
 							elPosition = elPosition % this._containerWidth !== 0 ? elPosition - elPosition % this._containerWidth : elPosition; //always at a page beginning
-							this._startPage = elPosition / this._containerWidth;
+							startPage = elPosition / this._containerWidth;
 							break;
 						}
 					}
 				}
 			}
+
+			return startPage;
 		}
 	}, {
 		key: 'checkFirstPage',

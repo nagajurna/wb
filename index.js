@@ -29,6 +29,7 @@ app.use(session({
     resave: false,
 	saveUninitialized: false,
 }));
+
 //express.static
 let halfDay = 43200000;
 app.use(express.static('public', { maxAge: halfDay }));
