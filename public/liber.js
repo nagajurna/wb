@@ -4667,40 +4667,6 @@ var WebBook = function () {
 			}
 		}
 	}, {
-		key: 'cloneNode',
-		value: function cloneNode(node) {
-			//console.log(node.nodeType);
-			//function cloneNode(node) {
-			//// If the node is a text node, then re-create it rather than clone it
-			////let clone = node.nodeType == 3 ? document.createTextNode(node.nodeValue) : node.cloneNode(false);
-			//let clone = node.cloneNode(false);
-			////// Recurse     
-			////let child = node.firstChild;
-			////while(child) {
-			////clone.appendChild(cloneNode(child));
-			////if()
-			////child = child.nextSibling;
-			////}
-			//clone.innerHTML = node.innerHTML;
-
-			//return clone;
-			//}
-
-			//return cloneNode(node);
-
-			var clone = node.cloneNode(false);
-			//// Recurse     
-			//let child = node.firstChild;
-			//while(child) {
-			//clone.appendChild(cloneNode(child));
-			//if()
-			//child = child.nextSibling;
-			//}
-			clone.innerHTML = node.innerHTML;
-
-			return clone;
-		}
-	}, {
 		key: 'nextSection',
 		value: function nextSection(index) {
 			if (this._sections[index].id === 'wb-last') {
@@ -4708,9 +4674,10 @@ var WebBook = function () {
 			}
 			this._sectionsIndex = index;
 			this._text.innerHTML = '';
-			var section = this.cloneNode(this._sections[this._sectionsIndex]);
+			console.log(this._sections[this._sectionsIndex]);
+			var section = this._sections[this._sectionsIndex].cloneNode(true);
 			console.log(section);
-			var last = this.cloneNode(this._lastElement);
+			var last = this._lastElement.cloneNode(true);
 			this._text.appendChild(section);
 			this._text.appendChild(last);
 			this.setSectionLinks();
