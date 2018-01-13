@@ -126,7 +126,8 @@ const book = function(container) {
 		 
   
 		let settings = () => {
-		
+			if(!bookContainer) { return;}
+			
 			if(window.innerWidth >= 1366) {
 				//Toc-large height
 				bookContainer.querySelector("#toc-large-device div").style.maxHeight = h + "px";

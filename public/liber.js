@@ -3554,6 +3554,9 @@ var book = function book(container) {
 		}
 
 		var settings = function settings() {
+			if (!bookContainer) {
+				return;
+			}
 
 			if (window.innerWidth >= 1366) {
 				//Toc-large height
@@ -4394,6 +4397,8 @@ var WebBook = function () {
 					}
 
 					var fctInit = function fctInit() {
+						console.log("2");
+						console.log(_this._sections[0].innerHTML);
 						//pagination start
 						_this._startPage = _this.getPageStart();
 						//book total number of pages
@@ -4407,6 +4412,8 @@ var WebBook = function () {
 							_this._sections_page_start.push(item);
 						}
 
+						console.log("3");
+						console.log(_this._sections[0].innerHTML);
 						//containers data-wb-element-page-number
 						for (var _i2 = 0; _i2 < _this._elPageNumbers.length; _i2++) {
 							var id = _this._elPageNumbers[_i2].getAttribute('data-wb-element-page-number');
@@ -4422,6 +4429,8 @@ var WebBook = function () {
 							_this.goToBookmark(_this._bookmark);
 							_this._position = Math.round((0, _core2.default)(_this._text).position().left);
 						} else {
+							console.log("4");
+							console.log(_this._sections[0].innerHTML);
 							_this.nextSection(_this._sectionsIndex);
 						}
 						_this.refresh();
@@ -4676,8 +4685,6 @@ var WebBook = function () {
 			}
 			this._sectionsIndex = index;
 			this._text.innerHTML = '';
-			console.log("2");
-			console.log(this._sections[0].innerHTML);
 			this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
 			this._text.appendChild(this._lastElement.cloneNode(true));
 			this.setSectionLinks();
@@ -5069,6 +5076,8 @@ var WebBook = function () {
 	}, {
 		key: 'refresh',
 		value: function refresh() {
+			console.log("5");
+			console.log(this._sections[0].innerHTML);
 			this.insertBookmark();
 			this.getCover();
 
