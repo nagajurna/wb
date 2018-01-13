@@ -4345,8 +4345,11 @@ var WebBook = function () {
 		//SECTIONS
 		//main sections
 		this._sections = this._divContainer.querySelectorAll('#wb_div > .wb-section');
+		console.log(this._sections[0].innerHTML);
 		//main sections + nested sections
 		this._sectionsToc = this._div.querySelectorAll('.wb-section');
+		console.log(this._sectionsToc[0].innerHTML);
+		console.log("ok");
 		//sections without wb-no-toc
 		this._tocSections = [];
 		for (var i = 0; i < this._sectionsToc.length; i++) {
@@ -4674,14 +4677,8 @@ var WebBook = function () {
 			}
 			this._sectionsIndex = index;
 			this._text.innerHTML = '';
-			console.log(this._sections[this._sectionsIndex].innerHTML);
-			var section = this._sections[this._sectionsIndex].cloneNode(true);
-			console.log(section.innerHTML);
-			console.log('done');
-			section.innerHTML = this._sections[this._sectionsIndex].innerHTML;
-			var last = this._lastElement.cloneNode(true);
-			this._text.appendChild(section);
-			this._text.appendChild(last);
+			this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
+			this._text.appendChild(this._lastElement.cloneNode(true));
 			this.setSectionLinks();
 			this.toBook();
 			this._position = 0;
