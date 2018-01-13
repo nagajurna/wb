@@ -45,6 +45,7 @@
 	letter-spacing: 6px;
 	text-align: center;
 	opacity: 0.75;
+	z-index: 1;
 }
 
 [data-wb-text] #cover-logo1 {
