@@ -4375,6 +4375,7 @@ var WebBook = function () {
 
 			var promise = new Promise(function (resolve, reject) {
 				if ('webkitColumnWidth' in document.body.style || 'mozColumnWidth' in document.body.style || 'columnWidth' in document.body.style) {
+
 					_this._text.innerHTML = '';
 					_this._text.appendChild(_this._div);
 					var sections = _this._sectionsToc;
@@ -4391,7 +4392,6 @@ var WebBook = function () {
 					}
 
 					var fctInit = function fctInit() {
-						//console.log(this._text);
 						//pagination start
 						_this._startPage = _this.getPageStart();
 						//book total number of pages
@@ -4415,6 +4415,7 @@ var WebBook = function () {
 								_this._elPageNumbers[_i2].innerHTML = pageNumber;
 							}
 						}
+
 						if (_this._bookmark) {
 							_this.goToBookmark(_this._bookmark);
 							_this._position = Math.round((0, _core2.default)(_this._text).position().left);
@@ -4492,7 +4493,7 @@ var WebBook = function () {
 	}, {
 		key: 'toBook',
 		value: function toBook(cb) {
-			//console.log(this._text);
+
 			var cs = this._textContainer.style;
 			var ts = this._text.style;
 			var marginX = this.getMarginX();
@@ -4673,9 +4674,11 @@ var WebBook = function () {
 			}
 			this._sectionsIndex = index;
 			this._text.innerHTML = '';
-			this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
-			this._text.appendChild(this._lastElement.cloneNode(true));
-			console.log(this._text.innerHTML);
+			var section = this._sections[this._sectionsIndex].cloneNode(true);
+			console.log(section);
+			var last = this._lastElement.cloneNode(true);
+			this._text.appendChild(section);
+			this._text.appendChild(last);
 			this.setSectionLinks();
 			this.toBook();
 			this._position = 0;
