@@ -4345,6 +4345,8 @@ var WebBook = function () {
 		//SECTIONS
 		//main sections
 		this._sections = this._divContainer.querySelectorAll('#wb_div > .wb-section');
+		console.log("1");
+		console.log(this._sections[0].innerHTML);
 		//main sections + nested sections
 		this._sectionsToc = this._div.querySelectorAll('.wb-section');
 		//sections without wb-no-toc
@@ -4674,11 +4676,8 @@ var WebBook = function () {
 			}
 			this._sectionsIndex = index;
 			this._text.innerHTML = '';
-			console.log(this._text.innerHTML);
-			console.log('text empty ?');
-			console.log(this._sectionsIndex);
+			console.log("2");
 			console.log(this._sections[0].innerHTML);
-			console.log("alors ?");
 			this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
 			this._text.appendChild(this._lastElement.cloneNode(true));
 			this.setSectionLinks();
