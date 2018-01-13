@@ -4669,21 +4669,36 @@ var WebBook = function () {
 	}, {
 		key: 'cloneNode',
 		value: function cloneNode(node) {
-			function cloneNode(node) {
-				// If the node is a text node, then re-create it rather than clone it
-				var clone = node.nodeType == 3 ? document.createTextNode(node.nodeValue) : node.cloneNode(false);
+			//console.log(node.nodeType);
+			//function cloneNode(node) {
+			//// If the node is a text node, then re-create it rather than clone it
+			////let clone = node.nodeType == 3 ? document.createTextNode(node.nodeValue) : node.cloneNode(false);
+			//let clone = node.cloneNode(false);
+			////// Recurse     
+			////let child = node.firstChild;
+			////while(child) {
+			////clone.appendChild(cloneNode(child));
+			////if()
+			////child = child.nextSibling;
+			////}
+			//clone.innerHTML = node.innerHTML;
 
-				// Recurse     
-				var child = node.firstChild;
-				while (child) {
-					clone.appendChild(cloneNode(child));
-					child = child.nextSibling;
-				}
+			//return clone;
+			//}
 
-				return clone;
-			}
+			//return cloneNode(node);
 
-			return cloneNode(node);
+			var clone = node.cloneNode(false);
+			//// Recurse     
+			//let child = node.firstChild;
+			//while(child) {
+			//clone.appendChild(cloneNode(child));
+			//if()
+			//child = child.nextSibling;
+			//}
+			clone.innerHTML = node.innerHTML;
+
+			return clone;
 		}
 	}, {
 		key: 'nextSection',
