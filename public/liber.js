@@ -4677,6 +4677,7 @@ var WebBook = function () {
 			console.log(this._sections[this._sectionsIndex]);
 			var section = this._sections[this._sectionsIndex].cloneNode(true);
 			console.log(section);
+			section.innerHTML = this._sections[this._sectionsIndex].innerHTML;
 			var last = this._lastElement.cloneNode(true);
 			this._text.appendChild(section);
 			this._text.appendChild(last);
