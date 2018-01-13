@@ -4377,7 +4377,6 @@ var WebBook = function () {
 				if ('webkitColumnWidth' in document.body.style || 'mozColumnWidth' in document.body.style || 'columnWidth' in document.body.style) {
 					_this._text.innerHTML = '';
 					_this._text.appendChild(_this._div);
-					console.log(_this._text.innerHTML);
 					var sections = _this._sectionsToc;
 					//sections breaks			
 					for (var i = 0; i < sections.length; i++) {
