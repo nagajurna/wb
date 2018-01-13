@@ -126,11 +126,13 @@ const book = function(container) {
 		 
   
 		let settings = () => {
-			if(!bookContainer) { return;}
 			
 			if(window.innerWidth >= 1366) {
 				//Toc-large height
-				bookContainer.querySelector("#toc-large-device div").style.maxHeight = h + "px";
+				let div = bookContainer.querySelector("#toc-large-device div");
+				if(div) {
+					div.style.maxHeight = h + "px";
+				}
 			}
 						 
 			//on resize
@@ -193,7 +195,10 @@ const book = function(container) {
 				
 				if(window.innerWidth >= 1366) {
 					//Toc-large height
-					bookContainer.querySelector("#toc-large-device div").style.maxHeight = h + "px";
+					let div = bookContainer.querySelector("#toc-large-device div");
+					if(div) {
+						div.style.maxHeight = h + "px";
+					}
 				}
 				
 				//marginY is relative to line-height
@@ -724,6 +729,8 @@ const book = function(container) {
 	})
 	.catch( error => {
 		console.log(error);
+		utils.addClass('#book-loader-container', 'hidden');
+		location.hash = '#/';
 	});
 	
 	

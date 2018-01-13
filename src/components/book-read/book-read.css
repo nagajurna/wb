@@ -165,12 +165,13 @@ BOOK NAVBAR BOTTOM
 	font-size: 1.6em;
 }
 
-#book-nav-bar-bottom-controls span, #book-nav-bar-bottom-controls button {
+#book-nav-bar-bottom-controls button {
 	outline: none;
 	height: 100%;
 	background-color: transparent;
 	display: inline-block;
-	color: #000;
+	color: rgba(0, 0, 0, 0.54);
+	max-width: 56px;
 }
 
 #book-nav-bar-bottom-controls #open-toc-large {
@@ -241,7 +242,7 @@ BOOK NAV-BAR-BOTTOM-SMALL
 }
 
 #book-nav-bar-bottom-small .material-icons {
-	color: rgba(132, 132, 132, 1);
+	color: rgb(152, 152, 152);
 }
 
 /*
