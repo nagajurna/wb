@@ -4674,9 +4674,10 @@ var WebBook = function () {
 			}
 			this._sectionsIndex = index;
 			this._text.innerHTML = '';
-			console.log(this._sections[this._sectionsIndex]);
+			console.log(this._sections[this._sectionsIndex].innerHTML);
 			var section = this._sections[this._sectionsIndex].cloneNode(true);
-			console.log(section);
+			console.log(section.innerHTML);
+			console.log('done');
 			section.innerHTML = this._sections[this._sectionsIndex].innerHTML;
 			var last = this._lastElement.cloneNode(true);
 			this._text.appendChild(section);
