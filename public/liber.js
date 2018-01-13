@@ -4667,6 +4667,25 @@ var WebBook = function () {
 			}
 		}
 	}, {
+		key: 'cloneNode',
+		value: function cloneNode(node) {
+			function cloneNode(node) {
+				// If the node is a text node, then re-create it rather than clone it
+				var clone = node.nodeType == 3 ? document.createTextNode(node.nodeValue) : node.cloneNode(false);
+
+				// Recurse     
+				var child = node.firstChild;
+				while (child) {
+					clone.appendChild(cloneNode(child));
+					child = child.nextSibling;
+				}
+
+				return clone;
+			}
+
+			return cloneNode(node);
+		}
+	}, {
 		key: 'nextSection',
 		value: function nextSection(index) {
 			if (this._sections[index].id === 'wb-last') {
@@ -4674,9 +4693,9 @@ var WebBook = function () {
 			}
 			this._sectionsIndex = index;
 			this._text.innerHTML = '';
-			var section = this._sections[this._sectionsIndex].cloneNode(true);
+			var section = this.cloneNode(this._sections[this._sectionsIndex]);
 			console.log(section);
-			var last = this._lastElement.cloneNode(true);
+			var last = this.cloneNode(this._lastElement);
 			this._text.appendChild(section);
 			this._text.appendChild(last);
 			this.setSectionLinks();
