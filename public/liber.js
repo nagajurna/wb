@@ -4348,8 +4348,6 @@ var WebBook = function () {
 		//SECTIONS
 		//main sections
 		this._sections = this._divContainer.querySelectorAll('#wb_div > .wb-section');
-		console.log("1");
-		console.log(this._sections[0].innerHTML);
 		//main sections + nested sections
 		this._sectionsToc = this._div.querySelectorAll('.wb-section');
 		//sections without wb-no-toc
@@ -4381,7 +4379,7 @@ var WebBook = function () {
 			var promise = new Promise(function (resolve, reject) {
 				if ('webkitColumnWidth' in document.body.style || 'mozColumnWidth' in document.body.style || 'columnWidth' in document.body.style) {
 
-					_this._text.innerHTML = '';
+					_this.emptyNode(_this._text);
 					_this._text.appendChild(_this._div);
 					var sections = _this._sectionsToc;
 					//sections breaks			
@@ -4397,8 +4395,6 @@ var WebBook = function () {
 					}
 
 					var fctInit = function fctInit() {
-						console.log("2");
-						console.log(_this._sections[0].innerHTML);
 						//pagination start
 						_this._startPage = _this.getPageStart();
 						//book total number of pages
@@ -4412,8 +4408,6 @@ var WebBook = function () {
 							_this._sections_page_start.push(item);
 						}
 
-						console.log("3");
-						console.log(_this._sections[0].innerHTML);
 						//containers data-wb-element-page-number
 						for (var _i2 = 0; _i2 < _this._elPageNumbers.length; _i2++) {
 							var id = _this._elPageNumbers[_i2].getAttribute('data-wb-element-page-number');
@@ -4429,8 +4423,6 @@ var WebBook = function () {
 							_this.goToBookmark(_this._bookmark);
 							_this._position = Math.round((0, _core2.default)(_this._text).position().left);
 						} else {
-							console.log("4");
-							console.log(_this._sections[0].innerHTML);
 							_this.nextSection(_this._sectionsIndex);
 						}
 						_this.refresh();
@@ -4455,7 +4447,7 @@ var WebBook = function () {
 			var promise = new Promise(function (resolve, reject) {
 				if ('webkitColumnWidth' in document.body.style || 'mozColumnWidth' in document.body.style || 'columnWidth' in document.body.style) {
 
-					_this2._text.innerHTML = '';
+					_this2.emptyNode(_this2._text);
 					_this2._text.appendChild(_this2._div);
 
 					_this2.toBook();
@@ -4643,6 +4635,15 @@ var WebBook = function () {
 			return this._marginY;
 		}
 	}, {
+		key: 'emptyNode',
+		value: function emptyNode(el) {
+			var child = el.firstChild;
+			while (child) {
+				el.removeChild(child);
+				child = el.firstChild;
+			}
+		}
+	}, {
 		key: 'setBookLinks',
 		value: function setBookLinks() {
 			var _this3 = this;
@@ -4684,7 +4685,7 @@ var WebBook = function () {
 				return;
 			}
 			this._sectionsIndex = index;
-			this._text.innerHTML = '';
+			this.emptyNode(this._text);
 			this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
 			this._text.appendChild(this._lastElement.cloneNode(true));
 			this.setSectionLinks();
@@ -4700,7 +4701,7 @@ var WebBook = function () {
 				return;
 			}
 			this._sectionsIndex = index;
-			this._text.innerHTML = '';
+			this.emptyNode(this._text);
 			this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
 			this._text.appendChild(this._lastElement.cloneNode(true));
 			this.setSectionLinks();
@@ -4718,7 +4719,7 @@ var WebBook = function () {
 				} else if (this._sections[i].querySelector('#' + id)) {
 					this._sectionsIndex = i;
 					if (this._sections[this._sectionsIndex].id !== this._text.querySelectorAll('.wb-section')[0].id) {
-						this._text.innerHTML = '';
+						this.emptyNode(this._text);
 						this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
 						this._text.appendChild(this._lastElement.cloneNode(true));
 						this.setSectionLinks();
@@ -5027,7 +5028,8 @@ var WebBook = function () {
 				if (this._sections[i].id === bookmark.sectionId) {
 					//if(this._sections[i].id!==this._text.querySelectorAll('.wb-section')[0].id) {
 					this._sectionsIndex = i;
-					this._text.innerHTML = '';
+					//this._text.innerHTML = '';
+					this.emptyNode(this._text);
 					//this._sections[this._sectionsIndex].style.marginBottom = "300%";
 					this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
 					//this._lastElement.marginBottom = "300%";
@@ -5076,8 +5078,6 @@ var WebBook = function () {
 	}, {
 		key: 'refresh',
 		value: function refresh() {
-			console.log("5");
-			console.log(this._sections[0].innerHTML);
 			this.insertBookmark();
 			this.getCover();
 
