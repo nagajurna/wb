@@ -4387,17 +4387,6 @@ var WebBook = function () {
 					_this.emptyNode(_this._text);
 					_this._text.appendChild(_this._div);
 					var sections = _this._sectionsToc;
-					//sections breaks			
-					for (var i = 0; i < sections.length; i++) {
-						if (!sections[i].className.match(/wb-no-break/)) {
-							//possibly, for nested sections
-							sections[i].style.marginBottom = "300%";
-						}
-						//hack firefox (pour offsetLeft) : minHeight = 10%
-						if (sections[i].style.minHeight !== "10%") {
-							sections[i].style.minHeight = "10%";
-						}
-					}
 
 					var fctInit = function fctInit() {
 						//pagination start
@@ -4406,22 +4395,41 @@ var WebBook = function () {
 						_this.pages_total = _this.getBookTotalPages();
 						//array : for each section, starting page;
 						_this._sections_page_start = [];
-						for (var _i = 0; _i < _this._sections.length; _i++) {
+						for (var i = 0; i < _this._sections.length; i++) {
 							var item = {};
-							item.id = _this._sections[_i].id;
+							item.id = _this._sections[i].id;
 							item.page_start = _this.elementPageNumber(item.id);
 							_this._sections_page_start.push(item);
 						}
 
+						////containers data-wb-element-page-number
+						//for(let i=0; i<this._elPageNumbers.length; i++) {
+						//let id = this._elPageNumbers[i].getAttribute('data-wb-element-page-number');
+						//let pageNumber = this.elementPageNumber(id);
+						//if(pageNumber < 1) {
+						//this._elPageNumbers[i].innerHTML = "";
+						//} else if(this._elPageNumbers[i].innerHTML!=pageNumber) {
+						//this._elPageNumbers[i].innerHTML = pageNumber;
+						//}
+						//}
+
 						//containers data-wb-element-page-number
-						for (var _i2 = 0; _i2 < _this._elPageNumbers.length; _i2++) {
-							var id = _this._elPageNumbers[_i2].getAttribute('data-wb-element-page-number');
-							var pageNumber = _this.elementPageNumber(id);
+
+						var _loop = function _loop(_i) {
+							var id = _this._elPageNumbers[_i].getAttribute('data-wb-element-page-number');
+							var pageNumber = _this._sections_page_start.filter(function (o) {
+								return o.id === id;
+							})[0].page_start;
+
 							if (pageNumber < 1) {
-								_this._elPageNumbers[_i2].innerHTML = "";
-							} else if (_this._elPageNumbers[_i2].innerHTML != pageNumber) {
-								_this._elPageNumbers[_i2].innerHTML = pageNumber;
+								_this._elPageNumbers[_i].innerHTML = "";
+							} else if (_this._elPageNumbers[_i].innerHTML != pageNumber) {
+								_this._elPageNumbers[_i].innerHTML = pageNumber;
 							}
+						};
+
+						for (var _i = 0; _i < _this._elPageNumbers.length; _i++) {
+							_loop(_i);
 						}
 
 						if (_this._bookmark) {
@@ -4470,15 +4478,34 @@ var WebBook = function () {
 						_this2._sections_page_start.push(item);
 					}
 
+					////containers data-wb-element-page-number
+					//for(let i=0; i<this._elPageNumbers.length; i++) {
+					//let id = this._elPageNumbers[i].getAttribute('data-wb-element-page-number');
+					//let pageNumber = this.elementPageNumber(id);
+					//if(pageNumber < 1) {
+					//this._elPageNumbers[i].innerHTML = "";
+					//} else if(this._elPageNumbers[i].innerHTML!=pageNumber) {
+					//this._elPageNumbers[i].innerHTML = pageNumber;
+					//}
+					//}
+
 					//containers data-wb-element-page-number
-					for (var _i3 = 0; _i3 < _this2._elPageNumbers.length; _i3++) {
-						var id = _this2._elPageNumbers[_i3].getAttribute('data-wb-element-page-number');
-						var pageNumber = _this2.elementPageNumber(id);
+
+					var _loop2 = function _loop2(_i2) {
+						var id = _this2._elPageNumbers[_i2].getAttribute('data-wb-element-page-number');
+						var pageNumber = _this2._sections_page_start.filter(function (o) {
+							return o.id === id;
+						})[0].page_start;
+
 						if (pageNumber < 1) {
-							_this2._elPageNumbers[_i3].innerHTML = "";
-						} else if (_this2._elPageNumbers[_i3].innerHTML != pageNumber) {
-							_this2._elPageNumbers[_i3].innerHTML = pageNumber;
+							_this2._elPageNumbers[_i2].innerHTML = "";
+						} else if (_this2._elPageNumbers[_i2].innerHTML != pageNumber) {
+							_this2._elPageNumbers[_i2].innerHTML = pageNumber;
 						}
+					};
+
+					for (var _i2 = 0; _i2 < _this2._elPageNumbers.length; _i2++) {
+						_loop2(_i2);
 					}
 
 					if (_this2._bookmark) {
@@ -4504,14 +4531,23 @@ var WebBook = function () {
 
 			var cs = this._textContainer.style;
 			var ts = this._text.style;
+			cs.display = "none";
+			ts.display = "none";
 			var marginX = this.getMarginX();
 			var marginY = this.getMarginY();
 
-			//if(ts.webkitColumns!=='auto auto' || ts.mozColumns!=='auto auto' || ts.columns!=='auto auto') {
-			//ts.webkitColumns = 'auto auto';
-			//ts.mozColumns = 'auto auto';
-			//ts.columns = 'auto auto';
-			//}		
+			var sections = this._sectionsToc;
+			//sections breaks			
+			for (var i = 0; i < sections.length; i++) {
+				if (!sections[i].className.match(/wb-no-break/) && sections[i].style.marginBottom !== "300%") {
+					//possibly, for nested sections
+					sections[i].style.marginBottom = "300%";
+				}
+				//hack firefox (pour offsetLeft) : minHeight = 10%
+				if (sections[i].style.minHeight !== "10%" && sections[i].style.minHeight !== "10%") {
+					sections[i].style.minHeight = "10%";
+				}
+			}
 
 			this.col = true;
 
@@ -4523,6 +4559,7 @@ var WebBook = function () {
 			cs.padding = "0px";
 			cs.height = this.getHeight() + "px";
 			cs.maxWidth = this.getMaxWidth() + "px"; //maxWidth : responsive
+			cs.display = "block";
 			this._containerWidth = this._textContainer.clientWidth; //responsive
 
 			//text
@@ -4546,6 +4583,7 @@ var WebBook = function () {
 			ts.mozColumnGap = marginX * 2 + "px";
 			ts.webkitColumnGap = marginX * 2 + "px";
 			ts.columnGap = marginX * 2 + "px";
+			ts.display = "block";
 
 			if (cb) {
 				setTimeout(cb, 50);
@@ -4585,12 +4623,12 @@ var WebBook = function () {
 			this._lastElement.style.marginBottom = "0px";
 
 			//wb-total-pages empty
-			for (var _i4 = 0; _i4 < this._totalPages.length; _i4++) {
-				this._totalPages[_i4].innerHTML = "";
+			for (var _i3 = 0; _i3 < this._totalPages.length; _i3++) {
+				this._totalPages[_i3].innerHTML = "";
 			}
 			//data-wb-element-page-number empty
-			for (var _i5 = 0; _i5 < this._elPageNumbers.length; _i5++) {
-				this._elPageNumbers[_i5].innerHTML = "";
+			for (var _i4 = 0; _i4 < this._elPageNumbers.length; _i4++) {
+				this._elPageNumbers[_i4].innerHTML = "";
 			}
 
 			this.refresh();
@@ -4659,8 +4697,8 @@ var WebBook = function () {
 					if (_this3.col === true) {
 						e.preventDefault();
 						var href = e.currentTarget.getAttribute('href');
-						var id = href.replace(/^#/, "");
-						_this3.goToElement(id);
+						var _id = href.replace(/^#/, "");
+						_this3.goToElement(_id);
 					}
 				}, false);
 			}
@@ -4677,8 +4715,8 @@ var WebBook = function () {
 					if (_this4.col === true) {
 						e.preventDefault();
 						var href = e.currentTarget.getAttribute('href');
-						var id = href.replace(/^#/, "");
-						_this4.goToElement(id);
+						var _id2 = href.replace(/^#/, "");
+						_this4.goToElement(_id2);
 					}
 				}, false);
 			}
@@ -4791,8 +4829,8 @@ var WebBook = function () {
 					if (index !== undefined && startIndex === undefined) {
 						if (!this._sections[i].className.match(/wb-no-page/)) {
 							startIndex = i;
-							var id = this._sections[startIndex].id;
-							var el = this._text.querySelector('#' + id + ' p:first-child');
+							var _id3 = this._sections[startIndex].id;
+							var el = this._text.querySelector('#' + _id3 + ' p:first-child');
 							var elPosition = Math.round((0, _core2.default)(el).position().left) - this.getMarginX();
 							elPosition = elPosition % this._containerWidth !== 0 ? elPosition - elPosition % this._containerWidth : elPosition; //always at a page beginning
 							startPage = elPosition / this._containerWidth;
@@ -4880,8 +4918,8 @@ var WebBook = function () {
 				var sections = [].slice.call(sects);
 				sections.push(this._lastElement);
 				for (var i = 0; i < sections.length; i++) {
-					var id = sections[i].id;
-					if (this.getPageNumber() < this.elementPageNumber(id) + this._startPage) {
+					var _id4 = sections[i].id;
+					if (this.getPageNumber() < this.elementPageNumber(_id4) + this._startPage) {
 						if (this.getPageNumber() === this.elementPageNumber(sections[i - 1].id) + this._startPage) {
 							title = "";
 						} else {
@@ -4973,8 +5011,8 @@ var WebBook = function () {
 				var sections = [].slice.call(sects);
 				sections.push(this._lastElement);
 				for (var i = 0; i < sections.length; i++) {
-					var id = sections[i].id;
-					if (this.getPageNumber() < this.elementPageNumber(id) + this._startPage) {
+					var _id5 = sections[i].id;
+					if (this.getPageNumber() < this.elementPageNumber(_id5) + this._startPage) {
 						currentSection = sections[i - 1];
 						break;
 					}
@@ -4985,8 +5023,8 @@ var WebBook = function () {
 			}
 
 			if (currentSection) {
-				for (var _i6 = 0; _i6 < this._tocs.length; _i6++) {
-					var toc = this._tocs[_i6];
+				for (var _i5 = 0; _i5 < this._tocs.length; _i5++) {
+					var toc = this._tocs[_i5];
 					var links = toc.querySelectorAll('a');
 					for (var j = 0; j < links.length; j++) {
 						if (links[j].getAttribute('href').replace(/^#/, '') === currentSection.id) {
@@ -4994,7 +5032,7 @@ var WebBook = function () {
 								links[j].parentElement.className += ' current';
 							}
 						} else if (links[j].parentElement.className.match(/current/)) {
-							links[j].parentElement.className = links[_i6].parentElement.className.replace(/ current/, '');
+							links[j].parentElement.className = links[_i5].parentElement.className.replace(/ current/, '');
 						}
 					}
 				}
@@ -5092,12 +5130,12 @@ var WebBook = function () {
 					this._currentPages[i].innerHTML = "";
 				}
 
-				for (var _i7 = 0; _i7 < this._currentTotalPages.length; _i7++) {
-					this._currentTotalPages[_i7].innerHTML = "";
+				for (var _i6 = 0; _i6 < this._currentTotalPages.length; _i6++) {
+					this._currentTotalPages[_i6].innerHTML = "";
 				}
 
-				for (var _i8 = 0; _i8 < this._sectionTitles.length; _i8++) {
-					this._sectionTitles[_i8].innerHTML = "";
+				for (var _i7 = 0; _i7 < this._sectionTitles.length; _i7++) {
+					this._sectionTitles[_i7].innerHTML = "";
 				}
 			} else {
 
@@ -5105,28 +5143,28 @@ var WebBook = function () {
 					this.getTocsCurrentSection();
 				}
 				//containers wb-current-page
-				for (var _i9 = 0; _i9 < this._currentPages.length; _i9++) {
-					var pageNumber = this._sections_page_start[this._sectionsIndex].page_start + this.getPageNumber() - 1;
-					if (pageNumber < 1) {
-						this._currentPages[_i9].innerHTML = "";
-					} else if (this._currentPages[_i9].innerHTML !== pageNumber) {
-						this._currentPages[_i9].innerHTML = pageNumber;
+				for (var _i8 = 0; _i8 < this._currentPages.length; _i8++) {
+					var _pageNumber = this._sections_page_start[this._sectionsIndex].page_start + this.getPageNumber() - 1;
+					if (_pageNumber < 1) {
+						this._currentPages[_i8].innerHTML = "";
+					} else if (this._currentPages[_i8].innerHTML !== _pageNumber) {
+						this._currentPages[_i8].innerHTML = _pageNumber;
 					}
 				}
 				//containers wbcurrentByTotal-pages
-				for (var _i10 = 0; _i10 < this._currentTotalPages.length; _i10++) {
+				for (var _i9 = 0; _i9 < this._currentTotalPages.length; _i9++) {
 					var section = this._text.querySelectorAll('.wb-section')[0];
-					var _pageNumber = this._sections_page_start[this._sectionsIndex].page_start + this.getPageNumber() - 1;
-					if (_pageNumber < 1 || section.className.match(/wb-page-no-display/)) {
-						this._currentTotalPages[_i10].innerHTML = "";
-					} else if (this._currentTotalPages[_i10].innerHTML !== _pageNumber + "/" + this.pages_total) {
-						this._currentTotalPages[_i10].innerHTML = _pageNumber + "/" + this.pages_total;
+					var _pageNumber2 = this._sections_page_start[this._sectionsIndex].page_start + this.getPageNumber() - 1;
+					if (_pageNumber2 < 1 || section.className.match(/wb-page-no-display/)) {
+						this._currentTotalPages[_i9].innerHTML = "";
+					} else if (this._currentTotalPages[_i9].innerHTML !== _pageNumber2 + "/" + this.pages_total) {
+						this._currentTotalPages[_i9].innerHTML = _pageNumber2 + "/" + this.pages_total;
 					}
 				}
 				//containers wb-current-section-title
-				for (var _i11 = 0; _i11 < this._sectionTitles.length; _i11++) {
-					if (this._sectionTitles[_i11].innerHTML != this.getSectionTitle()) {
-						this._sectionTitles[_i11].innerHTML = this.getSectionTitle();
+				for (var _i10 = 0; _i10 < this._sectionTitles.length; _i10++) {
+					if (this._sectionTitles[_i10].innerHTML != this.getSectionTitle()) {
+						this._sectionTitles[_i10].innerHTML = this.getSectionTitle();
 					}
 				}
 			}
