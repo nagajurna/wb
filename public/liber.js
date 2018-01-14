@@ -97,7 +97,7 @@ var utils = {
 			xmlhttp.open(method, url, true);
 			xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 			xmlhttp.setRequestHeader("Accept", "text/json, text/html");
-			//xmlhttp.setRequestHeader("Cache-Control", "public, max-age=86400, must-revalidate");//1 day = 86400s
+			xmlhttp.setRequestHeader("Cache-Control", "public, max-age=86400, must-revalidate"); //1 day = 86400s
 
 			if (data) {
 				xmlhttp.setRequestHeader("Content-type", "application/json");

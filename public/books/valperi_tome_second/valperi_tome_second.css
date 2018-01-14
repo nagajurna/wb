@@ -130,7 +130,6 @@
 		padding-top: 7%;
 		font-size: 1.5em;
 	}
-
 }
 
 [data-wb-text] #fin {
@@ -179,5 +178,16 @@
 	text-indent: 0px;
 }
 
-
+[data-wb-text] p {
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+}
+[data-wb-text] p.section-title, [data-wb-text] #cover p {
+  hyphens: none;
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
+  -moz-hyphens: none;
+}
 
