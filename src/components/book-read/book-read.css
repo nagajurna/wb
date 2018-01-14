@@ -1,3 +1,6 @@
+
+
+
 /*
 BOOK LOADER
 */
@@ -16,6 +19,8 @@ BOOK LOADER
 }
 
 #book-loader {
+	-webkit-transform: translate-z(0);
+	-ms-transform: translate-z(0);
 	position: absolute;
 	left: 50%;
 	top: 40%;
@@ -57,6 +62,8 @@ TEXT LOADER
 }
 
 #text-loader {
+	-webkit-transform: translate-z(0);
+	-ms-transform: translate-z(0);
 	position: absolute;
 	left: 50%;
 	top: 40%;
@@ -270,6 +277,7 @@ TEXTCONTAINER
 [data-wb-text-container] {
 	margin: auto;
 	background-color: #fafafa;
+	will-change: transform;
 }
 
 /*
@@ -714,6 +722,7 @@ TEXT
 	-webkit-transition: opacity 0.4s;
 	-moz-transition: opacity 0.4s;
 	-o-transition: opacity 0.4s;
+	will-change: transform;
 }
 
 @media screen and (min-width: 768px) {
