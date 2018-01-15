@@ -3873,28 +3873,28 @@ var book = function book(container) {
 					bookContainer.querySelector('#current-section-title').style.opacity = '0';
 					bookContainer.querySelector('#currentByTotal').style.opacity = '0';
 					_utils2.default.removeClass('#text-loader-container', 'hidden');
-					setTimeout(function () {
-						//marginY is relative to line-height (line-height : 1.5em)
-						var lineHeight = size * 1.5;
-						var marginY = h % lineHeight !== 0 ? lineHeight * 2 + h % lineHeight / 2 : lineHeight * 2;
-						book.setMarginY(marginY);
-						//text size
-						text.style.fontSize = size + 'px';
-						//cover.style.fontSize = '16px';
-						//book
-						book.reinit().then(function (resolve) {
-							//end loader
-							_utils2.default.addClass('#text-loader-container', 'hidden');
-							text.style.opacity = '1';
-							bookContainer.querySelector('#current-section-title').style.opacity = '1';
-							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-						}).catch(function (error) {
-							_utils2.default.addClass('#text-loader-container', 'hidden');
-							text.style.opacity = '1';
-							bookContainer.querySelector('#current-section-title').style.opacity = '1';
-							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-						});
-					}, 100);
+					//setTimeout( () => {
+					//marginY is relative to line-height (line-height : 1.5em)
+					var lineHeight = size * 1.5;
+					var marginY = h % lineHeight !== 0 ? lineHeight * 2 + h % lineHeight / 2 : lineHeight * 2;
+					book.setMarginY(marginY);
+					//text size
+					text.style.fontSize = size + 'px';
+					//cover.style.fontSize = '16px';
+					//book
+					book.reinit().then(function (resolve) {
+						//end loader
+						_utils2.default.addClass('#text-loader-container', 'hidden');
+						text.style.opacity = '1';
+						bookContainer.querySelector('#current-section-title').style.opacity = '1';
+						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+					}).catch(function (error) {
+						_utils2.default.addClass('#text-loader-container', 'hidden');
+						text.style.opacity = '1';
+						bookContainer.querySelector('#current-section-title').style.opacity = '1';
+						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+					});
+					//}, 100);
 				}, false);
 			}
 
@@ -3909,28 +3909,28 @@ var book = function book(container) {
 					bookContainer.querySelector('#current-section-title').style.opacity = '0';
 					bookContainer.querySelector('#currentByTotal').style.opacity = '0';
 					_utils2.default.removeClass('#text-loader-container', 'hidden');
-					setTimeout(function () {
-						//marginY is relative to line-height (line-height : 1.5em)
-						var lineHeight = size * 1.5;
-						var marginY = h % lineHeight !== 0 ? lineHeight * 2 + h % lineHeight / 2 : lineHeight * 2;
-						book.setMarginY(marginY);
-						//text size
-						text.style.fontSize = size + 'px';
-						//cover.style.fontSize = '16px';
-						//book
-						book.reinit().then(function (resolve) {
-							//end loader
-							_utils2.default.addClass('#text-loader-container', 'hidden');
-							text.style.opacity = '1';
-							bookContainer.querySelector('#current-section-title').style.opacity = '1';
-							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-						}).catch(function (error) {
-							_utils2.default.addClass('#text-loader-container', 'hidden');
-							text.style.opacity = '1';
-							bookContainer.querySelector('#current-section-title').style.opacity = '1';
-							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-						});
-					}, 100);
+					//setTimeout( () => {
+					//marginY is relative to line-height (line-height : 1.5em)
+					var lineHeight = size * 1.5;
+					var marginY = h % lineHeight !== 0 ? lineHeight * 2 + h % lineHeight / 2 : lineHeight * 2;
+					book.setMarginY(marginY);
+					//text size
+					text.style.fontSize = size + 'px';
+					//cover.style.fontSize = '16px';
+					//book
+					book.reinit().then(function (resolve) {
+						//end loader
+						_utils2.default.addClass('#text-loader-container', 'hidden');
+						text.style.opacity = '1';
+						bookContainer.querySelector('#current-section-title').style.opacity = '1';
+						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+					}).catch(function (error) {
+						_utils2.default.addClass('#text-loader-container', 'hidden');
+						text.style.opacity = '1';
+						bookContainer.querySelector('#current-section-title').style.opacity = '1';
+						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+					});
+					//}, 100);
 				}, false);
 			}
 
@@ -3943,24 +3943,24 @@ var book = function book(container) {
 					_utils2.default.removeClass('#text-loader-container', 'hidden');
 					_utils2.default.removeClass('#options', 'open');
 					document.body.style.overflow = 'hidden';
-					setTimeout(function () {
-						//marginY is relative to line-height (line-height : 1.5em)
-						var lineHeight = size * 1.5;
-						var marginY = h % lineHeight !== 0 ? lineHeight * 2 + h % lineHeight / 2 : lineHeight * 2;
-						book.setMarginY(marginY);
-						//text size
-						text.style.fontSize = size + 'px';
-						//cover.style.fontSize = '14px';
-						//book
-						book.reinit().then(function (resolve) {
-							//end loader
-							document.body.style.overflow = 'visible';
-							_utils2.default.addClass('#text-loader-container', 'hidden');
-						}).catch(function (error) {
-							document.body.style.overflow = 'visible';
-							_utils2.default.addClass('#text-loader-container', 'hidden');
-						});
-					}, 100);
+					//setTimeout( () => {
+					//marginY is relative to line-height (line-height : 1.5em)
+					var lineHeight = size * 1.5;
+					var marginY = h % lineHeight !== 0 ? lineHeight * 2 + h % lineHeight / 2 : lineHeight * 2;
+					book.setMarginY(marginY);
+					//text size
+					text.style.fontSize = size + 'px';
+					//cover.style.fontSize = '14px';
+					//book
+					book.reinit().then(function (resolve) {
+						//end loader
+						document.body.style.overflow = 'visible';
+						_utils2.default.addClass('#text-loader-container', 'hidden');
+					}).catch(function (error) {
+						document.body.style.overflow = 'visible';
+						_utils2.default.addClass('#text-loader-container', 'hidden');
+					});
+					//},100);
 				}, false);
 			}
 
@@ -3974,25 +3974,25 @@ var book = function book(container) {
 					bookContainer.querySelector('#current-section-title').style.opacity = '0';
 					bookContainer.querySelector('#currentByTotal').style.opacity = '0';
 					_utils2.default.removeClass('#text-loader-container', 'hidden');
-					setTimeout(function () {
-						//text font
-						text.style.fontFamily = font;
-						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
-						bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
-						//book
-						book.reinit().then(function (resolve) {
-							//end loader
-							_utils2.default.addClass('#text-loader-container', 'hidden');
-							text.style.opacity = '1';
-							bookContainer.querySelector('#current-section-title').style.opacity = '1';
-							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-						}).catch(function (error) {
-							_utils2.default.addClass('#text-loader-container', 'hidden');
-							text.style.opacity = '1';
-							bookContainer.querySelector('#current-section-title').style.opacity = '1';
-							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-						});
-					}, 100);
+					//setTimeout( () => {
+					//text font
+					text.style.fontFamily = font;
+					bookContainer.querySelector('#current-section-title').style.fontFamily = font;
+					bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
+					//book
+					book.reinit().then(function (resolve) {
+						//end loader
+						_utils2.default.addClass('#text-loader-container', 'hidden');
+						text.style.opacity = '1';
+						bookContainer.querySelector('#current-section-title').style.opacity = '1';
+						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+					}).catch(function (error) {
+						_utils2.default.addClass('#text-loader-container', 'hidden');
+						text.style.opacity = '1';
+						bookContainer.querySelector('#current-section-title').style.opacity = '1';
+						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+					});
+					//}, 100);
 				}, false);
 			}
 
@@ -4007,25 +4007,25 @@ var book = function book(container) {
 					bookContainer.querySelector('#current-section-title').style.opacity = '0';
 					bookContainer.querySelector('#currentByTotal').style.opacity = '0';
 					_utils2.default.removeClass('#text-loader-container', 'hidden');
-					setTimeout(function () {
-						//text font
-						text.style.fontFamily = font;
-						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
-						bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
-						//book
-						book.reinit().then(function (resolve) {
-							//end loader
-							_utils2.default.addClass('#text-loader-container', 'hidden');
-							text.style.opacity = '1';
-							bookContainer.querySelector('#current-section-title').style.opacity = '1';
-							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-						}).catch(function (error) {
-							_utils2.default.addClass('#text-loader-container', 'hidden');
-							text.style.opacity = '1';
-							bookContainer.querySelector('#current-section-title').style.opacity = '1';
-							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
-						});
-					}, 100);
+					//setTimeout( () => {
+					//text font
+					text.style.fontFamily = font;
+					bookContainer.querySelector('#current-section-title').style.fontFamily = font;
+					bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
+					//book
+					book.reinit().then(function (resolve) {
+						//end loader
+						_utils2.default.addClass('#text-loader-container', 'hidden');
+						text.style.opacity = '1';
+						bookContainer.querySelector('#current-section-title').style.opacity = '1';
+						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+					}).catch(function (error) {
+						_utils2.default.addClass('#text-loader-container', 'hidden');
+						text.style.opacity = '1';
+						bookContainer.querySelector('#current-section-title').style.opacity = '1';
+						bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+					});
+					//}, 100);
 				}, false);
 			}
 
@@ -4038,21 +4038,21 @@ var book = function book(container) {
 					_utils2.default.removeClass('#text-loader-container', 'hidden');
 					_utils2.default.removeClass('#options', 'open');
 					document.body.style.overflow = 'hidden';
-					setTimeout(function () {
-						//text font
-						text.style.fontFamily = font;
-						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
-						bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
-						//book
-						book.reinit().then(function (resolve) {
-							//end loader
-							document.body.style.overflow = 'visible';
-							_utils2.default.addClass('#text-loader-container', 'hidden');
-						}).catch(function (error) {
-							document.body.style.overflow = 'visible';
-							_utils2.default.addClass('#text-loader-container', 'hidden');
-						});
-					}, 100);
+					//setTimeout( () => {
+					//text font
+					text.style.fontFamily = font;
+					bookContainer.querySelector('#current-section-title').style.fontFamily = font;
+					bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
+					//book
+					book.reinit().then(function (resolve) {
+						//end loader
+						document.body.style.overflow = 'visible';
+						_utils2.default.addClass('#text-loader-container', 'hidden');
+					}).catch(function (error) {
+						document.body.style.overflow = 'visible';
+						_utils2.default.addClass('#text-loader-container', 'hidden');
+					});
+					//},100);
 				}, false);
 			}
 		};
@@ -4442,6 +4442,7 @@ var WebBook = function () {
 						_this.refresh();
 						_this._text.style.display = 'block';
 
+						window.cancelAnimationFrame(_this._raf);
 						resolve('book done');
 					};
 
@@ -4465,49 +4466,52 @@ var WebBook = function () {
 					_this2.emptyNode(_this2._text);
 					_this2._text.appendChild(_this2._div);
 
-					_this2.toBook();
-
-					//pagination start
-					_this2._startPage = _this2.getPageStart();
-					//book total number of pages
-					_this2.pages_total = _this2.getBookTotalPages();
-					//array : for each section, starting page;
-					_this2._sections_page_start = [];
-					for (var i = 0; i < _this2._sections.length; i++) {
-						var item = {};
-						item.id = _this2._sections[i].id;
-						item.page_start = _this2.elementPageNumber(item.id);
-						_this2._sections_page_start.push(item);
-					}
-
-					//containers data-wb-element-page-number
-
-					var _loop2 = function _loop2(_i3) {
-						var id = _this2._elPageNumbers[_i3].getAttribute('data-wb-element-page-number');
-						var pageNumber = _this2._sections_page_start.filter(function (o) {
-							return o.id === id;
-						})[0].page_start;
-
-						if (pageNumber < 1) {
-							_this2._elPageNumbers[_i3].innerHTML = "";
-						} else if (_this2._elPageNumbers[_i3].innerHTML != pageNumber) {
-							_this2._elPageNumbers[_i3].innerHTML = pageNumber;
+					var fctReInit = function fctReInit(stamp) {
+						//pagination start
+						_this2._startPage = _this2.getPageStart();
+						//book total number of pages
+						_this2.pages_total = _this2.getBookTotalPages();
+						//array : for each section, starting page;
+						_this2._sections_page_start = [];
+						for (var i = 0; i < _this2._sections.length; i++) {
+							var item = {};
+							item.id = _this2._sections[i].id;
+							item.page_start = _this2.elementPageNumber(item.id);
+							_this2._sections_page_start.push(item);
 						}
+
+						//containers data-wb-element-page-number
+
+						var _loop2 = function _loop2(_i3) {
+							var id = _this2._elPageNumbers[_i3].getAttribute('data-wb-element-page-number');
+							var pageNumber = _this2._sections_page_start.filter(function (o) {
+								return o.id === id;
+							})[0].page_start;
+
+							if (pageNumber < 1) {
+								_this2._elPageNumbers[_i3].innerHTML = "";
+							} else if (_this2._elPageNumbers[_i3].innerHTML != pageNumber) {
+								_this2._elPageNumbers[_i3].innerHTML = pageNumber;
+							}
+						};
+
+						for (var _i3 = 0; _i3 < _this2._elPageNumbers.length; _i3++) {
+							_loop2(_i3);
+						}
+
+						if (_this2._bookmark) {
+							_this2.goToBookmark(_this2._bookmark);
+							_this2._position = Math.round((0, _core2.default)(_this2._text).position().left);
+						} else {
+							_this2.nextSection(_this2._sectionsIndex);
+						}
+						_this2.refresh();
+
+						window.cancelAnimationFrame(_this2._raf);
+						resolve('book done');
 					};
 
-					for (var _i3 = 0; _i3 < _this2._elPageNumbers.length; _i3++) {
-						_loop2(_i3);
-					}
-
-					if (_this2._bookmark) {
-						_this2.goToBookmark(_this2._bookmark);
-						_this2._position = Math.round((0, _core2.default)(_this2._text).position().left);
-					} else {
-						_this2.nextSection(_this2._sectionsIndex);
-					}
-					_this2.refresh();
-
-					resolve('book done');
+					_this2.toBook(fctReInit);
 				} else {
 
 					reject('no column');
@@ -4519,16 +4523,13 @@ var WebBook = function () {
 	}, {
 		key: 'toBook',
 		value: function toBook(cb) {
-			var cs = this._textContainer.style;
-			var ts = this._text.style;
-			cs.display = "none";
-			ts.display = "none";
+			this.col = true;
 			var marginX = this.getMarginX();
 			var marginY = this.getMarginY();
 
-			this.col = true;
-
 			//text-container
+			var cs = this._textContainer.style;
+			cs.display = "none";
 			cs.boxSizing = "border-box";
 			cs.webkitBoxSizing = "border-box";
 			cs.overflow = "hidden";
@@ -4540,6 +4541,8 @@ var WebBook = function () {
 			this._containerWidth = this._textContainer.clientWidth; //responsive
 
 			//text
+			var ts = this._text.style;
+			ts.display = "none";
 			ts.boxSizing = "border-box";
 			ts.webkitBoxSizing = "border-box";
 			ts.position = "absolute";
@@ -4563,7 +4566,7 @@ var WebBook = function () {
 			ts.display = "block";
 
 			if (cb) {
-				window.requestAnimationFrame(cb);
+				this._raf = window.requestAnimationFrame(cb);
 			}
 		}
 	}, {
@@ -11770,7 +11773,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="book">\n	<!--\n		STARTBOOK-CONTAINER\n	-->\n	<div id="bookContainer">\n		<!--\n			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366\n		-->\n		<%- include src/components/book-read/tabs-large-device.ejs -%>\n		<!--\n			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		<div id="swing-container">\n			<!--\n				START TEXT-CONTAINER\n			-->\n			<div data-wb-text-container class="card-4">\n				<!--\n					BOOKMARK\n				-->\n				<div id="bookmark">\n					<p><i class="material-icons">&#xE867;</i></p>\n				</div>\n				<!--\n					TOC (inside textContainer) : width < 1366\n				-->\n				<div id="toc">\n					<div data-wb-toc >\n						<button id="close-toc" type="button" class="btn">&times;</button>\n						<div id="toc-header">\n							<p><%- book.authorDisplay %></p>\n							<p class="text-uppercase"><%- book.title %></p>\n							<% if(book.subtitle1) {%>\n								<p><%- book.subtitle1 %></p>\n							<%}%>\n							<% if(book.subtitle2) {%>\n								<p class="text-small-caps"><%- book.subtitle2 %></p>\n							<%}%>\n						</div>\n					</div>\n				</div>\n				<!--\n					OPTIONS-MODAL (inside textContainer) : width >= 1366\n				-->\n				<%- include src/components/book-read/options-modal.ejs -%>\n				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span id="current-section-title" class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text></div>\n				<!--\n					BOTTOM (inside textContainer) : pagination\n				-->\n				<div id="bottom">\n					<span id="currentByTotal" class="wb-currentByTotal-pages"></span>\n				</div>\n				<div id="text-loader-container" class="hidden">\n					<div id="text-loader"></div>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM-SMALL (outside textContainer) : width < 768\n		-->\n		<div id="book-nav-bar-bottom-small">\n			<a id="home" href="/#/books/" class="home btn"><i class="material-icons">&#xE5C4;</i></a>\n			<button id="add-bookmark" class="add-bookmark btn"><i class="material-icons">&#xE867;</i></button>\n			<button id="open-options" class="btn"><i class="material-icons">&#xE8B8;</i></button>\n			<button id="open-toc" class="open-toc btn"><i class="material-icons">&#xE8DE;</i></button>\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom">\n			<div id="swing-bar">\n				<div id="book-nav-bar-bottom-controls">\n					<button id="home-large" class="home btn"><i class="material-icons">&#xE5C4;</i></button>\n					<button id="add-bookmark-large" class="add-bookmark btn"><i class="material-icons">&#xE867;</i></button>\n					<div id="center">\n						<button id="backward-large" class="btn">&lt;</button>\n						<button id="forward-large" class="btn">&gt;</button>\n					</div>\n					<button id="open-options-medium" class="btn"><i class="material-icons">&#xE8B8;</i></button>\n					<button id="open-toc-large" class="open-toc btn"><i class="material-icons">&#xE8DE;</i></button>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n	<div id="book-loader-container" class="hidden">\n		<div id="book-loader" style="border-top: 8px solid <%= book.styles.color %>; border-bottom: 8px solid <%= book.styles.color %>"></div>\n	</div>\n</div>\n',
+        input: '<div id="book">\n	<!--\n		STARTBOOK-CONTAINER\n	-->\n	<div id="bookContainer">\n		<!--\n			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366\n		-->\n		<%- include src/components/book-read/tabs-large-device.ejs -%>\n		<!--\n			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		<div id="swing-container">\n			<!--\n				START TEXT-CONTAINER\n			-->\n			<div data-wb-text-container class="card-4">\n				<!--\n					BOOKMARK\n				-->\n				<div id="bookmark">\n					<p><i class="material-icons">&#xE867;</i></p>\n				</div>\n				<!--\n					TOC (inside textContainer) : width < 1366\n				-->\n				<div id="toc">\n					<div data-wb-toc >\n						<button id="close-toc" type="button" class="btn">&times;</button>\n						<div id="toc-header">\n							<p><%- book.authorDisplay %></p>\n							<p class="text-uppercase"><%- book.title %></p>\n							<% if(book.subtitle1) {%>\n								<p><%- book.subtitle1 %></p>\n							<%}%>\n							<% if(book.subtitle2) {%>\n								<p class="text-small-caps"><%- book.subtitle2 %></p>\n							<%}%>\n						</div>\n					</div>\n				</div>\n				<!--\n					OPTIONS-MODAL (inside textContainer) : width >= 1366\n				-->\n				<%- include src/components/book-read/options-modal.ejs -%>\n				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span id="current-section-title" class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text></div>\n				<!--\n					BOTTOM (inside textContainer) : pagination\n				-->\n				<div id="bottom">\n					<span id="currentByTotal" class="wb-currentByTotal-pages"></span>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM-SMALL (outside textContainer) : width < 768\n		-->\n		<div id="book-nav-bar-bottom-small">\n			<a id="home" href="/#/books/" class="home btn"><i class="material-icons">&#xE5C4;</i></a>\n			<button id="add-bookmark" class="add-bookmark btn"><i class="material-icons">&#xE867;</i></button>\n			<button id="open-options" class="btn"><i class="material-icons">&#xE8B8;</i></button>\n			<button id="open-toc" class="open-toc btn"><i class="material-icons">&#xE8DE;</i></button>\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom">\n			<div id="swing-bar">\n				<div id="book-nav-bar-bottom-controls">\n					<button id="home-large" class="home btn"><i class="material-icons">&#xE5C4;</i></button>\n					<button id="add-bookmark-large" class="add-bookmark btn"><i class="material-icons">&#xE867;</i></button>\n					<div id="center">\n						<button id="backward-large" class="btn">&lt;</button>\n						<button id="forward-large" class="btn">&gt;</button>\n					</div>\n					<button id="open-options-medium" class="btn"><i class="material-icons">&#xE8B8;</i></button>\n					<button id="open-toc-large" class="open-toc btn"><i class="material-icons">&#xE8DE;</i></button>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n	<div id="book-loader-container" class="hidden">\n		<div id="book-loader" style="border-top: 8px solid <%= book.styles.color %>; border-bottom: 8px solid <%= book.styles.color %>"></div>\n	</div>\n	<div id="text-loader-container" class="hidden">\n		<div id="text-loader"></div>\n	</div>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -11930,7 +11933,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                     }
                     buf.push('\n				</div>\n			</div>\n		</div>\n		<div id="font-size-container">\n			<p><b>Taille de la police</b></p>\n			<div>\n				<div class="col-left">\n					<p><label><input type="radio" name="fontSize" value="14">&ensp;14 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="16">&ensp;16 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="18">&ensp;18 px</label></p>\n				</div>\n				<div class="col-right">\n					<p><label><input type="radio" name="fontSize" value="15">&ensp;15 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="17">&ensp;17 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="19">&ensp;19 px</label></p>\n				</div>\n			</div>\n		</div>\n	</div>\n</div>\n');
                     return buf.join("");
-                }() + '				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span id="current-section-title" class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text></div>\n				<!--\n					BOTTOM (inside textContainer) : pagination\n				-->\n				<div id="bottom">\n					<span id="currentByTotal" class="wb-currentByTotal-pages"></span>\n				</div>\n				<div id="text-loader-container" class="hidden">\n					<div id="text-loader"></div>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM-SMALL (outside textContainer) : width < 768\n		-->\n		<div id="book-nav-bar-bottom-small">\n			<a id="home" href="/#/books/" class="home btn"><i class="material-icons">&#xE5C4;</i></a>\n			<button id="add-bookmark" class="add-bookmark btn"><i class="material-icons">&#xE867;</i></button>\n			<button id="open-options" class="btn"><i class="material-icons">&#xE8B8;</i></button>\n			<button id="open-toc" class="open-toc btn"><i class="material-icons">&#xE8DE;</i></button>\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom">\n			<div id="swing-bar">\n				<div id="book-nav-bar-bottom-controls">\n					<button id="home-large" class="home btn"><i class="material-icons">&#xE5C4;</i></button>\n					<button id="add-bookmark-large" class="add-bookmark btn"><i class="material-icons">&#xE867;</i></button>\n					<div id="center">\n						<button id="backward-large" class="btn">&lt;</button>\n						<button id="forward-large" class="btn">&gt;</button>\n					</div>\n					<button id="open-options-medium" class="btn"><i class="material-icons">&#xE8B8;</i></button>\n					<button id="open-toc-large" class="open-toc btn"><i class="material-icons">&#xE8DE;</i></button>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n	<div id="book-loader-container" class="hidden">\n		<div id="book-loader" style="border-top: 8px solid ', escape((__stack.lineno = 102, book.styles.color)), "; border-bottom: 8px solid ", escape((__stack.lineno = 102, book.styles.color)), '"></div>\n	</div>\n</div>\n');
+                }() + '				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span id="current-section-title" class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text></div>\n				<!--\n					BOTTOM (inside textContainer) : pagination\n				-->\n				<div id="bottom">\n					<span id="currentByTotal" class="wb-currentByTotal-pages"></span>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM-SMALL (outside textContainer) : width < 768\n		-->\n		<div id="book-nav-bar-bottom-small">\n			<a id="home" href="/#/books/" class="home btn"><i class="material-icons">&#xE5C4;</i></a>\n			<button id="add-bookmark" class="add-bookmark btn"><i class="material-icons">&#xE867;</i></button>\n			<button id="open-options" class="btn"><i class="material-icons">&#xE8B8;</i></button>\n			<button id="open-toc" class="open-toc btn"><i class="material-icons">&#xE8DE;</i></button>\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom">\n			<div id="swing-bar">\n				<div id="book-nav-bar-bottom-controls">\n					<button id="home-large" class="home btn"><i class="material-icons">&#xE5C4;</i></button>\n					<button id="add-bookmark-large" class="add-bookmark btn"><i class="material-icons">&#xE867;</i></button>\n					<div id="center">\n						<button id="backward-large" class="btn">&lt;</button>\n						<button id="forward-large" class="btn">&gt;</button>\n					</div>\n					<button id="open-options-medium" class="btn"><i class="material-icons">&#xE8B8;</i></button>\n					<button id="open-toc-large" class="open-toc btn"><i class="material-icons">&#xE8DE;</i></button>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n	<div id="book-loader-container" class="hidden">\n		<div id="book-loader" style="border-top: 8px solid ', escape((__stack.lineno = 99, book.styles.color)), "; border-bottom: 8px solid ", escape((__stack.lineno = 99, book.styles.color)), '"></div>\n	</div>\n	<div id="text-loader-container" class="hidden">\n		<div id="text-loader"></div>\n	</div>\n</div>\n');
             })();
         }
         return buf.join("");
