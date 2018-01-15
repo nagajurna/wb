@@ -713,6 +713,7 @@ BOTTOM
 TEXT
 */
 [data-wb-text] {
+	font-family: Noto Serif, Georgia, serif;
 	font-size: 14px;
 	line-height: 1.5em;
 	text-align: justify;
@@ -723,9 +724,12 @@ TEXT
 	-moz-transition: opacity 0.4s;
 	-o-transition: opacity 0.4s;
 	will-change: transform;
+	transform: translateZ(0);
 	-webkit-transform: translate-z(0);
 	-ms-transform: translate-z(0);
 }
+
+
 
 @media screen and (min-width: 768px) {
     [data-wb-text] {

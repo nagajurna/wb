@@ -672,9 +672,7 @@ const book = function(container) {
 			document.body.style.overflowY = 'visible';
 			utils.addClass('#book-loader-container', 'hidden');
 			bookContainer.className = 'show';
-			//}, 100);
-			 
-		 })
+		})
 		 .catch(error => {
 			 console.log(error);
 		 });	
