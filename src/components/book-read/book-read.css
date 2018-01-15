@@ -723,6 +723,8 @@ TEXT
 	-moz-transition: opacity 0.4s;
 	-o-transition: opacity 0.4s;
 	will-change: transform;
+	-webkit-transform: translate-z(0);
+	-ms-transform: translate-z(0);
 }
 
 @media screen and (min-width: 768px) {
