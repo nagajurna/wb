@@ -4462,52 +4462,56 @@ var WebBook = function () {
 
 			var promise = new Promise(function (resolve, reject) {
 				if ('webkitColumnWidth' in document.body.style || 'mozColumnWidth' in document.body.style || 'columnWidth' in document.body.style) {
-
+					//this._text.style.display = 'none';
 					_this2.emptyNode(_this2._text);
 					_this2._text.appendChild(_this2._div);
-					_this2.toBook();
 
-					//pagination start
-					_this2._startPage = _this2.getPageStart();
-					//book total number of pages
-					_this2.pages_total = _this2.getBookTotalPages();
-					//array : for each section, starting page;
-					_this2._sections_page_start = [];
-					for (var i = 0; i < _this2._sections.length; i++) {
-						var item = {};
-						item.id = _this2._sections[i].id;
-						item.page_start = _this2.elementPageNumber(item.id);
-						_this2._sections_page_start.push(item);
-					}
-
-					//containers data-wb-element-page-number
-
-					var _loop2 = function _loop2(_i3) {
-						var id = _this2._elPageNumbers[_i3].getAttribute('data-wb-element-page-number');
-						var pageNumber = _this2._sections_page_start.filter(function (o) {
-							return o.id === id;
-						})[0].page_start;
-
-						if (pageNumber < 1) {
-							_this2._elPageNumbers[_i3].innerHTML = "";
-						} else if (_this2._elPageNumbers[_i3].innerHTML != pageNumber) {
-							_this2._elPageNumbers[_i3].innerHTML = pageNumber;
+					var fctReInit = function fctReInit(stamp) {
+						//pagination start
+						_this2._startPage = _this2.getPageStart();
+						//book total number of pages
+						_this2.pages_total = _this2.getBookTotalPages();
+						//array : for each section, starting page;
+						_this2._sections_page_start = [];
+						for (var i = 0; i < _this2._sections.length; i++) {
+							var item = {};
+							item.id = _this2._sections[i].id;
+							item.page_start = _this2.elementPageNumber(item.id);
+							_this2._sections_page_start.push(item);
 						}
+
+						//containers data-wb-element-page-number
+
+						var _loop2 = function _loop2(_i3) {
+							var id = _this2._elPageNumbers[_i3].getAttribute('data-wb-element-page-number');
+							var pageNumber = _this2._sections_page_start.filter(function (o) {
+								return o.id === id;
+							})[0].page_start;
+
+							if (pageNumber < 1) {
+								_this2._elPageNumbers[_i3].innerHTML = "";
+							} else if (_this2._elPageNumbers[_i3].innerHTML != pageNumber) {
+								_this2._elPageNumbers[_i3].innerHTML = pageNumber;
+							}
+						};
+
+						for (var _i3 = 0; _i3 < _this2._elPageNumbers.length; _i3++) {
+							_loop2(_i3);
+						}
+
+						if (_this2._bookmark) {
+							_this2.goToBookmark(_this2._bookmark);
+							_this2._position = Math.round((0, _core2.default)(_this2._text).position().left);
+						} else {
+							_this2.nextSection(_this2._sectionsIndex);
+						}
+						_this2.refresh();
+						//this._text.style.display = 'block';
+						window.cancelAnimationFrame(_this2._raf);
+						resolve('book done');
 					};
 
-					for (var _i3 = 0; _i3 < _this2._elPageNumbers.length; _i3++) {
-						_loop2(_i3);
-					}
-
-					if (_this2._bookmark) {
-						_this2.goToBookmark(_this2._bookmark);
-						_this2._position = Math.round((0, _core2.default)(_this2._text).position().left);
-					} else {
-						_this2.nextSection(_this2._sectionsIndex);
-					}
-					_this2.refresh();
-
-					resolve('book done');
+					_this2.toBook(fctReInit);
 				} else {
 
 					reject('no column');
@@ -4877,8 +4881,6 @@ var WebBook = function () {
 				return '';
 			}
 			var elPosition = this.getElementPosition(el);
-			//let elPosition = Math.round($(el).position().left) - this.getMarginX();
-			//elPosition = (elPosition%this._containerWidth!==0 ? elPosition-elPosition%this._containerWidth : elPosition);//always at a page beginning
 			var elPageNumber = elPosition / this._containerWidth + 1; //elPosition/this._containerWidth is position of a page : position 0 is page 1,...
 			elPageNumber = elPageNumber - this._startPage;
 			return elPageNumber;
@@ -5024,8 +5026,6 @@ var WebBook = function () {
 				var elPosition = void 0;
 				for (var i = 0; i < elements.length; i++) {
 					var _elPosition = this.getElementPosition(elements[i]);
-					//let elPosition = Math.round($(elements[i]).position().left)-this.getMarginX();
-					//elPosition = (elPosition%this._containerWidth!==0 ? elPosition-elPosition%this._containerWidth : elPosition);//always at a page beginning
 					if (_elPosition === position) {
 						if (currentSection.id === 'wb-last') {
 							this._bookmark = { sectionId: currentSection.id, el: elements.length - 1 };
@@ -5049,24 +5049,17 @@ var WebBook = function () {
 					//this._position = Math.round($(this._text).position().left);
 					//return; 
 					//}
-					//if(this._sections[i].id!==this._text.querySelectorAll('.wb-section')[0].id) {
 					this._sectionsIndex = i;
-					//this._text.innerHTML = '';
 					this.emptyNode(this._text);
-					//this._sections[this._sectionsIndex].style.marginBottom = "300%";
 					this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
-					//this._lastElement.marginBottom = "300%";
 					this._text.appendChild(this._lastElement.cloneNode(true));
 					this.setSectionLinks();
 					this.toBook();
-					//}
 					var currentSection = this._text.querySelectorAll('.wb-section')[0];
 					var elements = currentSection.querySelectorAll(':not(.wb-section)');
 					var element = elements[bookmark.el];
 					//position : offsetLeft of element relative to text
 					var position = this.getElementPosition(element);
-					//let position = Math.round($(element).position().left)-this.getMarginX();
-					//position = (position%this._containerWidth!==0 ? position-position%this._containerWidth : position);//always at a page beginning
 					//text position = -position
 					this._text.style.left = -position + "px";
 					this._position = Math.round((0, _core2.default)(this._text).position().left);
