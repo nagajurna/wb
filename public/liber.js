@@ -4465,54 +4465,49 @@ var WebBook = function () {
 					_this2.emptyNode(_this2._text);
 					_this2._text.appendChild(_this2._div);
 
-					//this.toBook();
+					_this2.toBook();
 
+					//pagination start
+					_this2._startPage = _this2.getPageStart();
+					//book total number of pages
+					_this2.pages_total = _this2.getBookTotalPages();
+					//array : for each section, starting page;
+					_this2._sections_page_start = [];
+					for (var i = 0; i < _this2._sections.length; i++) {
+						var item = {};
+						item.id = _this2._sections[i].id;
+						item.page_start = _this2.elementPageNumber(item.id);
+						_this2._sections_page_start.push(item);
+					}
 
-					var fctReinit = function fctReinit(stamp) {
-						//pagination start
-						_this2._startPage = _this2.getPageStart();
-						//book total number of pages
-						_this2.pages_total = _this2.getBookTotalPages();
-						//array : for each section, starting page;
-						_this2._sections_page_start = [];
-						for (var i = 0; i < _this2._sections.length; i++) {
-							var item = {};
-							item.id = _this2._sections[i].id;
-							item.page_start = _this2.elementPageNumber(item.id);
-							_this2._sections_page_start.push(item);
+					//containers data-wb-element-page-number
+
+					var _loop2 = function _loop2(_i3) {
+						var id = _this2._elPageNumbers[_i3].getAttribute('data-wb-element-page-number');
+						var pageNumber = _this2._sections_page_start.filter(function (o) {
+							return o.id === id;
+						})[0].page_start;
+
+						if (pageNumber < 1) {
+							_this2._elPageNumbers[_i3].innerHTML = "";
+						} else if (_this2._elPageNumbers[_i3].innerHTML != pageNumber) {
+							_this2._elPageNumbers[_i3].innerHTML = pageNumber;
 						}
-
-						//containers data-wb-element-page-number
-
-						var _loop2 = function _loop2(_i3) {
-							var id = _this2._elPageNumbers[_i3].getAttribute('data-wb-element-page-number');
-							var pageNumber = _this2._sections_page_start.filter(function (o) {
-								return o.id === id;
-							})[0].page_start;
-
-							if (pageNumber < 1) {
-								_this2._elPageNumbers[_i3].innerHTML = "";
-							} else if (_this2._elPageNumbers[_i3].innerHTML != pageNumber) {
-								_this2._elPageNumbers[_i3].innerHTML = pageNumber;
-							}
-						};
-
-						for (var _i3 = 0; _i3 < _this2._elPageNumbers.length; _i3++) {
-							_loop2(_i3);
-						}
-
-						if (_this2._bookmark) {
-							_this2.goToBookmark(_this2._bookmark);
-							_this2._position = Math.round((0, _core2.default)(_this2._text).position().left);
-						} else {
-							_this2.nextSection(_this2._sectionsIndex);
-						}
-						_this2.refresh();
-
-						resolve('book done');
 					};
 
-					_this2.toBook(fctReinit);
+					for (var _i3 = 0; _i3 < _this2._elPageNumbers.length; _i3++) {
+						_loop2(_i3);
+					}
+
+					if (_this2._bookmark) {
+						_this2.goToBookmark(_this2._bookmark);
+						_this2._position = Math.round((0, _core2.default)(_this2._text).position().left);
+					} else {
+						_this2.nextSection(_this2._sectionsIndex);
+					}
+					_this2.refresh();
+
+					resolve('book done');
 				} else {
 
 					reject('no column');
