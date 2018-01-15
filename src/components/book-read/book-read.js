@@ -448,7 +448,7 @@ const book = function(container) {
 					bookContainer.querySelector('#current-section-title').style.opacity = '0';
 					bookContainer.querySelector('#currentByTotal').style.opacity = '0';
 					utils.removeClass('#text-loader-container','hidden');
-					//setTimeout( () => {
+					setTimeout( () => {
 						//marginY is relative to line-height (line-height : 1.5em)
 						let lineHeight = size*1.5;
 						let marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*2;
@@ -471,7 +471,7 @@ const book = function(container) {
 							bookContainer.querySelector('#current-section-title').style.opacity = '1';
 							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
 						});
-					//}, 100);
+					}, 100);
 				}, false);
 			}
 		
@@ -486,7 +486,7 @@ const book = function(container) {
 					bookContainer.querySelector('#current-section-title').style.opacity = '0';
 					bookContainer.querySelector('#currentByTotal').style.opacity = '0';
 					utils.removeClass('#text-loader-container','hidden');
-					//setTimeout( () => {
+					setTimeout( () => {
 						//marginY is relative to line-height (line-height : 1.5em)
 						let lineHeight = size*1.5;
 						let marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*2;
@@ -509,7 +509,7 @@ const book = function(container) {
 							bookContainer.querySelector('#current-section-title').style.opacity = '1';
 							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
 						});
-					//}, 100);
+					}, 100);
 				}, false);
 			}
 			
@@ -522,7 +522,7 @@ const book = function(container) {
 					utils.removeClass('#text-loader-container','hidden');
 					utils.removeClass('#options','open');
 					document.body.style.overflow = 'hidden';
-					//setTimeout( () => {
+					setTimeout( () => {
 						//marginY is relative to line-height (line-height : 1.5em)
 						let lineHeight = size*1.5;
 						let marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*2;
@@ -541,7 +541,7 @@ const book = function(container) {
 							document.body.style.overflow = 'visible'; 
 							utils.addClass('#text-loader-container','hidden');
 						});		
-					 //},100);
+					 },100);
 				}, false);
 			}
 		
@@ -555,7 +555,7 @@ const book = function(container) {
 					bookContainer.querySelector('#current-section-title').style.opacity = '0';
 					bookContainer.querySelector('#currentByTotal').style.opacity = '0';
 					utils.removeClass('#text-loader-container','hidden');
-					//setTimeout( () => {
+					setTimeout( () => {
 						//text font
 						text.style.fontFamily = font;
 						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
@@ -575,7 +575,7 @@ const book = function(container) {
 							bookContainer.querySelector('#current-section-title').style.opacity = '1';
 							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
 						});
-					 //}, 100);
+					 }, 100);
 				}, false);
 			}
 		
@@ -590,7 +590,7 @@ const book = function(container) {
 					bookContainer.querySelector('#current-section-title').style.opacity = '0';
 					bookContainer.querySelector('#currentByTotal').style.opacity = '0';
 					utils.removeClass('#text-loader-container','hidden');
-					//setTimeout( () => {
+					setTimeout( () => {
 						//text font
 						text.style.fontFamily = font;
 						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
@@ -610,7 +610,7 @@ const book = function(container) {
 							bookContainer.querySelector('#current-section-title').style.opacity = '1';
 							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
 						});
-					//}, 100);
+					}, 100);
 				}, false);
 			}
 		
@@ -623,7 +623,7 @@ const book = function(container) {
 					utils.removeClass('#text-loader-container','hidden');
 					utils.removeClass('#options','open');
 					document.body.style.overflow = 'hidden';
-					//setTimeout( () => {
+					setTimeout( () => {
 						//text font
 						text.style.fontFamily = font;
 						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
@@ -639,7 +639,7 @@ const book = function(container) {
 							document.body.style.overflow = 'visible'; 
 							utils.addClass('#text-loader-container','hidden');
 						});
-					//},100);
+					},100);
 				}, false);
 			}
 		}
