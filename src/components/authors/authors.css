@@ -64,84 +64,37 @@
 	position: relative;
 }
 
-#authors-container .previous {
-	position: absolute;
-	top: 170px;
-	left: -100px;
-	margin-top: -25px;
-	width: 50px;
-	height: 50px;
-	font-family: "Vollkorn", Georgia, sans-serif;
-	font-size: 1.6em;
-	background-color: transparent;
-	display: none;
-}
-
-#authors-container .next {
-	position: absolute;
-	top: 170px;
-	right: -100px;
-	margin-top: -25px;
-	width: 50px;
-	height: 50px;
-	font-family: "Vollkorn", Georgia, sans-serif;
-	font-size: 1.6em;
-	background-color: transparent;
-	display: none;
-}
-
-@media only screen and (min-width: 750px) {
-	#authors-container .previous {
-		display: block;
-	}
-
-	#authors-container .next {
-		display: block;
-	}
-}
-
 #authors-container #authors-list {
 	max-width: 750px;
 	margin: auto;
 	padding-bottom: 16px;
 }
 
-#authors-container .author-name {
-	max-width: 750px;
-	text-align: center;
-	font-family: "Vollkorn", Georgia, sans-serif;
+#authors-container .accordion {
+    cursor: pointer;
+    text-align: center;
+    font-family: "Vollkorn", Georgia, sans-serif;
 	font-size: 1.2em;
 	font-variant: small-caps;
 	letter-spacing: 1.5px;
 	padding: 16px;
-	text-align: center;
-}
-
-#authors-container .author-name a {
-	color: #000;
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    transition: 0.4s;
 }
 
 #authors-container #authors-list .books-list {
 	position: relative;
 	width: 250px;
 	margin: auto;
-}
-
-#authors-container .slide {
-	position: relative;
-	width: 250px;
-	margin: auto;
-	margin-bottom: 48px;
-	display: block;
 	text-align: center;
+	display: none;
 }
 
-@media only screen and (min-width: 750px) {
-	
-	#authors-container .slide {
-		margin-bottom: 0px;
-		display: none;
-	}
+#authors-container #authors-list .books-list .book-item {
+	margin-bottom: 48px;
 }
 
 #authors-container #paper {

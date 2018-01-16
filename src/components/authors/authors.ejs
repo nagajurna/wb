@@ -13,17 +13,15 @@
 			<% for(var i=0; i<authors.length; i++) {%>
 				<% if(authors[i].visible) { %>
 				<div class="auth" id="auth_<%= i %>">
-					<p class="author-name"><a href="#/authors/<%= authors[i].id %>"><%- authors[i].name %>&ensp;(<%- authors[i].works.length %>)</a></p>
+					<button id="<%= authors[i].id %>" class="accordion"><%- authors[i].name %>&ensp;(<%- authors[i].works.length %>)</button>
 					<div class="books-list">
-						<button class="previous btn" type="button">&lt;</button>
-						<button class="next btn" type="button">&gt;</button>
 					<% for(var j=0; j<authors[i].works.length; j++) {%>
 						<% var work = authors[i].works[j] %>
 						
 						<!-- MODAL (INFOS) -->
 						<%- include src/components/authors/infos-modal.ejs -%>
 						
-						<div class="slide fade slides_<%= i %>" id="slide_<%= work.id %>">
+						<div class="book-item" id="book_<%= work.id %>">
 							<div id="paper" style="background-color: <%- work.styles.color %>; background-image: url(<%- work.styles.image %>)">
 								<div id="<%= work.id %>" class="book" style="<%= work.styles.cover %>">
 									<p class="author" style="<%=work.styles.author %>"><%- work.authorDisplay %></p>
