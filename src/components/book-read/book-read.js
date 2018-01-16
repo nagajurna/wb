@@ -723,7 +723,21 @@ const book = function(container) {
 		return utils.ajax(options);
 	})
 	.then( content => {
-		init(content);
+		let prevLocation = dataStore.getData('location').prevLocation;
+		if(prevLocation) {
+			init(content);
+		} else {
+			let fct = (stamp) => {
+				init(content);
+			}
+			
+			if(window.requestAnimationFrame) {
+				window.requestAnimationFrame(fct);
+			} else {
+				setTimeout(fct,50);
+			}
+		}
+		
 	})
 	.catch( error => {
 		console.log(error);

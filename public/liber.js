@@ -4129,7 +4129,20 @@ var book = function book(container) {
 		options = { method: 'GET', url: bk.path + '.html' };
 		return _utils2.default.ajax(options);
 	}).then(function (content) {
-		init(content);
+		var prevLocation = _dataStore2.default.getData('location').prevLocation;
+		if (prevLocation) {
+			init(content);
+		} else {
+			var fct = function fct(stamp) {
+				init(content);
+			};
+
+			if (window.requestAnimationFrame) {
+				window.requestAnimationFrame(fct);
+			} else {
+				setTimeout(fct, 50);
+			}
+		}
 	}).catch(function (error) {
 		console.log(error);
 		_utils2.default.addClass('#book-loader-container', 'hidden');
@@ -4407,6 +4420,7 @@ var WebBook = function () {
 						_this.pages_total = _this.getBookTotalPages();
 						//array : for each section, starting page;
 						_this._sections_page_start = [];
+
 						for (var _i = 0; _i < _this._sections.length; _i++) {
 							var item = {};
 							item.id = _this._sections[_i].id;
@@ -4987,7 +5001,7 @@ var WebBook = function () {
 			var section = this._text.querySelectorAll('.wb-section')[0];
 			if (section.querySelectorAll('.wb-section').length !== 0) {
 				//nested sections
-				var sects = this._text.querySelectorAll('.wb-section');
+				var sects = this._text.querySelectorAll('.wb-active-section');
 				var sections = [].slice.call(sects);
 				sections.push(this._lastElement);
 				for (var i = 0; i < sections.length; i++) {
@@ -12044,7 +12058,7 @@ var authors = function authors(container) {
 		el.parentElement.style.display = 'block';
 		el.scrollIntoView(true);
 		var html = document.getElementsByTagName("html")[0];
-		html.scrollTop = html.scrollTop - 40;
+		html.scrollTop = html.scrollTop - 48;
 	}
 	//get active letter link
 	var ls = root.querySelectorAll('#letters a');

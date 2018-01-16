@@ -80,7 +80,7 @@ const authors = function(container) {
 		el.parentElement.style.display = 'block';
 		el.scrollIntoView(true);
 		let html = document.getElementsByTagName("html")[0];
-		html.scrollTop = html.scrollTop-40;
+		html.scrollTop = html.scrollTop-48;
 	}
 	//get active letter link
 	let ls = root.querySelectorAll('#letters a');
