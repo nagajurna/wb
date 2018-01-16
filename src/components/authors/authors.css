@@ -89,12 +89,12 @@
 	position: relative;
 	width: 250px;
 	margin: auto;
-	text-align: center;
 	display: none;
 }
 
 #authors-container #authors-list .books-list .book-item {
 	margin-bottom: 48px;
+	text-align: center;
 }
 
 #authors-container #paper {
