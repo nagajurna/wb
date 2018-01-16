@@ -13,7 +13,7 @@
 			<% for(var i=0; i<authors.length; i++) {%>
 				<% if(authors[i].visible) { %>
 				<div class="auth" id="auth_<%= i %>">
-					<p class="author-name"><a href="#/authors/<%= authors[i].id %>"><%- authors[i].name %></a></p>
+					<p class="author-name"><a href="#/authors/<%= authors[i].id %>"><%- authors[i].name %>&ensp;(<%- authors[i].works.length %>)</a></p>
 					<div class="books-list">
 						<button class="previous btn" type="button">&lt;</button>
 						<button class="next btn" type="button">&gt;</button>

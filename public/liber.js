@@ -4441,8 +4441,9 @@ var WebBook = function () {
 						}
 						_this.refresh();
 						_this._text.style.display = 'block';
-
-						window.cancelAnimationFrame(_this._raf);
+						if (_this._raf) {
+							window.cancelAnimationFrame(_this._raf);
+						}
 						resolve('book done');
 					};
 
@@ -4563,7 +4564,11 @@ var WebBook = function () {
 			ts.display = "block";
 
 			if (cb) {
-				this._raf = window.requestAnimationFrame(cb);
+				if (window.requestAnimationFrame) {
+					this._raf = window.requestAnimationFrame(cb);
+				} else {
+					setTimeout(cb, 50);
+				}
 			}
 		}
 	}, {
@@ -12221,7 +12226,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="authors-container" class="fade">\n	<div id="top-page-header">auteurs</div>\n	<div id="authors-list">\n		<div id="letters">\n			<%- include src/components/authors/authors-letters.ejs -%>\n		</div>\n		<div>\n			\n			<% if(authors.length===0) {%>\n				<p id="noresult">aucun résultat.</p>\n			<%}%>\n			\n			<% for(var i=0; i<authors.length; i++) {%>\n				<% if(authors[i].visible) { %>\n				<div class="auth" id="auth_<%= i %>">\n					<p class="author-name"><a href="#/authors/<%= authors[i].id %>"><%- authors[i].name %></a></p>\n					<div class="books-list">\n						<button class="previous btn" type="button">&lt;</button>\n						<button class="next btn" type="button">&gt;</button>\n					<% for(var j=0; j<authors[i].works.length; j++) {%>\n						<% var work = authors[i].works[j] %>\n						\n						<!-- MODAL (INFOS) -->\n						<%- include src/components/authors/infos-modal.ejs -%>\n						\n						<div class="slide fade slides_<%= i %>" id="slide_<%= work.id %>">\n							<div id="paper" style="background-color: <%- work.styles.color %>; background-image: url(<%- work.styles.image %>)">\n								<div id="<%= work.id %>" class="book" style="<%= work.styles.cover %>">\n									<p class="author" style="<%=work.styles.author %>"><%- work.authorDisplay %></p>\n									<p class="title" style="<%-work.styles.title %>">\n										<%- work.title %>\n									</p>\n									<% if(work.subtitle1) {%>\n									<p class="subtitle1" style="<%= work.styles.subtitle1 %>">\n										<%- work.subtitle1 %></a>\n									</p>\n									<% } %>\n									<% if(work.subtitle2) {%>\n									<p class="subtitle1" style="<%= work.styles.subtitle2 %>">\n										<%- work.subtitle2 %></a>\n									</p>\n									<% } %>\n									<div class="logo" style="<%=work.styles.logo %>">\n										<p class="span1">&#8916;</p>\n										<p class="span2">équivoques</p>\n									</div>\n							   </div>\n						   </div>\n						   <div id="book-btns" >\n								<% if(!work.visible) {%>\n									<button class="tobepublished btn">&Agrave; paraître</button>\n								<%}%>\n								<button id="open-infos-<%= work.id %>" class="open-infos-btn btn" >Fiche</button>\n						   </div>\n						</div>\n					\n					<%}%>\n					</div>\n				</div>\n				<% } %>\n			<% } %>\n			\n		</div>\n	</div>\n	<!-- FOOTER -->\n	<%- include src/components/footer.ejs -%>\n</div>\n',
+        input: '<div id="authors-container" class="fade">\n	<div id="top-page-header">auteurs</div>\n	<div id="authors-list">\n		<div id="letters">\n			<%- include src/components/authors/authors-letters.ejs -%>\n		</div>\n		<div>\n			\n			<% if(authors.length===0) {%>\n				<p id="noresult">aucun résultat.</p>\n			<%}%>\n			\n			<% for(var i=0; i<authors.length; i++) {%>\n				<% if(authors[i].visible) { %>\n				<div class="auth" id="auth_<%= i %>">\n					<p class="author-name"><a href="#/authors/<%= authors[i].id %>"><%- authors[i].name %>&ensp;(<%- authors[i].works.length %>)</a></p>\n					<div class="books-list">\n						<button class="previous btn" type="button">&lt;</button>\n						<button class="next btn" type="button">&gt;</button>\n					<% for(var j=0; j<authors[i].works.length; j++) {%>\n						<% var work = authors[i].works[j] %>\n						\n						<!-- MODAL (INFOS) -->\n						<%- include src/components/authors/infos-modal.ejs -%>\n						\n						<div class="slide fade slides_<%= i %>" id="slide_<%= work.id %>">\n							<div id="paper" style="background-color: <%- work.styles.color %>; background-image: url(<%- work.styles.image %>)">\n								<div id="<%= work.id %>" class="book" style="<%= work.styles.cover %>">\n									<p class="author" style="<%=work.styles.author %>"><%- work.authorDisplay %></p>\n									<p class="title" style="<%-work.styles.title %>">\n										<%- work.title %>\n									</p>\n									<% if(work.subtitle1) {%>\n									<p class="subtitle1" style="<%= work.styles.subtitle1 %>">\n										<%- work.subtitle1 %></a>\n									</p>\n									<% } %>\n									<% if(work.subtitle2) {%>\n									<p class="subtitle1" style="<%= work.styles.subtitle2 %>">\n										<%- work.subtitle2 %></a>\n									</p>\n									<% } %>\n									<div class="logo" style="<%=work.styles.logo %>">\n										<p class="span1">&#8916;</p>\n										<p class="span2">équivoques</p>\n									</div>\n							   </div>\n						   </div>\n						   <div id="book-btns" >\n								<% if(!work.visible) {%>\n									<button class="tobepublished btn">&Agrave; paraître</button>\n								<%}%>\n								<button id="open-infos-<%= work.id %>" class="open-infos-btn btn" >Fiche</button>\n						   </div>\n						</div>\n					\n					<%}%>\n					</div>\n				</div>\n				<% } %>\n			<% } %>\n			\n		</div>\n	</div>\n	<!-- FOOTER -->\n	<%- include src/components/footer.ejs -%>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -12254,7 +12259,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                     buf.push("\n				");
                     __stack.lineno = 13;
                     if (authors[i].visible) {
-                        buf.push('\n				<div class="auth" id="auth_', escape((__stack.lineno = 14, i)), '">\n					<p class="author-name"><a href="#/authors/', escape((__stack.lineno = 15, authors[i].id)), '">', (__stack.lineno = 15, authors[i].name), '</a></p>\n					<div class="books-list">\n						<button class="previous btn" type="button">&lt;</button>\n						<button class="next btn" type="button">&gt;</button>\n					');
+                        buf.push('\n				<div class="auth" id="auth_', escape((__stack.lineno = 14, i)), '">\n					<p class="author-name"><a href="#/authors/', escape((__stack.lineno = 15, authors[i].id)), '">', (__stack.lineno = 15, authors[i].name), "&ensp;(", (__stack.lineno = 15, authors[i].works.length), ')</a></p>\n					<div class="books-list">\n						<button class="previous btn" type="button">&lt;</button>\n						<button class="next btn" type="button">&gt;</button>\n					');
                         __stack.lineno = 19;
                         for (var j = 0; j < authors[i].works.length; j++) {
                             buf.push("\n						");
