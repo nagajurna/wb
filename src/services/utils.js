@@ -1,3 +1,4 @@
+import Promise from 'promise';
 //utils.js
 const utils = {
 	//AJAX requests

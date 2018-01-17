@@ -8,29 +8,29 @@ var index = (function() {
 	
 	let root;
 	
-	let searchInput = () => {
-		//MODAL SEARCH (small devices)
-		//search open
-		root.querySelector("#search-open").addEventListener("click", event => {
-			event.preventDefault();
-			root.querySelector('#search-modal').style.display = 'block';
-		}, false);
-		//search close
-		root.querySelector("#search-close").addEventListener("click", event => {
-			root.querySelector('#search-modal').style.display = 'none';
-		}, false);
-		//search valid
-		root.querySelector("#search-form").addEventListener("submit", event => {
-			event.preventDefault();
-			let search = root.querySelector('[name=search]').value;
-			if(search!=='') {
-				location.hash = '#/search?q=' + search;
-			}
-			root.querySelector('#search-modal').style.display = 'none';
-			root.querySelector('[name=search]').value = '';
-		}, false);
+	//let searchInput = () => {
+		////MODAL SEARCH (small devices)
+		////search open
+		//root.querySelector("#search-open").addEventListener("click", event => {
+			//event.preventDefault();
+			//root.querySelector('#search-modal').style.display = 'block';
+		//}, false);
+		////search close
+		//root.querySelector("#search-close").addEventListener("click", event => {
+			//root.querySelector('#search-modal').style.display = 'none';
+		//}, false);
+		////search valid
+		//root.querySelector("#search-form").addEventListener("submit", event => {
+			//event.preventDefault();
+			//let search = root.querySelector('[name=search]').value;
+			//if(search!=='') {
+				//location.hash = '#/search?q=' + search;
+			//}
+			//root.querySelector('#search-modal').style.display = 'none';
+			//root.querySelector('[name=search]').value = '';
+		//}, false);
 		
-	}
+	//}
 	
 	let init = () => {
 		//if book/id/read 
@@ -68,7 +68,35 @@ var index = (function() {
 			}, false);
 		}
 		
-		//searchInput();
+		window.addEventListener('hashchange', () => {
+			if(location.hash.match(/#\/[^\/]+\/read$/)) {
+				utils.addClass("#header", "hidden");
+				utils.addClass("#nav-bar-top", "hidden");
+			} else {
+				utils.removeClass("#header", "hidden");
+				utils.removeClass("#nav-bar-top", "hidden");
+				if(window.innerWidth < 750) {
+					utils.addClass("#nav-bar-top", "hidden");
+					utils.removeClass("#menu-open", "hidden");
+				} else {
+					utils.removeClass("#nav-bar-top", "hidden");
+					utils.addClass("#menu-open", "hidden");
+				}
+			}
+			
+		}, false);
+
+		window.addEventListener('resize', () => {
+			if(!location.hash.match(/#\/[^\/]+\/read$/)) {
+				if(window.innerWidth < 750) {
+					utils.addClass("#nav-bar-top", "hidden");
+					utils.removeClass("#menu-open", "hidden");
+				} else {
+					utils.removeClass("#nav-bar-top", "hidden");
+					utils.addClass("#menu-open", "hidden");
+				}
+			}
+		}, false);
 		
 	}
 	
@@ -110,8 +138,16 @@ var index = (function() {
 			return 'done';
 		})
 		.then( resolve => {
+			//init
+			init();
+			return 'done';
+		})
+		.then( resolve => {
 			//call router
 			router();
+			return 'done';
+		})
+		.then( resolve => {
 			//loader stop
 			utils.addClass('#loader-container', 'hidden');
 		})
@@ -121,39 +157,7 @@ var index = (function() {
 	}
 	
 	window.addEventListener('DOMContentLoaded', (e) => {
-		init();
 		getData();
-		
-		window.addEventListener('hashchange', () => {
-			if(location.hash.match(/#\/[^\/]+\/read$/)) {
-				utils.addClass("#header", "hidden");
-				utils.addClass("#nav-bar-top", "hidden");
-			} else {
-				utils.removeClass("#header", "hidden");
-				utils.removeClass("#nav-bar-top", "hidden");
-				if(window.innerWidth < 750) {
-					utils.addClass("#nav-bar-top", "hidden");
-					utils.removeClass("#menu-open", "hidden");
-				} else {
-					utils.removeClass("#nav-bar-top", "hidden");
-					utils.addClass("#menu-open", "hidden");
-				}
-			}
-			
-		}, false);
-
-		window.addEventListener('resize', () => {
-			if(!location.hash.match(/#\/[^\/]+\/read$/)) {
-				if(window.innerWidth < 750) {
-					utils.addClass("#nav-bar-top", "hidden");
-					utils.removeClass("#menu-open", "hidden");
-				} else {
-					utils.removeClass("#nav-bar-top", "hidden");
-					utils.addClass("#menu-open", "hidden");
-				}
-			}
-		}, false);
-		
 	}, false);
 
 })();

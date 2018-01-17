@@ -143,20 +143,22 @@
 	font-size: 1.25em;
 }
 
-[data-wb-text] p {
+[data-wb-text] p, .hyphenate {
   hyphens: auto;
   -webkit-hyphens: auto;
   -ms-hyphens: auto;
   -moz-hyphens: auto;
   -o-hyphens: auto;
 }
-[data-wb-text] p.section-title, [data-wb-text] #cover p {
+[data-wb-text] p.section-title, [data-wb-text] #cover p, .no-hyphenate {
   hyphens: none;
   -webkit-hyphens: none;
   -ms-hyphens: none;
   -moz-hyphens: none;
   -o-hyphens: none;
 }
+
+
 
 
 
