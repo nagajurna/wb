@@ -2,7 +2,7 @@
 	font-family: 'Noto Serif', 'Georgia', serif;
 }
 
-[data-wb-text].cover {
+[data-wb-text].cover_active {
 	background-color: rgba(216, 174, 71, 0.8);
 	background-image: url("/books/le_roi_au_masque_d_or/le_roi_au_masque_d_or_cover.jpg");
 }

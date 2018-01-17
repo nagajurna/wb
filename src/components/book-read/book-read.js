@@ -737,7 +737,6 @@ const book = function(container) {
 				setTimeout(fct,50);
 			}
 		}
-		
 	})
 	.catch( error => {
 		console.log(error);

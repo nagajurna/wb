@@ -2,7 +2,7 @@
 	font-family: 'Noto Serif', 'Georgia', serif;
 }
 
-[data-wb-text].cover {
+[data-wb-text].cover_active {
 	background-color: rgba(52, 24, 30, 0.8);
 	background-image: url("/books/du_dandysme_et_de_g_brummell/du_dandysme_et_de_g_brummell_cover.jpg");
 }

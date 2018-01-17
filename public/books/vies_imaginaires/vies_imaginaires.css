@@ -2,7 +2,7 @@
 	font-family: 'Noto Serif', 'Georgia', serif;
 }
 
-[data-wb-text].cover {
+[data-wb-text].cover_active {
 	background-color: rgba(123, 55, 71, 0.8);
 	background-image: url("/books/vies_imaginaires/vies_imaginaires_cover.jpg");
 }

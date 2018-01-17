@@ -2,7 +2,7 @@
 	font-family: 'Noto Serif', 'Georgia', serif;
 }
 
-[data-wb-text].cover {
+[data-wb-text].cover_active {
 	background-color: rgba(190, 19, 45, 0.8);
 	background-image: url("/books/rene_leys/rene_leys_cover.jpg");
 }

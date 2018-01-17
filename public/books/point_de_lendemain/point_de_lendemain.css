@@ -2,7 +2,7 @@
 	font-family: 'Noto Serif', 'Georgia', serif;
 }
 
-[data-wb-text].cover {
+[data-wb-text].cover_active {
 	background-color: rgba(247, 202, 201,0.8);
 	background-image: url("/books/point_de_lendemain/point_de_lendemain_cover.jpg");
 }

@@ -2,7 +2,7 @@
 	font-family: 'Noto Serif', 'Georgia', serif;
 }
 
-[data-wb-text].cover {
+[data-wb-text].cover_active {
 	background-color: rgba(90, 114, 71, 0.8);
 	background-image: url("/books/valperi_tome_un/valperi_tome_un_cover.jpg");
 }
@@ -19,8 +19,7 @@
 }
 
 [data-wb-text] #cover-title {
-	margin-top: 1.3em;
-	padding-top: 4%;
+	padding-top: 12%;
 	font-size: 1.5em;
 	line-height: 1.5em;
 	text-transform: uppercase;
@@ -69,29 +68,25 @@
 
 [data-wb-text] #cover-logo2 {
 	font-size: 1.2em;
-	margin-top: 48px;
-}
-
-@media only screen and (min-height: 460px) {
-	[data-wb-text] #cover-logo1 {
-		display: block;
-	}
-	
-	[data-wb-text] #cover-subtitleone {
-		display: block;
-	}
+	margin-top: 36px;
 }
 
 @media only screen and (min-height: 568px) {
 
 	[data-wb-text] #cover-title {
-		padding-top: 8%;
-		font-size: 1.6em;
 		letter-spacing: 4px;
+	}
+	
+	[data-wb-text] #cover-subtitleone {
+		display: block;
 	}
 	
 	[data-wb-text] #cover-logo {
 		bottom: 2.5em;
+	}
+	
+	[data-wb-text] #cover-logo1 {
+		display: block;
 	}
 	
 	[data-wb-text] #cover-logo2 {
@@ -99,6 +94,7 @@
 	}
 
 }
+
 
 @media only screen and (min-width: 568px) {
 	[data-wb-text] #cover-logo {
@@ -121,13 +117,11 @@
 	}
 	
 	[data-wb-text] #cover-subtitleone {
-		padding-top: 5%;
 		font-size: 1.3em;
 		letter-spacing: 3px;
 	}
 	
 	[data-wb-text] #cover-subtitletwo {
-		padding-top: 7%;
 		font-size: 1.5em;
 	}
 

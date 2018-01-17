@@ -1,3 +1,33 @@
+/*
+@font-face {
+    font-family: Noto Serif;
+    font-weight: 400;
+    font-style: normal;
+    src: url(/fonts/noto-serif/NotoSerif-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: Noto Serif;
+    font-weight: 400;
+    font-style: italic;
+    src: url(/fonts/noto-serif/NotoSerif-Italic.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: Vollkorn;
+    font-weight: 400;
+    font-style: normal;
+    src: url(/fonts/vollkorn/Vollkorn-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: Vollkorn;
+    font-weight: 400;
+    font-style: italic;
+    src: url(/fonts/vollkorn/Vollkorn-Italic.ttf) format('truetype');
+}
+*/
+
 * {
 	box-sizing: border-box;
 }
