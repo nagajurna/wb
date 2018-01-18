@@ -3,7 +3,7 @@
 }
 
 [data-wb-text].cover_active {
-	background-color: rgba(226, 104, 80, 0.8);
+	background-color: rgba(209, 76, 43, 0.8);
 	background-image: url("/books/un_roman_pour_les_cuisinieres/un_roman_pour_les_cuisinieres_cover.jpg");
 }
 
