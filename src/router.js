@@ -89,8 +89,6 @@ const router  = function() {
 	
 	
 	//ON LOAD (called by index.js)
-	//if(location.hash === "") { location.hash = "#/"; }
-	
 	let oldhash, newhash;
 	
 	newhash = location.hash;

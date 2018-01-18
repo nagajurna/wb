@@ -709,15 +709,17 @@ const book = function(container) {
 	let text = bookContainer.querySelector('[data-wb-text]');
 	let options = { method: 'GET', url: bk.path + '.css' };
 	utils.ajax(options).then( content => {
-		let head = document.querySelector('head');
-		if(dataStore.getData('book')) {
-			head.lastChild.innerHTML = content;
-		} else {
-			let style = document.createElement('style');
-			style.setAttribute('type','text/css');
-			style.innerHTML = content;
-			head.appendChild(style);
-		}
+		//let head = document.querySelector('head');
+		//if(dataStore.getData('book')) {
+			//head.lastChild.innerHTML = content;
+		//} else {
+			//let style = document.createElement('style');
+			//style.setAttribute('type','text/css');
+			//style.innerHTML = content;
+			//head.appendChild(style);
+		//}
+		let style = document.getElementById('custom_rules');
+		style.innerHTML = content;
 		dataStore.setData('book',bk.id);
 		options = { method: 'GET', url: bk.path + '.html' };
 		return utils.ajax(options);
@@ -727,7 +729,7 @@ const book = function(container) {
 		if(prevLocation) {
 			init(content);
 		} else {
-			let fct = (stamp) => {
+			let fct = (s) => {
 				init(content);
 			}
 			

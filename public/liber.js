@@ -2650,8 +2650,6 @@ var router = function router() {
 	};
 
 	//ON LOAD (called by index.js)
-	//if(location.hash === "") { location.hash = "#/"; }
-
 	var oldhash = void 0,
 	    newhash = void 0;
 
@@ -5002,15 +5000,17 @@ var book = function book(container) {
 	var text = bookContainer.querySelector('[data-wb-text]');
 	var options = { method: 'GET', url: bk.path + '.css' };
 	_utils2.default.ajax(options).then(function (content) {
-		var head = document.querySelector('head');
-		if (_dataStore2.default.getData('book')) {
-			head.lastChild.innerHTML = content;
-		} else {
-			var style = document.createElement('style');
-			style.setAttribute('type', 'text/css');
-			style.innerHTML = content;
-			head.appendChild(style);
-		}
+		//let head = document.querySelector('head');
+		//if(dataStore.getData('book')) {
+		//head.lastChild.innerHTML = content;
+		//} else {
+		//let style = document.createElement('style');
+		//style.setAttribute('type','text/css');
+		//style.innerHTML = content;
+		//head.appendChild(style);
+		//}
+		var style = document.getElementById('custom_rules');
+		style.innerHTML = content;
 		_dataStore2.default.setData('book', bk.id);
 		options = { method: 'GET', url: bk.path + '.html' };
 		return _utils2.default.ajax(options);
@@ -5019,7 +5019,7 @@ var book = function book(container) {
 		if (prevLocation) {
 			init(content);
 		} else {
-			var fct = function fct(stamp) {
+			var fct = function fct(s) {
 				init(content);
 			};
 
@@ -5310,7 +5310,6 @@ var WebBook = function () {
 						_this.pages_total = _this.getBookTotalPages();
 						//array : for each section, starting page;
 						_this._sections_page_start = [];
-
 						for (var _i = 0; _i < _this._sections.length; _i++) {
 							var item = {};
 							item.id = _this._sections[_i].id;
