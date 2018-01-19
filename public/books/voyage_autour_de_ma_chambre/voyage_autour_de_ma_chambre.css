@@ -9,7 +9,7 @@
 }
 
 [data-wb-text].cover_active {
-	background-color: rgba(118,82,30,0.8);
+	background-color: rgba(149,82,81,0.8);
 	background-image: url("/books/voyage_autour_de_ma_chambre/voyage_autour_de_ma_chambre_cover.jpg");
 }
 

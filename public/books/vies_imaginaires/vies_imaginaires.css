@@ -3,7 +3,7 @@
 }
 
 [data-wb-text].cover_active {
-	background-color: rgba(104, 52, 54, 0.8);
+	background-color: rgba(123, 55, 71, 0.8);
 	background-image: url("/books/vies_imaginaires/vies_imaginaires_cover.jpg");
 }
 
