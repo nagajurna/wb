@@ -3,7 +3,7 @@
 }
 
 [data-wb-text].cover_active {
-	background-color: rgba(110,108,49,0.8);
+	background-color: rgba(81,92,36,0.8);
 	background-image: url("/books/valperi_tome_un/valperi_tome_un_cover.jpg");
 }
 
@@ -69,6 +69,16 @@
 [data-wb-text] #cover-logo2 {
 	font-size: 1.2em;
 	margin-top: 36px;
+}
+
+@media only screen and (min-height: 460px) {
+	[data-wb-text] #cover-subtitleone {
+		display: block;
+	}
+	
+	[data-wb-text] #cover-logo1 {
+		display: block;
+	}
 }
 
 @media only screen and (min-height: 568px) {

@@ -3,7 +3,7 @@
 }
 
 [data-wb-text].cover_active {
-	background-color: rgba(174,136,11,0.8);
+	background-color: rgba(229,138,6,0.8);
 	background-image: url("/books/le_roi_au_masque_d_or/le_roi_au_masque_d_or_cover.jpg");
 }
 

@@ -3,7 +3,7 @@
 }
 
 [data-wb-text].cover_active {
-	background-color: rgba(195, 143, 130, 0.8);
+	background-color: rgba(224, 195, 139, 0.8);
 	background-image: url("/books/mimes/mimes_cover.jpg");
 }
 
