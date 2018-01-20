@@ -484,6 +484,42 @@
       "created_at": "2018-01-06 11:42:28",
       "updated_at": "2018-01-18 13:43:22",
       "id": "a61aae9d-336d-4635-8979-094b99e8a315"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(220, 76, 70, 0.8)",
+        "image": " /books/racine_et_shakespeare/racine_et_shakespeare_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 9%; font-size: 1.4em;letter-spacing: 1.5px",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Racine et Shakespeare",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Stendhal",
+      "year": "1823",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Racine et Shakspeare, par M. de Stendhal &ndash;&nbsp;Bossange, Paris, 1823.",
+        "Racine et Shakspeare : études sur le romantisme (Nouvelle édition entièrement revue et considérablement augmentée), par de Stendhal (Henry Beyle) &ndash;&nbsp;Michel Lévy frères, Paris, 1854."
+      ],
+      "description": "",
+      "path": "/books/racine_et_shakespeare/racine_et_shakespeare",
+      "visible": true,
+      "authors": [
+        "223a75f1-96d3-4b41-94d2-6096bfb7a82e"
+      ],
+      "contribs": [],
+      "created_at": "2018-01-19 11:48:43",
+      "updated_at": "2018-01-19 11:48:43",
+      "id": "22b53b5d-0752-48e3-a9d7-fe9241ba544f"
     }
   ],
   "authors": [
@@ -585,6 +621,17 @@
       "created_at": "2018-01-06 11:05:37",
       "updated_at": "2018-01-06 11:44:25",
       "id": "fffaaff6-45c7-4f81-81a9-12a372c9a972"
+    },
+    {
+      "name": "Stendhal",
+      "nameAlpha": "stendhal",
+      "birth": "1783",
+      "death": "1842",
+      "description": "",
+      "visible": true,
+      "created_at": "2018-01-19 11:38:23",
+      "updated_at": "2018-01-19 12:40:19",
+      "id": "223a75f1-96d3-4b41-94d2-6096bfb7a82e"
     }
   ]
 }

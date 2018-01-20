@@ -46,6 +46,109 @@ const authors = function(container) {
 	//insert template in container
 	c.innerHTML = authorsTemplate({ authors:sas });
 	let root = document.querySelector('#authors-container');
+	let auths = root.querySelectorAll('.auth');
+	let slides;
+	let index;
+	
+	//Previous
+	let prevSlide = event => {
+		let auth = event.target.parentElement.parentElement;
+		slides = auth.querySelectorAll('.slide');
+		for(let i=0; i<slides.length; i++) {
+			if(slides[i].style.display==='block') {
+				index = i;
+				slides[index].style.display='none';
+				break
+			}
+		}
+		if(index===0) {
+			index=slides.length-1;
+		} else {
+			index-=1;
+		}
+		
+		slides[index].style.display='block';
+	};
+	
+	//Next
+	let nextSlide = event => {
+		let auth = event.target.parentElement.parentElement;
+		slides = auth.querySelectorAll('.slide');
+		for(let i=0; i<slides.length; i++) {
+			if(slides[i].style.display==='block') {
+				index = i;
+				slides[index].style.display='none';
+				break
+			}
+		}
+		if(index===slides.length-1) {
+			index=0;
+		} else {
+			index+=1;
+		}
+		slides[index].style.display='block';
+	};
+	
+	let previous = root.querySelectorAll('.previous')
+	for(let i=0; i<previous.length; i++) {
+		previous[i].addEventListener('click',prevSlide,false)
+	}
+
+	let nexts = root.querySelectorAll('.next')
+	for(let i=0; i<nexts.length; i++) {
+		nexts[i].addEventListener('click',nextSlide,false)
+	}
+	
+	if(window.innerWidth >= 750) {
+		for(let i=0; i<auths.length; i++) {
+			slides = auths[i].querySelectorAll('.slide');
+			if(slides.length<2) {
+				auths[i].querySelectorAll('.previous')[0].style.display='none';
+				auths[i].querySelectorAll('.next')[0].style.display='none';
+			} else {
+				auths[i].querySelectorAll('.previous')[0].style.display='block';
+				auths[i].querySelectorAll('.next')[0].style.display='block';
+			}
+			
+			if(dataStore.getData('location').prevLocation!==undefined && dataStore.getData('location').prevLocation.match(/\/read$/)) {
+				let id= dataStore.getData('book');
+				let ss = [].slice.call(slides);
+				let slide = ss.filter(function(s) { return s.id.replace(/slide_/,'')===id; })[0];
+				index = slide ? ss.indexOf(slide) : 0;
+				slides[index].style.display = 'block';
+			} else {
+				index = 0;
+				slides[index].style.display = 'block';
+			}
+		}
+	}
+	
+	//window on resize (innerWidth < 750 : list, otherwise: slider)
+	window.addEventListener('resize', () => {
+		if(window.innerWidth < 750) {
+			slides = root.querySelectorAll('.slide');
+			for(let i=0; i<slides.length; i++) {
+				slides[i].style.display = 'block';
+			}
+		} else {
+			slides = root.querySelectorAll('.slide');
+			for(let i=0; i<slides.length; i++) {
+				slides[i].style.display = 'none';
+			}
+			for(let i=0; i<auths.length; i++) {
+				slides = auths[i].querySelectorAll('.slide');
+				if(slides.length<2) {
+					auths[i].querySelectorAll('.previous')[0].style.display='none';
+					auths[i].querySelectorAll('.next')[0].style.display='none';
+				} else {
+					auths[i].querySelectorAll('.previous')[0].style.display='block';
+					auths[i].querySelectorAll('.next')[0].style.display='block';
+				}
+				index = 0;
+				slides[index].style.display = 'block';
+			}
+		}
+	});
 	
 	let acc = document.querySelectorAll(".accordion");
 	let panels = document.querySelectorAll('.books-list');
@@ -76,7 +179,7 @@ const authors = function(container) {
 	//scroll after read
 	if(dataStore.getData('location').prevLocation!==undefined && dataStore.getData('location').prevLocation.match(/\/read$/)) {
 		let id= dataStore.getData('book');
-		let el = document.getElementById('book_' + id);
+		let el = document.getElementById('slide_' + id);
 		el.parentElement.style.display = 'block';
 		el.scrollIntoView(true);
 		let html = document.getElementsByTagName("html")[0];

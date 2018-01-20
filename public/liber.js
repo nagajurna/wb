@@ -12658,7 +12658,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="book">\n	<!--\n		STARTBOOK-CONTAINER\n	-->\n	<div id="bookContainer">\n		<!--\n			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366\n		-->\n		<%- include src/components/book-read/tabs-large-device.ejs -%>\n		<!--\n			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		<div id="swing-container">\n			<!--\n				START TEXT-CONTAINER\n			-->\n			<div data-wb-text-container class="card-4">\n				<!--\n					BOOKMARK\n				-->\n				<div id="bookmark">\n					<p><i class="material-icons">&#xE867;</i></p>\n				</div>\n				<div id="text-loader-container" class="hidden">\n					<div id="text-loader"></div>\n				</div>\n				<!--\n					TOC (inside textContainer) : width < 1366\n				-->\n				<div id="toc">\n					<div data-wb-toc >\n						<button id="close-toc" type="button" class="btn">&times;</button>\n						<div id="toc-header">\n							<p><%- book.authorDisplay %></p>\n							<p class="text-uppercase"><%- book.title %></p>\n							<% if(book.subtitle1) {%>\n								<p><%- book.subtitle1 %></p>\n							<%}%>\n							<% if(book.subtitle2) {%>\n								<p class="text-small-caps"><%- book.subtitle2 %></p>\n							<%}%>\n						</div>\n					</div>\n				</div>\n				<!--\n					OPTIONS-MODAL (inside textContainer) : width >= 1366\n				-->\n				<%- include src/components/book-read/options-modal.ejs -%>\n				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span id="current-section-title" class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div class="cover-background">\n					<div data-wb-text ></div>\n				</div>\n				<!--\n					BOTTOM (inside textContainer) : pagination\n				-->\n				<div id="bottom">\n					<span id="currentByTotal" class="wb-currentByTotal-pages"></span>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM-SMALL (outside textContainer) : width < 768\n		-->\n		<div id="book-nav-bar-bottom-small">\n			<a id="home" href="/#/books/" class="home btn"><i class="material-icons">&#xE5C4;</i></a>\n			<button id="add-bookmark" class="add-bookmark btn"><i class="material-icons">&#xE867;</i></button>\n			<button id="open-options" class="btn"><i class="material-icons">&#xE8B8;</i></button>\n			<button id="open-toc" class="open-toc btn"><i class="material-icons">&#xE8DE;</i></button>\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom">\n			<div id="swing-bar">\n				<div id="book-nav-bar-bottom-controls">\n					<button id="home-large" class="home btn"><i class="material-icons">&#xE5C4;</i></button>\n					<button id="add-bookmark-large" class="add-bookmark btn"><i class="material-icons">&#xE867;</i></button>\n					<div id="center">\n						<button id="backward-large" class="btn">&lt;</button>\n						<button id="forward-large" class="btn">&gt;</button>\n					</div>\n					<button id="open-options-medium" class="btn"><i class="material-icons">&#xE8B8;</i></button>\n					<button id="open-toc-large" class="open-toc btn"><i class="material-icons">&#xE8DE;</i></button>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n	<div id="book-loader-container" class="hidden">\n		<div id="book-loader" style="border-top: 8px solid <%= book.styles.color %>; border-bottom: 8px solid <%= book.styles.color %>"></div>\n	</div>\n</div>\n',
+        input: '<div id="book">\n	<!--\n		STARTBOOK-CONTAINER\n	-->\n	<div id="bookContainer">\n		<!--\n			TOC-LARGE-DEVICE (outside textContainer) : width >= 1366\n		-->\n		<%- include src/components/book-read/tabs-large-device.ejs -%>\n		<!--\n			START SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		<div id="swing-container">\n			<!--\n				START TEXT-CONTAINER\n			-->\n			<div data-wb-text-container class="card-4">\n				<!--\n					BOOKMARK\n				-->\n				<div id="bookmark">\n					<p><i class="material-icons">&#xE867;</i></p>\n				</div>\n				<div id="text-loader-container" class="hidden">\n					<div id="text-loader"></div>\n				</div>\n				<!--\n					TOC (inside textContainer) : width < 1366\n				-->\n				<div id="toc">\n					<div data-wb-toc >\n						<button id="close-toc" type="button" class="btn">&times;</button>\n						<div id="toc-header">\n							<p><%- book.authorDisplay %></p>\n							<p class="text-uppercase"><%- book.title %></p>\n							<% if(book.subtitle1) {%>\n								<p><%- book.subtitle1 %></p>\n							<%}%>\n							<% if(book.subtitle2) {%>\n								<p class="text-small-caps"><%- book.subtitle2 %></p>\n							<%}%>\n						</div>\n					</div>\n				</div>\n				<!--\n					OPTIONS-MODAL (inside textContainer) : width >= 1366\n				-->\n				<%- include src/components/book-read/options-modal.ejs -%>\n				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span id="current-section-title" class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text ></div>\n				<!--\n					BOTTOM (inside textContainer) : pagination\n				-->\n				<div id="bottom">\n					<span id="currentByTotal" class="wb-currentByTotal-pages"></span>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM-SMALL (outside textContainer) : width < 768\n		-->\n		<div id="book-nav-bar-bottom-small">\n			<a id="home" href="/#/books/" class="home btn"><i class="material-icons">&#xE5C4;</i></a>\n			<button id="add-bookmark" class="add-bookmark btn"><i class="material-icons">&#xE867;</i></button>\n			<button id="open-options" class="btn"><i class="material-icons">&#xE8B8;</i></button>\n			<button id="open-toc" class="open-toc btn"><i class="material-icons">&#xE8DE;</i></button>\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom">\n			<div id="swing-bar">\n				<div id="book-nav-bar-bottom-controls">\n					<button id="home-large" class="home btn"><i class="material-icons">&#xE5C4;</i></button>\n					<button id="add-bookmark-large" class="add-bookmark btn"><i class="material-icons">&#xE867;</i></button>\n					<div id="center">\n						<button id="backward-large" class="btn">&lt;</button>\n						<button id="forward-large" class="btn">&gt;</button>\n					</div>\n					<button id="open-options-medium" class="btn"><i class="material-icons">&#xE8B8;</i></button>\n					<button id="open-toc-large" class="open-toc btn"><i class="material-icons">&#xE8DE;</i></button>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n	<div id="book-loader-container" class="hidden">\n		<div id="book-loader" style="border-top: 8px solid <%= book.styles.color %>; border-bottom: 8px solid <%= book.styles.color %>"></div>\n	</div>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -12818,7 +12818,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                     }
                     buf.push('\n				</div>\n			</div>\n		</div>\n		<div id="font-size-container">\n			<p><b>Taille de la police</b></p>\n			<div>\n				<div class="col-left">\n					<p><label><input type="radio" name="fontSize" value="14">&ensp;14 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="16">&ensp;16 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="18">&ensp;18 px</label></p>\n				</div>\n				<div class="col-right">\n					<p><label><input type="radio" name="fontSize" value="15">&ensp;15 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="17">&ensp;17 px</label></p>\n					<p><label><input type="radio" name="fontSize" value="19">&ensp;19 px</label></p>\n				</div>\n			</div>\n		</div>\n	</div>\n</div>\n');
                     return buf.join("");
-                }() + '				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span id="current-section-title" class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div class="cover-background">\n					<div data-wb-text ></div>\n				</div>\n				<!--\n					BOTTOM (inside textContainer) : pagination\n				-->\n				<div id="bottom">\n					<span id="currentByTotal" class="wb-currentByTotal-pages"></span>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM-SMALL (outside textContainer) : width < 768\n		-->\n		<div id="book-nav-bar-bottom-small">\n			<a id="home" href="/#/books/" class="home btn"><i class="material-icons">&#xE5C4;</i></a>\n			<button id="add-bookmark" class="add-bookmark btn"><i class="material-icons">&#xE867;</i></button>\n			<button id="open-options" class="btn"><i class="material-icons">&#xE8B8;</i></button>\n			<button id="open-toc" class="open-toc btn"><i class="material-icons">&#xE8DE;</i></button>\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom">\n			<div id="swing-bar">\n				<div id="book-nav-bar-bottom-controls">\n					<button id="home-large" class="home btn"><i class="material-icons">&#xE5C4;</i></button>\n					<button id="add-bookmark-large" class="add-bookmark btn"><i class="material-icons">&#xE867;</i></button>\n					<div id="center">\n						<button id="backward-large" class="btn">&lt;</button>\n						<button id="forward-large" class="btn">&gt;</button>\n					</div>\n					<button id="open-options-medium" class="btn"><i class="material-icons">&#xE8B8;</i></button>\n					<button id="open-toc-large" class="open-toc btn"><i class="material-icons">&#xE8DE;</i></button>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n	<div id="book-loader-container" class="hidden">\n		<div id="book-loader" style="border-top: 8px solid ', escape((__stack.lineno = 104, book.styles.color)), "; border-bottom: 8px solid ", escape((__stack.lineno = 104, book.styles.color)), '"></div>\n	</div>\n</div>\n');
+                }() + '				<!--\n					TOP (inside textContainer)\n				-->\n				<div id="top">\n					<span id="current-section-title" class="wb-current-section-title"></span>\n				</div>\n				<!--\n					TEXT\n				-->\n				<div data-wb-text ></div>\n				<!--\n					BOTTOM (inside textContainer) : pagination\n				-->\n				<div id="bottom">\n					<span id="currentByTotal" class="wb-currentByTotal-pages"></span>\n				</div>\n			<!--\n				END TEXT-CONTAINER\n			-->\n			</div>\n		<!--\n			END SWING-CONTAINER : margin-left: 33% WHEN TOC-LARGE OPEN\n		-->\n		</div>\n		<!--\n			NAVBAR-BOTTOM-SMALL (outside textContainer) : width < 768\n		-->\n		<div id="book-nav-bar-bottom-small">\n			<a id="home" href="/#/books/" class="home btn"><i class="material-icons">&#xE5C4;</i></a>\n			<button id="add-bookmark" class="add-bookmark btn"><i class="material-icons">&#xE867;</i></button>\n			<button id="open-options" class="btn"><i class="material-icons">&#xE8B8;</i></button>\n			<button id="open-toc" class="open-toc btn"><i class="material-icons">&#xE8DE;</i></button>\n		</div>\n		<!--\n			NAVBAR-BOTTOM (outside textContainer) : width >= 768\n		-->\n		<div id="book-nav-bar-bottom">\n			<div id="swing-bar">\n				<div id="book-nav-bar-bottom-controls">\n					<button id="home-large" class="home btn"><i class="material-icons">&#xE5C4;</i></button>\n					<button id="add-bookmark-large" class="add-bookmark btn"><i class="material-icons">&#xE867;</i></button>\n					<div id="center">\n						<button id="backward-large" class="btn">&lt;</button>\n						<button id="forward-large" class="btn">&gt;</button>\n					</div>\n					<button id="open-options-medium" class="btn"><i class="material-icons">&#xE8B8;</i></button>\n					<button id="open-toc-large" class="open-toc btn"><i class="material-icons">&#xE8DE;</i></button>\n				</div>\n			</div>\n		</div>\n	<!--\n		END BOOK-CONTAINER\n	-->\n	</div>\n	<div id="book-loader-container" class="hidden">\n		<div id="book-loader" style="border-top: 8px solid ', escape((__stack.lineno = 102, book.styles.color)), "; border-bottom: 8px solid ", escape((__stack.lineno = 102, book.styles.color)), '"></div>\n	</div>\n</div>\n');
             })();
         }
         return buf.join("");
@@ -12877,8 +12877,8 @@ var authors = function authors(container) {
 		var author = sas[i];
 		//books
 		bs = ws.filter(function (w) {
-			for (var _i5 = 0; _i5 < w.authors.length; _i5++) {
-				return w.authors[_i5].id === author.id;
+			for (var _i11 = 0; _i11 < w.authors.length; _i11++) {
+				return w.authors[_i11].id === author.id;
 				break;
 			}
 		});
@@ -12887,8 +12887,8 @@ var authors = function authors(container) {
 
 		//contribs
 		cs = ws.filter(function (w) {
-			for (var _i6 = 0; _i6 < w.contribs.length; _i6++) {
-				return w.contribs[_i6].id === author.id;
+			for (var _i12 = 0; _i12 < w.contribs.length; _i12++) {
+				return w.contribs[_i12].id === author.id;
 				break;
 			}
 		});
@@ -12905,6 +12905,113 @@ var authors = function authors(container) {
 	//insert template in container
 	c.innerHTML = authorsTemplate({ authors: sas });
 	var root = document.querySelector('#authors-container');
+	var auths = root.querySelectorAll('.auth');
+	var slides = void 0;
+	var index = void 0;
+
+	//Previous
+	var prevSlide = function prevSlide(event) {
+		var auth = event.target.parentElement.parentElement;
+		slides = auth.querySelectorAll('.slide');
+		for (var i = 0; i < slides.length; i++) {
+			if (slides[i].style.display === 'block') {
+				index = i;
+				slides[index].style.display = 'none';
+				break;
+			}
+		}
+		if (index === 0) {
+			index = slides.length - 1;
+		} else {
+			index -= 1;
+		}
+
+		slides[index].style.display = 'block';
+	};
+
+	//Next
+	var nextSlide = function nextSlide(event) {
+		var auth = event.target.parentElement.parentElement;
+		slides = auth.querySelectorAll('.slide');
+		for (var i = 0; i < slides.length; i++) {
+			if (slides[i].style.display === 'block') {
+				index = i;
+				slides[index].style.display = 'none';
+				break;
+			}
+		}
+		if (index === slides.length - 1) {
+			index = 0;
+		} else {
+			index += 1;
+		}
+		slides[index].style.display = 'block';
+	};
+
+	var previous = root.querySelectorAll('.previous');
+	for (var i = 0; i < previous.length; i++) {
+		previous[i].addEventListener('click', prevSlide, false);
+	}
+
+	var nexts = root.querySelectorAll('.next');
+	for (var _i = 0; _i < nexts.length; _i++) {
+		nexts[_i].addEventListener('click', nextSlide, false);
+	}
+
+	if (window.innerWidth >= 750) {
+		for (var _i2 = 0; _i2 < auths.length; _i2++) {
+			slides = auths[_i2].querySelectorAll('.slide');
+			if (slides.length < 2) {
+				auths[_i2].querySelectorAll('.previous')[0].style.display = 'none';
+				auths[_i2].querySelectorAll('.next')[0].style.display = 'none';
+			} else {
+				auths[_i2].querySelectorAll('.previous')[0].style.display = 'block';
+				auths[_i2].querySelectorAll('.next')[0].style.display = 'block';
+			}
+
+			if (_dataStore2.default.getData('location').prevLocation !== undefined && _dataStore2.default.getData('location').prevLocation.match(/\/read$/)) {
+				(function () {
+					var id = _dataStore2.default.getData('book');
+					var ss = [].slice.call(slides);
+					var slide = ss.filter(function (s) {
+						return s.id.replace(/slide_/, '') === id;
+					})[0];
+					index = slide ? ss.indexOf(slide) : 0;
+					slides[index].style.display = 'block';
+				})();
+			} else {
+				index = 0;
+				slides[index].style.display = 'block';
+			}
+		}
+	}
+
+	//window on resize (innerWidth < 750 : list, otherwise: slider)
+	window.addEventListener('resize', function () {
+		if (window.innerWidth < 750) {
+			slides = root.querySelectorAll('.slide');
+			for (var _i3 = 0; _i3 < slides.length; _i3++) {
+				slides[_i3].style.display = 'block';
+			}
+		} else {
+			slides = root.querySelectorAll('.slide');
+			for (var _i4 = 0; _i4 < slides.length; _i4++) {
+				slides[_i4].style.display = 'none';
+			}
+			for (var _i5 = 0; _i5 < auths.length; _i5++) {
+				slides = auths[_i5].querySelectorAll('.slide');
+				if (slides.length < 2) {
+					auths[_i5].querySelectorAll('.previous')[0].style.display = 'none';
+					auths[_i5].querySelectorAll('.next')[0].style.display = 'none';
+				} else {
+					auths[_i5].querySelectorAll('.previous')[0].style.display = 'block';
+					auths[_i5].querySelectorAll('.next')[0].style.display = 'block';
+				}
+				index = 0;
+				slides[index].style.display = 'block';
+			}
+		}
+	});
 
 	var acc = document.querySelectorAll(".accordion");
 	var panels = document.querySelectorAll('.books-list');
@@ -12912,8 +13019,8 @@ var authors = function authors(container) {
 		panels[0].style.display = 'block';
 	}
 
-	for (var i = 0; i < acc.length; i++) {
-		acc[i].addEventListener("click", function (e) {
+	for (var _i6 = 0; _i6 < acc.length; _i6++) {
+		acc[_i6].addEventListener("click", function (e) {
 
 			for (var j = 0; j < panels.length; j++) {
 				if (panels[j] === e.target.nextElementSibling) {
@@ -12934,7 +13041,7 @@ var authors = function authors(container) {
 	//scroll after read
 	if (_dataStore2.default.getData('location').prevLocation !== undefined && _dataStore2.default.getData('location').prevLocation.match(/\/read$/)) {
 		var id = _dataStore2.default.getData('book');
-		var el = document.getElementById('book_' + id);
+		var el = document.getElementById('slide_' + id);
 		el.parentElement.style.display = 'block';
 		el.scrollIntoView(true);
 		var html = document.getElementsByTagName("html")[0];
@@ -12942,11 +13049,11 @@ var authors = function authors(container) {
 	}
 	//get active letter link
 	var ls = root.querySelectorAll('#letters a');
-	for (var _i = 0; _i < ls.length; _i++) {
-		if (ls[_i].innerHTML === search) {
-			_utils2.default.addClass('#' + ls[_i].id, 'active');
+	for (var _i7 = 0; _i7 < ls.length; _i7++) {
+		if (ls[_i7].innerHTML === search) {
+			_utils2.default.addClass('#' + ls[_i7].id, 'active');
 		} else {
-			_utils2.default.removeClass('#' + ls[_i].id, 'active');
+			_utils2.default.removeClass('#' + ls[_i7].id, 'active');
 		}
 	}
 	//link to book/read
@@ -12959,8 +13066,8 @@ var authors = function authors(container) {
 		location.hash = '#' + path + "/read";
 	};
 	var bks = root.querySelectorAll('.book');
-	for (var _i2 = 0; _i2 < bks.length; _i2++) {
-		bks[_i2].addEventListener('click', readBk, false);
+	for (var _i8 = 0; _i8 < bks.length; _i8++) {
+		bks[_i8].addEventListener('click', readBk, false);
 	}
 	//modal (infos)
 	//open
@@ -12969,8 +13076,8 @@ var authors = function authors(container) {
 		document.getElementById(id).style.display = 'block';
 	};
 	var openInfosBtns = root.querySelectorAll('.open-infos-btn');
-	for (var _i3 = 0; _i3 < openInfosBtns.length; _i3++) {
-		openInfosBtns[_i3].addEventListener('click', openInfos, false);
+	for (var _i9 = 0; _i9 < openInfosBtns.length; _i9++) {
+		openInfosBtns[_i9].addEventListener('click', openInfos, false);
 	}
 	//close
 	var closeInfos = function closeInfos(event) {
@@ -12978,8 +13085,8 @@ var authors = function authors(container) {
 		document.getElementById(id).style.display = 'none';
 	};
 	var closeInfosBtns = root.querySelectorAll('.close-infos-btn');
-	for (var _i4 = 0; _i4 < closeInfosBtns.length; _i4++) {
-		closeInfosBtns[_i4].addEventListener('click', closeInfos, false);
+	for (var _i10 = 0; _i10 < closeInfosBtns.length; _i10++) {
+		closeInfosBtns[_i10].addEventListener('click', closeInfos, false);
 	}
 };
 
@@ -13025,7 +13132,7 @@ exports = module.exports = __webpack_require__(5)(undefined);
 
 
 // module
-exports.push([module.i, "#authors-container {\n\tmax-width: 750px;\n\tmargin: auto;\n}\n\n#authors-container #top-page-header {\n\ttext-align: center;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.2em;\n\tfont-variant: small-caps;\n\tletter-spacing: 4px;\n\tline-height: 25px;\n\tmargin: auto;\n\tdisplay: block;\n\tpadding: 32px 0px 32px 0px;\n}\n\n@media only screen and (min-width: 750px) {\n\t#authors-container #top-page-header {\n\t\tfont-size: 1.4em;\n\t\tpadding: 48px 0px 32px 0px;\n\t}\n}\n\n#authors-container #letters {\n\ttext-align: center;\n\tline-height: 37px;\n\twidth: 320px;\n\tmargin: 0px auto;\n\tpadding-bottom: 16px;\n}\n\n@media only screen and (min-width: 410px) {\n\t#authors-container #letters {\n\t\twidth: 410px;\n\t}\n}\n\n@media only screen and (min-width: 750px) {\n\t#authors-container #letters {\n\t\twidth: 585px;\n\t}\n}\n\n#authors-container #letters a {\n\tpadding: 8px;\n}\n\n#authors-container #noresult {\n\twidth: 100%;\n\ttext-align: center;\n\tpadding-top: 48px;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.1em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1.5px;\n}\n\n#authors-container #authors-list {\n\tmin-height: 476px;\n}\n\n.auth {\n\tposition: relative;\n}\n\n#authors-container #authors-list {\n\tmax-width: 750px;\n\tmargin: auto;\n\tpadding-bottom: 16px;\n}\n\n#authors-container .accordion {\n    cursor: pointer;\n    text-align: center;\n    font-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.2em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1.5px;\n\tpadding: 16px;\n    width: 100%;\n    border: none;\n    outline: none;\n    background-color: transparent;\n    transition: 0.4s;\n}\n\n#authors-container #authors-list .books-list {\n\tposition: relative;\n\twidth: 250px;\n\tmargin: auto;\n\tdisplay: none;\n}\n\n#authors-container #authors-list .books-list .book-item {\n\tmargin-bottom: 48px;\n\ttext-align: center;\n}\n\n#authors-container #paper {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#authors-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin: auto;\n\tposition: relative;\n}\n\n#authors-container .book .logo .span1 {\n\tfont-size: 2em;\n\tmargin-bottom: 16px;\n}\n\n#authors-container .book .logo .span2 {\n\tfont-variant: small-caps;\n}\n\n#authors-container #book-btns {\n\twidth: 100%;\n\tposition: relative;\n\theight: 37px;\n}\n\n#authors-container .open-infos-btn {\n\tfont-family: \"Vollkorn\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1px;\n\tbackground-color: transparent;\n\tposition: absolute;\n\tright: 0px;\n\tbottom: 0px;\n}\n\n#authors-container .tobepublished {\n\tfont-family: \"Vollkorn\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1px;\n\tbackground-color: transparent;\n\tposition: absolute;\n\tleft: 0px;\n\tbottom: 0px;\n}\n\n/*\nMODAL (INFOS)\n*/\n\n#authors-container .modal {\n\tfont-family: 'Georgia', sans-serif;\n\tdisplay: none;\n}\n\n#authors-container .modal-content {\n\tmax-width: 500px;\n\tmax-height: 90%;\n\toverflow: auto;\n}\n\n#authors-container .modal-content div {\n\tpadding: 8px;\n}\n\n#authors-container .modal #infos-header {\n\tposition: relative;\n\tpadding: 16px;\n\tborder-bottom: 1px solid #ddd;\n\ttext-align: center;\n}\n\n#authors-container .modal .close-infos-btn {\n\tposition: absolute;\n\ttop: 0;\n\tright: 0;\n\twidth: 37px;\n\theight: 37px;\n\tfont-size: 1.5em;\n}\n\n#authors-container .modal p {\n\tmargin: 0px;\n\tpadding: 8px;\n}\n\n#authors-container .modal ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#authors-container .modal ul li {\n\tpadding: 4px;\n}\n\n#authors-container .modal .contrib-role {\n\ttext-transform: capitalize;\n}\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "#authors-container {\n\tmax-width: 750px;\n\tmargin: auto;\n}\n\n#authors-container #top-page-header {\n\ttext-align: center;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.2em;\n\tfont-variant: small-caps;\n\tletter-spacing: 4px;\n\tline-height: 25px;\n\tmargin: auto;\n\tdisplay: block;\n\tpadding: 32px 0px 32px 0px;\n}\n\n@media only screen and (min-width: 750px) {\n\t#authors-container #top-page-header {\n\t\tfont-size: 1.4em;\n\t\tpadding: 48px 0px 32px 0px;\n\t}\n}\n\n#authors-container #letters {\n\ttext-align: center;\n\tline-height: 37px;\n\twidth: 320px;\n\tmargin: 0px auto;\n\tpadding-bottom: 16px;\n}\n\n@media only screen and (min-width: 410px) {\n\t#authors-container #letters {\n\t\twidth: 410px;\n\t}\n}\n\n@media only screen and (min-width: 750px) {\n\t#authors-container #letters {\n\t\twidth: 585px;\n\t}\n}\n\n#authors-container #letters a {\n\tpadding: 8px;\n}\n\n#authors-container #noresult {\n\twidth: 100%;\n\ttext-align: center;\n\tpadding-top: 48px;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.1em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1.5px;\n}\n\n#authors-container #authors-list {\n\tmin-height: 476px;\n\tmax-width: 750px;\n\tmargin: auto;\n\tpadding-bottom: 16px;\n}\n\n.auth {\n\tposition: relative;\n}\n\n#authors-container .previous {\n\tposition: absolute;\n\ttop: 170px;\n\tleft: -100px;\n\tmargin-top: -25px;\n\twidth: 50px;\n\theight: 50px;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.6em;\n\tbackground-color: transparent;\n\tdisplay: none;\n}\n\n#authors-container .next {\n\tposition: absolute;\n\ttop: 170px;\n\tright: -100px;\n\tmargin-top: -25px;\n\twidth: 50px;\n\theight: 50px;\n\tfont-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.6em;\n\tbackground-color: transparent;\n\tdisplay: none;\n}\n\n@media only screen and (min-width: 750px) {\n\t#authors-container .previous {\n\t\tdisplay: block;\n\t}\n\n\t#authors-container .next {\n\t\tdisplay: block;\n\t}\n}\n\n#authors-container .accordion {\n    cursor: pointer;\n    text-align: center;\n    font-family: \"Vollkorn\", Georgia, sans-serif;\n\tfont-size: 1.2em;\n\tfont-variant: small-caps;\n\tletter-spacing: 1.5px;\n\tpadding: 16px;\n    width: 100%;\n    border: none;\n    outline: none;\n    background-color: transparent;\n    transition: 0.4s;\n}\n\n#authors-container #authors-list .books-list {\n\tposition: relative;\n\twidth: 250px;\n\tmargin: auto;\n\tdisplay: none;\n}\n\n#authors-container .slide {\n\tposition: relative;\n\twidth: 250px;\n\tmargin: auto;\n\tmargin-bottom: 48px;\n\tdisplay: block;\n\ttext-align: center;\n}\n\n@media only screen and (min-width: 750px) {\n\t\n\t#authors-container .slide {\n\t\tmargin-bottom: 0px;\n\t\tdisplay: none;\n\t}\n}\n\n#authors-container #paper {\n\twidth: 250px;\n\theight: 340px;\n\tmargin:auto;\n}\n\n#authors-container .book {\n\twidth: 250px;\n\theight: 340px;\n\tmargin: auto;\n\tposition: relative;\n}\n\n#authors-container .book .logo .span1 {\n\tfont-size: 2em;\n\tmargin-bottom: 16px;\n}\n\n#authors-container .book .logo .span2 {\n\tfont-variant: small-caps;\n}\n\n#authors-container #book-btns {\n\twidth: 100%;\n\tposition: relative;\n\theight: 37px;\n}\n\n#authors-container .open-infos-btn {\n\tfont-family: \"Vollkorn\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1px;\n\tbackground-color: transparent;\n\tposition: absolute;\n\tright: 0px;\n\tbottom: 0px;\n}\n\n#authors-container .tobepublished {\n\tfont-family: \"Vollkorn\", Georgia, serif;\n\tfont-size: 1em;\n\tletter-spacing: 1px;\n\tbackground-color: transparent;\n\tposition: absolute;\n\tleft: 0px;\n\tbottom: 0px;\n}\n\n/*\nMODAL (INFOS)\n*/\n\n#authors-container .modal {\n\tfont-family: 'Georgia', sans-serif;\n\tdisplay: none;\n}\n\n#authors-container .modal-content {\n\tmax-width: 500px;\n\tmax-height: 90%;\n\toverflow: auto;\n}\n\n#authors-container .modal-content div {\n\tpadding: 8px;\n}\n\n#authors-container .modal #infos-header {\n\tposition: relative;\n\tpadding: 16px;\n\tborder-bottom: 1px solid #ddd;\n\ttext-align: center;\n}\n\n#authors-container .modal .close-infos-btn {\n\tposition: absolute;\n\ttop: 0;\n\tright: 0;\n\twidth: 37px;\n\theight: 37px;\n\tfont-size: 1.5em;\n}\n\n#authors-container .modal p {\n\tmargin: 0px;\n\tpadding: 8px;\n}\n\n#authors-container .modal ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#authors-container .modal ul li {\n\tpadding: 4px;\n}\n\n#authors-container .modal .contrib-role {\n\ttext-transform: capitalize;\n}\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -13040,7 +13147,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
     };
     var __stack = {
         lineno: 1,
-        input: '<div id="authors-container" class="fade">\n	<div id="top-page-header">auteurs</div>\n	<div id="authors-list">\n		<div id="letters">\n			<%- include src/components/authors/authors-letters.ejs -%>\n		</div>\n		<div>\n			\n			<% if(authors.length===0) {%>\n				<p id="noresult">aucun résultat.</p>\n			<%}%>\n			\n			<% for(var i=0; i<authors.length; i++) {%>\n				<% if(authors[i].visible) { %>\n				<div class="auth" id="auth_<%= i %>">\n					<button id="<%= authors[i].id %>" class="accordion"><%- authors[i].name %>&ensp;(<%- authors[i].works.length %>)</button>\n					<div class="books-list">\n					<% for(var j=0; j<authors[i].works.length; j++) {%>\n						<% var work = authors[i].works[j] %>\n						\n						<!-- MODAL (INFOS) -->\n						<%- include src/components/authors/infos-modal.ejs -%>\n						\n						<div class="book-item" id="book_<%= work.id %>">\n							<div id="paper" style="background-color: <%- work.styles.color %>; background-image: url(<%- work.styles.image %>)">\n								<div id="<%= work.id %>" class="book" style="<%= work.styles.cover %>">\n									<p class="author" style="<%=work.styles.author %>"><%- work.authorDisplay %></p>\n									<p class="title" style="<%-work.styles.title %>">\n										<%- work.title %>\n									</p>\n									<% if(work.subtitle1) {%>\n									<p class="subtitle1" style="<%= work.styles.subtitle1 %>">\n										<%- work.subtitle1 %></a>\n									</p>\n									<% } %>\n									<% if(work.subtitle2) {%>\n									<p class="subtitle1" style="<%= work.styles.subtitle2 %>">\n										<%- work.subtitle2 %></a>\n									</p>\n									<% } %>\n									<div class="logo" style="<%=work.styles.logo %>">\n										<p class="span1">&#8916;</p>\n										<p class="span2">équivoques</p>\n									</div>\n							   </div>\n						   </div>\n						   <div id="book-btns" >\n								<% if(!work.visible) {%>\n									<button class="tobepublished btn">&Agrave; paraître</button>\n								<%}%>\n								<button id="open-infos-<%= work.id %>" class="open-infos-btn btn" >Fiche</button>\n						   </div>\n						</div>\n					\n					<%}%>\n					</div>\n				</div>\n				<% } %>\n			<% } %>\n			\n		</div>\n	</div>\n	<!-- FOOTER -->\n	<%- include src/components/footer.ejs -%>\n</div>\n',
+        input: '<div id="authors-container" class="fade">\n	<div id="top-page-header">auteurs</div>\n	<div id="authors-list">\n		<div id="letters">\n			<%- include src/components/authors/authors-letters.ejs -%>\n		</div>\n		<div>\n			\n			<% if(authors.length===0) {%>\n				<p id="noresult">aucun résultat.</p>\n			<%}%>\n			\n			<% for(var i=0; i<authors.length; i++) {%>\n				<% if(authors[i].visible) { %>\n				<div class="auth" id="auth_<%= i %>">\n					<button id="<%= authors[i].id %>" class="accordion"><%- authors[i].name %>&ensp;(<%- authors[i].works.length %>)</button>\n					<div class="books-list">\n						<button class="previous btn" type="button">&lt;</button>\n						<button class="next btn" type="button">&gt;</button>\n					<% for(var j=0; j<authors[i].works.length; j++) {%>\n						<% var work = authors[i].works[j] %>\n						\n						<!-- MODAL (INFOS) -->\n						<%- include src/components/authors/infos-modal.ejs -%>\n						\n						<div class="slide fade slides_<%= i %>" id="slide_<%= work.id %>">\n							<div id="paper" style="background-color: <%- work.styles.color %>; background-image: url(<%- work.styles.image %>)">\n								<div id="<%= work.id %>" class="book" style="<%= work.styles.cover %>">\n									<p class="author" style="<%=work.styles.author %>"><%- work.authorDisplay %></p>\n									<p class="title" style="<%-work.styles.title %>">\n										<%- work.title %>\n									</p>\n									<% if(work.subtitle1) {%>\n									<p class="subtitle1" style="<%= work.styles.subtitle1 %>">\n										<%- work.subtitle1 %></a>\n									</p>\n									<% } %>\n									<% if(work.subtitle2) {%>\n									<p class="subtitle1" style="<%= work.styles.subtitle2 %>">\n										<%- work.subtitle2 %></a>\n									</p>\n									<% } %>\n									<div class="logo" style="<%=work.styles.logo %>">\n										<p class="span1">&#8916;</p>\n										<p class="span2">équivoques</p>\n									</div>\n							   </div>\n						   </div>\n						   <div id="book-btns" >\n								<% if(!work.visible) {%>\n									<button class="tobepublished btn">&Agrave; paraître</button>\n								<%}%>\n								<button id="open-infos-<%= work.id %>" class="open-infos-btn btn" >Fiche</button>\n						   </div>\n						</div>\n					\n					<%}%>\n					</div>\n				</div>\n				<% } %>\n			<% } %>\n			\n		</div>\n	</div>\n	<!-- FOOTER -->\n	<%- include src/components/footer.ejs -%>\n</div>\n',
         filename: "."
     };
     function rethrow(err, str, filename, lineno) {
@@ -13073,11 +13180,11 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                     buf.push("\n				");
                     __stack.lineno = 13;
                     if (authors[i].visible) {
-                        buf.push('\n				<div class="auth" id="auth_', escape((__stack.lineno = 14, i)), '">\n					<button id="', escape((__stack.lineno = 15, authors[i].id)), '" class="accordion">', (__stack.lineno = 15, authors[i].name), "&ensp;(", (__stack.lineno = 15, authors[i].works.length), ')</button>\n					<div class="books-list">\n					');
-                        __stack.lineno = 17;
+                        buf.push('\n				<div class="auth" id="auth_', escape((__stack.lineno = 14, i)), '">\n					<button id="', escape((__stack.lineno = 15, authors[i].id)), '" class="accordion">', (__stack.lineno = 15, authors[i].name), "&ensp;(", (__stack.lineno = 15, authors[i].works.length), ')</button>\n					<div class="books-list">\n						<button class="previous btn" type="button">&lt;</button>\n						<button class="next btn" type="button">&gt;</button>\n					');
+                        __stack.lineno = 19;
                         for (var j = 0; j < authors[i].works.length; j++) {
                             buf.push("\n						");
-                            __stack.lineno = 18;
+                            __stack.lineno = 20;
                             var work = authors[i].works[j];
                             buf.push("\n						\n						<!-- MODAL (INFOS) -->\n						" + function() {
                                 var buf = [];
@@ -13158,32 +13265,32 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                                 }
                                 buf.push("\n		</div>\n	</div>\n</div>\n");
                                 return buf.join("");
-                            }() + '						\n						<div class="book-item" id="book_', escape((__stack.lineno = 22, work.id)), '">\n							<div id="paper" style="background-color: ', (__stack.lineno = 23, work.styles.color), "; background-image: url(", (__stack.lineno = 23, work.styles.image), ')">\n								<div id="', escape((__stack.lineno = 24, work.id)), '" class="book" style="', escape((__stack.lineno = 24, work.styles.cover)), '">\n									<p class="author" style="', escape((__stack.lineno = 25, work.styles.author)), '">', (__stack.lineno = 25, work.authorDisplay), '</p>\n									<p class="title" style="', (__stack.lineno = 26, work.styles.title), '">\n										', (__stack.lineno = 27, work.title), "\n									</p>\n									");
-                            __stack.lineno = 29;
+                            }() + '						\n						<div class="slide fade slides_', escape((__stack.lineno = 24, i)), '" id="slide_', escape((__stack.lineno = 24, work.id)), '">\n							<div id="paper" style="background-color: ', (__stack.lineno = 25, work.styles.color), "; background-image: url(", (__stack.lineno = 25, work.styles.image), ')">\n								<div id="', escape((__stack.lineno = 26, work.id)), '" class="book" style="', escape((__stack.lineno = 26, work.styles.cover)), '">\n									<p class="author" style="', escape((__stack.lineno = 27, work.styles.author)), '">', (__stack.lineno = 27, work.authorDisplay), '</p>\n									<p class="title" style="', (__stack.lineno = 28, work.styles.title), '">\n										', (__stack.lineno = 29, work.title), "\n									</p>\n									");
+                            __stack.lineno = 31;
                             if (work.subtitle1) {
-                                buf.push('\n									<p class="subtitle1" style="', escape((__stack.lineno = 30, work.styles.subtitle1)), '">\n										', (__stack.lineno = 31, work.subtitle1), "</a>\n									</p>\n									");
-                                __stack.lineno = 33;
+                                buf.push('\n									<p class="subtitle1" style="', escape((__stack.lineno = 32, work.styles.subtitle1)), '">\n										', (__stack.lineno = 33, work.subtitle1), "</a>\n									</p>\n									");
+                                __stack.lineno = 35;
                             }
                             buf.push("\n									");
-                            __stack.lineno = 34;
+                            __stack.lineno = 36;
                             if (work.subtitle2) {
-                                buf.push('\n									<p class="subtitle1" style="', escape((__stack.lineno = 35, work.styles.subtitle2)), '">\n										', (__stack.lineno = 36, work.subtitle2), "</a>\n									</p>\n									");
-                                __stack.lineno = 38;
+                                buf.push('\n									<p class="subtitle1" style="', escape((__stack.lineno = 37, work.styles.subtitle2)), '">\n										', (__stack.lineno = 38, work.subtitle2), "</a>\n									</p>\n									");
+                                __stack.lineno = 40;
                             }
-                            buf.push('\n									<div class="logo" style="', escape((__stack.lineno = 39, work.styles.logo)), '">\n										<p class="span1">&#8916;</p>\n										<p class="span2">équivoques</p>\n									</div>\n							   </div>\n						   </div>\n						   <div id="book-btns" >\n								');
-                            __stack.lineno = 46;
+                            buf.push('\n									<div class="logo" style="', escape((__stack.lineno = 41, work.styles.logo)), '">\n										<p class="span1">&#8916;</p>\n										<p class="span2">équivoques</p>\n									</div>\n							   </div>\n						   </div>\n						   <div id="book-btns" >\n								');
+                            __stack.lineno = 48;
                             if (!work.visible) {
                                 buf.push('\n									<button class="tobepublished btn">&Agrave; paraître</button>\n								');
-                                __stack.lineno = 48;
+                                __stack.lineno = 50;
                             }
-                            buf.push('\n								<button id="open-infos-', escape((__stack.lineno = 49, work.id)), '" class="open-infos-btn btn" >Fiche</button>\n						   </div>\n						</div>\n					\n					');
-                            __stack.lineno = 53;
+                            buf.push('\n								<button id="open-infos-', escape((__stack.lineno = 51, work.id)), '" class="open-infos-btn btn" >Fiche</button>\n						   </div>\n						</div>\n					\n					');
+                            __stack.lineno = 55;
                         }
                         buf.push("\n					</div>\n				</div>\n				");
-                        __stack.lineno = 56;
+                        __stack.lineno = 58;
                     }
                     buf.push("\n			");
-                    __stack.lineno = 57;
+                    __stack.lineno = 59;
                 }
                 buf.push("\n			\n		</div>\n	</div>\n	<!-- FOOTER -->\n	" + function() {
                     var buf = [];

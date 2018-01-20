@@ -58,16 +58,49 @@
 
 #authors-container #authors-list {
 	min-height: 476px;
+	max-width: 750px;
+	margin: auto;
+	padding-bottom: 16px;
 }
 
 .auth {
 	position: relative;
 }
 
-#authors-container #authors-list {
-	max-width: 750px;
-	margin: auto;
-	padding-bottom: 16px;
+#authors-container .previous {
+	position: absolute;
+	top: 170px;
+	left: -100px;
+	margin-top: -25px;
+	width: 50px;
+	height: 50px;
+	font-family: "Vollkorn", Georgia, sans-serif;
+	font-size: 1.6em;
+	background-color: transparent;
+	display: none;
+}
+
+#authors-container .next {
+	position: absolute;
+	top: 170px;
+	right: -100px;
+	margin-top: -25px;
+	width: 50px;
+	height: 50px;
+	font-family: "Vollkorn", Georgia, sans-serif;
+	font-size: 1.6em;
+	background-color: transparent;
+	display: none;
+}
+
+@media only screen and (min-width: 750px) {
+	#authors-container .previous {
+		display: block;
+	}
+
+	#authors-container .next {
+		display: block;
+	}
 }
 
 #authors-container .accordion {
@@ -92,9 +125,21 @@
 	display: none;
 }
 
-#authors-container #authors-list .books-list .book-item {
+#authors-container .slide {
+	position: relative;
+	width: 250px;
+	margin: auto;
 	margin-bottom: 48px;
+	display: block;
 	text-align: center;
+}
+
+@media only screen and (min-width: 750px) {
+	
+	#authors-container .slide {
+		margin-bottom: 0px;
+		display: none;
+	}
 }
 
 #authors-container #paper {
