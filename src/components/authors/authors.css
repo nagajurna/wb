@@ -70,7 +70,7 @@
 #authors-container .previous {
 	position: absolute;
 	top: 170px;
-	left: -100px;
+	left: 0px;
 	margin-top: -25px;
 	width: 50px;
 	height: 50px;
@@ -83,7 +83,7 @@
 #authors-container .next {
 	position: absolute;
 	top: 170px;
-	right: -100px;
+	right: 0px;
 	margin-top: -25px;
 	width: 50px;
 	height: 50px;
@@ -115,14 +115,14 @@
     border: none;
     outline: none;
     background-color: transparent;
-    transition: 0.4s;
 }
 
 #authors-container #authors-list .books-list {
 	position: relative;
-	width: 250px;
+	max-width: 450px;
 	margin: auto;
-	display: none;
+	max-height: 0;
+	overflow-y: hidden;
 }
 
 #authors-container .slide {

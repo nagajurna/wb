@@ -13,6 +13,7 @@
 
 [data-wb-text] #cover-author {
 	font-size: 1.2em;
+	font-variant: small-caps;
 	letter-spacing: 1px;
 	opacity: 0.75;
 }

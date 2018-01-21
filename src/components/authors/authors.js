@@ -129,6 +129,8 @@ const authors = function(container) {
 			slides = root.querySelectorAll('.slide');
 			for(let i=0; i<slides.length; i++) {
 				slides[i].style.display = 'block';
+				auths[i].querySelectorAll('.previous')[0].style.display='none';
+				auths[i].querySelectorAll('.next')[0].style.display='none';
 			}
 		} else {
 			slides = root.querySelectorAll('.slide');
@@ -153,7 +155,7 @@ const authors = function(container) {
 	let acc = document.querySelectorAll(".accordion");
 	let panels = document.querySelectorAll('.books-list');
 	if(sas.length===1) {
-		panels[0].style.display = 'block';
+		panels[0].style.maxHeight = panels[0].scrollHeight + 'px';
 	}
 	
 	for(let i = 0; i < acc.length; i++) {
@@ -161,12 +163,12 @@ const authors = function(container) {
 			
 			for(let j = 0; j < panels.length; j++) {
 				if(panels[j] === e.target.nextElementSibling) {
-					panels[j].style.display = panels[j].style.display === 'block' ? 'none' : 'block';
-				} else if(panels[j].style.display === "block") {
-					panels[j].style.display = "none";
+					panels[j].style.maxHeight = panels[j].style.maxHeight ? null : panels[j].scrollHeight + 'px';
+				} else if(panels[j].style.maxHeight) {
+					panels[j].style.maxHeight = null;
 				}
 				
-				if(e.target.nextElementSibling.style.display==='block') {
+				if(e.target.nextElementSibling.style.maxHeight) {
 					e.target.nextElementSibling.scrollIntoView(true);
 					let html = document.getElementsByTagName("html")[0];
 					html.scrollTop = html.scrollTop-48;
@@ -180,7 +182,7 @@ const authors = function(container) {
 	if(dataStore.getData('location').prevLocation!==undefined && dataStore.getData('location').prevLocation.match(/\/read$/)) {
 		let id= dataStore.getData('book');
 		let el = document.getElementById('slide_' + id);
-		el.parentElement.style.display = 'block';
+		el.parentElement.style.maxHeight = el.parentElement.scrollHeight + 'px';
 		el.scrollIntoView(true);
 		let html = document.getElementsByTagName("html")[0];
 		html.scrollTop = html.scrollTop-48;

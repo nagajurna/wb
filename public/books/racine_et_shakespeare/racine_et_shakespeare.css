@@ -13,6 +13,7 @@
 
 [data-wb-text] #cover-author {
 	font-size: 1.2em;
+	font-variant: small-caps;
 	letter-spacing: 1px;
 	opacity: 0.75;
 }
@@ -21,7 +22,7 @@
 	margin-top: 1.5em;
 	padding-top: 0%;
 	font-size: 1.8em;
-	font-variant: small-caps;
+	text-transform: uppercase;
 	line-height: 1.8em;
 	word-spacing: 0.2em;
 	letter-spacing: 3px;
@@ -117,10 +118,6 @@
 	text-align: center;
 }
 
-[data-wb-text] .section-subtitle_italic {
-	font-style: italic;
-}
-
 [data-wb-text] .section-subtitle_long {
 	text-align: justify;
 	margin-left: 1.5em;
@@ -131,8 +128,32 @@
 	text-indent: -1.5em;
 }
 
+[data-wb-text] .section-exergue {
+	text-align: right;
+	font-size: 0.9em;
+}
+
+[data-wb-text] .section-signature {
+	text-align: right;
+	font-size: 0.9em;
+	padding-bottom: 1.5em;
+	padding-right: 1.5em
+}
+
 [data-wb-text] p.p_line_before {
 	margin-top: 1.5em;
+}
+
+[data-wb-text] p.p_line_after {
+	margin-bottom: 1.5em;
+}
+
+.font-small-9 {
+	font-size: 0.9em;
+}
+
+[data-wb-text] p.indent-6 {
+	text-indent: 6em;
 }
 
 [data-wb-text] .verses {
@@ -142,6 +163,13 @@
 
 [data-wb-text] .verses p {
 	text-indent: -1em;
+}
+
+[data-wb-text] p.verses-signature {
+	text-align: right;
+	font-size: 0.9em;
+	padding-bottom: 1.5em;
+	padding-right: 1.5em;
 }
 
 .no-break-inside {
