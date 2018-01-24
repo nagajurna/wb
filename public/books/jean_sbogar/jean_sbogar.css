@@ -1,0 +1,158 @@
+[data-wb-text] {
+	font-family: 'Noto Serif', 'Georgia', serif;
+}
+
+[data-wb-text].cover_active {
+	background-color: rgba(108, 79, 61, 0.8);
+	background-image: url("/books/jean_sbogar/jean_sbogar_cover.jpg");
+}
+
+[data-wb-text] #cover {
+	position: static;
+}
+
+[data-wb-text] #cover-author {
+	padding-top: 0px;
+	font-size: 1.2em;
+	font-variant: small-caps;
+	letter-spacing: 1px;
+	opacity: 0.75;
+}
+
+[data-wb-text] #cover-title {
+	margin-top: 1.5em;
+	padding-top: 5%;
+	font-size: 1.8em;
+	text-transform: uppercase;
+	line-height: 1.8em;
+	word-spacing: 0.25em;
+	letter-spacing: 3px;
+	opacity: 0.75;
+}
+
+[data-wb-text] #cover-logo {
+	position: absolute;
+	bottom: 2em;
+	left: 50%;
+	width: 250px;
+	margin-left: -125px;
+	font-variant: small-caps;
+	letter-spacing: 6px;
+	text-align: center;
+	opacity: 0.75;
+	z-index: 1000;
+}
+
+[data-wb-text] #cover-logo1 {
+	font-size: 3em;
+	display: none;
+}
+
+[data-wb-text] #cover-logo2 {
+	font-size: 1.2em;
+	line-height: 120%;
+	margin-top: 48px;
+}
+
+@media only screen and (min-height: 460px) {
+	[data-wb-text] #cover-logo1 {
+		display: block;
+	}
+}
+
+@media only screen and (min-height: 540px) {
+
+	[data-wb-text] #cover-title {
+		padding-top: 8%;
+		font-size: 1.9em;
+		word-spacing: 0.4em;
+		letter-spacing: 4px;
+	}
+	
+	[data-wb-text] #cover-logo {
+		bottom: 2.5em;
+	}
+	
+	[data-wb-text] #cover-logo2 {
+		font-size: 1.3em;
+		line-height: 120%;
+	}
+
+}
+
+@media only screen and (min-width: 568px) {
+	[data-wb-text] #cover-logo {
+		bottom: 3em;
+	}
+}
+
+@media only screen and (min-height: 680px) {
+
+	[data-wb-text] #cover-author {
+		font-size: 1.3em;
+		letter-spacing: 2px;
+	}
+
+	[data-wb-text] #cover-title {
+		padding-top: 15%;
+		font-size: 2em;
+		line-height: 2em;
+	}
+}
+
+[data-wb-text] #fin {
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+[data-wb-text] p {
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -o-hyphens: auto;
+}
+[data-wb-text] p.section-title, [data-wb-text] #cover p {
+  hyphens: none;
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
+  -moz-hyphens: none;
+  -o-hyphens: none;
+}
+
+[data-wb-text] .section-title, [data-wb-text] .section-subtitle {
+	text-align: center;
+}
+
+[data-wb-text] .section-exergue {
+	text-align: justify;
+	margin-left: 1.5em;
+	text-indent: 1.5em;
+	font-size: 0.9em;
+}
+
+[data-wb-text] .section-signature {
+	text-align: right;
+	font-size: 0.9em;
+	padding-bottom: 1.5em;
+	padding-right: 1.5em
+}
+
+[data-wb-text] p.p_line_before {
+	margin-top: 1.5em;
+}
+
+[data-wb-text] .verses {
+	margin: 1.5em 0 1.5em 2.5em;
+	font-size: 0.9em;
+}
+
+[data-wb-text] p.signature {
+	text-align: right;
+	margin-right: 1.5em;
+}
+
+[data-wb-text] .verses p {
+	text-indent: -1em;
+}
+

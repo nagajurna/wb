@@ -4537,6 +4537,7 @@ var book = function book(container) {
 
 			//SWIPE - forward, backward on swipe left and right (hammer.js)
 			// all sizes
+			//delete Hammer.defaults.cssProps.userSelect;
 			var swipeContainer = new _hammerjs2.default(bookContainer.querySelector('[data-wb-text-container]'));
 			swipeContainer.on("swiperight swipeleft", function (event) {
 				if (event.type === "swipeleft") {
