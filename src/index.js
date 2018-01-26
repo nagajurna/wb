@@ -126,7 +126,6 @@ var index = (function() {
 			let authors = JSON.parse(response).authors;
 			//pass authors to store
 			dataStore.setData('authors', authors);
-			
 			//get books
 			let options = { method: 'GET', url: '/books/' };
 			return utils.ajax(options)

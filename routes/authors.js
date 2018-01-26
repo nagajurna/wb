@@ -13,47 +13,48 @@ router.get('/', function(req, res, next) {
 			.cloneDeep()
 			.sortBy('nameAlpha')
 			.value();
-		return { db: db, authors: authors };
-	})
-	.then( resolve => {
-		let db = resolve.db;
-		let authors = resolve.authors;
-		let books = db
-			.get('books')
-			.cloneDeep()
-			.value();
-		return { authors: authors, books: books }
-	})
-	.then( resolve => {
-		//populate
-		let authors = resolve.authors;
-		let books = resolve.books;
-		for(let i=0; i<authors.length; i++) {
-			let author = authors[i];
-			let authorsArray = books.filter(function(book) { return book.authors.indexOf(author.id) >=0; });
-			let contribsArray = books.filter(function(book) { 
-				let contrib = book.contribs.find(function(contrib) { return contrib.id === author.id;});
-				if(contrib) {
-					return true ; 
-				}
-			});
-			
-			author.books = authorsArray;
-			let contribs = [];
-			for(let i=0; i<contribsArray.length; i++) {
-				let b = contribsArray[i];
-				for(let j=0; j<b.contribs.length; j++) {
-					let c = b.contribs[j];
-					if(c.id===author.id) {
-						contribs.push({ role: c.role, book: b });
-					}
-				}
-			}
-			author.contribs = contribs;
-		}
-		
+		//return { db: db, authors: authors };
 		return authors;
 	})
+	//.then( resolve => {
+		//let db = resolve.db;
+		//let authors = resolve.authors;
+		//let books = db
+			//.get('books')
+			//.cloneDeep()
+			//.value();
+		//return { authors: authors, books: books }
+	//})
+	//.then( resolve => {
+		////populate
+		//let authors = resolve.authors;
+		//let books = resolve.books;
+		//for(let i=0; i<authors.length; i++) {
+			//let author = authors[i];
+			//let authorsArray = books.filter(function(book) { return book.authors.indexOf(author.id) >=0; });
+			//let contribsArray = books.filter(function(book) { 
+				//let contrib = book.contribs.find(function(contrib) { return contrib.id === author.id;});
+				//if(contrib) {
+					//return true ; 
+				//}
+			//});
+			
+			//author.books = authorsArray;
+			//let contribs = [];
+			//for(let i=0; i<contribsArray.length; i++) {
+				//let b = contribsArray[i];
+				//for(let j=0; j<b.contribs.length; j++) {
+					//let c = b.contribs[j];
+					//if(c.id===author.id) {
+						//contribs.push({ role: c.role, book: b });
+					//}
+				//}
+			//}
+			//author.contribs = contribs;
+		//}
+		
+		//return authors;
+	//})
 	.then ( authors => {
 		//half day = 43200s;
 		res.set('Cache-Control', 'public, max-age=43200, must-revalidate');

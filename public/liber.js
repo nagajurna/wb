@@ -2495,7 +2495,6 @@ var index = function () {
 			var authors = JSON.parse(response).authors;
 			//pass authors to store
 			_dataStore2.default.setData('authors', authors);
-
 			//get books
 			var options = { method: 'GET', url: '/books/' };
 			return _utils2.default.ajax(options);
