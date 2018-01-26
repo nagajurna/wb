@@ -712,13 +712,12 @@ const book = function(container) {
 	utils.ajax(options).then( content => {
 		let style = document.getElementById('custom_rules');
 		style.innerHTML = content;
-		dataStore.setData('book',bk.id);
 		options = { method: 'GET', url: bk.path + '.html' };
 		return utils.ajax(options);
 	})
 	.then( content => {
-		let prevLocation = dataStore.getData('location').prevLocation;
-		if(prevLocation) {
+		let prevBook = dataStore.getData('book');
+		if(prevBook) {
 			init(content);
 		} else {
 			let fct = (s) => {
@@ -731,6 +730,7 @@ const book = function(container) {
 				setTimeout(fct,50);
 			}
 		}
+		dataStore.setData('book',bk.id);
 	})
 	.catch( error => {
 		console.log(error);

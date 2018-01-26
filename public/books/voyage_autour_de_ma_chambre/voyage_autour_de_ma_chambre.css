@@ -106,45 +106,8 @@
 	}
 }
 
-[data-wb-text] #fin {
-	text-transform: uppercase;
-	letter-spacing: 2px;
-}
-
 [data-wb-text] .section-title {
 	text-align: center;
 }
-
-[data-wb-text] .note a.wb-link {
-	color: #006dcc;
-}
-
-[data-wb-text] .note-section p {
-	font-size: 0.9em;
-}
-
-[data-wb-text] .note-section p.note {
-	margin-top: 1.5em;
-}
-
-[data-wb-text] .note-section p.notes-title {
-	font-size: 1.25em;
-}
-
-[data-wb-text] p {
-  hyphens: auto;
-  -webkit-hyphens: auto;
-  -ms-hyphens: auto;
-  -moz-hyphens: auto;
-  -o-hyphens: auto;
-}
-[data-wb-text] p.section-title, [data-wb-text] .cover p {
-  hyphens: none;
-  -webkit-hyphens: none;
-  -ms-hyphens: none;
-  -moz-hyphens: none;
-  -o-hyphens: none;
-}
-
 
 
