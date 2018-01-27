@@ -14,6 +14,7 @@ const book = function(container) {
 	
 	let init = function(content) {
 		let textContainer = bookContainer.querySelector('[data-wb-text-container]');
+		let text = bookContainer.querySelector('[data-wb-text]');
 		let tocLarge = bookContainer.querySelector('#toc-large-device');
 		let tabOptions = bookContainer.querySelector('#tab-options');
 		let options = bookContainer.querySelector('#options');
@@ -99,7 +100,7 @@ const book = function(container) {
 			 fontSize = localStore.getFontSize('small') ? localStore.getFontSize('small') : 14;
 			 text.style.fontSize = fontSize+'px';
 			 //cover.style.fontSize = '14px';
-			 font
+			 //font
 			 for(let i=0; i<fontSizes.length; i++) {
 				if(fontSizes[i].value==fontSize) {
 					fontSizes[i].checked=true;
@@ -707,30 +708,31 @@ const book = function(container) {
 	const bookContainer = document.querySelector('#bookContainer');
 		
 	//GET TEXT CONTENT
-	let text = bookContainer.querySelector('[data-wb-text]');
 	let options = { method: 'GET', url: bk.path + '.css' };
-	utils.ajax(options).then( content => {
+	utils.ajax(options)
+	.then( content => {
 		let style = document.getElementById('custom_rules');
 		style.innerHTML = content;
 		options = { method: 'GET', url: bk.path + '.html' };
 		return utils.ajax(options);
 	})
 	.then( content => {
-		let prevBook = dataStore.getData('book');
-		if(prevBook) {
-			init(content);
-		} else {
-			let fct = (s) => {
-				init(content);
-			}
+		//let prevBook = dataStore.getData('book');
+		//if(prevBook) {
+			//init(content);
+		//} else {
+			//let fct = (s) => {
+				//init(content);
+			//}
 			
-			if(window.requestAnimationFrame) {
-				window.requestAnimationFrame(fct);
-			} else {
-				setTimeout(fct,50);
-			}
-		}
+			//if(window.requestAnimationFrame) {
+				//window.requestAnimationFrame(fct);
+			//} else {
+				//setTimeout(fct,50);
+			//}
+		//}
 		dataStore.setData('book',bk.id);
+		init(content);	
 	})
 	.catch( error => {
 		console.log(error);
