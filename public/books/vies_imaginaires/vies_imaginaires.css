@@ -95,23 +95,3 @@
 		bottom: 3em;
 	}
 }
-
-[data-wb-text] #fin {
-	text-transform: uppercase;
-	letter-spacing: 2px;
-}
-
-[data-wb-text] p {
-  hyphens: auto;
-  -webkit-hyphens: auto;
-  -ms-hyphens: auto;
-  -moz-hyphens: auto;
-  -o-hyphens: auto;
-}
-[data-wb-text] p.section-title, [data-wb-text] p.section-subtitle, [data-wb-text] #cover p {
-  hyphens: none;
-  -webkit-hyphens: none;
-  -ms-hyphens: none;
-  -moz-hyphens: none;
-  -o-hyphens: none;
-}

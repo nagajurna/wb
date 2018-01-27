@@ -780,9 +780,6 @@ DIV FIN
 
 p.section-title, p.notes-title, p.wb-toc-title {
 	font-size: 1.25em;
-/*
-	text-align: left;
-*/
 	text-indent: 0px;
 }
 
@@ -797,6 +794,10 @@ p.section-title {
 	margin-bottom: 1.5em;
 	text-indent: 0px;
 	line-height: 2em;
+}
+
+p.section-title.margin-small {
+	margin-bottom: 0.5em;
 }
 
 p.section-subtitle {
@@ -872,6 +873,16 @@ VERSES
 }
 
 /*
+SIGNATURE
+*/
+[data-wb-text] .signature {
+	text-align: right;
+	padding-bottom: 1.5em;
+	padding-right: 1.5em
+}
+
+
+/*
 LINES BEFORE/AFTER
 */
 [data-wb-text] p.p_half_line_before {
@@ -917,8 +928,16 @@ DIVERS
 	font-size: 0.9em;
 }
 
+[data-wb-text] .font-small-8 {
+	font-size: 0.8em;
+}
+
 [data-wb-text] p.no-indent {
 	text-indent: 0px;
+}
+
+[data-wb-text] p.indent-3 {
+	text-indent: 3em;
 }
 
 [data-wb-text] p.indent-6 {
