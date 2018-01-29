@@ -3194,7 +3194,6 @@ var home = function home(container) {
 				slides[j].style.display = 'none';
 				_utils2.default.removeClass(dots[j], 'active');
 			}
-			clearTimeout(automatic);
 			slides[index].style.display = 'block';
 			_utils2.default.addClass(dots[index], 'active');
 			slider();
@@ -3265,6 +3264,8 @@ var home = function home(container) {
 	}
 	//go to book/read
 	var readBk = function readBk(event) {
+		clearTimeout(automatic);
+		automatic = undefined;
 		var b = _dataStore2.default.getData('books', event.currentTarget.id);
 		var path = b.path.replace(/^\/books\/[^\/]+/, '');
 		location.hash = '#' + path + "/read";
@@ -5338,9 +5339,9 @@ var WebBook = function () {
 					}
 					_this.refresh();
 					_this._text.style.display = 'block';
-					if (_this._raf) {
-						window.cancelAnimationFrame(_this._raf);
-					}
+					//if(this._raf) {
+					//window.cancelAnimationFrame(this._raf);
+					//}
 					resolve('book done');
 					//}
 

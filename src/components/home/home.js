@@ -72,7 +72,6 @@ const home = function(container) {
 				slides[j].style.display = 'none';
 				utils.removeClass(dots[j], 'active');
 			}
-			clearTimeout(automatic);
 			slides[index].style.display='block';
 			utils.addClass(dots[index], 'active');
 			slider();
@@ -140,6 +139,8 @@ const home = function(container) {
 	}
 	//go to book/read
 	let readBk = event => {
+		clearTimeout(automatic);
+		automatic = undefined;
 		let b = dataStore.getData('books', event.currentTarget.id);
 		let path = b.path.replace(/^\/books\/[^\/]+/,'');
 		location.hash = '#' + path + "/read";
