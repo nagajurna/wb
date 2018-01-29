@@ -236,3 +236,12 @@ MODAL (INFOS)
 #books-next-container .modal .contrib-role {
 	text-transform: capitalize;
 }
+
+#books-next-container #toTop {
+	display: none;
+	position: fixed;
+	bottom: 8px;
+	right: 8px;
+	padding: 8px 8px;
+	background-color: #fafafa;
+}

@@ -184,6 +184,24 @@ const home = function(container) {
 	for(let i=0; i<closeInfosBtns.length; i++) {
 		closeInfosBtns[i].addEventListener('click', closeInfos, false);
 	}
+	
+	//to top button
+	let toTopDisplay = () => {
+		if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+			if(window.innerWidth<750) {
+				root.querySelector('#toTop').style.display = "block";
+			}
+		} else {
+			root.querySelector('#toTop').style.display = "none";
+		}
+	}
+	window.addEventListener('scroll', toTopDisplay, false);
+	let toTop = () => {
+		 document.body.scrollTop = 0;
+		 document.documentElement.scrollTop = 0;
+	}
+	let toTopBtn = root.querySelector('#toTop');
+	toTopBtn.addEventListener('click', toTop, false);
 };
 
 export default home;

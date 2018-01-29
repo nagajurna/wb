@@ -402,6 +402,7 @@ FOOTER
 	max-width: 750px;
 	min-height: 64px;
 	margin: auto;
+	margin-bottom: 24px;
 	padding: 16px;
 	font-family: "Vollkorn", Georgia, sans-serif;
 	line-height: 27px;

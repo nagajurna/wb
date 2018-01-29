@@ -226,3 +226,11 @@ MODAL (INFOS)
 	text-transform: capitalize;
 }
 
+#home-container #toTop {
+	display: none;
+	position: fixed;
+	bottom: 8px;
+	right: 8px;
+	padding: 8px 8px;
+	background-color: #fafafa;
+}
