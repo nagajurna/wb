@@ -2666,7 +2666,7 @@ var router = function router() {
 		//call routes
 		routes(oldhash, newhash);
 		//gtag
-		gtag('event', newhash);
+		gtag('config', 'UA-113626382-1', { 'page_path': '/' + newhash });
 		//active link
 		_utils2.default.activeLink();
 	}, false);
