@@ -105,6 +105,8 @@ const router  = function() {
 		dataStore.setData('location', { prevLocation: oldhash, newLocation: newhash });
 		//call routes
 		routes(oldhash, newhash);
+		//gtag
+		gtag('event', newhash);
 		//active link
 		utils.activeLink();
 	}, false);
