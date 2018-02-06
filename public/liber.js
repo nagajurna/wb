@@ -2665,6 +2665,8 @@ var router = function router() {
 		_dataStore2.default.setData('location', { prevLocation: oldhash, newLocation: newhash });
 		//call routes
 		routes(oldhash, newhash);
+		//gtag
+		gtag('event', newhash);
 		//active link
 		_utils2.default.activeLink();
 	}, false);
