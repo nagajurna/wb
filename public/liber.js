@@ -3138,6 +3138,7 @@ var home = function home(container) {
 
 	//insert template in container
 	c.innerHTML = homeTemplate({ books: lBs });
+	_utils2.default.setHTML('title', '&Eacute;quivoques - Nouveautés');
 	var root = document.querySelector('#home-container');
 	var slides = root.querySelectorAll('.slide');
 	var dots = root.querySelectorAll('.dot');
@@ -3949,6 +3950,7 @@ var booksNext = function booksNext(container) {
 
 	//insert template in container
 	c.innerHTML = booksNextTemplate({ books: nvbs });
+	_utils2.default.setHTML('title', '&Eacute;quivoques - À paraître');
 	var root = document.querySelector('#books-next-container');
 	var slides = root.querySelectorAll('.slide');
 	var dotContainer = root.querySelector('#dots');
@@ -5026,6 +5028,7 @@ var book = function book(container) {
 	//insert template in container
 	//document.body.style.height = '100%';
 	c.innerHTML = bookReadTemplate({ book: bk });
+	_utils2.default.setHTML('title', '&Eacute;quivoques - ' + bk.title);
 	//START LOADER
 	//document.body.style.overflowY = 'hidden';
 	//document.body.style.height = window.innerHeight + 'px';
@@ -12950,6 +12953,7 @@ var authors = function authors(container) {
 
 	//insert template in container
 	c.innerHTML = authorsTemplate({ authors: sas });
+	_utils2.default.setHTML('title', '&Eacute;quivoques - Auteurs');
 	var root = document.querySelector('#authors-container');
 	var auths = root.querySelectorAll('.auth');
 	var slides = void 0;

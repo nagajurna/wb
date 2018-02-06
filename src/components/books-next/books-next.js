@@ -16,6 +16,7 @@ const booksNext = function(container) {
 	
 	//insert template in container
 	c.innerHTML = booksNextTemplate({ books: nvbs });
+	utils.setHTML('title','&Eacute;quivoques - À paraître');
 	let root = document.querySelector('#books-next-container');
 	let slides = root.querySelectorAll('.slide');
 	let dotContainer = root.querySelector('#dots');

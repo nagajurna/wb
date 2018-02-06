@@ -698,6 +698,7 @@ const book = function(container) {
 	//insert template in container
 	//document.body.style.height = '100%';
 	c.innerHTML = bookReadTemplate({ book:bk });
+	utils.setHTML('title','&Eacute;quivoques - ' + bk.title);
 	//START LOADER
 	//document.body.style.overflowY = 'hidden';
 	//document.body.style.height = window.innerHeight + 'px';

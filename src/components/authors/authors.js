@@ -45,6 +45,7 @@ const authors = function(container) {
 	
 	//insert template in container
 	c.innerHTML = authorsTemplate({ authors:sas });
+	utils.setHTML('title','&Eacute;quivoques - Auteurs');
 	let root = document.querySelector('#authors-container');
 	let auths = root.querySelectorAll('.auth');
 	let slides;
