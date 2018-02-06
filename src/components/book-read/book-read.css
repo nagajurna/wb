@@ -832,9 +832,6 @@ TEXT EXERGUE
 	text-align: right;
 	padding-top: 10em;
 	padding-left: 1.5em
-/*
-	font-size: 0.9em
-*/
 }
 
 [data-wb-text] div.text-exergue p.text-exergue {
@@ -879,6 +876,13 @@ SIGNATURE
 	text-align: right;
 	padding-bottom: 1.5em;
 	padding-right: 1.5em
+}
+
+/*
+PADDING
+*/
+[data-wb-text] .padding-top-35 {
+	padding-top: 3.5em;
 }
 
 

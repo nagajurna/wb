@@ -590,6 +590,41 @@
       "created_at": "2018-01-25 17:00:00",
       "updated_at": "2018-01-25 17:07:38",
       "id": "f32d6d6b-c42c-43f4-be0f-d1139c675d78"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(240, 237, 229, 0.8)",
+        "image": "/books/mes_amis/mes_amis_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 18%; font-size: 1.2em;letter-spacing: 1px;text-transform: uppercase",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Mes amis",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Emmanuel Bove",
+      "year": "1924",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Mes amis &ndash;&nbsp;Ferenczi & fils, Paris, 1924."
+      ],
+      "description": "",
+      "path": "/books/mes_amis/mes_amis",
+      "visible": true,
+      "authors": [
+        "9a08c6d7-dc69-4f94-9529-b6e53cf20b41"
+      ],
+      "contribs": [],
+      "created_at": "2018-02-06 19:43:33",
+      "updated_at": "2018-02-06 19:43:33",
+      "id": "91fd0a8f-1260-495b-89b5-552f8539ef2f"
     }
   ],
   "authors": [
@@ -713,6 +748,17 @@
       "created_at": "2018-01-24 16:58:22",
       "updated_at": "2018-01-24 16:58:23",
       "id": "efee890d-6487-47cd-8c2d-48f47512143f"
+    },
+    {
+      "name": "Emmanuel Bove",
+      "nameAlpha": "bove",
+      "birth": "1898",
+      "death": "1945",
+      "description": "",
+      "visible": true,
+      "created_at": "2018-02-06 19:36:06",
+      "updated_at": "2018-02-06 19:36:07",
+      "id": "9a08c6d7-dc69-4f94-9529-b6e53cf20b41"
     }
   ]
 }
