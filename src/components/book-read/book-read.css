@@ -890,7 +890,7 @@ PADDING
 LINES BEFORE/AFTER
 */
 [data-wb-text] p.p_half_line_before {
-	margin-top: 1.5em;
+	margin-top: 0.75em;
 }
 
 [data-wb-text] p.p_line_before {
@@ -903,6 +903,27 @@ LINES BEFORE/AFTER
 
 [data-wb-text] p.p_line_after {
 	margin-bottom: 1.5em;
+}
+
+/*
+LINE-HEIGHT
+*/
+[data-wb-text] p.line_height_one {
+	line-height: 1em;
+	padding-top: 0.5em;
+}
+
+/*
+SEPARATION
+*/
+[data-wb-text] p.separation {
+	text-indent: 0px;
+	text-align: center;
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+	line-height: 1em;
+	padding-top: 0.5em;
+	font-size: 0.8em;
 }
 
 /*

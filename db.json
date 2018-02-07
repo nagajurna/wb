@@ -625,6 +625,41 @@
       "created_at": "2018-02-06 19:43:33",
       "updated_at": "2018-02-06 19:43:33",
       "id": "91fd0a8f-1260-495b-89b5-552f8539ef2f"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(100, 125, 79, 0.8)",
+        "image": "/books/armand/armand_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 18%; font-size: 1.2em;letter-spacing: 1px;text-transform: uppercase",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Armand",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Emmanuel Bove",
+      "year": "1927",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Armand &ndash;&nbsp;Émile-Paul frères, Paris, 1927."
+      ],
+      "description": "",
+      "path": "/books/armand/armand",
+      "visible": true,
+      "authors": [
+        "9a08c6d7-dc69-4f94-9529-b6e53cf20b41"
+      ],
+      "contribs": [],
+      "created_at": "2018-02-07 13:44:45",
+      "updated_at": "2018-02-07 13:44:45",
+      "id": "247eb19f-d72c-4849-a54c-294d71714d3c"
     }
   ],
   "authors": [
