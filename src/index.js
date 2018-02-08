@@ -135,21 +135,12 @@ var index = (function() {
 			init();
 			return 'done';
 		})
-		.then( resolve => {
-			//loader stop
-			//utils.addClass('#loader', 'hidden');
-			let container = root.querySelector('#container');
-			let loader = container.querySelector('#loader');
-			if(loader) {
-				container.removeChild(loader);
-			}
-		})
 		.catch( error => {
 			console.log(error);
 		});
 	}
 	
-	window.addEventListener('load', (e) => {
+	window.addEventListener('DOMContentLoaded', () => {
 		getData();
 	}, false);
 
