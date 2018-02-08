@@ -33,21 +33,6 @@ var index = (function() {
 	//}
 	
 	let init = () => {
-		//if book/id/read 
-		if(location.hash.match(/#\/[^\/]+\/read$/)) {
-			utils.addClass("#header", "hidden");//hide header
-			utils.addClass("#nav-bar-top", "hidden");//hide nav-bar-top
-		} else {
-			utils.removeClass("#header", "hidden");
-			if(window.innerWidth < 750) {
-				utils.addClass("#nav-bar-top", "hidden");
-				utils.removeClass("#menu-open", "hidden");
-			} else {
-				utils.removeClass("#nav-bar-top", "hidden");
-				utils.addClass("#menu-open", "hidden");
-			}
-		}
-		
 		root = document.querySelector("body");
 		//MODAL MENU (small devices)
 		//open modal
@@ -102,6 +87,15 @@ var index = (function() {
 	
 	//function getData
 	let getData = () => {
+		if(!location.hash.match(/#\/[^\/]+\/read$/)) {
+			if(window.innerWidth < 750) {
+				utils.addClass("#nav-bar-top", "hidden");
+				utils.removeClass("#menu-open", "hidden");
+			} else {
+				utils.removeClass("#nav-bar-top", "hidden");
+				utils.addClass("#menu-open", "hidden");
+			}
+		}
 		//check if user && user===admin
 		let options = { method: 'GET', url: '/users/currentuser' };
 		utils.ajax(options)
@@ -132,25 +126,30 @@ var index = (function() {
 			return 'done';
 		})
 		.then( resolve => {
-			//init
-			init();
-			return 'done';
-		})
-		.then( resolve => {
 			//call router
 			router();
 			return 'done';
 		})
 		.then( resolve => {
+			//init
+			init();
+			return 'done';
+		})
+		.then( resolve => {
 			//loader stop
-			utils.addClass('#loader-container', 'hidden');
+			//utils.addClass('#loader', 'hidden');
+			let container = root.querySelector('#container');
+			let loader = container.querySelector('#loader');
+			if(loader) {
+				container.removeChild(loader);
+			}
 		})
 		.catch( error => {
 			console.log(error);
 		});
 	}
 	
-	window.addEventListener('DOMContentLoaded', (e) => {
+	window.addEventListener('load', (e) => {
 		getData();
 	}, false);
 

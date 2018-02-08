@@ -24,9 +24,9 @@
 </head>
 <body id="body">
 	<!-- HEADER -->
-	<div id="header">
+	<div id="header" class="hidden">
 		<a id="header-home-link" href="#/" class="active">équivoques</a>
-		<button id="menu-open" type="button" class="btn">&equiv;</button>
+		<button id="menu-open" type="button" class="btn hidden">&equiv;</button>
 	</div>
 	<div id="navigation">
 		<!-- MODAL-SEARCH -->
@@ -60,7 +60,7 @@
 			</div>
 		</div>
 		<!-- NAV-BAR -->
-		<div id="nav-bar-top">
+		<div id="nav-bar-top" class="hidden">
 			<a id="search-open" href="#/search/" class="hidden"><i class="material-icons w3-text-black">search</i></a>
 			<div id="top-links">
 				<ul>
@@ -77,10 +77,19 @@
 	<div id="secret-volk">regular<i>italic</i></div>
 	<div id="secret-not">regular<i>italic</i></div>
 	<script>
+		var header = document.getElementById('header');
+		if(location.hash.match(/#\/[^\/]+\/read$/)) {
+			header.className='hidden';
+		} else {
+			header.className='';
+		}
 		setTimeout(function() {
-			document.getElementById('loader-container').innerHTML="<div id='loader'></div>"
+			var container = document.getElementById('container');
+			if(container.children.length===0) {
+				container.innerHTML="<div id='loader'></div>"
+			}
 		},600);
 	</script>
-	<script src="liber.js" defer></script>
+	<script src="liber.js" async></script>
 </body>
 </html>

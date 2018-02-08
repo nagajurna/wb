@@ -73,6 +73,7 @@ body {
 	top: -3999px;
 }
 
+/*
 #loader-container {
 	position: absolute;
 	top: 0px;
@@ -82,10 +83,13 @@ body {
 	padding: 10%;
 	background-color: #fafafa;
 }
+*/
 
+/*
 #loader-container.hidden {
 	display: none;
 }
+*/
 
 #loader {
 	position: absolute;
