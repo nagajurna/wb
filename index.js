@@ -38,7 +38,7 @@ app.use(bodyParser.json());
 //serve-favicon
 app.use(favicon(__dirname + '/public/favicon.ico'));
 //routes
-//app.use('/',index);
+app.use('/',index);
 app.use('/users', users);
 app.use('/books', books);
 app.use('/authors', authors);

@@ -118,22 +118,17 @@ var index = (function() {
 				utils.addClass('#menu-admin-item', 'hidden');
 			}
 			
-			//get authors
-			let options = { method: 'GET', url: '/authors/' };
-			return utils.ajax(options)
-		})
-		.then( response => {
-			let authors = JSON.parse(response).authors;
-			//pass authors to store
-			dataStore.setData('authors', authors);
-			//get books
-			let options = { method: 'GET', url: '/books/' };
+			//get authors and books
+			let options = { method: 'GET', url: '/init' };
 			return utils.ajax(options)
 		})
 		.then( response => {
 			let books = JSON.parse(response).books;
+			let authors = JSON.parse(response).authors;
 			//pass books to store
 			dataStore.setData('books', books);
+			//pass authors to store
+			dataStore.setData('authors', authors);
 			return 'done';
 		})
 		.then( resolve => {

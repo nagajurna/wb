@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../db');
 const ERR = require('../utils/errMessages');
 
-/* GET books - ONLY IF ADMIN*/
+/* GET books */
 router.get('/', function(req, res, next) {
 	
 	db
