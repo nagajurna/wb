@@ -927,6 +927,37 @@ SEPARATION
 }
 
 /*
+POINTS DE SUSPENSION
+*/
+
+[data-wb-text] p.points {
+	text-indent: 0px;
+	width: 100%;
+	overflow: hidden;
+	padding-left: 0em;
+}
+
+[data-wb-text] p.points span {
+	padding-right: 1.5em;
+}
+
+/*
+NEGATIVE MARGIN
+*/
+
+[data-wb-text] p.negative_margin {
+	margin-top:-1.5em;
+	text-indent: 0px;
+}
+
+[data-wb-text] p.negative_margin span {
+	background-color: #fafafa;
+	padding-left:0.5em;
+	padding-right: 0.5em;
+	font-size: 0.9em;
+}
+
+/*
 NOTES
 */
 [data-wb-text] .note a.wb-link {

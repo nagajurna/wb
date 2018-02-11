@@ -196,6 +196,11 @@ HELPERS
 	text-align: center;
 }
 
+.text-right {
+	text-align: right;
+}
+
+
 .text-italic {
 	font-style: italic;
 }

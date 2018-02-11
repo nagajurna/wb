@@ -660,6 +660,42 @@
       "created_at": "2018-02-07 13:44:45",
       "updated_at": "2018-02-07 13:44:45",
       "id": "247eb19f-d72c-4849-a54c-294d71714d3c"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(188, 36, 60, 0.8)",
+        "image": "/books/memoires_de_lacenaire/memoires_de_lacenaire_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 18%; font-size: 1.2em;letter-spacing: 1px;text-transform: uppercase",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Mémoires",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Lacenaire",
+      "year": "1836",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Mémoires, révélations et poésies de Lacenaire, écrits par lui-même à la Conciergerie &ndash;&nbsp;chez les marchands de nouveautés, Paris, 1836 (2 vol.).",
+        "Mémoires et autres écrits, Lacenaire &ndash;&nbsp; José Corti, Paris, 1991."
+      ],
+      "description": "",
+      "path": "/books/memoires_de_lacenaire/memoires_de_lacenaire",
+      "visible": true,
+      "authors": [
+        "0ba393cb-5a7f-4243-b4f7-309aa11354a5"
+      ],
+      "contribs": [],
+      "created_at": "2018-02-11 22:29:01",
+      "updated_at": "2018-02-11 22:30:52",
+      "id": "c395ddde-05ee-4a77-81a3-77af503eb5d4"
     }
   ],
   "authors": [
@@ -794,6 +830,17 @@
       "created_at": "2018-02-06 19:36:06",
       "updated_at": "2018-02-06 19:36:07",
       "id": "9a08c6d7-dc69-4f94-9529-b6e53cf20b41"
+    },
+    {
+      "name": "Pierre François Lacenaire",
+      "nameAlpha": "lacenaire",
+      "birth": "1803",
+      "death": "1836",
+      "description": "",
+      "visible": true,
+      "created_at": "2018-02-11 22:21:52",
+      "updated_at": "2018-02-11 22:21:53",
+      "id": "0ba393cb-5a7f-4243-b4f7-309aa11354a5"
     }
   ]
 }
