@@ -96,9 +96,20 @@ var index = (function() {
 				utils.addClass("#menu-open", "hidden");
 			}
 		}
-		//check if user && user===admin
-		let options = { method: 'GET', url: '/users/currentuser' };
-		utils.ajax(options)
+		//get authors and books
+		let options = { method: 'GET', url: '/init' };
+		return utils.ajax(options)
+		.then( response => {
+			let books = JSON.parse(response).books;
+			let authors = JSON.parse(response).authors;
+			//pass books to store
+			dataStore.setData('books', books);
+			//pass authors to store
+			dataStore.setData('authors', authors);
+			//check if user && user===admin
+			let options = { method: 'GET', url: '/users/currentuser' };
+			return utils.ajax(options)
+		})
 		.then( response => {
 			let currentUser = JSON.parse(response).user;
 			//pass currentUser to store
@@ -111,18 +122,6 @@ var index = (function() {
 				utils.addClass('#admin-item', 'hidden');
 				utils.addClass('#menu-admin-item', 'hidden');
 			}
-			
-			//get authors and books
-			let options = { method: 'GET', url: '/init' };
-			return utils.ajax(options)
-		})
-		.then( response => {
-			let books = JSON.parse(response).books;
-			let authors = JSON.parse(response).authors;
-			//pass books to store
-			dataStore.setData('books', books);
-			//pass authors to store
-			dataStore.setData('authors', authors);
 			return 'done';
 		})
 		.then( resolve => {
@@ -136,6 +135,13 @@ var index = (function() {
 			return 'done';
 		})
 		.catch( error => {
+			dataStore.setData('currentUser', {});
+			utils.addClass('#admin-item', 'hidden');
+			utils.addClass('#menu-admin-item', 'hidden');
+			//call router
+			router();
+			//init
+			init();
 			console.log(error);
 		});
 	}
