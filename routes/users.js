@@ -411,7 +411,6 @@ router.get('/currentuser', (req, res, next) => {
 		});
 		
 	} else {
-		
 		res.json({ user: {} });
 	}
 });

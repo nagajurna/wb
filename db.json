@@ -594,7 +594,7 @@
     {
       "source": {},
       "styles": {
-        "color": "rgba(240, 237, 229, 0.8)",
+        "color": "rgba(187, 119, 119, 0.8)",
         "image": "/books/mes_amis/mes_amis_cover.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
@@ -623,7 +623,7 @@
       ],
       "contribs": [],
       "created_at": "2018-02-06 19:43:33",
-      "updated_at": "2018-02-06 19:43:33",
+      "updated_at": "2018-02-15 14:16:39",
       "id": "91fd0a8f-1260-495b-89b5-552f8539ef2f"
     },
     {
@@ -658,7 +658,7 @@
       ],
       "contribs": [],
       "created_at": "2018-02-07 13:44:45",
-      "updated_at": "2018-02-07 13:44:45",
+      "updated_at": "2018-02-15 14:12:13",
       "id": "247eb19f-d72c-4849-a54c-294d71714d3c"
     },
     {
@@ -696,6 +696,41 @@
       "created_at": "2018-02-11 22:29:01",
       "updated_at": "2018-02-11 22:30:52",
       "id": "c395ddde-05ee-4a77-81a3-77af503eb5d4"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(177, 143, 106,0.8)",
+        "image": "/books/becon_les_bruyeres/becon_les_bruyeres_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 18%; font-size: 1em;letter-spacing: 1px;text-transform: uppercase",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Bécon-les-Bruyères",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Emmanuel Bove",
+      "year": "1927",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Bécon-les-Bruyères –&nbsp;Émile-Paul frères, Paris, 1927."
+      ],
+      "description": "",
+      "path": "/books/becon_les_bruyeres/becon_les_bruyeres",
+      "visible": true,
+      "authors": [
+        "9a08c6d7-dc69-4f94-9529-b6e53cf20b41"
+      ],
+      "contribs": [],
+      "created_at": "2018-02-15 14:27:26",
+      "updated_at": "2018-02-15 14:32:27",
+      "id": "69e4a0c8-126f-49da-b7cd-51e5d9b86749"
     }
   ],
   "authors": [

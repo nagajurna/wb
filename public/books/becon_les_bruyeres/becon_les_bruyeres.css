@@ -3,8 +3,8 @@
 }
 
 [data-wb-text].cover_active {
-	background-color: rgba(187, 119, 119, 0.8);
-	background-image: url("/books/mes_amis/mes_amis_cover.jpg");
+	background-color: rgba(177, 143, 106, 0.8);
+	background-image: url("/books/becon_les_bruyeres/becon_les_bruyeres_cover.jpg");
 }
 
 [data-wb-text] #cover {
@@ -21,8 +21,8 @@
 [data-wb-text] #cover-title {
 	margin-top: 1.5em;
 	padding-top: 5%;
-	font-size: 1.8em;
-	line-height: 1.8em;
+	font-size: 1.6em;
+	line-height: 1.6em;
 	text-transform: uppercase;
 	word-spacing: 0.3em;
 	letter-spacing: 3px;
@@ -61,7 +61,7 @@
 
 	[data-wb-text] #cover-title {
 		padding-top: 8%;
-		font-size: 1.9em;
+		font-size: 1.7em;
 		word-spacing: 0.4em;
 		letter-spacing: 4px;
 	}
@@ -85,8 +85,8 @@
 
 	[data-wb-text] #cover-title {
 		padding-top: 15%;
-		font-size: 2em;
-		line-height: 2em;
+		font-size: 1.7em;
+		line-height: 1.7em;
 	}
 }
 
