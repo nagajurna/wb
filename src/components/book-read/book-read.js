@@ -459,7 +459,7 @@ const book = function(container) {
 						text.style.fontSize = size + 'px';
 						//cover.style.fontSize = '16px';
 						//book
-						book.reinit()
+						book.init()
 						.then( resolve => {
 							//end loader
 							utils.addClass('#text-loader-container','hidden');
@@ -497,7 +497,7 @@ const book = function(container) {
 						text.style.fontSize = size + 'px';
 						//cover.style.fontSize = '16px';
 						//book
-						book.reinit()
+						book.init()
 						.then( resolve => {
 							//end loader
 							utils.addClass('#text-loader-container','hidden');
@@ -533,7 +533,7 @@ const book = function(container) {
 						text.style.fontSize = size + 'px';
 						//cover.style.fontSize = '14px';
 						//book
-						book.reinit()
+						book.init()
 						.then(resolve => {
 							//end loader
 							document.body.style.overflow = 'visible'; 
@@ -563,7 +563,7 @@ const book = function(container) {
 						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
 						bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
 						//book
-						book.reinit()
+						book.init()
 						.then (resolve => {
 							//end loader
 							utils.addClass('#text-loader-container','hidden');
@@ -598,7 +598,7 @@ const book = function(container) {
 						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
 						bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
 						//book
-						book.reinit()
+						book.init()
 						.then( resolve => {
 							//end loader
 							utils.addClass('#text-loader-container','hidden');
@@ -631,7 +631,7 @@ const book = function(container) {
 						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
 						bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
 						//book
-						book.reinit()
+						book.init()
 						.then (resolve => {
 							//end loader
 							document.body.style.overflow = 'visible'; 
@@ -661,6 +661,11 @@ const book = function(container) {
 				let bkmrk = localStore.getBkmrk(bk.id);
 				book.goToBookmark(bkmrk);
 			 }
+			 //localStore.setTableInfos({ id: bk.id,
+									    //dim: w + 'x' + h,
+									    //font: font,
+									    //fontSize: fontSize,
+									    //tableInfos: resolve });
 			
 			return 'done';
 			
@@ -670,7 +675,6 @@ const book = function(container) {
 			return 'done';
 		 })
 		 .then (resolve => {
-			 //setTimeout( function() {
 			document.body.style.overflowY = 'visible';
 			utils.addClass('#book-loader-container', 'hidden');
 			bookContainer.className = 'show';

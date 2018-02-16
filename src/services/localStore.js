@@ -8,20 +8,27 @@ const localStore = {
 			if(localStorage.getItem('bkmrks')) {
 				bkmrks = JSON.parse(localStorage.getItem('bkmrks'));
 				//check for bk.id
-				let item;
+				let item, index;
 				for(let i=0; i<bkmrks.length; i++) {
 					if(bkmrks[i].bkId===bkId) {
 						item=bkmrks[i];
+						index=i;
 						break;
 					}
 				}
 				if(item) {
-					item.bkmrk = bkmrk;
+					if(bkmrk.sectionId==='cover') {
+						bkmrks.splice(index,1);
+					} else {
+						item.bkmrk = bkmrk;
+					}
 				} else {
 					bkmrks.push({ bkId: bkId, bkmrk: bkmrk });
 				}
 			} else {
-				bkmrks.push({ bkId: bkId, bkmrk: bkmrk });
+				if(bkmrk.sectionId!=='cover') {
+					bkmrks.push({ bkId: bkId, bkmrk: bkmrk });
+				}
 			}
 			localStorage.setItem('bkmrks', JSON.stringify(bkmrks));
 		}
@@ -130,6 +137,27 @@ const localStore = {
 			}
 		}
 	},
+	
+	setTableInfos: i => {
+		let tableInfos = [];
+		if (typeof(Storage) !== "undefined") {
+			//check localStorage for tableInfos
+			if(localStorage.getItem('tableInfos')) {
+				tableInfos = JSON.parse(localStorage.getItem('tableInfos'));
+				let item = tableInfos.filter(function(o) { return o.id===i.id &&
+																  o.dim===i.dim &&
+														          o.font===i.font &&
+														          o.fontSize===i.fontSize})[0];
+
+			   if(!item) {
+				   tableInfos.push(i);
+			   }
+			} else {
+				tableInfos.push(i);
+			}
+			localStorage.setItem('tableInfos', JSON.stringify(tableInfos));
+		}
+	}
 }
 
 export default localStore;
