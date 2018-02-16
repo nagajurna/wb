@@ -23,6 +23,7 @@
 }
 
 #authors-container #letters {
+	font-family: "Times New Roman", Georgia, serif;
 	text-align: center;
 	line-height: 37px;
 	width: 320px;
@@ -50,7 +51,7 @@
 	width: 100%;
 	text-align: center;
 	padding-top: 48px;
-	font-family: "Vollkorn", Georgia, sans-serif;
+	font-family: "Vollkorn", Georgia, serif;
 	font-size: 1.1em;
 	font-variant: small-caps;
 	letter-spacing: 1.5px;
