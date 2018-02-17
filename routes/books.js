@@ -355,8 +355,11 @@ router.delete('/:id', (req, res, next) => {
 		console.log(err);
 		res.json({ error: ERR.SERVER });
 	});
+});
+
+/*SET TABLE*/
+router.put('/table', (req, res, next) => {
 	
-	
-})
+});
 
 module.exports = router;

@@ -9,7 +9,6 @@ let bookReadTemplate = require('./book-read.ejs');
 //book.js
 const book = function(container) {
 	'use strict';
-	
 	let c = container;
 	
 	let init = function(content) {
@@ -135,9 +134,9 @@ const book = function(container) {
 					div.style.maxHeight = h + "px";
 				}
 			}
-						 
-			//on resize
-			window.addEventListener('resize', event => {
+			
+			let resizeBook = () => {
+				if(!location.hash.match(/#\/[^\/]+\/read$/)) { return; }
 				document.body.style.height = '100%';
 				if(window.innerWidth >= 768) {
 					utils.addClass('[data-wb-text-container]', 'card-4');
@@ -219,11 +218,43 @@ const book = function(container) {
 				book.setMarginY(marginY);
 				book.setMarginX(marginX);
 				
-				if(book.col===true) {
-					book.reinit();
+				//tableInfos
+				let tableInfos = localStore.getTableInfos({ id: bk.id,
+															dim: w + 'x' + h,
+															font: font,
+															fontSize: fontSize });
+				
+				book.init(tableInfos)
+				.then( resolve => {
+					localStore.setTableInfos({ id: bk.id,
+									    dim: w + 'x' + h,
+									    font: font,
+									    fontSize: fontSize,
+									    tableInfos: resolve });
+				});
+			}
+						 
+			//on resize
+			let rtime;
+			let timeout = false;
+			let delta = 1000;
+			window.addEventListener('resize', event => {
+				rtime = new Date();
+				if (timeout === false) {
+					timeout = true;
+					setTimeout(resizeend, delta);
 				}
 			
 			}, false);
+			
+			function resizeend() {
+				if (new Date() - rtime < delta) {
+					setTimeout(resizeend, delta);
+				} else {
+					timeout = false;
+					resizeBook();
+				}               
+			}
 		
 		
 			//SWIPE - forward, backward on swipe left and right (hammer.js)
@@ -562,14 +593,24 @@ const book = function(container) {
 						text.style.fontFamily = font;
 						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
 						bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
+						//tableInfos
+						let tableInfos = localStore.getTableInfos({ id: bk.id,
+																	dim: w + 'x' + h,
+																	font: font,
+																	fontSize: fontSize });
 						//book
-						book.init()
+						book.init(tableInfos)
 						.then (resolve => {
 							//end loader
 							utils.addClass('#text-loader-container','hidden');
 							text.style.opacity = '1';
 							bookContainer.querySelector('#current-section-title').style.opacity = '1';
 							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+							localStore.setTableInfos({ id: bk.id,
+														dim: w + 'x' + h,
+														font: font,
+														fontSize: fontSize,
+														tableInfos: resolve });
 						})
 						.catch( error => {
 							utils.addClass('#text-loader-container','hidden');
@@ -597,14 +638,24 @@ const book = function(container) {
 						text.style.fontFamily = font;
 						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
 						bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
+						//tableInfos
+						let tableInfos = localStore.getTableInfos({ id: bk.id,
+																	dim: w + 'x' + h,
+																	font: font,
+																	fontSize: fontSize });
 						//book
-						book.init()
+						book.init(tableInfos)
 						.then( resolve => {
 							//end loader
 							utils.addClass('#text-loader-container','hidden');
 							text.style.opacity = '1';
 							bookContainer.querySelector('#current-section-title').style.opacity = '1';
 							bookContainer.querySelector('#currentByTotal').style.opacity = '1';
+							localStore.setTableInfos({ id: bk.id,
+														dim: w + 'x' + h,
+														font: font,
+														fontSize: fontSize,
+														tableInfos: resolve });
 						})
 						.catch( error => {
 							utils.addClass('#text-loader-container','hidden');
@@ -630,12 +681,22 @@ const book = function(container) {
 						text.style.fontFamily = font;
 						bookContainer.querySelector('#current-section-title').style.fontFamily = font;
 						bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
+						//tableInfos
+						let tableInfos = localStore.getTableInfos({ id: bk.id,
+																	dim: w + 'x' + h,
+																	font: font,
+																	fontSize: fontSize });
 						//book
-						book.init()
+						book.init(tableInfos)
 						.then (resolve => {
 							//end loader
 							document.body.style.overflow = 'visible'; 
 							utils.addClass('#text-loader-container','hidden');
+							localStore.setTableInfos({ id: bk.id,
+														dim: w + 'x' + h,
+														font: font,
+														fontSize: fontSize,
+														tableInfos: resolve });
 						})
 						.catch( error => {
 							document.body.style.overflow = 'visible'; 
@@ -655,17 +716,23 @@ const book = function(container) {
 			 text: content
 		 });
 		 
-		 book.init()
+		//tableInfos
+		let tableInfos = localStore.getTableInfos({ id: bk.id,
+													dim: w + 'x' + h,
+													font: font,
+													fontSize: fontSize });
+		 
+		 book.init(tableInfos)
 		 .then( resolve => {
 			 if(localStore.getBkmrk(bk.id)) {
 				let bkmrk = localStore.getBkmrk(bk.id);
 				book.goToBookmark(bkmrk);
 			 }
-			 //localStore.setTableInfos({ id: bk.id,
-									    //dim: w + 'x' + h,
-									    //font: font,
-									    //fontSize: fontSize,
-									    //tableInfos: resolve });
+			 localStore.setTableInfos({ id: bk.id,
+									    dim: w + 'x' + h,
+									    font: font,
+									    fontSize: fontSize,
+									    tableInfos: resolve });
 			
 			return 'done';
 			
@@ -722,20 +789,6 @@ const book = function(container) {
 		return utils.ajax(options);
 	})
 	.then( content => {
-		//let prevBook = dataStore.getData('book');
-		//if(prevBook) {
-			//init(content);
-		//} else {
-			//let fct = (s) => {
-				//init(content);
-			//}
-			
-			//if(window.requestAnimationFrame) {
-				//window.requestAnimationFrame(fct);
-			//} else {
-				//setTimeout(fct,50);
-			//}
-		//}
 		dataStore.setData('book',bk.id);
 		init(content);	
 	})

@@ -139,6 +139,11 @@ const localStore = {
 	},
 	
 	setTableInfos: i => {
+		console.log(i);
+		if(i.tableInfos.totalPages===null) {
+			console.log('null');
+			return; 
+		}
 		let tableInfos = [];
 		if (typeof(Storage) !== "undefined") {
 			//check localStorage for tableInfos
@@ -157,6 +162,23 @@ const localStore = {
 			}
 			localStorage.setItem('tableInfos', JSON.stringify(tableInfos));
 		}
+	},
+	
+	getTableInfos: i => {
+		let tableInfos = [];
+		if(typeof(Storage) !== "undefined") {
+			if(localStorage.getItem('tableInfos')) {
+				tableInfos = JSON.parse(localStorage.getItem('tableInfos'));
+				let item = tableInfos.filter(function(o) { return o.id===i.id &&
+																	  o.dim===i.dim &&
+																	  o.font===i.font &&
+																	  o.fontSize===i.fontSize})[0];
+			   if(item) {
+				   return item.tableInfos;
+			   } 
+		   }
+		}
+		
 	}
 }
 
