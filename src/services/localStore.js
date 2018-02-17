@@ -139,9 +139,7 @@ const localStore = {
 	},
 	
 	setTableInfos: i => {
-		console.log(i);
 		if(i.tableInfos.totalPages===null) {
-			console.log('null');
 			return; 
 		}
 		let tableInfos = [];

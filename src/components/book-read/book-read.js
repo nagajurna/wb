@@ -237,7 +237,7 @@ const book = function(container) {
 			//on resize
 			let rtime;
 			let timeout = false;
-			let delta = 1000;
+			let delta = 800;
 			window.addEventListener('resize', event => {
 				rtime = new Date();
 				if (timeout === false) {
