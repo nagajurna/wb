@@ -139,7 +139,7 @@ const localStore = {
 	},
 	
 	setTableInfos: i => {
-		if(i.tableInfos.totalPages===null) {
+		if(isNaN(i.tableInfos.totalPages)) {
 			return; 
 		}
 		let tableInfos = [];
