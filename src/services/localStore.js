@@ -144,29 +144,41 @@ const localStore = {
 		}
 		let tableInfos = [];
 		if (typeof(Storage) !== "undefined") {
-			//check localStorage for tableInfos
+			//clean out old storage
 			if(localStorage.getItem('tableInfos')) {
-				tableInfos = JSON.parse(localStorage.getItem('tableInfos'));
+				localStorage.removeItem('tableInfos')
+			}
+			//check localStorage for tableInfos
+			if(localStorage.getItem('tables')) {
+				tableInfos = JSON.parse(localStorage.getItem('tables'));		
 				let item = tableInfos.filter(function(o) { return o.id===i.id &&
 																  o.dim===i.dim &&
 														          o.font===i.font &&
 														          o.fontSize===i.fontSize})[0];
 
 			   if(!item) {
+				   //max items
+				   if(tableInfos.length===50) {
+					   tableInfos.shift();
+				   }
 				   tableInfos.push(i);
 			   }
 			} else {
 				tableInfos.push(i);
 			}
-			localStorage.setItem('tableInfos', JSON.stringify(tableInfos));
+			localStorage.setItem('tables', JSON.stringify(tableInfos));
 		}
 	},
 	
 	getTableInfos: i => {
 		let tableInfos = [];
 		if(typeof(Storage) !== "undefined") {
+			//clean out old storage
 			if(localStorage.getItem('tableInfos')) {
-				tableInfos = JSON.parse(localStorage.getItem('tableInfos'));
+				localStorage.removeItem('tableInfos')
+			}
+			if(localStorage.getItem('tables')) {
+				tableInfos = JSON.parse(localStorage.getItem('tables'));
 				let item = tableInfos.filter(function(o) { return o.id===i.id &&
 																	  o.dim===i.dim &&
 																	  o.font===i.font &&

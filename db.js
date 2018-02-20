@@ -6,7 +6,7 @@ const adapter = new FileAsync('db.json');
 const db = low(adapter)
 .then ( db => {
 	db._.mixin(lodashId);
-	db.defaults({ users: [], books: [], authors: [] }).write();
+	db.defaults({ users: [], books: [], authors: [], tables: [] }).write();
 	console.log('db ready');
 	return db;
 })

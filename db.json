@@ -44,8 +44,7 @@
       "sources": [
         "Du dandysme et de G. Brummel (2<sup>e</sup> éd.), par J.-A. Barbey d' Aurevilly – Librairie de Poulet-Malassis, Paris, 1861.",
         "Œuvres de Barbey d'Aurevilly, vol.&nbsp;13 &ndash;&nbsp;A. Lemerre, Paris, 1878-1889."
-      ],
-      "source": {}
+      ]
     },
     {
       "styles": {
@@ -79,8 +78,7 @@
       "id": "b3e3c2e7-305f-4697-867f-3dd2417f71ed",
       "sources": [
         "Un Roman pour les cuisinières, par Émile Cabanon – Eugène Renduel, Paris, 1834."
-      ],
-      "source": {}
+      ]
     },
     {
       "styles": {
@@ -219,8 +217,7 @@
       "id": "13dc7d86-f837-4657-a690-ee3a34b90962",
       "sources": [
         "René Leys, par Victor Segalen &ndash;&nbsp;G. Crès, Paris, 1922."
-      ],
-      "source": {}
+      ]
     },
     {
       "styles": {
@@ -255,8 +252,7 @@
       "sources": [
         "Voyage autour de ma chambre , suivi du Lépreux de la cité d'Aoste . Nouvelle édition d'après celle de Saint-Pétersbourg (1812) revue et augmentée –&nbsp;Delaunay, Paris, 1817 (p. 17-150).",
         "Œuvres complètes du Cte Xavier de Maistre, nouvelle édition – Charpentier, Paris, 1844 (p. 1-108)."
-      ],
-      "source": {}
+      ]
     },
     {
       "styles": {
@@ -290,11 +286,9 @@
       "id": "99da47e0-1e93-409e-ba88-233ef3b5ee88",
       "sources": [
         "Œuvres complètes du Cte Xavier de Maistre, nouvelle édition –&nbsp;Charpentier, Paris, 1844 (p. 109-205)"
-      ],
-      "source": {}
+      ]
     },
     {
-      "source": {},
       "styles": {
         "color": "rgba(90, 114, 71, 0.8)",
         "image": "/books/valperi_tome_un/valperi_tome_un_cover.jpg",
@@ -557,7 +551,6 @@
       "id": "736cc8a1-9f78-4983-9394-8c87ccc64be4"
     },
     {
-      "source": {},
       "styles": {
         "color": "rgba(192, 171, 142, 0.8)",
         "image": "/books/therese_aubert/therese_aubert_cover.jpg",
@@ -592,7 +585,6 @@
       "id": "f32d6d6b-c42c-43f4-be0f-d1139c675d78"
     },
     {
-      "source": {},
       "styles": {
         "color": "rgba(187, 119, 119, 0.8)",
         "image": "/books/mes_amis/mes_amis_cover.jpg",
@@ -627,7 +619,6 @@
       "id": "91fd0a8f-1260-495b-89b5-552f8539ef2f"
     },
     {
-      "source": {},
       "styles": {
         "color": "rgba(100, 125, 79, 0.8)",
         "image": "/books/armand/armand_cover.jpg",
@@ -662,7 +653,6 @@
       "id": "247eb19f-d72c-4849-a54c-294d71714d3c"
     },
     {
-      "source": {},
       "styles": {
         "color": "rgba(188, 36, 60, 0.8)",
         "image": "/books/memoires_de_lacenaire/memoires_de_lacenaire_cover.jpg",
@@ -698,7 +688,6 @@
       "id": "c395ddde-05ee-4a77-81a3-77af503eb5d4"
     },
     {
-      "source": {},
       "styles": {
         "color": "rgba(177, 143, 106,0.8)",
         "image": "/books/becon_les_bruyeres/becon_les_bruyeres_cover.jpg",
@@ -865,6 +854,347 @@
       "created_at": "2018-02-11 22:21:52",
       "updated_at": "2018-02-11 22:21:53",
       "id": "0ba393cb-5a7f-4243-b4f7-309aa11354a5"
+    }
+  ],
+  "tables": [
+    {
+      "id": "69e4a0c8-126f-49da-b7cd-51e5d9b86749",
+      "agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/64.0.3282.140 Chrome/64.0.3282.140 Safari/537.36",
+      "width": 550,
+      "height": 695,
+      "font": "Noto Serif",
+      "fontSize": "16",
+      "table": {
+        "startPage": 2,
+        "totalPages": 47,
+        "sectionsPageStart": [
+          {
+            "id": "cover",
+            "page_start": -1
+          },
+          {
+            "id": "dedicace",
+            "page_start": 0
+          },
+          {
+            "id": "un",
+            "page_start": 1
+          },
+          {
+            "id": "deux",
+            "page_start": 9
+          },
+          {
+            "id": "trois",
+            "page_start": 15
+          },
+          {
+            "id": "quatre",
+            "page_start": 23
+          },
+          {
+            "id": "cinq",
+            "page_start": 29
+          },
+          {
+            "id": "six",
+            "page_start": 33
+          },
+          {
+            "id": "sept",
+            "page_start": 42
+          },
+          {
+            "id": "fin",
+            "page_start": 47
+          },
+          {
+            "id": "wb-last",
+            "page_start": 48
+          }
+        ],
+        "tocSectionsPageStart": [
+          {
+            "id": "cover",
+            "page_start": -1
+          },
+          {
+            "id": "dedicace",
+            "page_start": 0
+          },
+          {
+            "id": "un",
+            "page_start": 1
+          },
+          {
+            "id": "deux",
+            "page_start": 9
+          },
+          {
+            "id": "trois",
+            "page_start": 15
+          },
+          {
+            "id": "quatre",
+            "page_start": 23
+          },
+          {
+            "id": "cinq",
+            "page_start": 29
+          },
+          {
+            "id": "six",
+            "page_start": 33
+          },
+          {
+            "id": "sept",
+            "page_start": 42
+          },
+          {
+            "id": "fin",
+            "page_start": 47
+          },
+          {
+            "id": "wb-last",
+            "page_start": 48
+          }
+        ]
+      },
+      "created_at": "2018-02-18 22:03:07"
+    },
+    {
+      "id": "c395ddde-05ee-4a77-81a3-77af503eb5d4",
+      "agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/64.0.3282.140 Chrome/64.0.3282.140 Safari/537.36",
+      "width": 550,
+      "height": 695,
+      "font": "Noto Serif",
+      "fontSize": "16",
+      "table": {
+        "startPage": 1,
+        "totalPages": 294,
+        "sectionsPageStart": [
+          {
+            "id": "cover",
+            "page_start": 0
+          },
+          {
+            "id": "intro",
+            "page_start": 1
+          },
+          {
+            "id": "preface",
+            "page_start": 4
+          },
+          {
+            "id": "préfacedeux",
+            "page_start": 9
+          },
+          {
+            "id": "memoires_un",
+            "page_start": 13
+          },
+          {
+            "id": "memoires_deux",
+            "page_start": 28
+          },
+          {
+            "id": "memoires_trois",
+            "page_start": 68
+          },
+          {
+            "id": "memoires_quatre",
+            "page_start": 119
+          },
+          {
+            "id": "memoires_cinq",
+            "page_start": 149
+          },
+          {
+            "id": "memoires_six",
+            "page_start": 166
+          },
+          {
+            "id": "memoires_sept",
+            "page_start": 207
+          },
+          {
+            "id": "memoires_huit",
+            "page_start": 258
+          },
+          {
+            "id": "notes",
+            "page_start": 292
+          },
+          {
+            "id": "fin",
+            "page_start": 294
+          },
+          {
+            "id": "wb-last",
+            "page_start": 295
+          }
+        ],
+        "tocSectionsPageStart": [
+          {
+            "id": "cover",
+            "page_start": 0
+          },
+          {
+            "id": "intro",
+            "page_start": 1
+          },
+          {
+            "id": "preface",
+            "page_start": 4
+          },
+          {
+            "id": "préfacedeux",
+            "page_start": 9
+          },
+          {
+            "id": "memoires_un",
+            "page_start": 13
+          },
+          {
+            "id": "memoires_deux",
+            "page_start": 28
+          },
+          {
+            "id": "memoires_trois",
+            "page_start": 68
+          },
+          {
+            "id": "memoires_quatre",
+            "page_start": 119
+          },
+          {
+            "id": "memoires_cinq",
+            "page_start": 149
+          },
+          {
+            "id": "memoires_six",
+            "page_start": 166
+          },
+          {
+            "id": "memoires_sept",
+            "page_start": 207
+          },
+          {
+            "id": "memoires_huit",
+            "page_start": 258
+          },
+          {
+            "id": "notes",
+            "page_start": 292
+          },
+          {
+            "id": "fin",
+            "page_start": 294
+          },
+          {
+            "id": "wb-last",
+            "page_start": 295
+          }
+        ]
+      },
+      "created_at": "2018-02-18 22:05:14"
+    },
+    {
+      "id": "f32d6d6b-c42c-43f4-be0f-d1139c675d78",
+      "agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/64.0.3282.140 Chrome/64.0.3282.140 Safari/537.36",
+      "width": 550,
+      "height": 695,
+      "font": "Noto Serif",
+      "fontSize": "16",
+      "table": {
+        "startPage": 1,
+        "totalPages": 106,
+        "sectionsPageStart": [
+          {
+            "id": "cover",
+            "page_start": 0
+          },
+          {
+            "id": "preface",
+            "page_start": 1
+          },
+          {
+            "id": "prefacedeux",
+            "page_start": 4
+          },
+          {
+            "id": "texteun",
+            "page_start": 6
+          },
+          {
+            "id": "textedeux",
+            "page_start": 25
+          },
+          {
+            "id": "textetrois",
+            "page_start": 38
+          },
+          {
+            "id": "textequatre",
+            "page_start": 62
+          },
+          {
+            "id": "textecinq",
+            "page_start": 80
+          },
+          {
+            "id": "fin",
+            "page_start": 106
+          },
+          {
+            "id": "wb-last",
+            "page_start": 107
+          }
+        ],
+        "tocSectionsPageStart": [
+          {
+            "id": "cover",
+            "page_start": 0
+          },
+          {
+            "id": "preface",
+            "page_start": 1
+          },
+          {
+            "id": "prefacedeux",
+            "page_start": 4
+          },
+          {
+            "id": "texteun",
+            "page_start": 6
+          },
+          {
+            "id": "textedeux",
+            "page_start": 25
+          },
+          {
+            "id": "textetrois",
+            "page_start": 38
+          },
+          {
+            "id": "textequatre",
+            "page_start": 62
+          },
+          {
+            "id": "textecinq",
+            "page_start": 80
+          },
+          {
+            "id": "fin",
+            "page_start": 106
+          },
+          {
+            "id": "wb-last",
+            "page_start": 107
+          }
+        ]
+      },
+      "created_at": "2018-02-18 22:17:14"
     }
   ]
 }

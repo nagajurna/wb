@@ -12,6 +12,7 @@ var FileStore = require('session-file-store')(session);
 const index = require('./routes/index');
 const users = require('./routes/users');
 const books = require('./routes/books');
+const tables = require('./routes/tables');
 const authors = require('./routes/authors');
 
 //app
@@ -41,6 +42,7 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use('/',index);
 app.use('/users', users);
 app.use('/books', books);
+app.use('/tables', tables);
 app.use('/authors', authors);
 
 

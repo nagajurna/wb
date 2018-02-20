@@ -357,9 +357,4 @@ router.delete('/:id', (req, res, next) => {
 	});
 });
 
-/*SET TABLE*/
-router.put('/table', (req, res, next) => {
-	
-});
-
 module.exports = router;

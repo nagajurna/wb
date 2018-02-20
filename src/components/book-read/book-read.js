@@ -237,7 +237,7 @@ const book = function(container) {
 			//on resize
 			let rtime;
 			let timeout = false;
-			let delta = 800;
+			let delta = 600;
 			window.addEventListener('resize', event => {
 				rtime = new Date();
 				if (timeout === false) {
@@ -451,6 +451,7 @@ const book = function(container) {
 				homeLinks[i].addEventListener('click', event => {
 					event.preventDefault();
 					let prevLocation = dataStore.getData('location').prevLocation;
+					prevLocation = prevLocation.match(/#\/[^\/]+\/read$/) ? '#/' : prevLocation;
 					location.hash = prevLocation ? prevLocation : '#/';
 				}, false);
 			}
@@ -716,38 +717,60 @@ const book = function(container) {
 			 text: content
 		 });
 		 
-		//tableInfos
+		tableInfos
 		let tableInfos = localStore.getTableInfos({ id: bk.id,
 													dim: w + 'x' + h,
 													font: font,
 													fontSize: fontSize });
 		 
 		 book.init(tableInfos)
-		 .then( resolve => {
+		 .then( table => {
 			 if(localStore.getBkmrk(bk.id)) {
 				let bkmrk = localStore.getBkmrk(bk.id);
 				book.goToBookmark(bkmrk);
 			 }
-			 localStore.setTableInfos({ id: bk.id,
-									    dim: w + 'x' + h,
-									    font: font,
-									    fontSize: fontSize,
-									    tableInfos: resolve });
 			
-			return 'done';
+			return table;
 			
 		 })
-		 .then( resolve => {
+		 .then( table => {
 			settings();
-			return 'done';
+			return table;
 		 })
-		 .then (resolve => {
+		 .then (table => {
 			document.body.style.overflowY = 'visible';
 			utils.addClass('#book-loader-container', 'hidden');
 			bookContainer.className = 'show';
+			return table;
 		})
-		 .catch(error => {
+		.then (table => {
+			localStore.setTableInfos({ id: bk.id,
+									    dim: w + 'x' + h,
+									    font: font,
+									    fontSize: fontSize,
+									    tableInfos: table });
+			//ajax post
+			//let data = { id: bk.id,
+						 //agent: window.navigator.userAgent,
+						 //width: w,
+						 //height: h,
+						 //font: font,
+						 //fontSize: fontSize,
+						 //table: table }
+		    //let options = { method: 'POST', url: '/tables/new', data: JSON.stringify(data) };
+		    //return utils.ajax(options);
+		//})
+		//.then ( response => {
+			//let res = JSON.parse(response);
+			//if(res.error) {
+				//console.log(res.error);
+			//} else {
+				//console.log(res.message);
+			//}
+		})
+		.catch(error => {
 			 console.log(error);
+			 return;
 		 });	
 	}
 	
@@ -771,7 +794,6 @@ const book = function(container) {
 	c.innerHTML = bookReadTemplate({ book:bk });
 	utils.setHTML('title','&Eacute;quivoques - ' + bk.title);
 	//START LOADER
-	//document.body.style.overflowY = 'hidden';
 	//document.body.style.height = window.innerHeight + 'px';
 	document.body.style.overflowY = 'hidden';
 	utils.removeClass('#book-loader-container','hidden');
