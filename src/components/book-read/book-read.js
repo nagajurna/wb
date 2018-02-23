@@ -451,7 +451,7 @@ const book = function(container) {
 				homeLinks[i].addEventListener('click', event => {
 					event.preventDefault();
 					let prevLocation = dataStore.getData('location').prevLocation;
-					prevLocation = prevLocation.match(/#\/[^\/]+\/read$/) ? '#/' : prevLocation;
+					prevLocation = prevLocation && prevLocation.match(/#\/[^\/]+\/read$/) ? '#/' : prevLocation;
 					location.hash = prevLocation ? prevLocation : '#/';
 				}, false);
 			}

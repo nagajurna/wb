@@ -4792,7 +4792,7 @@ var book = function book(container) {
 				homeLinks[_i11].addEventListener('click', function (event) {
 					event.preventDefault();
 					var prevLocation = _dataStore2.default.getData('location').prevLocation;
-					prevLocation = prevLocation.match(/#\/[^\/]+\/read$/) ? '#/' : prevLocation;
+					prevLocation = prevLocation && prevLocation.match(/#\/[^\/]+\/read$/) ? '#/' : prevLocation;
 					location.hash = prevLocation ? prevLocation : '#/';
 				}, false);
 			}
