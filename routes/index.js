@@ -11,7 +11,6 @@ router.get('/init', function(req, res, next) {
 		let books = db
 			.get('books')
 			.cloneDeep()
-			.sortBy('nameAlpha')
 			.value();
 		return { db: db, books: books };
 	})
@@ -20,6 +19,7 @@ router.get('/init', function(req, res, next) {
 		let books = resolve.books;
 		let authors = db
 			.get('authors')
+			.sortBy('nameAlpha')
 			.cloneDeep()
 			.value();
 		return { books: books, authors: authors };

@@ -433,55 +433,6 @@
     {
       "source": {},
       "styles": {
-        "color": "rgba(96, 46, 45, 0.8)",
-        "image": " /books/les_derniers_jours_de_kant/les_derniers_jours_de_kant_cover.jpg",
-        "font": "Noto Serif",
-        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
-        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
-        "title": "padding-top: 9%; font-size: 1.2em;letter-spacing: 1.5px",
-        "subtitle1": "",
-        "subtitle2": "",
-        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
-      },
-      "title": "Les Derniers Jours d'Emmanuel&nbsp;Kant",
-      "subtitle1": "",
-      "subtitle2": "",
-      "authorDisplay": "Thomas de Quincey",
-      "year": "1827 (1899 pour la traduction)",
-      "language": "français/anglais",
-      "categories": "",
-      "collection": "",
-      "sources": [
-        "Les derniers Jours d'Immanuel Kant &ndash;&nbsp;La Vogue, Nouvelle Série, Paris, avril-juin 1899.",
-        "Gallery of the german prose classics. By the english opium-eater. N° III Kant – Blackwood's Edinburgh magazine, volume 21, 1827 February (p.&nbsp;133-158)."
-      ],
-      "description": "",
-      "path": "/books/les_derniers_jours_de_kant/les_derniers_jours_de_kant",
-      "visible": false,
-      "authors": [
-        "fffaaff6-45c7-4f81-81a9-12a372c9a972"
-      ],
-      "contribs": [
-        {
-          "name": "Marcel Schwob",
-          "nameAlpha": "schwob",
-          "birth": "1867",
-          "death": "1905",
-          "description": "",
-          "created_at": "2017-11-05 12:36:33",
-          "updated_at": "2017-11-06 16:25:38",
-          "id": "6e757154-155a-4518-add7-b3e5cfd9e3ca",
-          "visible": true,
-          "role": "préface, traduction"
-        }
-      ],
-      "created_at": "2018-01-06 11:42:28",
-      "updated_at": "2018-01-18 13:43:22",
-      "id": "a61aae9d-336d-4635-8979-094b99e8a315"
-    },
-    {
-      "source": {},
-      "styles": {
         "color": "rgba(220, 76, 70, 0.8)",
         "image": " /books/racine_et_shakespeare/racine_et_shakespeare_cover.jpg",
         "font": "Noto Serif",
@@ -720,6 +671,124 @@
       "created_at": "2018-02-15 14:27:26",
       "updated_at": "2018-02-15 14:32:27",
       "id": "69e4a0c8-126f-49da-b7cd-51e5d9b86749"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(96, 46, 45, 0.8)",
+        "image": "/books/les_derniers_jours_de_kant/les_derniers_jours_de_kant_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 9%; font-size: 1.2em;letter-spacing: 1.5px",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Les Derniers Jours d'Emmanuel Kant",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Thomas de Quincey",
+      "year": "1827 (1899 pour la traduction)",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Les derniers Jours d'Immanuel Kant –&nbsp;La Vogue, Nouvelle Série, Paris, avril-juin 1899."
+      ],
+      "description": "",
+      "path": "/books/les_derniers_jours_de_kant/les_derniers_jours_de_kant",
+      "visible": true,
+      "authors": [
+        "fffaaff6-45c7-4f81-81a9-12a372c9a972"
+      ],
+      "contribs": [
+        {
+          "name": "Marcel Schwob",
+          "nameAlpha": "schwob",
+          "birth": "1867",
+          "death": "1905",
+          "description": "",
+          "created_at": "2017-11-05 12:36:33",
+          "updated_at": "2017-11-06 16:25:38",
+          "id": "6e757154-155a-4518-add7-b3e5cfd9e3ca",
+          "visible": true,
+          "role": "préface, traduction"
+        }
+      ],
+      "created_at": "2018-02-25 00:28:10",
+      "updated_at": "2018-02-25 01:00:04",
+      "id": "4310e84a-64a7-4a30-aabd-8a70d33d5732"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(62, 79, 48, 0.8)",
+        "image": "/books/dans_la_foret/dans_la_foret_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 8%; font-size: 0.9em;letter-spacing: 1px",
+        "subtitle1": "padding-top: 2%; font-size: 1.1em;letter-spacing: 1px;font-variant: small-caps",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Fumeurs d'opium",
+      "subtitle1": "Dans la&nbsp;forêt et&nbsp;autres&nbsp;nouvelles",
+      "subtitle2": "",
+      "authorDisplay": "Jules Boissière",
+      "year": "1896",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Fumeurs d'opium ; Comédiens ambulants, Jules Boissère &ndash;&nbsp;Louis Michaud, Paris, 1909."
+      ],
+      "description": "",
+      "path": "/books/dans_la_foret/dans_la_foret",
+      "visible": false,
+      "authors": [
+        "d3ed277a-08fa-41bd-a159-d7728e92e656"
+      ],
+      "contribs": [],
+      "created_at": "2018-02-25 00:34:28",
+      "updated_at": "2018-02-25 09:11:04",
+      "id": "4a61340b-04bf-43ff-b468-465423ebe363"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(141, 63, 81, 0.8)",
+        "image": "/books/comediens_ambulants/comediens_ambulants_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 18%; font-size: 1.2em;letter-spacing: 1px;font-variant: small-caps",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Comédiens ambulants",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Jules Boissière",
+      "year": "1896",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Fumeurs d'opium ; Comédiens ambulants, Jules Boissère –&nbsp;Louis Michaud, Paris, 1909."
+      ],
+      "description": "",
+      "path": "/books/comediens_ambulants/comediens_ambulants",
+      "visible": false,
+      "authors": [
+        "d3ed277a-08fa-41bd-a159-d7728e92e656"
+      ],
+      "contribs": [],
+      "created_at": "2018-02-25 09:35:38",
+      "updated_at": "2018-02-25 09:59:26",
+      "id": "154429b8-4c84-48ba-ab8e-94a87c1746ee"
     }
   ],
   "authors": [
@@ -854,6 +923,17 @@
       "created_at": "2018-02-11 22:21:52",
       "updated_at": "2018-02-11 22:21:53",
       "id": "0ba393cb-5a7f-4243-b4f7-309aa11354a5"
+    },
+    {
+      "name": "Jules Boissière",
+      "nameAlpha": "boissière",
+      "birth": "1863",
+      "death": "1897",
+      "description": "",
+      "visible": true,
+      "created_at": "2018-02-25 00:15:27",
+      "updated_at": "2018-02-25 00:15:27",
+      "id": "d3ed277a-08fa-41bd-a159-d7728e92e656"
     }
   ],
   "tables": [
