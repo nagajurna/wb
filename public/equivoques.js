@@ -3519,7 +3519,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                         buf.push("\n				  ");
                         __stack.lineno = 19;
                         if (books[i].subtitle2) {
-                            buf.push("\n					<span> &mdash;&nbsp;", (__stack.lineno = 20, books[i].subtitle2), "</span>\n				  ");
+                            buf.push("\n					<span> (", (__stack.lineno = 20, books[i].subtitle2), ")</span>\n				  ");
                             __stack.lineno = 21;
                         }
                         buf.push("\n			  </p>\n			  <p><b>Année de parution : </b>", (__stack.lineno = 23, books[i].year), "</p>\n			  ");
@@ -4222,7 +4222,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                         buf.push("\n				  ");
                         __stack.lineno = 19;
                         if (books[i].subtitle2) {
-                            buf.push("\n					<span> &mdash;&nbsp;", (__stack.lineno = 20, books[i].subtitle2), "</span>\n				  ");
+                            buf.push("\n					<span> (", (__stack.lineno = 20, books[i].subtitle2), ")</span>\n				  ");
                             __stack.lineno = 21;
                         }
                         buf.push("\n			  </p>\n			  <p><b>Année de parution : </b>", (__stack.lineno = 23, books[i].year), "</p>\n			  ");
@@ -12914,7 +12914,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                     buf.push("\n			  ");
                     __stack.lineno = 78;
                     if (book.subtitle2) {
-                        buf.push("\n				<span> &mdash;&nbsp;", (__stack.lineno = 79, book.subtitle2), "</span>\n			  ");
+                        buf.push("\n				<span> (", (__stack.lineno = 79, book.subtitle2), ")</span>\n			  ");
                         __stack.lineno = 80;
                     }
                     buf.push("\n		  </p>\n		  <p><b>Année de parution : </b>", (__stack.lineno = 82, book.year), "</p>\n		  ");
@@ -13421,7 +13421,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
                                 buf.push("\n				  ");
                                 __stack.lineno = 19;
                                 if (work.subtitle2) {
-                                    buf.push("\n					<span> &mdash;&nbsp;", (__stack.lineno = 20, work.subtitle2), "</span>\n				  ");
+                                    buf.push("\n					<span> (", (__stack.lineno = 20, work.subtitle2), ")</span>\n				  ");
                                     __stack.lineno = 21;
                                 }
                                 buf.push("\n			  </p>\n			  <p><b>Année de parution : </b>", (__stack.lineno = 23, work.year), "</p>\n			  ");

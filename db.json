@@ -729,13 +729,13 @@
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
         "title": "padding-top: 8%; font-size: 0.9em;letter-spacing: 1px",
-        "subtitle1": "padding-top: 2%; font-size: 1.1em;letter-spacing: 1px;font-variant: small-caps",
-        "subtitle2": "",
+        "subtitle1": "padding-top: 2%; margin-bottom: 0em;font-size: 1.1em;letter-spacing: 1px;font-variant: small-caps",
+        "subtitle2": "margin-top: 0px; font-size: 0.8em;letter-spacing: 1px;font-style: italic",
         "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
       },
       "title": "Fumeurs d'opium",
-      "subtitle1": "Dans la&nbsp;forêt et&nbsp;autres&nbsp;nouvelles",
-      "subtitle2": "",
+      "subtitle1": "Dans la&nbsp;forêt",
+      "subtitle2": "et autres&nbsp;nouvelles",
       "authorDisplay": "Jules Boissière",
       "year": "1896",
       "language": "français",
@@ -752,8 +752,43 @@
       ],
       "contribs": [],
       "created_at": "2018-02-25 00:34:28",
-      "updated_at": "2018-02-25 09:11:04",
+      "updated_at": "2018-02-26 12:04:23",
       "id": "4a61340b-04bf-43ff-b468-465423ebe363"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(62, 79, 48, 0.8)",
+        "image": " /books/une_ame/une_ame_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 8%; font-size: 0.9em;letter-spacing: 1px",
+        "subtitle1": "padding-top: 2%; margin-bottom: 0em;font-size: 1.1em;letter-spacing: 1px;font-variant: small-caps",
+        "subtitle2": "font-size: 0.8em;letter-spacing: 1px;font-style: italic;font-variant: small-caps",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Fumeurs d'opium",
+      "subtitle1": "Une âme",
+      "subtitle2": "journal d'un fusillé",
+      "authorDisplay": "Jules Boissière",
+      "year": "1896",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Fumeurs d'opium ; Comédiens ambulants, Jules Boissère –&nbsp;Louis Michaud, Paris, 1909."
+      ],
+      "description": "",
+      "path": "/books/une_ame/une_ame",
+      "visible": false,
+      "authors": [
+        "d3ed277a-08fa-41bd-a159-d7728e92e656"
+      ],
+      "contribs": [],
+      "created_at": "2018-02-26 11:29:21",
+      "updated_at": "2018-02-26 12:21:06",
+      "id": "c5a5182b-cb1b-49c2-aef4-f7968b4cdeb8"
     },
     {
       "source": {},
@@ -786,9 +821,9 @@
         "d3ed277a-08fa-41bd-a159-d7728e92e656"
       ],
       "contribs": [],
-      "created_at": "2018-02-25 09:35:38",
-      "updated_at": "2018-02-25 09:59:26",
-      "id": "154429b8-4c84-48ba-ab8e-94a87c1746ee"
+      "created_at": "2018-02-26 11:36:17",
+      "updated_at": "2018-02-26 11:36:17",
+      "id": "58613751-ed48-4a90-b323-8982e7ced89e"
     }
   ],
   "authors": [
