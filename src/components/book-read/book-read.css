@@ -914,6 +914,14 @@ LINE-HEIGHT
 }
 
 /*
+SUP
+*/
+[data-wb-text] sup.line_height_one {
+	line-height: 1em;
+}
+
+
+/*
 SEPARATION
 */
 [data-wb-text] p.separation {
