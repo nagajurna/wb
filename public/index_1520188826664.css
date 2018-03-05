@@ -246,6 +246,7 @@ button::-moz-focus-inner {
 }
 
 button.btn {
+	cursor: default;
 	background-color: transparent;
 	border: none;
 	color: #000;
@@ -256,6 +257,7 @@ button.btn {
 }
 
 button.button {
+	cursor: default;
 	background-color: transparent;
 	border: none;
 	color: rgb(132,132,132);

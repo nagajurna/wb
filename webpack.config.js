@@ -3,7 +3,7 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: './public/equivoques.js'
+    filename: './public/equivoques_' + Date.now() + '.js'
   },
   module: {
 	  rules: [

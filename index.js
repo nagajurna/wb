@@ -33,7 +33,7 @@ app.use(session({
 
 //express.static
 let halfDay = 43200000;
-app.use(express.static('public', { maxAge: halfDay }));
+app.use(express.static('public', { maxAge: '1y' }));
 //body-parser
 app.use(bodyParser.json());
 //serve-favicon
