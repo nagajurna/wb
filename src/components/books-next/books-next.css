@@ -218,6 +218,13 @@ MODAL (INFOS)
 
 }
 
+#authors-container .modal .description {
+	border-bottom: 1px solid #ddd;
+	text-align: justify;
+	padding-top: 8px;
+	padding-bottom: 16px;
+}
+
 #books-next-container .modal p {
 	margin: 0px;
 	padding: 8px;

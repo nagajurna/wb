@@ -88,7 +88,7 @@
 			</ul>
 			<p><b>Collection : </b><span><%= book.collection %></span></p>
 			<p><b>Description :</b></p>
-			<div><%= book.description %></div>
+			<div><%- replaceLines(book.description) %></div>
 			<p><b>Path : </b><span><%= book.path %></span></p>
 			<p><b>Visible : </b><span><% if(book.visible===true) {%>oui<%} else {%>non<%}%></span></p>
 			<p><b>Créé le : </b><span><%= book.created_at %></span></p>

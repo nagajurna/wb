@@ -12,14 +12,9 @@
 			 <%}%>
 		</div>
 		<div id="content">
-			  <p><b>Titre : </b><%- work.title %>
-				  <% if(work.subtitle1) {%>
-					<span> &mdash;&nbsp;<%- work.subtitle1 %></span>
-				  <%}%>
-				  <% if(work.subtitle2) {%>
-					<span> (<%- work.subtitle2 %>)</span>
-				  <%}%>
-			  </p>
+			  <% if(work.description) {%>
+			  <div class="description"><%- replaceLines(work.description) %></div>
+			  <%}%>
 			  <p><b>Année de parution : </b><%- work.year %></p>
 			  <% if(work.authors.length > 1) {%>
 					<p>
@@ -73,9 +68,6 @@
 				<% } %>
 				</ul>
 			  </p>
-			  <% if(work.description) {%>
-			  <div><%- work.description %></div>
-			  <%}%>
 		</div>
 	</div>
 </div>

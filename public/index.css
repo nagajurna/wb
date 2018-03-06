@@ -322,6 +322,12 @@ PADDING, MARGIN
 	padding-left: 16px;
 	padding-right: 16px;
 }
+
+.padding-8 {
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+
 .padding-16 {
 	padding-top: 16px;
 	padding-bottom: 16px;

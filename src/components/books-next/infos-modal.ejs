@@ -12,14 +12,9 @@
 			 <%}%>
 		</div>
 		<div id="content">
-			  <p><b>Titre : </b><%- books[i].title %>
-				  <% if(books[i].subtitle1) {%>
-					<span> &mdash;&nbsp;<%- books[i].subtitle1 %></span>
-				  <%}%>
-				  <% if(books[i].subtitle2) {%>
-					<span> (<%- books[i].subtitle2 %>)</span>
-				  <%}%>
-			  </p>
+			  <% if(books[i].description) {%>
+			  <div class="description"><%- replaceLines(books[i].description) %></div>
+			  <%}%>
 			  <p><b>Année de parution : </b><%- books[i].year %></p>
 			  <% if(books[i].authors.length > 1) {%>
 					<p>
@@ -73,9 +68,6 @@
 				<% } %>
 				</ul>
 			  </p>
-			  <% if(books[i].description) {%>
-			  <div><%- books[i].description %></div>
-			  <%}%>
 		</div>
 	</div>
 </div>

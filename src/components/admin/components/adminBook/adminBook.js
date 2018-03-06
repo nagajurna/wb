@@ -17,7 +17,7 @@ const adminBook = function(container) {
 			c.innerHTML = adminBookTemplate({ book: {}, error: response.error });
 		} else {
 			//insert template in container
-			c.innerHTML = adminBookTemplate({ book: response.book, error: '' });
+			c.innerHTML = adminBookTemplate({ book: response.book, error: '', replaceLines: utils.replaceLines });
 		
 			let root = document.querySelector('#adminBook');
 			let modal = root.querySelector('#modal');

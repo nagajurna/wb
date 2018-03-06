@@ -15,7 +15,7 @@ const booksNext = function(container) {
 	let nvbs = bs.filter(function(b) { return b.visible===false; });
 	
 	//insert template in container
-	c.innerHTML = booksNextTemplate({ books: nvbs });
+	c.innerHTML = booksNextTemplate({ books: nvbs, replaceLines: utils.replaceLines });
 	utils.setHTML('title','&Eacute;quivoques - À paraître');
 	let root = document.querySelector('#books-next-container');
 	let slides = root.querySelectorAll('.slide');

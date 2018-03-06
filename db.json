@@ -66,7 +66,7 @@
       "language": "français",
       "categories": "",
       "collection": "",
-      "description": "",
+      "description": "<i>L'unique roman d'Émile Cabanon qui, facétieux, se joue des stéréotypes de son temps et nous gratifie dans un dernier chapitre d'une mystérieuse recette de cuisine... Amusant&nbsp;!</i>",
       "path": "/books/un_roman_pour_les_cuisinieres/un_roman_pour_les_cuisinieres",
       "visible": true,
       "authors": [
@@ -74,11 +74,12 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:00:53",
-      "updated_at": "2018-01-19 09:23:55",
+      "updated_at": "2018-03-06 14:21:00",
       "id": "b3e3c2e7-305f-4697-867f-3dd2417f71ed",
       "sources": [
         "Un Roman pour les cuisinières, par Émile Cabanon – Eugène Renduel, Paris, 1834."
-      ]
+      ],
+      "source": {}
     },
     {
       "styles": {
@@ -696,7 +697,7 @@
       "sources": [
         "Les derniers Jours d'Immanuel Kant –&nbsp;La Vogue, Nouvelle Série, Paris, avril-juin 1899."
       ],
-      "description": "",
+      "description": "<i>« En décembre 1803, il devint incapable de signer son nom. Sa vue s’était abaissée au point qu’à table il ne pouvait trouver sa cuillère sans qu’on la lui donnât, et quand je me trouvais dîner avec lui, je commençais par couper en petits morceaux ce qu’il y avait sur son assiette ; puis je les plaçais dans une cuillère à dessert ; puis enfin je lui conduisais la main jusqu’à la cuillère. Mais son incapacité à signer son nom n’avait pas pour seule cause la cécité. La vérité était que, par impuissance de mémoire, il ne pouvait se souvenir des lettres qui composaient son nom et quand on les lui répétait, il ne pouvait représenter la figure de ces lettres dans son imagination. »</i>\n\nPréface et traduction de Marcel Schwob.",
       "path": "/books/les_derniers_jours_de_kant/les_derniers_jours_de_kant",
       "visible": true,
       "authors": [
@@ -717,7 +718,7 @@
         }
       ],
       "created_at": "2018-02-25 00:28:10",
-      "updated_at": "2018-02-25 01:00:04",
+      "updated_at": "2018-03-06 14:48:03",
       "id": "4310e84a-64a7-4a30-aabd-8a70d33d5732"
     },
     {
@@ -744,7 +745,7 @@
       "sources": [
         "Fumeurs d'opium ; Comédiens ambulants, Jules Boissère &ndash;&nbsp;Louis Michaud, Paris, 1909."
       ],
-      "description": "",
+      "description": "<i>«&nbsp;Je devine tant de volontés et tant d’intelligences éparses dans la matière brute et dans le vent de la nuit&#8239;! —&nbsp;Hélas&#8239;! ce n’est plus pour moi que les vieux arbres sont muets et les minéraux inoffensifs. L’opium m’a rendu si clairvoyant&#8239;! —&nbsp;et parfois je m’en enorgueillis, parce que je suis plus savant qu’autrefois&#8239;; et plus souvent j’en souffre, parce que j’ai perdu la quiétude de l’âme. Pour les Annamites, un Génie bienfaisant anime chacun des caractères de la sainte écriture chinoise&#8239;; —&nbsp;pour moi, derrière tous les êtres que vous jugez privés de conscience et de vie, un mauvais démon s’est caché.&nbsp;»</i>",
       "path": "/books/dans_la_foret/dans_la_foret",
       "visible": true,
       "authors": [
@@ -752,7 +753,7 @@
       ],
       "contribs": [],
       "created_at": "2018-02-25 00:34:28",
-      "updated_at": "2018-03-05 16:52:24",
+      "updated_at": "2018-03-06 14:57:11",
       "id": "4a61340b-04bf-43ff-b468-465423ebe363"
     },
     {

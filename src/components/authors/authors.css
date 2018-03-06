@@ -116,6 +116,11 @@
     border: none;
     outline: none;
     background-color: transparent;
+    color: rgb(132,132,132);
+}
+
+#authors-container .accordion:hover, #authors-container .accordion.active {
+	color: #000;
 }
 
 #authors-container #authors-list .books-list {
@@ -224,6 +229,13 @@ MODAL (INFOS)
 	width: 37px;
 	height: 37px;
 	font-size: 1.5em;
+}
+
+#authors-container .modal .description {
+	border-bottom: 1px solid #ddd;
+	text-align: justify;
+	padding-top: 8px;
+	padding-bottom: 16px;
 }
 
 #authors-container .modal p {

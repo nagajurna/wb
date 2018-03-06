@@ -14,7 +14,7 @@ const home = function(container) {
 	let lBs = bs.filter(function(b) { return b.visible; }).reverse().slice(0,6);
 	
 	//insert template in container
-	c.innerHTML = homeTemplate({ books:lBs });
+	c.innerHTML = homeTemplate({ books:lBs, replaceLines: utils.replaceLines });
 	utils.setHTML('title','&Eacute;quivoques - Nouveautés');
 	let root = document.querySelector('#home-container');
 	let slides = root.querySelectorAll('.slide');

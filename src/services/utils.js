@@ -220,6 +220,10 @@ const utils = {
 			let pattern = new RegExp(className, 'g');
 			elements[i].className = elements[i].className.replace(pattern, "");
 		}
+	},
+	
+	replaceLines: text => {
+		return text.replace(/\n/g,'<br>');
 	}
 }
 

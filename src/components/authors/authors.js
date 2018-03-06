@@ -44,7 +44,7 @@ const authors = function(container) {
 	}
 	
 	//insert template in container
-	c.innerHTML = authorsTemplate({ authors:sas });
+	c.innerHTML = authorsTemplate({ authors:sas, replaceLines: utils.replaceLines });
 	utils.setHTML('title','&Eacute;quivoques - Auteurs');
 	let root = document.querySelector('#authors-container');
 	let auths = root.querySelectorAll('.auth');
@@ -157,10 +157,15 @@ const authors = function(container) {
 	let panels = document.querySelectorAll('.books-list');
 	if(sas.length===1) {
 		panels[0].style.maxHeight = panels[0].scrollHeight + 'px';
+		utils.addClass(acc[0],'active');
 	}
 	
 	for(let i = 0; i < acc.length; i++) {
 		acc[i].addEventListener("click", function(e) {
+			
+			for(let k = 0; k < acc.length; k++) {
+				utils.removeClass(acc[k],'active');
+			}
 			
 			for(let j = 0; j < panels.length; j++) {
 				if(panels[j] === e.target.nextElementSibling) {
@@ -170,9 +175,12 @@ const authors = function(container) {
 				}
 				
 				if(e.target.nextElementSibling.style.maxHeight) {
+					utils.addClass(e.target,'active');
 					e.target.nextElementSibling.scrollIntoView(true);
 					let html = document.getElementsByTagName("html")[0];
 					html.scrollTop = html.scrollTop-48;
+				} else {
+					utils.removeClass(e.target,'active');
 				}
 			}
 
