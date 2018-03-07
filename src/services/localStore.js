@@ -116,7 +116,7 @@ const localStore = {
 	setFont: f => {
 		let font = '';
 		if (typeof(Storage) !== "undefined") {
-			//check localStorage for fSizes array
+			//check localStorage for font
 			if(localStorage.getItem('font')) {
 				font = JSON.parse(localStorage.getItem('font'));
 				font = f;
@@ -130,10 +130,36 @@ const localStore = {
 	getFont : () => {
 		let font = '';
 		if (typeof(Storage) !== "undefined") {
-			//check localStorage for bkmrks array
+			//check localStorage for font
 			if(localStorage.getItem('font')) {
 				font = JSON.parse(localStorage.getItem('font'));
 				return font;
+			}
+		}
+	},
+	
+	setUserAgent: u => {
+		let userAgent = '';
+		if (typeof(Storage) !== "undefined") {
+			//check localStorage for userAgent
+			if(localStorage.getItem('userAgent')) {
+				userAgent = JSON.parse(localStorage.getItem('userAgent'));
+				userAgent = u;
+			} else {
+				userAgent = u;
+			}
+			localStorage.setItem('userAgent', JSON.stringify(userAgent));
+		}
+		
+	},
+	
+	getUserAgent: () => {
+		let userAgent = '';
+		if (typeof(Storage) !== "undefined") {
+			//check localStorage for userAgent
+			if(localStorage.getItem('userAgent')) {
+				userAgent = JSON.parse(localStorage.getItem('userAgent'));
+				return userAgent;
 			}
 		}
 	},
@@ -158,7 +184,7 @@ const localStore = {
 
 			   if(!item) {
 				   //max items
-				   if(tableInfos.length===50) {
+				   if(tableInfos.length===51) {
 					   tableInfos.shift();
 				   }
 				   tableInfos.push(i);
@@ -175,7 +201,7 @@ const localStore = {
 		if(typeof(Storage) !== "undefined") {
 			//clean out old storage
 			if(localStorage.getItem('tableInfos')) {
-				localStorage.removeItem('tableInfos')
+				localStorage.removeItem('tableInfos');
 			}
 			if(localStorage.getItem('tables')) {
 				tableInfos = JSON.parse(localStorage.getItem('tables'));
@@ -189,6 +215,14 @@ const localStore = {
 		   }
 		}
 		
+	},
+	
+	removeTableInfos: () => {
+		if(typeof(Storage) !== "undefined") {
+			if(localStorage.getItem('tables')) {
+				localStorage.removeItem('tables');
+			}
+		}
 	}
 }
 

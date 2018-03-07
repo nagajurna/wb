@@ -1,5 +1,6 @@
 import router from './router';
 import dataStore from './services/dataStore';
+import localStore from './services/localStore';
 import utils from './services/utils';
 
 //index.js
@@ -52,7 +53,8 @@ var index = (function() {
 				},100);
 			}, false);
 		}
-		
+		//HEADER, NAV-BAR-TOP, MENU-OPEN
+		//on hashchange
 		window.addEventListener('hashchange', () => {
 			if(location.hash.match(/#\/[^\/]+\/read$/)) {
 				utils.addClass("#header", "hidden");
@@ -70,7 +72,7 @@ var index = (function() {
 			}
 			
 		}, false);
-
+		//on resize
 		window.addEventListener('resize', () => {
 			if(!location.hash.match(/#\/[^\/]+\/read$/)) {
 				if(window.innerWidth < 750) {
@@ -82,7 +84,13 @@ var index = (function() {
 				}
 			}
 		}, false);
-		
+		//CHECK USERAGENT (for tableInfos)
+		let ua = window.navigator.userAgent;
+		let localUa = localStore.getUserAgent();
+		if(!localUa || localUa!==ua) {
+			localStore.removeTableInfos();
+			localStore.setUserAgent(ua);
+		}
 	}
 	
 	//function getData

@@ -593,7 +593,7 @@
       "sources": [
         "Armand &ndash;&nbsp;Émile-Paul frères, Paris, 1927."
       ],
-      "description": "",
+      "description": "<i>« C’était comme au malheureux que j’avais été qu’il parlait. Mon aisance présente était pour lui un accident. Elle ne durerait pas. Bien que chaque jour je m’imposasse de penser que j’étais destiné à la vie que je menais, que c’était l’autre vie qui avait été un accident, il m’apparut une seconde qu’il avait raison. »</i>\n\n<i>Armand</i> est le deuxième roman d'Emmanuel Bove.",
       "path": "/books/armand/armand",
       "visible": true,
       "authors": [
@@ -601,8 +601,9 @@
       ],
       "contribs": [],
       "created_at": "2018-02-07 13:44:45",
-      "updated_at": "2018-02-15 14:12:13",
-      "id": "247eb19f-d72c-4849-a54c-294d71714d3c"
+      "updated_at": "2018-03-06 18:09:59",
+      "id": "247eb19f-d72c-4849-a54c-294d71714d3c",
+      "source": {}
     },
     {
       "styles": {
@@ -743,9 +744,9 @@
       "categories": "",
       "collection": "",
       "sources": [
-        "Fumeurs d'opium ; Comédiens ambulants, Jules Boissère &ndash;&nbsp;Louis Michaud, Paris, 1909."
+        "Fumeurs d'opium ; Comédiens ambulants, Jules Boissière –&nbsp;Louis Michaud, Paris, 1909."
       ],
-      "description": "<i>«&nbsp;Je devine tant de volontés et tant d’intelligences éparses dans la matière brute et dans le vent de la nuit&#8239;! —&nbsp;Hélas&#8239;! ce n’est plus pour moi que les vieux arbres sont muets et les minéraux inoffensifs. L’opium m’a rendu si clairvoyant&#8239;! —&nbsp;et parfois je m’en enorgueillis, parce que je suis plus savant qu’autrefois&#8239;; et plus souvent j’en souffre, parce que j’ai perdu la quiétude de l’âme. Pour les Annamites, un Génie bienfaisant anime chacun des caractères de la sainte écriture chinoise&#8239;; —&nbsp;pour moi, derrière tous les êtres que vous jugez privés de conscience et de vie, un mauvais démon s’est caché.&nbsp;»</i>",
+      "description": "<i>« Je devine tant de volontés et tant d’intelligences éparses dans la matière brute et dans le vent de la nuit ! — Hélas ! ce n’est plus pour moi que les vieux arbres sont muets et les minéraux inoffensifs. L’opium m’a rendu si clairvoyant ! — et parfois je m’en enorgueillis, parce que je suis plus savant qu’autrefois ; et plus souvent j’en souffre, parce que j’ai perdu la quiétude de l’âme. Pour les Annamites, un Génie bienfaisant anime chacun des caractères de la sainte écriture chinoise ; — pour moi, derrière tous les êtres que vous jugez privés de conscience et de vie, un mauvais démon s’est caché. »</i>",
       "path": "/books/dans_la_foret/dans_la_foret",
       "visible": true,
       "authors": [
@@ -753,7 +754,7 @@
       ],
       "contribs": [],
       "created_at": "2018-02-25 00:34:28",
-      "updated_at": "2018-03-06 14:57:11",
+      "updated_at": "2018-03-06 18:43:53",
       "id": "4a61340b-04bf-43ff-b468-465423ebe363"
     },
     {
@@ -778,7 +779,7 @@
       "categories": "",
       "collection": "",
       "sources": [
-        "Fumeurs d'opium ; Comédiens ambulants, Jules Boissère –&nbsp;Louis Michaud, Paris, 1909."
+        "Fumeurs d'opium ; Comédiens ambulants, Jules Boissière –&nbsp;Louis Michaud, Paris, 1909."
       ],
       "description": "",
       "path": "/books/une_ame/une_ame",
@@ -788,7 +789,7 @@
       ],
       "contribs": [],
       "created_at": "2018-02-26 11:29:21",
-      "updated_at": "2018-03-05 16:57:09",
+      "updated_at": "2018-03-06 18:44:40",
       "id": "c5a5182b-cb1b-49c2-aef4-f7968b4cdeb8"
     },
     {
@@ -813,7 +814,7 @@
       "categories": "",
       "collection": "",
       "sources": [
-        "Fumeurs d'opium ; Comédiens ambulants, Jules Boissère –&nbsp;Louis Michaud, Paris, 1909."
+        "Fumeurs d'opium ; Comédiens ambulants, Jules Boissière –&nbsp;Louis Michaud, Paris, 1909."
       ],
       "description": "",
       "path": "/books/comediens_ambulants/comediens_ambulants",
@@ -823,7 +824,7 @@
       ],
       "contribs": [],
       "created_at": "2018-02-26 11:36:17",
-      "updated_at": "2018-02-26 11:36:17",
+      "updated_at": "2018-03-06 18:45:14",
       "id": "58613751-ed48-4a90-b323-8982e7ced89e"
     }
   ],
