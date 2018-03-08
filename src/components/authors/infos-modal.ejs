@@ -15,59 +15,61 @@
 			  <% if(work.description) {%>
 			  <div class="description"><%- replaceLines(work.description) %></div>
 			  <%}%>
-			  <p><b>Année de parution : </b><%- work.year %></p>
-			  <% if(work.authors.length > 1) {%>
-					<p>
-						<span><b>Auteurs :</b></span>
-						<br>
-						<ul>
-						<% for(var j=0; j<work.authors.length; j++) {%>
-							<li>
-								<%- work.authors[j].name %> (<%- work.authors[j].birth %>&nbsp;&ndash; <%- work.authors[j].death %>)
-							</li>
-						<%}%>
-						</ul>
-					</p>
-			  <%} else if(work.authors.length === 1) {%>
-					<p><b>Auteur : </b><%- work.authors[0].name %> (<%- work.authors[0].birth %>&nbsp;&ndash; <%- work.authors[0].death %>)</p>
-			  <%}%>
-			  <% if(work.contribs.length > 1) {%>
-					<p>
-						<span><b>Contributions :</b></span>
-						<br>
-						<ul>
-						<% for(var j=0; j<work.contribs.length; j++) {%>
-							<li>
-								<span class="contrib-role"><%- work.contribs[j].role %> : </span>
-								<%- work.contribs[j].name %> (<%- work.contribs[j].birth %>&nbsp;&ndash; <%- work.contribs[j].death %>)
-							</li>
-						<%}%>
-						</ul>
-					</p>
-			  <%} else if(work.contribs.length === 1) {%>
-					<p>
-						<span><b>Contribution : </b></span>
-						<br>
-						<ul>
-							<li>
-								<span class="contrib-role"><%- work.contribs[0].role %> : </span>
-								<%- work.contribs[0].name %> (<%- work.contribs[0].birth %>&nbsp;&ndash; <%- work.contribs[0].death %>)
-							</li>
-						</ul>
-					</p>
-			  <%}%>
-			  <p class="book-source">
-			  <% if(work.sources.length > 1) {%>
-				<b>Sources :</b>
-			  <%} else {%>
-				<b>Source :</b>
-			  <%}%>
-				<ul>
-				<% for(var k=0; k<work.sources.length; k++) {%>
-					<li><span><%- work.sources[k] %></span></li>
-				<% } %>
-				</ul>
-			  </p>
+			  <div class="padding-8">
+				  <p><b>Année de parution : </b><%- work.year %></p>
+				  <% if(work.authors.length > 1) {%>
+						<p>
+							<span><b>Auteurs :</b></span>
+							<br>
+							<ul>
+							<% for(var j=0; j<work.authors.length; j++) {%>
+								<li>
+									<%- work.authors[j].name %> (<%- work.authors[j].birth %>&nbsp;&ndash; <%- work.authors[j].death %>)
+								</li>
+							<%}%>
+							</ul>
+						</p>
+				  <%} else if(work.authors.length === 1) {%>
+						<p><b>Auteur : </b><%- work.authors[0].name %> (<%- work.authors[0].birth %>&nbsp;&ndash; <%- work.authors[0].death %>)</p>
+				  <%}%>
+				  <% if(work.contribs.length > 1) {%>
+						<p>
+							<span><b>Contributions :</b></span>
+							<br>
+							<ul>
+							<% for(var j=0; j<work.contribs.length; j++) {%>
+								<li>
+									<span class="contrib-role"><%- work.contribs[j].role %> : </span>
+									<%- work.contribs[j].name %> (<%- work.contribs[j].birth %>&nbsp;&ndash; <%- work.contribs[j].death %>)
+								</li>
+							<%}%>
+							</ul>
+						</p>
+				  <%} else if(work.contribs.length === 1) {%>
+						<p>
+							<span><b>Contribution : </b></span>
+							<br>
+							<ul>
+								<li>
+									<span class="contrib-role"><%- work.contribs[0].role %> : </span>
+									<%- work.contribs[0].name %> (<%- work.contribs[0].birth %>&nbsp;&ndash; <%- work.contribs[0].death %>)
+								</li>
+							</ul>
+						</p>
+				  <%}%>
+				  <p class="book-source">
+				  <% if(work.sources.length > 1) {%>
+					<b>Sources :</b>
+				  <%} else {%>
+					<b>Source :</b>
+				  <%}%>
+					<ul>
+					<% for(var k=0; k<work.sources.length; k++) {%>
+						<li><span><%- work.sources[k] %></span></li>
+					<% } %>
+					</ul>
+				  </p>
+			  </div>
 		</div>
 	</div>
 </div>

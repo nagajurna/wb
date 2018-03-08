@@ -15,59 +15,61 @@
 			  <% if(books[i].description) {%>
 			  <div class="description"><%- replaceLines(books[i].description) %></div>
 			  <%}%>
-			  <p><b>Année de parution : </b><%- books[i].year %></p>
-			  <% if(books[i].authors.length > 1) {%>
-					<p>
-						<span><b>Auteurs :</b></span>
-						<br>
-						<ul>
-						<% for(var j=0; j<books[i].authors.length; j++) {%>
-							<li>
-								<%- books[i].authors[j].name %> (<%- books[i].authors[j].birth %>&nbsp;&ndash; <%- books[i].authors[j].death %>)
-							</li>
-						<%}%>
-						</ul>
-					</p>
-			  <%} else if(books[i].authors.length === 1) {%>
-					<p><b>Auteur : </b><%- books[i].authors[0].name %> (<%- books[i].authors[0].birth %>&nbsp;&ndash; <%- books[i].authors[0].death %>)</p>
-			  <%}%>
-			  <% if(books[i].contribs.length > 1) {%>
-					<p>
-						<span><b>Contributions :</b></span>
-						<br>
-						<ul>
-						<% for(var j=0; j<books[i].contribs.length; j++) {%>
-							<li>
-								<span class="contrib-role"><%- books[i].contribs[j].role %> : </span>
-								<%- books[i].contribs[j].name %> (<%- books[i].contribs[j].birth %>&nbsp;&ndash; <%- books[i].contribs[j].death %>)
-							</li>
-						<%}%>
-						</ul>
-					</p>
-			  <%} else if(books[i].contribs.length === 1) {%>
-					<p>
-						<span><b>Contribution : </b></span>
-						<br>
-						<ul>
-							<li>
-								<span class="contrib-role"><%- books[i].contribs[0].role %> : </span>
-								<%- books[i].contribs[0].name %> (<%- books[i].contribs[0].birth %>&nbsp;&ndash; <%- books[i].contribs[0].death %>)
-							</li>
-						</ul>
-					</p>
-			  <%}%>
-			  <p class="book-source">
-			  <% if(books[i].sources.length > 1) {%>
-				<b>Sources :</b>
-			  <%} else {%>
-				<b>Source :</b>
-			  <%}%>
-				<ul>
-				<% for(var j=0; j<books[i].sources.length; j++) {%>
-					<li><span><%- books[i].sources[j] %></span></li>
-				<% } %>
-				</ul>
-			  </p>
+			  <div class="padding-8">
+				  <p><b>Année de parution : </b><%- books[i].year %></p>
+				  <% if(books[i].authors.length > 1) {%>
+						<p>
+							<span><b>Auteurs :</b></span>
+							<br>
+							<ul>
+							<% for(var j=0; j<books[i].authors.length; j++) {%>
+								<li>
+									<%- books[i].authors[j].name %> (<%- books[i].authors[j].birth %>&nbsp;&ndash; <%- books[i].authors[j].death %>)
+								</li>
+							<%}%>
+							</ul>
+						</p>
+				  <%} else if(books[i].authors.length === 1) {%>
+						<p><b>Auteur : </b><%- books[i].authors[0].name %> (<%- books[i].authors[0].birth %>&nbsp;&ndash; <%- books[i].authors[0].death %>)</p>
+				  <%}%>
+				  <% if(books[i].contribs.length > 1) {%>
+						<p>
+							<span><b>Contributions :</b></span>
+							<br>
+							<ul>
+							<% for(var j=0; j<books[i].contribs.length; j++) {%>
+								<li>
+									<span class="contrib-role"><%- books[i].contribs[j].role %> : </span>
+									<%- books[i].contribs[j].name %> (<%- books[i].contribs[j].birth %>&nbsp;&ndash; <%- books[i].contribs[j].death %>)
+								</li>
+							<%}%>
+							</ul>
+						</p>
+				  <%} else if(books[i].contribs.length === 1) {%>
+						<p>
+							<span><b>Contribution : </b></span>
+							<br>
+							<ul>
+								<li>
+									<span class="contrib-role"><%- books[i].contribs[0].role %> : </span>
+									<%- books[i].contribs[0].name %> (<%- books[i].contribs[0].birth %>&nbsp;&ndash; <%- books[i].contribs[0].death %>)
+								</li>
+							</ul>
+						</p>
+				  <%}%>
+				  <p class="book-source">
+				  <% if(books[i].sources.length > 1) {%>
+					<b>Sources :</b>
+				  <%} else {%>
+					<b>Source :</b>
+				  <%}%>
+					<ul>
+					<% for(var j=0; j<books[i].sources.length; j++) {%>
+						<li><span><%- books[i].sources[j] %></span></li>
+					<% } %>
+					</ul>
+				  </p>
+			  </div>
 		</div>
 	</div>
 </div>
