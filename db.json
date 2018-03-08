@@ -66,7 +66,7 @@
       "language": "français",
       "categories": "",
       "collection": "",
-      "description": "<i>L'unique roman d'Émile Cabanon qui, facétieux, se joue des stéréotypes de son temps et nous gratifie dans un dernier chapitre d'une mystérieuse recette de cuisine... Amusant&nbsp;!</i>",
+      "description": "<i>L'unique roman d'Émile Cabanon qui, facétieux, se joue des stéréotypes et nous gratifie dans un dernier chapitre d'une mystérieuse recette de cuisine... Amusant !</i>",
       "path": "/books/un_roman_pour_les_cuisinieres/un_roman_pour_les_cuisinieres",
       "visible": true,
       "authors": [
@@ -74,7 +74,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:00:53",
-      "updated_at": "2018-03-06 14:21:00",
+      "updated_at": "2018-03-08 11:22:24",
       "id": "b3e3c2e7-305f-4697-867f-3dd2417f71ed",
       "sources": [
         "Un Roman pour les cuisinières, par Émile Cabanon – Eugène Renduel, Paris, 1834."
@@ -101,7 +101,7 @@
       "language": "français",
       "categories": "",
       "collection": "",
-      "description": "",
+      "description": "<i>« Si l’on tentait l’art où excellèrent Boswell et Aubrey, il ne faudrait sans doute point décrire minutieusement le plus grand homme de son temps, ou noter la caractéristique des plus célèbres dans le passé, mais raconter avec le même souci les existences </i>uniques<i> des hommes, qu’ils aient été divins, médiocres, ou criminels.&nbsp;»</i>",
       "path": "/books/vies_imaginaires/vies_imaginaires",
       "visible": true,
       "authors": [
@@ -109,7 +109,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:05:16",
-      "updated_at": "2018-01-19 09:25:47",
+      "updated_at": "2018-03-08 12:02:30",
       "id": "67f99f06-7af1-4dc4-9b8d-9d8f8afdc198",
       "sources": [
         "Vies imaginaires, par Marcel Schwob &ndash;&nbsp;G. Charpentier et E. Fasquelle, Paris, 1896."
@@ -380,7 +380,7 @@
       "language": "français",
       "categories": "",
       "collection": "",
-      "description": "",
+      "description": "<i>« Il y a dans ce livre des masques et des figures couvertes&#8239;; un roi masqué d’or, un sauvage au mufle de fourrure, des routiers italiens à la face pestiférée et des routiers français avec des faux visages, des galériens heaumés de rouge, des jeunes filles subitement vieillies dans un miroir, et une singulière foule de lépreux, d’embaumeuses, d’eunuques, d’assassins, de démoniaques et de pirates, entre lesquels je prie le lecteur de penser que je n’ai aucune préférence, étant certain qu’ils ne sont point si divers.&nbsp;»</i>",
       "path": "/books/le_roi_au_masque_d_or/le_roi_au_masque_d_or",
       "visible": true,
       "authors": [
@@ -388,7 +388,7 @@
       ],
       "contribs": [],
       "created_at": "2017-12-28 18:20:55",
-      "updated_at": "2018-01-19 09:30:34",
+      "updated_at": "2018-03-08 12:05:41",
       "id": "b4033b6c-d13c-4b32-8767-f6b6939a76d2",
       "sources": [
         "Le roi au masque d 'or, par Marcel Schwob &ndash;&nbsp;Paul Ollendorf, Paris, 1893."
@@ -420,7 +420,7 @@
         "Coup d'&oelig;il sur la littérature, ou Collection de différens ouvrages tant en prose qu'en vers.... Partie 2, par M. Dorat &ndash;&nbsp;P.-F. Gueffier, Amsterdam, 1780 (p. 227-259)",
         "Point de lendemain, conte (réimpression de l'édition de 1812) &ndash;&nbsp; Strasbourg, 1861"
       ],
-      "description": "",
+      "description": "<i>Nous présentons ici les deux versions (1777 et 1812) du célèbre conte de Vivant Denon.</i>",
       "path": "/books/point_de_lendemain/point_de_lendemain",
       "visible": true,
       "authors": [
@@ -428,7 +428,7 @@
       ],
       "contribs": [],
       "created_at": "2018-01-05 10:22:33",
-      "updated_at": "2018-01-18 12:50:55",
+      "updated_at": "2018-03-08 11:50:42",
       "id": "5613a3f6-f3c3-44bc-afe7-0027a8aaa4fb"
     },
     {
@@ -456,7 +456,7 @@
         "Racine et Shakspeare, par M. de Stendhal &ndash;&nbsp;Bossange, Paris, 1823.",
         "Racine et Shakspeare : études sur le romantisme (Nouvelle édition entièrement revue et considérablement augmentée), par de Stendhal (Henry Beyle) &ndash;&nbsp;Michel Lévy frères, Paris, 1854."
       ],
-      "description": "",
+      "description": "<i>« Rien ne ressemble moins que nous aux marquis couverts d’habits brodés et de grandes perruques noires, coûtant mille écus, qui jugèrent, vers 1670, les pièces de Racine et de Molière.\nCes grands hommes cherchèrent à flatter le goût de ces marquis et travaillèrent pour eux.\nJe prétends qu’il faut désormais faire des tragédies pour nous, jeunes gens raisonneurs, sérieux et un peu envieux de l’an de grâce 1823. Ces tragédies-là doivent être en prose. De nos jours, le vers alexandrin n’est le plus souvent qu’un cache-sottise.&nbsp;»</i>\n\nLe premier manifeste <i>romanticiste</i> de Stendhal.",
       "path": "/books/racine_et_shakespeare/racine_et_shakespeare",
       "visible": true,
       "authors": [
@@ -464,7 +464,7 @@
       ],
       "contribs": [],
       "created_at": "2018-01-19 11:48:43",
-      "updated_at": "2018-01-19 11:48:43",
+      "updated_at": "2018-03-08 11:56:37",
       "id": "22b53b5d-0752-48e3-a9d7-fe9241ba544f"
     },
     {
@@ -559,7 +559,7 @@
       "sources": [
         "Mes amis &ndash;&nbsp;Ferenczi & fils, Paris, 1924."
       ],
-      "description": "",
+      "description": "<i>« Hé… là-bas… l’homme !\nM’étant retourné, je vis, à vingt mètres, un monsieur qui devait se trouver dans un courant d’air : son pardessus flottait comme sur le pont d’un navire. Une valise pendait au bout de son bras droit.\nNe sachant pas si c’était à moi qu’il s’adressait, j’attendis. Alors, il me fit un signe avec l’index, comme s’il pressait sur une gâchette.\nJe regardai autour de moi, afin de m’assurer qu’il n’appelait pas quelqu’un d’autre et, ne voyant personne, je m’approchai.\nCet inconnu était gras. Son ventre sortait du veston. Les poils de sa moustache rousse étaient égaux.\nJ’étais ennuyé, non pas qu’il me prît pour un commissionnaire, mais du fait qu’il troublait mon amertume. Maintenant, quelqu’un me parlait ! Je ressemblais donc à tout le monde. À cause de cet homme je n’avais plus le droit de me plaindre.\n— Prends cette valise, mon brave.\nIl avait la paresse des gens qui ont voyagé et qui trouvent naturel que l’on se précipite sur eux, qu’on leur fraye un passage.\nJ’hésitais à prendre la valise : une jeune fille nous observait.\nÀ la fin, m’étant résigné, je saisis la poignée de ma main valide et je suivis le voyageur.&nbsp;»</i>\n\nLe premier roman d'Emmanuel Bove.",
       "path": "/books/mes_amis/mes_amis",
       "visible": true,
       "authors": [
@@ -567,8 +567,9 @@
       ],
       "contribs": [],
       "created_at": "2018-02-06 19:43:33",
-      "updated_at": "2018-02-15 14:16:39",
-      "id": "91fd0a8f-1260-495b-89b5-552f8539ef2f"
+      "updated_at": "2018-03-08 11:57:48",
+      "id": "91fd0a8f-1260-495b-89b5-552f8539ef2f",
+      "source": {}
     },
     {
       "styles": {
@@ -663,7 +664,7 @@
       "sources": [
         "Bécon-les-Bruyères –&nbsp;Émile-Paul frères, Paris, 1927."
       ],
-      "description": "",
+      "description": "<i>Une monographie sur la petite ville de banlieue qu'Emmanuel Bove habita brièvement.</i>",
       "path": "/books/becon_les_bruyeres/becon_les_bruyeres",
       "visible": true,
       "authors": [
@@ -671,8 +672,9 @@
       ],
       "contribs": [],
       "created_at": "2018-02-15 14:27:26",
-      "updated_at": "2018-02-15 14:32:27",
-      "id": "69e4a0c8-126f-49da-b7cd-51e5d9b86749"
+      "updated_at": "2018-03-08 11:41:53",
+      "id": "69e4a0c8-126f-49da-b7cd-51e5d9b86749",
+      "source": {}
     },
     {
       "source": {},

@@ -5492,11 +5492,10 @@ var WebBook = function () {
 					}
 
 					_this._text.style.display = 'none';
+					_this.emptyNode(_this._text);
+					_this._text.appendChild(_this._div);
+					_this.toBook();
 					if (_this._tableInfos === undefined || _this._tableInfos.totalPages === null) {
-						_this.emptyNode(_this._text);
-						_this._text.appendChild(_this._div);
-
-						_this.toBook();
 
 						//pagination start
 						_this._startPage = _this.getPageStart();
@@ -5562,70 +5561,8 @@ var WebBook = function () {
 			return promise;
 		}
 	}, {
-		key: 'reinit',
-		value: function reinit() {
-			var _this2 = this;
-
-			var promise = new _promise2.default(function (resolve, reject) {
-				if ('webkitColumnWidth' in document.body.style || 'mozColumnWidth' in document.body.style || 'columnWidth' in document.body.style) {
-					_this2._text.style.display = 'none';
-					_this2.emptyNode(_this2._text);
-					_this2._text.appendChild(_this2._div);
-
-					_this2.toBook();
-
-					//pagination start
-					_this2._startPage = _this2.getPageStart();
-					//book total number of pages
-					_this2.pages_total = _this2.getBookTotalPages();
-					//array : for each section, starting page;
-					_this2._sections_page_start = [];
-					for (var i = 0; i < _this2._sections.length; i++) {
-						var item = {};
-						item.id = _this2._sections[i].id;
-						item.page_start = _this2.elementPageNumber(item.id);
-						_this2._sections_page_start.push(item);
-					}
-
-					//containers data-wb-element-page-number
-
-					var _loop2 = function _loop2(_i3) {
-						var id = _this2._elPageNumbers[_i3].getAttribute('data-wb-element-page-number');
-						var pageNumber = _this2._sections_page_start.filter(function (o) {
-							return o.id === id;
-						})[0].page_start;
-
-						if (pageNumber < 1) {
-							_this2._elPageNumbers[_i3].innerHTML = "";
-						} else if (_this2._elPageNumbers[_i3].innerHTML != pageNumber) {
-							_this2._elPageNumbers[_i3].innerHTML = pageNumber;
-						}
-					};
-
-					for (var _i3 = 0; _i3 < _this2._elPageNumbers.length; _i3++) {
-						_loop2(_i3);
-					}
-
-					if (_this2._bookmark) {
-						_this2.goToBookmark(_this2._bookmark);
-						_this2._position = Math.round((0, _core2.default)(_this2._text).position().left);
-					} else {
-						_this2.nextSection(_this2._sectionsIndex);
-					}
-					_this2.refresh();
-					_this2._text.style.display = 'block';
-					resolve('book done');
-				} else {
-
-					reject('no column');
-				}
-			});
-
-			return promise;
-		}
-	}, {
 		key: 'toBook',
-		value: function toBook(cb) {
+		value: function toBook() {
 			this.col = true;
 			var marginX = this.getMarginX();
 			var marginY = this.getMarginY();
@@ -5667,58 +5604,58 @@ var WebBook = function () {
 			ts.columnGap = marginX * 2 + "px";
 			ts.display = "block";
 
-			if (cb) {
-				if (window.requestAnimationFrame) {
-					this._raf = window.requestAnimationFrame(cb);
-				} else {
-					setTimeout(cb, 50);
-				}
-			}
+			//if(cb) {
+			//if(window.requestAnimationFrame) {
+			//this._raf = window.requestAnimationFrame(cb);
+			//} else {
+			//setTimeout(cb,50);
+			//}
+			//}
 		}
-	}, {
-		key: 'toScroll',
-		value: function toScroll() {
-			'use strict';
 
-			this.col = false;
-			var cs = this._textContainer.style;
-			var ts = this._text.style;
-			//container
-			cs.height = "auto";
-			cs.maxWidth = this.getMaxWidth() + "px";
-			cs.overflow = "visible";
-			//text
-			ts.position = "static";
-			ts.height = "auto";
-			cs.paddingRight = this.getMarginX() + "px";
-			cs.paddingLeft = this.getMarginX() + "px";
-			cs.paddingTop = this.getMarginY() + "px";
-			cs.paddingBottom = this.getMarginY() + "px";
+		//toScroll() {
+		//'use strict';
+		//this.col = false;
+		//let cs = this._textContainer.style;
+		//let ts = this._text.style;
+		////container
+		//cs.height = "auto";
+		//cs.maxWidth = this.getMaxWidth() + "px";
+		//cs.overflow = "visible";
+		////text
+		//ts.position = "static";
+		//ts.height = "auto";
+		//cs.paddingRight = this.getMarginX() + "px";
+		//cs.paddingLeft = this.getMarginX() + "px";
+		//cs.paddingTop = this.getMarginY() + "px";
+		//cs.paddingBottom = this.getMarginY() + "px";
 
-			if ('webkitColumnWidth' in document.body.style || 'mozColumnWidth' in document.body.style || 'columnWidth' in document.body.style) {
-				ts.webkitColumns = "auto auto";
-				ts.mozColumns = "auto auto";
-				ts.columns = "auto auto";
-			}
+		//if('webkitColumnWidth' in document.body.style || 'mozColumnWidth' in document.body.style || 'columnWidth'  in document.body.style) {
+		//ts.webkitColumns = "auto auto";
+		//ts.mozColumns = "auto auto";
+		//ts.columns = "auto auto";
+		//}
 
-			//Sections (for mozColumns)
-			for (var i = 0; i < this._sections.length; i++) {
-				this._sections[i].style.minHeight = "0";
-			}
-			//last element
-			this._lastElement.style.marginBottom = "0px";
 
-			//wb-total-pages empty
-			for (var _i4 = 0; _i4 < this._totalPages.length; _i4++) {
-				this._totalPages[_i4].innerHTML = "";
-			}
-			//data-wb-element-page-number empty
-			for (var _i5 = 0; _i5 < this._elPageNumbers.length; _i5++) {
-				this._elPageNumbers[_i5].innerHTML = "";
-			}
+		////Sections (for mozColumns)
+		//for(let i=0; i<this._sections.length; i++) {
+		//this._sections[i].style.minHeight = "0";
+		//}
+		////last element
+		//this._lastElement.style.marginBottom = "0px";
 
-			this.refresh();
-		}
+		////wb-total-pages empty
+		//for(let i=0; i<this._totalPages.length; i++) {
+		//this._totalPages[i].innerHTML = "";
+		//}
+		////data-wb-element-page-number empty
+		//for(let i=0; i<this._elPageNumbers.length; i++) {
+		//this._elPageNumbers[i].innerHTML = "";
+		//}
+
+		//this.refresh();
+		//};
+
 	}, {
 		key: 'setMaxWidth',
 		value: function setMaxWidth(w) {
@@ -5775,16 +5712,16 @@ var WebBook = function () {
 	}, {
 		key: 'setBookLinks',
 		value: function setBookLinks() {
-			var _this3 = this;
+			var _this2 = this;
 
 			var links = this._bookContainer.querySelectorAll('.wb-link');
 			for (var i = 0; i < links.length; i++) {
 				links[i].addEventListener('click', function (e) {
-					if (_this3.col === true) {
+					if (_this2.col === true) {
 						e.preventDefault();
 						var href = e.currentTarget.getAttribute('href');
 						var _id = href.replace(/^#/, "");
-						_this3.goToElement(_id);
+						_this2.goToElement(_id);
 					}
 				}, false);
 			}
@@ -5792,17 +5729,17 @@ var WebBook = function () {
 	}, {
 		key: 'setSectionLinks',
 		value: function setSectionLinks() {
-			var _this4 = this;
+			var _this3 = this;
 
 			var section = this._text.querySelectorAll('.wb-section')[0];
 			var links = section.querySelectorAll('.wb-link');
 			for (var i = 0; i < links.length; i++) {
 				links[i].addEventListener('click', function (e) {
-					if (_this4.col === true) {
+					if (_this3.col === true) {
 						e.preventDefault();
 						var href = e.currentTarget.getAttribute('href');
 						var _id2 = href.replace(/^#/, "");
-						_this4.goToElement(_id2);
+						_this3.goToElement(_id2);
 					}
 				}, false);
 			}
@@ -5815,12 +5752,14 @@ var WebBook = function () {
 			}
 			this._sectionsIndex = index;
 			this.emptyNode(this._text);
-			this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
-			this._text.appendChild(this._lastElement.cloneNode(true));
+			var fragment = document.createDocumentFragment();
+			fragment.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
+			fragment.appendChild(this._lastElement.cloneNode(true));
+			this._text.appendChild(fragment.cloneNode(true));
 			this.setSectionLinks();
-			if (this._tableInfos) {
-				this.toBook();
-			}
+			//if(this._tableInfos) {
+			//this.toBook();
+			//}
 			this._position = 0;
 			this._text.style.left = this._position + "px";
 			this.refresh();
@@ -5833,12 +5772,14 @@ var WebBook = function () {
 			}
 			this._sectionsIndex = index;
 			this.emptyNode(this._text);
-			this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
-			this._text.appendChild(this._lastElement.cloneNode(true));
+			var fragment = document.createDocumentFragment();
+			fragment.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
+			fragment.appendChild(this._lastElement.cloneNode(true));
+			this._text.appendChild(fragment.cloneNode(true));
 			this.setSectionLinks();
-			if (this._tableInfos) {
-				this.toBook();
-			}
+			//if(this._tableInfos) {
+			//this.toBook();
+			//}
 			this.goToPage(this.getSectionTotalPages() - this._startPage);
 			this.refresh();
 		}
@@ -5853,12 +5794,14 @@ var WebBook = function () {
 					this._sectionsIndex = i;
 					if (this._sections[this._sectionsIndex].id !== this._text.querySelectorAll('.wb-section')[0].id) {
 						this.emptyNode(this._text);
-						this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
-						this._text.appendChild(this._lastElement.cloneNode(true));
+						var fragment = document.createDocumentFragment();
+						fragment.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
+						fragment.appendChild(this._lastElement.cloneNode(true));
+						this._text.appendChild(fragment.cloneNode(true));
 						this.setSectionLinks();
-						if (this._tableInfos) {
-							this.toBook();
-						}
+						//if(this._tableInfos) {
+						//this.toBook();
+						//}
 					}
 					this.goToPage(this.elementPageNumber(id));
 					this.refresh();
@@ -6047,7 +5990,7 @@ var WebBook = function () {
 				tocTitle.innerHTML = toc.getAttribute('data-wb-toc');
 				toc.appendChild(tocTitle);
 			}
-			var content = document.createElement('div');
+			var content = document.createDocumentFragment();
 			var list = document.createElement('ul');
 			list.setAttribute('class', 'wb-toc-list');
 			for (var i = 0; i < this._tocSections.length; i++) {
@@ -6075,7 +6018,7 @@ var WebBook = function () {
 				list.appendChild(item);
 			}
 			content.appendChild(list);
-			toc.appendChild(content);
+			toc.appendChild(content.cloneNode(true));
 
 			if (this._tocs[1]) {
 				for (var j = 1; j < this._tocs.length; j++) {
@@ -6085,8 +6028,8 @@ var WebBook = function () {
 						_tocTitle.innerHTML = this._tocs[j].getAttribute('data-wb-toc');
 						this._tocs[j].appendChild(_tocTitle);
 					}
-					var clonedContent = content.cloneNode(true);
-					this._tocs[j].appendChild(clonedContent);
+
+					this._tocs[j].appendChild(content.cloneNode(true));
 				}
 			}
 		}
@@ -6113,8 +6056,8 @@ var WebBook = function () {
 			}
 
 			if (currentSection) {
-				for (var _i6 = 0; _i6 < this._tocs.length; _i6++) {
-					var toc = this._tocs[_i6];
+				for (var _i3 = 0; _i3 < this._tocs.length; _i3++) {
+					var toc = this._tocs[_i3];
 					var links = toc.querySelectorAll('a');
 					for (var j = 0; j < links.length; j++) {
 						var _id6 = currentSection.getAttribute('data-wb-active-section') ? currentSection.getAttribute('data-wb-active-section') : currentSection.id;
@@ -6123,7 +6066,7 @@ var WebBook = function () {
 								links[j].parentElement.className += ' current';
 							}
 						} else if (links[j].parentElement.className.match(/current/)) {
-							links[j].parentElement.className = links[_i6].parentElement.className.replace(/ current/, '');
+							links[j].parentElement.className = links[_i3].parentElement.className.replace(/ current/, '');
 						}
 					}
 				}
@@ -6164,10 +6107,12 @@ var WebBook = function () {
 					//}
 					this._sectionsIndex = i;
 					this.emptyNode(this._text);
-					this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
-					this._text.appendChild(this._lastElement.cloneNode(true));
+					var fragment = document.createDocumentFragment();
+					fragment.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
+					fragment.appendChild(this._lastElement.cloneNode(true));
+					this._text.appendChild(fragment.cloneNode(true));
 					this.setSectionLinks();
-					this.toBook();
+					//this.toBook();
 					var currentSection = this._text.querySelectorAll('.wb-section')[0];
 					var elements = currentSection.querySelectorAll(':not(.wb-section)');
 					var element = elements[bookmark.el];
@@ -6216,12 +6161,12 @@ var WebBook = function () {
 					this._currentPages[i].innerHTML = "";
 				}
 
-				for (var _i7 = 0; _i7 < this._currentTotalPages.length; _i7++) {
-					this._currentTotalPages[_i7].innerHTML = "";
+				for (var _i4 = 0; _i4 < this._currentTotalPages.length; _i4++) {
+					this._currentTotalPages[_i4].innerHTML = "";
 				}
 
-				for (var _i8 = 0; _i8 < this._sectionTitles.length; _i8++) {
-					this._sectionTitles[_i8].innerHTML = "";
+				for (var _i5 = 0; _i5 < this._sectionTitles.length; _i5++) {
+					this._sectionTitles[_i5].innerHTML = "";
 				}
 			} else {
 
@@ -6229,28 +6174,28 @@ var WebBook = function () {
 					this.getTocsCurrentSection();
 				}
 				//containers wb-current-page
-				for (var _i9 = 0; _i9 < this._currentPages.length; _i9++) {
+				for (var _i6 = 0; _i6 < this._currentPages.length; _i6++) {
 					var _pageNumber = this._sections_page_start[this._sectionsIndex].page_start + this.getPageNumber() - 1;
 					if (_pageNumber < 1) {
-						this._currentPages[_i9].innerHTML = "";
-					} else if (this._currentPages[_i9].innerHTML !== _pageNumber) {
-						this._currentPages[_i9].innerHTML = _pageNumber;
+						this._currentPages[_i6].innerHTML = "";
+					} else if (this._currentPages[_i6].innerHTML !== _pageNumber) {
+						this._currentPages[_i6].innerHTML = _pageNumber;
 					}
 				}
 				//containers wbcurrentByTotal-pages
-				for (var _i10 = 0; _i10 < this._currentTotalPages.length; _i10++) {
+				for (var _i7 = 0; _i7 < this._currentTotalPages.length; _i7++) {
 					var section = this._text.querySelectorAll('.wb-section')[0];
 					var _pageNumber2 = this._sections_page_start[this._sectionsIndex].page_start + this.getPageNumber() - 1;
 					if (_pageNumber2 < 1 || section.className.match(/wb-page-no-display/)) {
-						this._currentTotalPages[_i10].innerHTML = "";
-					} else if (this._currentTotalPages[_i10].innerHTML !== _pageNumber2 + "/" + this.pages_total) {
-						this._currentTotalPages[_i10].innerHTML = _pageNumber2 + "/" + this.pages_total;
+						this._currentTotalPages[_i7].innerHTML = "";
+					} else if (this._currentTotalPages[_i7].innerHTML !== _pageNumber2 + "/" + this.pages_total) {
+						this._currentTotalPages[_i7].innerHTML = _pageNumber2 + "/" + this.pages_total;
 					}
 				}
 				//containers wb-current-section-title
-				for (var _i11 = 0; _i11 < this._sectionTitles.length; _i11++) {
-					if (this._sectionTitles[_i11].innerHTML != this.getSectionTitle()) {
-						this._sectionTitles[_i11].innerHTML = this.getSectionTitle();
+				for (var _i8 = 0; _i8 < this._sectionTitles.length; _i8++) {
+					if (this._sectionTitles[_i8].innerHTML != this.getSectionTitle()) {
+						this._sectionTitles[_i8].innerHTML = this.getSectionTitle();
 					}
 				}
 			}
