@@ -754,6 +754,10 @@ INSIDE TEXT
 * 
 * 
 */
+[data-wb-text] .wb-section {
+	margin-bottom: 300%;
+	min-height: 10%;
+}
 
 /*
 TITLES
