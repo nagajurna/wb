@@ -165,18 +165,18 @@ const localStore = {
 	},
 	
 	setTableInfos: i => {
-		if(isNaN(i.tableInfos.totalPages)) {
+		if(isNaN(i.tableInfos.totalPages) || i.tableInfos.totalPages===0) {
 			return; 
 		}
 		let tableInfos = [];
 		if (typeof(Storage) !== "undefined") {
 			//clean out old storage
-			if(localStorage.getItem('tableInfos')) {
-				localStorage.removeItem('tableInfos')
+			if(localStorage.getItem('tables')) {
+				localStorage.removeItem('tables')
 			}
 			//check localStorage for tableInfos
-			if(localStorage.getItem('tables')) {
-				tableInfos = JSON.parse(localStorage.getItem('tables'));		
+			if(localStorage.getItem('tableInfos')) {
+				tableInfos = JSON.parse(localStorage.getItem('tableInfos'));		
 				let item = tableInfos.filter(function(o) { return o.id===i.id &&
 																  o.dim===i.dim &&
 														          o.font===i.font &&
@@ -192,7 +192,7 @@ const localStore = {
 			} else {
 				tableInfos.push(i);
 			}
-			localStorage.setItem('tables', JSON.stringify(tableInfos));
+			localStorage.setItem('tableInfos', JSON.stringify(tableInfos));
 		}
 	},
 	
@@ -200,11 +200,11 @@ const localStore = {
 		let tableInfos = [];
 		if(typeof(Storage) !== "undefined") {
 			//clean out old storage
-			if(localStorage.getItem('tableInfos')) {
-				localStorage.removeItem('tableInfos');
-			}
 			if(localStorage.getItem('tables')) {
-				tableInfos = JSON.parse(localStorage.getItem('tables'));
+				localStorage.removeItem('tables');
+			}
+			if(localStorage.getItem('tableInfos')) {
+				tableInfos = JSON.parse(localStorage.getItem('tableInfos'));
 				let item = tableInfos.filter(function(o) { return o.id===i.id &&
 																	  o.dim===i.dim &&
 																	  o.font===i.font &&

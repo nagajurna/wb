@@ -2096,18 +2096,18 @@ var localStore = {
 	},
 
 	setTableInfos: function setTableInfos(i) {
-		if (isNaN(i.tableInfos.totalPages)) {
+		if (isNaN(i.tableInfos.totalPages) || i.tableInfos.totalPages === 0) {
 			return;
 		}
 		var tableInfos = [];
 		if (typeof Storage !== "undefined") {
 			//clean out old storage
-			if (localStorage.getItem('tableInfos')) {
-				localStorage.removeItem('tableInfos');
+			if (localStorage.getItem('tables')) {
+				localStorage.removeItem('tables');
 			}
 			//check localStorage for tableInfos
-			if (localStorage.getItem('tables')) {
-				tableInfos = JSON.parse(localStorage.getItem('tables'));
+			if (localStorage.getItem('tableInfos')) {
+				tableInfos = JSON.parse(localStorage.getItem('tableInfos'));
 				var item = tableInfos.filter(function (o) {
 					return o.id === i.id && o.dim === i.dim && o.font === i.font && o.fontSize === i.fontSize;
 				})[0];
@@ -2122,7 +2122,7 @@ var localStore = {
 			} else {
 				tableInfos.push(i);
 			}
-			localStorage.setItem('tables', JSON.stringify(tableInfos));
+			localStorage.setItem('tableInfos', JSON.stringify(tableInfos));
 		}
 	},
 
@@ -2130,11 +2130,11 @@ var localStore = {
 		var tableInfos = [];
 		if (typeof Storage !== "undefined") {
 			//clean out old storage
-			if (localStorage.getItem('tableInfos')) {
-				localStorage.removeItem('tableInfos');
-			}
 			if (localStorage.getItem('tables')) {
-				tableInfos = JSON.parse(localStorage.getItem('tables'));
+				localStorage.removeItem('tables');
+			}
+			if (localStorage.getItem('tableInfos')) {
+				tableInfos = JSON.parse(localStorage.getItem('tableInfos'));
 				var item = tableInfos.filter(function (o) {
 					return o.id === i.id && o.dim === i.dim && o.font === i.font && o.fontSize === i.fontSize;
 				})[0];
@@ -5493,9 +5493,9 @@ var WebBook = function () {
 					_this._text.style.display = 'none';
 					_this.emptyNode(_this._text);
 					_this._text.appendChild(_this._div);
-					_this.toBook();
 					if (_this._tableInfos === undefined || _this._tableInfos.totalPages === null) {
 
+						_this.toBook();
 						//pagination start
 						_this._startPage = _this.getPageStart();
 						//book total number of pages
@@ -5757,9 +5757,9 @@ var WebBook = function () {
 			fragment.appendChild(this._lastElement.cloneNode(true));
 			this._text.appendChild(fragment.cloneNode(true));
 			this.setSectionLinks();
-			//if(this._tableInfos) {
-			//this.toBook();
-			//}
+			if (this._tableInfos) {
+				this.toBook();
+			}
 			this._position = 0;
 			this._text.style.left = this._position + "px";
 			this.refresh();
@@ -5777,9 +5777,9 @@ var WebBook = function () {
 			fragment.appendChild(this._lastElement.cloneNode(true));
 			this._text.appendChild(fragment.cloneNode(true));
 			this.setSectionLinks();
-			//if(this._tableInfos) {
-			//this.toBook();
-			//}
+			if (this._tableInfos) {
+				this.toBook();
+			}
 			this.goToPage(this.getSectionTotalPages() - this._startPage);
 			this.refresh();
 		}
@@ -5799,9 +5799,9 @@ var WebBook = function () {
 						fragment.appendChild(this._lastElement.cloneNode(true));
 						this._text.appendChild(fragment.cloneNode(true));
 						this.setSectionLinks();
-						//if(this._tableInfos) {
-						//this.toBook();
-						//}
+						if (this._tableInfos) {
+							this.toBook();
+						}
 					}
 					this.goToPage(this.elementPageNumber(id));
 					this.refresh();
@@ -6112,7 +6112,7 @@ var WebBook = function () {
 					fragment.appendChild(this._lastElement.cloneNode(true));
 					this._text.appendChild(fragment.cloneNode(true));
 					this.setSectionLinks();
-					//this.toBook();
+					this.toBook();
 					var currentSection = this._text.querySelectorAll('.wb-section')[0];
 					var elements = currentSection.querySelectorAll(':not(.wb-section)');
 					var element = elements[bookmark.el];
