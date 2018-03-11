@@ -4804,16 +4804,13 @@ var book = function book(container) {
 					font: font,
 					fontSize: fontSize });
 
-				//book.init(tableInfos)
-				//.then( resolve => {
-				//localStore.setTableInfos({ id: bk.id,
-				//dim: w + 'x' + h,
-				//font: font,
-				//fontSize: fontSize,
-				//tableInfos: resolve });
-				//});
-
-				book.init();
+				book.init(tableInfos).then(function (resolve) {
+					_localStore2.default.setTableInfos({ id: bk.id,
+						dim: w + 'x' + h,
+						font: font,
+						fontSize: fontSize,
+						tableInfos: resolve });
+				});
 			};
 
 			//on resize
@@ -4821,6 +4818,7 @@ var book = function book(container) {
 			var timeout = false;
 			var delta = 0;
 			window.addEventListener('resize', function (event) {
+				alert('resize');
 				rtime = new Date();
 				if (timeout === false) {
 					timeout = true;
@@ -5290,7 +5288,7 @@ var book = function book(container) {
 			font: font,
 			fontSize: fontSize });
 
-		book.init().then(function (table) {
+		book.init(tableInfos).then(function (table) {
 			if (_localStore2.default.getBkmrk(bk.id)) {
 				var bkmrk = _localStore2.default.getBkmrk(bk.id);
 				book.goToBookmark(bkmrk);
@@ -5306,11 +5304,11 @@ var book = function book(container) {
 			bookContainer.className = 'show';
 			return table;
 		}).then(function (table) {
-			//localStore.setTableInfos({ id: bk.id,
-			//dim: w + 'x' + h,
-			//font: font,
-			//fontSize: fontSize,
-			//tableInfos: table });
+			_localStore2.default.setTableInfos({ id: bk.id,
+				dim: w + 'x' + h,
+				font: font,
+				fontSize: fontSize,
+				tableInfos: table });
 			//ajax post
 			//let data = { id: bk.id,
 			//agent: window.navigator.userAgent,

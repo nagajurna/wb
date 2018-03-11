@@ -136,7 +136,6 @@ const book = function(container) {
 			}
 			
 			let resizeBook = () => {
-				alert('resize');
 				if(!location.hash.match(/#\/[^\/]+\/read$/)) { return; }
 				document.body.style.height = '100%';
 				if(window.innerWidth >= 768) {
@@ -240,6 +239,7 @@ const book = function(container) {
 			let timeout = false;
 			let delta = 0;
 			window.addEventListener('resize', event => {
+				alert('resize');
 				rtime = new Date();
 				if (timeout === false) {
 					timeout = true;
