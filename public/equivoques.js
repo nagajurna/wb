@@ -3388,7 +3388,7 @@ var home = function home(container) {
 
 	//insert template in container
 	c.innerHTML = homeTemplate({ books: lBs, replaceLines: _utils2.default.replaceLines });
-	_utils2.default.setHTML('title', '&Eacute;quivoques - Nouveautés');
+	_utils2.default.setHTML('title', '&Eacute;quivoques');
 	var root = document.querySelector('#home-container');
 	var slides = root.querySelectorAll('.slide');
 	var dots = root.querySelectorAll('.dot');

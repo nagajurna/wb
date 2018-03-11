@@ -15,7 +15,7 @@ const home = function(container) {
 	
 	//insert template in container
 	c.innerHTML = homeTemplate({ books:lBs, replaceLines: utils.replaceLines });
-	utils.setHTML('title','&Eacute;quivoques - Nouveautés');
+	utils.setHTML('title','&Eacute;quivoques');
 	let root = document.querySelector('#home-container');
 	let slides = root.querySelectorAll('.slide');
 	let dots = root.querySelectorAll('.dot');
