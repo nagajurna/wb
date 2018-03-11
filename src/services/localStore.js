@@ -192,7 +192,7 @@ const localStore = {
 			} else {
 				tableInfos.push(i);
 			}
-			localStorage.setItem('tableInfos', JSON.stringify(tableInfos));
+			//localStorage.setItem('tableInfos', JSON.stringify(tableInfos));
 		}
 	},
 	
@@ -214,13 +214,13 @@ const localStore = {
 			   } 
 		   }
 		}
-		
+		console.log(tableInfos);
 	},
 	
 	removeTableInfos: () => {
 		if(typeof(Storage) !== "undefined") {
-			if(localStorage.getItem('tables')) {
-				localStorage.removeItem('tables');
+			if(localStorage.getItem('tableInfos')) {
+				localStorage.removeItem('tableInfos');
 			}
 		}
 	}

@@ -2122,7 +2122,7 @@ var localStore = {
 			} else {
 				tableInfos.push(i);
 			}
-			localStorage.setItem('tableInfos', JSON.stringify(tableInfos));
+			//localStorage.setItem('tableInfos', JSON.stringify(tableInfos));
 		}
 	},
 
@@ -2143,12 +2143,13 @@ var localStore = {
 				}
 			}
 		}
+		console.log(tableInfos);
 	},
 
 	removeTableInfos: function removeTableInfos() {
 		if (typeof Storage !== "undefined") {
-			if (localStorage.getItem('tables')) {
-				localStorage.removeItem('tables');
+			if (localStorage.getItem('tableInfos')) {
+				localStorage.removeItem('tableInfos');
 			}
 		}
 	}
