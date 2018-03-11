@@ -137,7 +137,7 @@ const book = function(container) {
 			
 			let resizeBook = () => {
 				if(!location.hash.match(/#\/[^\/]+\/read$/)) { return; }
-				//document.body.style.height = '100%';
+				document.body.style.height = '100%';
 				if(window.innerWidth >= 768) {
 					utils.addClass('[data-wb-text-container]', 'card-4');
 					//max-height: 720
@@ -791,7 +791,7 @@ const book = function(container) {
 	
 	//INSERT TEMPLATE ET START LOADER
 	//insert template in container
-	//document.body.style.height = '100%';
+	document.body.style.height = '100%';
 	c.innerHTML = bookReadTemplate({ book:bk });
 	utils.setHTML('title','&Eacute;quivoques - ' + bk.title);
 	//START LOADER
