@@ -214,7 +214,6 @@ const localStore = {
 			   } 
 		   }
 		}
-		console.log(tableInfos);
 	},
 	
 	removeTableInfos: () => {
