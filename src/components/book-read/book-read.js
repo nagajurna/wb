@@ -30,7 +30,6 @@ const book = function(container) {
 		let bookNavBarBottomSmall = bookContainer.querySelector('#book-nav-bar-bottom-small');
 		let fontSizeValidLarge = bookContainer.querySelector('#font-size-valid-large');
 		let fontSizeValid = bookContainer.querySelector('#font-size-valid');
-		//let cover = text.querySelector("#cover.wb-section");
 		
 		//DIMENSIONS
 		let h, w, marginY, marginX, font, fontSize, lineHeight, top;
@@ -235,27 +234,29 @@ const book = function(container) {
 			}
 						 
 			//on resize
-			let rtime;
-			let timeout = false;
-			let delta = 600;
-			window.addEventListener('resize', event => {
-				if(!location.hash.match(/#\/[^\/]+\/read$/)) { return; }
-				rtime = new Date();
-				if (timeout === false) {
-					timeout = true;
-					setTimeout(resizeend, delta);
-				}
+			//let rtime;
+			//let timeout = false;
+			//let delta = 600;
+			//window.addEventListener('resize', event => {
+				//if(!location.hash.match(/#\/[^\/]+\/read$/)) { return; }
+				//rtime = new Date();
+				//if (timeout === false) {
+					//timeout = true;
+					//setTimeout(resizeend, delta);
+				//}
 			
-			}, false);
+			//}, false);
 			
-			function resizeend() {
-				if (new Date() - rtime < delta) {
-					setTimeout(resizeend, delta);
-				} else {
-					timeout = false;
-					resizeBook();
-				}               
-			}
+			//function resizeend() {
+				//if (new Date() - rtime < delta) {
+					//setTimeout(resizeend, delta);
+				//} else {
+					//timeout = false;
+					//resizeBook();
+				//}               
+			//}
+			
+			window.addEventListener('resize', resizeBook, false);
 		
 		
 			//SWIPE - forward, backward on swipe left and right (hammer.js)
@@ -461,10 +462,6 @@ const book = function(container) {
 			let addBookmarks = bookContainer.querySelectorAll('.add-bookmark');
 			for(let i=0; i<addBookmarks.length; i++) {
 				addBookmarks[i].addEventListener('click', event => {
-					//if(book.checkFirstPage()) { 
-						//localStore.removeBkmrk(bk.id);
-						//return;
-					//}
 					let newBmrk = book.getBookmark();
 					let bookmark = document.querySelector('#bookmark');
 					localStore.setBkmrk(bk.id, newBmrk);
@@ -791,7 +788,7 @@ const book = function(container) {
 	
 	//INSERT TEMPLATE ET START LOADER
 	//insert template in container
-	document.body.style.height = '100%';
+	//document.body.style.height = '100%';
 	c.innerHTML = bookReadTemplate({ book:bk });
 	utils.setHTML('title','&Eacute;quivoques - ' + bk.title);
 	//START LOADER
