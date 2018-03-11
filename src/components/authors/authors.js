@@ -126,12 +126,17 @@ const authors = function(container) {
 	
 	//window on resize (innerWidth < 750 : list, otherwise: slider)
 	window.addEventListener('resize', () => {
+		if(!location.hash.match(/#\/authors\?(search=(A-Z))?/)) {
+			return;
+		}
 		if(window.innerWidth < 750) {
 			slides = root.querySelectorAll('.slide');
 			for(let i=0; i<slides.length; i++) {
 				slides[i].style.display = 'block';
-				auths[i].querySelectorAll('.previous')[0].style.display='none';
-				auths[i].querySelectorAll('.next')[0].style.display='none';
+				if(auths[i]) {
+					auths[i].querySelectorAll('.previous')[0].style.display='none';
+					auths[i].querySelectorAll('.next')[0].style.display='none';
+				}
 			}
 		} else {
 			slides = root.querySelectorAll('.slide');

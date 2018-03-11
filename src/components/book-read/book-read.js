@@ -137,7 +137,7 @@ const book = function(container) {
 			
 			let resizeBook = () => {
 				if(!location.hash.match(/#\/[^\/]+\/read$/)) { return; }
-				document.body.style.height = window.innerHeight;
+				//document.body.style.height = '100%';
 				if(window.innerWidth >= 768) {
 					utils.addClass('[data-wb-text-container]', 'card-4');
 					//max-height: 720
@@ -739,7 +739,7 @@ const book = function(container) {
 			return table;
 		 })
 		 .then (table => {
-			document.body.style.overflowY = 'visible';
+			//document.body.style.overflowY = 'visible';
 			utils.addClass('#book-loader-container', 'hidden');
 			bookContainer.className = 'show';
 			return table;
@@ -796,7 +796,7 @@ const book = function(container) {
 	utils.setHTML('title','&Eacute;quivoques - ' + bk.title);
 	//START LOADER
 	//document.body.style.height = window.innerHeight + 'px';
-	document.body.style.overflowY = 'hidden';
+	//document.body.style.overflowY = 'hidden';
 	utils.removeClass('#book-loader-container','hidden');
 	
 	//BOOK CONTAINER

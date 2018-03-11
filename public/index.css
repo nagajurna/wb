@@ -33,8 +33,10 @@
 }
 
 html {
+/*
 	width: 100%;
 	height:100%;
+*/
 	padding: 0px;
 	margin: 0px;
 	border: none;
@@ -42,20 +44,18 @@ html {
 }
 
 head {
-/*
 	will-change: transform;
-*/
-/*
 	transform: translateZ(0);
 	-webkit-transform: translate-z(0);
 	-ms-transform: translate-z(0);
-*/
 }
 
 
 body {
+/*
 	width: 100%;
 	height: 100%;
+*/
 	padding: 0px;
 	margin: 0px;
 	border: none;
