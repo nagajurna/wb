@@ -4816,7 +4816,7 @@ var book = function book(container) {
 			//on resize
 			var rtime = void 0;
 			var timeout = false;
-			var delta = 300;
+			var delta = 600;
 			window.addEventListener('resize', function (event) {
 				if (!location.hash.match(/#\/[^\/]+\/read$/)) {
 					return;
@@ -5494,10 +5494,12 @@ var WebBook = function () {
 					//}
 
 					_this._text.style.display = 'none';
-					_this.emptyNode(_this._text);
-					_this._text.appendChild(_this._div);
-					_this.toBook();
+
 					if (_this._tableInfos === undefined || _this._tableInfos.totalPages === null) {
+						_this.emptyNode(_this._text);
+						_this._text.appendChild(_this._div);
+
+						_this.toBook();
 
 						//pagination start
 						_this._startPage = _this.getPageStart();
@@ -5580,8 +5582,7 @@ var WebBook = function () {
 			cs.height = this.getHeight() + "px";
 			cs.maxWidth = this.getMaxWidth() + "px"; //maxWidth : responsive
 			cs.display = "block";
-			//this._containerWidth = this._textContainer.clientWidth;//responsive
-			this._containerWidth = this.getMaxWidth(); //responsive
+			this._containerWidth = this._textContainer.clientWidth; //responsive
 			//text
 			var ts = this._text.style;
 			ts.display = "none";
@@ -5760,9 +5761,9 @@ var WebBook = function () {
 			fragment.appendChild(this._lastElement.cloneNode(true));
 			this._text.appendChild(fragment.cloneNode(true));
 			this.setSectionLinks();
-			//if(this._tableInfos) {
-			//this.toBook();
-			//}
+			if (this._tableInfos) {
+				this.toBook();
+			}
 			this._position = 0;
 			this._text.style.left = this._position + "px";
 			this.refresh();
@@ -5780,9 +5781,9 @@ var WebBook = function () {
 			fragment.appendChild(this._lastElement.cloneNode(true));
 			this._text.appendChild(fragment.cloneNode(true));
 			this.setSectionLinks();
-			//if(this._tableInfos) {
-			//this.toBook();
-			//}
+			if (this._tableInfos) {
+				this.toBook();
+			}
 			this.goToPage(this.getSectionTotalPages() - this._startPage);
 			this.refresh();
 		}
@@ -5802,9 +5803,9 @@ var WebBook = function () {
 						fragment.appendChild(this._lastElement.cloneNode(true));
 						this._text.appendChild(fragment.cloneNode(true));
 						this.setSectionLinks();
-						//if(this._tableInfos) {
-						//this.toBook();
-						//}
+						if (this._tableInfos) {
+							this.toBook();
+						}
 					}
 					this.goToPage(this.elementPageNumber(id));
 					this.refresh();
@@ -6115,7 +6116,7 @@ var WebBook = function () {
 					fragment.appendChild(this._lastElement.cloneNode(true));
 					this._text.appendChild(fragment.cloneNode(true));
 					this.setSectionLinks();
-					//this.toBook();
+					this.toBook();
 					var currentSection = this._text.querySelectorAll('.wb-section')[0];
 					var elements = currentSection.querySelectorAll(':not(.wb-section)');
 					var element = elements[bookmark.el];
