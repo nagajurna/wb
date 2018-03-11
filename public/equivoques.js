@@ -4816,9 +4816,11 @@ var book = function book(container) {
 			//on resize
 			var rtime = void 0;
 			var timeout = false;
-			var delta = 0;
+			var delta = 300;
 			window.addEventListener('resize', function (event) {
-				alert('resize');
+				if (!location.hash.match(/#\/[^\/]+\/read$/)) {
+					return;
+				}
 				rtime = new Date();
 				if (timeout === false) {
 					timeout = true;

@@ -237,9 +237,9 @@ const book = function(container) {
 			//on resize
 			let rtime;
 			let timeout = false;
-			let delta = 0;
+			let delta = 300;
 			window.addEventListener('resize', event => {
-				alert('resize');
+				if(!location.hash.match(/#\/[^\/]+\/read$/)) { return; }
 				rtime = new Date();
 				if (timeout === false) {
 					timeout = true;
