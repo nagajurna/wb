@@ -192,7 +192,7 @@ const localStore = {
 			} else {
 				tableInfos.push(i);
 			}
-			//localStorage.setItem('tableInfos', JSON.stringify(tableInfos));
+			localStorage.setItem('tableInfos', JSON.stringify(tableInfos));
 		}
 	},
 	

@@ -2122,7 +2122,7 @@ var localStore = {
 			} else {
 				tableInfos.push(i);
 			}
-			//localStorage.setItem('tableInfos', JSON.stringify(tableInfos));
+			localStorage.setItem('tableInfos', JSON.stringify(tableInfos));
 		}
 	},
 
@@ -5495,8 +5495,7 @@ var WebBook = function () {
 					//}
 
 					_this._text.style.display = 'none';
-
-					if (_this._tableInfos === undefined || _this._tableInfos.totalPages === null) {
+					if (_this._tableInfos === undefined) {
 						_this.emptyNode(_this._text);
 						_this._text.appendChild(_this._div);
 
@@ -5758,10 +5757,8 @@ var WebBook = function () {
 			}
 			this._sectionsIndex = index;
 			this.emptyNode(this._text);
-			var fragment = document.createDocumentFragment();
-			fragment.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
-			fragment.appendChild(this._lastElement.cloneNode(true));
-			this._text.appendChild(fragment.cloneNode(true));
+			this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
+			this._text.appendChild(this._lastElement.cloneNode(true));
 			this.setSectionLinks();
 			if (this._tableInfos) {
 				this.toBook();
@@ -5778,10 +5775,8 @@ var WebBook = function () {
 			}
 			this._sectionsIndex = index;
 			this.emptyNode(this._text);
-			var fragment = document.createDocumentFragment();
-			fragment.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
-			fragment.appendChild(this._lastElement.cloneNode(true));
-			this._text.appendChild(fragment.cloneNode(true));
+			this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
+			this._text.appendChild(this._lastElement.cloneNode(true));
 			this.setSectionLinks();
 			if (this._tableInfos) {
 				this.toBook();
@@ -5800,10 +5795,8 @@ var WebBook = function () {
 					this._sectionsIndex = i;
 					if (this._sections[this._sectionsIndex].id !== this._text.querySelectorAll('.wb-section')[0].id) {
 						this.emptyNode(this._text);
-						var fragment = document.createDocumentFragment();
-						fragment.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
-						fragment.appendChild(this._lastElement.cloneNode(true));
-						this._text.appendChild(fragment.cloneNode(true));
+						this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
+						this._text.appendChild(this._lastElement.cloneNode(true));
 						this.setSectionLinks();
 						if (this._tableInfos) {
 							this.toBook();
@@ -5996,7 +5989,7 @@ var WebBook = function () {
 				tocTitle.innerHTML = toc.getAttribute('data-wb-toc');
 				toc.appendChild(tocTitle);
 			}
-			var content = document.createDocumentFragment();
+			var content = document.createElement('div');
 			var list = document.createElement('ul');
 			list.setAttribute('class', 'wb-toc-list');
 			for (var i = 0; i < this._tocSections.length; i++) {
@@ -6024,7 +6017,7 @@ var WebBook = function () {
 				list.appendChild(item);
 			}
 			content.appendChild(list);
-			toc.appendChild(content.cloneNode(true));
+			toc.appendChild(content);
 
 			if (this._tocs[1]) {
 				for (var j = 1; j < this._tocs.length; j++) {
@@ -6034,7 +6027,6 @@ var WebBook = function () {
 						_tocTitle.innerHTML = this._tocs[j].getAttribute('data-wb-toc');
 						this._tocs[j].appendChild(_tocTitle);
 					}
-
 					this._tocs[j].appendChild(content.cloneNode(true));
 				}
 			}
@@ -6113,10 +6105,8 @@ var WebBook = function () {
 					//}
 					this._sectionsIndex = i;
 					this.emptyNode(this._text);
-					var fragment = document.createDocumentFragment();
-					fragment.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
-					fragment.appendChild(this._lastElement.cloneNode(true));
-					this._text.appendChild(fragment.cloneNode(true));
+					this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
+					this._text.appendChild(this._lastElement.cloneNode(true));
 					this.setSectionLinks();
 					this.toBook();
 					var currentSection = this._text.querySelectorAll('.wb-section')[0];
