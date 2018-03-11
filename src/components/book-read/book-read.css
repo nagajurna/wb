@@ -274,7 +274,9 @@ TEXTCONTAINER
 [data-wb-text-container] {
 	margin: auto;
 	background-color: #fafafa;
+/*
 	will-change: transform;
+*/
 }
 
 /*
@@ -727,7 +729,9 @@ TEXT
 	-webkit-transition: opacity 0.4s;
 	-moz-transition: opacity 0.4s;
 	-o-transition: opacity 0.4s;
+/*
 	will-change: transform;
+*/
 /*
 	transform: translateZ(0);
 	-webkit-transform: translate-z(0);
