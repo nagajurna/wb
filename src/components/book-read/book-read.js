@@ -136,6 +136,7 @@ const book = function(container) {
 			}
 			
 			let resizeBook = () => {
+				alert('resize');
 				if(!location.hash.match(/#\/[^\/]+\/read$/)) { return; }
 				document.body.style.height = '100%';
 				if(window.innerWidth >= 768) {
@@ -224,16 +225,14 @@ const book = function(container) {
 															font: font,
 															fontSize: fontSize });
 				
-				//book.init(tableInfos)
-				//.then( resolve => {
-					//localStore.setTableInfos({ id: bk.id,
-									    //dim: w + 'x' + h,
-									    //font: font,
-									    //fontSize: fontSize,
-									    //tableInfos: resolve });
-				//});
-				
-				book.init();
+				book.init(tableInfos)
+				.then( resolve => {
+					localStore.setTableInfos({ id: bk.id,
+									    dim: w + 'x' + h,
+									    font: font,
+									    fontSize: fontSize,
+									    tableInfos: resolve });
+				});
 			}
 						 
 			//on resize
@@ -725,7 +724,7 @@ const book = function(container) {
 													font: font,
 													fontSize: fontSize });
 		 
-		 book.init()
+		 book.init(tableInfos)
 		 .then( table => {
 			 if(localStore.getBkmrk(bk.id)) {
 				let bkmrk = localStore.getBkmrk(bk.id);
@@ -746,11 +745,11 @@ const book = function(container) {
 			return table;
 		})
 		.then (table => {
-			//localStore.setTableInfos({ id: bk.id,
-									    //dim: w + 'x' + h,
-									    //font: font,
-									    //fontSize: fontSize,
-									    //tableInfos: table });
+			localStore.setTableInfos({ id: bk.id,
+									    dim: w + 'x' + h,
+									    font: font,
+									    fontSize: fontSize,
+									    tableInfos: table });
 			//ajax post
 			//let data = { id: bk.id,
 						 //agent: window.navigator.userAgent,
