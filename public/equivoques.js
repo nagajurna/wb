@@ -4804,13 +4804,16 @@ var book = function book(container) {
 					font: font,
 					fontSize: fontSize });
 
-				book.init(tableInfos).then(function (resolve) {
-					_localStore2.default.setTableInfos({ id: bk.id,
-						dim: w + 'x' + h,
-						font: font,
-						fontSize: fontSize,
-						tableInfos: resolve });
-				});
+				//book.init(tableInfos)
+				//.then( resolve => {
+				//localStore.setTableInfos({ id: bk.id,
+				//dim: w + 'x' + h,
+				//font: font,
+				//fontSize: fontSize,
+				//tableInfos: resolve });
+				//});
+
+				book.init();
 			};
 
 			//on resize
@@ -5287,7 +5290,7 @@ var book = function book(container) {
 			font: font,
 			fontSize: fontSize });
 
-		book.init(tableInfos).then(function (table) {
+		book.init().then(function (table) {
 			if (_localStore2.default.getBkmrk(bk.id)) {
 				var bkmrk = _localStore2.default.getBkmrk(bk.id);
 				book.goToBookmark(bkmrk);
@@ -5303,11 +5306,11 @@ var book = function book(container) {
 			bookContainer.className = 'show';
 			return table;
 		}).then(function (table) {
-			_localStore2.default.setTableInfos({ id: bk.id,
-				dim: w + 'x' + h,
-				font: font,
-				fontSize: fontSize,
-				tableInfos: table });
+			//localStore.setTableInfos({ id: bk.id,
+			//dim: w + 'x' + h,
+			//font: font,
+			//fontSize: fontSize,
+			//tableInfos: table });
 			//ajax post
 			//let data = { id: bk.id,
 			//agent: window.navigator.userAgent,
@@ -5493,9 +5496,9 @@ var WebBook = function () {
 					_this._text.style.display = 'none';
 					_this.emptyNode(_this._text);
 					_this._text.appendChild(_this._div);
+					_this.toBook();
 					if (_this._tableInfos === undefined || _this._tableInfos.totalPages === null) {
 
-						_this.toBook();
 						//pagination start
 						_this._startPage = _this.getPageStart();
 						//book total number of pages
@@ -5757,9 +5760,9 @@ var WebBook = function () {
 			fragment.appendChild(this._lastElement.cloneNode(true));
 			this._text.appendChild(fragment.cloneNode(true));
 			this.setSectionLinks();
-			if (this._tableInfos) {
-				this.toBook();
-			}
+			//if(this._tableInfos) {
+			//this.toBook();
+			//}
 			this._position = 0;
 			this._text.style.left = this._position + "px";
 			this.refresh();
@@ -5777,9 +5780,9 @@ var WebBook = function () {
 			fragment.appendChild(this._lastElement.cloneNode(true));
 			this._text.appendChild(fragment.cloneNode(true));
 			this.setSectionLinks();
-			if (this._tableInfos) {
-				this.toBook();
-			}
+			//if(this._tableInfos) {
+			//this.toBook();
+			//}
 			this.goToPage(this.getSectionTotalPages() - this._startPage);
 			this.refresh();
 		}
@@ -5799,9 +5802,9 @@ var WebBook = function () {
 						fragment.appendChild(this._lastElement.cloneNode(true));
 						this._text.appendChild(fragment.cloneNode(true));
 						this.setSectionLinks();
-						if (this._tableInfos) {
-							this.toBook();
-						}
+						//if(this._tableInfos) {
+						//this.toBook();
+						//}
 					}
 					this.goToPage(this.elementPageNumber(id));
 					this.refresh();
@@ -6112,7 +6115,7 @@ var WebBook = function () {
 					fragment.appendChild(this._lastElement.cloneNode(true));
 					this._text.appendChild(fragment.cloneNode(true));
 					this.setSectionLinks();
-					this.toBook();
+					//this.toBook();
 					var currentSection = this._text.querySelectorAll('.wb-section')[0];
 					var elements = currentSection.querySelectorAll(':not(.wb-section)');
 					var element = elements[bookmark.el];
