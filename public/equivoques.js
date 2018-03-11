@@ -4718,7 +4718,7 @@ var book = function book(container) {
 				if (!location.hash.match(/#\/[^\/]+\/read$/)) {
 					return;
 				}
-				document.body.style.height = '100%';
+				//document.body.style.height = '100%';
 				if (window.innerWidth >= 768) {
 					_utils2.default.addClass('[data-wb-text-container]', 'card-4');
 					//max-height: 720
@@ -5583,7 +5583,8 @@ var WebBook = function () {
 			cs.height = this.getHeight() + "px";
 			cs.maxWidth = this.getMaxWidth() + "px"; //maxWidth : responsive
 			cs.display = "block";
-			this._containerWidth = this._textContainer.clientWidth; //responsive
+			//this._containerWidth = this._textContainer.clientWidth;//responsive
+			this._containerWidth = this.getMaxWidth();
 			//text
 			var ts = this._text.style;
 			ts.display = "none";

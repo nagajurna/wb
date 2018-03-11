@@ -33,7 +33,8 @@ app.use(session({
 
 //express.static
 let halfDay = 43200000;
-app.use(express.static(__dirname + '/public', { maxAge: halfDay }));
+app.use(express.static(__dirname + '/public'));
+//app.use(express.static(__dirname + '/public', { maxAge: halfDay }));
 //app.use('/books', express.static(__dirname + '/books', { maxAge: '10y' }));
 
 //body-parser
