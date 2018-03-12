@@ -5494,7 +5494,7 @@ var WebBook = function () {
 					//}
 					//sections[i].style.display='block';
 					//}
-					//this._text.style.display = 'none';
+					_this._text.style.display = 'none';
 					_this.emptyNode(_this._text);
 					_this._text.appendChild(_this._div);
 					_this.toBook();
@@ -5550,7 +5550,7 @@ var WebBook = function () {
 						_this.nextSection(_this._sectionsIndex);
 					}
 					_this.refresh();
-					//this._text.style.display = 'block';
+					_this._text.style.display = 'block';
 					var tableInfos = { startPage: _this._startPage,
 						totalPages: _this.pages_total,
 						sectionsPageStart: _this._sections_page_start,
@@ -5573,7 +5573,7 @@ var WebBook = function () {
 
 			//text-container
 			var cs = this._textContainer.style;
-			//cs.display = "none";
+			cs.display = "none";
 			cs.boxSizing = "border-box";
 			cs.webkitBoxSizing = "border-box";
 			cs.overflow = "hidden";
@@ -5581,12 +5581,15 @@ var WebBook = function () {
 			cs.padding = "0px";
 			cs.height = this.getHeight() + "px";
 			cs.maxWidth = this.getMaxWidth() + "px"; //maxWidth : responsive
-			//cs.display = "block";
+			cs.display = "block";
 			//this._containerWidth = this._textContainer.clientWidth;//responsive
 			this._containerWidth = this.getMaxWidth();
 			//text
 			var ts = this._text.style;
-			//ts.display = "none";
+			ts.display = "none";
+			ts.webkitColumns = "auto auto";
+			ts.mozColumns = "auto auto";
+			ts.columns = "auto auto";
 			ts.boxSizing = "border-box";
 			ts.webkitBoxSizing = "border-box";
 			ts.position = "absolute";
@@ -5607,7 +5610,7 @@ var WebBook = function () {
 			ts.mozColumnGap = marginX * 2 + "px";
 			ts.webkitColumnGap = marginX * 2 + "px";
 			ts.columnGap = marginX * 2 + "px";
-			//ts.display = "block";
+			ts.display = "block";
 
 			//if(cb) {
 			//if(window.requestAnimationFrame) {
