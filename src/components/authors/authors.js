@@ -2,6 +2,7 @@ import dataStore from '../../services/dataStore';
 import utils from '../../services/utils';
 import css from './authors.css';
 let authorsTemplate = require('./authors.ejs');
+import screenfull from 'screenfull';
 //authors.js
 const authors = function(container) {
 	'use strict';
@@ -212,12 +213,15 @@ const authors = function(container) {
 	}
     //link to book/read
 	let readBk = event => {
-		document.body.scrollTop = 0;
-		document.documentElement.scrollTop = 0;
 		let b = dataStore.getData('books', event.currentTarget.id);
 		if(!b.visible) { return; }
 		let path = b.path.replace(/^\/books\/[^\/]+/,'');
 		location.hash = '#' + path + "/read";
+		if (screenfull.enabled && window.innerWidth < 750) {
+			if(!screenfull.isFullscreen) {
+				screenfull.request();
+			}
+		}
 	}
 	let bks = root.querySelectorAll('.book');
 	for(let i=0; i<bks.length; i++) {

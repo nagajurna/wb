@@ -147,7 +147,9 @@ const home = function(container) {
 		let path = b.path.replace(/^\/books\/[^\/]+/,'');
 		location.hash = '#' + path + "/read";
 		if (screenfull.enabled && window.innerWidth < 750) {
-			screenfull.request();
+			if(!screenfull.isFullscreen) {
+				screenfull.request();
+			}
 		}
 	}
 	let bks = root.querySelectorAll('.book');
