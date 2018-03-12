@@ -4607,12 +4607,13 @@ var book = function book(container) {
 		var h = 0;
 		var w = 0;
 		var ww = window.innerWidth;
-		var wh = void 0;
-		if (window.visualViewport) {
-			wh = window.visualViewport.height;
-		} else {
-			wh = window.innerHeight;
-		}
+		var wh = window.innerHeight;
+		//let wh;
+		//if(window.visualViewport) {
+		//wh = window.visualViewport.height;
+		//} else {
+		//wh = window.innerHeight;
+		//}
 		var marginY = void 0,
 		    marginX = void 0,
 		    font = void 0,
@@ -4723,12 +4724,13 @@ var book = function book(container) {
 				h = 0;
 				w = 0;
 				var ww = window.innerWidth;
-				var wh = void 0;
-				if (window.visualViewport) {
-					wh = window.visualViewport.height;
-				} else {
-					wh = window.innerHeight;
-				}
+				var wh = window.innerHeight;
+				//let wh;
+				//if(window.visualViewport) {
+				//wh = window.visualViewport.height;
+				//} else {
+				//wh = window.innerHeight;
+				//}
 				if (!location.hash.match(/#\/[^\/]+\/read$/)) {
 					return;
 				}
@@ -4852,6 +4854,7 @@ var book = function book(container) {
 			//}
 
 			window.addEventListener('resize', resizeBook, false);
+			window.addEventListener('scroll', resizeBook, false);
 
 			//SWIPE - forward, backward on swipe left and right (hammer.js)
 			// all sizes
@@ -5367,11 +5370,11 @@ var book = function book(container) {
 	_utils2.default.setHTML('title', '&Eacute;quivoques - ' + bk.title);
 	//START LOADER
 	//document.body.style.height = window.innerHeight + 'px';
-	if (window.visualViewport) {
-		document.body.style.height = window.visualViewport.height + 'px';
-	} else {
-		document.body.style.height = window.innerHeight + 'px';
-	}
+	//if(window.visualViewport) {
+	//document.body.style.height = window.visualViewport.height + 'px';
+	//} else {
+	//document.body.style.height = window.innerHeight + 'px';
+	//}
 	//document.body.style.overflowY = 'hidden';
 	_utils2.default.removeClass('#book-loader-container', 'hidden');
 
