@@ -4859,11 +4859,6 @@ var book = function book(container) {
 			//}
 
 			window.addEventListener('resize', resizeBook, false);
-			window.addEventListener('resize', function () {
-				if (window.visualViewport.height !== wh || window.innerWidth !== ww) {
-					resizeBook();
-				}
-			}, false);
 
 			//SWIPE - forward, backward on swipe left and right (hammer.js)
 			// all sizes
