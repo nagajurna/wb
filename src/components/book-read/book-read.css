@@ -227,7 +227,6 @@ BOOK NAV-BAR-BOTTOM-SMALL
 	margin: auto;
 	background-color: #333;
 	text-align: center;
-	z-index: 1000;
 }
 
 @media screen and (min-width: 768px) {
@@ -251,12 +250,20 @@ BOOK NAV-BAR-BOTTOM-SMALL
 	color: rgb(152, 152, 152);
 }
 
+#book {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	margin: auto;
+}
+
 /*
 BOOKCONTAINER
 */
 #bookContainer {
 	font-family: 'Georgia', serif;
 	position: relative;
+	height: 100%;
 	color: #000;
 	opacity: 0.0;
 	margin: auto;
