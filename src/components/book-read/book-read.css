@@ -255,7 +255,6 @@ BOOKCONTAINER
 #bookContainer {
 	font-family: 'Georgia', serif;
 	position: relative;
-	height: 100%;
 	color: #000;
 	opacity: 0.0;
 	margin: auto;

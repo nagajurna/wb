@@ -811,6 +811,11 @@ const book = function(container) {
 	utils.setHTML('title','&Eacute;quivoques - ' + bk.title);
 	//START LOADER
 	//document.body.style.height = window.innerHeight + 'px';
+	if(window.visualViewport) {
+			document.body.style.height = window.visualViewport.height + 'px';
+		} else {
+			document.body.style.height = window.innerHeight + 'px';
+		}
 	//document.body.style.overflowY = 'hidden';
 	utils.removeClass('#book-loader-container','hidden');
 	
