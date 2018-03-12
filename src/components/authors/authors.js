@@ -216,12 +216,12 @@ const authors = function(container) {
 		let b = dataStore.getData('books', event.currentTarget.id);
 		if(!b.visible) { return; }
 		let path = b.path.replace(/^\/books\/[^\/]+/,'');
-		location.hash = '#' + path + "/read";
 		if (screenfull.enabled && window.innerWidth < 750) {
 			if(!screenfull.isFullscreen) {
 				screenfull.request();
 			}
 		}
+		location.hash = '#' + path + "/read";
 	}
 	let bks = root.querySelectorAll('.book');
 	for(let i=0; i<bks.length; i++) {

@@ -3661,12 +3661,12 @@ var home = function home(container) {
 		automatic = undefined;
 		var b = _dataStore2.default.getData('books', event.currentTarget.id);
 		var path = b.path.replace(/^\/books\/[^\/]+/, '');
-		location.hash = '#' + path + "/read";
-		if (_screenfull2.default.enabled && window.innerWidth < 750) {
+		if (_screenfull2.default.enabled && window.innerWidth < 750 && !window.matchMedia('(display-mode: standalone)').matches) {
 			if (!_screenfull2.default.isFullscreen) {
 				_screenfull2.default.request();
 			}
 		}
+		location.hash = '#' + path + "/read";
 	};
 	var bks = root.querySelectorAll('.book');
 	for (var _i3 = 0; _i3 < bks.length; _i3++) {
@@ -13404,12 +13404,12 @@ var authors = function authors(container) {
 			return;
 		}
 		var path = b.path.replace(/^\/books\/[^\/]+/, '');
-		location.hash = '#' + path + "/read";
 		if (_screenfull2.default.enabled && window.innerWidth < 750) {
 			if (!_screenfull2.default.isFullscreen) {
 				_screenfull2.default.request();
 			}
 		}
+		location.hash = '#' + path + "/read";
 	};
 	var bks = root.querySelectorAll('.book');
 	for (var _i8 = 0; _i8 < bks.length; _i8++) {
