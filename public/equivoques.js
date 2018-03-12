@@ -13404,7 +13404,7 @@ var authors = function authors(container) {
 			return;
 		}
 		var path = b.path.replace(/^\/books\/[^\/]+/, '');
-		if (_screenfull2.default.enabled && window.innerWidth < 750) {
+		if (_screenfull2.default.enabled && window.innerWidth < 750 && !window.matchMedia('(display-mode: standalone)').matches) {
 			if (!_screenfull2.default.isFullscreen) {
 				_screenfull2.default.request();
 			}
