@@ -4,6 +4,7 @@ import localStore from '../../services/localStore';
 import WebBook from '../../../lib/wb/WebBook';
 import css from './book-read.css';
 import Hammer from 'hammerjs';
+import screenfull from 'screenfull';
 
 let bookReadTemplate = require('./book-read.ejs');
 //book.js
@@ -482,6 +483,9 @@ const book = function(container) {
 					let prevLocation = dataStore.getData('location').prevLocation;
 					prevLocation = prevLocation && prevLocation.match(/#\/[^\/]+\/read$/) ? '#/' : prevLocation;
 					location.hash = prevLocation ? prevLocation : '#/';
+					if(screenfull.enabled && screenfull.isFullscreen) {
+						screenfull.exit();
+					}
 				}, false);
 			}
 			

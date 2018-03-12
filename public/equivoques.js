@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 29);
+/******/ 	return __webpack_require__(__webpack_require__.s = 30);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -329,7 +329,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 // Defining this global in .eslintrc.json would create a danger of using the global
 // unguarded in another place, it seems safer to define global only for this module
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(7), __webpack_require__(3), __webpack_require__(54), __webpack_require__(16), __webpack_require__(55), __webpack_require__(56), __webpack_require__(17), __webpack_require__(9), __webpack_require__(57), __webpack_require__(18), __webpack_require__(19), __webpack_require__(58), __webpack_require__(20), __webpack_require__(59)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (arr, document, getProto, _slice, concat, push, indexOf, class2type, toString, hasOwn, fnToString, ObjectFunctionString, support, DOMEval) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(7), __webpack_require__(3), __webpack_require__(55), __webpack_require__(17), __webpack_require__(56), __webpack_require__(57), __webpack_require__(18), __webpack_require__(9), __webpack_require__(58), __webpack_require__(19), __webpack_require__(20), __webpack_require__(59), __webpack_require__(21), __webpack_require__(60)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (arr, document, getProto, _slice, concat, push, indexOf, class2type, toString, hasOwn, fnToString, ObjectFunctionString, support, DOMEval) {
 
 	"use strict";
 
@@ -1199,7 +1199,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(42);
+var	fixUrls = __webpack_require__(43);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -1535,7 +1535,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(61)], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(62)], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
 	"use strict";
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -1592,7 +1592,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(3), __webpack_require__(22), __webpack_require__(20)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, document, documentElement, support) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(3), __webpack_require__(23), __webpack_require__(21)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, document, documentElement, support) {
 
 	"use strict";
 
@@ -1682,7 +1682,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 
 
-module.exports = __webpack_require__(31);
+module.exports = __webpack_require__(32);
 
 /***/ }),
 /* 14 */
@@ -1913,10 +1913,145 @@ rawAsap.makeRequestCallFromTimer = makeRequestCallFromTimer;
 // to capture the MutationObserver implementation in a closure, were integrated
 // back into ASAP proper.
 // https://github.com/tildeio/rsvp.js/blob/cddf7232546a9cf858524b75cde6f9edf72620a7/lib/rsvp/asap.js
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(32)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)))
 
 /***/ }),
 /* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/*!
+* screenfull
+* v3.3.2 - 2017-10-27
+* (c) Sindre Sorhus; MIT License
+*/
+(function () {
+	'use strict';
+
+	var document = typeof window !== 'undefined' && typeof window.document !== 'undefined' ? window.document : {};
+	var isCommonjs = typeof module !== 'undefined' && module.exports;
+	var keyboardAllowed = typeof Element !== 'undefined' && 'ALLOW_KEYBOARD_INPUT' in Element;
+
+	var fn = function () {
+		var val;
+
+		var fnMap = [['requestFullscreen', 'exitFullscreen', 'fullscreenElement', 'fullscreenEnabled', 'fullscreenchange', 'fullscreenerror'],
+		// New WebKit
+		['webkitRequestFullscreen', 'webkitExitFullscreen', 'webkitFullscreenElement', 'webkitFullscreenEnabled', 'webkitfullscreenchange', 'webkitfullscreenerror'],
+		// Old WebKit (Safari 5.1)
+		['webkitRequestFullScreen', 'webkitCancelFullScreen', 'webkitCurrentFullScreenElement', 'webkitCancelFullScreen', 'webkitfullscreenchange', 'webkitfullscreenerror'], ['mozRequestFullScreen', 'mozCancelFullScreen', 'mozFullScreenElement', 'mozFullScreenEnabled', 'mozfullscreenchange', 'mozfullscreenerror'], ['msRequestFullscreen', 'msExitFullscreen', 'msFullscreenElement', 'msFullscreenEnabled', 'MSFullscreenChange', 'MSFullscreenError']];
+
+		var i = 0;
+		var l = fnMap.length;
+		var ret = {};
+
+		for (; i < l; i++) {
+			val = fnMap[i];
+			if (val && val[1] in document) {
+				for (i = 0; i < val.length; i++) {
+					ret[fnMap[0][i]] = val[i];
+				}
+				return ret;
+			}
+		}
+
+		return false;
+	}();
+
+	var eventNameMap = {
+		change: fn.fullscreenchange,
+		error: fn.fullscreenerror
+	};
+
+	var screenfull = {
+		request: function request(elem) {
+			var request = fn.requestFullscreen;
+
+			elem = elem || document.documentElement;
+
+			// Work around Safari 5.1 bug: reports support for
+			// keyboard in fullscreen even though it doesn't.
+			// Browser sniffing, since the alternative with
+			// setTimeout is even worse.
+			if (/ Version\/5\.1(?:\.\d+)? Safari\//.test(navigator.userAgent)) {
+				elem[request]();
+			} else {
+				elem[request](keyboardAllowed && Element.ALLOW_KEYBOARD_INPUT);
+			}
+		},
+		exit: function exit() {
+			document[fn.exitFullscreen]();
+		},
+		toggle: function toggle(elem) {
+			if (this.isFullscreen) {
+				this.exit();
+			} else {
+				this.request(elem);
+			}
+		},
+		onchange: function onchange(callback) {
+			this.on('change', callback);
+		},
+		onerror: function onerror(callback) {
+			this.on('error', callback);
+		},
+		on: function on(event, callback) {
+			var eventName = eventNameMap[event];
+			if (eventName) {
+				document.addEventListener(eventName, callback, false);
+			}
+		},
+		off: function off(event, callback) {
+			var eventName = eventNameMap[event];
+			if (eventName) {
+				document.removeEventListener(eventName, callback, false);
+			}
+		},
+		raw: fn
+	};
+
+	if (!fn) {
+		if (isCommonjs) {
+			module.exports = false;
+		} else {
+			window.screenfull = false;
+		}
+
+		return;
+	}
+
+	Object.defineProperties(screenfull, {
+		isFullscreen: {
+			get: function get() {
+				return Boolean(document[fn.fullscreenElement]);
+			}
+		},
+		element: {
+			enumerable: true,
+			get: function get() {
+				return document[fn.fullscreenElement];
+			}
+		},
+		enabled: {
+			enumerable: true,
+			get: function get() {
+				// Coerce to boolean in case of old WebKit
+				return Boolean(document[fn.fullscreenEnabled]);
+			}
+		}
+	});
+
+	if (isCommonjs) {
+		module.exports = screenfull;
+	} else {
+		window.screenfull = screenfull;
+	}
+})();
+
+/***/ }),
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2157,7 +2292,7 @@ var localStore = {
 exports.default = localStore;
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2171,7 +2306,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2185,7 +2320,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2199,13 +2334,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(18)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (hasOwn) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(19)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (hasOwn) {
 	"use strict";
 
 	return hasOwn.toString;
@@ -2213,7 +2348,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2229,7 +2364,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2302,7 +2437,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2316,13 +2451,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(10), __webpack_require__(24), __webpack_require__(25), __webpack_require__(12), __webpack_require__(8) // Get jQuery.contains
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(10), __webpack_require__(25), __webpack_require__(26), __webpack_require__(12), __webpack_require__(8) // Get jQuery.contains
 ], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, rnumnonpx, rmargin, getStyles, support) {
 
 	"use strict";
@@ -2387,7 +2522,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2402,7 +2537,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2428,14 +2563,14 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
 // Initialize a jQuery object
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(3), __webpack_require__(64), __webpack_require__(65)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, document, rsingleTag) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(3), __webpack_require__(65), __webpack_require__(66)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, document, rsingleTag) {
 
 	"use strict";
 
@@ -2551,7 +2686,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2566,7 +2701,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2600,13 +2735,13 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _router = __webpack_require__(30);
+var _router = __webpack_require__(31);
 
 var _router2 = _interopRequireDefault(_router);
 
@@ -2614,7 +2749,7 @@ var _dataStore = __webpack_require__(2);
 
 var _dataStore2 = _interopRequireDefault(_dataStore);
 
-var _localStore = __webpack_require__(15);
+var _localStore = __webpack_require__(16);
 
 var _localStore2 = _interopRequireDefault(_localStore);
 
@@ -2775,7 +2910,7 @@ var index = function () {
 }();
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2793,31 +2928,31 @@ var _dataStore = __webpack_require__(2);
 
 var _dataStore2 = _interopRequireDefault(_dataStore);
 
-var _home = __webpack_require__(39);
+var _home = __webpack_require__(40);
 
 var _home2 = _interopRequireDefault(_home);
 
-var _search = __webpack_require__(44);
+var _search = __webpack_require__(45);
 
 var _search2 = _interopRequireDefault(_search);
 
-var _booksNext = __webpack_require__(48);
+var _booksNext = __webpack_require__(49);
 
 var _booksNext2 = _interopRequireDefault(_booksNext);
 
-var _bookRead = __webpack_require__(52);
+var _bookRead = __webpack_require__(53);
 
 var _bookRead2 = _interopRequireDefault(_bookRead);
 
-var _authors = __webpack_require__(80);
+var _authors = __webpack_require__(81);
 
 var _authors2 = _interopRequireDefault(_authors);
 
-var _adminLogin = __webpack_require__(84);
+var _adminLogin = __webpack_require__(85);
 
 var _adminLogin2 = _interopRequireDefault(_adminLogin);
 
-var _adminRouter = __webpack_require__(86);
+var _adminRouter = __webpack_require__(87);
 
 var _adminRouter2 = _interopRequireDefault(_adminRouter);
 
@@ -2830,7 +2965,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //books-next(controller)
 
 //home(controller)
-var adminTemplate = __webpack_require__(127);
+var adminTemplate = __webpack_require__(128);
 //adminRouter (sub-router)
 
 //adminLogin (controller)
@@ -2925,21 +3060,21 @@ var router = function router() {
 exports.default = router;
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 module.exports = __webpack_require__(4);
-__webpack_require__(33);
 __webpack_require__(34);
 __webpack_require__(35);
 __webpack_require__(36);
-__webpack_require__(38);
+__webpack_require__(37);
+__webpack_require__(39);
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2969,7 +3104,7 @@ try {
 module.exports = g;
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2988,7 +3123,7 @@ Promise.prototype.done = function (onFulfilled, onRejected) {
 };
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3010,7 +3145,7 @@ Promise.prototype['finally'] = function (f) {
 };
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3125,7 +3260,7 @@ Promise.prototype['catch'] = function (onRejected) {
 };
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3135,7 +3270,7 @@ Promise.prototype['catch'] = function (onRejected) {
 // for node.js interop
 
 var Promise = __webpack_require__(4);
-var asap = __webpack_require__(37);
+var asap = __webpack_require__(38);
 
 module.exports = Promise;
 
@@ -3207,7 +3342,7 @@ Promise.prototype.nodeify = function (callback, ctx) {
 };
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3280,7 +3415,7 @@ RawTask.prototype.call = function () {
 };
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3348,7 +3483,7 @@ Promise.disableSynchronous = function () {
 };
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3366,13 +3501,18 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _home = __webpack_require__(40);
+var _home = __webpack_require__(41);
 
 var _home2 = _interopRequireDefault(_home);
 
+var _screenfull = __webpack_require__(15);
+
+var _screenfull2 = _interopRequireDefault(_screenfull);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var homeTemplate = __webpack_require__(43);
+var homeTemplate = __webpack_require__(44);
+
 //home.js
 var home = function home(container) {
 	'use strict';
@@ -3522,6 +3662,9 @@ var home = function home(container) {
 		var b = _dataStore2.default.getData('books', event.currentTarget.id);
 		var path = b.path.replace(/^\/books\/[^\/]+/, '');
 		location.hash = '#' + path + "/read";
+		if (_screenfull2.default.enabled && window.innerWidth < 750) {
+			_screenfull2.default.request();
+		}
 	};
 	var bks = root.querySelectorAll('.book');
 	for (var _i3 = 0; _i3 < bks.length; _i3++) {
@@ -3584,13 +3727,13 @@ var home = function home(container) {
 exports.default = home;
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(41);
+var content = __webpack_require__(42);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -3615,7 +3758,7 @@ if(false) {
 }
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(5)(undefined);
@@ -3629,7 +3772,7 @@ exports.push([module.i, "#home-container {\n\tmax-width: 750px;\n\tmargin: auto;
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3724,7 +3867,7 @@ module.exports = function (css) {
 };
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -3849,7 +3992,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3867,13 +4010,13 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _search = __webpack_require__(45);
+var _search = __webpack_require__(46);
 
 var _search2 = _interopRequireDefault(_search);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var searchTemplate = __webpack_require__(47);
+var searchTemplate = __webpack_require__(48);
 
 //authors.js
 var search = function search(container) {
@@ -3991,13 +4134,13 @@ var search = function search(container) {
 exports.default = search;
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(46);
+var content = __webpack_require__(47);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -4022,7 +4165,7 @@ if(false) {
 }
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(5)(undefined);
@@ -4036,7 +4179,7 @@ exports.push([module.i, "#search-container #top-page-header {\n\ttext-align: cen
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -4148,7 +4291,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4166,13 +4309,13 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _booksNext = __webpack_require__(49);
+var _booksNext = __webpack_require__(50);
 
 var _booksNext2 = _interopRequireDefault(_booksNext);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var booksNextTemplate = __webpack_require__(51);
+var booksNextTemplate = __webpack_require__(52);
 //home.js
 var booksNext = function booksNext(container) {
 	'use strict';
@@ -4370,13 +4513,13 @@ var booksNext = function booksNext(container) {
 exports.default = booksNext;
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(50);
+var content = __webpack_require__(51);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -4401,7 +4544,7 @@ if(false) {
 }
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(5)(undefined);
@@ -4415,7 +4558,7 @@ exports.push([module.i, "#books-next-container {\n\tmax-width: 750px;\n\tmargin:
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -4540,7 +4683,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4558,25 +4701,29 @@ var _dataStore = __webpack_require__(2);
 
 var _dataStore2 = _interopRequireDefault(_dataStore);
 
-var _localStore = __webpack_require__(15);
+var _localStore = __webpack_require__(16);
 
 var _localStore2 = _interopRequireDefault(_localStore);
 
-var _WebBook = __webpack_require__(53);
+var _WebBook = __webpack_require__(54);
 
 var _WebBook2 = _interopRequireDefault(_WebBook);
 
-var _bookRead = __webpack_require__(76);
+var _bookRead = __webpack_require__(77);
 
 var _bookRead2 = _interopRequireDefault(_bookRead);
 
-var _hammerjs = __webpack_require__(78);
+var _hammerjs = __webpack_require__(79);
 
 var _hammerjs2 = _interopRequireDefault(_hammerjs);
 
+var _screenfull = __webpack_require__(15);
+
+var _screenfull2 = _interopRequireDefault(_screenfull);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var bookReadTemplate = __webpack_require__(79);
+var bookReadTemplate = __webpack_require__(80);
 //book.js
 var book = function book(container) {
 	'use strict';
@@ -5053,6 +5200,9 @@ var book = function book(container) {
 					var prevLocation = _dataStore2.default.getData('location').prevLocation;
 					prevLocation = prevLocation && prevLocation.match(/#\/[^\/]+\/read$/) ? '#/' : prevLocation;
 					location.hash = prevLocation ? prevLocation : '#/';
+					if (_screenfull2.default.enabled && _screenfull2.default.isFullscreen) {
+						_screenfull2.default.exit();
+					}
 				}, false);
 			}
 
@@ -5405,7 +5555,7 @@ var book = function book(container) {
 exports.default = book;
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5421,7 +5571,7 @@ var _core = __webpack_require__(1);
 
 var _core2 = _interopRequireDefault(_core);
 
-__webpack_require__(60);
+__webpack_require__(61);
 
 var _promise = __webpack_require__(13);
 
@@ -5436,7 +5586,6 @@ var WebBook = function () {
 		_classCallCheck(this, WebBook);
 
 		//containers
-		this._height = 0;
 		this._bookContainer = bookContainer;
 		this._textContainer = bookContainer.querySelector('[data-wb-text-container]');
 		this._text = bookContainer.querySelector('[data-wb-text]');
@@ -6231,7 +6380,7 @@ var WebBook = function () {
 exports.default = WebBook;
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6245,7 +6394,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6259,7 +6408,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6273,7 +6422,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6287,13 +6436,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(19)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (fnToString) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(20)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (fnToString) {
 	"use strict";
 
 	return fnToString.call(Object);
@@ -6301,7 +6450,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6324,13 +6473,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(21), __webpack_require__(3), __webpack_require__(22), __webpack_require__(10), __webpack_require__(23), __webpack_require__(28), __webpack_require__(12), __webpack_require__(63), __webpack_require__(26), __webpack_require__(67), __webpack_require__(8) // contains
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(22), __webpack_require__(3), __webpack_require__(23), __webpack_require__(10), __webpack_require__(24), __webpack_require__(29), __webpack_require__(12), __webpack_require__(64), __webpack_require__(27), __webpack_require__(68), __webpack_require__(8) // contains
 ], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, access, document, documentElement, rnumnonpx, curCSS, addGetHookIf, support, nodeName) {
 
 	"use strict";
@@ -6544,13 +6693,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(62)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, Sizzle) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(63)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, Sizzle) {
 
 	"use strict";
 
@@ -6568,7 +6717,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8751,7 +8900,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 })(window);
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8771,7 +8920,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8788,13 +8937,13 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(17), __webpack_require__(66), __webpack_require__(8)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, indexOf, rneedsContext) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(18), __webpack_require__(67), __webpack_require__(8)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, indexOf, rneedsContext) {
 
 	"use strict";
 
@@ -8893,7 +9042,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8907,7 +9056,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8915,7 +9064,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(11), __webpack_require__(21), __webpack_require__(24), __webpack_require__(3), __webpack_require__(27), __webpack_require__(10), __webpack_require__(68), __webpack_require__(25), __webpack_require__(69), __webpack_require__(23), __webpack_require__(70), __webpack_require__(28), __webpack_require__(12), __webpack_require__(26), __webpack_require__(71), __webpack_require__(8) // contains
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(11), __webpack_require__(22), __webpack_require__(25), __webpack_require__(3), __webpack_require__(28), __webpack_require__(10), __webpack_require__(69), __webpack_require__(26), __webpack_require__(70), __webpack_require__(24), __webpack_require__(71), __webpack_require__(29), __webpack_require__(12), __webpack_require__(27), __webpack_require__(72), __webpack_require__(8) // contains
 ], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, pnum, access, rmargin, document, rcssNum, rnumnonpx, cssExpand, getStyles, swap, curCSS, adjustCSS, addGetHookIf, support) {
 
 	"use strict";
@@ -9312,7 +9461,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9326,7 +9475,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9362,13 +9511,13 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(27)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, rcssNum) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(28)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, rcssNum) {
 
 	"use strict";
 
@@ -9433,13 +9582,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(3), __webpack_require__(72), __webpack_require__(73)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, document) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(3), __webpack_require__(73), __webpack_require__(74)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, document) {
 
 	"use strict";
 
@@ -9520,7 +9669,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9539,7 +9688,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9547,7 +9696,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(16), __webpack_require__(74)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, slice) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(17), __webpack_require__(75)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, slice) {
 
 	"use strict";
 
@@ -9886,13 +10035,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(75)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, rnothtmlwhite) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(76)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, rnothtmlwhite) {
 
 	"use strict";
 
@@ -10130,7 +10279,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10149,13 +10298,13 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(77);
+var content = __webpack_require__(78);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -10180,7 +10329,7 @@ if(false) {
 }
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(5)(undefined);
@@ -10188,13 +10337,13 @@ exports = module.exports = __webpack_require__(5)(undefined);
 
 
 // module
-exports.push([module.i, "/*\nBOOK LOADER\n*/\n\n#book-loader-container {\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 0px;\n\twidth: 100%;\n\theight: 100%;\n\tbackground-color: #fafafa;\n}\n\n#book-loader-container.hidden {\n\tdisplay: none;\n}\n\n#book-loader {\n\t-webkit-transform: translate-z(0);\n\t-ms-transform: translate-z(0);\n\tposition: fixed;\n\tleft: 50%;\n\ttop: 40%;\n\tz-index: 1;\n    border: 8px solid #f3f3f3; \n    border-radius: 50%;\n    width: 80px;\n    height: 80px;\n    margin: -40px 0 0 -40px;\n    -webkit-animation: spin 2s linear infinite;\n    animation: spin 2s linear infinite;\n}\n\n@-webkit-keyframes spin {\n  0% { -webkit-transform: rotate(0deg); }\n  100% { -webkit-transform: rotate(360deg); }\n}\n\n@keyframes spin {\n    0% { transform: rotate(0deg); }\n    100% { transform: rotate(360deg); }\n}\n\n/*\nTEXT LOADER\n*/\n\n#text-loader-container {\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 0px;\n\twidth: 100%;\n\theight: 100%;\n\tbackground-color: #fafafa;\n}\n\n#text-loader-container.hidden {\n\tdisplay: none;\n}\n\n#text-loader {\n\t-webkit-transform: translate-z(0);\n\t-ms-transform: translate-z(0);\n\tposition: absolute;\n\tleft: 50%;\n\ttop: 40%;\n\tz-index: 1;\n    border: 8px solid #f3f3f3;\n    border-top: 8px solid gray;\n    border-bottom: 8px solid gray;\n    border-radius: 50%;\n    width: 80px;\n    height: 80px;\n    margin: -40px 0 0 -40px;\n    -webkit-animation: textSpin 2s linear infinite;\n    animation: textSpin 2s linear infinite;\n}\n\n@-webkit-keyframes textSpin {\n  0% { -webkit-transform: rotate(0deg); }\n  100% { -webkit-transform: rotate(360deg); }\n}\n\n@keyframes textSpin {\n    0% { transform: rotate(0deg); }\n    100% { transform: rotate(360deg); }\n}\n\n/*\nSIGNET\n*/\n#bookmark {\n\tvisibility: hidden;\n\twidth: 50px;\n\tpadding: 8px;\n\tbackground-color: #333;\n\tcolor: #fff;\n\ttext-align: center;\n\tposition: absolute;\n\tz-index: 1;\n\tright: 20px;\n\ttop: 20px;\n\tfont-family: 'Verdana', sans-serif;\n}\n\n\n#bookmark.show {\n\tvisibility: visible;\n\t-webkit-animation: fadein 0.5s, fadeout 0.5s 2s;\n    animation: fadein 0.5s, fadeout 0.5s 2s;\n}\n\n@-webkit-keyframes fadein {\n    from {opacity: 0;}\n    to {opacity: 1;}\n}\n\n@keyframes fadein {\n    from {opacity: 0;}\n    to {opacity: 1;}\n}\n\n@-webkit-keyframes fadeout {\n    from {opacity: 1;}\n    to {opacity: 0;}\n}\n\n@keyframes fadeout {\n    from {opacity: 1;}\n    to {opacity: 0;}\n}\n\n/*\nBOOK NAVBAR BOTTOM\n*/\n#book-nav-bar-bottom {\n\tdisplay: none;\n\theight: 44px;\n\tposition: relative;\n}\n\n@media screen and (min-width: 768px) {\n\t#book-nav-bar-bottom {\n\t\tdisplay: block;\n\t}\n}\n\n#book-nav-bar-bottom-controls {\n\tposition: relative;\n\theight: 44px;\n\twidth: 550px;\n\tmargin: auto;\n\ttext-align: center;\n}\n\n#book-nav-bar-bottom-controls #center {\n\twidth: 120px;\n\theight: 100%;\n\tmargin: auto;\n}\n\n#book-nav-bar-bottom-controls #center #backward-large {\n\tfloat: left;\n\tfont-size: 1.6em;\n}\n\n#book-nav-bar-bottom-controls #center #forward-large {\n\tfloat: right;\n\tfont-size: 1.6em;\n}\n\n#book-nav-bar-bottom-controls button {\n\toutline: none;\n\theight: 100%;\n\tbackground-color: transparent;\n\tdisplay: inline-block;\n\tcolor: rgba(0, 0, 0, 0.54);\n\tmax-width: 56px;\n}\n\n#book-nav-bar-bottom-controls #open-toc-large {\n\tposition: absolute;\n\ttop: 0px;\n\tright: 0px;\n\tpadding-bottom: 10px;\n}\n\n#book-nav-bar-bottom-controls #open-options-medium {\n\tposition: absolute;\n\ttop: 0px;\n\tright: 56px;\n\tpadding-bottom: 10px;\n}\n\n#book-nav-bar-bottom-controls #home-large {\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 0px;\n\tpadding-bottom: 10px;\n}\n\n#book-nav-bar-bottom-controls #add-bookmark-large {\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 56px;\n\tpadding-bottom: 10px;\n}\n\n@media screen and (min-width: 1366px) {\n\t#book-nav-bar-bottom-controls #open-toc-large, \n\t#book-nav-bar-bottom-controls #home-large, \n\t#book-nav-bar-bottom-controls #open-options-medium, \n\t#book-nav-bar-bottom-controls #add-bookmark-large {\n\t\tdisplay: none;\n\t}\n}\n\n/*\nBOOK NAV-BAR-BOTTOM-SMALL\n*/\n\n#book-nav-bar-bottom-small {\n\tdisplay: block;\n\theight: 30px;\n\tposition: absolute;\n\tbottom: 0px;\n\tmargin: auto;\n\tbackground-color: #333;\n\ttext-align: center;\n\tz-index: 2000;\n}\n\n@media screen and (min-width: 768px) {\n\t#book-nav-bar-bottom-small {\n\t\tdisplay: none;\n\t}\n}\n\n#book-nav-bar-bottom-small .btn {\n\tdisplay: inline-block;\n\tborder: none;\n\tbackground-color: transparent;\n\theight: 100%;\n\tpadding: 3px 0px 0px 0px;\n\tmargin: 0px;\n\toutline: none;\n\twidth: 24%;\n}\n\n#book-nav-bar-bottom-small .material-icons {\n\tcolor: rgb(152, 152, 152);\n}\n\n/*\nimportant for resize samsung navigator\n*/\n#book {\n\tposition: fixed;\n\theight: 100%;\n\twidth: 100%;\n\tmargin: auto;\n}\n\n/*\nBOOKCONTAINER\n*/\n#bookContainer {\n\tfont-family: 'Georgia', serif;\n\tposition: relative;\n\theight: 100%;\n\tcolor: #000;\n\topacity: 0.0;\n\tmargin: auto;\n\ttransition: opacity 0.4s;\n\t-webkit-transition: opacity 0.4s;\n\t-moz-transition: opacity 0.4s;\n\t-o-transition: opacity 0.4s;\n}\n\n#bookContainer.show {\n\topacity: 1.0;\n}\n\n/*\nTEXTCONTAINER\n*/\n[data-wb-text-container] {\n\tmargin: auto;\n\tbackground-color: #fafafa;\n\twill-change: transform;\n}\n\n/*\nTOC-LARGE-DEVICE, TAB-OPTIONS, TAB-INFOS, HOME\n*/\n\n#toc-large-device, #tab-infos, #tab-options {\n  position: absolute;\n  top: 0px;\n  right: -40%;\n  width: 33%;\n  transition: right 0.5s;\n  -webkit-transition : right 0.5s;\n  -moz-transition : right 0.5s;\n  -o-transition: right 0.5s;\n  display: none;\n  background-color: #fafafa;\n}\n\n@media screen and (min-width: 1366px) {\n\n\t#toc-large-device, #tab-infos, #tab-options {\n\t\tdisplay: block\n\t}\n}\n\n#toc-large-device.open, #tab-infos.open, #tab-options.open {\n\tright: 0px;\n}\n\n#toc-large-device-container, #tab-infos-container, #tab-options-container {\n\twidth: 100%;\n\tbackground-color: #fafafa;\n\toverflow-y: auto;\n\tpadding: 0px 16px;\n}\n\n#toc-large-device-container .header, #tab-infos-container .header, #tab-options-container .header {\n\tpadding: 16px;\n\tborder-bottom: 1px solid #ddd;\n\ttext-align: center;\n}\n\n/*\ntoc-large-device\n*/\n#toc-large-device-container [data-wb-toc] {\n\tbackground-color: #fafafa;\n\tposition: relative;\n\theight: 100%;\n\twidth: 100%;\n}\n\n/*\ntab-infos\n*/\n#tab-infos-container .content {\n\tpadding: 16px 0px;\n}\n\n#tab-infos-container p {\n\tmargin: 0px;\n\tpadding: 8px;\n}\n\n#tab-infos-container ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#tab-infos-container ul li {\n\tpadding: .5em .5em;\n}\n\n#tab-infos-container .contrib-role {\n\ttext-transform: capitalize;\n}\n\n/*\ntab-options\n*/\n#tab-options-container {\n\ttext-align : center;\n\tpadding-bottom: 16px;\n}\n\n#tab-options-container #font-size-container-large,\n#tab-options-container #font-family-container-large {\n\twidth: 215px;\n\tmargin: auto;\n\tpadding: 16px 0px;\n}\n\n#tab-options-container #font-family-container-large > p,\n#tab-options-container #font-size-container-large > p {\n\tmargin-bottom: 7px;\n}\n\n#tab-options-container .col-left {\n\tfloat: left;\n\twidth: 50%;\n}\n\n#tab-options-container .col-right {\n\tfloat: right;\n\twidth: 50%;\n}\n\n#tab-options-container #font-size-container-large {\n\tclear: both;\n}\n\n#tab-options-container label {\n\twidth: 50%;\n\ttext-align : left;\n}\n\n#tab-options-container .options-title {\n\tfont-variant: small-caps;\n\tletter-spacing: 1.5px;\n\tfont-size: 1.2em;\n}\n\n/*\nBOOK COMMANDS\n*/\n#book-commands {\n\tposition: fixed;\n\tleft: 32px;\n\twidth: 75px;\n\tdisplay: none;\n}\n\n@media screen and (min-width: 1366px) {\n\t#book-commands {\n\t\tdisplay: block;\n\t}\n}\n\n#close-toc-large-device, #close-tab-infos, #close-tab-options {\n    position: absolute;\n\tright: 100%;\n\ttop: 0px;\n\theight: 37px;\n\tmargin-right: 16px;\n\toutline: none;\n\tbackground-color: #fafafa;\n\tfont-family: 'Georgia', serif;\n\tfont-size: 1.2em;\n}\n\n#book-commands button {\n    position: absolute;\n\tright: 0px;\n\twidth: 80px;\n\theight: 37px;\n\tmargin-right: 16px;\n\toutline: none;\n\tfont-family: 'Georgia', serif;\n\tfont-size: 1em;\n}\n\n#book-commands button:hover {\n\tbox-shadow: 2px 3px 6px 2px rgba(0,0,0,0.2)\n}\n\n#toggle-toc-large-device {\n\ttop: 0px;\n}\n\n#toggle-tab-options {\n\ttop: 48px;\n}\n\n#toggle-tab-infos {\n\ttop: 96px;\n}\n\n#tab-add-bookmark {\n\ttop: 144px;\n}\n\n#tab-home-link {\n\ttop: 192px;\n}\n\n/*\nswing-container, swing-bar\n*/\n/*\nif tab.open : swing-container to left\n*/\n#swing-container {\n\tmargin-right: 0px;\n\ttransition: margin-right 0.8s;\n\t-webkit-transition : margin-right 0.8s;\n\t-moz-transition : margin-right 0.8s;\n    -o-transition: margin-right 0.8s;\n\t\n}\n\n#swing-container.left {\n\t\tmargin-right: 0px;\n\t}\n\n@media screen and (min-width: 1366px) {\n\t#swing-container.left {\n\t\tmargin-right: 33%;\n\t}\n}\n\n/*\nif tab.open : swing-bar to left\n*/\n#swing-bar {\n\tmargin-right: 0px;\n\ttransition: margin-right 0.9s;\n\t-webkit-transition : margin-right 0.9s;\n\t-moz-transition : margin-right 0.9s;\n    -o-transition: margin-right 0.9s;\n}\n\n#swing-bar.left {\n\tmargin-right: 0px;\n}\n\n@media screen and (min-width: 1366px) {\n\t#swing-bar.left {\n\t\tmargin-right: 33%;\n\t}\n}\n\n/*\nTOC, OPTIONS (< 1366px)\n*/\n#toc, #options, #options-medium {\n\tposition: absolute;\n\ttop: -1000px;\n\twidth: 100%;\n\theight: 100%;\n\tz-index: 1000;\n\toverflow-y: auto;\n/*\n\ttransition: top 0.4s;\n\t-webkit-transition : top 0.4s;\n\t-moz-transition : top 0.4s;\n    -o-transition: top 0.4s;\n*/\n\tpadding: 0px;\n\tbackground-color: #fafafa;\n}\n\n#toc.open, #options.open, #options-medium.open {\n\ttop: 0px;\n}\n\n#toc > div, #options > div, #options-medium > div {\n\tbackground-color: #fafafa;\n\tpadding: 0px 16px;\n}\n\n#close-toc, #close-options, #close-options-medium {\n\tposition: absolute;\n\tright: 0;\n\ttop: 0;\n\tline-height: 27px;\n\tfont-size: 2em;\n\tfont-family: 'Georgia', sans-serif;\n\tcolor: #bbb;\n\tpadding: 8px 16px;\n}\n\n/*\ntoc\n*/\n#toc-header {\n\tmargin-bottom: 30px;\n\tmargin-top: 20px;\n\tpadding: 16px 0px;\n\tborder-bottom: 1px solid #ddd;\n\ttext-align: center;\n}\n\n#toc-header p {\n\tmargin: 8px;\n}\n\n#toc ul, #toc-large-device ul {\n\tpadding: 0px;\n}\n\n#toc li, #toc-large-device li {\n\tlist-style-type: none;\n\tpadding: .5em .5em;\n}\n\n#toc a.wb-link, #toc-large-device a.wb-link {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: gray;\n\tpadding: 0px;\n}\n\n#toc a.wb-link:hover, #toc-large-device a.wb-link:hover {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: #000;\n}\n\n#toc li.current a.wb-link, #toc-large-device li.current a.wb-link {\n\tcolor: #000;\n\toutline: none;\n\tfont-style: italic;\n}\n\n#toc .wb-toc-item-title, #toc-large-device .wb-toc-item-title {\n\tfloat: left;\n\tvertical-align: bottom;\n}\n\n#toc [data-wb-element-page-number], #toc-large-device [data-wb-element-page-number] {\n\tfloat: right;\n\tvertical-align: bottom;\n}\n\n/*\noptions content\n*/\n#options, #options-medium {\n\ttext-align: center;\n}\n\n#options .options-header, #options-medium .options-header {\n\tpadding: 16px 0px;\n\tborder-bottom: 1px solid #ddd;\n\tletter-spacing: 1.5px;\n}\n\n#options #font-size-container, #options-medium #font-size-container,\n#options #font-family-container, #options-medium #font-family-container {\n\twidth: 215px;\n\tmargin: auto;\n\tpadding: 16px 0px;\n}\n\n#options #font-family-container > p, #options-medium #font-family-container > p,\n#options #font-size-container > p, #options-medium #font-size-container > p {\n\tmargin-bottom: 7px;\n}\n\n#options .col-left, #options-medium .col-left {\n\tfloat: left;\n\twidth: 50%;\n}\n\n#options .col-right, #options-medium .col-right {\n\tfloat: right;\n\twidth: 50%;\n}\n\n#options #font-size-container, #options-medium #font-size-container {\n\tclear: both;\n}\n\n#options label {\n\twidth: 50%;\n}\n\n/*\nTOP\n*/\n#top {\n\tposition: absolute;\n\ttop: 0px;\n\tbox-sizing: border-box;\n\t-webkit-box-sizing: border-box;\n\t-moz-box-sizing: border-box;\n\tpadding-top: 12px;\n\ttext-align: center;\n\twidth: 100%;\n\theight: 30px;\n}\n\n#top .wb-current-section-title {\n\tdisplay: inline-block;\n\twidth: 80%;\n\twhite-space: nowrap;\n\tfont-size: 0.85em;\n\toverflow: hidden;\n\ttext-overflow: ellipsis;\n\t-o-text-overflow: ellipsis;\n\topacity: 1;\n\ttransition: opacity 0.4s;\n\t-webkit-transition: opacity 0.4s;\n\t-moz-transition: opacity 0.4s;\n\t-o-transition: opacity 0.4s;\n}\n\n/*\nBOTTOM\n*/\n#bottom {\n\tposition: absolute;\n\tbottom: 0px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tbackground-color: transparent;\n}\n\n#bottom span {\n\tdisplay: inline-block;\n\tmin-width: 42px;\n\tmargin: 0px;\n\tmargin-top: 0px;\n\tfont-size: 1em;\n\tbackground-color: transparent;\n\tmin-width: 25px;\n\theight: 100%;\n\tpadding: 0px 16px 0px 16px;\n\topacity: 1;\n\ttransition: opacity 0.4s;\n\t-webkit-transition: opacity 0.4s;\n\t-moz-transition: opacity 0.4s;\n\t-o-transition: opacity 0.4s;\n}\n\n/*\nTEXT*/\n\n/*\nTEXT\n*/\n[data-wb-text] {\n/*\n\tfont-family: Noto Serif, Georgia, serif;\n*/\n/*\n\tfont-size: 14px;\n*/\n\tline-height: 1.5em;\n\ttext-align: justify;\n\ttext-justify: inter-word;\n\topacity: 1;\n\ttransition: opacity 0.4s;\n\t-webkit-transition: opacity 0.4s;\n\t-moz-transition: opacity 0.4s;\n\t-o-transition: opacity 0.4s;\n\twill-change: transform;\n\ttransform: translateZ(0);\n\t-webkit-transform: translate-z(0);\n\t-ms-transform: translate-z(0);\n}\n\n\n\n@media screen and (min-width: 768px) {\n    [data-wb-text] {\n        font-size: 16px;\n        line-height: 1.5em;\n    }\n}\n\n[data-wb-text] p {\n\tmargin-bottom: 0px;\n\tmargin-top: 0px;\n\ttext-indent: 1.5em;\n}\n\n\n/*\nINSIDE TEXT\n* \n* \n*/\n[data-wb-text] .wb-section {\n\tmargin-bottom: 300%;\n\tmin-height: 10%;\n}\n\n/*\nTITLES\n*/\n\n[data-wb-text] #cover {\n\topacity: 0.9;\n}\n\n/*\nDIV FIN\n*/\n[data-wb-text] #fin {\n\ttext-align: center;\n\ttext-transform: uppercase;\n\tletter-spacing: 2px;\n\t\n}\n\n#fin p {\n\tpadding-top: 20%;\n\ttext-indent: 0px;\n}\n\np.section-title, p.notes-title, p.wb-toc-title {\n\tfont-size: 1.25em;\n\ttext-indent: 0px;\n}\n\np.notes-title {\n\tborder-bottom: 1px solid black;\n\tmargin-bottom: 0.5em;\n}\n\np.section-title {\n\tpadding-top: 3.5em;\n\tmargin-top: 0px;\n\tmargin-bottom: 1.5em;\n\ttext-indent: 0px;\n\tline-height: 2em;\n}\n\np.section-title.margin-small {\n\tmargin-bottom: 0.5em;\n}\n\np.section-subtitle {\n\tfont-size: 1em;\n\ttext-indent: 0px;\n\tmargin-bottom: 1.5em;\n}\n\np.section-subtitle_large {\n\tfont-size: 1.25em;\n\ttext-indent: 0px;\n\tmargin-bottom: 1.5em;\n}\n\n#cover.wb-section {\n\ttext-align: center;\n}\n\n#cover-author, #cover-title, #cover-logo {\n\tmargin: 0px;\n\ttext-indent: 0px;\n}\n\np.note {\n\ttext-indent: 0px;\n}\n\n/*\nTEXT EXERGUE\n*/\n[data-wb-text] div.text-exergue {\n\ttext-align: right;\n\tpadding-top: 10em;\n\tpadding-left: 1.5em\n}\n\n[data-wb-text] div.text-exergue p.text-exergue {\n\tpadding-top: 0em;\n}\n\n[data-wb-text] p.sign-exergue {\n\tpadding-top: 1em;\n\tpadding-right: 1.5em\n}\n\n/*\nNO-BREAK\n*/\n[data-wb-text] .no-break-inside {\n\tpage-break-inside: avoid;\n}\n\n/*\nVERSES\n*/\n[data-wb-text] .verses {\n\tmargin: 1.5em 0 1.5em 2.5em;\n\tfont-size: 0.9em;\n}\n\n[data-wb-text] .verses p {\n\ttext-indent: -1em;\n}\n\n[data-wb-text] p.verses-signature {\n\ttext-align: right;\n\tfont-size: 0.9em;\n\tpadding-bottom: 1.5em;\n\tpadding-right: 1.5em;\n}\n\n/*\nSIGNATURE\n*/\n[data-wb-text] .signature {\n\ttext-align: right;\n\tpadding-bottom: 1.5em;\n\tpadding-right: 1.5em\n}\n\n/*\nPADDING\n*/\n[data-wb-text] .padding-top-35 {\n\tpadding-top: 3.5em;\n}\n\n\n/*\nLINES BEFORE/AFTER\n*/\n[data-wb-text] p.p_half_line_before {\n\tmargin-top: 0.75em;\n}\n\n[data-wb-text] p.p_line_before {\n\tmargin-top: 1.5em;\n}\n\n[data-wb-text] p.p_2line_before {\n\tmargin-top: 3em;\n}\n\n[data-wb-text] p.p_line_after {\n\tmargin-bottom: 1.5em;\n}\n\n/*\nLINE-HEIGHT\n*/\n[data-wb-text] p.line_height_one {\n\tline-height: 1em;\n\tpadding-top: 0.5em;\n}\n\n/*\nSUP\n*/\n[data-wb-text] sup.line_height_one {\n\tline-height: 1em;\n}\n\n\n/*\nSEPARATION\n*/\n[data-wb-text] p.separation {\n\ttext-indent: 0px;\n\ttext-align: center;\n\tmargin-top: 1.5em;\n\tmargin-bottom: 1.5em;\n\tline-height: 1em;\n\tfont-size: 0.8em;\n}\n\n/*\nPOINTS DE SUSPENSION\n*/\n\n[data-wb-text] p.points {\n\ttext-indent: 0px;\n\twidth: 100%;\n\toverflow: hidden;\n\tpadding-left: 0em;\n}\n\n[data-wb-text] p.points span {\n\tpadding-right: 1.5em;\n}\n\n/*\nNEGATIVE MARGIN\n*/\n\n[data-wb-text] p.negative_margin {\n\tmargin-top:-1.5em;\n\ttext-indent: 0px;\n}\n\n[data-wb-text] p.negative_margin span {\n\tbackground-color: #fafafa;\n\tpadding-left:0.5em;\n\tpadding-right: 0.5em;\n\tfont-size: 0.9em;\n}\n\n/*\nNOTES\n*/\n[data-wb-text] .note a.wb-link {\n\tcolor: #006dcc;\n}\n\n[data-wb-text] .note-section p {\n\tfont-size: 0.9em;\n}\n\n[data-wb-text] .note-section p.note {\n\tmargin-top: 1.5em;\n}\n\n[data-wb-text] .note-section p.notes-title {\n\tfont-size: 1.25em;\n}\n\n/*\nDIVERS\n*/\n\n[data-wb-text] .font-small-9 {\n\tfont-size: 0.9em;\n}\n\n[data-wb-text] .font-small-8 {\n\tfont-size: 0.8em;\n}\n\n[data-wb-text] p.no-indent {\n\ttext-indent: 0px;\n}\n\n[data-wb-text] p.indent-3 {\n\ttext-indent: 3em;\n}\n\n[data-wb-text] p.indent-6 {\n\ttext-indent: 6em;\n}\n\n/*\nHYPHENATION\n*/\n[data-wb-text] p, .hyphenate {\n  hyphens: auto;\n  -webkit-hyphens: auto;\n  -ms-hyphens: auto;\n  -moz-hyphens: auto;\n  -o-hyphens: auto;\n}\n[data-wb-text] p.section-title, [data-wb-text] #cover p, .no-hyphenate {\n  hyphens: none;\n  -webkit-hyphens: none;\n  -ms-hyphens: none;\n  -moz-hyphens: none;\n  -o-hyphens: none;\n}\n\n\n\n", ""]);
+exports.push([module.i, "/*\nBOOK LOADER\n*/\n\n#book-loader-container {\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 0px;\n\twidth: 100%;\n\theight: 100%;\n\tbackground-color: #fafafa;\n}\n\n#book-loader-container.hidden {\n\tdisplay: none;\n}\n\n#book-loader {\n\t-webkit-transform: translate-z(0);\n\t-ms-transform: translate-z(0);\n\tposition: fixed;\n\tleft: 50%;\n\ttop: 40%;\n\tz-index: 1;\n    border: 8px solid #f3f3f3; \n    border-radius: 50%;\n    width: 80px;\n    height: 80px;\n    margin: -40px 0 0 -40px;\n    -webkit-animation: spin 2s linear infinite;\n    animation: spin 2s linear infinite;\n}\n\n@-webkit-keyframes spin {\n  0% { -webkit-transform: rotate(0deg); }\n  100% { -webkit-transform: rotate(360deg); }\n}\n\n@keyframes spin {\n    0% { transform: rotate(0deg); }\n    100% { transform: rotate(360deg); }\n}\n\n/*\nTEXT LOADER\n*/\n\n#text-loader-container {\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 0px;\n\twidth: 100%;\n\theight: 100%;\n\tbackground-color: #fafafa;\n}\n\n#text-loader-container.hidden {\n\tdisplay: none;\n}\n\n#text-loader {\n\t-webkit-transform: translate-z(0);\n\t-ms-transform: translate-z(0);\n\tposition: absolute;\n\tleft: 50%;\n\ttop: 40%;\n\tz-index: 1;\n    border: 8px solid #f3f3f3;\n    border-top: 8px solid gray;\n    border-bottom: 8px solid gray;\n    border-radius: 50%;\n    width: 80px;\n    height: 80px;\n    margin: -40px 0 0 -40px;\n    -webkit-animation: textSpin 2s linear infinite;\n    animation: textSpin 2s linear infinite;\n}\n\n@-webkit-keyframes textSpin {\n  0% { -webkit-transform: rotate(0deg); }\n  100% { -webkit-transform: rotate(360deg); }\n}\n\n@keyframes textSpin {\n    0% { transform: rotate(0deg); }\n    100% { transform: rotate(360deg); }\n}\n\n/*\nSIGNET\n*/\n#bookmark {\n\tvisibility: hidden;\n\twidth: 50px;\n\tpadding: 8px;\n\tbackground-color: #333;\n\tcolor: #fff;\n\ttext-align: center;\n\tposition: absolute;\n\tz-index: 1;\n\tright: 20px;\n\ttop: 20px;\n\tfont-family: 'Verdana', sans-serif;\n}\n\n\n#bookmark.show {\n\tvisibility: visible;\n\t-webkit-animation: fadein 0.5s, fadeout 0.5s 2s;\n    animation: fadein 0.5s, fadeout 0.5s 2s;\n}\n\n@-webkit-keyframes fadein {\n    from {opacity: 0;}\n    to {opacity: 1;}\n}\n\n@keyframes fadein {\n    from {opacity: 0;}\n    to {opacity: 1;}\n}\n\n@-webkit-keyframes fadeout {\n    from {opacity: 1;}\n    to {opacity: 0;}\n}\n\n@keyframes fadeout {\n    from {opacity: 1;}\n    to {opacity: 0;}\n}\n\n/*\nBOOK NAVBAR BOTTOM\n*/\n#book-nav-bar-bottom {\n\tdisplay: none;\n\theight: 44px;\n\tposition: relative;\n}\n\n@media screen and (min-width: 768px) {\n\t#book-nav-bar-bottom {\n\t\tdisplay: block;\n\t}\n}\n\n#book-nav-bar-bottom-controls {\n\tposition: relative;\n\theight: 44px;\n\twidth: 550px;\n\tmargin: auto;\n\ttext-align: center;\n}\n\n#book-nav-bar-bottom-controls #center {\n\twidth: 120px;\n\theight: 100%;\n\tmargin: auto;\n}\n\n#book-nav-bar-bottom-controls #center #backward-large {\n\tfloat: left;\n\tfont-size: 1.6em;\n}\n\n#book-nav-bar-bottom-controls #center #forward-large {\n\tfloat: right;\n\tfont-size: 1.6em;\n}\n\n#book-nav-bar-bottom-controls button {\n\toutline: none;\n\theight: 100%;\n\tbackground-color: transparent;\n\tdisplay: inline-block;\n\tcolor: rgba(0, 0, 0, 0.54);\n\tmax-width: 56px;\n}\n\n#book-nav-bar-bottom-controls #open-toc-large {\n\tposition: absolute;\n\ttop: 0px;\n\tright: 0px;\n\tpadding-bottom: 10px;\n}\n\n#book-nav-bar-bottom-controls #open-options-medium {\n\tposition: absolute;\n\ttop: 0px;\n\tright: 56px;\n\tpadding-bottom: 10px;\n}\n\n#book-nav-bar-bottom-controls #home-large {\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 0px;\n\tpadding-bottom: 10px;\n}\n\n#book-nav-bar-bottom-controls #add-bookmark-large {\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 56px;\n\tpadding-bottom: 10px;\n}\n\n@media screen and (min-width: 1366px) {\n\t#book-nav-bar-bottom-controls #open-toc-large, \n\t#book-nav-bar-bottom-controls #home-large, \n\t#book-nav-bar-bottom-controls #open-options-medium, \n\t#book-nav-bar-bottom-controls #add-bookmark-large {\n\t\tdisplay: none;\n\t}\n}\n\n/*\nBOOK NAV-BAR-BOTTOM-SMALL\n*/\n\n#book-nav-bar-bottom-small {\n\tdisplay: block;\n\theight: 30px;\n\tposition: absolute;\n\tbottom: 0px;\n\tmargin: auto;\n\tbackground-color: #333;\n\ttext-align: center;\n\tz-index: 2000;\n}\n\n@media screen and (min-width: 768px) {\n\t#book-nav-bar-bottom-small {\n\t\tdisplay: none;\n\t}\n}\n\n#book-nav-bar-bottom-small .btn {\n\tdisplay: inline-block;\n\tborder: none;\n\tbackground-color: transparent;\n\theight: 100%;\n\tpadding: 3px 0px 0px 0px;\n\tmargin: 0px;\n\toutline: none;\n\twidth: 24%;\n}\n\n#book-nav-bar-bottom-small .material-icons {\n\tcolor: rgb(152, 152, 152);\n}\n\n/*\nimportant for resize samsung navigator\n*/\n#book {\n\tposition: fixed;\n\theight: 100%;\n\twidth: 100%;\n\tmargin: auto;\n}\n\n/*\nBOOKCONTAINER\n*/\n#bookContainer {\n\tfont-family: 'Georgia', serif;\n\tposition: relative;\n/*\n\theight: 100%;\n*/\n\tcolor: #000;\n\topacity: 0.0;\n\tmargin: auto;\n\ttransition: opacity 0.4s;\n\t-webkit-transition: opacity 0.4s;\n\t-moz-transition: opacity 0.4s;\n\t-o-transition: opacity 0.4s;\n}\n\n#bookContainer.show {\n\topacity: 1.0;\n}\n\n/*\nTEXTCONTAINER\n*/\n[data-wb-text-container] {\n\tmargin: auto;\n\tbackground-color: #fafafa;\n\twill-change: transform;\n}\n\n/*\nTOC-LARGE-DEVICE, TAB-OPTIONS, TAB-INFOS, HOME\n*/\n\n#toc-large-device, #tab-infos, #tab-options {\n  position: absolute;\n  top: 0px;\n  right: -40%;\n  width: 33%;\n  transition: right 0.5s;\n  -webkit-transition : right 0.5s;\n  -moz-transition : right 0.5s;\n  -o-transition: right 0.5s;\n  display: none;\n  background-color: #fafafa;\n}\n\n@media screen and (min-width: 1366px) {\n\n\t#toc-large-device, #tab-infos, #tab-options {\n\t\tdisplay: block\n\t}\n}\n\n#toc-large-device.open, #tab-infos.open, #tab-options.open {\n\tright: 0px;\n}\n\n#toc-large-device-container, #tab-infos-container, #tab-options-container {\n\twidth: 100%;\n\tbackground-color: #fafafa;\n\toverflow-y: auto;\n\tpadding: 0px 16px;\n}\n\n#toc-large-device-container .header, #tab-infos-container .header, #tab-options-container .header {\n\tpadding: 16px;\n\tborder-bottom: 1px solid #ddd;\n\ttext-align: center;\n}\n\n/*\ntoc-large-device\n*/\n#toc-large-device-container [data-wb-toc] {\n\tbackground-color: #fafafa;\n\tposition: relative;\n\theight: 100%;\n\twidth: 100%;\n}\n\n/*\ntab-infos\n*/\n#tab-infos-container .content {\n\tpadding: 16px 0px;\n}\n\n#tab-infos-container p {\n\tmargin: 0px;\n\tpadding: 8px;\n}\n\n#tab-infos-container ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#tab-infos-container ul li {\n\tpadding: .5em .5em;\n}\n\n#tab-infos-container .contrib-role {\n\ttext-transform: capitalize;\n}\n\n/*\ntab-options\n*/\n#tab-options-container {\n\ttext-align : center;\n\tpadding-bottom: 16px;\n}\n\n#tab-options-container #font-size-container-large,\n#tab-options-container #font-family-container-large {\n\twidth: 215px;\n\tmargin: auto;\n\tpadding: 16px 0px;\n}\n\n#tab-options-container #font-family-container-large > p,\n#tab-options-container #font-size-container-large > p {\n\tmargin-bottom: 7px;\n}\n\n#tab-options-container .col-left {\n\tfloat: left;\n\twidth: 50%;\n}\n\n#tab-options-container .col-right {\n\tfloat: right;\n\twidth: 50%;\n}\n\n#tab-options-container #font-size-container-large {\n\tclear: both;\n}\n\n#tab-options-container label {\n\twidth: 50%;\n\ttext-align : left;\n}\n\n#tab-options-container .options-title {\n\tfont-variant: small-caps;\n\tletter-spacing: 1.5px;\n\tfont-size: 1.2em;\n}\n\n/*\nBOOK COMMANDS\n*/\n#book-commands {\n\tposition: fixed;\n\tleft: 32px;\n\twidth: 75px;\n\tdisplay: none;\n}\n\n@media screen and (min-width: 1366px) {\n\t#book-commands {\n\t\tdisplay: block;\n\t}\n}\n\n#close-toc-large-device, #close-tab-infos, #close-tab-options {\n    position: absolute;\n\tright: 100%;\n\ttop: 0px;\n\theight: 37px;\n\tmargin-right: 16px;\n\toutline: none;\n\tbackground-color: #fafafa;\n\tfont-family: 'Georgia', serif;\n\tfont-size: 1.2em;\n}\n\n#book-commands button {\n    position: absolute;\n\tright: 0px;\n\twidth: 80px;\n\theight: 37px;\n\tmargin-right: 16px;\n\toutline: none;\n\tfont-family: 'Georgia', serif;\n\tfont-size: 1em;\n}\n\n#book-commands button:hover {\n\tbox-shadow: 2px 3px 6px 2px rgba(0,0,0,0.2)\n}\n\n#toggle-toc-large-device {\n\ttop: 0px;\n}\n\n#toggle-tab-options {\n\ttop: 48px;\n}\n\n#toggle-tab-infos {\n\ttop: 96px;\n}\n\n#tab-add-bookmark {\n\ttop: 144px;\n}\n\n#tab-home-link {\n\ttop: 192px;\n}\n\n/*\nswing-container, swing-bar\n*/\n/*\nif tab.open : swing-container to left\n*/\n#swing-container {\n\tmargin-right: 0px;\n\ttransition: margin-right 0.8s;\n\t-webkit-transition : margin-right 0.8s;\n\t-moz-transition : margin-right 0.8s;\n    -o-transition: margin-right 0.8s;\n\t\n}\n\n#swing-container.left {\n\t\tmargin-right: 0px;\n\t}\n\n@media screen and (min-width: 1366px) {\n\t#swing-container.left {\n\t\tmargin-right: 33%;\n\t}\n}\n\n/*\nif tab.open : swing-bar to left\n*/\n#swing-bar {\n\tmargin-right: 0px;\n\ttransition: margin-right 0.9s;\n\t-webkit-transition : margin-right 0.9s;\n\t-moz-transition : margin-right 0.9s;\n    -o-transition: margin-right 0.9s;\n}\n\n#swing-bar.left {\n\tmargin-right: 0px;\n}\n\n@media screen and (min-width: 1366px) {\n\t#swing-bar.left {\n\t\tmargin-right: 33%;\n\t}\n}\n\n/*\nTOC, OPTIONS (< 1366px)\n*/\n#toc, #options, #options-medium {\n\tposition: absolute;\n\ttop: -1000px;\n\twidth: 100%;\n\theight: 100%;\n\tz-index: 1000;\n\toverflow-y: auto;\n/*\n\ttransition: top 0.4s;\n\t-webkit-transition : top 0.4s;\n\t-moz-transition : top 0.4s;\n    -o-transition: top 0.4s;\n*/\n\tpadding: 0px;\n\tbackground-color: #fafafa;\n}\n\n#toc.open, #options.open, #options-medium.open {\n\ttop: 0px;\n}\n\n#toc > div, #options > div, #options-medium > div {\n\tbackground-color: #fafafa;\n\tpadding: 0px 16px;\n}\n\n#close-toc, #close-options, #close-options-medium {\n\tposition: absolute;\n\tright: 0;\n\ttop: 0;\n\tline-height: 27px;\n\tfont-size: 2em;\n\tfont-family: 'Georgia', sans-serif;\n\tcolor: #bbb;\n\tpadding: 8px 16px;\n}\n\n/*\ntoc\n*/\n#toc-header {\n\tmargin-bottom: 30px;\n\tmargin-top: 20px;\n\tpadding: 16px 0px;\n\tborder-bottom: 1px solid #ddd;\n\ttext-align: center;\n}\n\n#toc-header p {\n\tmargin: 8px;\n}\n\n#toc ul, #toc-large-device ul {\n\tpadding: 0px;\n}\n\n#toc li, #toc-large-device li {\n\tlist-style-type: none;\n\tpadding: .5em .5em;\n}\n\n#toc a.wb-link, #toc-large-device a.wb-link {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: gray;\n\tpadding: 0px;\n}\n\n#toc a.wb-link:hover, #toc-large-device a.wb-link:hover {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: #000;\n}\n\n#toc li.current a.wb-link, #toc-large-device li.current a.wb-link {\n\tcolor: #000;\n\toutline: none;\n\tfont-style: italic;\n}\n\n#toc .wb-toc-item-title, #toc-large-device .wb-toc-item-title {\n\tfloat: left;\n\tvertical-align: bottom;\n}\n\n#toc [data-wb-element-page-number], #toc-large-device [data-wb-element-page-number] {\n\tfloat: right;\n\tvertical-align: bottom;\n}\n\n/*\noptions content\n*/\n#options, #options-medium {\n\ttext-align: center;\n}\n\n#options .options-header, #options-medium .options-header {\n\tpadding: 16px 0px;\n\tborder-bottom: 1px solid #ddd;\n\tletter-spacing: 1.5px;\n}\n\n#options #font-size-container, #options-medium #font-size-container,\n#options #font-family-container, #options-medium #font-family-container {\n\twidth: 215px;\n\tmargin: auto;\n\tpadding: 16px 0px;\n}\n\n#options #font-family-container > p, #options-medium #font-family-container > p,\n#options #font-size-container > p, #options-medium #font-size-container > p {\n\tmargin-bottom: 7px;\n}\n\n#options .col-left, #options-medium .col-left {\n\tfloat: left;\n\twidth: 50%;\n}\n\n#options .col-right, #options-medium .col-right {\n\tfloat: right;\n\twidth: 50%;\n}\n\n#options #font-size-container, #options-medium #font-size-container {\n\tclear: both;\n}\n\n#options label {\n\twidth: 50%;\n}\n\n/*\nTOP\n*/\n#top {\n\tposition: absolute;\n\ttop: 0px;\n\tbox-sizing: border-box;\n\t-webkit-box-sizing: border-box;\n\t-moz-box-sizing: border-box;\n\tpadding-top: 12px;\n\ttext-align: center;\n\twidth: 100%;\n\theight: 30px;\n}\n\n#top .wb-current-section-title {\n\tdisplay: inline-block;\n\twidth: 80%;\n\twhite-space: nowrap;\n\tfont-size: 0.85em;\n\toverflow: hidden;\n\ttext-overflow: ellipsis;\n\t-o-text-overflow: ellipsis;\n\topacity: 1;\n\ttransition: opacity 0.4s;\n\t-webkit-transition: opacity 0.4s;\n\t-moz-transition: opacity 0.4s;\n\t-o-transition: opacity 0.4s;\n}\n\n/*\nBOTTOM\n*/\n#bottom {\n\tposition: absolute;\n\tbottom: 0px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tbackground-color: transparent;\n}\n\n#bottom span {\n\tdisplay: inline-block;\n\tmin-width: 42px;\n\tmargin: 0px;\n\tmargin-top: 0px;\n\tfont-size: 1em;\n\tbackground-color: transparent;\n\tmin-width: 25px;\n\theight: 100%;\n\tpadding: 0px 16px 0px 16px;\n\topacity: 1;\n\ttransition: opacity 0.4s;\n\t-webkit-transition: opacity 0.4s;\n\t-moz-transition: opacity 0.4s;\n\t-o-transition: opacity 0.4s;\n}\n\n/*\nTEXT*/\n\n/*\nTEXT\n*/\n[data-wb-text] {\n/*\n\tfont-family: Noto Serif, Georgia, serif;\n*/\n/*\n\tfont-size: 14px;\n*/\n\tline-height: 1.5em;\n\ttext-align: justify;\n\ttext-justify: inter-word;\n\topacity: 1;\n\ttransition: opacity 0.4s;\n\t-webkit-transition: opacity 0.4s;\n\t-moz-transition: opacity 0.4s;\n\t-o-transition: opacity 0.4s;\n\twill-change: transform;\n\ttransform: translateZ(0);\n\t-webkit-transform: translate-z(0);\n\t-ms-transform: translate-z(0);\n}\n\n\n\n@media screen and (min-width: 768px) {\n    [data-wb-text] {\n        font-size: 16px;\n        line-height: 1.5em;\n    }\n}\n\n[data-wb-text] p {\n\tmargin-bottom: 0px;\n\tmargin-top: 0px;\n\ttext-indent: 1.5em;\n}\n\n\n/*\nINSIDE TEXT\n* \n* \n*/\n[data-wb-text] .wb-section {\n\tmargin-bottom: 300%;\n\tmin-height: 10%;\n}\n\n/*\nTITLES\n*/\n\n[data-wb-text] #cover {\n\topacity: 0.9;\n}\n\n/*\nDIV FIN\n*/\n[data-wb-text] #fin {\n\ttext-align: center;\n\ttext-transform: uppercase;\n\tletter-spacing: 2px;\n\t\n}\n\n#fin p {\n\tpadding-top: 20%;\n\ttext-indent: 0px;\n}\n\np.section-title, p.notes-title, p.wb-toc-title {\n\tfont-size: 1.25em;\n\ttext-indent: 0px;\n}\n\np.notes-title {\n\tborder-bottom: 1px solid black;\n\tmargin-bottom: 0.5em;\n}\n\np.section-title {\n\tpadding-top: 3.5em;\n\tmargin-top: 0px;\n\tmargin-bottom: 1.5em;\n\ttext-indent: 0px;\n\tline-height: 2em;\n}\n\np.section-title.margin-small {\n\tmargin-bottom: 0.5em;\n}\n\np.section-subtitle {\n\tfont-size: 1em;\n\ttext-indent: 0px;\n\tmargin-bottom: 1.5em;\n}\n\np.section-subtitle_large {\n\tfont-size: 1.25em;\n\ttext-indent: 0px;\n\tmargin-bottom: 1.5em;\n}\n\n#cover.wb-section {\n\ttext-align: center;\n}\n\n#cover-author, #cover-title, #cover-logo {\n\tmargin: 0px;\n\ttext-indent: 0px;\n}\n\np.note {\n\ttext-indent: 0px;\n}\n\n/*\nTEXT EXERGUE\n*/\n[data-wb-text] div.text-exergue {\n\ttext-align: right;\n\tpadding-top: 10em;\n\tpadding-left: 1.5em\n}\n\n[data-wb-text] div.text-exergue p.text-exergue {\n\tpadding-top: 0em;\n}\n\n[data-wb-text] p.sign-exergue {\n\tpadding-top: 1em;\n\tpadding-right: 1.5em\n}\n\n/*\nNO-BREAK\n*/\n[data-wb-text] .no-break-inside {\n\tpage-break-inside: avoid;\n}\n\n/*\nVERSES\n*/\n[data-wb-text] .verses {\n\tmargin: 1.5em 0 1.5em 2.5em;\n\tfont-size: 0.9em;\n}\n\n[data-wb-text] .verses p {\n\ttext-indent: -1em;\n}\n\n[data-wb-text] p.verses-signature {\n\ttext-align: right;\n\tfont-size: 0.9em;\n\tpadding-bottom: 1.5em;\n\tpadding-right: 1.5em;\n}\n\n/*\nSIGNATURE\n*/\n[data-wb-text] .signature {\n\ttext-align: right;\n\tpadding-bottom: 1.5em;\n\tpadding-right: 1.5em\n}\n\n/*\nPADDING\n*/\n[data-wb-text] .padding-top-35 {\n\tpadding-top: 3.5em;\n}\n\n\n/*\nLINES BEFORE/AFTER\n*/\n[data-wb-text] p.p_half_line_before {\n\tmargin-top: 0.75em;\n}\n\n[data-wb-text] p.p_line_before {\n\tmargin-top: 1.5em;\n}\n\n[data-wb-text] p.p_2line_before {\n\tmargin-top: 3em;\n}\n\n[data-wb-text] p.p_line_after {\n\tmargin-bottom: 1.5em;\n}\n\n/*\nLINE-HEIGHT\n*/\n[data-wb-text] p.line_height_one {\n\tline-height: 1em;\n\tpadding-top: 0.5em;\n}\n\n/*\nSUP\n*/\n[data-wb-text] sup.line_height_one {\n\tline-height: 1em;\n}\n\n\n/*\nSEPARATION\n*/\n[data-wb-text] p.separation {\n\ttext-indent: 0px;\n\ttext-align: center;\n\tmargin-top: 1.5em;\n\tmargin-bottom: 1.5em;\n\tline-height: 1em;\n\tfont-size: 0.8em;\n}\n\n/*\nPOINTS DE SUSPENSION\n*/\n\n[data-wb-text] p.points {\n\ttext-indent: 0px;\n\twidth: 100%;\n\toverflow: hidden;\n\tpadding-left: 0em;\n}\n\n[data-wb-text] p.points span {\n\tpadding-right: 1.5em;\n}\n\n/*\nNEGATIVE MARGIN\n*/\n\n[data-wb-text] p.negative_margin {\n\tmargin-top:-1.5em;\n\ttext-indent: 0px;\n}\n\n[data-wb-text] p.negative_margin span {\n\tbackground-color: #fafafa;\n\tpadding-left:0.5em;\n\tpadding-right: 0.5em;\n\tfont-size: 0.9em;\n}\n\n/*\nNOTES\n*/\n[data-wb-text] .note a.wb-link {\n\tcolor: #006dcc;\n}\n\n[data-wb-text] .note-section p {\n\tfont-size: 0.9em;\n}\n\n[data-wb-text] .note-section p.note {\n\tmargin-top: 1.5em;\n}\n\n[data-wb-text] .note-section p.notes-title {\n\tfont-size: 1.25em;\n}\n\n/*\nDIVERS\n*/\n\n[data-wb-text] .font-small-9 {\n\tfont-size: 0.9em;\n}\n\n[data-wb-text] .font-small-8 {\n\tfont-size: 0.8em;\n}\n\n[data-wb-text] p.no-indent {\n\ttext-indent: 0px;\n}\n\n[data-wb-text] p.indent-3 {\n\ttext-indent: 3em;\n}\n\n[data-wb-text] p.indent-6 {\n\ttext-indent: 6em;\n}\n\n/*\nHYPHENATION\n*/\n[data-wb-text] p, .hyphenate {\n  hyphens: auto;\n  -webkit-hyphens: auto;\n  -ms-hyphens: auto;\n  -moz-hyphens: auto;\n  -o-hyphens: auto;\n}\n[data-wb-text] p.section-title, [data-wb-text] #cover p, .no-hyphenate {\n  hyphens: none;\n  -webkit-hyphens: none;\n  -ms-hyphens: none;\n  -moz-hyphens: none;\n  -o-hyphens: none;\n}\n\n\n\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12834,7 +12983,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 })(window, document, 'Hammer');
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -12995,7 +13144,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13013,13 +13162,13 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _authors = __webpack_require__(81);
+var _authors = __webpack_require__(82);
 
 var _authors2 = _interopRequireDefault(_authors);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var authorsTemplate = __webpack_require__(83);
+var authorsTemplate = __webpack_require__(84);
 //authors.js
 var authors = function authors(container) {
 	'use strict';
@@ -13293,13 +13442,13 @@ var authors = function authors(container) {
 exports.default = authors;
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(82);
+var content = __webpack_require__(83);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -13324,7 +13473,7 @@ if(false) {
 }
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(5)(undefined);
@@ -13338,7 +13487,7 @@ exports.push([module.i, "#authors-container {\n\tmax-width: 750px;\n\tmargin: au
 
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -13494,7 +13643,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13514,7 +13663,7 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminLoginTemplate = __webpack_require__(85);
+var adminLoginTemplate = __webpack_require__(86);
 //home.js
 var adminLogin = function adminLogin(container) {
 	'use strict';
@@ -13573,7 +13722,7 @@ var adminLogin = function adminLogin(container) {
 exports.default = adminLogin;
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -13609,7 +13758,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13623,59 +13772,59 @@ var _utils = __webpack_require__(0);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _adminHome = __webpack_require__(87);
+var _adminHome = __webpack_require__(88);
 
 var _adminHome2 = _interopRequireDefault(_adminHome);
 
-var _adminUsers = __webpack_require__(89);
+var _adminUsers = __webpack_require__(90);
 
 var _adminUsers2 = _interopRequireDefault(_adminUsers);
 
-var _adminUser = __webpack_require__(91);
+var _adminUser = __webpack_require__(92);
 
 var _adminUser2 = _interopRequireDefault(_adminUser);
 
-var _adminNew = __webpack_require__(93);
+var _adminNew = __webpack_require__(94);
 
 var _adminNew2 = _interopRequireDefault(_adminNew);
 
-var _adminEdit = __webpack_require__(95);
+var _adminEdit = __webpack_require__(96);
 
 var _adminEdit2 = _interopRequireDefault(_adminEdit);
 
-var _adminEditPassword = __webpack_require__(97);
+var _adminEditPassword = __webpack_require__(98);
 
 var _adminEditPassword2 = _interopRequireDefault(_adminEditPassword);
 
-var _adminBooks = __webpack_require__(99);
+var _adminBooks = __webpack_require__(100);
 
 var _adminBooks2 = _interopRequireDefault(_adminBooks);
 
-var _adminBook = __webpack_require__(101);
+var _adminBook = __webpack_require__(102);
 
 var _adminBook2 = _interopRequireDefault(_adminBook);
 
-var _adminBooksNew = __webpack_require__(103);
+var _adminBooksNew = __webpack_require__(104);
 
 var _adminBooksNew2 = _interopRequireDefault(_adminBooksNew);
 
-var _adminBookEdit = __webpack_require__(111);
+var _adminBookEdit = __webpack_require__(112);
 
 var _adminBookEdit2 = _interopRequireDefault(_adminBookEdit);
 
-var _adminAuthors = __webpack_require__(119);
+var _adminAuthors = __webpack_require__(120);
 
 var _adminAuthors2 = _interopRequireDefault(_adminAuthors);
 
-var _adminAuthor = __webpack_require__(121);
+var _adminAuthor = __webpack_require__(122);
 
 var _adminAuthor2 = _interopRequireDefault(_adminAuthor);
 
-var _adminAuthorsNew = __webpack_require__(123);
+var _adminAuthorsNew = __webpack_require__(124);
 
 var _adminAuthorsNew2 = _interopRequireDefault(_adminAuthorsNew);
 
-var _adminAuthorEdit = __webpack_require__(125);
+var _adminAuthorEdit = __webpack_require__(126);
 
 var _adminAuthorEdit2 = _interopRequireDefault(_adminAuthorEdit);
 
@@ -13769,7 +13918,7 @@ var adminRouter = function adminRouter(oldhash, newhash, data) {
 exports.default = adminRouter;
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13789,7 +13938,7 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminHomeTemplate = __webpack_require__(88);
+var adminHomeTemplate = __webpack_require__(89);
 //home.js
 var adminHome = function adminHome(container, data) {
 	'use strict';
@@ -13820,7 +13969,7 @@ var adminHome = function adminHome(container, data) {
 exports.default = adminHome;
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -13856,7 +14005,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13872,7 +14021,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminUsersTemplate = __webpack_require__(90);
+var adminUsersTemplate = __webpack_require__(91);
 //home.js
 var adminUsers = function adminUsers(container) {
 	'use strict';
@@ -13896,7 +14045,7 @@ var adminUsers = function adminUsers(container) {
 exports.default = adminUsers;
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -13938,7 +14087,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13954,7 +14103,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminUserTemplate = __webpack_require__(92);
+var adminUserTemplate = __webpack_require__(93);
 //home.js
 var adminUser = function adminUser(container) {
 	'use strict';
@@ -14012,7 +14161,7 @@ var adminUser = function adminUser(container) {
 exports.default = adminUser;
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -14048,7 +14197,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14064,7 +14213,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminNewTemplate = __webpack_require__(94);
+var adminNewTemplate = __webpack_require__(95);
 //home.js
 var adminNew = function adminNew(container) {
 	'use strict';
@@ -14124,7 +14273,7 @@ var adminNew = function adminNew(container) {
 exports.default = adminNew;
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -14160,7 +14309,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14176,7 +14325,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminEditTemplate = __webpack_require__(96);
+var adminEditTemplate = __webpack_require__(97);
 //home.js
 var adminEdit = function adminEdit(container, user) {
 	'use strict';
@@ -14236,7 +14385,7 @@ var adminEdit = function adminEdit(container, user) {
 exports.default = adminEdit;
 
 /***/ }),
-/* 96 */
+/* 97 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -14272,7 +14421,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 97 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14288,7 +14437,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminEditPasswordTemplate = __webpack_require__(98);
+var adminEditPasswordTemplate = __webpack_require__(99);
 //home.js
 var adminEditPassword = function adminEditPassword(container, user) {
 	'use strict';
@@ -14351,7 +14500,7 @@ var adminEditPassword = function adminEditPassword(container, user) {
 exports.default = adminEditPassword;
 
 /***/ }),
-/* 98 */
+/* 99 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -14387,7 +14536,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 99 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14403,7 +14552,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminBooksTemplate = __webpack_require__(100);
+var adminBooksTemplate = __webpack_require__(101);
 //home.js
 var adminBooks = function adminBooks(container) {
 	'use strict';
@@ -14427,7 +14576,7 @@ var adminBooks = function adminBooks(container) {
 exports.default = adminBooks;
 
 /***/ }),
-/* 100 */
+/* 101 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -14481,7 +14630,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 101 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14497,7 +14646,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminBookTemplate = __webpack_require__(102);
+var adminBookTemplate = __webpack_require__(103);
 //home.js
 var adminBook = function adminBook(container) {
 	'use strict';
@@ -14552,7 +14701,7 @@ var adminBook = function adminBook(container) {
 exports.default = adminBook;
 
 /***/ }),
-/* 102 */
+/* 103 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -14633,7 +14782,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14653,13 +14802,13 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminBooksNewTemplate = __webpack_require__(104);
-var modalHeaderTemplate = __webpack_require__(105);
-var searchAuthorsResultsTemplate = __webpack_require__(106);
-var selectedAuthorsTemplate = __webpack_require__(107);
-var selectedContribsTemplate = __webpack_require__(108);
-var selectedContribRoleTemplate = __webpack_require__(109);
-var sourcesTemplate = __webpack_require__(110);
+var adminBooksNewTemplate = __webpack_require__(105);
+var modalHeaderTemplate = __webpack_require__(106);
+var searchAuthorsResultsTemplate = __webpack_require__(107);
+var selectedAuthorsTemplate = __webpack_require__(108);
+var selectedContribsTemplate = __webpack_require__(109);
+var selectedContribRoleTemplate = __webpack_require__(110);
+var sourcesTemplate = __webpack_require__(111);
 //home.js
 var adminBooksNew = function adminBooksNew(container) {
 	'use strict';
@@ -14911,7 +15060,7 @@ var adminBooksNew = function adminBooksNew(container) {
 exports.default = adminBooksNew;
 
 /***/ }),
-/* 104 */
+/* 105 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -14947,7 +15096,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 105 */
+/* 106 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -14983,7 +15132,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 106 */
+/* 107 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15025,7 +15174,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 107 */
+/* 108 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15067,7 +15216,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15109,7 +15258,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15145,7 +15294,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15187,7 +15336,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15207,13 +15356,13 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminBookEditTemplate = __webpack_require__(112);
-var modalHeaderTemplate = __webpack_require__(113);
-var searchAuthorsResultsTemplate = __webpack_require__(114);
-var selectedAuthorsTemplate = __webpack_require__(115);
-var selectedContribsTemplate = __webpack_require__(116);
-var selectedContribRoleTemplate = __webpack_require__(117);
-var sourcesTemplate = __webpack_require__(118);
+var adminBookEditTemplate = __webpack_require__(113);
+var modalHeaderTemplate = __webpack_require__(114);
+var searchAuthorsResultsTemplate = __webpack_require__(115);
+var selectedAuthorsTemplate = __webpack_require__(116);
+var selectedContribsTemplate = __webpack_require__(117);
+var selectedContribRoleTemplate = __webpack_require__(118);
+var sourcesTemplate = __webpack_require__(119);
 //home.js
 var adminBooksNew = function adminBooksNew(container) {
 	'use strict';
@@ -15501,7 +15650,7 @@ var adminBooksNew = function adminBooksNew(container) {
 exports.default = adminBooksNew;
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15561,7 +15710,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 113 */
+/* 114 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15597,7 +15746,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 114 */
+/* 115 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15639,7 +15788,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15681,7 +15830,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15723,7 +15872,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15759,7 +15908,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15801,7 +15950,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15817,7 +15966,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorsTemplate = __webpack_require__(120);
+var adminAuthorsTemplate = __webpack_require__(121);
 //home.js
 var adminAuthors = function adminAuthors(container) {
 	'use strict';
@@ -15841,7 +15990,7 @@ var adminAuthors = function adminAuthors(container) {
 exports.default = adminAuthors;
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -15883,7 +16032,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15899,7 +16048,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorTemplate = __webpack_require__(122);
+var adminAuthorTemplate = __webpack_require__(123);
 //home.js
 var adminAuthor = function adminAuthor(container) {
 	'use strict';
@@ -15954,7 +16103,7 @@ var adminAuthor = function adminAuthor(container) {
 exports.default = adminAuthor;
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16023,7 +16172,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16043,7 +16192,7 @@ var _dataStore2 = _interopRequireDefault(_dataStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorsNewTemplate = __webpack_require__(124);
+var adminAuthorsNewTemplate = __webpack_require__(125);
 //home.js
 var adminAuthorsNew = function adminAuthorsNew(container) {
 	'use strict';
@@ -16106,7 +16255,7 @@ var adminAuthorsNew = function adminAuthorsNew(container) {
 exports.default = adminAuthorsNew;
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16142,7 +16291,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 125 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16158,7 +16307,7 @@ var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var adminAuthorEditTemplate = __webpack_require__(126);
+var adminAuthorEditTemplate = __webpack_require__(127);
 //home.js
 var adminAuthorEdit = function adminAuthorEdit(container) {
 	'use strict';
@@ -16231,7 +16380,7 @@ var adminAuthorEdit = function adminAuthorEdit(container) {
 exports.default = adminAuthorEdit;
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {
@@ -16273,7 +16422,7 @@ module.exports = function anonymous(locals, filters, escape, rethrow) {
 }
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, exports) {
 
 module.exports = function anonymous(locals, filters, escape, rethrow) {

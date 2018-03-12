@@ -2,6 +2,7 @@ import dataStore from '../../services/dataStore';
 import utils from '../../services/utils';
 import css from './home.css';
 let homeTemplate = require('./home.ejs');
+import screenfull from 'screenfull';
 //home.js
 const home = function(container) {
 	'use strict';
@@ -145,6 +146,9 @@ const home = function(container) {
 		let b = dataStore.getData('books', event.currentTarget.id);
 		let path = b.path.replace(/^\/books\/[^\/]+/,'');
 		location.hash = '#' + path + "/read";
+		if (screenfull.enabled && window.innerWidth < 750) {
+			screenfull.request();
+		}
 	}
 	let bks = root.querySelectorAll('.book');
 	for(let i=0; i<bks.length; i++) {
