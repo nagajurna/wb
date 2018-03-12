@@ -254,12 +254,10 @@ BOOK NAV-BAR-BOTTOM-SMALL
 
 
 #book {
-/*
 	position: fixed;
 	height: 100%;
 	width: 100%;
 	margin: auto;
-*/
 }
 
 /*
@@ -268,7 +266,7 @@ BOOKCONTAINER
 #bookContainer {
 	font-family: 'Georgia', serif;
 	position: relative;
-	height: 100vh;
+	height: 100%;
 	color: #000;
 	opacity: 0.0;
 	margin: auto;
