@@ -42,6 +42,7 @@ const book = function(container) {
 		} else {
 			wh = window.innerHeight;
 		}
+		bookContainer.style.height = wh + 'px';
 		let marginY, marginX, font, fontSize, lineHeight, top;
 		
 		//font-family
@@ -155,6 +156,7 @@ const book = function(container) {
 				} else {
 					wh = window.innerHeight;
 				}
+				bookContainer.style.height = wh + 'px';
 				if(!location.hash.match(/#\/[^\/]+\/read$/)) { return; }
 				//document.body.style.height = '100%';
 				if(ww >= 768) {
