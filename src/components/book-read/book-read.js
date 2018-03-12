@@ -146,6 +146,7 @@ const book = function(container) {
 			}
 			
 			let resizeBook = () => {
+				
 				h = 0;
 				w = 0;
 				let ww = window.innerWidth;
@@ -255,6 +256,8 @@ const book = function(container) {
 									    fontSize: fontSize,
 									    tableInfos: resolve });
 				});
+				
+				
 			}
 						 
 			//on resize
@@ -281,6 +284,11 @@ const book = function(container) {
 			//}
 			
 			window.addEventListener('resize', resizeBook, false);
+			window.addEventListener('resize', function() {
+				if(window.visualViewport.height!==wh || window.innerWidth!==ww) {
+					resizeBook();
+				}
+				}, false);
 		
 		
 			//SWIPE - forward, backward on swipe left and right (hammer.js)
