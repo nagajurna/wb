@@ -5483,25 +5483,23 @@ var WebBook = function () {
 
 					var sections = _this._sectionsToc;
 					//sections breaks			
-					for (var i = 0; i < sections.length; i++) {
-						sections[i].style.display = 'none';
-						if (!sections[i].className.match(/wb-no-break/) && sections[i].style.marginBottom !== "300%") {
-							//possibly, for nested sections
-							sections[i].style.marginBottom = "300%";
-						}
-						//hack firefox (pour offsetLeft) : minHeight = 10%
-						if (sections[i].style.minHeight !== "10%" && sections[i].style.minHeight !== "10%") {
-							sections[i].style.minHeight = "10%";
-						}
-						sections[i].style.display = 'block';
-					}
+					//for(let i=0; i<sections.length; i++) {
+					//sections[i].style.display='none';
+					//if(!sections[i].className.match(/wb-no-break/) && sections[i].style.marginBottom!=="300%") {//possibly, for nested sections
+					//sections[i].style.marginBottom = "300%";
+					//}
+					////hack firefox (pour offsetLeft) : minHeight = 10%
+					//if(sections[i].style.minHeight!=="10%" && sections[i].style.minHeight!=="10%") {
+					//sections[i].style.minHeight = "10%";
+					//}
+					//sections[i].style.display='block';
+					//}
+					//this._text.style.display = 'none';
+					_this.emptyNode(_this._text);
+					_this._text.appendChild(_this._div);
+					_this.toBook();
 
-					_this._text.style.display = 'none';
 					if (_this._tableInfos === undefined) {
-						_this.emptyNode(_this._text);
-						_this._text.appendChild(_this._div);
-
-						_this.toBook();
 
 						//pagination start
 						_this._startPage = _this.getPageStart();
@@ -5510,11 +5508,11 @@ var WebBook = function () {
 						//array : for each section, starting page;
 						_this._sections_page_start = [];
 						_this._toc_sections_page_start = [];
-						for (var _i = 0; _i < sections.length; _i++) {
+						for (var i = 0; i < sections.length; i++) {
 							var item = {};
-							item.id = sections[_i].id;
+							item.id = sections[i].id;
 							item.page_start = _this.elementPageNumber(item.id);
-							if (!sections[_i].parentElement.className.match(/wb-section/)) {
+							if (!sections[i].parentElement.className.match(/wb-section/)) {
 								_this._sections_page_start.push(item);
 							}
 							_this._toc_sections_page_start.push(item);
@@ -5528,21 +5526,21 @@ var WebBook = function () {
 
 					//containers data-wb-element-page-number
 
-					var _loop = function _loop(_i2) {
-						var id = _this._elPageNumbers[_i2].getAttribute('data-wb-element-page-number');
+					var _loop = function _loop(_i) {
+						var id = _this._elPageNumbers[_i].getAttribute('data-wb-element-page-number');
 						var pageNumber = _this._toc_sections_page_start.filter(function (o) {
 							return o.id === id;
 						})[0].page_start;
 
 						if (pageNumber < 1) {
-							_this._elPageNumbers[_i2].innerHTML = "";
-						} else if (_this._elPageNumbers[_i2].innerHTML != pageNumber) {
-							_this._elPageNumbers[_i2].innerHTML = pageNumber;
+							_this._elPageNumbers[_i].innerHTML = "";
+						} else if (_this._elPageNumbers[_i].innerHTML != pageNumber) {
+							_this._elPageNumbers[_i].innerHTML = pageNumber;
 						}
 					};
 
-					for (var _i2 = 0; _i2 < _this._elPageNumbers.length; _i2++) {
-						_loop(_i2);
+					for (var _i = 0; _i < _this._elPageNumbers.length; _i++) {
+						_loop(_i);
 					}
 
 					if (_this._bookmark) {
@@ -5552,7 +5550,7 @@ var WebBook = function () {
 						_this.nextSection(_this._sectionsIndex);
 					}
 					_this.refresh();
-					_this._text.style.display = 'block';
+					//this._text.style.display = 'block';
 					var tableInfos = { startPage: _this._startPage,
 						totalPages: _this.pages_total,
 						sectionsPageStart: _this._sections_page_start,
@@ -5575,7 +5573,7 @@ var WebBook = function () {
 
 			//text-container
 			var cs = this._textContainer.style;
-			cs.display = "none";
+			//cs.display = "none";
 			cs.boxSizing = "border-box";
 			cs.webkitBoxSizing = "border-box";
 			cs.overflow = "hidden";
@@ -5583,12 +5581,12 @@ var WebBook = function () {
 			cs.padding = "0px";
 			cs.height = this.getHeight() + "px";
 			cs.maxWidth = this.getMaxWidth() + "px"; //maxWidth : responsive
-			cs.display = "block";
-			this._containerWidth = this._textContainer.clientWidth; //responsive
-			//this._containerWidth = this.getMaxWidth();
+			//cs.display = "block";
+			//this._containerWidth = this._textContainer.clientWidth;//responsive
+			this._containerWidth = this.getMaxWidth();
 			//text
 			var ts = this._text.style;
-			ts.display = "none";
+			//ts.display = "none";
 			ts.boxSizing = "border-box";
 			ts.webkitBoxSizing = "border-box";
 			ts.position = "absolute";
@@ -5609,7 +5607,7 @@ var WebBook = function () {
 			ts.mozColumnGap = marginX * 2 + "px";
 			ts.webkitColumnGap = marginX * 2 + "px";
 			ts.columnGap = marginX * 2 + "px";
-			ts.display = "block";
+			//ts.display = "block";
 
 			//if(cb) {
 			//if(window.requestAnimationFrame) {
@@ -5762,9 +5760,9 @@ var WebBook = function () {
 			this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
 			this._text.appendChild(this._lastElement.cloneNode(true));
 			this.setSectionLinks();
-			if (this._tableInfos) {
-				this.toBook();
-			}
+			//if(this._tableInfos) {
+			//this.toBook();
+			//}
 			this._position = 0;
 			this._text.style.left = this._position + "px";
 			this.refresh();
@@ -5780,9 +5778,9 @@ var WebBook = function () {
 			this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
 			this._text.appendChild(this._lastElement.cloneNode(true));
 			this.setSectionLinks();
-			if (this._tableInfos) {
-				this.toBook();
-			}
+			//if(this._tableInfos) {
+			//this.toBook();
+			//}
 			this.goToPage(this.getSectionTotalPages() - this._startPage);
 			this.refresh();
 		}
@@ -5800,9 +5798,9 @@ var WebBook = function () {
 						this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
 						this._text.appendChild(this._lastElement.cloneNode(true));
 						this.setSectionLinks();
-						if (this._tableInfos) {
-							this.toBook();
-						}
+						//if(this._tableInfos) {
+						//this.toBook();
+						//}
 					}
 					this.goToPage(this.elementPageNumber(id));
 					this.refresh();
@@ -6056,8 +6054,8 @@ var WebBook = function () {
 			}
 
 			if (currentSection) {
-				for (var _i3 = 0; _i3 < this._tocs.length; _i3++) {
-					var toc = this._tocs[_i3];
+				for (var _i2 = 0; _i2 < this._tocs.length; _i2++) {
+					var toc = this._tocs[_i2];
 					var links = toc.querySelectorAll('a');
 					for (var j = 0; j < links.length; j++) {
 						var _id6 = currentSection.getAttribute('data-wb-active-section') ? currentSection.getAttribute('data-wb-active-section') : currentSection.id;
@@ -6066,7 +6064,7 @@ var WebBook = function () {
 								links[j].parentElement.className += ' current';
 							}
 						} else if (links[j].parentElement.className.match(/current/)) {
-							links[j].parentElement.className = links[_i3].parentElement.className.replace(/ current/, '');
+							links[j].parentElement.className = links[_i2].parentElement.className.replace(/ current/, '');
 						}
 					}
 				}
@@ -6110,7 +6108,7 @@ var WebBook = function () {
 					this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
 					this._text.appendChild(this._lastElement.cloneNode(true));
 					this.setSectionLinks();
-					this.toBook();
+					//this.toBook();
 					var currentSection = this._text.querySelectorAll('.wb-section')[0];
 					var elements = currentSection.querySelectorAll(':not(.wb-section)');
 					var element = elements[bookmark.el];
@@ -6159,12 +6157,12 @@ var WebBook = function () {
 					this._currentPages[i].innerHTML = "";
 				}
 
-				for (var _i4 = 0; _i4 < this._currentTotalPages.length; _i4++) {
-					this._currentTotalPages[_i4].innerHTML = "";
+				for (var _i3 = 0; _i3 < this._currentTotalPages.length; _i3++) {
+					this._currentTotalPages[_i3].innerHTML = "";
 				}
 
-				for (var _i5 = 0; _i5 < this._sectionTitles.length; _i5++) {
-					this._sectionTitles[_i5].innerHTML = "";
+				for (var _i4 = 0; _i4 < this._sectionTitles.length; _i4++) {
+					this._sectionTitles[_i4].innerHTML = "";
 				}
 			} else {
 
@@ -6172,28 +6170,28 @@ var WebBook = function () {
 					this.getTocsCurrentSection();
 				}
 				//containers wb-current-page
-				for (var _i6 = 0; _i6 < this._currentPages.length; _i6++) {
+				for (var _i5 = 0; _i5 < this._currentPages.length; _i5++) {
 					var _pageNumber = this._sections_page_start[this._sectionsIndex].page_start + this.getPageNumber() - 1;
 					if (_pageNumber < 1) {
-						this._currentPages[_i6].innerHTML = "";
-					} else if (this._currentPages[_i6].innerHTML !== _pageNumber) {
-						this._currentPages[_i6].innerHTML = _pageNumber;
+						this._currentPages[_i5].innerHTML = "";
+					} else if (this._currentPages[_i5].innerHTML !== _pageNumber) {
+						this._currentPages[_i5].innerHTML = _pageNumber;
 					}
 				}
 				//containers wbcurrentByTotal-pages
-				for (var _i7 = 0; _i7 < this._currentTotalPages.length; _i7++) {
+				for (var _i6 = 0; _i6 < this._currentTotalPages.length; _i6++) {
 					var section = this._text.querySelectorAll('.wb-section')[0];
 					var _pageNumber2 = this._sections_page_start[this._sectionsIndex].page_start + this.getPageNumber() - 1;
 					if (_pageNumber2 < 1 || section.className.match(/wb-page-no-display/)) {
-						this._currentTotalPages[_i7].innerHTML = "";
-					} else if (this._currentTotalPages[_i7].innerHTML !== _pageNumber2 + "/" + this.pages_total) {
-						this._currentTotalPages[_i7].innerHTML = _pageNumber2 + "/" + this.pages_total;
+						this._currentTotalPages[_i6].innerHTML = "";
+					} else if (this._currentTotalPages[_i6].innerHTML !== _pageNumber2 + "/" + this.pages_total) {
+						this._currentTotalPages[_i6].innerHTML = _pageNumber2 + "/" + this.pages_total;
 					}
 				}
 				//containers wb-current-section-title
-				for (var _i8 = 0; _i8 < this._sectionTitles.length; _i8++) {
-					if (this._sectionTitles[_i8].innerHTML != this.getSectionTitle()) {
-						this._sectionTitles[_i8].innerHTML = this.getSectionTitle();
+				for (var _i7 = 0; _i7 < this._sectionTitles.length; _i7++) {
+					if (this._sectionTitles[_i7].innerHTML != this.getSectionTitle()) {
+						this._sectionTitles[_i7].innerHTML = this.getSectionTitle();
 					}
 				}
 			}
