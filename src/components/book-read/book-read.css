@@ -222,8 +222,10 @@ BOOK NAV-BAR-BOTTOM-SMALL
 #book-nav-bar-bottom-small {
 	display: block;
 	height: 30px;
-	position: fixed;
+	position: relative;
+/*
 	bottom: 0px;
+*/
 	margin: auto;
 	background-color: #333;
 	text-align: center;
@@ -250,12 +252,14 @@ BOOK NAV-BAR-BOTTOM-SMALL
 	color: rgb(152, 152, 152);
 }
 
+/*
 #book {
 	position: fixed;
 	height: 100%;
 	width: 100%;
 	margin: auto;
 }
+*/
 
 /*
 BOOKCONTAINER
@@ -263,7 +267,7 @@ BOOKCONTAINER
 #bookContainer {
 	font-family: 'Georgia', serif;
 	position: relative;
-	height: 100%;
+	height: 100vh;
 	color: #000;
 	opacity: 0.0;
 	margin: auto;
