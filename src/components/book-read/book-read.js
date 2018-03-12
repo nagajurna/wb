@@ -156,6 +156,7 @@ const book = function(container) {
 				} else {
 					wh = window.innerHeight;
 				}
+				document.body.style.overflow = 'hidden';
 				bookContainer.style.height = wh + 'px';
 				if(!location.hash.match(/#\/[^\/]+\/read$/)) { return; }
 				//document.body.style.height = '100%';
@@ -247,6 +248,7 @@ const book = function(container) {
 				
 				book.init(tableInfos)
 				.then( resolve => {
+					document.body.style.overflow = 'visible';
 					localStore.setTableInfos({ id: bk.id,
 									    dim: w + 'x' + h,
 									    font: font,
@@ -758,7 +760,7 @@ const book = function(container) {
 			return table;
 		 })
 		 .then (table => {
-			//document.body.style.overflowY = 'visible';
+			document.body.style.overflowY = 'visible';
 			utils.addClass('#book-loader-container', 'hidden');
 			bookContainer.className = 'show';
 			return table;
@@ -820,7 +822,7 @@ const book = function(container) {
 	//} else {
 		//document.body.style.height = window.innerHeight + 'px';
 	//}
-	//document.body.style.overflowY = 'hidden';
+	document.body.style.overflowY = 'hidden';
 	utils.removeClass('#book-loader-container','hidden');
 	
 	//BOOK CONTAINER
