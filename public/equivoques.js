@@ -4614,7 +4614,7 @@ var book = function book(container) {
 		} else {
 			wh = window.innerHeight;
 		}
-		//bookContainer.style.height = wh + 'px';
+		bookContainer.style.height = wh + 'px';
 		var marginY = void 0,
 		    marginX = void 0,
 		    font = void 0,
@@ -4733,7 +4733,7 @@ var book = function book(container) {
 					wh = window.innerHeight;
 				}
 				//document.body.style.overflow = 'hidden';
-				//bookContainer.style.height = wh + 'px';
+				bookContainer.style.height = wh + 'px';
 				if (!location.hash.match(/#\/[^\/]+\/read$/)) {
 					return;
 				}
