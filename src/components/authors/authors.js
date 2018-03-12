@@ -212,6 +212,8 @@ const authors = function(container) {
 	}
     //link to book/read
 	let readBk = event => {
+		document.body.scrollTop = 0;
+		document.documentElement.scrollTop = 0;
 		let b = dataStore.getData('books', event.currentTarget.id);
 		if(!b.visible) { return; }
 		let path = b.path.replace(/^\/books\/[^\/]+/,'');

@@ -3709,7 +3709,9 @@ var home = function home(container) {
 	var toTopDisplay = function toTopDisplay() {
 		if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
 			if (window.innerWidth < 750) {
-				root.querySelector('#toTop').style.display = "block";
+				setTimeout(function () {
+					root.querySelector('#toTop').style.display = "block";
+				}, 100);
 			}
 		} else {
 			root.querySelector('#toTop').style.display = "none";
@@ -13390,6 +13392,8 @@ var authors = function authors(container) {
 	}
 	//link to book/read
 	var readBk = function readBk(event) {
+		document.body.scrollTop = 0;
+		document.documentElement.scrollTop = 0;
 		var b = _dataStore2.default.getData('books', event.currentTarget.id);
 		if (!b.visible) {
 			return;

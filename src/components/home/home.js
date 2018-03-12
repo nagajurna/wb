@@ -194,7 +194,7 @@ const home = function(container) {
 	let toTopDisplay = () => {
 		if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
 			if(window.innerWidth<750) {
-				root.querySelector('#toTop').style.display = "block";
+				setTimeout( () => { root.querySelector('#toTop').style.display = "block";}, 100);
 			}
 		} else {
 			root.querySelector('#toTop').style.display = "none";
