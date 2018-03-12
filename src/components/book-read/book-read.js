@@ -136,7 +136,7 @@ const book = function(container) {
 			
 			let resizeBook = () => {
 				if(!location.hash.match(/#\/[^\/]+\/read$/)) { return; }
-				document.body.style.height = '100%';
+				//document.body.style.height = '100%';
 				if(window.innerWidth >= 768) {
 					utils.addClass('[data-wb-text-container]', 'card-4');
 					//max-height: 720
