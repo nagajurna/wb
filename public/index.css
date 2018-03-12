@@ -413,6 +413,7 @@ HEADER
 	font-size: 1em;
 	letter-spacing: 8px;
 	text-transform: uppercase;
+	display: block;
 }
 
 @media only screen and (min-width: 750px) {
@@ -424,8 +425,11 @@ HEADER
 }
 
 #header.hidden {
+	display: none;
+/*
 	position: fixed;
 	top: -1000px;
+*/
 }
 
 /*
@@ -503,8 +507,11 @@ When not book-read only
 }
 
 #nav-bar-top.hidden {
+	display: none;
+/*
 	position: fixed;
 	top: -1000px;
+*/
 }
 
 /*

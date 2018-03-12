@@ -227,7 +227,7 @@ BOOK NAV-BAR-BOTTOM-SMALL
 	margin: auto;
 	background-color: #333;
 	text-align: center;
-	
+	z-index: 2000;
 }
 
 @media screen and (min-width: 768px) {
@@ -245,14 +245,16 @@ BOOK NAV-BAR-BOTTOM-SMALL
 	margin: 0px;
 	outline: none;
 	width: 24%;
-	z-index: 2000;
+	position: relative;
 }
 
 #book-nav-bar-bottom-small .material-icons {
 	color: rgb(152, 152, 152);
 }
 
-
+/*
+important for resize samsung navigator
+*/
 #book {
 	position: fixed;
 	height: 100%;
