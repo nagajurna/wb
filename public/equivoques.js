@@ -5426,7 +5426,7 @@ var WebBook = function () {
 		this._position = 0;
 		this.col = true; //default true = toBook()
 		this._bookmark = null;
-		this._containerWidth = null;
+		this._containerWidth = 0;
 		this._startPage = 0;
 		this._sectionsIndex = 0;
 		this._parentSection = null;
@@ -5483,17 +5483,18 @@ var WebBook = function () {
 
 					var sections = _this._sectionsToc;
 					//sections breaks			
-					//for(let i=0; i<sections.length; i++) {
-					//sections[i].style.display='none';
-					//if(!sections[i].className.match(/wb-no-break/) && sections[i].style.marginBottom!=="300%") {//possibly, for nested sections
-					//sections[i].style.marginBottom = "300%";
-					//}
-					////hack firefox (pour offsetLeft) : minHeight = 10%
-					//if(sections[i].style.minHeight!=="10%" && sections[i].style.minHeight!=="10%") {
-					//sections[i].style.minHeight = "10%";
-					//}
-					//sections[i].style.display='block';
-					//}
+					for (var i = 0; i < sections.length; i++) {
+						sections[i].style.display = 'none';
+						if (!sections[i].className.match(/wb-no-break/) && sections[i].style.marginBottom !== "300%") {
+							//possibly, for nested sections
+							sections[i].style.marginBottom = "300%";
+						}
+						//hack firefox (pour offsetLeft) : minHeight = 10%
+						if (sections[i].style.minHeight !== "10%" && sections[i].style.minHeight !== "10%") {
+							sections[i].style.minHeight = "10%";
+						}
+						sections[i].style.display = 'block';
+					}
 
 					_this._text.style.display = 'none';
 					if (_this._tableInfos === undefined) {
@@ -5509,11 +5510,11 @@ var WebBook = function () {
 						//array : for each section, starting page;
 						_this._sections_page_start = [];
 						_this._toc_sections_page_start = [];
-						for (var i = 0; i < sections.length; i++) {
+						for (var _i = 0; _i < sections.length; _i++) {
 							var item = {};
-							item.id = sections[i].id;
+							item.id = sections[_i].id;
 							item.page_start = _this.elementPageNumber(item.id);
-							if (!sections[i].parentElement.className.match(/wb-section/)) {
+							if (!sections[_i].parentElement.className.match(/wb-section/)) {
 								_this._sections_page_start.push(item);
 							}
 							_this._toc_sections_page_start.push(item);
@@ -5527,21 +5528,21 @@ var WebBook = function () {
 
 					//containers data-wb-element-page-number
 
-					var _loop = function _loop(_i) {
-						var id = _this._elPageNumbers[_i].getAttribute('data-wb-element-page-number');
+					var _loop = function _loop(_i2) {
+						var id = _this._elPageNumbers[_i2].getAttribute('data-wb-element-page-number');
 						var pageNumber = _this._toc_sections_page_start.filter(function (o) {
 							return o.id === id;
 						})[0].page_start;
 
 						if (pageNumber < 1) {
-							_this._elPageNumbers[_i].innerHTML = "";
-						} else if (_this._elPageNumbers[_i].innerHTML != pageNumber) {
-							_this._elPageNumbers[_i].innerHTML = pageNumber;
+							_this._elPageNumbers[_i2].innerHTML = "";
+						} else if (_this._elPageNumbers[_i2].innerHTML != pageNumber) {
+							_this._elPageNumbers[_i2].innerHTML = pageNumber;
 						}
 					};
 
-					for (var _i = 0; _i < _this._elPageNumbers.length; _i++) {
-						_loop(_i);
+					for (var _i2 = 0; _i2 < _this._elPageNumbers.length; _i2++) {
+						_loop(_i2);
 					}
 
 					if (_this._bookmark) {
@@ -5583,8 +5584,8 @@ var WebBook = function () {
 			cs.height = this.getHeight() + "px";
 			cs.maxWidth = this.getMaxWidth() + "px"; //maxWidth : responsive
 			cs.display = "block";
-			//this._containerWidth = this._textContainer.clientWidth;//responsive
-			this._containerWidth = this.getMaxWidth();
+			this._containerWidth = this._textContainer.clientWidth; //responsive
+			//this._containerWidth = this.getMaxWidth();
 			//text
 			var ts = this._text.style;
 			ts.display = "none";
@@ -6055,8 +6056,8 @@ var WebBook = function () {
 			}
 
 			if (currentSection) {
-				for (var _i2 = 0; _i2 < this._tocs.length; _i2++) {
-					var toc = this._tocs[_i2];
+				for (var _i3 = 0; _i3 < this._tocs.length; _i3++) {
+					var toc = this._tocs[_i3];
 					var links = toc.querySelectorAll('a');
 					for (var j = 0; j < links.length; j++) {
 						var _id6 = currentSection.getAttribute('data-wb-active-section') ? currentSection.getAttribute('data-wb-active-section') : currentSection.id;
@@ -6065,7 +6066,7 @@ var WebBook = function () {
 								links[j].parentElement.className += ' current';
 							}
 						} else if (links[j].parentElement.className.match(/current/)) {
-							links[j].parentElement.className = links[_i2].parentElement.className.replace(/ current/, '');
+							links[j].parentElement.className = links[_i3].parentElement.className.replace(/ current/, '');
 						}
 					}
 				}
@@ -6158,12 +6159,12 @@ var WebBook = function () {
 					this._currentPages[i].innerHTML = "";
 				}
 
-				for (var _i3 = 0; _i3 < this._currentTotalPages.length; _i3++) {
-					this._currentTotalPages[_i3].innerHTML = "";
+				for (var _i4 = 0; _i4 < this._currentTotalPages.length; _i4++) {
+					this._currentTotalPages[_i4].innerHTML = "";
 				}
 
-				for (var _i4 = 0; _i4 < this._sectionTitles.length; _i4++) {
-					this._sectionTitles[_i4].innerHTML = "";
+				for (var _i5 = 0; _i5 < this._sectionTitles.length; _i5++) {
+					this._sectionTitles[_i5].innerHTML = "";
 				}
 			} else {
 
@@ -6171,28 +6172,28 @@ var WebBook = function () {
 					this.getTocsCurrentSection();
 				}
 				//containers wb-current-page
-				for (var _i5 = 0; _i5 < this._currentPages.length; _i5++) {
+				for (var _i6 = 0; _i6 < this._currentPages.length; _i6++) {
 					var _pageNumber = this._sections_page_start[this._sectionsIndex].page_start + this.getPageNumber() - 1;
 					if (_pageNumber < 1) {
-						this._currentPages[_i5].innerHTML = "";
-					} else if (this._currentPages[_i5].innerHTML !== _pageNumber) {
-						this._currentPages[_i5].innerHTML = _pageNumber;
+						this._currentPages[_i6].innerHTML = "";
+					} else if (this._currentPages[_i6].innerHTML !== _pageNumber) {
+						this._currentPages[_i6].innerHTML = _pageNumber;
 					}
 				}
 				//containers wbcurrentByTotal-pages
-				for (var _i6 = 0; _i6 < this._currentTotalPages.length; _i6++) {
+				for (var _i7 = 0; _i7 < this._currentTotalPages.length; _i7++) {
 					var section = this._text.querySelectorAll('.wb-section')[0];
 					var _pageNumber2 = this._sections_page_start[this._sectionsIndex].page_start + this.getPageNumber() - 1;
 					if (_pageNumber2 < 1 || section.className.match(/wb-page-no-display/)) {
-						this._currentTotalPages[_i6].innerHTML = "";
-					} else if (this._currentTotalPages[_i6].innerHTML !== _pageNumber2 + "/" + this.pages_total) {
-						this._currentTotalPages[_i6].innerHTML = _pageNumber2 + "/" + this.pages_total;
+						this._currentTotalPages[_i7].innerHTML = "";
+					} else if (this._currentTotalPages[_i7].innerHTML !== _pageNumber2 + "/" + this.pages_total) {
+						this._currentTotalPages[_i7].innerHTML = _pageNumber2 + "/" + this.pages_total;
 					}
 				}
 				//containers wb-current-section-title
-				for (var _i7 = 0; _i7 < this._sectionTitles.length; _i7++) {
-					if (this._sectionTitles[_i7].innerHTML != this.getSectionTitle()) {
-						this._sectionTitles[_i7].innerHTML = this.getSectionTitle();
+				for (var _i8 = 0; _i8 < this._sectionTitles.length; _i8++) {
+					if (this._sectionTitles[_i8].innerHTML != this.getSectionTitle()) {
+						this._sectionTitles[_i8].innerHTML = this.getSectionTitle();
 					}
 				}
 			}
