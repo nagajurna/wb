@@ -35,13 +35,13 @@ const book = function(container) {
 		let h = 0;
 		let w = 0;
 		let ww = window.innerWidth;
-		let wh = window.innerHeight;
-		//let wh;
-		//if(window.visualViewport) {
-			//wh = window.visualViewport.height;
-		//} else {
-			//wh = window.innerHeight;
-		//}
+		//let wh = window.innerHeight;
+		let wh;
+		if(window.visualViewport) {
+			wh = window.visualViewport.height;
+		} else {
+			wh = window.innerHeight;
+		}
 		let marginY, marginX, font, fontSize, lineHeight, top;
 		
 		//font-family
@@ -148,13 +148,13 @@ const book = function(container) {
 				h = 0;
 				w = 0;
 				let ww = window.innerWidth;
-				let wh = window.innerHeight;
-				//let wh;
-				//if(window.visualViewport) {
-					//wh = window.visualViewport.height;
-				//} else {
-					//wh = window.innerHeight;
-				//}
+				//let wh = window.innerHeight;
+				let wh;
+				if(window.visualViewport) {
+					wh = window.visualViewport.height;
+				} else {
+					wh = window.innerHeight;
+				}
 				if(!location.hash.match(/#\/[^\/]+\/read$/)) { return; }
 				//document.body.style.height = '100%';
 				if(ww >= 768) {
@@ -277,7 +277,6 @@ const book = function(container) {
 			//}
 			
 			window.addEventListener('resize', resizeBook, false);
-			window.addEventListener('scroll', resizeBook, false);
 		
 		
 			//SWIPE - forward, backward on swipe left and right (hammer.js)
