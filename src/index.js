@@ -74,7 +74,7 @@ var index = (function() {
 		}, false);
 		//on resize
 		window.addEventListener('resize', () => {
-			document.body.height = window.innerHeight;
+			document.body.style.height = window.innerHeight + 'px';
 			if(!location.hash.match(/#\/[^\/]+\/read$/)) {
 				if(window.innerWidth < 750) {
 					utils.addClass("#nav-bar-top", "hidden");
