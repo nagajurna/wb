@@ -2829,7 +2829,6 @@ var index = function () {
 		}, false);
 		//on resize
 		window.addEventListener('resize', function () {
-			document.body.style.height = window.innerHeight + 'px';
 			if (!location.hash.match(/#\/[^\/]+\/read$/)) {
 				if (window.innerWidth < 750) {
 					_utils2.default.addClass("#nav-bar-top", "hidden");
@@ -4759,13 +4758,13 @@ var book = function book(container) {
 		var h = 0;
 		var w = 0;
 		var ww = window.innerWidth;
-		//let wh = window.innerHeight;
-		var wh = void 0;
-		if (window.visualViewport) {
-			wh = window.visualViewport.height;
-		} else {
-			wh = window.innerHeight;
-		}
+		var wh = window.innerHeight;
+		//let wh;
+		//if(window.visualViewport) {
+		//wh = window.visualViewport.height;
+		//} else {
+		//wh = window.innerHeight;
+		//}
 		//bookContainer.style.height = wh + 'px';
 		var marginY = void 0,
 		    marginX = void 0,
@@ -4874,17 +4873,17 @@ var book = function book(container) {
 			}
 
 			var resizeBook = function resizeBook() {
-
+				document.body.style.height = window.innerHeight + 'px';
 				h = 0;
 				w = 0;
 				var ww = window.innerWidth;
-				//let wh = window.innerHeight;
-				var wh = void 0;
-				if (window.visualViewport) {
-					wh = window.visualViewport.height;
-				} else {
-					wh = window.innerHeight;
-				}
+				var wh = window.innerHeight;
+				//let wh;
+				//if(window.visualViewport) {
+				//wh = window.visualViewport.height;
+				//} else {
+				//wh = window.innerHeight;
+				//}
 				//document.body.style.overflow = 'hidden';
 				//bookContainer.style.height = wh + 'px';
 				if (!location.hash.match(/#\/[^\/]+\/read$/)) {
@@ -5475,6 +5474,7 @@ var book = function book(container) {
 			settings();
 			return table;
 		}).then(function (table) {
+			document.body.style.height = window.innerHeight + 'px';
 			//document.body.style.overflowY = 'visible';
 			_utils2.default.addClass('#book-loader-container', 'hidden');
 			bookContainer.className = 'show';
