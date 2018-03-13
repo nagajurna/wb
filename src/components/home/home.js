@@ -145,11 +145,11 @@ const home = function(container) {
 		automatic = undefined;
 		let b = dataStore.getData('books', event.currentTarget.id);
 		let path = b.path.replace(/^\/books\/[^\/]+/,'');
-		if (screenfull.enabled && window.innerWidth < 750 && !window.matchMedia('(display-mode: standalone)').matches) {
-			if(!screenfull.isFullscreen) {
-				screenfull.request();
-			}
-		}
+		//if (screenfull.enabled && window.innerWidth < 750 && !window.matchMedia('(display-mode: standalone)').matches) {
+			//if(!screenfull.isFullscreen) {
+				//screenfull.request();
+			//}
+		//}
 		location.hash = '#' + path + "/read";
 	}
 	let bks = root.querySelectorAll('.book');
