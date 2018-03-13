@@ -774,7 +774,7 @@ const book = function(container) {
 		 .then (table => {
 			 //document.body.style.height = wh + 'px';
 			 //document.body.style.height = window.innerHeight + 'px';
-			//document.body.style.overflowY = 'visible';
+			document.body.style.overflowY = 'visible';
 			utils.addClass('#book-loader-container', 'hidden');
 			bookContainer.className = 'show';
 			return table;
@@ -836,7 +836,7 @@ const book = function(container) {
 	//} else {
 		//document.body.style.height = window.innerHeight + 'px';
 	//}
-	//document.body.style.overflowY = 'hidden';
+	document.body.style.overflowY = 'hidden';
 	utils.removeClass('#book-loader-container','hidden');
 	
 	//BOOK CONTAINER

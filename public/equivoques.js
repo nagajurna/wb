@@ -5488,7 +5488,7 @@ var book = function book(container) {
 		}).then(function (table) {
 			//document.body.style.height = wh + 'px';
 			//document.body.style.height = window.innerHeight + 'px';
-			//document.body.style.overflowY = 'visible';
+			document.body.style.overflowY = 'visible';
 			_utils2.default.addClass('#book-loader-container', 'hidden');
 			bookContainer.className = 'show';
 			return table;
@@ -5547,7 +5547,7 @@ var book = function book(container) {
 	//} else {
 	//document.body.style.height = window.innerHeight + 'px';
 	//}
-	//document.body.style.overflowY = 'hidden';
+	document.body.style.overflowY = 'hidden';
 	_utils2.default.removeClass('#book-loader-container', 'hidden');
 
 	//BOOK CONTAINER
