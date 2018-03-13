@@ -3518,6 +3518,13 @@ var home = function home(container) {
 	'use strict';
 
 	var c = container;
+	var wh = void 0;
+	if (window.visualViewport) {
+		wh = window.visualViewport.height;
+	} else {
+		wh = window.innerHeight;
+	}
+	document.body.style.height = wh + 'px';
 
 	//Get books from dataStore
 	var bs = _dataStore2.default.getData('books');
@@ -4758,14 +4765,15 @@ var book = function book(container) {
 		var h = 0;
 		var w = 0;
 		var ww = window.innerWidth;
-		var wh = window.innerHeight;
-		//let wh;
-		//if(window.visualViewport) {
-		//wh = window.visualViewport.height;
-		//} else {
-		//wh = window.innerHeight;
-		//}
-		//bookContainer.style.height = wh + 'px';
+		//let wh = window.innerHeight;
+		var wh = void 0;
+		if (window.visualViewport) {
+			wh = window.visualViewport.height;
+		} else {
+			wh = window.innerHeight;
+		}
+		bookContainer.style.height = wh + 'px';
+		document.body.style.height = wh + 'px';
 		var marginY = void 0,
 		    marginX = void 0,
 		    font = void 0,
@@ -4877,15 +4885,16 @@ var book = function book(container) {
 				h = 0;
 				w = 0;
 				var ww = window.innerWidth;
-				var wh = window.innerHeight;
-				//let wh;
-				//if(window.visualViewport) {
-				//wh = window.visualViewport.height;
-				//} else {
-				//wh = window.innerHeight;
-				//}
+				//let wh = window.innerHeight;
+				var wh = void 0;
+				if (window.visualViewport) {
+					wh = window.visualViewport.height;
+				} else {
+					wh = window.innerHeight;
+				}
+				document.body.style.height = wh + 'px';
 				//document.body.style.overflow = 'hidden';
-				//bookContainer.style.height = wh + 'px';
+				bookContainer.style.height = wh + 'px';
 				if (!location.hash.match(/#\/[^\/]+\/read$/)) {
 					return;
 				}
