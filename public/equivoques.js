@@ -74,7 +74,7 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _promise = __webpack_require__(14);
+var _promise = __webpack_require__(13);
 
 var _promise2 = _interopRequireDefault(_promise);
 
@@ -329,7 +329,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 // Defining this global in .eslintrc.json would create a danger of using the global
 // unguarded in another place, it seems safer to define global only for this module
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(7), __webpack_require__(3), __webpack_require__(55), __webpack_require__(17), __webpack_require__(56), __webpack_require__(57), __webpack_require__(18), __webpack_require__(10), __webpack_require__(58), __webpack_require__(19), __webpack_require__(20), __webpack_require__(59), __webpack_require__(21), __webpack_require__(60)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (arr, document, getProto, _slice, concat, push, indexOf, class2type, toString, hasOwn, fnToString, ObjectFunctionString, support, DOMEval) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(7), __webpack_require__(3), __webpack_require__(55), __webpack_require__(17), __webpack_require__(56), __webpack_require__(57), __webpack_require__(18), __webpack_require__(9), __webpack_require__(58), __webpack_require__(19), __webpack_require__(20), __webpack_require__(59), __webpack_require__(21), __webpack_require__(60)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (arr, document, getProto, _slice, concat, push, indexOf, class2type, toString, hasOwn, fnToString, ObjectFunctionString, support, DOMEval) {
 
 	"use strict";
 
@@ -857,7 +857,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var asap = __webpack_require__(15);
+var asap = __webpack_require__(14);
 
 function noop() {}
 
@@ -1545,141 +1545,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-/*!
-* screenfull
-* v3.3.2 - 2017-10-27
-* (c) Sindre Sorhus; MIT License
-*/
-(function () {
-	'use strict';
-
-	var document = typeof window !== 'undefined' && typeof window.document !== 'undefined' ? window.document : {};
-	var isCommonjs = typeof module !== 'undefined' && module.exports;
-	var keyboardAllowed = typeof Element !== 'undefined' && 'ALLOW_KEYBOARD_INPUT' in Element;
-
-	var fn = function () {
-		var val;
-
-		var fnMap = [['requestFullscreen', 'exitFullscreen', 'fullscreenElement', 'fullscreenEnabled', 'fullscreenchange', 'fullscreenerror'],
-		// New WebKit
-		['webkitRequestFullscreen', 'webkitExitFullscreen', 'webkitFullscreenElement', 'webkitFullscreenEnabled', 'webkitfullscreenchange', 'webkitfullscreenerror'],
-		// Old WebKit (Safari 5.1)
-		['webkitRequestFullScreen', 'webkitCancelFullScreen', 'webkitCurrentFullScreenElement', 'webkitCancelFullScreen', 'webkitfullscreenchange', 'webkitfullscreenerror'], ['mozRequestFullScreen', 'mozCancelFullScreen', 'mozFullScreenElement', 'mozFullScreenEnabled', 'mozfullscreenchange', 'mozfullscreenerror'], ['msRequestFullscreen', 'msExitFullscreen', 'msFullscreenElement', 'msFullscreenEnabled', 'MSFullscreenChange', 'MSFullscreenError']];
-
-		var i = 0;
-		var l = fnMap.length;
-		var ret = {};
-
-		for (; i < l; i++) {
-			val = fnMap[i];
-			if (val && val[1] in document) {
-				for (i = 0; i < val.length; i++) {
-					ret[fnMap[0][i]] = val[i];
-				}
-				return ret;
-			}
-		}
-
-		return false;
-	}();
-
-	var eventNameMap = {
-		change: fn.fullscreenchange,
-		error: fn.fullscreenerror
-	};
-
-	var screenfull = {
-		request: function request(elem) {
-			var request = fn.requestFullscreen;
-
-			elem = elem || document.documentElement;
-
-			// Work around Safari 5.1 bug: reports support for
-			// keyboard in fullscreen even though it doesn't.
-			// Browser sniffing, since the alternative with
-			// setTimeout is even worse.
-			if (/ Version\/5\.1(?:\.\d+)? Safari\//.test(navigator.userAgent)) {
-				elem[request]();
-			} else {
-				elem[request](keyboardAllowed && Element.ALLOW_KEYBOARD_INPUT);
-			}
-		},
-		exit: function exit() {
-			document[fn.exitFullscreen]();
-		},
-		toggle: function toggle(elem) {
-			if (this.isFullscreen) {
-				this.exit();
-			} else {
-				this.request(elem);
-			}
-		},
-		onchange: function onchange(callback) {
-			this.on('change', callback);
-		},
-		onerror: function onerror(callback) {
-			this.on('error', callback);
-		},
-		on: function on(event, callback) {
-			var eventName = eventNameMap[event];
-			if (eventName) {
-				document.addEventListener(eventName, callback, false);
-			}
-		},
-		off: function off(event, callback) {
-			var eventName = eventNameMap[event];
-			if (eventName) {
-				document.removeEventListener(eventName, callback, false);
-			}
-		},
-		raw: fn
-	};
-
-	if (!fn) {
-		if (isCommonjs) {
-			module.exports = false;
-		} else {
-			window.screenfull = false;
-		}
-
-		return;
-	}
-
-	Object.defineProperties(screenfull, {
-		isFullscreen: {
-			get: function get() {
-				return Boolean(document[fn.fullscreenElement]);
-			}
-		},
-		element: {
-			enumerable: true,
-			get: function get() {
-				return document[fn.fullscreenElement];
-			}
-		},
-		enabled: {
-			enumerable: true,
-			get: function get() {
-				// Coerce to boolean in case of old WebKit
-				return Boolean(document[fn.fullscreenEnabled]);
-			}
-		}
-	});
-
-	if (isCommonjs) {
-		module.exports = screenfull;
-	} else {
-		window.screenfull = screenfull;
-	}
-})();
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 var __WEBPACK_AMD_DEFINE_RESULT__;
 
 !(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -1692,13 +1557,13 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(12)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (pnum) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(11)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (pnum) {
 	"use strict";
 
 	return new RegExp("^(" + pnum + ")(?!px)[a-z%]+$", "i");
@@ -1706,7 +1571,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1721,7 +1586,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1811,7 +1676,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1820,7 +1685,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 module.exports = __webpack_require__(32);
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2049,6 +1914,141 @@ rawAsap.makeRequestCallFromTimer = makeRequestCallFromTimer;
 // back into ASAP proper.
 // https://github.com/tildeio/rsvp.js/blob/cddf7232546a9cf858524b75cde6f9edf72620a7/lib/rsvp/asap.js
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)))
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/*!
+* screenfull
+* v3.3.2 - 2017-10-27
+* (c) Sindre Sorhus; MIT License
+*/
+(function () {
+	'use strict';
+
+	var document = typeof window !== 'undefined' && typeof window.document !== 'undefined' ? window.document : {};
+	var isCommonjs = typeof module !== 'undefined' && module.exports;
+	var keyboardAllowed = typeof Element !== 'undefined' && 'ALLOW_KEYBOARD_INPUT' in Element;
+
+	var fn = function () {
+		var val;
+
+		var fnMap = [['requestFullscreen', 'exitFullscreen', 'fullscreenElement', 'fullscreenEnabled', 'fullscreenchange', 'fullscreenerror'],
+		// New WebKit
+		['webkitRequestFullscreen', 'webkitExitFullscreen', 'webkitFullscreenElement', 'webkitFullscreenEnabled', 'webkitfullscreenchange', 'webkitfullscreenerror'],
+		// Old WebKit (Safari 5.1)
+		['webkitRequestFullScreen', 'webkitCancelFullScreen', 'webkitCurrentFullScreenElement', 'webkitCancelFullScreen', 'webkitfullscreenchange', 'webkitfullscreenerror'], ['mozRequestFullScreen', 'mozCancelFullScreen', 'mozFullScreenElement', 'mozFullScreenEnabled', 'mozfullscreenchange', 'mozfullscreenerror'], ['msRequestFullscreen', 'msExitFullscreen', 'msFullscreenElement', 'msFullscreenEnabled', 'MSFullscreenChange', 'MSFullscreenError']];
+
+		var i = 0;
+		var l = fnMap.length;
+		var ret = {};
+
+		for (; i < l; i++) {
+			val = fnMap[i];
+			if (val && val[1] in document) {
+				for (i = 0; i < val.length; i++) {
+					ret[fnMap[0][i]] = val[i];
+				}
+				return ret;
+			}
+		}
+
+		return false;
+	}();
+
+	var eventNameMap = {
+		change: fn.fullscreenchange,
+		error: fn.fullscreenerror
+	};
+
+	var screenfull = {
+		request: function request(elem) {
+			var request = fn.requestFullscreen;
+
+			elem = elem || document.documentElement;
+
+			// Work around Safari 5.1 bug: reports support for
+			// keyboard in fullscreen even though it doesn't.
+			// Browser sniffing, since the alternative with
+			// setTimeout is even worse.
+			if (/ Version\/5\.1(?:\.\d+)? Safari\//.test(navigator.userAgent)) {
+				elem[request]();
+			} else {
+				elem[request](keyboardAllowed && Element.ALLOW_KEYBOARD_INPUT);
+			}
+		},
+		exit: function exit() {
+			document[fn.exitFullscreen]();
+		},
+		toggle: function toggle(elem) {
+			if (this.isFullscreen) {
+				this.exit();
+			} else {
+				this.request(elem);
+			}
+		},
+		onchange: function onchange(callback) {
+			this.on('change', callback);
+		},
+		onerror: function onerror(callback) {
+			this.on('error', callback);
+		},
+		on: function on(event, callback) {
+			var eventName = eventNameMap[event];
+			if (eventName) {
+				document.addEventListener(eventName, callback, false);
+			}
+		},
+		off: function off(event, callback) {
+			var eventName = eventNameMap[event];
+			if (eventName) {
+				document.removeEventListener(eventName, callback, false);
+			}
+		},
+		raw: fn
+	};
+
+	if (!fn) {
+		if (isCommonjs) {
+			module.exports = false;
+		} else {
+			window.screenfull = false;
+		}
+
+		return;
+	}
+
+	Object.defineProperties(screenfull, {
+		isFullscreen: {
+			get: function get() {
+				return Boolean(document[fn.fullscreenElement]);
+			}
+		},
+		element: {
+			enumerable: true,
+			get: function get() {
+				return document[fn.fullscreenElement];
+			}
+		},
+		enabled: {
+			enumerable: true,
+			get: function get() {
+				// Coerce to boolean in case of old WebKit
+				return Boolean(document[fn.fullscreenEnabled]);
+			}
+		}
+	});
+
+	if (isCommonjs) {
+		module.exports = screenfull;
+	} else {
+		window.screenfull = screenfull;
+	}
+})();
 
 /***/ }),
 /* 16 */
@@ -2326,7 +2326,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(10)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (class2type) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(9)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (class2type) {
 	"use strict";
 
 	return class2type.hasOwnProperty;
@@ -2457,7 +2457,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(11), __webpack_require__(25), __webpack_require__(26), __webpack_require__(13), __webpack_require__(8) // Get jQuery.contains
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(10), __webpack_require__(25), __webpack_require__(26), __webpack_require__(12), __webpack_require__(8) // Get jQuery.contains
 ], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, rnumnonpx, rmargin, getStyles, support) {
 
 	"use strict";
@@ -2692,7 +2692,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(12)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (pnum) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(11)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (pnum) {
 
 	"use strict";
 
@@ -3350,7 +3350,7 @@ Promise.prototype.nodeify = function (callback, ctx) {
 
 // rawAsap provides everything we need except exception management.
 
-var rawAsap = __webpack_require__(15);
+var rawAsap = __webpack_require__(14);
 // RawTasks are recycled to reduce GC churn.
 var freeTasks = [];
 // We queue errors to ensure they are thrown in right order (FIFO).
@@ -3505,7 +3505,7 @@ var _home = __webpack_require__(41);
 
 var _home2 = _interopRequireDefault(_home);
 
-var _screenfull = __webpack_require__(9);
+var _screenfull = __webpack_require__(15);
 
 var _screenfull2 = _interopRequireDefault(_screenfull);
 
@@ -4728,10 +4728,6 @@ var _hammerjs = __webpack_require__(79);
 
 var _hammerjs2 = _interopRequireDefault(_hammerjs);
 
-var _screenfull = __webpack_require__(9);
-
-var _screenfull2 = _interopRequireDefault(_screenfull);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var bookReadTemplate = __webpack_require__(80);
@@ -4760,21 +4756,12 @@ var book = function book(container) {
 		var bookNavBarBottomSmall = bookContainer.querySelector('#book-nav-bar-bottom-small');
 		var fontSizeValidLarge = bookContainer.querySelector('#font-size-valid-large');
 		var fontSizeValid = bookContainer.querySelector('#font-size-valid');
+		//let cover = text.querySelector("#cover.wb-section");
 
 		//DIMENSIONS
-		var h = 0;
-		var w = 0;
-		var ww = window.innerWidth;
-		//let wh = window.innerHeight;
-		var wh = void 0;
-		if (window.visualViewport) {
-			wh = window.visualViewport.height;
-		} else {
-			wh = window.innerHeight;
-		}
-		bookContainer.style.height = wh + 'px';
-		document.body.style.height = wh + 'px';
-		var marginY = void 0,
+		var h = void 0,
+		    w = void 0,
+		    marginY = void 0,
 		    marginX = void 0,
 		    font = void 0,
 		    fontSize = void 0,
@@ -4788,13 +4775,13 @@ var book = function book(container) {
 		bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
 
 		//width (responsive)
-		if (ww >= 768) {
+		if (window.innerWidth >= 768) {
 			_utils2.default.addClass('[data-wb-text-container]', 'card-4');
 			//max-height: 720
-			if (wh > 832) {
+			if (window.innerHeight > 832) {
 				//748 + navBarBottom height (1*44) + textContainer minimum top * 2 (2*20)
 				h = 748;
-				top = (wh - 748 - 44) / 2;
+				top = (window.innerHeight - 748 - 44) / 2;
 				textContainer.style.top = top - 15 + 'px';
 				tocLarge.style.marginTop = top - 15 + 'px';
 				tabOptions.style.marginTop = top + 33 + 'px';
@@ -4802,7 +4789,7 @@ var book = function book(container) {
 				bookCommands.style.top = top - 16 + 'px';
 				bookNavBarBottom.style.marginTop = top - 15 + 'px';
 			} else {
-				h = wh - 44 - 40; //navBarBottom height (1*44) + textContainer top * 2 (2*20)
+				h = window.innerHeight - 44 - 40; //navBarBottom height (1*44) + textContainer top * 2 (2*20)
 				textContainer.style.top = '15px';
 				tocLarge.style.marginTop = '15px';
 				tabOptions.style.marginTop = '63px';
@@ -4814,7 +4801,7 @@ var book = function book(container) {
 			fontSize = _localStore2.default.getFontSize('large') ? _localStore2.default.getFontSize('large') : 16;
 			text.style.fontSize = fontSize + 'px';
 			//cover.style.fontSize = '16px';
-			if (ww < 1366) {
+			if (window.innerWidth < 1366) {
 				for (var i = 0; i < fontSizesMedium.length; i++) {
 					if (fontSizesMedium[i].value == fontSize) {
 						fontSizesMedium[i].checked = true;
@@ -4839,8 +4826,8 @@ var book = function book(container) {
 			}
 		} else {
 			_utils2.default.removeClass('[data-wb-text-container]', 'w3-card-4');
-			h = wh - 30; //30px = nav-bar-bottom-small height
-			w = ww;
+			h = window.innerHeight - 30; //30px = nav-bar-bottom-small height
+			w = window.innerWidth;
 			bookNavBarBottomSmall.style.width = w + 'px';
 			fontSize = _localStore2.default.getFontSize('small') ? _localStore2.default.getFontSize('small') : 14;
 			text.style.fontSize = fontSize + 'px';
@@ -4864,7 +4851,7 @@ var book = function book(container) {
 		marginY = h % lineHeight !== 0 ? lineHeight * 2 + h % lineHeight / 2 : lineHeight * 2;
 
 		//marginX : smaller for very small devices
-		if (ww > 420) {
+		if (window.innerWidth > 420) {
 			marginX = 50;
 		} else {
 			marginX = 25;
@@ -4872,7 +4859,7 @@ var book = function book(container) {
 
 		var settings = function settings() {
 
-			if (ww >= 1366) {
+			if (window.innerWidth >= 1366) {
 				//Toc-large height
 				var div = bookContainer.querySelector("#toc-large-device div");
 				if (div) {
@@ -4881,31 +4868,17 @@ var book = function book(container) {
 			}
 
 			var resizeBook = function resizeBook() {
-				document.body.style.height = window.innerHeight + 'px';
-				h = 0;
-				w = 0;
-				var ww = window.innerWidth;
-				//let wh = window.innerHeight;
-				var wh = void 0;
-				if (window.visualViewport) {
-					wh = window.visualViewport.height;
-				} else {
-					wh = window.innerHeight;
-				}
-				document.body.style.height = wh + 'px';
-				//document.body.style.overflow = 'hidden';
-				bookContainer.style.height = wh + 'px';
 				if (!location.hash.match(/#\/[^\/]+\/read$/)) {
 					return;
 				}
-				//document.body.style.height = '100%';
-				if (ww >= 768) {
+				document.body.style.height = '100%';
+				if (window.innerWidth >= 768) {
 					_utils2.default.addClass('[data-wb-text-container]', 'card-4');
 					//max-height: 720
-					if (wh >= 832) {
+					if (window.innerHeight >= 832) {
 						//748 + navBarBottom height (1*44) + textContainer minimum top * 2 (2*20)
 						h = 748;
-						top = (wh - 748 - 44) / 2;
+						top = (window.innerHeight - 748 - 44) / 2;
 						textContainer.style.top = top - 15 + 'px';
 						tocLarge.style.marginTop = top - 15 + 'px';
 						tabOptions.style.marginTop = top + 33 + 'px';
@@ -4913,7 +4886,7 @@ var book = function book(container) {
 						bookCommands.style.top = top - 16 + 'px';
 						bookNavBarBottom.style.marginTop = top - 15 + 'px';
 					} else {
-						h = wh - 44 - 40; //navBars height *2 (2*44) + textContainer top * 2 (2*20)
+						h = window.innerHeight - 44 - 40; //navBars height *2 (2*44) + textContainer top * 2 (2*20)
 						textContainer.style.top = '15px';
 						tocLarge.style.marginTop = '15px';
 						tabInfos.style.marginTop = '63px';
@@ -4925,7 +4898,7 @@ var book = function book(container) {
 					fontSize = _localStore2.default.getFontSize('large') ? _localStore2.default.getFontSize('large') : 16;
 					text.style.fontSize = fontSize + 'px';
 					//cover.style.fontSize = '16px';
-					if (ww < 1366) {
+					if (window.innerWidth < 1366) {
 						for (var _i6 = 0; _i6 < fontSizesMedium.length; _i6++) {
 							if (fontSizesMedium[_i6].value == fontSize) {
 								fontSizesMedium[_i6].checked = true;
@@ -4940,8 +4913,8 @@ var book = function book(container) {
 					}
 				} else {
 					_utils2.default.removeClass('[data-wb-text-container]', 'card-4');
-					h = wh - 30; //30px = nav-bar-bottom-small height
-					w = ww;
+					h = window.innerHeight - 30; //30px = nav-bar-bottom-small height
+					w = window.innerWidth;
 					bookNavBarBottomSmall.style.width = w + 'px';
 					fontSize = _localStore2.default.getFontSize('small') ? _localStore2.default.getFontSize('small') : 14;
 					text.style.fontSize = fontSize + 'px';
@@ -4954,7 +4927,7 @@ var book = function book(container) {
 					textContainer.style.top = '0px';
 				}
 
-				if (ww >= 1366) {
+				if (window.innerWidth >= 1366) {
 					//Toc-large height
 					var _div = bookContainer.querySelector("#toc-large-device div");
 					if (_div) {
@@ -4967,7 +4940,7 @@ var book = function book(container) {
 				marginY = h % lineHeight !== 0 ? lineHeight * 2 + h % lineHeight / 2 : lineHeight * 2;
 
 				//marginX : smaller for very small devices
-				if (ww > 420) {
+				if (window.innerWidth > 420) {
 					marginX = 50;
 				} else {
 					marginX = 25;
@@ -4986,8 +4959,6 @@ var book = function book(container) {
 					fontSize: fontSize });
 
 				book.init(tableInfos).then(function (resolve) {
-					document.body.style.height = window.innerHeight + 'px';
-					//document.body.style.overflow = 'visible';
 					_localStore2.default.setTableInfos({ id: bk.id,
 						dim: w + 'x' + h,
 						font: font,
@@ -4997,37 +4968,31 @@ var book = function book(container) {
 			};
 
 			//on resize
-			//let rtime;
-			//let timeout = false;
-			//let delta = 600;
-			//window.addEventListener('resize', event => {
-			//if(!location.hash.match(/#\/[^\/]+\/read$/)) { return; }
-			//rtime = new Date();
-			//if (timeout === false) {
-			//timeout = true;
-			//setTimeout(resizeend, delta);
-			//}
+			var rtime = void 0;
+			var timeout = false;
+			var delta = 600;
+			window.addEventListener('resize', function (event) {
+				rtime = new Date();
+				if (timeout === false) {
+					timeout = true;
+					setTimeout(resizeend, delta);
+				}
+			}, false);
 
-			//}, false);
-
-			//function resizeend() {
-			//if (new Date() - rtime < delta) {
-			//setTimeout(resizeend, delta);
-			//} else {
-			//timeout = false;
-			//resizeBook();
-			//}               
-			//}
-
-			window.addEventListener('resize', resizeBook, false);
-			window.addEventListener('scroll', resizeBook, false);
+			function resizeend() {
+				if (new Date() - rtime < delta) {
+					setTimeout(resizeend, delta);
+				} else {
+					timeout = false;
+					resizeBook();
+				}
+			}
 
 			//SWIPE - forward, backward on swipe left and right (hammer.js)
 			// all sizes
 			//delete Hammer.defaults.cssProps.userSelect;
 			var swipeContainer = new _hammerjs2.default(bookContainer.querySelector('[data-wb-text-container]'));
 			swipeContainer.on("swiperight swipeleft", function (event) {
-				event.preventDefault();
 				if (event.type === "swipeleft") {
 					book.forward();
 				} else if (event.type === "swiperight") {
@@ -5216,9 +5181,6 @@ var book = function book(container) {
 					var prevLocation = _dataStore2.default.getData('location').prevLocation;
 					prevLocation = prevLocation && prevLocation.match(/#\/[^\/]+\/read$/) ? '#/' : prevLocation;
 					location.hash = prevLocation ? prevLocation : '#/';
-					if (_screenfull2.default.enabled && _screenfull2.default.isFullscreen) {
-						_screenfull2.default.exit();
-					}
 				}, false);
 			}
 
@@ -5226,6 +5188,10 @@ var book = function book(container) {
 			var addBookmarks = bookContainer.querySelectorAll('.add-bookmark');
 			for (var _i12 = 0; _i12 < addBookmarks.length; _i12++) {
 				addBookmarks[_i12].addEventListener('click', function (event) {
+					//if(book.checkFirstPage()) { 
+					//localStore.removeBkmrk(bk.id);
+					//return;
+					//}
 					var newBmrk = book.getBookmark();
 					var bookmark = document.querySelector('#bookmark');
 					_localStore2.default.setBkmrk(bk.id, newBmrk);
@@ -5235,7 +5201,6 @@ var book = function book(container) {
 					}, 2500);
 				}, false);
 			}
-
 			//FONT-SIZE
 			//large
 			for (var _i13 = 0; _i13 < fontSizesLarge.length; _i13++) {
@@ -5476,7 +5441,6 @@ var book = function book(container) {
 			fontSize: fontSize });
 
 		book.init(tableInfos).then(function (table) {
-			document.body.style.height = window.innerHeight + 'px';
 			if (_localStore2.default.getBkmrk(bk.id)) {
 				var bkmrk = _localStore2.default.getBkmrk(bk.id);
 				book.goToBookmark(bkmrk);
@@ -5487,8 +5451,7 @@ var book = function book(container) {
 			settings();
 			return table;
 		}).then(function (table) {
-			document.body.style.height = window.innerHeight + 'px';
-			//document.body.style.overflowY = 'visible';
+			document.body.style.overflowY = 'visible';
 			_utils2.default.addClass('#book-loader-container', 'hidden');
 			bookContainer.className = 'show';
 			return table;
@@ -5542,12 +5505,7 @@ var book = function book(container) {
 	_utils2.default.setHTML('title', '&Eacute;quivoques - ' + bk.title);
 	//START LOADER
 	//document.body.style.height = window.innerHeight + 'px';
-	//if(window.visualViewport) {
-	//document.body.style.height = window.visualViewport.height + 'px';
-	//} else {
-	//document.body.style.height = window.innerHeight + 'px';
-	//}
-	//document.body.style.overflowY = 'hidden';
+	document.body.style.overflowY = 'hidden';
 	_utils2.default.removeClass('#book-loader-container', 'hidden');
 
 	//BOOK CONTAINER
@@ -5591,7 +5549,7 @@ var _core2 = _interopRequireDefault(_core);
 
 __webpack_require__(61);
 
-var _promise = __webpack_require__(14);
+var _promise = __webpack_require__(13);
 
 var _promise2 = _interopRequireDefault(_promise);
 
@@ -6446,7 +6404,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(10)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (class2type) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(9)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (class2type) {
 	"use strict";
 
 	return class2type.toString;
@@ -6497,7 +6455,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 "use strict";
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(22), __webpack_require__(3), __webpack_require__(23), __webpack_require__(11), __webpack_require__(24), __webpack_require__(29), __webpack_require__(13), __webpack_require__(64), __webpack_require__(27), __webpack_require__(68), __webpack_require__(8) // contains
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(22), __webpack_require__(3), __webpack_require__(23), __webpack_require__(10), __webpack_require__(24), __webpack_require__(29), __webpack_require__(12), __webpack_require__(64), __webpack_require__(27), __webpack_require__(68), __webpack_require__(8) // contains
 ], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, access, document, documentElement, rnumnonpx, curCSS, addGetHookIf, support, nodeName) {
 
 	"use strict";
@@ -9082,7 +9040,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(12), __webpack_require__(22), __webpack_require__(25), __webpack_require__(3), __webpack_require__(28), __webpack_require__(11), __webpack_require__(69), __webpack_require__(26), __webpack_require__(70), __webpack_require__(24), __webpack_require__(71), __webpack_require__(29), __webpack_require__(13), __webpack_require__(27), __webpack_require__(72), __webpack_require__(8) // contains
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(11), __webpack_require__(22), __webpack_require__(25), __webpack_require__(3), __webpack_require__(28), __webpack_require__(10), __webpack_require__(69), __webpack_require__(26), __webpack_require__(70), __webpack_require__(24), __webpack_require__(71), __webpack_require__(29), __webpack_require__(12), __webpack_require__(27), __webpack_require__(72), __webpack_require__(8) // contains
 ], __WEBPACK_AMD_DEFINE_RESULT__ = (function (jQuery, pnum, access, rmargin, document, rcssNum, rnumnonpx, cssExpand, getStyles, swap, curCSS, adjustCSS, addGetHookIf, support) {
 
 	"use strict";
@@ -10355,7 +10313,7 @@ exports = module.exports = __webpack_require__(5)(undefined);
 
 
 // module
-exports.push([module.i, "/*\nBOOK LOADER\n*/\n\n#book-loader-container {\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 0px;\n\twidth: 100%;\n\theight: 100%;\n\tbackground-color: #fafafa;\n}\n\n#book-loader-container.hidden {\n\tdisplay: none;\n}\n\n#book-loader {\n\t-webkit-transform: translate-z(0);\n\t-ms-transform: translate-z(0);\n\tposition: fixed;\n\tleft: 50%;\n\ttop: 40%;\n\tz-index: 1;\n    border: 8px solid #f3f3f3; \n    border-radius: 50%;\n    width: 80px;\n    height: 80px;\n    margin: -40px 0 0 -40px;\n    -webkit-animation: spin 2s linear infinite;\n    animation: spin 2s linear infinite;\n}\n\n@-webkit-keyframes spin {\n  0% { -webkit-transform: rotate(0deg); }\n  100% { -webkit-transform: rotate(360deg); }\n}\n\n@keyframes spin {\n    0% { transform: rotate(0deg); }\n    100% { transform: rotate(360deg); }\n}\n\n/*\nTEXT LOADER\n*/\n\n#text-loader-container {\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 0px;\n\twidth: 100%;\n\theight: 100%;\n\tbackground-color: #fafafa;\n}\n\n#text-loader-container.hidden {\n\tdisplay: none;\n}\n\n#text-loader {\n\t-webkit-transform: translate-z(0);\n\t-ms-transform: translate-z(0);\n\tposition: absolute;\n\tleft: 50%;\n\ttop: 40%;\n\tz-index: 1;\n    border: 8px solid #f3f3f3;\n    border-top: 8px solid gray;\n    border-bottom: 8px solid gray;\n    border-radius: 50%;\n    width: 80px;\n    height: 80px;\n    margin: -40px 0 0 -40px;\n    -webkit-animation: textSpin 2s linear infinite;\n    animation: textSpin 2s linear infinite;\n}\n\n@-webkit-keyframes textSpin {\n  0% { -webkit-transform: rotate(0deg); }\n  100% { -webkit-transform: rotate(360deg); }\n}\n\n@keyframes textSpin {\n    0% { transform: rotate(0deg); }\n    100% { transform: rotate(360deg); }\n}\n\n/*\nSIGNET\n*/\n#bookmark {\n\tvisibility: hidden;\n\twidth: 50px;\n\tpadding: 8px;\n\tbackground-color: #333;\n\tcolor: #fff;\n\ttext-align: center;\n\tposition: absolute;\n\tz-index: 1;\n\tright: 20px;\n\ttop: 20px;\n\tfont-family: 'Verdana', sans-serif;\n}\n\n\n#bookmark.show {\n\tvisibility: visible;\n\t-webkit-animation: fadein 0.5s, fadeout 0.5s 2s;\n    animation: fadein 0.5s, fadeout 0.5s 2s;\n}\n\n@-webkit-keyframes fadein {\n    from {opacity: 0;}\n    to {opacity: 1;}\n}\n\n@keyframes fadein {\n    from {opacity: 0;}\n    to {opacity: 1;}\n}\n\n@-webkit-keyframes fadeout {\n    from {opacity: 1;}\n    to {opacity: 0;}\n}\n\n@keyframes fadeout {\n    from {opacity: 1;}\n    to {opacity: 0;}\n}\n\n/*\nBOOK NAVBAR BOTTOM\n*/\n#book-nav-bar-bottom {\n\tdisplay: none;\n\theight: 44px;\n\tposition: relative;\n}\n\n@media screen and (min-width: 768px) {\n\t#book-nav-bar-bottom {\n\t\tdisplay: block;\n\t}\n}\n\n#book-nav-bar-bottom-controls {\n\tposition: relative;\n\theight: 44px;\n\twidth: 550px;\n\tmargin: auto;\n\ttext-align: center;\n}\n\n#book-nav-bar-bottom-controls #center {\n\twidth: 120px;\n\theight: 100%;\n\tmargin: auto;\n}\n\n#book-nav-bar-bottom-controls #center #backward-large {\n\tfloat: left;\n\tfont-size: 1.6em;\n}\n\n#book-nav-bar-bottom-controls #center #forward-large {\n\tfloat: right;\n\tfont-size: 1.6em;\n}\n\n#book-nav-bar-bottom-controls button {\n\toutline: none;\n\theight: 100%;\n\tbackground-color: transparent;\n\tdisplay: inline-block;\n\tcolor: rgba(0, 0, 0, 0.54);\n\tmax-width: 56px;\n}\n\n#book-nav-bar-bottom-controls #open-toc-large {\n\tposition: absolute;\n\ttop: 0px;\n\tright: 0px;\n\tpadding-bottom: 10px;\n}\n\n#book-nav-bar-bottom-controls #open-options-medium {\n\tposition: absolute;\n\ttop: 0px;\n\tright: 56px;\n\tpadding-bottom: 10px;\n}\n\n#book-nav-bar-bottom-controls #home-large {\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 0px;\n\tpadding-bottom: 10px;\n}\n\n#book-nav-bar-bottom-controls #add-bookmark-large {\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 56px;\n\tpadding-bottom: 10px;\n}\n\n@media screen and (min-width: 1366px) {\n\t#book-nav-bar-bottom-controls #open-toc-large, \n\t#book-nav-bar-bottom-controls #home-large, \n\t#book-nav-bar-bottom-controls #open-options-medium, \n\t#book-nav-bar-bottom-controls #add-bookmark-large {\n\t\tdisplay: none;\n\t}\n}\n\n/*\nBOOK NAV-BAR-BOTTOM-SMALL\n*/\n\n#book-nav-bar-bottom-small {\n\tdisplay: block;\n\theight: 30px;\n/*\n\tposition: fixed;\n\tbottom: 0px;\n*/\n\tmargin: auto;\n\tbackground-color: #333;\n\ttext-align: center;\n\tz-index: 2000;\n}\n\n@media screen and (min-width: 768px) {\n\t#book-nav-bar-bottom-small {\n\t\tdisplay: none;\n\t}\n}\n\n#book-nav-bar-bottom-small .btn {\n\tdisplay: inline-block;\n\tborder: none;\n\tbackground-color: transparent;\n\theight: 100%;\n\tpadding: 3px 0px 0px 0px;\n\tmargin: 0px;\n\toutline: none;\n\twidth: 24%;\n}\n\n#book-nav-bar-bottom-small .material-icons {\n\tcolor: rgb(152, 152, 152);\n}\n\n/*\nimportant for resize samsung navigator\n*/\n#book {\n\tposition: fixed;\n/*\n\theight: 100%;\n*/\n\twidth: 100%;\n}\n\n/*\nBOOKCONTAINER\n*/\n#bookContainer {\n\tfont-family: 'Georgia', serif;\n\tposition: relative;\n/*\n\theight: 100%;\n*/\n\tcolor: #000;\n\topacity: 0.0;\n\tmargin: auto;\n\ttransition: opacity 0.4s;\n\t-webkit-transition: opacity 0.4s;\n\t-moz-transition: opacity 0.4s;\n\t-o-transition: opacity 0.4s;\n}\n\n#bookContainer.show {\n\topacity: 1.0;\n}\n\n/*\nTEXTCONTAINER\n*/\n[data-wb-text-container] {\n\tmargin: auto;\n\tbackground-color: #fafafa;\n\twill-change: transform;\n}\n\n/*\nTOC-LARGE-DEVICE, TAB-OPTIONS, TAB-INFOS, HOME\n*/\n\n#toc-large-device, #tab-infos, #tab-options {\n  position: absolute;\n  top: 0px;\n  right: -40%;\n  width: 33%;\n  transition: right 0.5s;\n  -webkit-transition : right 0.5s;\n  -moz-transition : right 0.5s;\n  -o-transition: right 0.5s;\n  display: none;\n  background-color: #fafafa;\n}\n\n@media screen and (min-width: 1366px) {\n\n\t#toc-large-device, #tab-infos, #tab-options {\n\t\tdisplay: block\n\t}\n}\n\n#toc-large-device.open, #tab-infos.open, #tab-options.open {\n\tright: 0px;\n}\n\n#toc-large-device-container, #tab-infos-container, #tab-options-container {\n\twidth: 100%;\n\tbackground-color: #fafafa;\n\toverflow-y: auto;\n\tpadding: 0px 16px;\n}\n\n#toc-large-device-container .header, #tab-infos-container .header, #tab-options-container .header {\n\tpadding: 16px;\n\tborder-bottom: 1px solid #ddd;\n\ttext-align: center;\n}\n\n/*\ntoc-large-device\n*/\n#toc-large-device-container [data-wb-toc] {\n\tbackground-color: #fafafa;\n\tposition: relative;\n\theight: 100%;\n\twidth: 100%;\n}\n\n/*\ntab-infos\n*/\n#tab-infos-container .content {\n\tpadding: 16px 0px;\n}\n\n#tab-infos-container p {\n\tmargin: 0px;\n\tpadding: 8px;\n}\n\n#tab-infos-container ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#tab-infos-container ul li {\n\tpadding: .5em .5em;\n}\n\n#tab-infos-container .contrib-role {\n\ttext-transform: capitalize;\n}\n\n/*\ntab-options\n*/\n#tab-options-container {\n\ttext-align : center;\n\tpadding-bottom: 16px;\n}\n\n#tab-options-container #font-size-container-large,\n#tab-options-container #font-family-container-large {\n\twidth: 215px;\n\tmargin: auto;\n\tpadding: 16px 0px;\n}\n\n#tab-options-container #font-family-container-large > p,\n#tab-options-container #font-size-container-large > p {\n\tmargin-bottom: 7px;\n}\n\n#tab-options-container .col-left {\n\tfloat: left;\n\twidth: 50%;\n}\n\n#tab-options-container .col-right {\n\tfloat: right;\n\twidth: 50%;\n}\n\n#tab-options-container #font-size-container-large {\n\tclear: both;\n}\n\n#tab-options-container label {\n\twidth: 50%;\n\ttext-align : left;\n}\n\n#tab-options-container .options-title {\n\tfont-variant: small-caps;\n\tletter-spacing: 1.5px;\n\tfont-size: 1.2em;\n}\n\n/*\nBOOK COMMANDS\n*/\n#book-commands {\n\tposition: fixed;\n\tleft: 32px;\n\twidth: 75px;\n\tdisplay: none;\n}\n\n@media screen and (min-width: 1366px) {\n\t#book-commands {\n\t\tdisplay: block;\n\t}\n}\n\n#close-toc-large-device, #close-tab-infos, #close-tab-options {\n    position: absolute;\n\tright: 100%;\n\ttop: 0px;\n\theight: 37px;\n\tmargin-right: 16px;\n\toutline: none;\n\tbackground-color: #fafafa;\n\tfont-family: 'Georgia', serif;\n\tfont-size: 1.2em;\n}\n\n#book-commands button {\n    position: absolute;\n\tright: 0px;\n\twidth: 80px;\n\theight: 37px;\n\tmargin-right: 16px;\n\toutline: none;\n\tfont-family: 'Georgia', serif;\n\tfont-size: 1em;\n}\n\n#book-commands button:hover {\n\tbox-shadow: 2px 3px 6px 2px rgba(0,0,0,0.2)\n}\n\n#toggle-toc-large-device {\n\ttop: 0px;\n}\n\n#toggle-tab-options {\n\ttop: 48px;\n}\n\n#toggle-tab-infos {\n\ttop: 96px;\n}\n\n#tab-add-bookmark {\n\ttop: 144px;\n}\n\n#tab-home-link {\n\ttop: 192px;\n}\n\n/*\nswing-container, swing-bar\n*/\n/*\nif tab.open : swing-container to left\n*/\n#swing-container {\n\tmargin-right: 0px;\n\ttransition: margin-right 0.8s;\n\t-webkit-transition : margin-right 0.8s;\n\t-moz-transition : margin-right 0.8s;\n    -o-transition: margin-right 0.8s;\n\t\n}\n\n#swing-container.left {\n\t\tmargin-right: 0px;\n\t}\n\n@media screen and (min-width: 1366px) {\n\t#swing-container.left {\n\t\tmargin-right: 33%;\n\t}\n}\n\n/*\nif tab.open : swing-bar to left\n*/\n#swing-bar {\n\tmargin-right: 0px;\n\ttransition: margin-right 0.9s;\n\t-webkit-transition : margin-right 0.9s;\n\t-moz-transition : margin-right 0.9s;\n    -o-transition: margin-right 0.9s;\n}\n\n#swing-bar.left {\n\tmargin-right: 0px;\n}\n\n@media screen and (min-width: 1366px) {\n\t#swing-bar.left {\n\t\tmargin-right: 33%;\n\t}\n}\n\n/*\nTOC, OPTIONS (< 1366px)\n*/\n#toc, #options, #options-medium {\n\tposition: absolute;\n\ttop: -1000px;\n\twidth: 100%;\n\theight: 100%;\n\tz-index: 1000;\n\toverflow-y: auto;\n/*\n\ttransition: top 0.4s;\n\t-webkit-transition : top 0.4s;\n\t-moz-transition : top 0.4s;\n    -o-transition: top 0.4s;\n*/\n\tpadding: 0px;\n\tbackground-color: #fafafa;\n}\n\n#toc.open, #options.open, #options-medium.open {\n\ttop: 0px;\n}\n\n#toc > div, #options > div, #options-medium > div {\n\tbackground-color: #fafafa;\n\tpadding: 0px 16px;\n}\n\n#close-toc, #close-options, #close-options-medium {\n\tposition: absolute;\n\tright: 0;\n\ttop: 0;\n\tline-height: 27px;\n\tfont-size: 2em;\n\tfont-family: 'Georgia', sans-serif;\n\tcolor: #bbb;\n\tpadding: 8px 16px;\n}\n\n/*\ntoc\n*/\n#toc-header {\n\tmargin-bottom: 30px;\n\tmargin-top: 20px;\n\tpadding: 16px 0px;\n\tborder-bottom: 1px solid #ddd;\n\ttext-align: center;\n}\n\n#toc-header p {\n\tmargin: 8px;\n}\n\n#toc ul, #toc-large-device ul {\n\tpadding: 0px;\n}\n\n#toc li, #toc-large-device li {\n\tlist-style-type: none;\n\tpadding: .5em .5em;\n}\n\n#toc a.wb-link, #toc-large-device a.wb-link {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: gray;\n\tpadding: 0px;\n}\n\n#toc a.wb-link:hover, #toc-large-device a.wb-link:hover {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: #000;\n}\n\n#toc li.current a.wb-link, #toc-large-device li.current a.wb-link {\n\tcolor: #000;\n\toutline: none;\n\tfont-style: italic;\n}\n\n#toc .wb-toc-item-title, #toc-large-device .wb-toc-item-title {\n\tfloat: left;\n\tvertical-align: bottom;\n}\n\n#toc [data-wb-element-page-number], #toc-large-device [data-wb-element-page-number] {\n\tfloat: right;\n\tvertical-align: bottom;\n}\n\n/*\noptions content\n*/\n#options, #options-medium {\n\ttext-align: center;\n}\n\n#options .options-header, #options-medium .options-header {\n\tpadding: 16px 0px;\n\tborder-bottom: 1px solid #ddd;\n\tletter-spacing: 1.5px;\n}\n\n#options #font-size-container, #options-medium #font-size-container,\n#options #font-family-container, #options-medium #font-family-container {\n\twidth: 215px;\n\tmargin: auto;\n\tpadding: 16px 0px;\n}\n\n#options #font-family-container > p, #options-medium #font-family-container > p,\n#options #font-size-container > p, #options-medium #font-size-container > p {\n\tmargin-bottom: 7px;\n}\n\n#options .col-left, #options-medium .col-left {\n\tfloat: left;\n\twidth: 50%;\n}\n\n#options .col-right, #options-medium .col-right {\n\tfloat: right;\n\twidth: 50%;\n}\n\n#options #font-size-container, #options-medium #font-size-container {\n\tclear: both;\n}\n\n#options label {\n\twidth: 50%;\n}\n\n/*\nTOP\n*/\n#top {\n\tposition: absolute;\n\ttop: 0px;\n\tbox-sizing: border-box;\n\t-webkit-box-sizing: border-box;\n\t-moz-box-sizing: border-box;\n\tpadding-top: 12px;\n\ttext-align: center;\n\twidth: 100%;\n\theight: 30px;\n}\n\n#top .wb-current-section-title {\n\tdisplay: inline-block;\n\twidth: 80%;\n\twhite-space: nowrap;\n\tfont-size: 0.85em;\n\toverflow: hidden;\n\ttext-overflow: ellipsis;\n\t-o-text-overflow: ellipsis;\n\topacity: 1;\n\ttransition: opacity 0.4s;\n\t-webkit-transition: opacity 0.4s;\n\t-moz-transition: opacity 0.4s;\n\t-o-transition: opacity 0.4s;\n}\n\n/*\nBOTTOM\n*/\n#bottom {\n\tposition: absolute;\n\tbottom: 0px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tbackground-color: transparent;\n}\n\n#bottom span {\n\tdisplay: inline-block;\n\tmin-width: 42px;\n\tmargin: 0px;\n\tmargin-top: 0px;\n\tfont-size: 1em;\n\tbackground-color: transparent;\n\tmin-width: 25px;\n\theight: 100%;\n\tpadding: 0px 16px 0px 16px;\n\topacity: 1;\n\ttransition: opacity 0.4s;\n\t-webkit-transition: opacity 0.4s;\n\t-moz-transition: opacity 0.4s;\n\t-o-transition: opacity 0.4s;\n}\n\n/*\nTEXT*/\n\n/*\nTEXT\n*/\n[data-wb-text] {\n/*\n\tfont-family: Noto Serif, Georgia, serif;\n*/\n/*\n\tfont-size: 14px;\n*/\n\tline-height: 1.5em;\n\ttext-align: justify;\n\ttext-justify: inter-word;\n\topacity: 1;\n\ttransition: opacity 0.4s;\n\t-webkit-transition: opacity 0.4s;\n\t-moz-transition: opacity 0.4s;\n\t-o-transition: opacity 0.4s;\n\twill-change: transform;\n\ttransform: translateZ(0);\n\t-webkit-transform: translate-z(0);\n\t-ms-transform: translate-z(0);\n}\n\n\n\n@media screen and (min-width: 768px) {\n    [data-wb-text] {\n        font-size: 16px;\n        line-height: 1.5em;\n    }\n}\n\n[data-wb-text] p {\n\tmargin-bottom: 0px;\n\tmargin-top: 0px;\n\ttext-indent: 1.5em;\n}\n\n\n/*\nINSIDE TEXT\n* \n* \n*/\n[data-wb-text] .wb-section {\n\tmargin-bottom: 300%;\n\tmin-height: 10%;\n}\n\n/*\nTITLES\n*/\n\n[data-wb-text] #cover {\n\topacity: 0.9;\n}\n\n/*\nDIV FIN\n*/\n[data-wb-text] #fin {\n\ttext-align: center;\n\ttext-transform: uppercase;\n\tletter-spacing: 2px;\n\t\n}\n\n#fin p {\n\tpadding-top: 20%;\n\ttext-indent: 0px;\n}\n\np.section-title, p.notes-title, p.wb-toc-title {\n\tfont-size: 1.25em;\n\ttext-indent: 0px;\n}\n\np.notes-title {\n\tborder-bottom: 1px solid black;\n\tmargin-bottom: 0.5em;\n}\n\np.section-title {\n\tpadding-top: 3.5em;\n\tmargin-top: 0px;\n\tmargin-bottom: 1.5em;\n\ttext-indent: 0px;\n\tline-height: 2em;\n}\n\np.section-title.margin-small {\n\tmargin-bottom: 0.5em;\n}\n\np.section-subtitle {\n\tfont-size: 1em;\n\ttext-indent: 0px;\n\tmargin-bottom: 1.5em;\n}\n\np.section-subtitle_large {\n\tfont-size: 1.25em;\n\ttext-indent: 0px;\n\tmargin-bottom: 1.5em;\n}\n\n#cover.wb-section {\n\ttext-align: center;\n}\n\n#cover-author, #cover-title, #cover-logo {\n\tmargin: 0px;\n\ttext-indent: 0px;\n}\n\np.note {\n\ttext-indent: 0px;\n}\n\n/*\nTEXT EXERGUE\n*/\n[data-wb-text] div.text-exergue {\n\ttext-align: right;\n\tpadding-top: 10em;\n\tpadding-left: 1.5em\n}\n\n[data-wb-text] div.text-exergue p.text-exergue {\n\tpadding-top: 0em;\n}\n\n[data-wb-text] p.sign-exergue {\n\tpadding-top: 1em;\n\tpadding-right: 1.5em\n}\n\n/*\nNO-BREAK\n*/\n[data-wb-text] .no-break-inside {\n\tpage-break-inside: avoid;\n}\n\n/*\nVERSES\n*/\n[data-wb-text] .verses {\n\tmargin: 1.5em 0 1.5em 2.5em;\n\tfont-size: 0.9em;\n}\n\n[data-wb-text] .verses p {\n\ttext-indent: -1em;\n}\n\n[data-wb-text] p.verses-signature {\n\ttext-align: right;\n\tfont-size: 0.9em;\n\tpadding-bottom: 1.5em;\n\tpadding-right: 1.5em;\n}\n\n/*\nSIGNATURE\n*/\n[data-wb-text] .signature {\n\ttext-align: right;\n\tpadding-bottom: 1.5em;\n\tpadding-right: 1.5em\n}\n\n/*\nPADDING\n*/\n[data-wb-text] .padding-top-35 {\n\tpadding-top: 3.5em;\n}\n\n\n/*\nLINES BEFORE/AFTER\n*/\n[data-wb-text] p.p_half_line_before {\n\tmargin-top: 0.75em;\n}\n\n[data-wb-text] p.p_line_before {\n\tmargin-top: 1.5em;\n}\n\n[data-wb-text] p.p_2line_before {\n\tmargin-top: 3em;\n}\n\n[data-wb-text] p.p_line_after {\n\tmargin-bottom: 1.5em;\n}\n\n/*\nLINE-HEIGHT\n*/\n[data-wb-text] p.line_height_one {\n\tline-height: 1em;\n\tpadding-top: 0.5em;\n}\n\n/*\nSUP\n*/\n[data-wb-text] sup.line_height_one {\n\tline-height: 1em;\n}\n\n\n/*\nSEPARATION\n*/\n[data-wb-text] p.separation {\n\ttext-indent: 0px;\n\ttext-align: center;\n\tmargin-top: 1.5em;\n\tmargin-bottom: 1.5em;\n\tline-height: 1em;\n\tfont-size: 0.8em;\n}\n\n/*\nPOINTS DE SUSPENSION\n*/\n\n[data-wb-text] p.points {\n\ttext-indent: 0px;\n\twidth: 100%;\n\toverflow: hidden;\n\tpadding-left: 0em;\n}\n\n[data-wb-text] p.points span {\n\tpadding-right: 1.5em;\n}\n\n/*\nNEGATIVE MARGIN\n*/\n\n[data-wb-text] p.negative_margin {\n\tmargin-top:-1.5em;\n\ttext-indent: 0px;\n}\n\n[data-wb-text] p.negative_margin span {\n\tbackground-color: #fafafa;\n\tpadding-left:0.5em;\n\tpadding-right: 0.5em;\n\tfont-size: 0.9em;\n}\n\n/*\nNOTES\n*/\n[data-wb-text] .note a.wb-link {\n\tcolor: #006dcc;\n}\n\n[data-wb-text] .note-section p {\n\tfont-size: 0.9em;\n}\n\n[data-wb-text] .note-section p.note {\n\tmargin-top: 1.5em;\n}\n\n[data-wb-text] .note-section p.notes-title {\n\tfont-size: 1.25em;\n}\n\n/*\nDIVERS\n*/\n\n[data-wb-text] .font-small-9 {\n\tfont-size: 0.9em;\n}\n\n[data-wb-text] .font-small-8 {\n\tfont-size: 0.8em;\n}\n\n[data-wb-text] p.no-indent {\n\ttext-indent: 0px;\n}\n\n[data-wb-text] p.indent-3 {\n\ttext-indent: 3em;\n}\n\n[data-wb-text] p.indent-6 {\n\ttext-indent: 6em;\n}\n\n/*\nHYPHENATION\n*/\n[data-wb-text] p, .hyphenate {\n  hyphens: auto;\n  -webkit-hyphens: auto;\n  -ms-hyphens: auto;\n  -moz-hyphens: auto;\n  -o-hyphens: auto;\n}\n[data-wb-text] p.section-title, [data-wb-text] #cover p, .no-hyphenate {\n  hyphens: none;\n  -webkit-hyphens: none;\n  -ms-hyphens: none;\n  -moz-hyphens: none;\n  -o-hyphens: none;\n}\n\n\n\n", ""]);
+exports.push([module.i, "/*\nBOOK LOADER\n*/\n\n#book-loader-container {\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 0px;\n\twidth: 100%;\n\theight: 100%;\n\tbackground-color: #fafafa;\n}\n\n#book-loader-container.hidden {\n\tdisplay: none;\n}\n\n#book-loader {\n\t-webkit-transform: translate-z(0);\n\t-ms-transform: translate-z(0);\n\tposition: absolute;\n\tleft: 50%;\n\ttop: 40%;\n\tz-index: 1;\n    border: 8px solid #f3f3f3; \n    border-radius: 50%;\n    width: 80px;\n    height: 80px;\n    margin: -40px 0 0 -40px;\n    -webkit-animation: spin 2s linear infinite;\n    animation: spin 2s linear infinite;\n}\n\n@-webkit-keyframes spin {\n  0% { -webkit-transform: rotate(0deg); }\n  100% { -webkit-transform: rotate(360deg); }\n}\n\n@keyframes spin {\n    0% { transform: rotate(0deg); }\n    100% { transform: rotate(360deg); }\n}\n\n/*\nTEXT LOADER\n*/\n\n#text-loader-container {\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 0px;\n\twidth: 100%;\n\theight: 100%;\n\tbackground-color: #fafafa;\n}\n\n#text-loader-container.hidden {\n\tdisplay: none;\n}\n\n#text-loader {\n\t-webkit-transform: translate-z(0);\n\t-ms-transform: translate-z(0);\n\tposition: absolute;\n\tleft: 50%;\n\ttop: 40%;\n\tz-index: 1;\n    border: 8px solid #f3f3f3;\n    border-top: 8px solid gray;\n    border-bottom: 8px solid gray;\n    border-radius: 50%;\n    width: 80px;\n    height: 80px;\n    margin: -40px 0 0 -40px;\n    -webkit-animation: textSpin 2s linear infinite;\n    animation: textSpin 2s linear infinite;\n}\n\n@-webkit-keyframes textSpin {\n  0% { -webkit-transform: rotate(0deg); }\n  100% { -webkit-transform: rotate(360deg); }\n}\n\n@keyframes textSpin {\n    0% { transform: rotate(0deg); }\n    100% { transform: rotate(360deg); }\n}\n\n/*\nSIGNET\n*/\n#bookmark {\n\tvisibility: hidden;\n\twidth: 50px;\n\tpadding: 8px;\n\tbackground-color: #333;\n\tcolor: #fff;\n\ttext-align: center;\n\tposition: absolute;\n\tz-index: 1;\n\tright: 20px;\n\ttop: 20px;\n\tfont-family: 'Verdana', sans-serif;\n}\n\n\n#bookmark.show {\n\tvisibility: visible;\n\t-webkit-animation: fadein 0.5s, fadeout 0.5s 2s;\n    animation: fadein 0.5s, fadeout 0.5s 2s;\n}\n\n@-webkit-keyframes fadein {\n    from {opacity: 0;}\n    to {opacity: 1;}\n}\n\n@keyframes fadein {\n    from {opacity: 0;}\n    to {opacity: 1;}\n}\n\n@-webkit-keyframes fadeout {\n    from {opacity: 1;}\n    to {opacity: 0;}\n}\n\n@keyframes fadeout {\n    from {opacity: 1;}\n    to {opacity: 0;}\n}\n\n/*\nBOOK NAVBAR BOTTOM\n*/\n#book-nav-bar-bottom {\n\tdisplay: none;\n\theight: 44px;\n\tposition: relative;\n}\n\n@media screen and (min-width: 768px) {\n\t#book-nav-bar-bottom {\n\t\tdisplay: block;\n\t}\n}\n\n#book-nav-bar-bottom-controls {\n\tposition: relative;\n\theight: 44px;\n\twidth: 550px;\n\tmargin: auto;\n\ttext-align: center;\n}\n\n#book-nav-bar-bottom-controls #center {\n\twidth: 120px;\n\theight: 100%;\n\tmargin: auto;\n}\n\n#book-nav-bar-bottom-controls #center #backward-large {\n\tfloat: left;\n\tfont-size: 1.6em;\n}\n\n#book-nav-bar-bottom-controls #center #forward-large {\n\tfloat: right;\n\tfont-size: 1.6em;\n}\n\n#book-nav-bar-bottom-controls button {\n\toutline: none;\n\theight: 100%;\n\tbackground-color: transparent;\n\tdisplay: inline-block;\n\tcolor: rgba(0, 0, 0, 0.54);\n\tmax-width: 56px;\n}\n\n#book-nav-bar-bottom-controls #open-toc-large {\n\tposition: absolute;\n\ttop: 0px;\n\tright: 0px;\n\tpadding-bottom: 10px;\n}\n\n#book-nav-bar-bottom-controls #open-options-medium {\n\tposition: absolute;\n\ttop: 0px;\n\tright: 56px;\n\tpadding-bottom: 10px;\n}\n\n#book-nav-bar-bottom-controls #home-large {\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 0px;\n\tpadding-bottom: 10px;\n}\n\n#book-nav-bar-bottom-controls #add-bookmark-large {\n\tposition: absolute;\n\ttop: 0px;\n\tleft: 56px;\n\tpadding-bottom: 10px;\n}\n\n@media screen and (min-width: 1366px) {\n\t#book-nav-bar-bottom-controls #open-toc-large, \n\t#book-nav-bar-bottom-controls #home-large, \n\t#book-nav-bar-bottom-controls #open-options-medium, \n\t#book-nav-bar-bottom-controls #add-bookmark-large {\n\t\tdisplay: none;\n\t}\n}\n\n/*\nBOOK NAV-BAR-BOTTOM-SMALL\n*/\n\n#book-nav-bar-bottom-small {\n\tdisplay: block;\n\theight: 30px;\n\tposition: relative;\n\tmargin: auto;\n\tbackground-color: #333;\n\ttext-align: center;\n}\n\n@media screen and (min-width: 768px) {\n\t#book-nav-bar-bottom-small {\n\t\tdisplay: none;\n\t}\n}\n\n#book-nav-bar-bottom-small .btn {\n\tdisplay: inline-block;\n\tborder: none;\n\tbackground-color: transparent;\n\theight: 100%;\n\tpadding: 3px 0px 0px 0px;\n\tmargin: 0px;\n\toutline: none;\n\twidth: 24%;\n}\n\n#book-nav-bar-bottom-small .material-icons {\n\tcolor: rgb(152, 152, 152);\n}\n\n/*\nBOOKCONTAINER\n*/\n#bookContainer {\n\tfont-family: 'Georgia', serif;\n\tposition: relative;\n\tcolor: #000;\n\topacity: 0.0;\n\tmargin: auto;\n\ttransition: opacity 0.4s;\n\t-webkit-transition: opacity 0.4s;\n\t-moz-transition: opacity 0.4s;\n\t-o-transition: opacity 0.4s;\n}\n\n#bookContainer.show {\n\topacity: 1.0;\n}\n/*\nTEXTCONTAINER\n*/\n[data-wb-text-container] {\n\tmargin: auto;\n\tbackground-color: #fafafa;\n\twill-change: transform;\n}\n\n/*\nTOC-LARGE-DEVICE, TAB-OPTIONS, TAB-INFOS, HOME\n*/\n\n#toc-large-device, #tab-infos, #tab-options {\n  position: absolute;\n  top: 0px;\n  right: -40%;\n  width: 33%;\n  transition: right 0.5s;\n  -webkit-transition : right 0.5s;\n  -moz-transition : right 0.5s;\n  -o-transition: right 0.5s;\n  display: none;\n  background-color: #fafafa;\n}\n\n@media screen and (min-width: 1366px) {\n\n\t#toc-large-device, #tab-infos, #tab-options {\n\t\tdisplay: block\n\t}\n}\n\n#toc-large-device.open, #tab-infos.open, #tab-options.open {\n\tright: 0px;\n}\n\n#toc-large-device-container, #tab-infos-container, #tab-options-container {\n\twidth: 100%;\n\tbackground-color: #fafafa;\n\toverflow-y: auto;\n\tpadding: 0px 16px;\n}\n\n#toc-large-device-container .header, #tab-infos-container .header, #tab-options-container .header {\n\tpadding: 16px;\n\tborder-bottom: 1px solid #ddd;\n\ttext-align: center;\n}\n\n/*\ntoc-large-device\n*/\n#toc-large-device-container [data-wb-toc] {\n\tbackground-color: #fafafa;\n\tposition: relative;\n\theight: 100%;\n\twidth: 100%;\n}\n\n/*\ntab-infos\n*/\n#tab-infos-container .content {\n\tpadding: 16px 0px;\n}\n\n#tab-infos-container p {\n\tmargin: 0px;\n\tpadding: 8px;\n}\n\n#tab-infos-container ul {\n\tmargin: 0px;\n\tpadding-left: 10px;\n\tlist-style-type: none;\n}\n\n#tab-infos-container ul li {\n\tpadding: .5em .5em;\n}\n\n#tab-infos-container .contrib-role {\n\ttext-transform: capitalize;\n}\n\n/*\ntab-options\n*/\n#tab-options-container {\n\ttext-align : center;\n\tpadding-bottom: 16px;\n}\n\n#tab-options-container #font-size-container-large,\n#tab-options-container #font-family-container-large {\n\twidth: 215px;\n\tmargin: auto;\n\tpadding: 16px 0px;\n}\n\n#tab-options-container #font-family-container-large > p,\n#tab-options-container #font-size-container-large > p {\n\tmargin-bottom: 7px;\n}\n\n#tab-options-container .col-left {\n\tfloat: left;\n\twidth: 50%;\n}\n\n#tab-options-container .col-right {\n\tfloat: right;\n\twidth: 50%;\n}\n\n#tab-options-container #font-size-container-large {\n\tclear: both;\n}\n\n#tab-options-container label {\n\twidth: 50%;\n\ttext-align : left;\n}\n\n#tab-options-container .options-title {\n\tfont-variant: small-caps;\n\tletter-spacing: 1.5px;\n\tfont-size: 1.2em;\n}\n\n/*\nBOOK COMMANDS\n*/\n#book-commands {\n\tposition: fixed;\n\tleft: 32px;\n\twidth: 75px;\n\tdisplay: none;\n}\n\n@media screen and (min-width: 1366px) {\n\t#book-commands {\n\t\tdisplay: block;\n\t}\n}\n\n#close-toc-large-device, #close-tab-infos, #close-tab-options {\n    position: absolute;\n\tright: 100%;\n\ttop: 0px;\n\theight: 37px;\n\tmargin-right: 16px;\n\toutline: none;\n\tbackground-color: #fafafa;\n\tfont-family: 'Georgia', serif;\n\tfont-size: 1.2em;\n}\n\n#book-commands button {\n    position: absolute;\n\tright: 0px;\n\twidth: 80px;\n\theight: 37px;\n\tmargin-right: 16px;\n\toutline: none;\n\tfont-family: 'Georgia', serif;\n\tfont-size: 1em;\n}\n\n#book-commands button:hover {\n\tbox-shadow: 2px 3px 6px 2px rgba(0,0,0,0.2)\n}\n\n#toggle-toc-large-device {\n\ttop: 0px;\n}\n\n#toggle-tab-options {\n\ttop: 48px;\n}\n\n#toggle-tab-infos {\n\ttop: 96px;\n}\n\n#tab-add-bookmark {\n\ttop: 144px;\n}\n\n#tab-home-link {\n\ttop: 192px;\n}\n\n/*\nswing-container, swing-bar\n*/\n/*\nif tab.open : swing-container to left\n*/\n#swing-container {\n\tmargin-right: 0px;\n\ttransition: margin-right 0.8s;\n\t-webkit-transition : margin-right 0.8s;\n\t-moz-transition : margin-right 0.8s;\n    -o-transition: margin-right 0.8s;\n\t\n}\n\n#swing-container.left {\n\t\tmargin-right: 0px;\n\t}\n\n@media screen and (min-width: 1366px) {\n\t#swing-container.left {\n\t\tmargin-right: 33%;\n\t}\n}\n\n/*\nif tab.open : swing-bar to left\n*/\n#swing-bar {\n\tmargin-right: 0px;\n\ttransition: margin-right 0.9s;\n\t-webkit-transition : margin-right 0.9s;\n\t-moz-transition : margin-right 0.9s;\n    -o-transition: margin-right 0.9s;\n}\n\n#swing-bar.left {\n\tmargin-right: 0px;\n}\n\n@media screen and (min-width: 1366px) {\n\t#swing-bar.left {\n\t\tmargin-right: 33%;\n\t}\n}\n\n/*\nTOC, OPTIONS (< 1366px)\n*/\n#toc, #options, #options-medium {\n\tposition: absolute;\n\ttop: -1000px;\n\twidth: 100%;\n\theight: 100%;\n\tz-index: 1000;\n\toverflow-y: auto;\n/*\n\ttransition: top 0.4s;\n\t-webkit-transition : top 0.4s;\n\t-moz-transition : top 0.4s;\n    -o-transition: top 0.4s;\n*/\n\tpadding: 0px;\n\tbackground-color: #fafafa;\n}\n\n#toc.open, #options.open, #options-medium.open {\n\ttop: 0px;\n}\n\n#toc > div, #options > div, #options-medium > div {\n\tbackground-color: #fafafa;\n\tpadding: 0px 16px;\n}\n\n#close-toc, #close-options, #close-options-medium {\n\tposition: absolute;\n\tright: 0;\n\ttop: 0;\n\tline-height: 27px;\n\tfont-size: 2em;\n\tfont-family: 'Georgia', sans-serif;\n\tcolor: #bbb;\n\tpadding: 8px 16px;\n}\n\n/*\ntoc\n*/\n#toc-header {\n\tmargin-bottom: 30px;\n\tmargin-top: 20px;\n\tpadding: 16px 0px;\n\tborder-bottom: 1px solid #ddd;\n\ttext-align: center;\n}\n\n#toc-header p {\n\tmargin: 8px;\n}\n\n#toc ul, #toc-large-device ul {\n\tpadding: 0px;\n}\n\n#toc li, #toc-large-device li {\n\tlist-style-type: none;\n\tpadding: .5em .5em;\n}\n\n#toc a.wb-link, #toc-large-device a.wb-link {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: gray;\n\tpadding: 0px;\n}\n\n#toc a.wb-link:hover, #toc-large-device a.wb-link:hover {\n\tdisplay: inline-block;\n\twidth: 100%;\n\tborder: none;\n\tcolor: #000;\n}\n\n#toc li.current a.wb-link, #toc-large-device li.current a.wb-link {\n\tcolor: #000;\n\toutline: none;\n\tfont-style: italic;\n}\n\n#toc .wb-toc-item-title, #toc-large-device .wb-toc-item-title {\n\tfloat: left;\n\tvertical-align: bottom;\n}\n\n#toc [data-wb-element-page-number], #toc-large-device [data-wb-element-page-number] {\n\tfloat: right;\n\tvertical-align: bottom;\n}\n\n/*options content\n*/\n#options, #options-medium {\n\ttext-align: center;\n}\n\n#options .options-header, #options-medium .options-header {\n\tpadding: 16px 0px;\n\tborder-bottom: 1px solid #ddd;\n\tletter-spacing: 1.5px;\n}\n\n#options #font-size-container, #options-medium #font-size-container,\n#options #font-family-container, #options-medium #font-family-container {\n\twidth: 215px;\n\tmargin: auto;\n\tpadding: 16px 0px;\n}\n\n#options #font-family-container > p, #options-medium #font-family-container > p,\n#options #font-size-container > p, #options-medium #font-size-container > p {\n\tmargin-bottom: 7px;\n}\n\n#options .col-left, #options-medium .col-left {\n\tfloat: left;\n\twidth: 50%;\n}\n\n#options .col-right, #options-medium .col-right {\n\tfloat: right;\n\twidth: 50%;\n}\n\n#options #font-size-container, #options-medium #font-size-container {\n\tclear: both;\n}\n\n#options label {\n\twidth: 50%;\n}\n\n/*\nTOP\n*/\n#top {\n\tposition: absolute;\n\ttop: 0px;\n\tbox-sizing: border-box;\n\t-webkit-box-sizing: border-box;\n\t-moz-box-sizing: border-box;\n\tpadding-top: 12px;\n\ttext-align: center;\n\twidth: 100%;\n\theight: 30px;\n}\n\n#top .wb-current-section-title {\n\tdisplay: inline-block;\n\twidth: 80%;\n\twhite-space: nowrap;\n\tfont-size: 0.85em;\n\toverflow: hidden;\n\ttext-overflow: ellipsis;\n\t-o-text-overflow: ellipsis;\n\topacity: 1;\n\ttransition: opacity 0.4s;\n\t-webkit-transition: opacity 0.4s;\n\t-moz-transition: opacity 0.4s;\n\t-o-transition: opacity 0.4s;\n}\n\n/*\nBOTTOM\n*/\n#bottom {\n\tposition: absolute;\n\tbottom: 0px;\n\tdisplay: inline-block;\n\theight: 30px;\n\twidth: 100%;\n\ttext-align: center;\n\tbackground-color: transparent;\n}\n\n#bottom span {\n\tdisplay: inline-block;\n\tmin-width: 42px;\n\tmargin: 0px;\n\tmargin-top: 0px;\n\tfont-size: 1em;\n\tbackground-color: transparent;\n\tmin-width: 25px;\n\theight: 100%;\n\tpadding: 0px 16px 0px 16px;\n\topacity: 1;\n\ttransition: opacity 0.4s;\n\t-webkit-transition: opacity 0.4s;\n\t-moz-transition: opacity 0.4s;\n\t-o-transition: opacity 0.4s;\n}\n\n/*\nTEXT*/\n\n/*\nTEXT\n*/\n[data-wb-text] {\n/*\n\tfont-family: Noto Serif, Georgia, serif;\n*/\n/*\n\tfont-size: 14px;\n*/\n\tline-height: 1.5em;\n\ttext-align: justify;\n\ttext-justify: inter-word;\n\topacity: 1;\n\ttransition: opacity 0.4s;\n\t-webkit-transition: opacity 0.4s;\n\t-moz-transition: opacity 0.4s;\n\t-o-transition: opacity 0.4s;\n\twill-change: transform;\n\ttransform: translateZ(0);\n\t-webkit-transform: translate-z(0);\n\t-ms-transform: translate-z(0);\n}\n\n\n\n@media screen and (min-width: 768px) {\n    [data-wb-text] {\n        font-size: 16px;\n        line-height: 1.5em;\n    }\n}\n\n[data-wb-text] p {\n\tmargin-bottom: 0px;\n\tmargin-top: 0px;\n\ttext-indent: 1.5em;\n}\n\n/*\nINSIDE TEXT\n* \n* \n*/\n\n/*\nTITLES\n*/\n\n[data-wb-text] #cover {\n\topacity: 0.9;\n}\n\n/*\nDIV FIN\n*/\n[data-wb-text] #fin {\n\ttext-align: center;\n\ttext-transform: uppercase;\n\tletter-spacing: 2px;\n\t\n}\n\n#fin p {\n\tpadding-top: 20%;\n\ttext-indent: 0px;\n}\n\np.section-title, p.notes-title, p.wb-toc-title {\n\tfont-size: 1.25em;\n\ttext-indent: 0px;\n}\n\np.notes-title {\n\tborder-bottom: 1px solid black;\n\tmargin-bottom: 0.5em;\n}\n\np.section-title {\n\tpadding-top: 3.5em;\n\tmargin-top: 0px;\n\tmargin-bottom: 1.5em;\n\ttext-indent: 0px;\n\tline-height: 2em;\n}\n\np.section-title.margin-small {\n\tmargin-bottom: 0.5em;\n}\n\np.section-subtitle {\n\tfont-size: 1em;\n\ttext-indent: 0px;\n\tmargin-bottom: 1.5em;\n}\n\np.section-subtitle_large {\n\tfont-size: 1.25em;\n\ttext-indent: 0px;\n\tmargin-bottom: 1.5em;\n}\n\n#cover.wb-section {\n\ttext-align: center;\n}\n\n#cover-author, #cover-title, #cover-logo {\n\tmargin: 0px;\n\ttext-indent: 0px;\n}\n\np.note {\n\ttext-indent: 0px;\n}\n\n/*\nTEXT EXERGUE\n*/\n[data-wb-text] div.text-exergue {\n\ttext-align: right;\n\tpadding-top: 10em;\n\tpadding-left: 1.5em\n}\n\n[data-wb-text] div.text-exergue p.text-exergue {\n\tpadding-top: 0em;\n}\n\n[data-wb-text] p.sign-exergue {\n\tpadding-top: 1em;\n\tpadding-right: 1.5em\n}\n\n/*\nNO-BREAK\n*/\n[data-wb-text] .no-break-inside {\n\tpage-break-inside: avoid;\n}\n\n/*\nVERSES\n*/\n[data-wb-text] .verses {\n\tmargin: 1.5em 0 1.5em 2.5em;\n\tfont-size: 0.9em;\n}\n\n[data-wb-text] .verses p {\n\ttext-indent: -1em;\n}\n\n[data-wb-text] p.verses-signature {\n\ttext-align: right;\n\tfont-size: 0.9em;\n\tpadding-bottom: 1.5em;\n\tpadding-right: 1.5em;\n}\n\n/*\nSIGNATURE\n*/\n[data-wb-text] .signature {\n\ttext-align: right;\n\tpadding-bottom: 1.5em;\n\tpadding-right: 1.5em\n}\n\n/*\nPADDING\n*/\n[data-wb-text] .padding-top-35 {\n\tpadding-top: 3.5em;\n}\n\n\n/*\nLINES BEFORE/AFTER\n*/\n[data-wb-text] p.p_half_line_before {\n\tmargin-top: 0.75em;\n}\n\n[data-wb-text] p.p_line_before {\n\tmargin-top: 1.5em;\n}\n\n[data-wb-text] p.p_2line_before {\n\tmargin-top: 3em;\n}\n\n[data-wb-text] p.p_line_after {\n\tmargin-bottom: 1.5em;\n}\n\n/*\nLINE-HEIGHT\n*/\n[data-wb-text] p.line_height_one {\n\tline-height: 1em;\n\tpadding-top: 0.5em;\n}\n\n/*\nSUP\n*/\n[data-wb-text] sup.line_height_one {\n\tline-height: 1em;\n}\n\n\n/*\nSEPARATION\n*/\n[data-wb-text] p.separation {\n\ttext-indent: 0px;\n\ttext-align: center;\n\tmargin-top: 1.5em;\n\tmargin-bottom: 1.5em;\n\tline-height: 1em;\n\tfont-size: 0.8em;\n}\n\n/*\nPOINTS DE SUSPENSION\n*/\n\n[data-wb-text] p.points {\n\ttext-indent: 0px;\n\twidth: 100%;\n\toverflow: hidden;\n\tpadding-left: 0em;\n}\n\n[data-wb-text] p.points span {\n\tpadding-right: 1.5em;\n}\n\n/*\nNEGATIVE MARGIN\n*/\n\n[data-wb-text] p.negative_margin {\n\tmargin-top:-1.5em;\n\ttext-indent: 0px;\n}\n\n[data-wb-text] p.negative_margin span {\n\tbackground-color: #fafafa;\n\tpadding-left:0.5em;\n\tpadding-right: 0.5em;\n\tfont-size: 0.9em;\n}\n\n/*\nNOTES\n*/\n[data-wb-text] .note a.wb-link {\n\tcolor: #006dcc;\n}\n\n[data-wb-text] .note-section p {\n\tfont-size: 0.9em;\n}\n\n[data-wb-text] .note-section p.note {\n\tmargin-top: 1.5em;\n}\n\n[data-wb-text] .note-section p.notes-title {\n\tfont-size: 1.25em;\n}\n\n/*\nDIVERS\n*/\n\n[data-wb-text] .font-small-9 {\n\tfont-size: 0.9em;\n}\n\n[data-wb-text] .font-small-8 {\n\tfont-size: 0.8em;\n}\n\n[data-wb-text] p.no-indent {\n\ttext-indent: 0px;\n}\n\n[data-wb-text] p.indent-3 {\n\ttext-indent: 3em;\n}\n\n[data-wb-text] p.indent-6 {\n\ttext-indent: 6em;\n}\n\n/*\nHYPHENATION\n*/\n[data-wb-text] p, .hyphenate {\n  hyphens: auto;\n  -webkit-hyphens: auto;\n  -ms-hyphens: auto;\n  -moz-hyphens: auto;\n  -o-hyphens: auto;\n}\n[data-wb-text] p.section-title, [data-wb-text] #cover p, .no-hyphenate {\n  hyphens: none;\n  -webkit-hyphens: none;\n  -ms-hyphens: none;\n  -moz-hyphens: none;\n  -o-hyphens: none;\n}\n", ""]);
 
 // exports
 
@@ -13184,7 +13142,7 @@ var _authors = __webpack_require__(82);
 
 var _authors2 = _interopRequireDefault(_authors);
 
-var _screenfull = __webpack_require__(9);
+var _screenfull = __webpack_require__(15);
 
 var _screenfull2 = _interopRequireDefault(_screenfull);
 

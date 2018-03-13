@@ -4,7 +4,6 @@ import localStore from '../../services/localStore';
 import WebBook from '../../../lib/wb/WebBook';
 import css from './book-read.css';
 import Hammer from 'hammerjs';
-import screenfull from 'screenfull';
 
 let bookReadTemplate = require('./book-read.ejs');
 //book.js
@@ -31,21 +30,10 @@ const book = function(container) {
 		let bookNavBarBottomSmall = bookContainer.querySelector('#book-nav-bar-bottom-small');
 		let fontSizeValidLarge = bookContainer.querySelector('#font-size-valid-large');
 		let fontSizeValid = bookContainer.querySelector('#font-size-valid');
+		//let cover = text.querySelector("#cover.wb-section");
 		
 		//DIMENSIONS
-		let h = 0;
-		let w = 0;
-		let ww = window.innerWidth;
-		//let wh = window.innerHeight;
-		let wh;
-		if(window.visualViewport) {
-			wh = window.visualViewport.height;
-		} else {
-			wh = window.innerHeight;
-		}
-		bookContainer.style.height = wh + 'px';
-		document.body.style.height = wh + 'px';
-		let marginY, marginX, font, fontSize, lineHeight, top;
+		let h, w, marginY, marginX, font, fontSize, lineHeight, top;
 		
 		//font-family
 		font = localStore.getFont() ? localStore.getFont() : bk.styles.font;
@@ -54,12 +42,12 @@ const book = function(container) {
 		bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
 		
 		//width (responsive)
-		if(ww >= 768) {
+		if(window.innerWidth >= 768) {
 			utils.addClass('[data-wb-text-container]', 'card-4');
 			//max-height: 720
-			if(wh > 832) {//748 + navBarBottom height (1*44) + textContainer minimum top * 2 (2*20)
+			if(window.innerHeight > 832) {//748 + navBarBottom height (1*44) + textContainer minimum top * 2 (2*20)
 				h = 748;
-				top = (wh-748-44)/2;
+				top = (window.innerHeight-748-44)/2;
 				textContainer.style.top = top-15 + 'px';
 				tocLarge.style.marginTop = top-15 + 'px';
 				tabOptions.style.marginTop = top+33 + 'px';
@@ -67,7 +55,7 @@ const book = function(container) {
 				bookCommands.style.top = top-16 + 'px';
 				bookNavBarBottom.style.marginTop = top-15 + 'px';
 			} else {
-				h = wh-44-40;//navBarBottom height (1*44) + textContainer top * 2 (2*20)
+				h = window.innerHeight-44-40;//navBarBottom height (1*44) + textContainer top * 2 (2*20)
 				textContainer.style.top ='15px';
 				tocLarge.style.marginTop = '15px';
 				tabOptions.style.marginTop = '63px';
@@ -79,7 +67,7 @@ const book = function(container) {
 			fontSize = localStore.getFontSize('large') ? localStore.getFontSize('large') : 16;
 			text.style.fontSize = fontSize+'px';
 			//cover.style.fontSize = '16px';
-			if(ww < 1366) {
+			if(window.innerWidth < 1366) {
 				for(let i=0; i<fontSizesMedium.length; i++) {
 					if(fontSizesMedium[i].value==fontSize) {
 						fontSizesMedium[i].checked=true;
@@ -105,8 +93,8 @@ const book = function(container) {
 			}
 		 } else {
 			 utils.removeClass('[data-wb-text-container]', 'w3-card-4');
-			 h = wh-30;//30px = nav-bar-bottom-small height
-			 w = ww;
+			 h = window.innerHeight-30;//30px = nav-bar-bottom-small height
+			 w = window.innerWidth;
 			 bookNavBarBottomSmall.style.width = w + 'px';
 			 fontSize = localStore.getFontSize('small') ? localStore.getFontSize('small') : 14;
 			 text.style.fontSize = fontSize+'px';
@@ -130,7 +118,7 @@ const book = function(container) {
 		 marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*2;
 		 
 		//marginX : smaller for very small devices
-		if(ww > 420) {
+		if(window.innerWidth > 420) {
 			marginX = 50;
 		} else {
 			marginX = 25;
@@ -139,7 +127,7 @@ const book = function(container) {
   
 		let settings = () => {
 			
-			if(ww >= 1366) {
+			if(window.innerWidth >= 1366) {
 				//Toc-large height
 				let div = bookContainer.querySelector("#toc-large-device div");
 				if(div) {
@@ -148,28 +136,14 @@ const book = function(container) {
 			}
 			
 			let resizeBook = () => {
-				document.body.style.height = window.innerHeight + 'px';
-				h = 0;
-				w = 0;
-				let ww = window.innerWidth;
-				//let wh = window.innerHeight;
-				let wh;
-				if(window.visualViewport) {
-					wh = window.visualViewport.height;
-				} else {
-					wh = window.innerHeight;
-				}
-				document.body.style.height = wh + 'px';
-				//document.body.style.overflow = 'hidden';
-				bookContainer.style.height = wh + 'px';
 				if(!location.hash.match(/#\/[^\/]+\/read$/)) { return; }
-				//document.body.style.height = '100%';
-				if(ww >= 768) {
+				document.body.style.height = '100%';
+				if(window.innerWidth >= 768) {
 					utils.addClass('[data-wb-text-container]', 'card-4');
 					//max-height: 720
-					if(wh >= 832) {//748 + navBarBottom height (1*44) + textContainer minimum top * 2 (2*20)
+					if(window.innerHeight >= 832) {//748 + navBarBottom height (1*44) + textContainer minimum top * 2 (2*20)
 						h = 748;
-						top = (wh-748-44)/2;
+						top = (window.innerHeight-748-44)/2;
 						textContainer.style.top = top-15 + 'px';
 						tocLarge.style.marginTop = top-15 + 'px';
 						tabOptions.style.marginTop = top+33 + 'px';
@@ -177,7 +151,7 @@ const book = function(container) {
 						bookCommands.style.top = top-16 + 'px';
 						bookNavBarBottom.style.marginTop = top-15 + 'px';
 					} else {
-						h = wh-44-40;//navBars height *2 (2*44) + textContainer top * 2 (2*20)
+						h = window.innerHeight-44-40;//navBars height *2 (2*44) + textContainer top * 2 (2*20)
 						textContainer.style.top ='15px';
 						tocLarge.style.marginTop = '15px';
 						tabInfos.style.marginTop = '63px';
@@ -189,7 +163,7 @@ const book = function(container) {
 					fontSize = localStore.getFontSize('large') ? localStore.getFontSize('large') : 16;
 					text.style.fontSize = fontSize+'px';
 					//cover.style.fontSize = '16px';
-					if(ww < 1366) {
+					if(window.innerWidth < 1366) {
 						for(let i=0; i<fontSizesMedium.length; i++) {
 							if(fontSizesMedium[i].value==fontSize) {
 								fontSizesMedium[i].checked=true;
@@ -205,8 +179,8 @@ const book = function(container) {
 					}
 				} else {
 					utils.removeClass('[data-wb-text-container]', 'card-4');
-					h = wh-30;//30px = nav-bar-bottom-small height
-					w = ww;
+					h = window.innerHeight-30;//30px = nav-bar-bottom-small height
+					w = window.innerWidth;
 					bookNavBarBottomSmall.style.width = w + 'px';
 					fontSize = localStore.getFontSize('small') ? localStore.getFontSize('small') : 14;
 					text.style.fontSize = fontSize+'px';
@@ -219,7 +193,7 @@ const book = function(container) {
 					textContainer.style.top ='0px';
 				}
 				
-				if(ww >= 1366) {
+				if(window.innerWidth >= 1366) {
 					//Toc-large height
 					let div = bookContainer.querySelector("#toc-large-device div");
 					if(div) {
@@ -232,7 +206,7 @@ const book = function(container) {
 				marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*2;
 				
 				//marginX : smaller for very small devices
-				if(ww > 420) {
+				if(window.innerWidth > 420) {
 					marginX = 50;
 				} else {
 					marginX = 25;
@@ -252,43 +226,35 @@ const book = function(container) {
 				
 				book.init(tableInfos)
 				.then( resolve => {
-					document.body.style.height = window.innerHeight + 'px';
-					//document.body.style.overflow = 'visible';
 					localStore.setTableInfos({ id: bk.id,
 									    dim: w + 'x' + h,
 									    font: font,
 									    fontSize: fontSize,
 									    tableInfos: resolve });
 				});
-				
-				
 			}
 						 
 			//on resize
-			//let rtime;
-			//let timeout = false;
-			//let delta = 600;
-			//window.addEventListener('resize', event => {
-				//if(!location.hash.match(/#\/[^\/]+\/read$/)) { return; }
-				//rtime = new Date();
-				//if (timeout === false) {
-					//timeout = true;
-					//setTimeout(resizeend, delta);
-				//}
+			let rtime;
+			let timeout = false;
+			let delta = 600;
+			window.addEventListener('resize', event => {
+				rtime = new Date();
+				if (timeout === false) {
+					timeout = true;
+					setTimeout(resizeend, delta);
+				}
 			
-			//}, false);
+			}, false);
 			
-			//function resizeend() {
-				//if (new Date() - rtime < delta) {
-					//setTimeout(resizeend, delta);
-				//} else {
-					//timeout = false;
-					//resizeBook();
-				//}               
-			//}
-			
-			window.addEventListener('resize', resizeBook, false);
-			window.addEventListener('scroll', resizeBook, false);
+			function resizeend() {
+				if (new Date() - rtime < delta) {
+					setTimeout(resizeend, delta);
+				} else {
+					timeout = false;
+					resizeBook();
+				}               
+			}
 		
 		
 			//SWIPE - forward, backward on swipe left and right (hammer.js)
@@ -296,7 +262,6 @@ const book = function(container) {
 			//delete Hammer.defaults.cssProps.userSelect;
 			let swipeContainer = new Hammer(bookContainer.querySelector('[data-wb-text-container]'));
 			swipeContainer.on("swiperight swipeleft", event => {
-				event.preventDefault();
 				if(event.type==="swipeleft") {
 					book.forward();
 				} else if(event.type==="swiperight") {
@@ -488,9 +453,6 @@ const book = function(container) {
 					let prevLocation = dataStore.getData('location').prevLocation;
 					prevLocation = prevLocation && prevLocation.match(/#\/[^\/]+\/read$/) ? '#/' : prevLocation;
 					location.hash = prevLocation ? prevLocation : '#/';
-					if(screenfull.enabled && screenfull.isFullscreen) {
-						screenfull.exit();
-					}
 				}, false);
 			}
 			
@@ -498,6 +460,10 @@ const book = function(container) {
 			let addBookmarks = bookContainer.querySelectorAll('.add-bookmark');
 			for(let i=0; i<addBookmarks.length; i++) {
 				addBookmarks[i].addEventListener('click', event => {
+					//if(book.checkFirstPage()) { 
+						//localStore.removeBkmrk(bk.id);
+						//return;
+					//}
 					let newBmrk = book.getBookmark();
 					let bookmark = document.querySelector('#bookmark');
 					localStore.setBkmrk(bk.id, newBmrk);
@@ -505,8 +471,7 @@ const book = function(container) {
 					setTimeout(function(){ bookmark.className = bookmark.className.replace("show", ""); }, 2500);
 				}, false);
 			}
-		
-			//FONT-SIZE
+//FONT-SIZE
 			//large
 			for(let i=0; i<fontSizesLarge.length; i++) {
 				fontSizesLarge[i].addEventListener('click', event => {
@@ -759,7 +724,6 @@ const book = function(container) {
 		 
 		 book.init(tableInfos)
 		 .then( table => {
-			 document.body.style.height = window.innerHeight + 'px';
 			 if(localStore.getBkmrk(bk.id)) {
 				let bkmrk = localStore.getBkmrk(bk.id);
 				book.goToBookmark(bkmrk);
@@ -773,8 +737,7 @@ const book = function(container) {
 			return table;
 		 })
 		 .then (table => {
-			 document.body.style.height = window.innerHeight + 'px';
-			//document.body.style.overflowY = 'visible';
+			document.body.style.overflowY = 'visible';
 			utils.addClass('#book-loader-container', 'hidden');
 			bookContainer.className = 'show';
 			return table;
@@ -831,12 +794,7 @@ const book = function(container) {
 	utils.setHTML('title','&Eacute;quivoques - ' + bk.title);
 	//START LOADER
 	//document.body.style.height = window.innerHeight + 'px';
-	//if(window.visualViewport) {
-		//document.body.style.height = window.visualViewport.height + 'px';
-	//} else {
-		//document.body.style.height = window.innerHeight + 'px';
-	//}
-	//document.body.style.overflowY = 'hidden';
+	document.body.style.overflowY = 'hidden';
 	utils.removeClass('#book-loader-container','hidden');
 	
 	//BOOK CONTAINER
