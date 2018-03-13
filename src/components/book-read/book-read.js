@@ -471,7 +471,7 @@ const book = function(container) {
 					setTimeout(function(){ bookmark.className = bookmark.className.replace("show", ""); }, 2500);
 				}, false);
 			}
-//FONT-SIZE
+		//FONT-SIZE
 			//large
 			for(let i=0; i<fontSizesLarge.length; i++) {
 				fontSizesLarge[i].addEventListener('click', event => {
