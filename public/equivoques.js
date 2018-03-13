@@ -5020,7 +5020,9 @@ var book = function book(container) {
 			//}
 
 			window.addEventListener('resize', resizeBook, false);
-			window.addEventListener('scroll', resizeBook, false);
+			if (window.visualViewport) {
+				window.visualViewport.addEventListener('resize', resizeBook, false);
+			}
 
 			//SWIPE - forward, backward on swipe left and right (hammer.js)
 			// all sizes
