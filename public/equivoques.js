@@ -4986,6 +4986,7 @@ var book = function book(container) {
 					fontSize: fontSize });
 
 				book.init(tableInfos).then(function (resolve) {
+					document.body.style.height = window.innerHeight + 'px';
 					//document.body.style.overflow = 'visible';
 					_localStore2.default.setTableInfos({ id: bk.id,
 						dim: w + 'x' + h,
@@ -5475,6 +5476,7 @@ var book = function book(container) {
 			fontSize: fontSize });
 
 		book.init(tableInfos).then(function (table) {
+			document.body.style.height = window.innerHeight + 'px';
 			if (_localStore2.default.getBkmrk(bk.id)) {
 				var bkmrk = _localStore2.default.getBkmrk(bk.id);
 				book.goToBookmark(bkmrk);

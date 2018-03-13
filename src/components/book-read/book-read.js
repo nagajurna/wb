@@ -252,6 +252,7 @@ const book = function(container) {
 				
 				book.init(tableInfos)
 				.then( resolve => {
+					document.body.style.height = window.innerHeight + 'px';
 					//document.body.style.overflow = 'visible';
 					localStore.setTableInfos({ id: bk.id,
 									    dim: w + 'x' + h,
@@ -758,6 +759,7 @@ const book = function(container) {
 		 
 		 book.init(tableInfos)
 		 .then( table => {
+			 document.body.style.height = window.innerHeight + 'px';
 			 if(localStore.getBkmrk(bk.id)) {
 				let bkmrk = localStore.getBkmrk(bk.id);
 				book.goToBookmark(bkmrk);
