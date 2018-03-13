@@ -161,7 +161,7 @@ const book = function(container) {
 				//document.body.style.height = wh + 'px';
 				//document.body.style.height = window.screen.availHeight + 'px';
 				document.body.style.overflow = 'hidden';
-				//bookContainer.style.height = wh + 'px';
+				bookContainer.style.height = wh + 'px';
 				if(!location.hash.match(/#\/[^\/]+\/read$/)) { return; }
 				//document.body.style.height = '100%';
 				if(ww >= 768) {

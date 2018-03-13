@@ -2846,10 +2846,6 @@ var index = function () {
 			_localStore2.default.removeTableInfos();
 			_localStore2.default.setUserAgent(ua);
 		}
-
-		window.onscroll = function () {
-			document.body.style.height = window.innerHeight + 'px';
-		};
 	};
 
 	//function getData
@@ -4898,7 +4894,7 @@ var book = function book(container) {
 				//document.body.style.height = wh + 'px';
 				//document.body.style.height = window.screen.availHeight + 'px';
 				document.body.style.overflow = 'hidden';
-				//bookContainer.style.height = wh + 'px';
+				bookContainer.style.height = wh + 'px';
 				if (!location.hash.match(/#\/[^\/]+\/read$/)) {
 					return;
 				}
