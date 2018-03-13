@@ -36,15 +36,15 @@ const book = function(container) {
 		let h = 0;
 		let w = 0;
 		let ww = window.innerWidth;
-		//let wh = window.innerHeight;
-		let wh;
-		if(window.visualViewport) {
-			wh = window.visualViewport.height;
-		} else {
-			wh = window.innerHeight;
-		}
-		bookContainer.style.height = wh + 'px';
-		document.body.style.height = wh + 'px';
+		let wh = window.innerHeight;
+		//let wh;
+		//if(window.visualViewport) {
+			//wh = window.visualViewport.height;
+		//} else {
+			//wh = window.innerHeight;
+		//}
+		//bookContainer.style.height = wh + 'px';
+		//document.body.style.height = wh + 'px';
 		let marginY, marginX, font, fontSize, lineHeight, top;
 		
 		//font-family
@@ -104,7 +104,7 @@ const book = function(container) {
 				 }
 			}
 		 } else {
-			 utils.removeClass('[data-wb-text-container]', 'w3-card-4');
+			 utils.removeClass('[data-wb-text-container]', 'card-4');
 			 h = wh-30;//30px = nav-bar-bottom-small height
 			 w = ww;
 			 bookNavBarBottomSmall.style.width = w + 'px';
@@ -151,16 +151,16 @@ const book = function(container) {
 				h = 0;
 				w = 0;
 				let ww = window.innerWidth;
-				//let wh = window.innerHeight;
-				let wh;
-				if(window.visualViewport) {
-					wh = window.visualViewport.height;
-				} else {
-					wh = window.innerHeight;
-				}
-				document.body.style.height = wh + 'px';
+				let wh = window.innerHeight;
+				//let wh;
+				//if(window.visualViewport) {
+					//wh = window.visualViewport.height;
+				//} else {
+					//wh = window.innerHeight;
+				//}
+				//document.body.style.height = wh + 'px';
 				//document.body.style.overflow = 'hidden';
-				bookContainer.style.height = wh + 'px';
+				//bookContainer.style.height = wh + 'px';
 				if(!location.hash.match(/#\/[^\/]+\/read$/)) { return; }
 				//document.body.style.height = '100%';
 				if(ww >= 768) {
@@ -251,7 +251,7 @@ const book = function(container) {
 				
 				book.init(tableInfos)
 				.then( resolve => {
-					document.body.style.height = wh + 'px';
+					//document.body.style.height = wh + 'px';
 					//document.body.style.height = window.innerHeight + 'px';
 					//document.body.style.overflow = 'visible';
 					localStore.setTableInfos({ id: bk.id,
@@ -288,9 +288,6 @@ const book = function(container) {
 			//}
 			
 			window.addEventListener('resize', resizeBook, false);
-			if(window.visualViewport) {
-				window.visualViewport.addEventListener('resize',resizeBook, false);
-			}
 		
 		
 			//SWIPE - forward, backward on swipe left and right (hammer.js)
@@ -761,7 +758,7 @@ const book = function(container) {
 		 
 		 book.init(tableInfos)
 		 .then( table => {
-			 document.body.style.height = window.innerHeight + 'px';
+			 //document.body.style.height = window.innerHeight + 'px';
 			 if(localStore.getBkmrk(bk.id)) {
 				let bkmrk = localStore.getBkmrk(bk.id);
 				book.goToBookmark(bkmrk);
@@ -775,7 +772,7 @@ const book = function(container) {
 			return table;
 		 })
 		 .then (table => {
-			 document.body.style.height = wh + 'px';
+			 //document.body.style.height = wh + 'px';
 			 //document.body.style.height = window.innerHeight + 'px';
 			//document.body.style.overflowY = 'visible';
 			utils.addClass('#book-loader-container', 'hidden');
