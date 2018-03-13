@@ -294,6 +294,7 @@ const book = function(container) {
 			//delete Hammer.defaults.cssProps.userSelect;
 			let swipeContainer = new Hammer(bookContainer.querySelector('[data-wb-text-container]'));
 			swipeContainer.on("swiperight swipeleft", event => {
+				event.preventDefault();
 				if(event.type==="swipeleft") {
 					book.forward();
 				} else if(event.type==="swiperight") {
