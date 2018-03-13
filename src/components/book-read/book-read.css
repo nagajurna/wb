@@ -18,7 +18,7 @@ BOOK LOADER
 #book-loader {
 	-webkit-transform: translate-z(0);
 	-ms-transform: translate-z(0);
-	position: absolute;
+	position: fixed;
 	left: 50%;
 	top: 40%;
 	z-index: 1;
@@ -222,10 +222,14 @@ BOOK NAV-BAR-BOTTOM-SMALL
 #book-nav-bar-bottom-small {
 	display: block;
 	height: 30px;
-	position: relative;
+/*
+	position: fixed;
+	bottom: 0px;
+*/
 	margin: auto;
 	background-color: #333;
 	text-align: center;
+	z-index: 2000;
 }
 
 @media screen and (min-width: 768px) {
@@ -250,11 +254,25 @@ BOOK NAV-BAR-BOTTOM-SMALL
 }
 
 /*
+important for resize samsung navigator
+*/
+#book {
+	position: fixed;
+/*
+	height: 100%;
+*/
+	width: 100%;
+}
+
+/*
 BOOKCONTAINER
 */
 #bookContainer {
 	font-family: 'Georgia', serif;
 	position: relative;
+/*
+	height: 100%;
+*/
 	color: #000;
 	opacity: 0.0;
 	margin: auto;
@@ -267,6 +285,7 @@ BOOKCONTAINER
 #bookContainer.show {
 	opacity: 1.0;
 }
+
 /*
 TEXTCONTAINER
 */
@@ -602,7 +621,8 @@ toc
 	vertical-align: bottom;
 }
 
-/*options content
+/*
+options content
 */
 #options, #options-medium {
 	text-align: center;
@@ -746,11 +766,16 @@ TEXT
 	text-indent: 1.5em;
 }
 
+
 /*
 INSIDE TEXT
 * 
 * 
 */
+[data-wb-text] .wb-section {
+	margin-bottom: 300%;
+	min-height: 10%;
+}
 
 /*
 TITLES
@@ -1021,3 +1046,6 @@ HYPHENATION
   -moz-hyphens: none;
   -o-hyphens: none;
 }
+
+
+
