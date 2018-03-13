@@ -91,6 +91,10 @@ var index = (function() {
 			localStore.removeTableInfos();
 			localStore.setUserAgent(ua);
 		}
+		
+		window.onscroll = function() {
+			document.body.style.height = window.innerHeight + 'px'
+		  } 
 	}
 	
 	//function getData

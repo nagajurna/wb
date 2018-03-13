@@ -2846,6 +2846,10 @@ var index = function () {
 			_localStore2.default.removeTableInfos();
 			_localStore2.default.setUserAgent(ua);
 		}
+
+		window.onscroll = function () {
+			document.body.style.height = window.innerHeight + 'px';
+		};
 	};
 
 	//function getData
