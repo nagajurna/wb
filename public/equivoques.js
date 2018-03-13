@@ -4765,15 +4765,15 @@ var book = function book(container) {
 		var h = 0;
 		var w = 0;
 		var ww = window.innerWidth;
-		var wh = window.innerHeight;
-		//let wh;
-		//if(window.visualViewport) {
-		//wh = window.visualViewport.height;
-		//} else {
-		//wh = window.innerHeight;
-		//}
-		//bookContainer.style.height = wh + 'px';
-		//document.body.style.height = wh + 'px';
+		//let wh = window.innerHeight;
+		var wh = void 0;
+		if (window.visualViewport) {
+			wh = window.visualViewport.height;
+		} else {
+			wh = window.innerHeight;
+		}
+		bookContainer.style.height = wh + 'px';
+		//document.body.style.height = window.screen.availHeight + 'px';
 		var marginY = void 0,
 		    marginX = void 0,
 		    font = void 0,
@@ -4884,15 +4884,16 @@ var book = function book(container) {
 				h = 0;
 				w = 0;
 				var ww = window.innerWidth;
-				var wh = window.innerHeight;
-				//let wh;
-				//if(window.visualViewport) {
-				//wh = window.visualViewport.height;
-				//} else {
-				//wh = window.innerHeight;
-				//}
+				//let wh = window.innerHeight;
+				var wh = void 0;
+				if (window.visualViewport) {
+					wh = window.visualViewport.height;
+				} else {
+					wh = window.innerHeight;
+				}
 				//document.body.style.height = wh + 'px';
-				//document.body.style.overflow = 'hidden';
+				//document.body.style.height = window.screen.availHeight + 'px';
+				document.body.style.overflow = 'hidden';
 				//bookContainer.style.height = wh + 'px';
 				if (!location.hash.match(/#\/[^\/]+\/read$/)) {
 					return;
@@ -4987,7 +4988,7 @@ var book = function book(container) {
 				book.init(tableInfos).then(function (resolve) {
 					//document.body.style.height = wh + 'px';
 					//document.body.style.height = window.innerHeight + 'px';
-					//document.body.style.overflow = 'visible';
+					document.body.style.overflow = 'visible';
 					_localStore2.default.setTableInfos({ id: bk.id,
 						dim: w + 'x' + h,
 						font: font,
