@@ -33,6 +33,7 @@ const book = function(container) {
 		let fontSizeValid = bookContainer.querySelector('#font-size-valid');
 		
 		//DIMENSIONS
+		window.scrollTo(0,1);
 		let h, w, marginY, marginX, font, fontSize, lineHeight, top;
 		let ww = window.innerWidth;
 		let wh = window.innerHeight;
@@ -829,7 +830,6 @@ const book = function(container) {
 	//document.body.style.height = '100%';
 	c.innerHTML = bookReadTemplate({ book:bk });
 	utils.setHTML('title','&Eacute;quivoques - ' + bk.title);
-	window.scrollTo(0,1);
 	//START LOADER
 	//document.body.style.height = window.innerHeight + 'px';
 	//if(window.visualViewport) {
