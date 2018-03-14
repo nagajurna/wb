@@ -263,10 +263,6 @@ important for resize samsung navigator
 	height: 100%;
 */
 	width: 100%;
-	will-change: transform;
-	transform: translateZ(0);
-	-webkit-transform: translate-z(0);
-	-ms-transform: translate-z(0);
 }
 
 /*
@@ -298,9 +294,6 @@ TEXTCONTAINER
 	margin: auto;
 	background-color: #fafafa;
 	will-change: transform;
-	transform: translateZ(0);
-	-webkit-transform: translate-z(0);
-	-ms-transform: translate-z(0);
 }
 
 /*
