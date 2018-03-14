@@ -241,4 +241,5 @@ MODAL (INFOS)
 	right: 8px;
 	padding: 8px 8px;
 	background-color: #fafafa;
+	-webkit-backface-visibility: hidden;
 }

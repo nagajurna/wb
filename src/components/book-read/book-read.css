@@ -230,6 +230,7 @@ BOOK NAV-BAR-BOTTOM-SMALL
 	background-color: #333;
 	text-align: center;
 	z-index: 2000;
+	-webkit-backface-visibility: hidden;
 }
 
 @media screen and (min-width: 768px) {
