@@ -36,6 +36,8 @@ const book = function(container) {
 		let h, w, marginY, marginX, font, fontSize, lineHeight, top;
 		let ww = window.innerWidth;
 		let wh = window.innerHeight;
+		//console.log(wh);
+		//console.log(document.body.clientHeight);
 		//let wh;
 		//if(window.visualViewport) {
 			//wh = window.visualViewport.height;
@@ -53,12 +55,12 @@ const book = function(container) {
 		bookContainer.querySelector('#currentByTotal').style.fontFamily = font;
 		
 		//width (responsive)
-		if(window.innerWidth >= 768) {
+		if(ww >= 768) {
 			utils.addClass('[data-wb-text-container]', 'card-4');
 			//max-height: 720
-			if(window.innerHeight > 832) {//748 + navBarBottom height (1*44) + textContainer minimum top * 2 (2*20)
+			if(wh > 832) {//748 + navBarBottom height (1*44) + textContainer minimum top * 2 (2*20)
 				h = 748;
-				top = (window.innerHeight-748-44)/2;
+				top = (wh-748-44)/2;
 				textContainer.style.top = top-15 + 'px';
 				tocLarge.style.marginTop = top-15 + 'px';
 				tabOptions.style.marginTop = top+33 + 'px';
@@ -66,7 +68,7 @@ const book = function(container) {
 				bookCommands.style.top = top-16 + 'px';
 				bookNavBarBottom.style.marginTop = top-15 + 'px';
 			} else {
-				h = window.innerHeight-44-40;//navBarBottom height (1*44) + textContainer top * 2 (2*20)
+				h = wh-44-40;//navBarBottom height (1*44) + textContainer top * 2 (2*20)
 				textContainer.style.top ='15px';
 				tocLarge.style.marginTop = '15px';
 				tabOptions.style.marginTop = '63px';
@@ -78,7 +80,7 @@ const book = function(container) {
 			fontSize = localStore.getFontSize('large') ? localStore.getFontSize('large') : 16;
 			text.style.fontSize = fontSize+'px';
 			//cover.style.fontSize = '16px';
-			if(window.innerWidth < 1366) {
+			if(ww < 1366) {
 				for(let i=0; i<fontSizesMedium.length; i++) {
 					if(fontSizesMedium[i].value==fontSize) {
 						fontSizesMedium[i].checked=true;
@@ -104,8 +106,8 @@ const book = function(container) {
 			}
 		 } else {
 			 utils.removeClass('[data-wb-text-container]', 'card-4');
-			 h = window.innerHeight-30;//30px = nav-bar-bottom-small height
-			 w = window.innerWidth;
+			 h = wh-30;//30px = nav-bar-bottom-small height
+			 w = ww;
 			 bookNavBarBottomSmall.style.width = w + 'px';
 			 fontSize = localStore.getFontSize('small') ? localStore.getFontSize('small') : 14;
 			 text.style.fontSize = fontSize+'px';
@@ -129,7 +131,7 @@ const book = function(container) {
 		 marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*2;
 		 
 		//marginX : smaller for very small devices
-		if(window.innerWidth > 420) {
+		if(ww > 420) {
 			marginX = 50;
 		} else {
 			marginX = 25;
@@ -138,7 +140,7 @@ const book = function(container) {
   
 		let settings = () => {
 			
-			if(window.innerWidth >= 1366) {
+			if(ww >= 1366) {
 				//Toc-large height
 				let div = bookContainer.querySelector("#toc-large-device div");
 				if(div) {
@@ -161,12 +163,12 @@ const book = function(container) {
 				//bookContainer.style.height = wh + 'px';
 				if(!location.hash.match(/#\/[^\/]+\/read$/)) { return; }
 				//document.body.style.height = '100%';
-				if(window.innerWidth >= 768) {
+				if(ww >= 768) {
 					utils.addClass('[data-wb-text-container]', 'card-4');
 					//max-height: 720
-					if(window.innerHeight >= 832) {//748 + navBarBottom height (1*44) + textContainer minimum top * 2 (2*20)
+					if(wh >= 832) {//748 + navBarBottom height (1*44) + textContainer minimum top * 2 (2*20)
 						h = 748;
-						top = (window.innerHeight-748-44)/2;
+						top = (wh-748-44)/2;
 						textContainer.style.top = top-15 + 'px';
 						tocLarge.style.marginTop = top-15 + 'px';
 						tabOptions.style.marginTop = top+33 + 'px';
@@ -174,7 +176,7 @@ const book = function(container) {
 						bookCommands.style.top = top-16 + 'px';
 						bookNavBarBottom.style.marginTop = top-15 + 'px';
 					} else {
-						h = window.innerHeight-44-40;//navBars height *2 (2*44) + textContainer top * 2 (2*20)
+						h = wh-44-40;//navBars height *2 (2*44) + textContainer top * 2 (2*20)
 						textContainer.style.top ='15px';
 						tocLarge.style.marginTop = '15px';
 						tabInfos.style.marginTop = '63px';
@@ -186,7 +188,7 @@ const book = function(container) {
 					fontSize = localStore.getFontSize('large') ? localStore.getFontSize('large') : 16;
 					text.style.fontSize = fontSize+'px';
 					//cover.style.fontSize = '16px';
-					if(window.innerWidth < 1366) {
+					if(ww < 1366) {
 						for(let i=0; i<fontSizesMedium.length; i++) {
 							if(fontSizesMedium[i].value==fontSize) {
 								fontSizesMedium[i].checked=true;
@@ -202,8 +204,8 @@ const book = function(container) {
 					}
 				} else {
 					utils.removeClass('[data-wb-text-container]', 'card-4');
-					h = window.innerHeight-30;//30px = nav-bar-bottom-small height
-					w = window.innerWidth;
+					h = wh-30;//30px = nav-bar-bottom-small height
+					w = ww;
 					bookNavBarBottomSmall.style.width = w + 'px';
 					fontSize = localStore.getFontSize('small') ? localStore.getFontSize('small') : 14;
 					text.style.fontSize = fontSize+'px';
@@ -216,7 +218,7 @@ const book = function(container) {
 					textContainer.style.top ='0px';
 				}
 				
-				if(window.innerWidth >= 1366) {
+				if(ww >= 1366) {
 					//Toc-large height
 					let div = bookContainer.querySelector("#toc-large-device div");
 					if(div) {
@@ -229,7 +231,7 @@ const book = function(container) {
 				marginY = h%lineHeight!==0 ? lineHeight*2+((h%lineHeight)/2) : lineHeight*2;
 				
 				//marginX : smaller for very small devices
-				if(window.innerWidth > 420) {
+				if(ww > 420) {
 					marginX = 50;
 				} else {
 					marginX = 25;
@@ -827,6 +829,7 @@ const book = function(container) {
 	//document.body.style.height = '100%';
 	c.innerHTML = bookReadTemplate({ book:bk });
 	utils.setHTML('title','&Eacute;quivoques - ' + bk.title);
+	window.scrollTo(0,1);
 	//START LOADER
 	//document.body.style.height = window.innerHeight + 'px';
 	//if(window.visualViewport) {
