@@ -60,11 +60,9 @@ body {
 	font-size: 14px;
 	position: relative;
 	overflow-x: hidden;
-/*
 	transform: translateZ(0);
 	-webkit-transform: translate-z(0);
 	-ms-transform: translate-z(0);
-*/
 }
 
 #secret-volk {
