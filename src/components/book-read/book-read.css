@@ -61,7 +61,7 @@ TEXT LOADER
 #text-loader {
 	-webkit-transform: translate-z(0);
 	-ms-transform: translate-z(0);
-	position: absolute;
+	position: fixed;
 	left: 50%;
 	top: 40%;
 	z-index: 1;
