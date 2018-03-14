@@ -33,19 +33,18 @@ const book = function(container) {
 		let fontSizeValid = bookContainer.querySelector('#font-size-valid');
 		
 		//DIMENSIONS
-		let h = 0;
-		let w = 0;
+		let h, w, marginY, marginX, font, fontSize, lineHeight, top;
 		let ww = window.innerWidth;
-		//let wh = window.innerHeight;
-		let wh;
-		if(window.visualViewport) {
-			wh = window.visualViewport.height;
-		} else {
-			wh = window.innerHeight;
-		}
-		bookContainer.style.height = wh + 'px';
+		let wh = window.innerHeight;
+		//let wh;
+		//if(window.visualViewport) {
+			//wh = window.visualViewport.height;
+		//} else {
+			//wh = window.innerHeight;
+		//}
+		//bookContainer.style.height = wh + 'px';
 		//document.body.style.height = window.screen.availHeight + 'px';
-		let marginY, marginX, font, fontSize, lineHeight, top;
+		
 		
 		//font-family
 		font = localStore.getFont() ? localStore.getFont() : bk.styles.font;
@@ -148,20 +147,18 @@ const book = function(container) {
 			}
 			
 			let resizeBook = () => {
-				h = 0;
-				w = 0;
 				let ww = window.innerWidth;
-				//let wh = window.innerHeight;
-				let wh;
-				if(window.visualViewport) {
-					wh = window.visualViewport.height;
-				} else {
-					wh = window.innerHeight;
-				}
+				let wh = window.innerHeight;
+				//let wh;
+				//if(window.visualViewport) {
+					//wh = window.visualViewport.height;
+				//} else {
+					//wh = window.innerHeight;
+				//}
 				//document.body.style.height = wh + 'px';
 				//document.body.style.height = window.screen.availHeight + 'px';
-				document.body.style.overflow = 'hidden';
-				bookContainer.style.height = wh + 'px';
+				//document.body.style.overflow = 'hidden';
+				//bookContainer.style.height = wh + 'px';
 				if(!location.hash.match(/#\/[^\/]+\/read$/)) { return; }
 				//document.body.style.height = '100%';
 				if(ww >= 768) {
@@ -254,7 +251,7 @@ const book = function(container) {
 				.then( resolve => {
 					//document.body.style.height = wh + 'px';
 					//document.body.style.height = window.innerHeight + 'px';
-					document.body.style.overflow = 'visible';
+					//document.body.style.overflow = 'visible';
 					localStore.setTableInfos({ id: bk.id,
 									    dim: w + 'x' + h,
 									    font: font,
@@ -734,7 +731,7 @@ const book = function(container) {
 														tableInfos: resolve });
 						})
 						.catch( error => {
-							document.body.style.overflow = 'visible'; 
+							//document.body.style.overflow = 'visible'; 
 							utils.addClass('#text-loader-container','hidden');
 						});
 					},100);
@@ -775,7 +772,7 @@ const book = function(container) {
 		 .then (table => {
 			 //document.body.style.height = wh + 'px';
 			 //document.body.style.height = window.innerHeight + 'px';
-			document.body.style.overflowY = 'visible';
+			//document.body.style.overflowY = 'visible';
 			utils.addClass('#book-loader-container', 'hidden');
 			bookContainer.className = 'show';
 			return table;
@@ -837,7 +834,7 @@ const book = function(container) {
 	//} else {
 		//document.body.style.height = window.innerHeight + 'px';
 	//}
-	document.body.style.overflowY = 'hidden';
+	//document.body.style.overflowY = 'hidden';
 	utils.removeClass('#book-loader-container','hidden');
 	
 	//BOOK CONTAINER

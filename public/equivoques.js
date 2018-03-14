@@ -4762,24 +4762,25 @@ var book = function book(container) {
 		var fontSizeValid = bookContainer.querySelector('#font-size-valid');
 
 		//DIMENSIONS
-		var h = 0;
-		var w = 0;
-		var ww = window.innerWidth;
-		//let wh = window.innerHeight;
-		var wh = void 0;
-		if (window.visualViewport) {
-			wh = window.visualViewport.height;
-		} else {
-			wh = window.innerHeight;
-		}
-		bookContainer.style.height = wh + 'px';
-		//document.body.style.height = window.screen.availHeight + 'px';
-		var marginY = void 0,
+		var h = void 0,
+		    w = void 0,
+		    marginY = void 0,
 		    marginX = void 0,
 		    font = void 0,
 		    fontSize = void 0,
 		    lineHeight = void 0,
 		    top = void 0;
+		var ww = window.innerWidth;
+		var wh = window.innerHeight;
+		//let wh;
+		//if(window.visualViewport) {
+		//wh = window.visualViewport.height;
+		//} else {
+		//wh = window.innerHeight;
+		//}
+		//bookContainer.style.height = wh + 'px';
+		//document.body.style.height = window.screen.availHeight + 'px';
+
 
 		//font-family
 		font = _localStore2.default.getFont() ? _localStore2.default.getFont() : bk.styles.font;
@@ -4881,20 +4882,18 @@ var book = function book(container) {
 			}
 
 			var resizeBook = function resizeBook() {
-				h = 0;
-				w = 0;
 				var ww = window.innerWidth;
-				//let wh = window.innerHeight;
-				var wh = void 0;
-				if (window.visualViewport) {
-					wh = window.visualViewport.height;
-				} else {
-					wh = window.innerHeight;
-				}
+				var wh = window.innerHeight;
+				//let wh;
+				//if(window.visualViewport) {
+				//wh = window.visualViewport.height;
+				//} else {
+				//wh = window.innerHeight;
+				//}
 				//document.body.style.height = wh + 'px';
 				//document.body.style.height = window.screen.availHeight + 'px';
-				document.body.style.overflow = 'hidden';
-				bookContainer.style.height = wh + 'px';
+				//document.body.style.overflow = 'hidden';
+				//bookContainer.style.height = wh + 'px';
 				if (!location.hash.match(/#\/[^\/]+\/read$/)) {
 					return;
 				}
@@ -4988,7 +4987,7 @@ var book = function book(container) {
 				book.init(tableInfos).then(function (resolve) {
 					//document.body.style.height = wh + 'px';
 					//document.body.style.height = window.innerHeight + 'px';
-					document.body.style.overflow = 'visible';
+					//document.body.style.overflow = 'visible';
 					_localStore2.default.setTableInfos({ id: bk.id,
 						dim: w + 'x' + h,
 						font: font,
@@ -5452,7 +5451,7 @@ var book = function book(container) {
 								fontSize: fontSize,
 								tableInfos: resolve });
 						}).catch(function (error) {
-							document.body.style.overflow = 'visible';
+							//document.body.style.overflow = 'visible'; 
 							_utils2.default.addClass('#text-loader-container', 'hidden');
 						});
 					}, 100);
@@ -5489,7 +5488,7 @@ var book = function book(container) {
 		}).then(function (table) {
 			//document.body.style.height = wh + 'px';
 			//document.body.style.height = window.innerHeight + 'px';
-			document.body.style.overflowY = 'visible';
+			//document.body.style.overflowY = 'visible';
 			_utils2.default.addClass('#book-loader-container', 'hidden');
 			bookContainer.className = 'show';
 			return table;
@@ -5548,7 +5547,7 @@ var book = function book(container) {
 	//} else {
 	//document.body.style.height = window.innerHeight + 'px';
 	//}
-	document.body.style.overflowY = 'hidden';
+	//document.body.style.overflowY = 'hidden';
 	_utils2.default.removeClass('#book-loader-container', 'hidden');
 
 	//BOOK CONTAINER
