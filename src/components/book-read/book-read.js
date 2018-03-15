@@ -35,14 +35,14 @@ const book = function(container) {
 		//DIMENSIONS
 		let h, w, marginY, marginX, font, fontSize, lineHeight, top;
 		let ww = window.innerWidth;
-		//let wh = window.innerHeight;
-		let wh;
-		if(window.visualViewport) {
-			wh = window.visualViewport.height;
-		} else {
-			wh = window.innerHeight;
-		}
-		document.body.style.height = wh + 'px';
+		let wh = document.body.offsetHeight;
+		//let wh;
+		//if(window.visualViewport) {
+			//wh = window.visualViewport.height;
+		//} else {
+			//wh = window.innerHeight;
+		//}
+		//document.body.style.height = wh + 'px';
 		//bookContainer.style.height = wh + 'px';
 		//document.body.style.height = window.screen.availHeight + 'px';
 		
@@ -149,13 +149,13 @@ const book = function(container) {
 			
 			let resizeBook = () => {
 				ww = window.innerWidth;
-				//wh = window.innerHeight;
-				if(window.visualViewport) {
-					wh = window.visualViewport.height;
-				} else {
-					wh = window.innerHeight;
-				}
-				document.body.style.height = wh + 'px';
+				wh = document.body.offsetHeight;
+				//if(window.visualViewport) {
+					//wh = window.visualViewport.height;
+				//} else {
+					//wh = window.innerHeight;
+				//}
+				//document.body.style.height = wh + 'px';
 				//document.body.style.overflow = 'hidden';
 				//bookContainer.style.height = wh + 'px';
 				if(!location.hash.match(/#\/[^\/]+\/read$/)) { return; }

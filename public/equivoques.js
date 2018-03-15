@@ -4762,14 +4762,14 @@ var book = function book(container) {
 		    lineHeight = void 0,
 		    top = void 0;
 		var ww = window.innerWidth;
-		//let wh = window.innerHeight;
-		var wh = void 0;
-		if (window.visualViewport) {
-			wh = window.visualViewport.height;
-		} else {
-			wh = window.innerHeight;
-		}
-		document.body.style.height = wh + 'px';
+		var wh = document.body.offsetHeight;
+		//let wh;
+		//if(window.visualViewport) {
+		//wh = window.visualViewport.height;
+		//} else {
+		//wh = window.innerHeight;
+		//}
+		//document.body.style.height = wh + 'px';
 		//bookContainer.style.height = wh + 'px';
 		//document.body.style.height = window.screen.availHeight + 'px';
 
@@ -4875,13 +4875,13 @@ var book = function book(container) {
 
 			var resizeBook = function resizeBook() {
 				ww = window.innerWidth;
+				wh = document.body.offsetHeight;
+				//if(window.visualViewport) {
+				//wh = window.visualViewport.height;
+				//} else {
 				//wh = window.innerHeight;
-				if (window.visualViewport) {
-					wh = window.visualViewport.height;
-				} else {
-					wh = window.innerHeight;
-				}
-				document.body.style.height = wh + 'px';
+				//}
+				//document.body.style.height = wh + 'px';
 				//document.body.style.overflow = 'hidden';
 				//bookContainer.style.height = wh + 'px';
 				if (!location.hash.match(/#\/[^\/]+\/read$/)) {
