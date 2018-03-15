@@ -5939,9 +5939,9 @@ var WebBook = function () {
 			this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
 			this._text.appendChild(this._lastElement.cloneNode(true));
 			this.setSectionLinks();
-			if (this._tableInfos) {
-				this.toBook();
-			}
+			//if(this._tableInfos) {
+			this.toBook();
+			//}
 			this._position = 0;
 			this._text.style.left = this._position + "px";
 			this.refresh();
@@ -5957,9 +5957,9 @@ var WebBook = function () {
 			this._text.appendChild(this._sections[this._sectionsIndex].cloneNode(true));
 			this._text.appendChild(this._lastElement.cloneNode(true));
 			this.setSectionLinks();
-			if (this._tableInfos) {
-				this.toBook();
-			}
+			//if(this._tableInfos) {
+			this.toBook();
+			//}
 			this.goToPage(this.getSectionTotalPages() - this._startPage);
 			this.refresh();
 		}
