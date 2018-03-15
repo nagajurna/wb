@@ -4762,18 +4762,13 @@ var book = function book(container) {
 		    lineHeight = void 0,
 		    top = void 0;
 		var ww = window.innerWidth;
-		//let wh = document.innerHeight;
-
-		if (window.visualViewport) {
-			document.body.style.height = window.visualViewport.height + 'px';
-		} else {
-			document.body.style.height = window.innerHeight + 'px';
-		}
-		var wh = document.body.offsetHeight;
-		//document.body.style.height = wh + 'px';
-		//bookContainer.style.height = wh + 'px';
-		//document.body.style.height = window.screen.availHeight + 'px';
-
+		var wh = window.innerHeight;
+		//if(window.visualViewport) {
+		//document.body.style.height = window.visualViewport.height + 'px';
+		//} else {
+		//document.body.style.height = window.innerHeight + 'px';
+		//}
+		//let wh = document.body.offsetHeight;
 
 		//font-family
 		font = _localStore2.default.getFont() ? _localStore2.default.getFont() : bk.styles.font;
@@ -4876,21 +4871,12 @@ var book = function book(container) {
 
 			var resizeBook = function resizeBook() {
 				ww = window.innerWidth;
-				if (window.visualViewport) {
-					document.body.style.height = window.visualViewport.height + 'px';
-				} else {
-					document.body.style.height = window.innerHeight + 'px';
-				}
-				var wh = document.body.offsetHeight;
-				//wh = window.innerHeight;
+				wh = window.innerHeight;
 				//if(window.visualViewport) {
 				//wh = window.visualViewport.height;
 				//} else {
 				//wh = window.innerHeight;
 				//}
-				//document.body.style.height = wh + 'px';
-				//document.body.style.overflow = 'hidden';
-				//bookContainer.style.height = wh + 'px';
 				if (!location.hash.match(/#\/[^\/]+\/read$/)) {
 					return;
 				}
