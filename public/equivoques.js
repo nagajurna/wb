@@ -4762,13 +4762,14 @@ var book = function book(container) {
 		    lineHeight = void 0,
 		    top = void 0;
 		var ww = window.innerWidth;
+		//let wh = document.innerHeight;
+
+		if (window.visualViewport) {
+			document.body.style.height = window.visualViewport.height + 'px';
+		} else {
+			document.body.style.height = window.innerHeight + 'px';
+		}
 		var wh = document.body.offsetHeight;
-		//let wh;
-		//if(window.visualViewport) {
-		//wh = window.visualViewport.height;
-		//} else {
-		//wh = window.innerHeight;
-		//}
 		//document.body.style.height = wh + 'px';
 		//bookContainer.style.height = wh + 'px';
 		//document.body.style.height = window.screen.availHeight + 'px';
@@ -4875,7 +4876,13 @@ var book = function book(container) {
 
 			var resizeBook = function resizeBook() {
 				ww = window.innerWidth;
-				wh = document.body.offsetHeight;
+				if (window.visualViewport) {
+					document.body.style.height = window.visualViewport.height + 'px';
+				} else {
+					document.body.style.height = window.innerHeight + 'px';
+				}
+				var wh = document.body.offsetHeight;
+				//wh = window.innerHeight;
 				//if(window.visualViewport) {
 				//wh = window.visualViewport.height;
 				//} else {
@@ -5016,8 +5023,8 @@ var book = function book(container) {
 			//delete Hammer.defaults.cssProps.userSelect;
 			var swipeContainer = new _hammerjs2.default(bookContainer.querySelector('[data-wb-text-container]'));
 			swipeContainer.on("swiperight swipeleft", function (event) {
-				alert(window.innerHeight + '\n' + wh + '\n' + '\n' + window.document.body.offsetHeight);
-				console.log(wh);
+				//alert(window.innerHeight +'\n' + wh + '\n' + '\n' + window.document.body.offsetHeight);
+				//console.log(wh);
 				if (event.type === "swipeleft") {
 					book.forward();
 				} else if (event.type === "swiperight") {
