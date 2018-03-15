@@ -257,7 +257,6 @@ BOOK NAV-BAR-BOTTOM-SMALL
 /*
 important for resize samsung navigator
 */
-/*
 #book {
 	position: fixed;
 	height: 100%;
@@ -266,7 +265,6 @@ important for resize samsung navigator
 	-webkit-transform: translate-z(0);
 	-ms-transform: translate-z(0);
 }
-*/
 
 /*
 BOOKCONTAINER
