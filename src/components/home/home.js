@@ -8,13 +8,6 @@ const home = function(container) {
 	'use strict';
 	
 	let c = container;
-	let wh;
-	if(window.visualViewport) {
-		wh = window.visualViewport.height;
-	} else {
-		wh = window.innerHeight;
-	}
-	document.body.style.height = wh + 'px';
 	
 	//Get books from dataStore
 	let bs = dataStore.getData('books');

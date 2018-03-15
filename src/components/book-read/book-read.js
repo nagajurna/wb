@@ -33,18 +33,16 @@ const book = function(container) {
 		let fontSizeValid = bookContainer.querySelector('#font-size-valid');
 		
 		//DIMENSIONS
-		window.scrollTo(0,1);
 		let h, w, marginY, marginX, font, fontSize, lineHeight, top;
 		let ww = window.innerWidth;
-		let wh = window.innerHeight;
-		//console.log(wh);
-		//console.log(document.body.clientHeight);
-		//let wh;
-		//if(window.visualViewport) {
-			//wh = window.visualViewport.height;
-		//} else {
-			//wh = window.innerHeight;
-		//}
+		//let wh = window.innerHeight;
+		let wh;
+		if(window.visualViewport) {
+			wh = window.visualViewport.height;
+		} else {
+			wh = window.innerHeight;
+		}
+		document.body.style.height = wh + 'px';
 		//bookContainer.style.height = wh + 'px';
 		//document.body.style.height = window.screen.availHeight + 'px';
 		
@@ -151,15 +149,13 @@ const book = function(container) {
 			
 			let resizeBook = () => {
 				ww = window.innerWidth;
-				wh = window.innerHeight;
-				//let wh;
-				//if(window.visualViewport) {
-					//wh = window.visualViewport.height;
-				//} else {
-					//wh = window.innerHeight;
-				//}
-				//document.body.style.height = wh + 'px';
-				//document.body.style.height = window.screen.availHeight + 'px';
+				//wh = window.innerHeight;
+				if(window.visualViewport) {
+					wh = window.visualViewport.height;
+				} else {
+					wh = window.innerHeight;
+				}
+				document.body.style.height = wh + 'px';
 				//document.body.style.overflow = 'hidden';
 				//bookContainer.style.height = wh + 'px';
 				if(!location.hash.match(/#\/[^\/]+\/read$/)) { return; }
@@ -296,7 +292,7 @@ const book = function(container) {
 			//delete Hammer.defaults.cssProps.userSelect;
 			let swipeContainer = new Hammer(bookContainer.querySelector('[data-wb-text-container]'));
 			swipeContainer.on("swiperight swipeleft", event => {
-				alert(window.innerHeight +'\n' + wh + '\n' + document.body.offsetHeight);
+				alert(window.innerHeight +'\n' + wh + '\n' + '\n' + window.document.body.offsetHeight);
 				console.log(wh);
 				if(event.type==="swipeleft") {
 					book.forward();
@@ -776,7 +772,7 @@ const book = function(container) {
 		 .then (table => {
 			 //document.body.style.height = wh + 'px';
 			 //document.body.style.height = window.innerHeight + 'px';
-			//document.body.style.overflowY = 'visible';
+			document.body.style.overflowY = 'visible';
 			utils.addClass('#book-loader-container', 'hidden');
 			bookContainer.className = 'show';
 			return table;
@@ -838,7 +834,7 @@ const book = function(container) {
 	//} else {
 		//document.body.style.height = window.innerHeight + 'px';
 	//}
-	//document.body.style.overflowY = 'hidden';
+	document.body.style.overflowY = 'hidden';
 	utils.removeClass('#book-loader-container','hidden');
 	
 	//BOOK CONTAINER
