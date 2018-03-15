@@ -23,6 +23,7 @@ const home = function(container) {
 	let index;
 	let automatic;
 	
+	
 	//SLIDER COMMANDS
 	//Previous
 	let prevSlide = event => {
