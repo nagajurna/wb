@@ -36,7 +36,7 @@ const book = function(container) {
 		window.scrollTo(0,1);
 		let h, w, marginY, marginX, font, fontSize, lineHeight, top;
 		let ww = window.innerWidth;
-		let wh = window.innerHeight;
+		let wh = $(window).innerHeight();
 		//console.log(wh);
 		//console.log(document.body.clientHeight);
 		//let wh;

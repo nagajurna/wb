@@ -4770,7 +4770,7 @@ var book = function book(container) {
 		    lineHeight = void 0,
 		    top = void 0;
 		var ww = window.innerWidth;
-		var wh = window.innerHeight;
+		var wh = $(window).innerHeight();
 		//console.log(wh);
 		//console.log(document.body.clientHeight);
 		//let wh;
