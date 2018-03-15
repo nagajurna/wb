@@ -18,7 +18,7 @@ BOOK LOADER
 #book-loader {
 	-webkit-transform: translate-z(0);
 	-ms-transform: translate-z(0);
-	position: absolute;
+	position: fixed;
 	left: 50%;
 	top: 40%;
 	z-index: 1;
@@ -259,11 +259,17 @@ important for resize samsung navigator
 */
 #book {
 	position: fixed;
+/*
 	height: 100%;
+*/
+/*
 	width: 100%;
+*/
+/*
 	transform: translateZ(0);
 	-webkit-transform: translate-z(0);
 	-ms-transform: translate-z(0);
+*/
 }
 
 /*
@@ -272,7 +278,9 @@ BOOKCONTAINER
 #bookContainer {
 	font-family: 'Georgia', serif;
 	position: relative;
+/*
 	height: 100%;
+*/
 	color: #000;
 	opacity: 0.0;
 	margin: auto;
