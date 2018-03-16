@@ -758,6 +758,10 @@ TEXT
 	transform: translateZ(0);
 	-webkit-transform: translate-z(0);
 	-ms-transform: translate-z(0);
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
 }
 
 

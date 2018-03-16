@@ -294,14 +294,14 @@ const book = function(container) {
 				//}
 			//});
 			
-			var myRegion = new ZingTouch.Region(textContainer);
+			var myRegion = new ZingTouch.Region(textContainer, true, false);
 
 			myRegion.bind(textContainer, 'swipe', function(e){
 				console.log(e.detail.data[0].currentDirection);
 				let dir = e.detail.data[0].currentDirection;
-				if(dir > 160 && dir < 200) {
+				if(dir > 135 && dir < 225) {
 					book.forward();
-				} else if(dir < 20 || dir > 340) {
+				} else if(dir < 45 || dir > 315) {
 					book.backward();
 				}
 			});		
