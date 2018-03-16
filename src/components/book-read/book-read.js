@@ -145,6 +145,7 @@ const book = function(container) {
 			}
 			
 			let resizeBook = () => {
+				console.log('resize');
 				utils.addClass('#book','fixed');
 				ww = window.innerWidth;
 				wh = window.innerHeight;
@@ -273,25 +274,34 @@ const book = function(container) {
 			//}
 			
 			window.addEventListener('resize', resizeBook, false);
-		
+			
+			//FULLSCREEN
+			let fs = document.querySelector('#fullscreen');
+			let fsexit = document.querySelector('#fullscreenexit');
+			if (!screenfull.enabled) {
+				utils.removeClass(fs,'show');
+			}
+			
+			fs.addEventListener('click', event => {
+				if (screenfull.enabled) {
+					screenfull.request();
+				}
+				utils.removeClass(fs,'show');
+				utils.addClass(fsexit,'show');
+			}, false);
+			
+			fsexit.addEventListener('click', event => {
+				if (screenfull.enabled) {
+					screenfull.exit();
+				}
+				utils.addClass(fs,'show');
+				utils.removeClass(fsexit,'show');
+			}, false);
 		
 			//SWIPE - forward, backward on swipe left and right (hammer.js)
 			// all sizes
-			//delete Hammer.defaults.cssProps.userSelect;
-			//let swipeContainer = new Hammer(document.body);
-			//swipeContainer.on("swiperight swipeleft", event => {
-				//event.preventDefault();
-				//if(event.type==="swipeleft") {
-					//book.forward();
-				//} else if(event.type==="swiperight") {
-					//book.backward();
-				//}
-			//});
-			
-			var myRegion = new ZingTouch.Region(textContainer, false, false);
-
+			const myRegion = new ZingTouch.Region(textContainer, false, false);
 			myRegion.bind(textContainer, 'swipe', function(e){
-				console.log(e.detail.data[0].currentDirection);
 				let dir = e.detail.data[0].currentDirection;
 				if(dir > 135 && dir < 225) {
 					book.forward();
