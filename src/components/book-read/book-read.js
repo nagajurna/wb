@@ -145,13 +145,9 @@ const book = function(container) {
 			}
 			
 			let resizeBook = () => {
+				utils.addClass('#book','fixed');
 				ww = window.innerWidth;
 				wh = window.innerHeight;
-				//if(window.visualViewport) {
-					//wh = window.visualViewport.height;
-				//} else {
-					//wh = window.innerHeight;
-				//}
 				if(!location.hash.match(/#\/[^\/]+\/read$/)) { return; }
 				//document.body.style.height = '100%';
 				if(ww >= 768) {
@@ -242,9 +238,7 @@ const book = function(container) {
 				
 				book.init(tableInfos)
 				.then( resolve => {
-					//document.body.style.height = wh + 'px';
-					//document.body.style.height = window.innerHeight + 'px';
-					//document.body.style.overflow = 'visible';
+					utils.removeClass('#book','fixed');
 					localStore.setTableInfos({ id: bk.id,
 									    dim: w + 'x' + h,
 									    font: font,
@@ -844,6 +838,7 @@ const book = function(container) {
 	
 	//BOOK CONTAINER
 	const bookContainer = document.querySelector('#bookContainer');
+	const book = document.querySelector('#book');
 		
 	//GET TEXT CONTENT
 	let options = { method: 'GET', url: bk.path + '.css' };
