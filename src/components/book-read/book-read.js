@@ -278,7 +278,7 @@ const book = function(container) {
 			//FULLSCREEN
 			let fs = document.querySelector('#fullscreen');
 			let fsexit = document.querySelector('#fullscreenexit');
-			if (!screenfull.enabled) {
+			if (!screenfull.enabled || window.matchMedia('(display-mode: standalone)').matches) {
 				utils.removeClass(fs,'show');
 			}
 			
@@ -490,13 +490,13 @@ const book = function(container) {
 			let homeLinks = bookContainer.querySelectorAll('.home');
 			for(let i=0; i<homeLinks.length; i++) {
 				homeLinks[i].addEventListener('click', event => {
+					if(screenfull.enabled && screenfull.isFullscreen) {
+						screenfull.exit();
+					}
 					event.preventDefault();
 					let prevLocation = dataStore.getData('location').prevLocation;
 					prevLocation = prevLocation && prevLocation.match(/#\/[^\/]+\/read$/) ? '#/' : prevLocation;
 					location.hash = prevLocation ? prevLocation : '#/';
-					if(screenfull.enabled && screenfull.isFullscreen) {
-						screenfull.exit();
-					}
 				}, false);
 			}
 			
