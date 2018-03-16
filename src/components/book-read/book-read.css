@@ -258,7 +258,7 @@ BOOK NAV-BAR-BOTTOM-SMALL
 important for resize samsung navigator
 */
 #book {
-	position: fixed;
+	position: absolute;
 /*
 	height: 100%;
 */
