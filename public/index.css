@@ -594,7 +594,7 @@ Small devices only
 #header #menu-open, #modal-menu-header #menu-close {
 	position: absolute;
 	right: 0px;
-	top: 4px;
+	top: 3px;
 	padding: 8px 16px 8px 16px;
 	height: 50px;
 	font-size: 2em;

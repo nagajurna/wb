@@ -138,12 +138,10 @@ const book = function(container) {
 			}
 			
 			let resizeBook = () => {
-				console.log('resize');
 				utils.addClass('#book','fixed');
 				ww = window.innerWidth;
 				wh = window.innerHeight;
 				if(!location.hash.match(/#\/[^\/]+\/read$/)) { return; }
-				//document.body.style.height = '100%';
 				if(ww >= 768) {
 					utils.addClass('[data-wb-text-container]', 'card-4');
 					//max-height: 720
@@ -746,9 +744,6 @@ const book = function(container) {
 			return table;
 		 })
 		 .then (table => {
-			 //document.body.style.height = wh + 'px';
-			 //document.body.style.height = window.innerHeight + 'px';
-			//document.body.style.overflowY = 'visible';
 			utils.addClass('#book-loader-container', 'hidden');
 			bookContainer.className = 'show';
 			return table;
@@ -800,17 +795,9 @@ const book = function(container) {
 	
 	//INSERT TEMPLATE ET START LOADER
 	//insert template in container
-	//document.body.style.height = '100%';
 	c.innerHTML = bookReadTemplate({ book:bk });
 	utils.setHTML('title','&Eacute;quivoques - ' + bk.title);
 	//START LOADER
-	//document.body.style.height = window.innerHeight + 'px';
-	//if(window.visualViewport) {
-		//document.body.style.height = window.visualViewport.height + 'px';
-	//} else {
-		//document.body.style.height = window.innerHeight + 'px';
-	//}
-	//document.body.style.overflowY = 'hidden';
 	utils.removeClass('#book-loader-container','hidden');
 	
 	//BOOK CONTAINER
