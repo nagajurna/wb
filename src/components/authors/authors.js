@@ -2,7 +2,6 @@ import dataStore from '../../services/dataStore';
 import utils from '../../services/utils';
 import css from './authors.css';
 let authorsTemplate = require('./authors.ejs');
-import screenfull from 'screenfull';
 //authors.js
 const authors = function(container) {
 	'use strict';
@@ -183,8 +182,10 @@ const authors = function(container) {
 				if(e.target.nextElementSibling.style.maxHeight) {
 					utils.addClass(e.target,'active');
 					e.target.nextElementSibling.scrollIntoView(true);
-					let html = document.getElementsByTagName("html")[0];
-					html.scrollTop = html.scrollTop-48;
+					//let html = document.getElementsByTagName("html")[0];
+					//html.scrollTop = html.scrollTop-48;
+					document.body.scrollTop = document.body.scrollTop-48;
+					document.documentElement.scrollTop = document.documentElement.scrollTop-48;
 				} else {
 					utils.removeClass(e.target,'active');
 				}
@@ -199,8 +200,10 @@ const authors = function(container) {
 		let el = document.getElementById('slide_' + id);
 		el.parentElement.style.maxHeight = el.parentElement.scrollHeight + 'px';
 		el.scrollIntoView(true);
-		let html = document.getElementsByTagName("html")[0];
-		html.scrollTop = html.scrollTop-48;
+		//let html = document.getElementsByTagName("html")[0];
+		//html.scrollTop = html.scrollTop-48;
+		document.body.scrollTop = document.body.scrollTop-48;
+		document.documentElement.scrollTop = document.documentElement.scrollTop-48;
 	}
 	//get active letter link
 	let ls = root.querySelectorAll('#letters a');
@@ -216,11 +219,6 @@ const authors = function(container) {
 		let b = dataStore.getData('books', event.currentTarget.id);
 		if(!b.visible) { return; }
 		let path = b.path.replace(/^\/books\/[^\/]+/,'');
-		//if (screenfull.enabled && window.innerWidth < 750 && !window.matchMedia('(display-mode: standalone)').matches) {
-			//if(!screenfull.isFullscreen) {
-				//screenfull.request();
-			//}
-		//}
 		location.hash = '#' + path + "/read";
 	}
 	let bks = root.querySelectorAll('.book');

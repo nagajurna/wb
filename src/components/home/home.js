@@ -2,7 +2,6 @@ import dataStore from '../../services/dataStore';
 import utils from '../../services/utils';
 import css from './home.css';
 let homeTemplate = require('./home.ejs');
-import screenfull from 'screenfull';
 //home.js
 const home = function(container) {
 	'use strict';
@@ -136,8 +135,10 @@ const home = function(container) {
 		let el = document.getElementById(id);
 		if(el) {
 			el.scrollIntoView(true);
-			let html = document.getElementsByTagName("html")[0];
-			html.scrollTop = html.scrollTop-40;
+			//let html = document.getElementsByTagName("html")[0];
+			//html.scrollTop = html.scrollTop-40;
+			document.body.scrollTop = document.body.scrollTop-40;
+			document.documentElement.scrollTop = document.documentElement.scrollTop-40;
 		}
 	}
 	//go to book/read
