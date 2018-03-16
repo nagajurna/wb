@@ -283,11 +283,9 @@ const book = function(container) {
 			//SWIPE - forward, backward on swipe left and right (hammer.js)
 			// all sizes
 			//delete Hammer.defaults.cssProps.userSelect;
-			let area = document.getElementById('book');
-			let swipeContainer = new Hammer(area);
+			let swipeContainer = new Hammer(document.body);
 			swipeContainer.on("swiperight swipeleft", event => {
-				//alert(window.innerHeight +'\n' + wh + '\n' + '\n' + window.document.body.offsetHeight);
-				//console.log(wh);
+				event.preventDefault();
 				if(event.type==="swipeleft") {
 					book.forward();
 				} else if(event.type==="swiperight") {
