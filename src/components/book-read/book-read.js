@@ -3,7 +3,8 @@ import dataStore from '../../services/dataStore';
 import localStore from '../../services/localStore';
 import WebBook from '../../../lib/wb/WebBook';
 import css from './book-read.css';
-import Hammer from 'hammerjs';
+//import Hammer from 'hammerjs';
+import ZingTouch from 'zingtouch';
 import screenfull from 'screenfull';
 
 let bookReadTemplate = require('./book-read.ejs');
@@ -283,17 +284,27 @@ const book = function(container) {
 			//SWIPE - forward, backward on swipe left and right (hammer.js)
 			// all sizes
 			//delete Hammer.defaults.cssProps.userSelect;
-			let swipeContainer = new Hammer(document.body);
-			swipeContainer.on("swiperight swipeleft", event => {
-				event.preventDefault();
-				if(event.type==="swipeleft") {
+			//let swipeContainer = new Hammer(document.body);
+			//swipeContainer.on("swiperight swipeleft", event => {
+				//event.preventDefault();
+				//if(event.type==="swipeleft") {
+					//book.forward();
+				//} else if(event.type==="swiperight") {
+					//book.backward();
+				//}
+			//});
+			
+			var myRegion = new ZingTouch.Region(textContainer);
+
+			myRegion.bind(textContainer, 'swipe', function(e){
+				console.log(e.detail.data[0].currentDirection);
+				let dir = e.detail.data[0].currentDirection;
+				if(dir > 160 && dir < 200) {
 					book.forward();
-				} else if(event.type==="swiperight") {
+				} else if(dir < 20 || dir > 340) {
 					book.backward();
 				}
-			});
-			
-					
+			});		
 		
 			//TOUCHES, forward, backward (medium and large sizes)
 			document.addEventListener('keydown', event => {
