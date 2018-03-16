@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "webpack --mode development",
-    "build": "webpack --mode production",
+    "dev": "webpack --mode development ./src/index.js --output ./public/equivoques.js",
+    "build": "webpack --mode production ./src/index.js --output ./public/equivoques.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

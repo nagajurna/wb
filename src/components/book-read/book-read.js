@@ -283,7 +283,8 @@ const book = function(container) {
 			//SWIPE - forward, backward on swipe left and right (hammer.js)
 			// all sizes
 			//delete Hammer.defaults.cssProps.userSelect;
-			let swipeContainer = new Hammer(textContainer, { inputClass: Hammer.TouchMouseInput });
+			let area = document.getElementById('book');
+			let swipeContainer = new Hammer(area);
 			swipeContainer.on("swiperight swipeleft", event => {
 				//alert(window.innerHeight +'\n' + wh + '\n' + '\n' + window.document.body.offsetHeight);
 				//console.log(wh);
@@ -294,6 +295,7 @@ const book = function(container) {
 				}
 			});
 			
+					
 		
 			//TOUCHES, forward, backward (medium and large sizes)
 			document.addEventListener('keydown', event => {
