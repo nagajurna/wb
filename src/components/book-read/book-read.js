@@ -294,7 +294,7 @@ const book = function(container) {
 				//}
 			//});
 			
-			var myRegion = new ZingTouch.Region(textContainer, true, false);
+			var myRegion = new ZingTouch.Region(textContainer, false, false);
 
 			myRegion.bind(textContainer, 'swipe', function(e){
 				console.log(e.detail.data[0].currentDirection);
