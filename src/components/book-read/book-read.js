@@ -5,7 +5,6 @@ import WebBook from '../../../lib/wb/WebBook';
 import css from './book-read.css';
 //import Hammer from 'hammerjs';
 import ZingTouch from 'zingtouch';
-import screenfull from 'screenfull';
 
 let bookReadTemplate = require('./book-read.ejs');
 //book.js
@@ -37,12 +36,6 @@ const book = function(container) {
 		let h, w, marginY, marginX, font, fontSize, lineHeight, top;
 		let ww = window.innerWidth;
 		let wh = window.innerHeight;
-		//if(window.visualViewport) {
-			//document.body.style.height = window.visualViewport.height + 'px';
-		//} else {
-			//document.body.style.height = window.innerHeight + 'px';
-		//}
-		//let wh = document.body.offsetHeight;
 		
 		//font-family
 		font = localStore.getFont() ? localStore.getFont() : bk.styles.font;
@@ -274,29 +267,6 @@ const book = function(container) {
 			//}
 			
 			window.addEventListener('resize', resizeBook, false);
-			
-			//FULLSCREEN
-			let fs = document.querySelector('#fullscreen');
-			let fsexit = document.querySelector('#fullscreenexit');
-			if (!screenfull.enabled || window.matchMedia('(display-mode: standalone)').matches) {
-				utils.removeClass(fs,'show');
-			}
-			
-			fs.addEventListener('click', event => {
-				if (screenfull.enabled) {
-					screenfull.request();
-				}
-				utils.removeClass(fs,'show');
-				utils.addClass(fsexit,'show');
-			}, false);
-			
-			fsexit.addEventListener('click', event => {
-				if (screenfull.enabled) {
-					screenfull.exit();
-				}
-				utils.addClass(fs,'show');
-				utils.removeClass(fsexit,'show');
-			}, false);
 		
 			//SWIPE - forward, backward on swipe left and right (hammer.js)
 			// all sizes
@@ -490,9 +460,6 @@ const book = function(container) {
 			let homeLinks = bookContainer.querySelectorAll('.home');
 			for(let i=0; i<homeLinks.length; i++) {
 				homeLinks[i].addEventListener('click', event => {
-					if(screenfull.enabled && screenfull.isFullscreen) {
-						screenfull.exit();
-					}
 					event.preventDefault();
 					let prevLocation = dataStore.getData('location').prevLocation;
 					prevLocation = prevLocation && prevLocation.match(/#\/[^\/]+\/read$/) ? '#/' : prevLocation;

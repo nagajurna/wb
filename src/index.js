@@ -2,6 +2,7 @@ import router from './router';
 import dataStore from './services/dataStore';
 import localStore from './services/localStore';
 import utils from './services/utils';
+import screenfull from 'screenfull';
 
 //index.js
 var index = (function() {
@@ -91,6 +92,28 @@ var index = (function() {
 			localStore.removeTableInfos();
 			localStore.setUserAgent(ua);
 		}
+		//FULLSCREEN
+		let fs = document.querySelector('#fullscreen');
+		let fsexit = document.querySelector('#fullscreenexit');
+		if (!screenfull.enabled || window.matchMedia('(display-mode: standalone)').matches) {
+			utils.removeClass(fs,'show');
+		}
+		
+		fs.addEventListener('click', event => {
+			if (screenfull.enabled) {
+				screenfull.request();
+			}
+			utils.removeClass(fs,'show');
+			utils.addClass(fsexit,'show');
+		}, false);
+		
+		fsexit.addEventListener('click', event => {
+			if (screenfull.enabled) {
+				screenfull.exit();
+			}
+			utils.addClass(fs,'show');
+			utils.removeClass(fsexit,'show');
+		}, false);
 	}
 	
 	//function getData

@@ -131,52 +131,6 @@ SIGNET
 }
 
 /*
-FULLSCREEN
-*/
-#fullscreen {
-	display: none;
-	position: absolute;
-	z-index: 1;
-	right: 0px;
-	top: 0px;
-	padding: 8px;
-	width: 40px;
-	height: 43px;
-}
-
-
-#fullscreen.show {
-	display: block;
-}
-
-/*
-FULLSCREEN EXIT
-*/
-#fullscreenexit {
-	display: none;
-	position: absolute;
-	z-index: 1;
-	right: 0px;
-	top: 0px;
-	padding: 8px;
-	width: 40px;
-	height: 43px;
-}
-
-
-#fullscreenexit.show {
-	display: block;
-}
-
-@media only screen and (min-width: 750px) {
-
-	#fullscreen, #fullscreen.show, #fullscreenexit, #fullscreenexit.show {
-		display: none;
-	}
-
-}
-
-/*
 BOOK NAVBAR BOTTOM
 */
 #book-nav-bar-bottom {
