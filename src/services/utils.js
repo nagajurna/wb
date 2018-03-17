@@ -214,10 +214,13 @@ const utils = {
 		} else {
 			elements = document.querySelectorAll(selector);
 		}
-		let name;
+		let name, pattern;
 		for(let i=0; i< elements.length; i++) {
+			name = " " + className;
+			pattern = new RegExp(name, 'g');
+			elements[i].className = elements[i].className.replace(pattern, "");
 			name = className;
-			let pattern = new RegExp(className, 'g');
+			pattern = new RegExp(name, 'g');
 			elements[i].className = elements[i].className.replace(pattern, "");
 		}
 	},

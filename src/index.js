@@ -60,9 +60,13 @@ var index = (function() {
 			if(location.hash.match(/#\/[^\/]+\/read$/)) {
 				utils.addClass("#header", "hidden");
 				utils.addClass("#nav-bar-top", "hidden");
+				utils.addClass("#fullscreen", "book");
+				utils.addClass("#fullscreenexit", "book");
 			} else {
 				utils.removeClass("#header", "hidden");
 				utils.removeClass("#nav-bar-top", "hidden");
+				utils.removeClass("#fullscreen", "book");
+				utils.removeClass("#fullscreenexit", "book");
 				if(window.innerWidth < 750) {
 					utils.addClass("#nav-bar-top", "hidden");
 					utils.removeClass("#menu-open", "hidden");
@@ -126,6 +130,9 @@ var index = (function() {
 				utils.removeClass("#nav-bar-top", "hidden");
 				utils.addClass("#menu-open", "hidden");
 			}
+		} else {
+			utils.addClass("#fullscreen", "book");
+			utils.addClass("#fullscreenexit", "book");
 		}
 		//get authors and books
 		let options = { method: 'GET', url: '/init' };
