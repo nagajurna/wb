@@ -88,6 +88,17 @@ var index = (function() {
 					utils.addClass("#menu-open", "hidden");
 				}
 			}
+			//FULLSCREEN
+			if (screenfull.enabled) {
+				if(screenfull.isFullscreen) {
+					utils.removeClass(fs,'show');
+					utils.addClass(fsexit,'show');
+				} else {
+					utils.addClass(fs,'show');
+					utils.removeClass(fsexit,'show');
+				}
+			}
+			
 		}, false);
 		//CHECK USERAGENT (for tableInfos)
 		let ua = window.navigator.userAgent;
@@ -107,16 +118,16 @@ var index = (function() {
 			if (screenfull.enabled) {
 				screenfull.request();
 			}
-			utils.removeClass(fs,'show');
-			utils.addClass(fsexit,'show');
+			//utils.removeClass(fs,'show');
+			//utils.addClass(fsexit,'show');
 		}, false);
 		
 		fsexit.addEventListener('click', event => {
 			if (screenfull.enabled) {
 				screenfull.exit();
 			}
-			utils.addClass(fs,'show');
-			utils.removeClass(fsexit,'show');
+			//utils.addClass(fs,'show');
+			//utils.removeClass(fsexit,'show');
 		}, false);
 	}
 	
