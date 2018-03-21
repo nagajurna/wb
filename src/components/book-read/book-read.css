@@ -977,14 +977,14 @@ POINTS DE SUSPENSION
 */
 
 [data-wb-text] p.points {
-	text-indent: 0px;
+	text-indent: 0.5em;
 	width: 100%;
 	overflow: hidden;
 	padding-left: 0em;
 }
 
 [data-wb-text] p.points span {
-	padding-right: 1.5em;
+	padding-right: 1.2em;
 }
 
 /*
