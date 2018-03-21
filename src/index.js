@@ -55,7 +55,7 @@ var index = (function() {
 			}, false);
 		}
 		//HEADER, NAV-BAR-TOP, MENU-OPEN
-		//on hashchange
+		//ON HASH CHANGE
 		window.addEventListener('hashchange', () => {
 			if(location.hash.match(/#\/[^\/]+\/read$/)) {
 				utils.addClass("#header", "hidden");
@@ -77,7 +77,7 @@ var index = (function() {
 			}
 			
 		}, false);
-		//on resize
+		//ON RESIZE
 		window.addEventListener('resize', () => {
 			if(!location.hash.match(/#\/[^\/]+\/read$/)) {
 				if(window.innerWidth < 750) {
@@ -118,16 +118,12 @@ var index = (function() {
 			if (screenfull.enabled) {
 				screenfull.request();
 			}
-			//utils.removeClass(fs,'show');
-			//utils.addClass(fsexit,'show');
 		}, false);
 		
 		fsexit.addEventListener('click', event => {
 			if (screenfull.enabled) {
 				screenfull.exit();
 			}
-			//utils.addClass(fs,'show');
-			//utils.removeClass(fsexit,'show');
 		}, false);
 	}
 	

@@ -790,6 +790,19 @@ TITLES
 }
 
 /*
+SECTIONS
+*/
+
+.wb-section {
+	margin-bottom: 300%;
+	min-height: 10%;
+}
+
+.wb-section.wb-no-break {
+	margin-bottom: 0%;
+}
+
+/*
 DIV FIN
 */
 [data-wb-text] #fin {
