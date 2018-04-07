@@ -14,9 +14,11 @@ const booksNext = function(container) {
 	//get non-visible books
 	let nvbs = bs.filter(function(b) { return b.visible===false; });
 	
+	//CHANGE INDEX.HTML TITLE
+	utils.setHTML('title','&Eacute;quivoques&ensp;&ndash;&ensp;À paraître');
 	//insert template in container
 	c.innerHTML = booksNextTemplate({ books: nvbs, replaceLines: utils.replaceLines });
-	utils.setHTML('title','&Eacute;quivoques - À paraître');
+	
 	let root = document.querySelector('#books-next-container');
 	let slides = root.querySelectorAll('.slide');
 	let dotContainer = root.querySelector('#dots');

@@ -793,9 +793,7 @@ const book = function(container) {
 	  }
 	}
 	
-	//INSERT TEMPLATE ET START LOADER
-	//insert template in container
-	c.innerHTML = bookReadTemplate({ book:bk });
+	//CHANGE INDEX.HTML TITLE
 	if(bk.subtitle1 && bk.subtitle2) {
 		utils.setHTML('title', bk.authorDisplay + ' : ' + bk.title + ' ; ' + bk.subtitle1 + ' (' + bk.subtitle2 + ')' + '&ensp;&ndash;&ensp;&Eacute;quivoques');
 	} else if(bk.subtitle1) {
@@ -803,6 +801,8 @@ const book = function(container) {
 	} else {
 		utils.setHTML('title', bk.authorDisplay + ' : '  + bk.title + '&ensp;&ndash;&ensp;&Eacute;quivoques');
 	}
+	//INSERT TEMPLATE
+	c.innerHTML = bookReadTemplate({ book:bk });
 	//START LOADER
 	utils.removeClass('#book-loader-container','hidden');
 	

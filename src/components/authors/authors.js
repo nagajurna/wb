@@ -43,9 +43,11 @@ const authors = function(container) {
 		works = [];
 	}
 	
+	//CHANGE INDEX.HTML TITLE
+	utils.setHTML('title','&Eacute;quivoques&ensp;&ndash;&ensp;Auteurs');
 	//insert template in container
 	c.innerHTML = authorsTemplate({ authors:sas, replaceLines: utils.replaceLines });
-	utils.setHTML('title','&Eacute;quivoques - Auteurs');
+	
 	let root = document.querySelector('#authors-container');
 	let auths = root.querySelectorAll('.auth');
 	let slides;
