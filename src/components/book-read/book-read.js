@@ -796,7 +796,13 @@ const book = function(container) {
 	//INSERT TEMPLATE ET START LOADER
 	//insert template in container
 	c.innerHTML = bookReadTemplate({ book:bk });
-	utils.setHTML('title','&Eacute;quivoques - ' + bk.title);
+	if(bk.subtitle1 && bk.subtitle2) {
+		utils.setHTML('title', bk.authorDisplay + ' : ' + bk.title + ' ; ' + bk.subtitle1 + ' (' + bk.subtitle2 + ')' + '&ensp;&ndash;&ensp;&Eacute;quivoques');
+	} else if(bk.subtitle1) {
+		utils.setHTML('title', bk.authorDisplay + ' : ' + bk.title + ' ; ' + bk.subtitle1 + '&ensp;&ndash;&ensp;&Eacute;quivoques');
+	} else {
+		utils.setHTML('title', bk.authorDisplay + ' : '  + bk.title + '&ensp;&ndash;&ensp;&Eacute;quivoques');
+	}
 	//START LOADER
 	utils.removeClass('#book-loader-container','hidden');
 	

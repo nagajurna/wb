@@ -342,6 +342,11 @@ LIST
 	border: none;
 }
 
+li.inline {
+	list-style-type: none !important;
+	display: inline-block;
+}
+
 /*
 INPUT
 */
@@ -462,10 +467,6 @@ HEADER
 
 #header.hidden {
 	display: none;
-/*
-	position: fixed;
-	top: -1000px;
-*/
 }
 
 /*
@@ -544,10 +545,6 @@ When not book-read only
 
 #nav-bar-top.hidden {
 	display: none;
-/*
-	position: fixed;
-	top: -1000px;
-*/
 }
 
 /*
@@ -568,8 +565,6 @@ Medium and large devices only
 }
 
 #top-links ul li {
-	list-style-type: none;
-	display: inline-block;
 	text-align: center;
 }
 
