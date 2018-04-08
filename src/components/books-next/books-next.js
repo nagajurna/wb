@@ -14,8 +14,14 @@ const booksNext = function(container) {
 	//get non-visible books
 	let nvbs = bs.filter(function(b) { return b.visible===false; });
 	
-	//CHANGE INDEX.HTML TITLE
+	//METAS
 	utils.setHTML('title','&Eacute;quivoques&ensp;&ndash;&ensp;À paraître');
+	let contentTitle = 'Équivoques&ensp;&ndash;&ensp;Textes en ligne&ensp;&ndash;&ensp;Prochaines parutions';
+	let contentDescription = 'Le site de lecture en ligne';
+	let contentAuthor = 'Équivoques';
+	utils.setAttributeContent('[name=title]', 'content', contentTitle);
+	utils.setAttributeContent('[name=description]', 'content', contentDescription);
+	utils.setAttributeContent('[name=author]', 'content', contentAuthor);
 	//insert template in container
 	c.innerHTML = booksNextTemplate({ books: nvbs, replaceLines: utils.replaceLines });
 	

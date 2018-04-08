@@ -13,9 +13,17 @@ const home = function(container) {
 	//get last 6 visible books reverse order
 	let lBs = bs.filter(function(b) { return b.visible; }).reverse().slice(0,6);
 	
+	//METAS
+	utils.setHTML('title','&Eacute;quivoques');
+	let contentTitle = 'Équivoques&ensp;&ndash;&ensp;Textes en ligne';
+	let contentDescription = 'Le site de lecture en ligne';
+	let contentAuthor = 'Équivoques';
+	utils.setAttributeContent('[name=title]', 'content', contentTitle);
+	utils.setAttributeContent('[name=description]', 'content', contentDescription);
+	utils.setAttributeContent('[name=author]', 'content', contentAuthor);
 	//insert template in container
 	c.innerHTML = homeTemplate({ books:lBs, replaceLines: utils.replaceLines });
-	utils.setHTML('title','&Eacute;quivoques');
+	
 	let root = document.querySelector('#home-container');
 	let slides = root.querySelectorAll('.slide');
 	let dots = root.querySelectorAll('.dot');

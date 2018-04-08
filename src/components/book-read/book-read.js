@@ -792,15 +792,23 @@ const book = function(container) {
 		 break;
 	  }
 	}
-	
-	//CHANGE INDEX.HTML TITLE
+
+	//METAS
+	let titleElement, contentTitle;
 	if(bk.subtitle1 && bk.subtitle2) {
-		utils.setHTML('title', bk.authorDisplay + ' : ' + bk.title + ' ; ' + bk.subtitle1 + ' (' + bk.subtitle2 + ')' + '&ensp;&ndash;&ensp;&Eacute;quivoques');
+		titleElement = bk.authorDisplay + ' : ' + bk.title + ' ; ' + bk.subtitle1 + ' (' + bk.subtitle2 + ')' + '&ensp;&ndash;&ensp;&Eacute;quivoques';
+		contentTitle = bk.title + ' ; ' + bk.subtitle1 + ' (' + bk.subtitle2 + ')';
 	} else if(bk.subtitle1) {
-		utils.setHTML('title', bk.authorDisplay + ' : ' + bk.title + ' ; ' + bk.subtitle1 + '&ensp;&ndash;&ensp;&Eacute;quivoques');
+		titleElement = bk.authorDisplay + ' : ' + bk.title + ' ; ' + bk.subtitle1 + '&ensp;&ndash;&ensp;&Eacute;quivoques';
+		contentTitle = bk.title + ' ; ' + bk.subtitle1;
 	} else {
-		utils.setHTML('title', bk.authorDisplay + ' : '  + bk.title + '&ensp;&ndash;&ensp;&Eacute;quivoques');
+		titleElement = bk.authorDisplay + ' : '  + bk.title + '&ensp;&ndash;&ensp;&Eacute;quivoques';
+		contentTitle = bk.title;
 	}
+	utils.setHTML('title', titleElement);
+	utils.setAttributeContent('[name=title]', 'content', contentTitle);
+	utils.setAttributeContent('[name=description]', 'content', bk.description);
+	utils.setAttributeContent('[name=author]', 'content', bk.authorDisplay);
 	//INSERT TEMPLATE
 	c.innerHTML = bookReadTemplate({ book:bk });
 	//START LOADER

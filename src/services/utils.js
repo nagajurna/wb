@@ -150,6 +150,13 @@ const utils = {
 		}
 	},
 	
+	setAttributeContent: (selector,attr,content) => {
+		let element = document.querySelector(selector);
+		if(element.hasAttribute(attr)) {
+			element.setAttribute(attr,content);
+		}
+	},
+	
 	bind: (container, object, className) => {
 		let elements;
 		if(className) {

@@ -43,8 +43,14 @@ const authors = function(container) {
 		works = [];
 	}
 	
-	//CHANGE INDEX.HTML TITLE
+	//METAS
 	utils.setHTML('title','&Eacute;quivoques&ensp;&ndash;&ensp;Auteurs');
+	let contentTitle = 'Équivoques&ensp;&ndash;&ensp;Textes en ligne&ensp;&ndash;&ensp;Auteurs';
+	let contentDescription = 'Le site de lecture en ligne';
+	let contentAuthor = 'Équivoques';
+	utils.setAttributeContent('[name=title]', 'content', contentTitle);
+	utils.setAttributeContent('[name=description]', 'content', contentDescription);
+	utils.setAttributeContent('[name=author]', 'content', contentAuthor);
 	//insert template in container
 	c.innerHTML = authorsTemplate({ authors:sas, replaceLines: utils.replaceLines });
 	
