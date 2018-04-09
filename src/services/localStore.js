@@ -113,31 +113,6 @@ const localStore = {
 		}
 	},
 	
-	setFont: f => {
-		let font = '';
-		if (typeof(Storage) !== "undefined") {
-			//check localStorage for font
-			if(localStorage.getItem('font')) {
-				font = JSON.parse(localStorage.getItem('font'));
-				font = f;
-			} else {
-				font = f;
-			}
-			localStorage.setItem('font', JSON.stringify(font));
-		}
-	},
-	
-	getFont : () => {
-		let font = '';
-		if (typeof(Storage) !== "undefined") {
-			//check localStorage for font
-			if(localStorage.getItem('font')) {
-				font = JSON.parse(localStorage.getItem('font'));
-				return font;
-			}
-		}
-	},
-	
 	setUserAgent: u => {
 		let userAgent = '';
 		if (typeof(Storage) !== "undefined") {

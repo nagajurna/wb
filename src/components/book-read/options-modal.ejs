@@ -2,26 +2,10 @@
 	<div>
 		<button id="close-options" type="button" class="btn">&times;</button>
 		<div class="options-header">
-			<p>Options</p>
+			<p>Taille de la police</p>
 		</div>
-		<div id="font-family-container">
-			<p><b>Police de&nbsp;caractère</b></p>
-			<div>
-				<div class="col-left">
-					<p><label><input type="radio" name="fontFamily" value="<%- book.styles.font %>">&ensp;<%- book.styles.font %></label></p>
-					<% if(book.styles.font!=='Noto Serif') {%>
-						<p><label><input type="radio" name="fontFamily" value="Noto Serif">&ensp;Noto Serif</label></p>
-					<% } %>
-				</div>
-				<div class="col-right">
-					<% if(book.styles.font!=='Vollkorn') {%>
-						<p><label><input type="radio" name="fontFamily" value="VollKorn">&ensp;Vollkorn</label></p>
-					<% } %>
-				</div>
-			</div>
-		</div>
+		
 		<div id="font-size-container">
-			<p><b>Taille de la police</b></p>
 			<div>
 				<div>
 					<div class="col-left">
@@ -42,26 +26,9 @@
 	<div>
 		<button id="close-options-medium" type="button" class="btn">&times;</button>
 		<div class="options-header">
-			<p>Options</p>
-		</div>
-		<div id="font-family-container">
-			<p><b>Police de&nbsp;caractère</b></p>
-			<div>
-				<div class="col-left">
-					<p><label><input type="radio" name="fontFamily" value="<%- book.styles.font %>">&ensp;<%- book.styles.font %></label></p>
-					<% if(book.styles.font!=='Noto Serif') {%>
-						<p><label><input type="radio" name="fontFamily" value="Noto Serif">&ensp;Noto Serif</label></p>
-					<% } %>
-				</div>
-				<div class="col-right">
-					<% if(book.styles.font!=='Vollkorn') {%>
-						<p><label><input type="radio" name="fontFamily" value="VollKorn">&ensp;Vollkorn</label></p>
-					<% } %>
-				</div>
-			</div>
+			<p>Taille de la police</p>
 		</div>
 		<div id="font-size-container">
-			<p><b>Taille de la police</b></p>
 			<div>
 				<div class="col-left">
 					<p><label><input type="radio" name="fontSize" value="14">&ensp;14 px</label></p>

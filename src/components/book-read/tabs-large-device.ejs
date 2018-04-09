@@ -20,26 +20,9 @@
 	<button id="close-tab-options" type="button" class="btn card-4" >&times;</button>
 	<div id="tab-options-container">
 		<div class="header">
-			<p class="options-title">Options</p>
-		</div>
-		<div id="font-family-container-large">
-			<p><b>Police de&nbsp;caractère</b></p>
-			<div>
-				<div class="col-left">
-					<p><label><input type="radio" name="fontFamily" value="<%- book.styles.font %>">&ensp;<%- book.styles.font %></label></p>
-					<% if(book.styles.font!=='Noto Serif') {%>
-						<p><label><input type="radio" name="fontFamily" value="Noto Serif">&ensp;Noto Serif</label></p>
-					<% } %>
-				</div>
-				<div class="col-right">
-					<% if(book.styles.font!=='Vollkorn') {%>
-						<p><label><input type="radio" name="fontFamily" value="VollKorn">&ensp;Vollkorn</label></p>
-					<% } %>
-				</div>
-			</div>
+			<p class="options-title">Taille de la police</p>
 		</div>
 		<div id="font-size-container-large">
-			<p><b>Taille de la police</b></p>
 			<div>
 				<div class="col-left">
 					<p><label><input type="radio" name="fontSize" value="14">&ensp;14 px</label></p>

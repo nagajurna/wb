@@ -342,11 +342,6 @@ LIST
 	border: none;
 }
 
-li.inline {
-	list-style-type: none !important;
-	display: inline-block;
-}
-
 /*
 INPUT
 */
@@ -566,6 +561,7 @@ Medium and large devices only
 
 #top-links ul li {
 	text-align: center;
+	display: inline-block;
 }
 
 #books-link, #last-link, #next-link, #authors-link, #admin-link {
