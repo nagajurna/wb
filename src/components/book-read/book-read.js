@@ -540,6 +540,7 @@ const book = function(container) {
 					let size = event.target.value;
 					localStore.setFontSize('small', size);
 					//start loader and close modal
+					text.style.opacity = '0';
 					utils.removeClass('#text-loader-container','hidden');
 					utils.removeClass('#options','open');
 					document.body.style.overflow = 'hidden';
@@ -557,10 +558,12 @@ const book = function(container) {
 							//end loader
 							document.body.style.overflow = 'visible'; 
 							utils.addClass('#text-loader-container','hidden');
+							text.style.opacity = '1';
 						})
 						.catch( error => {
 							document.body.style.overflow = 'visible'; 
 							utils.addClass('#text-loader-container','hidden');
+							text.style.opacity = '1';
 						});		
 					 },100);
 				}, false);
