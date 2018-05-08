@@ -786,13 +786,13 @@
       ],
       "description": "",
       "path": "/books/une_ame/une_ame",
-      "visible": false,
+      "visible": true,
       "authors": [
         "d3ed277a-08fa-41bd-a159-d7728e92e656"
       ],
       "contribs": [],
       "created_at": "2018-02-26 11:29:21",
-      "updated_at": "2018-03-06 18:44:40",
+      "updated_at": "2018-05-08 14:07:38",
       "id": "c5a5182b-cb1b-49c2-aef4-f7968b4cdeb8"
     },
     {
@@ -819,15 +819,15 @@
       "sources": [
         "Fumeurs d'opium ; Comédiens ambulants, Jules Boissière –&nbsp;Louis Michaud, Paris, 1909."
       ],
-      "description": "",
+      "description": "Et il est dit, dans un antique évangile de Nubie : <i>... Or Salomé offrit en un plat d'or la tête du Précurseur au jeune rhéteur hellène qui dédaigne l'amour. Mais lui : « C'est votre tête, ô Salomé, que je voudrais. » — Ainsi, par jeu, il parlait. — Et le lendemain un esclave lui apporta la blonde tête de l'amoureuse, — Or, le Sage plus ne se rappelait son vœu d'hier ; il commanda de remporter la chose sanglante, et il continua de lire Platon</i>.",
       "path": "/books/comediens_ambulants/comediens_ambulants",
-      "visible": false,
+      "visible": true,
       "authors": [
         "d3ed277a-08fa-41bd-a159-d7728e92e656"
       ],
       "contribs": [],
       "created_at": "2018-02-26 11:36:17",
-      "updated_at": "2018-03-06 18:45:14",
+      "updated_at": "2018-05-08 19:08:32",
       "id": "58613751-ed48-4a90-b323-8982e7ced89e"
     },
     {
