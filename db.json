@@ -630,7 +630,7 @@
         "Mémoires, révélations et poésies de Lacenaire, écrits par lui-même à la Conciergerie &ndash;&nbsp;chez les marchands de nouveautés, Paris, 1836 (2 vol.).",
         "Mémoires et autres écrits, Lacenaire &ndash;&nbsp; José Corti, Paris, 1991."
       ],
-      "description": "",
+      "description": "<i>Les mémoires du célèbre Criminel-Dandy écrits durant les mois qui précédent son exécution : « </i>J’arrive à la mort par une mauvaise route, j’y monte par un escalier.<i> »</i>",
       "path": "/books/memoires_de_lacenaire/memoires_de_lacenaire",
       "visible": true,
       "authors": [
@@ -638,8 +638,9 @@
       ],
       "contribs": [],
       "created_at": "2018-02-11 22:29:01",
-      "updated_at": "2018-02-11 22:30:52",
-      "id": "c395ddde-05ee-4a77-81a3-77af503eb5d4"
+      "updated_at": "2018-05-08 13:55:38",
+      "id": "c395ddde-05ee-4a77-81a3-77af503eb5d4",
+      "source": {}
     },
     {
       "styles": {
@@ -748,7 +749,7 @@
       "sources": [
         "Fumeurs d'opium ; Comédiens ambulants, Jules Boissière –&nbsp;Louis Michaud, Paris, 1909."
       ],
-      "description": "<i>«&#8239;Je devine tant de volontés et tant d’intelligences éparses dans la matière brute et dans le vent de la nuit ! – Hélas ! ce n’est plus pour moi que les vieux arbres sont muets et les minéraux inoffensifs. L’opium m’a rendu si clairvoyant ! – et parfois je m’en enorgueillis, parce que je suis plus savant qu’autrefois ; et plus souvent j’en souffre, parce que j’ai perdu la quiétude de l’âme.&#8239;»</i>",
+      "description": "<i>« Je devine tant de volontés et tant d’intelligences éparses dans la matière brute et dans le vent de la nuit ! – Hélas ! ce n’est plus pour moi que les vieux arbres sont muets et les minéraux inoffensifs. L’opium m’a rendu si clairvoyant ! – et parfois je m’en enorgueillis, parce que je suis plus savant qu’autrefois ; et plus souvent j’en souffre, parce que j’ai perdu la quiétude de l’âme. »</i>",
       "path": "/books/dans_la_foret/dans_la_foret",
       "visible": true,
       "authors": [
@@ -756,7 +757,7 @@
       ],
       "contribs": [],
       "created_at": "2018-02-25 00:34:28",
-      "updated_at": "2018-03-18 09:24:57",
+      "updated_at": "2018-05-08 13:39:24",
       "id": "4a61340b-04bf-43ff-b468-465423ebe363"
     },
     {
@@ -828,6 +829,76 @@
       "created_at": "2018-02-26 11:36:17",
       "updated_at": "2018-03-06 18:45:14",
       "id": "58613751-ed48-4a90-b323-8982e7ced89e"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(223, 207, 190,0.8)",
+        "image": "/books/de_mazas_a_jerusalem/de_mazas_a_jerusalem_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 9%; font-size: 1.4em;letter-spacing: 1.5px",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "De Mazas à&nbsp;Jérusalem",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Zo d'Axa",
+      "year": "1895",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "De Mazas à&nbsp;Jérusalem, Zo d'Axa –&nbsp;Chamuel, Éditeur, Paris, 1895."
+      ],
+      "description": "<i>Un texte autobiographique que Zo d'Axa, journaliste libertaire, fondateur de l'hebdomadaire </i>L'En-dehors<i>, écrivit durant son incarcération à la prison Sainte-Pélagie.</i>",
+      "path": "/books/de_mazas_a_jerusalem/de_mazas_a_jerusalem",
+      "visible": false,
+      "authors": [
+        "781c868b-82b4-445a-a94a-c8b5fd01401f"
+      ],
+      "contribs": [],
+      "created_at": "2018-05-08 13:10:26",
+      "updated_at": "2018-05-08 13:56:04",
+      "id": "c28483db-6aec-45a1-856e-7fd4c8562c6f"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(123, 55, 71, 0.8)",
+        "image": "/books/propos_d_un_intoxique/propos_d_un_intoxique_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 12%; margin-bottom: 0em;font-size: 1.2em;letter-spacing: 1px;font-variant: small-caps",
+        "subtitle1": "padding-top: 2%;margin-top: 0px; font-size: 0.9em;letter-spacing: 1px;font-style: italic",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Propos d'un Intoxiqué",
+      "subtitle1": "Souvenirs d'Indo-Chine",
+      "subtitle2": "",
+      "authorDisplay": "Jules Boissière",
+      "year": "1890",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Propos d'un Intoxiqué, Jules Boissière –&nbsp;Louis Michaud, Paris, 1911."
+      ],
+      "description": "",
+      "path": "/books/propos_d_un_intoxique/propos_d_un_intoxique",
+      "visible": false,
+      "authors": [
+        "d3ed277a-08fa-41bd-a159-d7728e92e656"
+      ],
+      "contribs": [],
+      "created_at": "2018-05-08 13:23:03",
+      "updated_at": "2018-05-08 13:23:03",
+      "id": "7b2d8b73-508b-4eb9-8b67-d0e51c664a87"
     }
   ],
   "authors": [
@@ -973,6 +1044,17 @@
       "created_at": "2018-02-25 00:15:27",
       "updated_at": "2018-02-25 00:15:27",
       "id": "d3ed277a-08fa-41bd-a159-d7728e92e656"
+    },
+    {
+      "name": "Zo d'Axa",
+      "nameAlpha": "Axa",
+      "birth": "1864",
+      "death": "1930",
+      "description": "",
+      "visible": true,
+      "created_at": "2018-05-08 12:57:35",
+      "updated_at": "2018-05-08 12:57:36",
+      "id": "781c868b-82b4-445a-a94a-c8b5fd01401f"
     }
   ],
   "tables": [
