@@ -557,7 +557,7 @@
       "categories": "",
       "collection": "",
       "sources": [
-        "Mes amis &ndash;&nbsp;Ferenczi & fils, Paris, 1924."
+        "Mes amis, Emmanuel bove – Ferenczi & fils, Paris, 1924."
       ],
       "description": "<i>« Je n’aime pas à quitter une personne avec qui je me suis entretenu, sans savoir son adresse ni où la revoir. Lorsque, malgré moi, cela arrive, je vis pendant plusieurs heures dans une sorte de malaise. La pensée de la mort, que d’habitude je chasse rapidement, me hante. Cette personne, en s’en allant pour toujours, m’a rappelé, j’ignore pourquoi, que je mourrai seul. »</i>\n\nLe premier roman d'Emmanuel Bove.",
       "path": "/books/mes_amis/mes_amis",
@@ -567,7 +567,7 @@
       ],
       "contribs": [],
       "created_at": "2018-02-06 19:43:33",
-      "updated_at": "2018-03-08 23:35:00",
+      "updated_at": "2018-05-13 23:59:31",
       "id": "91fd0a8f-1260-495b-89b5-552f8539ef2f",
       "source": {}
     },
@@ -592,7 +592,7 @@
       "categories": "",
       "collection": "",
       "sources": [
-        "Armand &ndash;&nbsp;Émile-Paul frères, Paris, 1927."
+        "Armand, Emmanuel Bove – Émile-Paul frères, Paris, 1927."
       ],
       "description": "<i>« C’était comme au malheureux que j’avais été qu’il parlait. Mon aisance présente était pour lui un accident. Elle ne durerait pas. Bien que chaque jour je m’imposasse de penser que j’étais destiné à la vie que je menais, que c’était l’autre vie qui avait été un accident, il m’apparut une seconde qu’il avait raison. »</i>\n\n<i>Armand</i> est le deuxième roman d'Emmanuel Bove.",
       "path": "/books/armand/armand",
@@ -602,7 +602,7 @@
       ],
       "contribs": [],
       "created_at": "2018-02-07 13:44:45",
-      "updated_at": "2018-03-06 18:09:59",
+      "updated_at": "2018-05-13 23:58:42",
       "id": "247eb19f-d72c-4849-a54c-294d71714d3c",
       "source": {}
     },
@@ -663,7 +663,7 @@
       "categories": "",
       "collection": "",
       "sources": [
-        "Bécon-les-Bruyères –&nbsp;Émile-Paul frères, Paris, 1927."
+        "Bécon-les-Bruyères, Emmanuel Bove – Émile-Paul frères, Paris, 1927."
       ],
       "description": "<i>Une monographie sur la petite ville de banlieue qu'Emmanuel Bove habita brièvement.</i>",
       "path": "/books/becon_les_bruyeres/becon_les_bruyeres",
@@ -673,7 +673,7 @@
       ],
       "contribs": [],
       "created_at": "2018-02-15 14:27:26",
-      "updated_at": "2018-03-08 11:41:53",
+      "updated_at": "2018-05-14 00:00:11",
       "id": "69e4a0c8-126f-49da-b7cd-51e5d9b86749",
       "source": {}
     },
@@ -854,15 +854,15 @@
       "sources": [
         "De Mazas à&nbsp;Jérusalem, Zo d'Axa –&nbsp;Chamuel, Éditeur, Paris, 1895."
       ],
-      "description": "<i>Un texte autobiographique que Zo d'Axa, journaliste libertaire, fondateur de l'hebdomadaire </i>L'En-dehors<i>, écrivit durant son incarcération à la prison Sainte-Pélagie.</i>",
+      "description": "<i>Un texte autobiographique que Zo d'Axa, journaliste libertaire, fondateur de l'hebdomadaire </i>L'Endehors<i>, écrivit durant son incarcération à la prison Sainte-Pélagie.</i>",
       "path": "/books/de_mazas_a_jerusalem/de_mazas_a_jerusalem",
-      "visible": false,
+      "visible": true,
       "authors": [
         "781c868b-82b4-445a-a94a-c8b5fd01401f"
       ],
       "contribs": [],
       "created_at": "2018-05-08 13:10:26",
-      "updated_at": "2018-05-08 13:56:04",
+      "updated_at": "2018-05-13 23:00:40",
       "id": "c28483db-6aec-45a1-856e-7fd4c8562c6f"
     },
     {
@@ -899,6 +899,111 @@
       "created_at": "2018-05-08 13:23:03",
       "updated_at": "2018-05-08 13:23:03",
       "id": "7b2d8b73-508b-4eb9-8b67-d0e51c664a87"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgb(247, 202, 201, 0.8)",
+        "image": "/books/lizzie_blackeston/lizzie_blackeston_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 18%; font-size: 1.2em;letter-spacing: 1px;text-transform: uppercase",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Lizzie Blackeston",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Louis Hémon",
+      "year": "1908",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Lizzie Blackeston, Louis Hémon – Le Temps, Paris, 3-8 mars 1908."
+      ],
+      "description": "",
+      "path": "/books/lizzie_blackeston/lizzie_blackeston",
+      "visible": false,
+      "authors": [
+        "6b7cd908-91ae-41cd-92fa-af815ebfe5b6"
+      ],
+      "contribs": [],
+      "created_at": "2018-05-13 22:53:16",
+      "updated_at": "2018-05-14 00:00:50",
+      "id": "d4bfe0b7-4a71-4900-bf11-5dda26935f90"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(174, 201, 131, 0.8)",
+        "image": "/books/collin_maillard/collin_maillard_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 18%; font-size: 1.2em;letter-spacing: 1px;text-transform: uppercase",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Colin-Maillard",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Louis Hémon",
+      "year": "1924",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Collin-Maillard, Louis Hémon – Bernard Grasset, Paris, 1924."
+      ],
+      "description": "",
+      "path": "/books/collin_maillard/collin_maillard",
+      "visible": false,
+      "authors": [
+        "6b7cd908-91ae-41cd-92fa-af815ebfe5b6"
+      ],
+      "contribs": [],
+      "created_at": "2018-05-13 23:54:28",
+      "updated_at": "2018-05-14 00:08:30",
+      "id": "161263db-d6e3-490f-8f38-e6f785009780"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(134, 103, 70,0.8)",
+        "image": "/books/battling_malone_pugiliste/battling_malone_pugiliste_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 9%; font-size: 1.4em;letter-spacing: 1.5px",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Battling Malone, pugiliste",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Louis Hémon",
+      "year": "1925",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Battling Malone, pugiliste, Louis Hémon – Bernard Grasset, Paris, 1925."
+      ],
+      "description": "",
+      "path": "/books/battling_malone_pugiliste/battling_malone",
+      "visible": false,
+      "authors": [
+        "6b7cd908-91ae-41cd-92fa-af815ebfe5b6"
+      ],
+      "contribs": [],
+      "created_at": "2018-05-14 00:10:29",
+      "updated_at": "2018-05-14 00:10:29",
+      "id": "b6035209-83ca-4b7c-b0be-5f5bd59c35a9"
     }
   ],
   "authors": [
@@ -1055,6 +1160,17 @@
       "created_at": "2018-05-08 12:57:35",
       "updated_at": "2018-05-08 12:57:36",
       "id": "781c868b-82b4-445a-a94a-c8b5fd01401f"
+    },
+    {
+      "name": "Louis Hémon",
+      "nameAlpha": "Hémon",
+      "birth": "1880",
+      "death": "1913",
+      "description": "",
+      "visible": true,
+      "created_at": "2018-05-13 22:41:31",
+      "updated_at": "2018-05-13 22:53:28",
+      "id": "6b7cd908-91ae-41cd-92fa-af815ebfe5b6"
     }
   ],
   "tables": [
