@@ -58,7 +58,7 @@
         "subtitle2": "",
         "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
       },
-      "title": "Un Roman pour les&nbsp;cuisinières",
+      "title": "Un roman pour les&nbsp;cuisinières",
       "subtitle1": "",
       "subtitle2": "",
       "authorDisplay": "Émile Cabanon",
@@ -74,7 +74,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:00:53",
-      "updated_at": "2018-03-08 11:22:24",
+      "updated_at": "2018-05-20 09:26:00",
       "id": "b3e3c2e7-305f-4697-867f-3dd2417f71ed",
       "sources": [
         "Un Roman pour les cuisinières, par Émile Cabanon – Eugène Renduel, Paris, 1834."
@@ -128,7 +128,7 @@
         "subtitle2": "",
         "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
       },
-      "title": "La Croisade des&nbsp;enfants",
+      "title": "La croisade des&nbsp;enfants",
       "subtitle1": "",
       "subtitle2": "",
       "authorDisplay": "Marcel Schwob",
@@ -144,7 +144,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:08:48",
-      "updated_at": "2018-01-18 13:10:09",
+      "updated_at": "2018-05-20 09:27:22",
       "id": "e22c5a98-e5b8-4926-8cad-fd30131868c2",
       "sources": [
         "La lampe de Psyché (9<sup>e</sup> éd.), par Marcel Schwob – Mercure de France, Paris, 1925 (p. 71-109)."
@@ -372,7 +372,7 @@
         "subtitle2": "",
         "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
       },
-      "title": "Le Roi au&nbsp;Masque&nbsp;d'Or",
+      "title": "Le roi au&nbsp;masque&nbsp;d'or",
       "subtitle1": "",
       "subtitle2": "",
       "authorDisplay": "Marcel Schwob",
@@ -380,7 +380,7 @@
       "language": "français",
       "categories": "",
       "collection": "",
-      "description": "<i>« Il y a dans ce livre des masques et des figures couvertes&#8239;; un roi masqué d’or, un sauvage au mufle de fourrure, des routiers italiens à la face pestiférée et des routiers français avec des faux visages, des galériens heaumés de rouge, des jeunes filles subitement vieillies dans un miroir, et une singulière foule de lépreux, d’embaumeuses, d’eunuques, d’assassins, de démoniaques et de pirates, entre lesquels je prie le lecteur de penser que je n’ai aucune préférence, étant certain qu’ils ne sont point si divers.&nbsp;»</i>",
+      "description": "<i>« Il y a dans ce livre des masques et des figures couvertes ; un roi masqué d’or, un sauvage au mufle de fourrure, des routiers italiens à la face pestiférée et des routiers français avec des faux visages, des galériens heaumés de rouge, des jeunes filles subitement vieillies dans un miroir, et une singulière foule de lépreux, d’embaumeuses, d’eunuques, d’assassins, de démoniaques et de pirates, entre lesquels je prie le lecteur de penser que je n’ai aucune préférence, étant certain qu’ils ne sont point si divers. »</i>",
       "path": "/books/le_roi_au_masque_d_or/le_roi_au_masque_d_or",
       "visible": true,
       "authors": [
@@ -388,7 +388,7 @@
       ],
       "contribs": [],
       "created_at": "2017-12-28 18:20:55",
-      "updated_at": "2018-03-08 12:05:41",
+      "updated_at": "2018-05-20 09:30:53",
       "id": "b4033b6c-d13c-4b32-8767-f6b6939a76d2",
       "sources": [
         "Le roi au masque d 'or, par Marcel Schwob &ndash;&nbsp;Paul Ollendorf, Paris, 1893."
@@ -690,7 +690,7 @@
         "subtitle2": "",
         "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
       },
-      "title": "Les Derniers Jours d'Emmanuel Kant",
+      "title": "Les derniers jours d'Emmanuel Kant",
       "subtitle1": "",
       "subtitle2": "",
       "authorDisplay": "Thomas de Quincey",
@@ -722,7 +722,7 @@
         }
       ],
       "created_at": "2018-02-25 00:28:10",
-      "updated_at": "2018-03-06 14:48:03",
+      "updated_at": "2018-05-20 09:31:34",
       "id": "4310e84a-64a7-4a30-aabd-8a70d33d5732"
     },
     {
@@ -878,7 +878,7 @@
         "subtitle2": "",
         "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
       },
-      "title": "Propos d'un Intoxiqué",
+      "title": "Propos d'un intoxiqué",
       "subtitle1": "Souvenirs d'Indo-Chine",
       "subtitle2": "",
       "authorDisplay": "Jules Boissière",
@@ -891,20 +891,20 @@
       ],
       "description": "",
       "path": "/books/propos_d_un_intoxique/propos_d_un_intoxique",
-      "visible": false,
+      "visible": true,
       "authors": [
         "d3ed277a-08fa-41bd-a159-d7728e92e656"
       ],
       "contribs": [],
       "created_at": "2018-05-08 13:23:03",
-      "updated_at": "2018-05-08 13:23:03",
+      "updated_at": "2018-05-20 09:33:38",
       "id": "7b2d8b73-508b-4eb9-8b67-d0e51c664a87"
     },
     {
       "source": {},
       "styles": {
         "color": "rgb(247, 202, 201, 0.8)",
-        "image": "/books/lizzie_blackeston/lizzie_blackeston_cover.jpg",
+        "image": "/books/lizzie_blakeston/lizzie_blakeston_cover.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -913,7 +913,7 @@
         "subtitle2": "",
         "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
       },
-      "title": "Lizzie Blackeston",
+      "title": "Lizzie Blakeston",
       "subtitle1": "",
       "subtitle2": "",
       "authorDisplay": "Louis Hémon",
@@ -922,17 +922,17 @@
       "categories": "",
       "collection": "",
       "sources": [
-        "Lizzie Blackeston, Louis Hémon – Le Temps, Paris, 3-8 mars 1908."
+        "Lizzie Blakeston, Louis Hémon – Le Temps, Paris, 3-8 mars 1908."
       ],
       "description": "",
-      "path": "/books/lizzie_blackeston/lizzie_blackeston",
-      "visible": false,
+      "path": "/books/lizzie_blakeston/lizzie_blakeston",
+      "visible": true,
       "authors": [
         "6b7cd908-91ae-41cd-92fa-af815ebfe5b6"
       ],
       "contribs": [],
       "created_at": "2018-05-13 22:53:16",
-      "updated_at": "2018-05-14 00:00:50",
+      "updated_at": "2018-05-20 09:48:36",
       "id": "d4bfe0b7-4a71-4900-bf11-5dda26935f90"
     },
     {
