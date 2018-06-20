@@ -18,10 +18,9 @@ const adminBook = function(container) {
 		} else {
 			//insert template in container
 			c.innerHTML = adminBookTemplate({ book: response.book, error: '', replaceLines: utils.replaceLines });
-		
 			let root = document.querySelector('#adminBook');
 			let modal = root.querySelector('#modal');
-			let div = root.querySelector('#book');
+			let div = root.querySelector('#aBook');
 			
 			let openModalBtn = div.querySelector('#open-modal-btn');
 			openModalBtn.addEventListener('click', () => {
