@@ -835,6 +835,15 @@ p.section-title {
 	line-height: 2em;
 }
 
+p.section-title_small {
+	padding-top: 3.5em;
+	margin-top: 0px;
+	margin-bottom: 1.5em;
+	text-indent: 0px;
+	line-height: 2em;
+	font-size: 1em;
+}
+
 p.section-title.margin-small {
 	margin-bottom: 0.5em;
 }

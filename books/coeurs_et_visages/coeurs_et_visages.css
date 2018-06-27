@@ -1,10 +1,12 @@
+/*
 [data-wb-text] {
 	font-family: 'Noto Serif', 'Georgia', serif;
 }
+*/
 
 [data-wb-text].cover_active {
-	background-color: rgba(149, 222, 227, 0.8);
-	background-image: url("/books/etat_civil/etat_civil_cover.jpg");
+	background-color: rgba(108, 79, 61, 0.8);
+	background-image: url("/books/coeurs_et_visages/coeurs_et_visages_cover.jpg");
 }
 
 [data-wb-text] #cover {
@@ -12,7 +14,6 @@
 }
 
 [data-wb-text] #cover-author {
-	padding-top: 0px;
 	font-size: 1.2em;
 	font-variant: small-caps;
 	letter-spacing: 1px;
@@ -21,11 +22,11 @@
 
 [data-wb-text] #cover-title {
 	margin-top: 1.5em;
-	padding-top: 5%;
+	padding-top: 0%;
 	font-size: 1.8em;
 	text-transform: uppercase;
 	line-height: 1.8em;
-	word-spacing: 0.25em;
+	word-spacing: 0.2em;
 	letter-spacing: 3px;
 	opacity: 0.75;
 }
@@ -40,7 +41,6 @@
 	letter-spacing: 6px;
 	text-align: center;
 	opacity: 0.75;
-	z-index: 1000;
 }
 
 [data-wb-text] #cover-logo1 {
@@ -50,7 +50,6 @@
 
 [data-wb-text] #cover-logo2 {
 	font-size: 1.2em;
-	line-height: 120%;
 	margin-top: 48px;
 }
 
@@ -60,13 +59,14 @@
 	}
 }
 
-@media only screen and (min-height: 540px) {
+@media only screen and (min-height: 568px) {
 
 	[data-wb-text] #cover-title {
 		padding-top: 8%;
 		font-size: 1.9em;
-		word-spacing: 0.4em;
-		letter-spacing: 4px;
+		line-height: 1.9em;
+		word-spacing: 0.2em;
+		letter-spacing: 3px;
 	}
 	
 	[data-wb-text] #cover-logo {
@@ -75,14 +75,25 @@
 	
 	[data-wb-text] #cover-logo2 {
 		font-size: 1.3em;
-		line-height: 120%;
 	}
-
 }
 
-@media only screen and (min-width: 568px) {
+@media only screen and (min-width: 612px) {
+
+	[data-wb-text] #cover-title {
+		padding-top: 4%;
+		font-size: 1.9em;
+		word-spacing: 0.35em;
+		letter-spacing: 3px;
+	}
+	
 	[data-wb-text] #cover-logo {
 		bottom: 3em;
+	}
+	
+	[data-wb-text] #cover-logo2 {
+		font-size: 1.3em;
+		letter-spacing: 6px;
 	}
 }
 
@@ -94,8 +105,37 @@
 	}
 
 	[data-wb-text] #cover-title {
-		padding-top: 15%;
+		padding-top: 10%;
 		font-size: 2em;
 		line-height: 2em;
 	}
 }
+
+[data-wb-text] .section-subtitle_long {
+	text-align: justify;
+	margin-left: 1.5em;
+	text-indent: -1.5em;
+}
+
+[data-wb-text] .section-subtitle p {
+	text-indent: -1.5em;
+}
+
+[data-wb-text] .section-exergue {
+	text-align: right;
+	font-size: 0.9em;
+}
+
+[data-wb-text] .section-signature {
+	text-align: right;
+	font-size: 0.9em;
+	padding-bottom: 1.5em;
+	padding-right: 1.5em
+}
+
+
+
+
+
+
+
