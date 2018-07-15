@@ -1,10 +1,12 @@
+/*
 [data-wb-text] {
 	font-family: 'Noto Serif', 'Georgia', serif;
 }
+*/
 
 [data-wb-text].cover_active {
-	background-color: rgba(223, 207, 190,0.8);
-	background-image: url("/books/plainte_contre_inconnu/plainte_contre_inconnu_cover.jpg");
+	background-color: rgba(147, 107, 83, 0.8);
+	background-image: url("/books/contes_et_faceties/contes_et_faceties_cover.jpg");
 }
 
 [data-wb-text] #cover {
@@ -20,11 +22,11 @@
 
 [data-wb-text] #cover-title {
 	margin-top: 1.5em;
-	padding-top: 4%;
+	padding-top: 0%;
+	font-size: 1.8em;
 	text-transform: uppercase;
-	font-size: 1.5em;
-	line-height: 2em;
-	word-spacing: 0.25em;
+	line-height: 1.8em;
+	word-spacing: 0.2em;
 	letter-spacing: 3px;
 	opacity: 0.75;
 }
@@ -61,7 +63,8 @@
 
 	[data-wb-text] #cover-title {
 		padding-top: 8%;
-		font-size: 1.7em;
+		font-size: 1.9em;
+		line-height: 1.9em;
 		word-spacing: 0.2em;
 		letter-spacing: 3px;
 	}
@@ -75,11 +78,11 @@
 	}
 }
 
-@media only screen and (min-width: 568px) {
+@media only screen and (min-width: 612px) {
 
 	[data-wb-text] #cover-title {
-		padding-top: 6%;
-		font-size: 1.7em;
+		padding-top: 4%;
+		font-size: 1.9em;
 		word-spacing: 0.35em;
 		letter-spacing: 3px;
 	}
@@ -102,48 +105,25 @@
 	}
 
 	[data-wb-text] #cover-title {
-		padding: 10% 10% 0px 10%;
-		font-size: 1.7em;
+		padding-top: 10%;
+		font-size: 2em;
 		line-height: 2em;
 	}
 }
 
-[data-wb-text] #fin {
-	text-transform: uppercase;
-	letter-spacing: 2px;
+[data-wb-text] .section-subtitle_long {
+	text-align: justify;
+	margin-left: 1.5em;
+	text-indent: -1.5em;
 }
 
-[data-wb-text] .section-title {
-	text-align: center;
-	padding-top: 3.5em;
-	margin-top: 0px;
-	margin-bottom: 1.5em;
-	text-indent: 0px;
-}
-
-[data-wb-text] .section-dedicace {
-	padding-top: 1.5em;
-	margin-top: 0px;
-	margin-bottom: 1.5em;
-	text-indent: 0px;
-	font-style: italic;
-	text-align: right;
+[data-wb-text] .section-subtitle p {
+	text-indent: -1.5em;
 }
 
 [data-wb-text] .section-exergue {
-	padding-top: 0em;
-	margin-top: 0px;
-	margin-bottom: 0em;
-	text-align: justify;
-	margin-left: 1.5em;
-	text-indent: 1.5em;
+	text-align: right;
 	font-size: 0.9em;
-}
-
-[data-wb-text] .section-exergue p {
-	text-indent: 0px;
-	font-size: 0.85em;
-	text-align: left;
 }
 
 [data-wb-text] .section-signature {
@@ -153,10 +133,8 @@
 	padding-right: 1.5em
 }
 
-[data-wb-text] p.signature {
-	text-align: right;
-	margin-right: 1.5em;
-}
+
+
 
 
 
