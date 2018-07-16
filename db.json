@@ -1237,17 +1237,17 @@
       "categories": "",
       "collection": "",
       "sources": [
-        "Ourika, M<sup>me</sup> de&nbsp;Duras –&nbsp;Jouaust, Librairie des&nbsp;bibliophiles, Paris, 1878."
+        "Ourika – Ladvocat, Paris, 1824."
       ],
       "description": "",
       "path": "/books/ourika/ourika",
-      "visible": false,
+      "visible": true,
       "authors": [
         "f62d268c-78f0-43e6-a3a8-e8051e0078f9"
       ],
       "contribs": [],
       "created_at": "2018-07-09 21:20:17",
-      "updated_at": "2018-07-09 21:20:17",
+      "updated_at": "2018-07-16 20:59:20",
       "id": "71c2adba-8c77-4d51-b799-5f71d2978708"
     },
     {
@@ -1284,6 +1284,41 @@
       "created_at": "2018-07-15 08:51:09",
       "updated_at": "2018-07-15 08:52:06",
       "id": "727c8777-aea2-4252-9704-56cc5b8d09bc"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(148, 71, 67, 0.8)",
+        "image": "/books/introduction_a_la_methode_de_leonard_de_vinci/introduction_a_la_methode_de_leonard_de_vinci_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 10%; font-size: 1.2em;letter-spacing: 1px",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Introduction à&nbsp;la&nbsp;méthode de&nbsp;Léonard de&nbsp;Vinci",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Paul Valéry",
+      "year": "1895",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Introduction à&nbsp;la&nbsp;méthode de&nbsp;Léonard de&nbsp;Vinci, Paul Valéry –&nbsp;Éditions de&nbsp;la&nbsp;Nouvelle Revue Française, Paris, 1919."
+      ],
+      "description": "",
+      "path": "/books/introduction_a_la_methode_de_leonard_de_vinci/introduction_a_la_methode_de_leonard_de_vinci",
+      "visible": false,
+      "authors": [
+        "342d4cd0-71ec-4b30-a9d9-94c8b07a81bb"
+      ],
+      "contribs": [],
+      "created_at": "2018-07-16 20:55:17",
+      "updated_at": "2018-07-16 21:14:43",
+      "id": "bc843ba3-4940-4846-b52a-6cf70fcb0e09"
     }
   ],
   "authors": [
@@ -1495,6 +1530,17 @@
       "created_at": "2018-07-15 08:41:46",
       "updated_at": "2018-07-15 08:41:46",
       "id": "1e1f4e76-3f49-44ee-8a6f-343fd44569bc"
+    },
+    {
+      "name": "Paul Valéry",
+      "nameAlpha": "valery",
+      "birth": "1871",
+      "death": "1945",
+      "description": "",
+      "visible": true,
+      "created_at": "2018-07-16 20:45:15",
+      "updated_at": "2018-07-16 20:45:15",
+      "id": "342d4cd0-71ec-4b30-a9d9-94c8b07a81bb"
     }
   ],
   "tables": [
