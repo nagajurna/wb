@@ -5,8 +5,8 @@
 */
 
 [data-wb-text].cover_active {
-	background-color: rgba(147, 107, 83, 0.8);
-	background-image: url("/books/contes_et_faceties/contes_et_faceties_cover.jpg");
+	background-color: rgba(112, 141, 88, 0.8);
+	background-image: url("/books/la_mort_de_dinah/la_mort_de_dinah_cover.jpg");
 }
 
 [data-wb-text] #cover {
@@ -22,8 +22,8 @@
 
 [data-wb-text] #cover-title {
 	margin-top: 1.5em;
-	padding-top: 4%;
-	font-size: 1.7em;
+	padding-top: 0%;
+	font-size: 1.8em;
 	text-transform: uppercase;
 	line-height: 1.8em;
 	word-spacing: 0.2em;
@@ -105,7 +105,7 @@
 	}
 
 	[data-wb-text] #cover-title {
-		padding-top: 12%;
+		padding-top: 10%;
 		font-size: 2em;
 		line-height: 2em;
 	}

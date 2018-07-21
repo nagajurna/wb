@@ -1258,7 +1258,7 @@
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
-        "title": "padding-top: 18%; font-size: 1.2em;letter-spacing: 1px;text-transform: uppercase",
+        "title": "padding-top: 18%; font-size: 1.1em;letter-spacing: 1px;text-transform: uppercase",
         "subtitle1": "",
         "subtitle2": "",
         "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
@@ -1276,13 +1276,13 @@
       ],
       "description": "",
       "path": "/books/contes_et_faceties/contes_et_faceties",
-      "visible": false,
+      "visible": true,
       "authors": [
         "1e1f4e76-3f49-44ee-8a6f-343fd44569bc"
       ],
       "contribs": [],
       "created_at": "2018-07-15 08:51:09",
-      "updated_at": "2018-07-15 08:52:06",
+      "updated_at": "2018-07-21 16:07:31",
       "id": "727c8777-aea2-4252-9704-56cc5b8d09bc"
     },
     {
@@ -1319,6 +1319,76 @@
       "created_at": "2018-07-16 20:55:17",
       "updated_at": "2018-07-16 21:14:43",
       "id": "bc843ba3-4940-4846-b52a-6cf70fcb0e09"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(112, 141, 88, 0.8)",
+        "image": "/books/la_mort_de_dinah/la_mort_de_dinah_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 18%; font-size: 1.2em;letter-spacing: 1px;text-transform: uppercase",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "La mort de&nbsp;Dinah",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Emmanuel Bove",
+      "year": "1928",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "La mort de Dinah, Emmanuel Bove –&nbsp;Éditions des Portiques, Paris, 1928."
+      ],
+      "description": "",
+      "path": "/books/la_mort_de_dinah/la_mort_de_dinah",
+      "visible": false,
+      "authors": [
+        "9a08c6d7-dc69-4f94-9529-b6e53cf20b41"
+      ],
+      "contribs": [],
+      "created_at": "2018-07-21 14:44:32",
+      "updated_at": "2018-07-21 14:49:44",
+      "id": "5b50bea6-cdb3-41b6-999f-e5f560aaf221"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(123, 55, 71, 0.8)",
+        "image": "/books/les_nuits_d_octobre/les_nuits_d_octobre_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 18%; font-size: 1.2em;letter-spacing: 1px;text-transform: uppercase",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Les nuits d'octobre",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Gérard de&nbsp;Nerval",
+      "year": "1852",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Les nuits d'octobre, Gérard de&nbsp;Nerval – L'Illustration, octobre-novembre 1852"
+      ],
+      "description": "",
+      "path": "/books/les_nuits_d_octobre/les_nuits_d_octobre",
+      "visible": false,
+      "authors": [
+        "1e1f4e76-3f49-44ee-8a6f-343fd44569bc"
+      ],
+      "contribs": [],
+      "created_at": "2018-07-21 15:15:23",
+      "updated_at": "2018-07-21 15:15:23",
+      "id": "c87aa4e8-a313-4346-98d1-da9445470a4d"
     }
   ],
   "authors": [
