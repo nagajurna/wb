@@ -979,6 +979,7 @@ SEPARATION
 	margin-bottom: 1.5em;
 	line-height: 1em;
 	font-size: 0.8em;
+	page-break-inside: avoid;
 }
 
 /*
