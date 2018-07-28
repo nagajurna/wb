@@ -1328,7 +1328,7 @@
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
-        "title": "padding-top: 18%; font-size: 1.2em;letter-spacing: 1px;text-transform: uppercase",
+        "title": "padding-top: 18%; font-size: 1.1em;letter-spacing: 1px;text-transform: uppercase",
         "subtitle1": "",
         "subtitle2": "",
         "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
@@ -1342,17 +1342,18 @@
       "categories": "",
       "collection": "",
       "sources": [
-        "La mort de Dinah, Emmanuel Bove –&nbsp;Éditions des Portiques, Paris, 1928."
+        "La mort de Dinah, Emmanuel Bove –&nbsp;Éditions des Portiques, Paris, 1928.",
+        "Deux jeunes filles, Emmanuel Bove – Émile-Paul frères, Paris, 1932."
       ],
       "description": "",
       "path": "/books/la_mort_de_dinah/la_mort_de_dinah",
-      "visible": false,
+      "visible": true,
       "authors": [
         "9a08c6d7-dc69-4f94-9529-b6e53cf20b41"
       ],
       "contribs": [],
       "created_at": "2018-07-21 14:44:32",
-      "updated_at": "2018-07-21 14:49:44",
+      "updated_at": "2018-07-29 00:13:51",
       "id": "5b50bea6-cdb3-41b6-999f-e5f560aaf221"
     },
     {
@@ -1389,6 +1390,41 @@
       "created_at": "2018-07-21 15:15:23",
       "updated_at": "2018-07-28 18:27:00",
       "id": "c87aa4e8-a313-4346-98d1-da9445470a4d"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(216, 174, 71, 0.8)",
+        "image": "/books/l_amour_de_pierre_neuhart/l_amour_de_pierre_neuhart_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding: 9% 15px 0px 15px; font-size: 1.1em;letter-spacing: 1,5px; text-transform: uppercase; line-height: 1.8em",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "L'amour de&nbsp;Pierre&nbsp;Neuhart",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Emmanuel Bove",
+      "year": "1928",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "L'amour de Pierre Neuhart, Emmanuel Bove – Émile-Paul frères, Paris, 1928."
+      ],
+      "description": "",
+      "path": "/books/l_amour_de_pierre_neuhart/l_amour_de_pierre_neuhart",
+      "visible": false,
+      "authors": [
+        "9a08c6d7-dc69-4f94-9529-b6e53cf20b41"
+      ],
+      "contribs": [],
+      "created_at": "2018-07-28 23:54:02",
+      "updated_at": "2018-07-28 23:58:01",
+      "id": "6863c09b-9dc8-44dd-acde-707c1480aa3d"
     }
   ],
   "authors": [
