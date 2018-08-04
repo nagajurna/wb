@@ -1,10 +1,12 @@
+/*
 [data-wb-text] {
 	font-family: 'Noto Serif', 'Georgia', serif;
 }
+*/
 
 [data-wb-text].cover_active {
-	background-color: rgba(216,174,71,0.8);
-	background-image: url("/books/le_roi_au_masque_d_or/le_roi_au_masque_d_or_cover.jpg");
+	background-color: rgba(123, 55, 71, 0.8);
+	background-image: url("/books/les_nuits_d_octobre/les_nuits_d_octobre_cover.jpg");
 }
 
 [data-wb-text] #cover {
@@ -20,12 +22,12 @@
 
 [data-wb-text] #cover-title {
 	margin-top: 1.5em;
-	padding-top: 4%;
+	padding-top: 0%;
+	font-size: 1.8em;
 	text-transform: uppercase;
-	font-size: 1.5em;
-	line-height: 2em;
-	word-spacing: 0.25em;
-	letter-spacing: 1px;
+	line-height: 1.8em;
+	word-spacing: 0.2em;
+	letter-spacing: 3px;
 	opacity: 0.75;
 }
 
@@ -61,9 +63,10 @@
 
 	[data-wb-text] #cover-title {
 		padding-top: 8%;
-		font-size: 1.7em;
+		font-size: 1.9em;
+		line-height: 1.9em;
 		word-spacing: 0.2em;
-		letter-spacing: 2px;
+		letter-spacing: 3px;
 	}
 	
 	[data-wb-text] #cover-logo {
@@ -75,13 +78,13 @@
 	}
 }
 
-@media only screen and (min-width: 568px) {
+@media only screen and (min-width: 612px) {
 
 	[data-wb-text] #cover-title {
-		padding-top: 6%;
-		font-size: 1.7em;
+		padding-top: 4%;
+		font-size: 1.9em;
 		word-spacing: 0.35em;
-		letter-spacing: 2px;
+		letter-spacing: 3px;
 	}
 	
 	[data-wb-text] #cover-logo {
@@ -102,24 +105,34 @@
 	}
 
 	[data-wb-text] #cover-title {
-		padding: 10% 10% 0px 10%;
-		font-size: 1.7em;
+		padding-top: 14%;
+		font-size: 2em;
 		line-height: 2em;
 	}
 }
 
-[data-wb-text] #fin {
-	text-transform: uppercase;
-	letter-spacing: 2px;
+[data-wb-text] .section-subtitle_long {
+	text-align: justify;
+	margin-left: 1.5em;
+	text-indent: -1.5em;
 }
 
-[data-wb-text] .section-title {
-	text-align: center;
-	padding-top: 3.5em;
-	margin-top: 0px;
-	margin-bottom: 1.5em;
-	text-indent: 0px;
+[data-wb-text] .section-subtitle p {
+	text-indent: -1.5em;
 }
+
+[data-wb-text] .section-exergue {
+	text-align: right;
+	font-size: 0.9em;
+}
+
+[data-wb-text] .section-signature {
+	text-align: right;
+	font-size: 0.9em;
+	padding-bottom: 1.5em;
+	padding-right: 1.5em
+}
+
 
 
 

@@ -3,8 +3,8 @@
 }
 
 [data-wb-text].cover_active {
-	background-color: rgba(216,174,71,0.8);
-	background-image: url("/books/le_roi_au_masque_d_or/le_roi_au_masque_d_or_cover.jpg");
+	background-color: rgba(169, 117, 79, 0.8);
+	background-image: url("/books/un_père_et_sa_fille/un_père_et_sa_fille_cover.jpg");
 }
 
 [data-wb-text] #cover {
@@ -20,12 +20,11 @@
 
 [data-wb-text] #cover-title {
 	margin-top: 1.5em;
-	padding-top: 4%;
-	text-transform: uppercase;
-	font-size: 1.5em;
-	line-height: 2em;
+	padding-top: 5%;
+	font-size: 1.8em;
+	line-height: 1.8em;
 	word-spacing: 0.25em;
-	letter-spacing: 1px;
+	letter-spacing: 3px;
 	opacity: 0.75;
 }
 
@@ -61,9 +60,9 @@
 
 	[data-wb-text] #cover-title {
 		padding-top: 8%;
-		font-size: 1.7em;
-		word-spacing: 0.2em;
-		letter-spacing: 2px;
+		font-size: 1.9em;
+		word-spacing: 0.35em;
+		letter-spacing: 3px;
 	}
 	
 	[data-wb-text] #cover-logo {
@@ -73,24 +72,12 @@
 	[data-wb-text] #cover-logo2 {
 		font-size: 1.3em;
 	}
+
 }
 
 @media only screen and (min-width: 568px) {
-
-	[data-wb-text] #cover-title {
-		padding-top: 6%;
-		font-size: 1.7em;
-		word-spacing: 0.35em;
-		letter-spacing: 2px;
-	}
-	
 	[data-wb-text] #cover-logo {
 		bottom: 3em;
-	}
-	
-	[data-wb-text] #cover-logo2 {
-		font-size: 1.3em;
-		letter-spacing: 6px;
 	}
 }
 
@@ -102,10 +89,11 @@
 	}
 
 	[data-wb-text] #cover-title {
-		padding: 10% 10% 0px 10%;
-		font-size: 1.7em;
+		padding-top: 10%;
+		font-size: 2em;
 		line-height: 2em;
 	}
+
 }
 
 [data-wb-text] #fin {
@@ -113,16 +101,17 @@
 	letter-spacing: 2px;
 }
 
-[data-wb-text] .section-title {
-	text-align: center;
-	padding-top: 3.5em;
-	margin-top: 0px;
-	margin-bottom: 1.5em;
-	text-indent: 0px;
+[data-wb-text] p {
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -o-hyphens: auto;
 }
-
-
-
-
-
-
+[data-wb-text] p.section-title, [data-wb-text] #cover p {
+  hyphens: none;
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
+  -moz-hyphens: none;
+  -o-hyphens: none;
+}

@@ -1382,13 +1382,13 @@
       ],
       "description": "",
       "path": "/books/les_nuits_d_octobre/les_nuits_d_octobre",
-      "visible": false,
+      "visible": true,
       "authors": [
         "1e1f4e76-3f49-44ee-8a6f-343fd44569bc"
       ],
       "contribs": [],
       "created_at": "2018-07-21 15:15:23",
-      "updated_at": "2018-07-28 18:27:00",
+      "updated_at": "2018-08-04 18:43:27",
       "id": "c87aa4e8-a313-4346-98d1-da9445470a4d"
     },
     {
@@ -1399,7 +1399,7 @@
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
-        "title": "padding: 9% 15px 0px 15px; font-size: 1.1em;letter-spacing: 1,5px; text-transform: uppercase; line-height: 1.8em",
+        "title": "padding: 9% 15px 0px 15px; font-size: 1.1em;letter-spacing: 2px; text-transform: uppercase; line-height: 1.8em",
         "subtitle1": "",
         "subtitle2": "",
         "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
@@ -1417,14 +1417,156 @@
       ],
       "description": "",
       "path": "/books/l_amour_de_pierre_neuhart/l_amour_de_pierre_neuhart",
-      "visible": false,
+      "visible": true,
       "authors": [
         "9a08c6d7-dc69-4f94-9529-b6e53cf20b41"
       ],
       "contribs": [],
       "created_at": "2018-07-28 23:54:02",
-      "updated_at": "2018-07-28 23:58:01",
+      "updated_at": "2018-08-04 21:21:56",
       "id": "6863c09b-9dc8-44dd-acde-707c1480aa3d"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(169, 117, 79, 0.8)",
+        "image": "/books/un_pere_et_sa_fille/un_pere_et_sa_fille_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 11%; font-size: 1.4em;letter-spacing: 1.5px",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Un père et&nbsp;sa&nbsp;fille",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Emmanuel Bove",
+      "year": "1928",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Un père et sa fille, Emmanuel Bove – Fayard, Paris, 1928.",
+        "Un soir chez Blutel, suivi de Un père et sa fille, Une fugue, Bécon-les-Bruyères, Emmanuel Bove – Flammarion, Paris, 1984."
+      ],
+      "description": "",
+      "path": "/books/un_pere_et_sa_fille/un_pere_et_sa_fille",
+      "visible": false,
+      "authors": [
+        "9a08c6d7-dc69-4f94-9529-b6e53cf20b41"
+      ],
+      "contribs": [],
+      "created_at": "2018-08-04 20:27:32",
+      "updated_at": "2018-08-04 20:36:14",
+      "id": "637b6a91-b094-4e4a-854c-4ed987067969"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(234, 230, 218, 0.8)",
+        "image": "/books/une_fugue/une_fugue_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 18%; font-size: 1.2em;letter-spacing: 1px;text-transform: uppercase",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Une fugue",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Emmanuel Bove",
+      "year": "1929",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Une fugue, Emmanuel Bove – Éditions de la Belle Page, Paris, 1929.",
+        "Un soir chez Blutel, suivi de Un père et sa fille, Une fugue, Bécon-les-Bruyères, Emmanuel Bove – Flammarion, Paris, 1984."
+      ],
+      "description": "",
+      "path": "/books/une_fugue/une_fugue",
+      "visible": false,
+      "authors": [
+        "9a08c6d7-dc69-4f94-9529-b6e53cf20b41"
+      ],
+      "contribs": [],
+      "created_at": "2018-08-04 20:35:20",
+      "updated_at": "2018-08-04 20:35:20",
+      "id": "826c72a6-423b-456c-9a06-8df9b75ed8cd"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(118, 111, 87,0.8)",
+        "image": "/books/detours/detours_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative; opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 15%; font-size: 1.4em;letter-spacing: 3px",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Détours",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "René Crevel",
+      "year": "1924",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Détours, René Crevel – Éditions de la Nouvelle Revue Française, Paris, 1924."
+      ],
+      "description": "",
+      "path": "/books/detours/detours",
+      "visible": false,
+      "authors": [
+        "af046390-af9a-41df-8cb4-3457be861256"
+      ],
+      "contribs": [],
+      "created_at": "2018-08-04 20:47:55",
+      "updated_at": "2018-08-04 20:47:55",
+      "id": "e2846756-11bd-463e-b19e-8bde5108dd83"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(173, 93, 93,0.8)",
+        "image": " /books/promenades_et_souvenirs/promenades_et_souvenirs_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 9%; font-size: 1.4em;letter-spacing: 1.5px",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Promenades et&nbsp;souvenirs",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Gérard de&nbsp;Nerval",
+      "year": "1855",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Promenades et souvenirs, Gérard de Nerval – L'Illustration, décembre&nbsp;1854-février&nbsp;1855."
+      ],
+      "description": "",
+      "path": "/books/promenades_et_souvenirs/promenades_et_souvenirs",
+      "visible": false,
+      "authors": [
+        "1e1f4e76-3f49-44ee-8a6f-343fd44569bc"
+      ],
+      "contribs": [],
+      "created_at": "2018-08-04 20:58:14",
+      "updated_at": "2018-08-04 20:58:14",
+      "id": "5fe8258a-3e0b-497f-b355-c7e69a1ffb0f"
     }
   ],
   "authors": [
@@ -1647,6 +1789,17 @@
       "created_at": "2018-07-16 20:45:15",
       "updated_at": "2018-07-16 20:45:15",
       "id": "342d4cd0-71ec-4b30-a9d9-94c8b07a81bb"
+    },
+    {
+      "name": "René Crevel",
+      "nameAlpha": "crevel",
+      "birth": "1900",
+      "death": "1935",
+      "description": "",
+      "visible": true,
+      "created_at": "2018-08-04 20:41:55",
+      "updated_at": "2018-08-04 20:41:55",
+      "id": "af046390-af9a-41df-8cb4-3457be861256"
     }
   ],
   "tables": [

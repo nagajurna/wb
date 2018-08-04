@@ -3,8 +3,8 @@
 }
 
 [data-wb-text].cover_active {
-	background-color: rgba(216,174,71,0.8);
-	background-image: url("/books/le_roi_au_masque_d_or/le_roi_au_masque_d_or_cover.jpg");
+	background-color: rgba(118, 111, 87, 0.8);
+	background-image: url("/books/detours/detours_cover.jpg");
 }
 
 [data-wb-text] #cover {
@@ -21,11 +21,9 @@
 [data-wb-text] #cover-title {
 	margin-top: 1.5em;
 	padding-top: 4%;
-	text-transform: uppercase;
-	font-size: 1.5em;
-	line-height: 2em;
-	word-spacing: 0.25em;
-	letter-spacing: 1px;
+	font-size: 1.8em;
+	line-height: 1.8em;
+	letter-spacing: 5px;
 	opacity: 0.75;
 }
 
@@ -61,9 +59,8 @@
 
 	[data-wb-text] #cover-title {
 		padding-top: 8%;
-		font-size: 1.7em;
-		word-spacing: 0.2em;
-		letter-spacing: 2px;
+		font-size: 1.9em;
+		letter-spacing: 4px;
 	}
 	
 	[data-wb-text] #cover-logo {
@@ -73,24 +70,12 @@
 	[data-wb-text] #cover-logo2 {
 		font-size: 1.3em;
 	}
+
 }
 
 @media only screen and (min-width: 568px) {
-
-	[data-wb-text] #cover-title {
-		padding-top: 6%;
-		font-size: 1.7em;
-		word-spacing: 0.35em;
-		letter-spacing: 2px;
-	}
-	
 	[data-wb-text] #cover-logo {
 		bottom: 3em;
-	}
-	
-	[data-wb-text] #cover-logo2 {
-		font-size: 1.3em;
-		letter-spacing: 6px;
 	}
 }
 
@@ -102,10 +87,12 @@
 	}
 
 	[data-wb-text] #cover-title {
-		padding: 10% 10% 0px 10%;
-		font-size: 1.7em;
+		padding-top: 14%;
+		font-size: 2em;
 		line-height: 2em;
+		letter-spacing: 6px;
 	}
+
 }
 
 [data-wb-text] #fin {
@@ -113,16 +100,22 @@
 	letter-spacing: 2px;
 }
 
-[data-wb-text] .section-title {
-	text-align: center;
-	padding-top: 3.5em;
-	margin-top: 0px;
-	margin-bottom: 1.5em;
-	text-indent: 0px;
+#bookContainer span.wb-toc-item-title {
+	font-variant: small-caps;
+	font-size: 1.1em;
 }
 
-
-
-
-
-
+[data-wb-text] p {
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -o-hyphens: auto;
+}
+[data-wb-text] p.section-title, [data-wb-text] #cover p {
+  hyphens: none;
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
+  -moz-hyphens: none;
+  -o-hyphens: none;
+}

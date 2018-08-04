@@ -269,6 +269,10 @@ HELPERS
 	display: block;
 }
 
+.background-white {
+	background-color: #fafafa;
+}
+
 /*
 LINKS
 */

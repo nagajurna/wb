@@ -817,7 +817,7 @@ DIV FIN
 	text-indent: 0px;
 }
 
-p.section-title, p.notes-title, p.wb-toc-title {
+p.section-title, p.section-title-double-top, p.notes-title, p.wb-toc-title {
 	font-size: 1.25em;
 	text-indent: 0px;
 }
@@ -831,6 +831,13 @@ p.section-title {
 	padding-top: 3.5em;
 	margin-top: 0px;
 	margin-bottom: 1.5em;
+	text-indent: 0px;
+	line-height: 2em;
+}
+
+p.section-title-double-top {
+	padding-top: 5em;
+	margin-top: 0px;
 	text-indent: 0px;
 	line-height: 2em;
 }
@@ -908,6 +915,14 @@ VERSES
 
 [data-wb-text] .verses p {
 	text-indent: -1em;
+}
+
+[data-wb-text] .verses p.indent2 {
+	text-indent: 0em;
+}
+
+[data-wb-text] .verses p.indent3 {
+	text-indent: 1em;
 }
 
 [data-wb-text] p.verses-signature {
@@ -1006,6 +1021,11 @@ NEGATIVE MARGIN
 	text-indent: 0px;
 }
 
+[data-wb-text] p.negative_margin2 {
+	margin-top:-3em;
+	text-indent: 0px;
+}
+
 [data-wb-text] p.negative_margin span {
 	background-color: #fafafa;
 	padding-left:0.5em;
@@ -1042,6 +1062,10 @@ DIVERS
 
 [data-wb-text] .font-small-8 {
 	font-size: 0.8em;
+}
+
+[data-wb-text] no-indent {
+	text-indent: 0px;
 }
 
 [data-wb-text] p.no-indent {
