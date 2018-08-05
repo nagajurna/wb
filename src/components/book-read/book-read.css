@@ -918,6 +918,11 @@ VERSES
 	text-align: left;
 }
 
+[data-wb-text] .verses p.verses-title {
+	text-indent: -1em;
+	text-align: center;
+}
+
 [data-wb-text] .verses p.indent2 {
 	text-indent: 0em;
 }
