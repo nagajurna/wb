@@ -915,6 +915,7 @@ VERSES
 
 [data-wb-text] .verses p {
 	text-indent: -1em;
+	text-align: left;
 }
 
 [data-wb-text] .verses p.indent2 {
@@ -932,6 +933,30 @@ VERSES
 	padding-right: 1.5em;
 }
 
+/*
+VERSES CONTAINER (for short verses)
+*/
+[data-wb-text] .verses-container-s8-m28-l50-xl82 {
+	margin-left: 8px;
+}
+
+@media screen and (min-width: 360px) {
+	[data-wb-text] .verses-container-s8-m28-l50-xl82 {
+		margin-left: 28px;
+	}
+}
+
+@media screen and (min-width: 480px) {
+	[data-wb-text] .verses-container-s8-m28-l50-xl82 {
+		margin-left: 50px;
+	}
+}
+
+@media screen and (min-width: 640px) {
+	[data-wb-text] .verses-container-s8-m28-l50-xl82 {
+		margin-left: 82px;
+	}
+}
 /*
 SIGNATURE
 */
