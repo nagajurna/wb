@@ -4,7 +4,7 @@
 
 [data-wb-text].cover_active {
 	background-color: rgba(169, 117, 79, 0.8);
-	background-image: url("/books/un_père_et_sa_fille/un_père_et_sa_fille_cover.jpg");
+	background-image: url("/books/un_pere_et_sa_fille/un_pere_et_sa_fille_cover.jpg");
 }
 
 [data-wb-text] #cover {
@@ -24,7 +24,7 @@
 	font-size: 1.8em;
 	line-height: 1.8em;
 	word-spacing: 0.25em;
-	letter-spacing: 3px;
+	letter-spacing: 1px;
 	opacity: 0.75;
 }
 
@@ -61,8 +61,8 @@
 	[data-wb-text] #cover-title {
 		padding-top: 8%;
 		font-size: 1.9em;
-		word-spacing: 0.35em;
-		letter-spacing: 3px;
+		word-spacing: 0.25em;
+		letter-spacing: 2px;
 	}
 	
 	[data-wb-text] #cover-logo {
@@ -90,10 +90,18 @@
 
 	[data-wb-text] #cover-title {
 		padding-top: 10%;
-		font-size: 2em;
-		line-height: 2em;
+		font-size: 2.2em;
+		line-height: 2.2em;
 	}
 
+}
+
+[data-wb-text] sup {
+	line-height: 1em;
+}
+
+[data-wb-text] #title {
+	letter-spacing: 2px;
 }
 
 [data-wb-text] #fin {

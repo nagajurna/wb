@@ -108,6 +108,10 @@
 	}
 }
 
+[data-wb-text] #title {
+	letter-spacing: 2px;
+}
+
 [data-wb-text] #fin {
 	text-transform: uppercase;
 	letter-spacing: 2px;
