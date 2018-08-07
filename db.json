@@ -1489,13 +1489,13 @@
       ],
       "description": "",
       "path": "/books/une_fugue/une_fugue",
-      "visible": false,
+      "visible": true,
       "authors": [
         "9a08c6d7-dc69-4f94-9529-b6e53cf20b41"
       ],
       "contribs": [],
       "created_at": "2018-08-04 20:35:20",
-      "updated_at": "2018-08-04 20:35:20",
+      "updated_at": "2018-08-07 21:00:01",
       "id": "826c72a6-423b-456c-9a06-8df9b75ed8cd"
     },
     {
