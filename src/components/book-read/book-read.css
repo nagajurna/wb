@@ -608,6 +608,7 @@ toc
 	width: 100%;
 	border: none;
 	color: #000;
+	
 }
 
 #toc li.current a.wb-link, #toc-large-device li.current a.wb-link {
@@ -617,14 +618,17 @@ toc
 }
 
 #toc .wb-toc-item-title, #toc-large-device .wb-toc-item-title {
-	float: left;
-	vertical-align: bottom;
+	display: inline-block;
+	width: 90%;
 }
 
 #toc [data-wb-element-page-number], #toc-large-device [data-wb-element-page-number] {
+	display: inline-block;
+	width: 10%;
+	text-align: right;
 	float: right;
-	vertical-align: bottom;
 }
+
 
 /*
 options content
