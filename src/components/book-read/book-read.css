@@ -604,11 +604,8 @@ toc
 }
 
 #toc a.wb-link:hover, #toc-large-device a.wb-link:hover {
-	display: inline-block;
-	width: 100%;
 	border: none;
 	color: #000;
-	
 }
 
 #toc li.current a.wb-link, #toc-large-device li.current a.wb-link {
@@ -624,7 +621,7 @@ toc
 
 #toc [data-wb-element-page-number], #toc-large-device [data-wb-element-page-number] {
 	display: inline-block;
-	width: 10%;
+	min-width: 10%;
 	text-align: right;
 	float: right;
 }
@@ -945,24 +942,24 @@ VERSES
 /*
 VERSES CONTAINER (for short verses)
 */
-[data-wb-text] .verses-container-s8-m28-l50-xl82 {
+[data-wb-text] .short-verses-container {
 	margin-left: 8px;
 }
 
 @media screen and (min-width: 360px) {
-	[data-wb-text] .verses-container-s8-m28-l50-xl82 {
+	[data-wb-text] .short-verses-container {
 		margin-left: 28px;
 	}
 }
 
 @media screen and (min-width: 480px) {
-	[data-wb-text] .verses-container-s8-m28-l50-xl82 {
+	[data-wb-text] .short-verses-container {
 		margin-left: 50px;
 	}
 }
 
 @media screen and (min-width: 640px) {
-	[data-wb-text] .verses-container-s8-m28-l50-xl82 {
+	[data-wb-text] .short-verses-container {
 		margin-left: 82px;
 	}
 }
