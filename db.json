@@ -1567,6 +1567,114 @@
       "created_at": "2018-08-04 20:58:14",
       "updated_at": "2018-08-04 20:58:14",
       "id": "5fe8258a-3e0b-497f-b355-c7e69a1ffb0f"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(127, 65, 69, 0.8)",
+        "image": "/books/traite_de_la_vie_elegante/traite_de_la_vie_elegante_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;",
+        "title": "padding-top: 11%; font-size: 1.3em;letter-spacing: 2px;font-variant: small-caps;",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em;"
+      },
+      "title": "Traité de&nbsp;la&nbsp;vie&nbsp;élégante",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Honoré de&nbsp;Balzac",
+      "year": "1830",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Traité de la vie élégante – La mode, Paris, octobre 1830.",
+        "Traité de la vie élégante, H. de Balzac – Librairie nouvelle, Paris, 1854."
+      ],
+      "description": "",
+      "path": "/books/traite_de_la_vie_elegante/traite_de_la_vie_elegante",
+      "visible": false,
+      "authors": [
+        "571f3525-aba8-4592-b8ec-c8a51344150b"
+      ],
+      "contribs": [],
+      "created_at": "2018-08-12 17:16:32",
+      "updated_at": "2018-08-12 17:57:48",
+      "id": "8c5d207f-dddf-44a2-93b9-cd66be34d22d"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(209, 184, 148, 0.8)",
+        "image": "/books/de_l_education_d_un_homme_sauvage/de_l_education_d_un_homme_sauvage_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;",
+        "title": "padding-top: 11%; font-size: 1.2em;letter-spacing: 2px;font-variant: small-caps;",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em;"
+      },
+      "title": "De l'éducation d'un&nbsp;homme sauvage",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "E. M. Itard",
+      "year": "1801",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "De l'éducation d'un homme sauvage, ou Des premiers développements physiques et moraux du jeune sauvage de l'Aveyron, E.&nbsp.M. Itard – Goujon&nbsp;fils, Paris, 1801.",
+        "Rapports et mémoires sur le sauvage de l'Aveyron, l'idiotie et la surdi-mutité, par Itard – Félix Alcan, Paris, 1894."
+      ],
+      "description": "",
+      "path": "/books/de_l_education_d_un_homme_sauvage/de_l_education_d_un_homme_sauvage",
+      "visible": false,
+      "authors": [
+        "669fa4d0-cc35-4c4f-9122-40aa0a308eeb"
+      ],
+      "contribs": [],
+      "created_at": "2018-08-12 17:44:35",
+      "updated_at": "2018-08-12 18:00:39",
+      "id": "559262b5-3220-4b05-b803-42ebf9f82f38"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(209, 184, 148, 0.8)",
+        "image": "/books/rapport_sur_le_sauvage_d_aveyron/rapport_sur_le_sauvage_d_aveyron_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;",
+        "title": "padding-top: 9%; font-size: 1.2em;letter-spacing: 2px;font-variant: small-caps;",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em;"
+      },
+      "title": "RAPPORT sur&nbsp;le&nbsp;sauvage de&nbsp;l'Aveyron",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "E. M. Itard",
+      "year": "1807",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Rapport fait à son excellence le ministre de l'Intérieur, sur les nouveaux développements et l'état actuel du sauvage de l'Aveyron, E. .M. Itard – Imprimerie impériale, Paris, 1807.",
+        "Rapports et mémoires sur le sauvage de l'Aveyron, l'idiotie et la surdi-mutité, par Itard – Félix Alcan, Paris, 1894."
+      ],
+      "description": "",
+      "path": "/books/rapport_sur_le_sauvage_d_aveyron/rapport_sur_le_sauvage_d_aveyron",
+      "visible": false,
+      "authors": [
+        "669fa4d0-cc35-4c4f-9122-40aa0a308eeb"
+      ],
+      "contribs": [],
+      "created_at": "2018-08-12 18:08:00",
+      "updated_at": "2018-08-12 18:27:00",
+      "id": "ef484f5d-70c3-4c6b-8cbe-f112249e9d60"
     }
   ],
   "authors": [
@@ -1800,6 +1908,28 @@
       "created_at": "2018-08-04 20:41:55",
       "updated_at": "2018-08-04 20:41:55",
       "id": "af046390-af9a-41df-8cb4-3457be861256"
+    },
+    {
+      "name": "Honoré de&nbsp;Balzac",
+      "nameAlpha": "balzac",
+      "birth": "1799",
+      "death": "1850",
+      "description": "",
+      "visible": true,
+      "created_at": "2018-08-12 17:07:54",
+      "updated_at": "2018-08-12 17:07:54",
+      "id": "571f3525-aba8-4592-b8ec-c8a51344150b"
+    },
+    {
+      "name": "Jean Marc Gaspard Itard",
+      "nameAlpha": "itard",
+      "birth": "1774",
+      "death": "1838",
+      "description": "",
+      "visible": true,
+      "created_at": "2018-08-12 17:30:58",
+      "updated_at": "2018-08-12 17:30:58",
+      "id": "669fa4d0-cc35-4c4f-9122-40aa0a308eeb"
     }
   ],
   "tables": [
