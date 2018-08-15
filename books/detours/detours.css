@@ -95,27 +95,11 @@
 
 }
 
-[data-wb-text] #fin {
-	text-transform: uppercase;
+[data-wb-text] sup {
+	line-height: 1em;
+}
+
+[data-wb-text] #title {
 	letter-spacing: 2px;
 }
 
-#bookContainer span.wb-toc-item-title {
-	font-variant: small-caps;
-	font-size: 1.1em;
-}
-
-[data-wb-text] p {
-  hyphens: auto;
-  -webkit-hyphens: auto;
-  -ms-hyphens: auto;
-  -moz-hyphens: auto;
-  -o-hyphens: auto;
-}
-[data-wb-text] p.section-title, [data-wb-text] #cover p {
-  hyphens: none;
-  -webkit-hyphens: none;
-  -ms-hyphens: none;
-  -moz-hyphens: none;
-  -o-hyphens: none;
-}

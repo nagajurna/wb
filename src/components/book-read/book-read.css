@@ -1111,6 +1111,10 @@ DIVERS
 	text-indent: 6em;
 }
 
+[data-wb-text] div.no-indent p {
+	text-indent: 0px;
+}
+
 /*
 HYPHENATION
 */
