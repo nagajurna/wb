@@ -135,10 +135,6 @@
 	}
 }
 
-[data-wb-text] #fin {
-	text-transform: uppercase;
-	letter-spacing: 2px;
-}
 
 [data-wb-text] .section-title {
 	text-align: center;
@@ -179,20 +175,5 @@
 	margin-bottom: 1.5em;
 	margin-top: 0px;
 	text-indent: 0px;
-}
-
-[data-wb-text] p {
-  hyphens: auto;
-  -webkit-hyphens: auto;
-  -ms-hyphens: auto;
-  -moz-hyphens: auto;
-  -o-hyphens: auto;
-}
-[data-wb-text] p.section-title, [data-wb-text] #cover p {
-  hyphens: none;
-  -webkit-hyphens: none;
-  -ms-hyphens: none;
-  -moz-hyphens: none;
-  -o-hyphens: none;
 }
 

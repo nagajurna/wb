@@ -106,12 +106,6 @@
 	}
 }
 
-[data-wb-text] #fin {
-	text-transform: uppercase;
-	letter-spacing: 2px;
-}
-
-
 [data-wb-text] .section-dedicace {
 	padding-top: 1.5em;
 	margin-top: 0px;
@@ -154,19 +148,4 @@
 
 [data-wb-text] .note-section p.notes-title {
 	font-size: 1.25em;
-}
-
-[data-wb-text] p {
-  hyphens: auto;
-  -webkit-hyphens: auto;
-  -ms-hyphens: auto;
-  -moz-hyphens: auto;
-  -o-hyphens: auto;
-}
-[data-wb-text] p.section-title, [data-wb-text] p.section-dedicace, [data-wb-text] #cover p {
-  hyphens: none;
-  -webkit-hyphens: none;
-  -ms-hyphens: none;
-  -moz-hyphens: none;
-  -o-hyphens: none;
 }
