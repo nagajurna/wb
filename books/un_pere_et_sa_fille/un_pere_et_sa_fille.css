@@ -59,7 +59,7 @@
 @media only screen and (min-height: 568px) {
 
 	[data-wb-text] #cover-title {
-		padding-top: 8%;
+		padding-top: 12%;
 		font-size: 1.9em;
 		word-spacing: 0.25em;
 		letter-spacing: 2px;
@@ -89,7 +89,7 @@
 	}
 
 	[data-wb-text] #cover-title {
-		padding-top: 10%;
+		padding-top: 12%;
 		font-size: 2.2em;
 		line-height: 2.2em;
 	}
@@ -101,6 +101,7 @@
 }
 
 [data-wb-text] #title {
+	padding: 0em 3em;
 	letter-spacing: 2px;
 }
 

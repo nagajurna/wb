@@ -100,6 +100,7 @@
 }
 
 [data-wb-text] #title {
+	padding: 0em 3em;
 	letter-spacing: 2px;
 }
 

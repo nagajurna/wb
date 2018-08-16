@@ -24,7 +24,6 @@
 	margin-top: 1.5em;
 	padding-top: 0%;
 	font-size: 1.8em;
-	text-transform: uppercase;
 	line-height: 1.8em;
 	word-spacing: 0.2em;
 	letter-spacing: 3px;
@@ -106,33 +105,19 @@
 
 	[data-wb-text] #cover-title {
 		padding-top: 10%;
-		font-size: 2em;
-		line-height: 2em;
+		font-size: 2.1em;
+		line-height: 1.9em;
 	}
 }
 
-[data-wb-text] .section-subtitle_long {
-	text-align: justify;
-	margin-left: 1.5em;
-	text-indent: -1.5em;
+[data-wb-text] sup {
+	line-height: 1em;
 }
 
-[data-wb-text] .section-subtitle p {
-	text-indent: -1.5em;
+[data-wb-text] #title {
+	padding: 0em 3em;
+	letter-spacing: 2.2px;
 }
-
-[data-wb-text] .section-exergue {
-	text-align: right;
-	font-size: 0.9em;
-}
-
-[data-wb-text] .section-signature {
-	text-align: right;
-	font-size: 0.9em;
-	padding-bottom: 1.5em;
-	padding-right: 1.5em
-}
-
 
 
 

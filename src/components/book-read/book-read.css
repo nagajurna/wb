@@ -960,7 +960,32 @@ VERSES CONTAINER (for short verses)
 
 @media screen and (min-width: 640px) {
 	[data-wb-text] .short-verses-container {
-		margin-left: 82px;
+		margin-left: 92px;
+	}
+}
+
+/*
+VERSES CONTAINER (for medium verses)
+*/
+[data-wb-text] .medium-verses-container {
+	margin-left: 0px;
+}
+
+@media screen and (min-width: 360px) {
+	[data-wb-text] .medium-verses-container {
+		margin-left: 12px;
+	}
+}
+
+@media screen and (min-width: 480px) {
+	[data-wb-text] .medium-verses-container {
+		margin-left: 42px;
+	}
+}
+
+@media screen and (min-width: 640px) {
+	[data-wb-text] .medium-verses-container {
+		margin-left: 72px;
 	}
 }
 /*
