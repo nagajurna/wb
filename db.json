@@ -1593,7 +1593,7 @@
         "Traité de la vie élégante – La mode, Paris, octobre 1830.",
         "Oeuvres complètes de H. de Balzac, tome&nbsp;20 –  Calmann Lévy, Paris, 1870."
       ],
-      "description": "<i>Cette « étude analytique », paru en 1830 dans </i>La mode <i>restera inachevée.</i>",
+      "description": "<i>Cette « étude analytique », parue en 1830 dans </i>La mode, <i>restera inachevée.</i>",
       "path": "/books/traite_de_la_vie_elegante/traite_de_la_vie_elegante",
       "visible": true,
       "authors": [
@@ -1601,7 +1601,7 @@
       ],
       "contribs": [],
       "created_at": "2018-08-12 17:16:32",
-      "updated_at": "2018-08-26 10:23:05",
+      "updated_at": "2018-08-26 11:03:23",
       "id": "8c5d207f-dddf-44a2-93b9-cd66be34d22d"
     },
     {
