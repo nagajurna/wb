@@ -1,0 +1,133 @@
+/*
+[data-wb-text] {
+	font-family: 'Noto Serif', 'Georgia', serif;
+}
+*/
+
+[data-wb-text].cover_active {
+	background-color: rgba(209, 184, 148,0.8);
+	background-image: url("/books/rapport_sur_le_sauvage_de_l_aveyron/rapport_sur_le_sauvage_de_l_aveyron_cover.jpg");
+}
+
+[data-wb-text] #cover {
+	position: static;
+}
+
+[data-wb-text] #cover-author {
+	font-size: 1.2em;
+	font-variant: small-caps;
+	letter-spacing: 1px;
+	opacity: 0.75;
+}
+
+[data-wb-text] #cover-title, [data-wb-text] #title {
+	padding-top: 10%;
+	font-size: 1.2em;
+	line-height: 2em;
+	font-variant: small-caps;
+	letter-spacing: 1.5px;
+	opacity: 0.75;
+}
+
+[data-wb-text] #title {
+	padding-top: 21%;
+}
+
+[data-wb-text] #cover-logo {
+	position: absolute;
+	bottom: 2em;
+	left: 50%;
+	width: 250px;
+	margin-left: -125px;
+	font-variant: small-caps;
+	letter-spacing: 6px;
+	text-align: center;
+	opacity: 0.75;
+}
+
+[data-wb-text] #cover-logo1 {
+	font-size: 3em;
+	display: none;
+}
+
+[data-wb-text] #cover-logo2 {
+	font-size: 1.2em;
+	margin-top: 36px;
+}
+
+.page-exergue {
+	padding-top: 0em;
+}
+
+@media only screen and (min-height: 460px) {
+	
+	[data-wb-text] #cover-title, [data-wb-text] #title {
+		padding-top: 12%;
+	}
+	
+	[data-wb-text] #cover-logo1 {
+		display: block;
+	}
+}
+
+@media only screen and (min-height: 568px) {
+
+	[data-wb-text] #cover-title, [data-wb-text] #title {
+		padding-top: 16%;
+		font-size: 1.2em;
+		letter-spacing: 3px;
+	}
+	
+	[data-wb-text] #title {
+		padding-top: 23%;
+	}
+	
+	[data-wb-text] #cover-logo {
+		bottom: 2.5em;
+	}
+	
+	[data-wb-text] #cover-logo1 {
+		display: block;
+	}
+	
+	[data-wb-text] #cover-logo2 {
+		font-size: 1.3em;
+	}
+	
+	.page-exergue {
+		padding-top: 4em;
+	}
+
+}
+
+
+@media only screen and (min-width: 568px) {
+	[data-wb-text] #cover-logo {
+		bottom: 3em;
+	}
+}
+
+@media only screen and (min-height: 680px) {
+
+	[data-wb-text] #cover-author {
+		font-size: 1.3em;
+		letter-spacing: 2px;
+	}
+
+	[data-wb-text] #cover-title, [data-wb-text] #title {
+		padding-top: 18%;
+		font-size: 1.45em;
+		line-height: 2em;
+		letter-spacing: 3.5px;
+	}
+	
+	[data-wb-text] #title {
+		padding-top: 21%;
+	}
+
+}
+
+[data-wb-text] sup {
+	line-height: 1em;
+}
+

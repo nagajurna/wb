@@ -1612,13 +1612,13 @@
         "font": "Noto Serif",
         "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;",
-        "title": "padding-top: 11%; font-size: 1.2em;letter-spacing: 2px;font-variant: small-caps;",
-        "subtitle1": "",
+        "title": "padding-top: 12px; font-size: 1.2em;letter-spacing: 2px;font-variant: small-caps;",
+        "subtitle1": "font-size: 0.9em;letter-spacing: 1.5px;font-variant: small-caps;",
         "subtitle2": "",
         "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em;"
       },
-      "title": "De l'éducation d'un&nbsp;homme sauvage",
-      "subtitle1": "",
+      "title": "De l'éducation d'un&nbsp;homme&nbsp;sauvage",
+      "subtitle1": "Des premiers développements physiques et&nbsp;moraux du&nbsp;Sauvage&nbsp;de&nbsp;l'Aveyron",
       "subtitle2": "",
       "authorDisplay": "E. M. Itard",
       "year": "1801",
@@ -1631,29 +1631,29 @@
       ],
       "description": "",
       "path": "/books/de_l_education_d_un_homme_sauvage/de_l_education_d_un_homme_sauvage",
-      "visible": false,
+      "visible": true,
       "authors": [
         "669fa4d0-cc35-4c4f-9122-40aa0a308eeb"
       ],
       "contribs": [],
       "created_at": "2018-08-12 17:44:35",
-      "updated_at": "2018-08-12 18:00:39",
+      "updated_at": "2018-09-09 15:51:41",
       "id": "559262b5-3220-4b05-b803-42ebf9f82f38"
     },
     {
       "source": {},
       "styles": {
         "color": "rgba(209, 184, 148, 0.8)",
-        "image": "/books/rapport_sur_le_sauvage_d_aveyron/rapport_sur_le_sauvage_d_aveyron_cover.jpg",
+        "image": "/books/rapport_sur_le_sauvage_de_l_aveyron/rapport_sur_le_sauvage_de_l_aveyron_cover.jpg",
         "font": "Noto Serif",
-        "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
+        "cover": "padding: 16px 30px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;",
-        "title": "padding-top: 9%; font-size: 1.2em;letter-spacing: 2px;font-variant: small-caps;",
+        "title": "padding-top: 10%; font-size: 1em;letter-spacing: 1.5px;font-variant: small-caps;",
         "subtitle1": "",
         "subtitle2": "",
         "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em;"
       },
-      "title": "RAPPORT sur&nbsp;le&nbsp;sauvage de&nbsp;l'Aveyron",
+      "title": "RAPPORT sur&nbsp;les&nbsp;nouveaux développements et&nbsp;l'état&nbsp;actuel du&nbsp;Sauvage&nbsp;de&nbsp;l'Aveyron",
       "subtitle1": "",
       "subtitle2": "",
       "authorDisplay": "E. M. Itard",
@@ -1666,14 +1666,14 @@
         "Rapports et mémoires sur le sauvage de l'Aveyron, l'idiotie et la surdi-mutité, par Itard – Félix Alcan, Paris, 1894."
       ],
       "description": "",
-      "path": "/books/rapport_sur_le_sauvage_d_aveyron/rapport_sur_le_sauvage_d_aveyron",
-      "visible": false,
+      "path": "/books/rapport_sur_le_sauvage_de_l_aveyron/rapport_sur_le_sauvage_de_l_aveyron",
+      "visible": true,
       "authors": [
         "669fa4d0-cc35-4c4f-9122-40aa0a308eeb"
       ],
       "contribs": [],
       "created_at": "2018-08-12 18:08:00",
-      "updated_at": "2018-08-25 22:06:49",
+      "updated_at": "2018-09-09 17:04:21",
       "id": "ef484f5d-70c3-4c6b-8cbe-f112249e9d60"
     },
     {
