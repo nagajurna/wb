@@ -22,7 +22,7 @@
 
 [data-wb-text] #cover-title, [data-wb-text] #title {
 	padding-top: 12%;
-	font-size: 1.2em;
+	font-size: 1.25em;
 	line-height: 2em;
 	text-transform: uppercase;
 	letter-spacing: 1.5px;
@@ -35,7 +35,7 @@
 
 [data-wb-text] #cover-subtitleone, [data-wb-text] #subtitle {
 	padding-top: 8%;
-	font-size: 1em;
+	font-size: 1.1em;
 	font-variant: small-caps;
 	letter-spacing: 2px;
 	line-height: 1.5em;
@@ -98,7 +98,7 @@
 	
 	[data-wb-text] #cover-subtitleone, [data-wb-text] #subtitle {
 		display: block;
-		font-size: 1.1em;
+		font-size: 1.2em;
 	}
 	
 	[data-wb-text] #cover-logo {
@@ -145,8 +145,10 @@
 	}
 	
 	[data-wb-text] #cover-subtitleone, [data-wb-text] #subtitle {
-		font-size: 1.3em;
-		letter-spacing: 3px;
+		font-size: 1.25em;
+		letter-spacing: 2.5px;
+		padding-left: 20px;
+		padding-right: 20px;
 	}
 
 }
