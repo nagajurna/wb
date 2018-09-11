@@ -1613,7 +1613,7 @@
         "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;",
         "title": "padding-top: 12px; font-size: 1.2em;letter-spacing: 2px;font-variant: small-caps;",
-        "subtitle1": "font-size: 0.85em;letter-spacing: 1.5px;font-variant: small-caps;",
+        "subtitle1": "font-size: 0.85em;letter-spacing: 1px;font-variant: small-caps;",
         "subtitle2": "",
         "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em;"
       },
@@ -1637,7 +1637,7 @@
       ],
       "contribs": [],
       "created_at": "2018-08-12 17:44:35",
-      "updated_at": "2018-09-11 23:00:05",
+      "updated_at": "2018-09-11 23:30:10",
       "id": "559262b5-3220-4b05-b803-42ebf9f82f38"
     },
     {
@@ -1648,7 +1648,7 @@
         "font": "Noto Serif",
         "cover": "padding: 16px 30px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;",
-        "title": "padding-top: 10%; font-size: 1em;letter-spacing: 1.5px;font-variant: small-caps;",
+        "title": "padding-top: 10%; font-size: 1em;letter-spacing: 1px;font-variant: small-caps;",
         "subtitle1": "",
         "subtitle2": "",
         "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em;"
@@ -1673,7 +1673,7 @@
       ],
       "contribs": [],
       "created_at": "2018-08-12 18:08:00",
-      "updated_at": "2018-09-09 17:04:21",
+      "updated_at": "2018-09-11 23:35:10",
       "id": "ef484f5d-70c3-4c6b-8cbe-f112249e9d60"
     },
     {
