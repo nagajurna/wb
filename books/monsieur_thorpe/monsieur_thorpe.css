@@ -20,15 +20,18 @@
 	opacity: 0.75;
 }
 
-[data-wb-text] #cover-title {
+[data-wb-text] #cover-title, [data-wb-text] #title {
 	margin-top: 1.5em;
-	padding-top: 4%;
-	font-size: 1.7em;
-	text-transform: uppercase;
+	padding-top: 5%;
+	font-size: 1.8em;
 	line-height: 1.8em;
 	word-spacing: 0.2em;
 	letter-spacing: 3px;
 	opacity: 0.75;
+}
+
+[data-wb-text] #title {
+	padding-top: 12%;
 }
 
 [data-wb-text] #cover-logo {
@@ -61,12 +64,16 @@
 
 @media only screen and (min-height: 568px) {
 
-	[data-wb-text] #cover-title {
-		padding-top: 8%;
+	[data-wb-text] #cover-title, [data-wb-text] #title {
+		padding-top: 12%;
 		font-size: 1.9em;
 		line-height: 1.9em;
 		word-spacing: 0.2em;
 		letter-spacing: 3px;
+	}
+	
+	[data-wb-text] #title {
+		padding-top: 18%;
 	}
 	
 	[data-wb-text] #cover-logo {
@@ -80,11 +87,9 @@
 
 @media only screen and (min-width: 612px) {
 
-	[data-wb-text] #cover-title {
+	[data-wb-text] #cover-title, [data-wb-text] #title {
 		padding-top: 4%;
-		font-size: 1.9em;
-		word-spacing: 0.35em;
-		letter-spacing: 3px;
+		word-spacing: 0.3em;
 	}
 	
 	[data-wb-text] #cover-logo {
@@ -104,10 +109,14 @@
 		letter-spacing: 2px;
 	}
 
-	[data-wb-text] #cover-title {
+	[data-wb-text] #cover-title, [data-wb-text] #title {
 		padding-top: 12%;
-		font-size: 2em;
-		line-height: 2em;
+		font-size: 2.1em;
+		line-height: 2.1em;
+	}
+	
+	[data-wb-text] #title {
+		padding-top: 17%;
 	}
 }
 
