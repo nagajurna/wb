@@ -1738,13 +1738,13 @@
       ],
       "description": "",
       "path": "/books/petits_contes/petits_contes",
-      "visible": false,
+      "visible": true,
       "authors": [
         "9a08c6d7-dc69-4f94-9529-b6e53cf20b41"
       ],
       "contribs": [],
       "created_at": "2018-09-06 19:46:46",
-      "updated_at": "2018-09-06 19:46:46",
+      "updated_at": "2018-09-16 07:56:26",
       "id": "790dab91-9725-4cd9-940f-aa7a3092111b"
     },
     {
@@ -1781,6 +1781,41 @@
       "created_at": "2018-09-06 20:17:36",
       "updated_at": "2018-09-06 20:17:36",
       "id": "a1f1d230-8349-43ba-b291-f1cb5caeb227"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(247, 202, 201, 0.8)",
+        "image": "/books/memoires_de_madame_elliott/memoires_de_madame_elliott_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 10%; font-size: 1.2em;letter-spacing: 1px",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Journal de&nbsp;ma&nbsp;vie durant la&nbsp;Révolution&nbsp;française",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Grace Elliott",
+      "year": "1861",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Mémoires de Madame Elliott sur&nbsp;la&nbsp;Révolution française – Michel Lévy Frères, Paris, 1861."
+      ],
+      "description": "<i>Nous donnons ici le texte de Grace Elliott, paru à Londres en 1859, dans sa première traduction française, par Charles de&nbsp;Baillon.</i>",
+      "path": "/books/memoires_de_madame_elliott/memoires_de_madame_elliott",
+      "visible": false,
+      "authors": [
+        "2879adce-10bb-4080-8192-e9c822738917"
+      ],
+      "contribs": [],
+      "created_at": "2018-09-16 21:21:18",
+      "updated_at": "2018-09-16 21:23:36",
+      "id": "11103a9c-0d28-4736-a08d-c0da4e883d8e"
     }
   ],
   "authors": [
@@ -2036,6 +2071,17 @@
       "created_at": "2018-08-12 17:30:58",
       "updated_at": "2018-08-12 17:30:58",
       "id": "669fa4d0-cc35-4c4f-9122-40aa0a308eeb"
+    },
+    {
+      "name": "Grace Dalrymple Elliott",
+      "nameAlpha": "elliott",
+      "birth": "1758?",
+      "death": "1823",
+      "description": "",
+      "visible": true,
+      "created_at": "2018-09-16 21:03:08",
+      "updated_at": "2018-09-16 21:03:09",
+      "id": "2879adce-10bb-4080-8192-e9c822738917"
     }
   ],
   "tables": [

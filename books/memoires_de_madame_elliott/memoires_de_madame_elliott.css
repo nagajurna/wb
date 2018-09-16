@@ -1,12 +1,10 @@
-/*
 [data-wb-text] {
 	font-family: 'Noto Serif', 'Georgia', serif;
 }
-*/
 
 [data-wb-text].cover_active {
-	background-color: rgba(139, 96, 65, 0.8);
-	background-image: url("/books/monsieur_thorpe/monsieur_thorpe_cover.jpg");
+	background-color: rgba(247, 202, 201,0.8);
+	background-image: url("/books/memoires_de_madame_elliott/memoires_de_madame_elliott_cover.jpg");
 }
 
 [data-wb-text] #cover {
@@ -22,16 +20,12 @@
 
 [data-wb-text] #cover-title {
 	margin-top: 1.5em;
-	padding-top: 5%;
-	font-size: 1.8em;
-	line-height: 1.8em;
-	word-spacing: 0.2em;
+	padding-top: 0%;
+	font-size: 1.6em;
+	line-height: 1.6em;
+	word-spacing: 0.25em;
 	letter-spacing: 3px;
 	opacity: 0.75;
-}
-
-[data-wb-text] #title {
-	padding-top: 12%;
 }
 
 [data-wb-text] #cover-logo {
@@ -65,15 +59,11 @@
 @media only screen and (min-height: 568px) {
 
 	[data-wb-text] #cover-title {
-		padding-top: 12%;
-		font-size: 1.9em;
-		line-height: 1.9em;
+		padding-top: 6%;
+		font-size: 1.8em;
+		line-height: 1.8em;
 		word-spacing: 0.2em;
 		letter-spacing: 3px;
-	}
-	
-	[data-wb-text] #title {
-		padding-top: 18%;
 	}
 	
 	[data-wb-text] #cover-logo {
@@ -85,11 +75,13 @@
 	}
 }
 
-@media only screen and (min-width: 612px) {
+@media only screen and (min-width: 568px) {
 
 	[data-wb-text] #cover-title {
 		padding-top: 4%;
-		word-spacing: 0.3em;
+		font-size: 1.9em;
+		word-spacing: 0.15em;
+		letter-spacing: 3px;
 	}
 	
 	[data-wb-text] #cover-logo {
@@ -110,28 +102,10 @@
 	}
 
 	[data-wb-text] #cover-title {
-		padding-top: 12%;
-		font-size: 2.1em;
-		line-height: 2.1em;
-	}
-	
-	[data-wb-text] #title {
-		padding-top: 17%;
+		padding-top: 8%;
 	}
 }
 
 [data-wb-text] sup {
 	line-height: 1em;
 }
-
-[data-wb-text] #title {
-	padding: 0em 3em;
-	letter-spacing: 2px;
-}
-
-
-
-
-
-
-
