@@ -94,6 +94,10 @@
 	position: relative;
 }
 
+#books-next-container .book {
+	cursor: default;
+}
+
 #books-next-container .book .logo .span1 {
 	font-size: 2em;
 	margin-bottom: 16px;

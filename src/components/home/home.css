@@ -95,6 +95,10 @@
 	position: relative;
 }
 
+#home-container .book {
+	cursor: default;
+}
+
 #home-container .book .logo .span1 {
 	font-size: 2em;
 	margin-bottom: 16px;
