@@ -1773,13 +1773,13 @@
       ],
       "description": "",
       "path": "/books/theorie_de_la_demarche/theorie_de_la_demarche",
-      "visible": false,
+      "visible": true,
       "authors": [
         "571f3525-aba8-4592-b8ec-c8a51344150b"
       ],
       "contribs": [],
       "created_at": "2018-09-06 20:17:36",
-      "updated_at": "2018-09-06 20:17:36",
+      "updated_at": "2018-09-17 21:25:37",
       "id": "a1f1d230-8349-43ba-b291-f1cb5caeb227"
     },
     {
@@ -1816,6 +1816,41 @@
       "created_at": "2018-09-16 21:21:18",
       "updated_at": "2018-09-16 21:23:36",
       "id": "11103a9c-0d28-4736-a08d-c0da4e883d8e"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(169, 117, 79, 0.8)",
+        "image": "/books/mon_corps_et_moi/mon_corps_et_moi_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 15%; font-size: 1.4em;letter-spacing: 1.5px",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Mon corps et moi",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "René Crevel",
+      "year": "1925",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Mon corps et moi, René Crevel – Éditions du Sagittaire, Paris, 1925."
+      ],
+      "description": "",
+      "path": "/books/mon_corps_et_moi/mon_corps_et_moi",
+      "visible": false,
+      "authors": [
+        "af046390-af9a-41df-8cb4-3457be861256"
+      ],
+      "contribs": [],
+      "created_at": "2018-09-19 20:20:20",
+      "updated_at": "2018-09-19 20:23:10",
+      "id": "4e7dbce2-32c2-493c-9f8c-5412343f8ce5"
     }
   ],
   "authors": [

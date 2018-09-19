@@ -932,6 +932,18 @@ VERSES
 	text-indent: 1em;
 }
 
+[data-wb-text] .verses p.indent4 {
+	text-indent: 2em;
+}
+
+[data-wb-text] .verses p.indent5 {
+	text-indent: 3em;
+}
+
+[data-wb-text] .verses p.indent6 {
+	text-indent: 4em;
+}
+
 [data-wb-text] p.verses-signature {
 	text-align: right;
 	font-size: 0.9em;
