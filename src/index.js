@@ -110,7 +110,8 @@ var index = (function() {
 		//FULLSCREEN
 		let fs = document.querySelector('#fullscreen');
 		let fsexit = document.querySelector('#fullscreenexit');
-		if (!screenfull.enabled || window.matchMedia('(display-mode: standalone)').matches) {
+		//if (!screenfull.enabled || window.matchMedia('(display-mode: standalone)').matches) {
+		if (!screenfull.enabled) {
 			utils.removeClass(fs,'show');
 		}
 		
