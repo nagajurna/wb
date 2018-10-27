@@ -244,8 +244,13 @@ HELPERS
 	font-variant: small-caps;
 }
 
+.text-indent-1 {
+	text-indent: 1em;
+}
+
 .text-center {
 	text-align: center;
+	text-indent: 0em;
 }
 
 .text-right {

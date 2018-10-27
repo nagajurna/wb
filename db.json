@@ -1804,17 +1804,18 @@
       "categories": "",
       "collection": "",
       "sources": [
-        "Mémoires de Madame Elliott sur&nbsp;la&nbsp;Révolution française – Michel Lévy Frères, Paris, 1861."
+        "Journal of my life during the French Revolution, by Grace Dalrymple Elliott – Richard Bentley, London, 1859.",
+        "Mémoires de Madame Elliott sur la Révolution française (traduits par Charles de Baillon) – Michel Lévy Frères, Paris, 1861."
       ],
-      "description": "<i>Nous donnons ici le texte de Grace Elliott, paru à Londres en 1859, dans sa première traduction française, par Charles de&nbsp;Baillon.</i>",
+      "description": "<i>Grace Dalrymple Elliott, anglaise et royaliste, nous livre le récit captivant de sa vie à Paris durant la Révolution Française.</i>",
       "path": "/books/memoires_de_madame_elliott/memoires_de_madame_elliott",
-      "visible": false,
+      "visible": true,
       "authors": [
         "2879adce-10bb-4080-8192-e9c822738917"
       ],
       "contribs": [],
       "created_at": "2018-09-16 21:21:18",
-      "updated_at": "2018-09-16 21:23:36",
+      "updated_at": "2018-10-14 13:55:53",
       "id": "11103a9c-0d28-4736-a08d-c0da4e883d8e"
     },
     {
@@ -1851,6 +1852,41 @@
       "created_at": "2018-09-19 20:20:20",
       "updated_at": "2018-09-19 20:23:10",
       "id": "4e7dbce2-32c2-493c-9f8c-5412343f8ce5"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(209, 184, 148, 0.8)",
+        "image": "/books/petits_chateaux_de_boheme/petits_chateaux_de_boheme_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 12%; font-size: 1.1em;letter-spacing: 1px;text-transform: uppercase",
+        "subtitle1": "padding-top: 2%;margin-top: 0px; font-size: 0.9em;letter-spacing: 1px",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Petits châteaux de&nbsp;Bohême",
+      "subtitle1": "Prose et poésie",
+      "subtitle2": "",
+      "authorDisplay": "Gérard de Nerval",
+      "year": "1853",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Petits châteaux de Bohême, par Gérard de Nerval – Eugène Didier, éditeur, Paris, 1853."
+      ],
+      "description": "",
+      "path": "/books/petits_chateaux_de_boheme/petits_chateaux_de_boheme",
+      "visible": false,
+      "authors": [
+        "1e1f4e76-3f49-44ee-8a6f-343fd44569bc"
+      ],
+      "contribs": [],
+      "created_at": "2018-10-26 18:19:22",
+      "updated_at": "2018-10-27 10:57:10",
+      "id": "306c55b6-0463-469a-be61-6478f5e8b272"
     }
   ],
   "authors": [

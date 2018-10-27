@@ -1,0 +1,158 @@
+[data-wb-text] {
+	font-family: 'Noto Serif', 'Georgia', serif;
+}
+
+[data-wb-text].cover_active {
+	background-color: rgba(209, 184, 148, 0.8);
+	background-image: url("/books/petits_chateaux_de_boheme/petits_chateaux_de_boheme_cover.jpg");
+}
+
+[data-wb-text] #cover {
+	position: static;
+}
+
+[data-wb-text] #cover-author {
+	font-size: 1.2em;
+	font-variant: small-caps;
+	letter-spacing: 1px;
+	opacity: 0.75;
+}
+
+[data-wb-text] #cover-title {
+	padding-top: 10%;
+	font-size: 1.5em;
+	text-transform: uppercase;
+	line-height: 1.5em;
+	letter-spacing: 2px;
+	opacity: 0.75;
+}
+
+[data-wb-text] #cover-subtitleone {
+	padding-top: 3%;
+	font-size: 1.2em;
+	letter-spacing: 1.5px;
+	line-height: 1.5em;
+	opacity: 0.75;
+	margin: 0px;
+	text-indent: 0px;
+}
+
+[data-wb-text] #cover-logo {
+	position: absolute;
+	bottom: 2em;
+	left: 50%;
+	width: 250px;
+	margin-left: -125px;
+	font-variant: small-caps;
+	letter-spacing: 6px;
+	text-align: center;
+	opacity: 0.75;
+}
+
+[data-wb-text] #cover-logo1 {
+	font-size: 3em;
+	display: none;
+}
+
+[data-wb-text] #cover-logo2 {
+	font-size: 1.2em;
+	margin-top: 36px;
+}
+
+@media only screen and (min-height: 460px) {
+
+	[data-wb-text] #cover-title {
+		padding-top: 18%;
+		font-size: 1.6em;
+		line-height: 1.6em;
+	}
+	
+	[data-wb-text] #cover-subtitleone {
+		padding-top: 4%;
+	}
+	
+	[data-wb-text] #cover-logo1 {
+		display: block;
+	}
+}
+
+@media only screen and (min-height: 568px) {
+
+	[data-wb-text] #cover-title {
+		padding-top: 20%;
+		font-size: 1.7em;
+		line-height: 1.7em;
+	}
+	
+	[data-wb-text] #cover-subtitleone {
+		padding-top: 6%;
+	}
+
+	[data-wb-text] #cover-logo {
+		bottom: 2.5em;
+	}
+	
+	[data-wb-text] #cover-logo1 {
+		display: block;
+	}
+	
+	[data-wb-text] #cover-logo2 {
+		font-size: 1.3em;
+	}
+
+}
+
+
+@media only screen and (min-width: 568px) {
+	[data-wb-text] #cover-logo {
+		bottom: 3em;
+	}
+}
+
+@media only screen and (min-height: 680px) {
+
+	[data-wb-text] #cover-author {
+		font-size: 1.3em;
+		letter-spacing: 2px;
+	}
+
+	[data-wb-text] #cover-title {
+		padding-top: 22%;
+		font-size: 1.8em;
+		letter-spacing: 4px;
+	}
+	
+	[data-wb-text] #cover-subtitleone {
+		font-size: 1.4em;
+	}
+
+}
+
+[data-wb-text] .section-exergue {
+	padding-top: 0em;
+	margin-top: 0px;
+	margin-bottom: 0em;
+	float: right;
+}
+
+[data-wb-text] .section-exergue p {
+	text-indent: 0px;
+	font-size: 0.85em;
+	text-align: left;
+}
+
+[data-wb-text] p.section-signature {
+	text-align: right;
+	font-size: 0.9em;
+	padding-bottom: 1.5em;
+	padding-right: 1.5em
+}
+
+[data-wb-text] sup {
+	line-height: 1em;
+}
+
+[data-wb-text] #title {
+	padding: 0em 2.3em;
+	letter-spacing: 3px;
+}
