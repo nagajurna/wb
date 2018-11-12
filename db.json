@@ -594,7 +594,7 @@
       "sources": [
         "Armand, Emmanuel Bove – Émile-Paul frères, Paris, 1927."
       ],
-      "description": "<i>« C’était comme au malheureux que j’avais été qu’il parlait. Mon aisance présente était pour lui un accident. Elle ne durerait pas. Bien que chaque jour je m’imposasse de penser que j’étais destiné à la vie que je menais, que c’était l’autre vie qui avait été un accident, il m’apparut une seconde qu’il avait raison. »</i>\n\n<i>Armand</i> est le deuxième roman d'Emmanuel Bove.",
+      "description": "<i>« C’était comme au malheureux que j’avais été qu’il parlait. Mon aisance présente était pour lui un accident. Elle ne durerait pas. Bien que chaque jour je m’imposasse de penser que j’étais destiné à la vie que je menais, que c’était l’autre vie qui avait été un accident, il m’apparut une seconde qu’il avait raison. »</i>",
       "path": "/books/armand/armand",
       "visible": true,
       "authors": [
@@ -602,7 +602,7 @@
       ],
       "contribs": [],
       "created_at": "2018-02-07 13:44:45",
-      "updated_at": "2018-05-13 23:58:42",
+      "updated_at": "2018-11-12 23:28:24",
       "id": "247eb19f-d72c-4849-a54c-294d71714d3c",
       "source": {}
     },
@@ -1844,13 +1844,13 @@
       ],
       "description": "",
       "path": "/books/mon_corps_et_moi/mon_corps_et_moi",
-      "visible": false,
+      "visible": true,
       "authors": [
         "af046390-af9a-41df-8cb4-3457be861256"
       ],
       "contribs": [],
       "created_at": "2018-09-19 20:20:20",
-      "updated_at": "2018-09-19 20:23:10",
+      "updated_at": "2018-11-12 23:32:13",
       "id": "4e7dbce2-32c2-493c-9f8c-5412343f8ce5"
     },
     {
@@ -1885,8 +1885,43 @@
       ],
       "contribs": [],
       "created_at": "2018-10-26 18:19:22",
-      "updated_at": "2018-10-27 10:57:10",
+      "updated_at": "2018-11-04 08:58:21",
       "id": "306c55b6-0463-469a-be61-6478f5e8b272"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(147, 107, 83, 0.8)",
+        "image": " /books/adele/adele_cover.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 18%; font-size: 1.2em;letter-spacing: 1px;text-transform: uppercase",
+        "subtitle1": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Adèle",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Charles Nodier",
+      "year": "1820",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Œuvres de Charles Nodier, Tome II – G. Vervloet, La Haye, 1832."
+      ],
+      "description": "",
+      "path": "/books/adele/adele",
+      "visible": false,
+      "authors": [
+        "efee890d-6487-47cd-8c2d-48f47512143f"
+      ],
+      "contribs": [],
+      "created_at": "2018-11-12 23:28:52",
+      "updated_at": "2018-11-12 23:29:56",
+      "id": "e82e9a1d-282e-4d5a-962a-4a8502a84d21"
     }
   ],
   "authors": [
