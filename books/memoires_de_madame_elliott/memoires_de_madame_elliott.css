@@ -3,8 +3,8 @@
 }
 
 [data-wb-text].cover_active {
-	background-color: rgba(247, 202, 201,0.8);
-	background-image: url("/books/memoires_de_madame_elliott/memoires_de_madame_elliott_cover.jpg");
+	background-color: rgba(160, 70, 92,0.8);
+	background-image: url("/books/160_70_92.jpg");
 }
 
 [data-wb-text] #cover {

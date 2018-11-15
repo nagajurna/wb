@@ -119,7 +119,7 @@
     {
       "styles": {
         "color": "rgba(203, 158, 75, 0.8)",
-        "image": "/books/la_croisade_des_enfants/la_croisade_des_enfants_cover.jpg",
+        "image": "/books/203_158_75.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -144,7 +144,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:08:48",
-      "updated_at": "2018-05-20 09:27:22",
+      "updated_at": "2018-11-15 20:17:49",
       "id": "e22c5a98-e5b8-4926-8cad-fd30131868c2",
       "sources": [
         "La lampe de Psyché (9<sup>e</sup> éd.), par Marcel Schwob – Mercure de France, Paris, 1925 (p. 71-109)."
@@ -154,7 +154,7 @@
     {
       "styles": {
         "color": "rgba(224, 195, 139, 0.8)",
-        "image": "/books/mimes/mimes_cover.jpg",
+        "image": "/books/224_195_139.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative; opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -179,7 +179,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:11:49",
-      "updated_at": "2018-01-19 08:03:00",
+      "updated_at": "2018-11-15 20:05:41",
       "id": "f379d066-0347-4fb1-998f-2e4c214c3960",
       "sources": [
         "La lampe de Psyché (9<sup>e</sup> éd.), par Marcel Schwob – Mercure de France, Paris, 1925 (p. 7-70)."
@@ -189,7 +189,7 @@
     {
       "styles": {
         "color": "rgba(190, 19, 45, 0.8)",
-        "image": "/books/rene_leys/rene_leys_cover.jpg",
+        "image": "/books/190_19_45.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -214,11 +214,12 @@
       ],
       "contribs": [],
       "created_at": "2017-11-22 18:50:26",
-      "updated_at": "2018-01-19 09:28:12",
+      "updated_at": "2018-11-15 20:21:09",
       "id": "13dc7d86-f837-4657-a690-ee3a34b90962",
       "sources": [
         "René Leys, par Victor Segalen &ndash;&nbsp;G. Crès, Paris, 1922."
-      ]
+      ],
+      "source": {}
     },
     {
       "styles": {
@@ -292,7 +293,7 @@
     {
       "styles": {
         "color": "rgba(90, 114, 71, 0.8)",
-        "image": "/books/valperi_tome_un/valperi_tome_un_cover.jpg",
+        "image": "/books/90_114_71.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -317,17 +318,18 @@
       ],
       "contribs": [],
       "created_at": "2017-12-16 12:11:26",
-      "updated_at": "2018-01-19 09:32:43",
+      "updated_at": "2018-11-15 19:00:58",
       "id": "b5bba6b3-930b-458c-853a-24c49dc2856c",
       "sources": [
         "Valpéri, mémoires d'un gentilhomme du siècle dernier, par G. de Molènes &ndash;&nbsp;W. Coquebert, Paris, 1845 (2 vol.).",
         "Mémoires d'un gentilhomme du siècle dernier, Valpéri, par Paul de Molènes &ndash;&nbsp;Michel Lévy frères, Paris, 1858."
-      ]
+      ],
+      "source": {}
     },
     {
       "styles": {
         "color": "rgba(90, 114, 71, 0.8)",
-        "image": "/books/valperi_tome_second/valperi_tome_second_cover.jpg",
+        "image": "/books/90_114_71.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -352,7 +354,7 @@
       ],
       "contribs": [],
       "created_at": "2017-12-16 12:26:44",
-      "updated_at": "2018-01-19 09:33:14",
+      "updated_at": "2018-11-15 19:01:29",
       "id": "debf7127-e92e-4349-9c8d-0eee1f6daaed",
       "sources": [
         "Valpéri, mémoires d'un gentilhomme du siècle dernier, par G. de Molènes – W. Coquebert, Paris, 1845 (2 vol.).",
@@ -574,7 +576,7 @@
     {
       "styles": {
         "color": "rgba(100, 125, 79, 0.8)",
-        "image": "/books/armand/armand_cover.jpg",
+        "image": "/books/100_125_79.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -602,7 +604,7 @@
       ],
       "contribs": [],
       "created_at": "2018-02-07 13:44:45",
-      "updated_at": "2018-11-12 23:28:24",
+      "updated_at": "2018-11-15 19:18:14",
       "id": "247eb19f-d72c-4849-a54c-294d71714d3c",
       "source": {}
     },
@@ -645,7 +647,7 @@
     {
       "styles": {
         "color": "rgba(177, 143, 106,0.8)",
-        "image": "/books/becon_les_bruyeres/becon_les_bruyeres_cover.jpg",
+        "image": "/books/177_143_106.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -673,7 +675,7 @@
       ],
       "contribs": [],
       "created_at": "2018-02-15 14:27:26",
-      "updated_at": "2018-05-14 00:00:11",
+      "updated_at": "2018-11-15 19:22:10",
       "id": "69e4a0c8-126f-49da-b7cd-51e5d9b86749",
       "source": {}
     },
@@ -728,8 +730,8 @@
     {
       "source": {},
       "styles": {
-        "color": "rgba(62, 79, 48, 0.8)",
-        "image": "/books/dans_la_foret/dans_la_foret_cover.jpg",
+        "color": "rgba(90,114,71,0.8)",
+        "image": "/books/90_114_71.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -757,14 +759,14 @@
       ],
       "contribs": [],
       "created_at": "2018-02-25 00:34:28",
-      "updated_at": "2018-05-08 13:39:24",
+      "updated_at": "2018-11-15 19:51:32",
       "id": "4a61340b-04bf-43ff-b468-465423ebe363"
     },
     {
       "source": {},
       "styles": {
-        "color": "rgba(62, 79, 48, 0.8)",
-        "image": " /books/une_ame/une_ame_cover.jpg",
+        "color": "rgba(90,114,71, 0.8)",
+        "image": " /books/90_114_71.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -792,14 +794,14 @@
       ],
       "contribs": [],
       "created_at": "2018-02-26 11:29:21",
-      "updated_at": "2018-05-08 14:07:38",
+      "updated_at": "2018-11-15 19:54:38",
       "id": "c5a5182b-cb1b-49c2-aef4-f7968b4cdeb8"
     },
     {
       "source": {},
       "styles": {
-        "color": "rgba(141, 63, 81, 0.8)",
-        "image": "/books/comediens_ambulants/comediens_ambulants_cover.jpg",
+        "color": "rgba(142, 62, 82, 0.8)",
+        "image": "/books/142_62_82.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -827,14 +829,14 @@
       ],
       "contribs": [],
       "created_at": "2018-02-26 11:36:17",
-      "updated_at": "2018-05-08 19:08:32",
+      "updated_at": "2018-11-15 19:33:46",
       "id": "58613751-ed48-4a90-b323-8982e7ced89e"
     },
     {
       "source": {},
       "styles": {
-        "color": "rgba(223, 207, 190,0.8)",
-        "image": "/books/de_mazas_a_jerusalem/de_mazas_a_jerusalem_cover.jpg",
+        "color": "rgba(134,103,70,0.8)",
+        "image": "/books/134_103_70.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -862,7 +864,7 @@
       ],
       "contribs": [],
       "created_at": "2018-05-08 13:10:26",
-      "updated_at": "2018-05-13 23:00:40",
+      "updated_at": "2018-11-15 19:45:23",
       "id": "c28483db-6aec-45a1-856e-7fd4c8562c6f"
     },
     {
@@ -903,8 +905,8 @@
     {
       "source": {},
       "styles": {
-        "color": "rgb(247, 202, 201, 0.8)",
-        "image": "/books/lizzie_blakeston/lizzie_blakeston_cover.jpg",
+        "color": "rgb(182,158,124,0.8)",
+        "image": "/books/182_158_124.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -932,14 +934,14 @@
       ],
       "contribs": [],
       "created_at": "2018-05-13 22:53:16",
-      "updated_at": "2018-05-20 11:08:29",
+      "updated_at": "2018-11-15 20:00:03",
       "id": "d4bfe0b7-4a71-4900-bf11-5dda26935f90"
     },
     {
       "source": {},
       "styles": {
-        "color": "rgba(174, 201, 131, 0.8)",
-        "image": "/books/colin_maillard/colin_maillard_cover.jpg",
+        "color": "rgba(223,71,58,0.8)",
+        "image": "/books/223_71_58.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -967,14 +969,14 @@
       ],
       "contribs": [],
       "created_at": "2018-05-13 23:54:28",
-      "updated_at": "2018-06-01 23:08:20",
+      "updated_at": "2018-11-15 19:30:40",
       "id": "161263db-d6e3-490f-8f38-e6f785009780"
     },
     {
       "source": {},
       "styles": {
-        "color": "rgba(134, 103, 70,0.8)",
-        "image": "/books/battling_malone/battling_malone_cover.jpg",
+        "color": "rgba(134, 103, 70, 0.8)",
+        "image": "/books/134_103_70.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -1002,14 +1004,14 @@
       ],
       "contribs": [],
       "created_at": "2018-05-14 00:10:29",
-      "updated_at": "2018-06-01 23:36:18",
+      "updated_at": "2018-11-15 19:20:03",
       "id": "b6035209-83ca-4b7c-b0be-5f5bd59c35a9"
     },
     {
       "source": {},
       "styles": {
         "color": "rgba(155, 35, 53,0.8)",
-        "image": "/books/un_soir_chez_blutel/un_soir_chez_blutel_cover.jpg",
+        "image": "/books/155_35_53.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -1037,7 +1039,7 @@
       ],
       "contribs": [],
       "created_at": "2018-06-01 22:21:22",
-      "updated_at": "2018-06-03 20:29:05",
+      "updated_at": "2018-11-15 19:49:20",
       "id": "a3cb7c12-aa0b-4a64-8b08-0eae9ba94087"
     },
     {
@@ -1078,8 +1080,8 @@
     {
       "source": {},
       "styles": {
-        "color": "rgba(149, 222, 227, 0.8)",
-        "image": "/books/etat_civil/etat_civil_cover.jpg",
+        "color": "rgba(223, 71, 58, 0.8)",
+        "image": "/books/223_71_58.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -1107,7 +1109,7 @@
       ],
       "contribs": [],
       "created_at": "2018-06-03 20:24:31",
-      "updated_at": "2018-06-27 20:25:05",
+      "updated_at": "2018-11-15 18:54:52",
       "id": "8d9c5cc7-9c44-4d76-a058-79e4db1ddf3c"
     },
     {
@@ -1148,8 +1150,8 @@
     {
       "source": {},
       "styles": {
-        "color": "rgba(108, 79, 61, 0.8)",
-        "image": " /books/coeurs_et_visages/coeurs_et_visages_cover.jpg",
+        "color": "rgba(106, 47, 61, 0.8)",
+        "image": " /books/106_47_61.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -1177,7 +1179,7 @@
       ],
       "contribs": [],
       "created_at": "2018-06-27 20:08:56",
-      "updated_at": "2018-07-09 21:47:39",
+      "updated_at": "2018-11-15 19:26:16",
       "id": "63f151de-61fe-4d3b-b3d0-f2ac81efcece"
     },
     {
@@ -1465,8 +1467,8 @@
     {
       "source": {},
       "styles": {
-        "color": "rgba(234, 230, 218, 0.8)",
-        "image": "/books/une_fugue/une_fugue_cover.jpg",
+        "color": "rgba(209,184,148,0.8)",
+        "image": "/books/209_184_148.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -1495,7 +1497,7 @@
       ],
       "contribs": [],
       "created_at": "2018-08-04 20:35:20",
-      "updated_at": "2018-08-07 21:00:01",
+      "updated_at": "2018-11-15 20:10:31",
       "id": "826c72a6-423b-456c-9a06-8df9b75ed8cd"
     },
     {
@@ -1715,8 +1717,8 @@
     {
       "source": {},
       "styles": {
-        "color": "rgba(146, 181, 88, 0.8)",
-        "image": "/books/petits_contes/petits_contes_cover.jpg",
+        "color": "rgba(224,195,139,0.8)",
+        "image": "/books/224_195_139.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -1744,14 +1746,14 @@
       ],
       "contribs": [],
       "created_at": "2018-09-06 19:46:46",
-      "updated_at": "2018-09-16 07:56:26",
+      "updated_at": "2018-11-15 20:07:59",
       "id": "790dab91-9725-4cd9-940f-aa7a3092111b"
     },
     {
       "source": {},
       "styles": {
         "color": "rgba(189, 61, 58, 0.8)",
-        "image": "/books/theorie_de_la_demarche/theorie_de_la_demarche_cover.jpg",
+        "image": "/books/189_61_58.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -1779,14 +1781,14 @@
       ],
       "contribs": [],
       "created_at": "2018-09-06 20:17:36",
-      "updated_at": "2018-09-17 21:25:37",
+      "updated_at": "2018-11-15 19:04:40",
       "id": "a1f1d230-8349-43ba-b291-f1cb5caeb227"
     },
     {
       "source": {},
       "styles": {
-        "color": "rgba(247, 202, 201, 0.8)",
-        "image": "/books/memoires_de_madame_elliott/memoires_de_madame_elliott_cover.jpg",
+        "color": "rgba(160, 70, 92, 0.8)",
+        "image": "/books/160_70_92.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -1815,14 +1817,14 @@
       ],
       "contribs": [],
       "created_at": "2018-09-16 21:21:18",
-      "updated_at": "2018-10-14 13:55:53",
+      "updated_at": "2018-11-15 19:07:41",
       "id": "11103a9c-0d28-4736-a08d-c0da4e883d8e"
     },
     {
       "source": {},
       "styles": {
-        "color": "rgba(169, 117, 79, 0.8)",
-        "image": "/books/mon_corps_et_moi/mon_corps_et_moi_cover.jpg",
+        "color": "rgba(167,129, 88, 0.8)",
+        "image": "/books/167_129_88.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -1850,14 +1852,14 @@
       ],
       "contribs": [],
       "created_at": "2018-09-19 20:20:20",
-      "updated_at": "2018-11-12 23:32:13",
+      "updated_at": "2018-11-15 18:51:03",
       "id": "4e7dbce2-32c2-493c-9f8c-5412343f8ce5"
     },
     {
       "source": {},
       "styles": {
         "color": "rgba(209, 184, 148, 0.8)",
-        "image": "/books/petits_chateaux_de_boheme/petits_chateaux_de_boheme_cover.jpg",
+        "image": "/books/209_184_148.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -1885,14 +1887,14 @@
       ],
       "contribs": [],
       "created_at": "2018-10-26 18:19:22",
-      "updated_at": "2018-11-04 08:58:21",
+      "updated_at": "2018-11-15 18:47:51",
       "id": "306c55b6-0463-469a-be61-6478f5e8b272"
     },
     {
       "source": {},
       "styles": {
-        "color": "rgba(147, 107, 83, 0.8)",
-        "image": " /books/adele/adele_cover.jpg",
+        "color": "rgba(147, 121, 83, 0.8)",
+        "image": " /books/147_121_83.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -1910,7 +1912,7 @@
       "categories": "",
       "collection": "",
       "sources": [
-        "Œuvres de Charles Nodier, Tome II – G. Vervloet, La Haye, 1832."
+        "Œuvres de Charles Nodier, Tome II – E.&nbsp;Renduel, Paris, 1832."
       ],
       "description": "",
       "path": "/books/adele/adele",
@@ -1920,7 +1922,7 @@
       ],
       "contribs": [],
       "created_at": "2018-11-12 23:28:52",
-      "updated_at": "2018-11-12 23:29:56",
+      "updated_at": "2018-11-15 19:43:33",
       "id": "e82e9a1d-282e-4d5a-962a-4a8502a84d21"
     }
   ],

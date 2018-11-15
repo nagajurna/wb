@@ -5,8 +5,8 @@
 */
 
 [data-wb-text].cover_active {
-	background-color: rgba(108, 79, 61, 0.8);
-	background-image: url("/books/coeurs_et_visages/coeurs_et_visages_cover.jpg");
+	background-color: rgba(106, 47, 61, 0.8);
+	background-image: url("/books/106_47_61.jpg");
 }
 
 [data-wb-text] #cover {

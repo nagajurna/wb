@@ -3,8 +3,8 @@
 }
 
 [data-wb-text].cover_active {
-	background-color: rgba(169, 117, 79, 0.8);
-	background-image: url("/books/mon_corps_et_moi/mon_corps_et_moi_cover.jpg");
+	background-color: rgba(167, 129, 88, 0.8);
+	background-image: url("/books/167_129_88.jpg");
 }
 
 [data-wb-text] #cover {

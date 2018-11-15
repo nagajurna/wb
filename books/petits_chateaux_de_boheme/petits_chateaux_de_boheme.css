@@ -4,7 +4,7 @@
 
 [data-wb-text].cover_active {
 	background-color: rgba(209, 184, 148, 0.8);
-	background-image: url("/books/petits_chateaux_de_boheme/petits_chateaux_de_boheme_cover.jpg");
+	background-image: url("/books/209_184_148.jpg");
 }
 
 [data-wb-text] #cover {

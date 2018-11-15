@@ -3,8 +3,8 @@
 }
 
 [data-wb-text].cover_active {
-	background-color: rgba(174, 201, 131, 0.8);
-	background-image: url("/books/colin_maillard/colin_maillard_cover.jpg");
+	background-color: rgba(223,71,58, 0.8);
+	background-image: url("/books/223_71_58.jpg");
 }
 
 [data-wb-text] #cover {

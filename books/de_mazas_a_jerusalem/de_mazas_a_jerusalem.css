@@ -3,8 +3,8 @@
 }
 
 [data-wb-text].cover_active {
-	background-color: rgba(223,207,190,0.8);
-	background-image: url("/books/de_mazas_a_jerusalem/de_mazas_a_jerusalem_cover.jpg");
+	background-color: rgba(134,103,70,0.8);
+	background-image: url("/books/134_103_70.jpg");
 }
 
 [data-wb-text] #cover {

@@ -5,8 +5,8 @@
 */
 
 [data-wb-text].cover_active {
-	background-color: rgba(146, 181, 88, 0.8);
-	background-image: url("/books/petits_contes/petits_contes_cover.jpg");
+	background-color: rgba(224,195,139,0.8);
+	background-image: url("/books/224,195,139.jpg");
 }
 
 [data-wb-text] #cover {
