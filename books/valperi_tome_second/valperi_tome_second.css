@@ -177,3 +177,6 @@
 	text-indent: 0px;
 }
 
+[data-wb-text] #sommaire .ul {
+	margin-top : 6%;
+}
