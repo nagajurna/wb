@@ -181,13 +181,13 @@ var index = (function() {
 			return 'done';
 		})
 		.catch( error => {
-			dataStore.setData('currentUser', {});
-			utils.addClass('#admin-item', 'hidden');
-			utils.addClass('#menu-admin-item', 'hidden');
+			//dataStore.setData('currentUser', {});
+			//utils.addClass('#admin-item', 'hidden');
+			//utils.addClass('#menu-admin-item', 'hidden');
 			//call router
-			router();
+			//router();
 			//init
-			init();
+			//init();
 			console.log(error);
 		});
 	}

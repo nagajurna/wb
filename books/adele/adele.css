@@ -100,7 +100,7 @@
 	line-height: 1em;
 }
 
-[data-wb-text] #title {
-	padding: 0em 4em;
+[data-wb-text] .front-title {
+	padding-top: 0em 4em;
 	letter-spacing: 1px;
 }

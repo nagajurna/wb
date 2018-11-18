@@ -1,0 +1,147 @@
+[data-wb-text] {
+	font-family: 'Noto Serif', 'Georgia', serif;
+}
+
+[data-wb-text].cover_active {
+	background-color: rgba(155,35,53,0.8);
+	background-image: url("/books/155_35_53.jpg");
+}
+
+[data-wb-text] #cover {
+	position: static;
+}
+
+[data-wb-text] #cover-author {
+	font-size: 1.2em;
+	font-variant: small-caps;
+	letter-spacing: 1px;
+	opacity: 0.75;
+}
+
+[data-wb-text] #cover-title {
+	padding-top: 12%;
+	font-size: 1.5em;
+	line-height: 1.5em;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	opacity: 0.75;
+}
+
+[data-wb-text] #cover-subtitleone {
+	padding-top: 5%;
+	font-size: 1em;
+	letter-spacing: 2px;
+	line-height: 1.5em;
+	opacity: 0.75;
+	margin: 0px;
+	text-indent: 0px;
+	display: none;
+}
+
+[data-wb-text] #cover-subtitletwo {
+	padding-top: 5%;
+	font-size: 1.2em;
+	font-variant: small-caps;
+	letter-spacing: 2px;
+	line-height: 1.5em;
+	margin: 0px;
+	text-indent: 0px;
+	opacity: 0.75;
+}
+
+[data-wb-text] #cover-logo {
+	position: absolute;
+	bottom: 2em;
+	left: 50%;
+	width: 250px;
+	margin-left: -125px;
+	font-variant: small-caps;
+	letter-spacing: 6px;
+	text-align: center;
+	opacity: 0.75;
+}
+
+[data-wb-text] #cover-logo1 {
+	font-size: 3em;
+	display: none;
+}
+
+[data-wb-text] #cover-logo2 {
+	font-size: 1.2em;
+	margin-top: 36px;
+}
+
+@media only screen and (min-height: 460px) {
+	[data-wb-text] #cover-subtitleone {
+		display: block;
+	}
+	
+	[data-wb-text] #cover-logo1 {
+		display: block;
+	}
+}
+
+@media only screen and (min-height: 568px) {
+
+	[data-wb-text] #cover-title {
+		letter-spacing: 4px;
+	}
+	
+	[data-wb-text] #cover-subtitleone {
+		display: block;
+	}
+	
+	[data-wb-text] #cover-logo {
+		bottom: 2.5em;
+	}
+	
+	[data-wb-text] #cover-logo1 {
+		display: block;
+	}
+	
+	[data-wb-text] #cover-logo2 {
+		font-size: 1.3em;
+	}
+
+}
+
+
+@media only screen and (min-width: 568px) {
+	[data-wb-text] #cover-logo {
+		bottom: 3em;
+	}
+}
+
+@media only screen and (min-height: 680px) {
+
+	[data-wb-text] #cover-author {
+		font-size: 1.3em;
+		letter-spacing: 2px;
+	}
+
+	[data-wb-text] #cover-title {
+		padding-top: 10%;
+		font-size: 1.9em;
+		line-height: 2em;
+		letter-spacing: 6px;
+	}
+	
+	[data-wb-text] #cover-subtitleone {
+		font-size: 1.3em;
+		letter-spacing: 3px;
+	}
+	
+	[data-wb-text] #cover-subtitletwo {
+		font-size: 1.5em;
+	}
+
+}
+
+[data-wb-text] .section-title {
+	text-align: center;
+	font-size: 1.15em
+}
+
+[data-wb-text] #sommaire .ul {
+	margin-top : 6%;
+}
