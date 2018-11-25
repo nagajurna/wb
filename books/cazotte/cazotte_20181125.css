@@ -3,8 +3,8 @@
 }
 
 [data-wb-text].cover_active {
-	background-color: rgba(155,35,53,0.8);
-	background-image: url("/books/155_35_53.jpg");
+	background-color: rgba(216,174,71,0.8);
+	background-image: url("/books/216_174_71.jpg");
 }
 
 [data-wb-text] #cover {
@@ -19,7 +19,7 @@
 }
 
 [data-wb-text] #cover-title {
-	padding-top: 12%;
+	padding-top: 8%;
 	font-size: 1.5em;
 	line-height: 1.5em;
 	text-transform: uppercase;
@@ -28,7 +28,8 @@
 }
 
 [data-wb-text] #cover-subtitleone {
-	padding-top: 5%;
+	padding-top: 4%;
+	font-style: italic;
 	font-size: 1em;
 	letter-spacing: 2px;
 	line-height: 1.5em;
@@ -39,7 +40,7 @@
 }
 
 [data-wb-text] #cover-subtitletwo {
-	padding-top: 5%;
+	padding-top: 4%;
 	font-size: 1.2em;
 	font-variant: small-caps;
 	letter-spacing: 2px;
@@ -71,9 +72,17 @@
 	margin-top: 36px;
 }
 
-@media only screen and (min-height: 460px) {
+@media only screen and (min-height: 475px) {
+	[data-wb-text] #cover-title {
+		padding-top: 12%;
+	}
+	
 	[data-wb-text] #cover-subtitleone {
 		display: block;
+	}
+	
+	[data-wb-text] #cover-subtitletwo {
+		padding-top: 6%;
 	}
 	
 	[data-wb-text] #cover-logo1 {
@@ -82,6 +91,10 @@
 }
 
 @media only screen and (min-height: 568px) {
+
+	[data-wb-text] #cover-title {
+		padding-top: 14%;
+	}
 
 	[data-wb-text] #cover-title {
 		letter-spacing: 4px;
@@ -127,7 +140,7 @@
 	}
 	
 	[data-wb-text] #cover-subtitleone {
-		font-size: 1.3em;
+		font-size: 1.2em;
 		letter-spacing: 3px;
 	}
 	
@@ -144,4 +157,13 @@
 
 [data-wb-text] #sommaire .ul {
 	margin-top : 6%;
+}
+
+[data-wb-text] sup {
+	line-height: 1em;
+}
+
+[data-wb-text] #title_1, [data-wb-text] #title_2 {
+	padding: 0em 2em;
+	letter-spacing: 2px;
 }

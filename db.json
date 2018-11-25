@@ -1950,14 +1950,14 @@
         "Les illuminés ou Les précurseurs du socialisme ; récits et&nbsp;portraits, Gérard de Nerval – Victor Lecou, Paris, 1852."
       ],
       "description": "",
-      "path": "/books/le_roi_de_bicetre/le_roi_de_bicetre_20181125",
+      "path": "/books/le_roi_de_bicetre/le_roi_de_bicetre_20181126",
       "visible": true,
       "authors": [
         "1e1f4e76-3f49-44ee-8a6f-343fd44569bc"
       ],
       "contribs": [],
       "created_at": "2018-11-17 08:42:41",
-      "updated_at": "2018-11-25 10:20:07",
+      "updated_at": "2018-11-25 12:07:52",
       "id": "203409c6-502f-4b1f-81b6-86ca2ad16d33"
     },
     {
@@ -1985,14 +1985,14 @@
         "Les illuminés ou Les précurseurs du socialisme ; récits et portraits, Gérard de Nerval – Victor Lecou, Paris, 1852."
       ],
       "description": "",
-      "path": "/books/histoire_de_l_abbe_de_bucquoy/histoire_de_l_abbe_de_bucquoy_20181124",
-      "visible": false,
+      "path": "/books/histoire_de_l_abbe_de_bucquoy/histoire_de_l_abbe_de_bucquoy_20181125",
+      "visible": true,
       "authors": [
         "1e1f4e76-3f49-44ee-8a6f-343fd44569bc"
       ],
       "contribs": [],
       "created_at": "2018-11-18 18:02:29",
-      "updated_at": "2018-11-25 10:25:28",
+      "updated_at": "2018-11-25 11:23:07",
       "id": "8d8134f3-bbb8-4e7c-a74a-decce76dab9f"
     },
     {
@@ -2016,7 +2016,9 @@
       "language": "français",
       "categories": "",
       "collection": "",
-      "sources": [],
+      "sources": [
+        "Les illuminés ou Les précurseurs du socialisme ; récits et portraits, Gérard de Nerval – Victor Lecou, Paris, 1852."
+      ],
       "description": "",
       "path": "/books/les_confidences_de_nicolas/les_confidences_de_nicolas_20181125",
       "visible": false,
@@ -2025,8 +2027,113 @@
       ],
       "contribs": [],
       "created_at": "2018-11-25 08:27:38",
-      "updated_at": "2018-11-25 10:26:02",
+      "updated_at": "2018-11-25 10:51:13",
       "id": "baf76b81-3f18-4dbd-bf0c-5d213b2d6c53"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(216,174,71, 0.8)",
+        "image": "/books/216_174_71.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px",
+        "title": "font-size: 0.8em;letter-spacing: 4px; padding-top: 8px; margin-bottom: 8px;text-transform: uppercase",
+        "subtitle1": "font-size: 0.8em;letter-spacing: 1px;font-style: italic",
+        "subtitle2": "padding: 8px;font-size: 1em;letter-spacing: 1.5px;font-variant: small-caps",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Les illuminés",
+      "subtitle1": "Les précurseurs du socialisme",
+      "subtitle2": "Cazotte",
+      "authorDisplay": "Gérard de Nerval",
+      "year": "1852",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Les illuminés ou Les précurseurs du socialisme ; récits et portraits, Gérard de Nerval – Victor Lecou, Paris, 1852."
+      ],
+      "description": "",
+      "path": "/books/cazotte/cazotte_20181125",
+      "visible": false,
+      "authors": [
+        "1e1f4e76-3f49-44ee-8a6f-343fd44569bc"
+      ],
+      "contribs": [],
+      "created_at": "2018-11-25 10:55:38",
+      "updated_at": "2018-11-25 10:56:56",
+      "id": "beb1fdbd-7811-4ba9-b184-5e65ea4c28e7"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(216,174,71, 0.8)",
+        "image": "/books/216_174_71.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px",
+        "title": "font-size: 0.8em;letter-spacing: 4px; padding-top: 8px; margin-bottom: 8px;text-transform: uppercase",
+        "subtitle1": "font-size: 0.8em;letter-spacing: 1px;font-style: italic",
+        "subtitle2": "padding: 8px;font-size: 1em;letter-spacing: 1.5px;font-variant: small-caps",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Les illuminés",
+      "subtitle1": "Les précurseurs du socialisme",
+      "subtitle2": "Cagliostro",
+      "authorDisplay": "Gérard de Nerval",
+      "year": "1852",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Les illuminés ou Les précurseurs du socialisme ; récits et portraits, Gérard de Nerval – Victor Lecou, Paris, 1852."
+      ],
+      "description": "",
+      "path": "/books/cagliostro/cagliostro_20181125",
+      "visible": false,
+      "authors": [
+        "1e1f4e76-3f49-44ee-8a6f-343fd44569bc"
+      ],
+      "contribs": [],
+      "created_at": "2018-11-25 12:21:52",
+      "updated_at": "2018-11-25 12:21:52",
+      "id": "3b12bc79-5055-4d28-82d4-67de90b28ab1"
+    },
+    {
+      "source": {},
+      "styles": {
+        "color": "rgba(216,174,71, 0.8)",
+        "image": "/books/216_174_71.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px",
+        "title": "font-size: 0.8em;letter-spacing: 4px; padding-top: 8px; margin-bottom: 8px;text-transform: uppercase",
+        "subtitle1": "font-size: 0.8em;letter-spacing: 1px;font-style: italic",
+        "subtitle2": "padding: 8px;font-size: 1em;letter-spacing: 1.5px;font-variant: small-caps",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Les illuminés",
+      "subtitle1": "Les précurseurs du socialisme",
+      "subtitle2": "Quintus Aucler",
+      "authorDisplay": "Gérard de Nerval",
+      "year": "1852",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Les illuminés ou Les précurseurs du socialisme ; récits et portraits, Gérard de Nerval – Victor Lecou, Paris, 1852."
+      ],
+      "description": "",
+      "path": "/books/quintus_aucler/quintus_aucler_20181125",
+      "visible": false,
+      "authors": [
+        "1e1f4e76-3f49-44ee-8a6f-343fd44569bc"
+      ],
+      "contribs": [],
+      "created_at": "2018-11-25 12:27:52",
+      "updated_at": "2018-11-25 12:27:52",
+      "id": "ef50dd5a-8aa3-442f-b9e2-3be50b4c2c91"
     }
   ],
   "authors": [
