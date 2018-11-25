@@ -1,7 +1,7 @@
 //localStore.js
 const localStore = {
 	
-	setBkmrk: (bkId, bkmrk) => {
+	setBkmrk: (bkId, bkPath, bkmrk) => {
 		let bkmrks = [];
 		if (typeof(Storage) !== "undefined") {
 			//check localStorage for bkmrks array
@@ -10,7 +10,7 @@ const localStore = {
 				//check for bk.id
 				let item, index;
 				for(let i=0; i<bkmrks.length; i++) {
-					if(bkmrks[i].bkId===bkId) {
+					if(bkmrks[i].bkId===bkId && bkmrks[i].bkPath===bkPath) {
 						item=bkmrks[i];
 						index=i;
 						break;
@@ -23,18 +23,18 @@ const localStore = {
 						item.bkmrk = bkmrk;
 					}
 				} else {
-					bkmrks.push({ bkId: bkId, bkmrk: bkmrk });
+					bkmrks.push({ bkId: bkId, bkPath: bkPath, bkmrk: bkmrk });
 				}
 			} else {
 				if(bkmrk.sectionId!=='cover') {
-					bkmrks.push({ bkId: bkId, bkmrk: bkmrk });
+					bkmrks.push({ bkId: bkId, bkPath, bkPath, bkmrk: bkmrk });
 				}
 			}
 			localStorage.setItem('bkmrks', JSON.stringify(bkmrks));
 		}
 	},
 	
-	removeBkmrk: bkId => {
+	removeBkmrk: (bkId, bkPath) => {
 		let bkmrks = [];
 		if (typeof(Storage) !== "undefined") {
 			//check localStorage for bkmrks array
@@ -43,7 +43,7 @@ const localStore = {
 				//check for bk.id
 				let index;
 				for(let i=0; i<bkmrks.length; i++) {
-					if(bkmrks[i].bkId===bkId) {
+					if(bkmrks[i].bkId===bkId && bkmrks[i].bkPath===bkPath) {
 						index=i;
 						break;
 					}
@@ -57,14 +57,14 @@ const localStore = {
 		}
 	},
 	
-	getBkmrk : bkId => {
+	getBkmrk : (bkId, bkPath)  => {
 		let bkmrks = [];
 		if (typeof(Storage) !== "undefined") {
 			//check localStorage for bkmrks array
 			if(localStorage.getItem('bkmrks')) {
 				bkmrks = JSON.parse(localStorage.getItem('bkmrks'));
 				//check for bk.id
-				let item = bkmrks.filter(function(o) { return o.bkId===bkId})[0];
+				let item = bkmrks.filter(function(o) { return o.bkId===bkId && o.bkPath===bkPath})[0];
 				if(item) {
 					return item.bkmrk;
 				}
@@ -153,13 +153,14 @@ const localStore = {
 			if(localStorage.getItem('tableInfos')) {
 				tableInfos = JSON.parse(localStorage.getItem('tableInfos'));		
 				let item = tableInfos.filter(function(o) { return o.id===i.id &&
+																  o.path===i.path &&
 																  o.dim===i.dim &&
 														          o.font===i.font &&
 														          o.fontSize===i.fontSize})[0];
 
 			   if(!item) {
 				   //max items
-				   if(tableInfos.length===51) {
+				   if(tableInfos.length===41) {
 					   tableInfos.shift();
 				   }
 				   tableInfos.push(i);
@@ -181,9 +182,10 @@ const localStore = {
 			if(localStorage.getItem('tableInfos')) {
 				tableInfos = JSON.parse(localStorage.getItem('tableInfos'));
 				let item = tableInfos.filter(function(o) { return o.id===i.id &&
-																	  o.dim===i.dim &&
-																	  o.font===i.font &&
-																	  o.fontSize===i.fontSize})[0];
+																  o.path===i.path &&
+																  o.dim===i.dim &&
+																  o.font===i.font &&
+																  o.fontSize===i.fontSize})[0];
 			   if(item) {
 				   return item.tableInfos;
 			   } 

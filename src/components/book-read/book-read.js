@@ -206,6 +206,7 @@ const book = function(container) {
 				
 				//tableInfos
 				let tableInfos = localStore.getTableInfos({ id: bk.id,
+															path: bk.path,
 															dim: w + 'x' + h,
 															font: font,
 															fontSize: fontSize });
@@ -214,10 +215,11 @@ const book = function(container) {
 				.then( resolve => {
 					utils.removeClass('#book','fixed');
 					localStore.setTableInfos({ id: bk.id,
-									    dim: w + 'x' + h,
-									    font: font,
-									    fontSize: fontSize,
-									    tableInfos: resolve });
+											   path: bk.path,	
+											   dim: w + 'x' + h,
+									           font: font,
+									           fontSize: fontSize,
+									           tableInfos: resolve });
 				});
 				
 				
@@ -453,7 +455,7 @@ const book = function(container) {
 				addBookmarks[i].addEventListener('click', event => {
 					let newBmrk = book.getBookmark();
 					let bookmark = document.querySelector('#bookmark');
-					localStore.setBkmrk(bk.id, newBmrk);
+					localStore.setBkmrk(bk.id, bk.path, newBmrk);
 					bookmark.className = 'show';
 					setTimeout(function(){ bookmark.className = bookmark.className.replace("show", ""); }, 2500);
 				}, false);
@@ -581,6 +583,7 @@ const book = function(container) {
 		 
 		tableInfos
 		let tableInfos = localStore.getTableInfos({ id: bk.id,
+													path: bk.path,
 													dim: w + 'x' + h,
 													font: font,
 													fontSize: fontSize });
@@ -588,8 +591,8 @@ const book = function(container) {
 		 book.init(tableInfos)
 		 .then( table => {
 			 //document.body.style.height = window.innerHeight + 'px';
-			 if(localStore.getBkmrk(bk.id)) {
-				let bkmrk = localStore.getBkmrk(bk.id);
+			 if(localStore.getBkmrk(bk.id, bk.path)) {
+				let bkmrk = localStore.getBkmrk(bk.id, bk.path);
 				book.goToBookmark(bkmrk);
 			 }
 			
@@ -607,6 +610,7 @@ const book = function(container) {
 		})
 		.then (table => {
 			localStore.setTableInfos({ id: bk.id,
+										path: bk.path,
 									    dim: w + 'x' + h,
 									    font: font,
 									    fontSize: fontSize,
