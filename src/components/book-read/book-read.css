@@ -222,10 +222,8 @@ BOOK NAV-BAR-BOTTOM-SMALL
 #book-nav-bar-bottom-small {
 	display: block;
 	height: 30px;
-/*
 	position: fixed;
 	bottom: 0px;
-*/
 	margin: auto;
 	background-color: #333;
 	text-align: center;
