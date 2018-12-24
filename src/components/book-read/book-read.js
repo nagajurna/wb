@@ -677,7 +677,7 @@ const book = function(container) {
 	
 	//BOOK CONTAINER
 	const bookContainer = document.querySelector('#bookContainer');
-	const book = document.querySelector('#book');
+	//const book = document.querySelector('#book');
 		
 	//GET TEXT CONTENT
 	let options = { method: 'GET', url: bk.path + '.css' };
