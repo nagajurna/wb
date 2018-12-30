@@ -1596,14 +1596,14 @@
         "Œuvres complètes de H. de Balzac, tome 20 – Calmann Lévy, Paris, 1870."
       ],
       "description": "<i>Une « étude analytique » inachevée de Balzac.</i>",
-      "path": "/books/traite_de_la_vie_elegante/traite_de_la_vie_elegante",
+      "path": "/books/traite_de_la_vie_elegante/traite_de_la_vie_elegante_20181230",
       "visible": true,
       "authors": [
         "571f3525-aba8-4592-b8ec-c8a51344150b"
       ],
       "contribs": [],
       "created_at": "2018-08-12 17:16:32",
-      "updated_at": "2018-09-06 20:23:57",
+      "updated_at": "2018-12-30 09:59:22",
       "id": "8c5d207f-dddf-44a2-93b9-cd66be34d22d"
     },
     {
@@ -1950,14 +1950,14 @@
         "Les illuminés ou Les précurseurs du socialisme ; récits et&nbsp;portraits, Gérard de Nerval – Victor Lecou, Paris, 1852."
       ],
       "description": "",
-      "path": "/books/le_roi_de_bicetre/le_roi_de_bicetre_20181126",
+      "path": "/books/le_roi_de_bicetre/le_roi_de_bicetre_20181230",
       "visible": true,
       "authors": [
         "1e1f4e76-3f49-44ee-8a6f-343fd44569bc"
       ],
       "contribs": [],
       "created_at": "2018-11-17 08:42:41",
-      "updated_at": "2018-11-25 12:07:52",
+      "updated_at": "2018-12-30 08:33:31",
       "id": "203409c6-502f-4b1f-81b6-86ca2ad16d33"
     },
     {
@@ -1985,14 +1985,14 @@
         "Les illuminés ou Les précurseurs du socialisme ; récits et portraits, Gérard de Nerval – Victor Lecou, Paris, 1852."
       ],
       "description": "",
-      "path": "/books/histoire_de_l_abbe_de_bucquoy/histoire_de_l_abbe_de_bucquoy_20181125",
+      "path": "/books/histoire_de_l_abbe_de_bucquoy/histoire_de_l_abbe_de_bucquoy_20181230",
       "visible": true,
       "authors": [
         "1e1f4e76-3f49-44ee-8a6f-343fd44569bc"
       ],
       "contribs": [],
       "created_at": "2018-11-18 18:02:29",
-      "updated_at": "2018-11-25 11:23:07",
+      "updated_at": "2018-12-30 08:34:01",
       "id": "8d8134f3-bbb8-4e7c-a74a-decce76dab9f"
     },
     {
@@ -2020,14 +2020,14 @@
         "Les illuminés ou Les précurseurs du socialisme ; récits et portraits, Gérard de Nerval – Victor Lecou, Paris, 1852."
       ],
       "description": "",
-      "path": "/books/les_confidences_de_nicolas/les_confidences_de_nicolas_20181125",
-      "visible": false,
+      "path": "/books/les_confidences_de_nicolas/les_confidences_de_nicolas_20181230",
+      "visible": true,
       "authors": [
         "1e1f4e76-3f49-44ee-8a6f-343fd44569bc"
       ],
       "contribs": [],
       "created_at": "2018-11-25 08:27:38",
-      "updated_at": "2018-11-25 10:51:13",
+      "updated_at": "2018-12-30 08:39:53",
       "id": "baf76b81-3f18-4dbd-bf0c-5d213b2d6c53"
     },
     {
