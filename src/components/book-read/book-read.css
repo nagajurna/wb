@@ -1245,6 +1245,10 @@ DIVERS
 	text-indent: 3em;
 }
 
+[data-wb-text] p.indent-4 {
+	text-indent: 4em;
+}
+
 [data-wb-text] p.indent-6 {
 	text-indent: 6em;
 }
