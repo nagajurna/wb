@@ -49,7 +49,7 @@ router.get('/init', function(req, res, next) {
 		let books = resolve.books;
 		let authors = resolve.authors;
 		//half day = 43200s;
-		res.set('Cache-Control', 'public, max-age=43200, must-revalidate');
+		res.set('Cache-Control', 'public, max-age=43200');
 		res.json({ books: books, authors: authors });
 	})
 	.catch( err => {
