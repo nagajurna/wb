@@ -32,6 +32,10 @@ const dataStore = {
 		} else if(!collection && !id) {
 			return dataStore.store;
 		}
+	},
+	
+	getStore: () => {
+		return dataStore.store;
 	}
 }
 
