@@ -3,6 +3,7 @@ import dataStore from './services/dataStore';
 import localStore from './services/localStore';
 import utils from './services/utils';
 import screenfull from 'screenfull';
+let noconnectionTemplate = require('./no_connection.ejs');
 
 //index.js
 var index = (function() {
@@ -186,17 +187,19 @@ var index = (function() {
 				utils.addClass('#admin-item', 'hidden');
 				utils.addClass('#menu-admin-item', 'hidden');
 				//call router
-				router();
+				//router();
 				//init
-				init();
+				//init();
 			} else {
 				console.log(error);
+				let c = document.getElementById('container');
+				c.innerHTML = noconnectionTemplate();
+				let r = document.getElementById('refresh');
+				r.addEventListener('click',getData,false);
 			}
 		});
 	}
 	
-	window.addEventListener('DOMContentLoaded', () => {
-		getData();
-	}, false);
+	window.addEventListener('DOMContentLoaded',getData,false);
 
 })();

@@ -106,7 +106,7 @@ const router  = function() {
 		//call routes
 		routes(oldhash, newhash);
 		//gtag
-		gtag('config', 'UA-113626382-1', {'page_path': '/' + newhash});
+		//gtag('config', 'UA-113626382-1', {'page_path': '/' + newhash});
 		//active link
 		utils.activeLink();
 	}, false);

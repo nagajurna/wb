@@ -169,6 +169,21 @@ FULLSCREEN EXIT
 
 
 /*
+NO CONNECTION
+*/
+
+#noconnection-container {
+	width: 100%;
+	text-align: center;
+}
+
+#noconnection-container #refresh {
+	width: 100px;
+	margin: auto;
+	text-align: center;
+}
+
+/*
 MODAL (generic)
 */
 
