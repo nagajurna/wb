@@ -42,7 +42,30 @@
 -->
 	<p class="align-left padding-16"><b>Modifier un ouvrage</b></p>
 	<p class="align-right padding-16"><a href="/#/admin/books/<%= book.id %>">Retour</a></p>
-	<div style="clear: both">
+	<div id="files" style="clear: both">
+		<div class="margin-bottom" style="min-height:100px">
+			<p>
+				<label class="align-left">Fichiers : </label>
+			</p>
+			<div style="clear: both" class="padding-16">
+				<form>
+					<input id="book_file" type="file">
+					<button id="book_upload_btn" type="btn">Upload</button>
+				</form>
+			</div>
+			<ul id="filesContainer" class="ul padding-32">
+			<% for(var i=0; i<files.length; i++) {%>
+				<li>
+					<p id="<%= i %>" >
+						<span><%- files[i] %></span>
+						<button type="button" class="delete-files-btn button align-right">Supprimer</button>
+					</p>
+				</li>
+			<% } %>
+			</ul>
+		</div>
+	</div>
+	<div>
 		<form id="adminBookEditForm">
 			
 			<span class="error" id="form-error" data-utils-bind="{{ form }}"></span>

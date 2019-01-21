@@ -1,0 +1,8 @@
+<% for(var i=0; i<files.length; i++) {%>
+<li>
+	<p id="<%= i %>" >
+		<span><%- files[i] %></span>
+		<button type="button" class="delete-file-btn button align-right">Supprimer</button>
+	</p>
+</li>
+<% } %>

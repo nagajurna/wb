@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db');
 const ERR = require('../utils/errMessages');
+const fs = require('fs');
+const path = require('path');
+const formidable = require('formidable');
 
 /* GET books */
 router.get('/', function(req, res, next) {
@@ -355,6 +358,46 @@ router.delete('/:id', (req, res, next) => {
 		console.log(err);
 		res.json({ error: ERR.SERVER });
 	});
+});
+
+/* UPLOAD FILE : ONLY IF ADMIN */
+router.post('/fileupload/', (req, res, next) => {
+	var form = new formidable.IncomingForm();
+	form.parse(req, function(err, fields, files) {
+		if(!files.book) {return;}
+		
+		let dir_pre = files.book.name.replace(/\.(html|css|jpg)$/,"");
+		let dir = dir_pre.replace(/_[0-9]{8}$/,"");
+		let path = __dirname + '/../books/' + dir;
+		fs.mkdir(path, function(e){
+			if(!e || (e && e.code === 'EEXIST')){
+				let oldpath = files.book.path;
+				let newpath = path + '/' + files.book.name;
+				fs.rename(oldpath, newpath, (err) => {
+					if (err) {
+						console.log(err);
+						res.json({ error: ERR.SERVER });
+					}
+					res.json({ file: files.book.name });
+				});	
+				
+			} else {
+				console.log(err);
+				res.json({ error: ERR.SERVER });
+			}
+		});				
+	});
+	return;	
+});
+
+/* SUPPRESS FILE : ONLY IF ADMIN */
+router.post('/filedelete/', (req, res, next) => {
+	let filename = req.body.filename;
+	let dir_pre = filename.replace(/\.(html|css|jpg)$/,"");
+	let dir = dir_pre.replace(/_[0-9]{8}$/,"");
+	let path = __dirname + '/../books/' + dir;
+	fs.unlinkSync(path + '/' + filename);
+	res.json({ message: filename + ' deleted' });
 });
 
 module.exports = router;

@@ -39,6 +39,7 @@ app.use('/books', express.static(__dirname + '/books', { maxAge: tenDays }));
 
 //body-parser
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({limit: '50mb', extended: false}));
 //serve-favicon
 app.use(favicon(__dirname + '/public/favicon.ico'));
 //routes

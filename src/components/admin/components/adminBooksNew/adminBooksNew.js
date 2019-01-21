@@ -7,6 +7,7 @@ let selectedAuthorsTemplate = require('./selectedAuthors.ejs');
 let selectedContribsTemplate = require('./selectedContribs.ejs');
 let selectedContribRoleTemplate = require('./selectedContribRole.ejs');
 let sourcesTemplate = require('./sources.ejs');
+let filesTemplate = require('./files.ejs');
 //home.js
 const adminBooksNew = function(container) {
 	'use strict';
@@ -36,6 +37,7 @@ const adminBooksNew = function(container) {
 	let selectedAuthorsDisplay = [], selectedAuthors = [];
 	let selectedContribsDisplay = [], selectedContribs = [];
 	let sources = [];
+	let files = [];
 	let json = "";//search : string json to compare with response
 		
 	//CLEAR ERRORS ON INPUT
@@ -63,7 +65,7 @@ const adminBooksNew = function(container) {
 		event.preventDefault();
 		utils.bind(form, {});
 		let book = {};
-		book.source = {};
+		//book.source = {};
 		book.styles = {};
 		book.title = form.querySelector('[name=title]').value;
 		book.subtitle1 = form.querySelector('[name=subtitle1]').value;
@@ -74,6 +76,7 @@ const adminBooksNew = function(container) {
 		book.categories = form.querySelector('[name=categories]').value;
 		book.collection = form.querySelector('[name=collection]').value;
 		book.sources = sources;
+		book.files = files;
 		book.styles.color = form.querySelector('[name=styles-color').value;
 		book.styles.image = form.querySelector('[name=styles-image').value;
 		book.styles.font = form.querySelector('[name=styles-font').value;
@@ -253,6 +256,63 @@ const adminBooksNew = function(container) {
 			deleteSourceBtn[i].addEventListener('click', deleteSource, false);
 		} 	
 	}
+	
+	//DELETE FILE
+	function deleteFile(event) {
+		let index = event.target.parentElement.id;
+		let file = files[index];
+		console.log(file);
+		let options = { method: 'POST', url: '/books/filedelete/', data: JSON.stringify({filename: file}) };
+		utils.ajax(options)
+		.then( res => {
+			let response = JSON.parse(res);
+			if(response.error) {
+				utils.bind(form, response.errors);
+			} else {
+				files.splice(index,1);
+				filesContainer.innerHTML = filesTemplate({ files: files });
+				let deleteFileBtn = filesContainer.querySelectorAll('.delete-file-btn')
+				for(let i=0; i<deleteFileBtn.length; i++) {
+					deleteFileBtn[i].addEventListener('click', deleteFile, false);
+				} 	
+			}
+		});
+		
+	}
+		
+	//UPLOAD FILE
+	function uploadBook(event) {
+		event.preventDefault();
+		let xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				let response = JSON.parse(this.responseText);
+				if(response.error) {
+					utils.bind(form, response.errors);
+				} else {
+					let file = response.file;
+					files.push(file);
+					filesContainer.innerHTML = filesTemplate({ files: files });
+					let deletefileBtn = filesContainer.querySelectorAll('.delete-file-btn')
+					for(let i=0; i<deletefileBtn.length; i++) {
+						deletefileBtn[i].addEventListener('click', deleteFile, false);
+					} 
+				}
+			}
+		};
+		let input = document.getElementById("book_file");
+		if(!input.files[0]) {
+			return;
+		}
+		let file = input.files[0];
+		var formData = new FormData();
+		formData.append('book', file);
+		xhttp.open("POST", "/books/fileupload/", true);
+		xhttp.send(formData);
+	}
+	
+	let bookUploadBtn = document.querySelector('#book_upload_btn');
+	bookUploadBtn.addEventListener('click', uploadBook, false);
 
 	
 	
