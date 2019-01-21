@@ -5,8 +5,8 @@
 */
 
 [data-wb-text].cover_active {
-	background-color: rgba(112, 141, 88, 0.8);
-	background-image: url("/books/la_mort_de_dinah/la_mort_de_dinah_cover.jpg");
+	background-color: rgba(100, 125, 79, 0.8);
+	background-image: url("/books/100_125_79.jpg");
 }
 
 [data-wb-text] #cover {

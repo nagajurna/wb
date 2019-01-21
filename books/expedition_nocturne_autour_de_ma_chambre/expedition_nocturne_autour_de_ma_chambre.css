@@ -3,8 +3,8 @@
 }
 
 [data-wb-text].cover_active {
-	background-color: rgba(115,63,63,0.8);
-	background-image: url("/books/expedition_nocturne_autour_de_ma_chambre/expedition_nocturne_autour_de_ma_chambre_cover.jpg");
+	background-color: rgba(118,61,65,0.8);
+	background-image: url("/books/118_61_65.jpg");
 }
 
 [data-wb-text] #cover {

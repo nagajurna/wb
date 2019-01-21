@@ -53,8 +53,8 @@
     },
     {
       "styles": {
-        "color": "rgba(226, 104, 80, 0.8)",
-        "image": "/books/un_roman_pour_les_cuisinieres/un_roman_pour_les_cuisinieres_cover.jpg",
+        "color": "rgba(223, 71, 58, 0.8)",
+        "image": "/books/223_71_58.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -79,7 +79,7 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:00:53",
-      "updated_at": "2019-01-20 18:32:13",
+      "updated_at": "2019-01-21 19:26:10",
       "id": "b3e3c2e7-305f-4697-867f-3dd2417f71ed",
       "sources": [
         "Un Roman pour les cuisinières, par Émile Cabanon – Eugène Renduel, Paris, 1834."
@@ -157,12 +157,16 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:08:48",
-      "updated_at": "2018-11-15 20:17:49",
+      "updated_at": "2019-01-21 18:20:20",
       "id": "e22c5a98-e5b8-4926-8cad-fd30131868c2",
       "sources": [
         "La lampe de Psyché (9<sup>e</sup> éd.), par Marcel Schwob – Mercure de France, Paris, 1925 (p. 71-109)."
       ],
-      "source": {}
+      "source": {},
+      "files": [
+        "la_croisade_des_enfants.html",
+        "la_croisade_des_enfants.css"
+      ]
     },
     {
       "styles": {
@@ -192,12 +196,16 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:11:49",
-      "updated_at": "2018-11-15 20:05:41",
+      "updated_at": "2019-01-21 18:21:32",
       "id": "f379d066-0347-4fb1-998f-2e4c214c3960",
       "sources": [
         "La lampe de Psyché (9<sup>e</sup> éd.), par Marcel Schwob – Mercure de France, Paris, 1925 (p. 7-70)."
       ],
-      "source": {}
+      "source": {},
+      "files": [
+        "mimes.html",
+        "mimes.css"
+      ]
     },
     {
       "styles": {
@@ -227,17 +235,21 @@
       ],
       "contribs": [],
       "created_at": "2017-11-22 18:50:26",
-      "updated_at": "2018-11-15 20:21:09",
+      "updated_at": "2019-01-21 18:22:34",
       "id": "13dc7d86-f837-4657-a690-ee3a34b90962",
       "sources": [
         "René Leys, par Victor Segalen &ndash;&nbsp;G. Crès, Paris, 1922."
       ],
-      "source": {}
+      "source": {},
+      "files": [
+        "rene_leys.html",
+        "rene_leys.css"
+      ]
     },
     {
       "styles": {
-        "color": "rgba(149, 82, 81, 0.8)",
-        "image": "/books/voyage_autour_de_ma_chambre/voyage_autour_de_ma_chambre_cover.jpg",
+        "color": "rgba(151, 78, 84, 0.8)",
+        "image": "/books/151_78_84.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -262,17 +274,21 @@
       ],
       "contribs": [],
       "created_at": "2017-11-24 15:43:11",
-      "updated_at": "2018-01-19 09:37:35",
+      "updated_at": "2019-01-21 19:48:40",
       "id": "5261f2e5-16ef-4ccb-9ade-c3e737262428",
       "sources": [
         "Voyage autour de ma chambre , suivi du Lépreux de la cité d'Aoste . Nouvelle édition d'après celle de Saint-Pétersbourg (1812) revue et augmentée –&nbsp;Delaunay, Paris, 1817 (p. 17-150).",
         "Œuvres complètes du Cte Xavier de Maistre, nouvelle édition – Charpentier, Paris, 1844 (p. 1-108)."
+      ],
+      "files": [
+        "voyage_autour_de_ma_chambre.html",
+        "voyage_autour_de_ma_chambre.css"
       ]
     },
     {
       "styles": {
-        "color": "rgba(115, 63, 63, 0.8)",
-        "image": "/books/expedition_nocturne_autour_de_ma_chambre/expedition_nocturne_autour_de_ma_chambre_cover.jpg",
+        "color": "rgba(118, 61, 65, 0.8)",
+        "image": "/books/118_61_65.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -297,10 +313,14 @@
       ],
       "contribs": [],
       "created_at": "2017-11-24 16:05:11",
-      "updated_at": "2018-01-19 09:38:08",
+      "updated_at": "2019-01-21 19:45:53",
       "id": "99da47e0-1e93-409e-ba88-233ef3b5ee88",
       "sources": [
         "Œuvres complètes du Cte Xavier de Maistre, nouvelle édition –&nbsp;Charpentier, Paris, 1844 (p. 109-205)"
+      ],
+      "files": [
+        "expedition_nocturne_autour_de_ma_chambre.html",
+        "expedition_nocturne_autour_de_ma_chambre.css"
       ]
     },
     {
@@ -331,13 +351,17 @@
       ],
       "contribs": [],
       "created_at": "2017-12-16 12:11:26",
-      "updated_at": "2018-11-15 19:00:58",
+      "updated_at": "2019-01-21 18:27:12",
       "id": "b5bba6b3-930b-458c-853a-24c49dc2856c",
       "sources": [
         "Valpéri, mémoires d'un gentilhomme du siècle dernier, par G. de Molènes &ndash;&nbsp;W. Coquebert, Paris, 1845 (2 vol.).",
         "Mémoires d'un gentilhomme du siècle dernier, Valpéri, par Paul de Molènes &ndash;&nbsp;Michel Lévy frères, Paris, 1858."
       ],
-      "source": {}
+      "source": {},
+      "files": [
+        "valperi_tome_un.html",
+        "valperi_tome_un.css"
+      ]
     },
     {
       "styles": {
@@ -367,13 +391,17 @@
       ],
       "contribs": [],
       "created_at": "2017-12-16 12:26:44",
-      "updated_at": "2018-11-15 19:01:29",
+      "updated_at": "2019-01-21 18:28:02",
       "id": "debf7127-e92e-4349-9c8d-0eee1f6daaed",
       "sources": [
         "Valpéri, mémoires d'un gentilhomme du siècle dernier, par G. de Molènes – W. Coquebert, Paris, 1845 (2 vol.).",
         "Mémoires d'un gentilhomme du siècle dernier, Valpéri, par Paul de Molènes – Michel Lévy frères, Paris, 1858."
       ],
-      "source": {}
+      "source": {},
+      "files": [
+        "valperi_tome_second.html",
+        "valperi_tome_second.css"
+      ]
     },
     {
       "styles": {
@@ -403,12 +431,16 @@
       ],
       "contribs": [],
       "created_at": "2017-12-28 18:20:55",
-      "updated_at": "2018-11-17 09:18:13",
+      "updated_at": "2019-01-21 18:28:59",
       "id": "b4033b6c-d13c-4b32-8767-f6b6939a76d2",
       "sources": [
         "Le roi au masque d 'or, par Marcel Schwob &ndash;&nbsp;Paul Ollendorf, Paris, 1893."
       ],
-      "source": {}
+      "source": {},
+      "files": [
+        "le_roi_au_masque_d_or.html",
+        "le_roi_au_masque_d_or.css"
+      ]
     },
     {
       "source": {},
@@ -443,8 +475,12 @@
       ],
       "contribs": [],
       "created_at": "2018-01-05 10:22:33",
-      "updated_at": "2018-03-08 11:50:42",
-      "id": "5613a3f6-f3c3-44bc-afe7-0027a8aaa4fb"
+      "updated_at": "2019-01-21 18:32:27",
+      "id": "5613a3f6-f3c3-44bc-afe7-0027a8aaa4fb",
+      "files": [
+        "point_de_lendemain.html",
+        "point_de_lendemain.css"
+      ]
     },
     {
       "source": {},
@@ -471,7 +507,7 @@
         "Racine et Shakspeare, par M. de Stendhal &ndash;&nbsp;Bossange, Paris, 1823.",
         "Racine et Shakspeare : études sur le romantisme (Nouvelle édition entièrement revue et considérablement augmentée), par de Stendhal (Henry Beyle) &ndash;&nbsp;Michel Lévy frères, Paris, 1854."
       ],
-      "description": "<i>« Rien ne ressemble moins que nous aux marquis couverts d’habits brodés et de grandes perruques noires, coûtant mille écus, qui jugèrent, vers 1670, les pièces de Racine et de Molière.\nCes grands hommes cherchèrent à flatter le goût de ces marquis et travaillèrent pour eux.\nJe prétends qu’il faut désormais faire des tragédies pour nous, jeunes gens raisonneurs, sérieux et un peu envieux de l’an de grâce 1823. Ces tragédies-là doivent être en prose. De nos jours, le vers alexandrin n’est le plus souvent qu’un cache-sottise.&nbsp;»</i>\n\nLe premier manifeste <i>romanticiste</i> de Stendhal.",
+      "description": "<i>« Rien ne ressemble moins que nous aux marquis couverts d’habits brodés et de grandes perruques noires, coûtant mille écus, qui jugèrent, vers 1670, les pièces de Racine et de Molière.\nCes grands hommes cherchèrent à flatter le goût de ces marquis et travaillèrent pour eux.\nJe prétends qu’il faut désormais faire des tragédies pour nous, jeunes gens raisonneurs, sérieux et un peu envieux de l’an de grâce 1823. Ces tragédies-là doivent être en prose. De nos jours, le vers alexandrin n’est le plus souvent qu’un cache-sottise. »</i>\n\nLe premier manifeste <i>romanticiste</i> de Stendhal.",
       "path": "/books/racine_et_shakespeare/racine_et_shakespeare",
       "visible": true,
       "authors": [
@@ -479,14 +515,18 @@
       ],
       "contribs": [],
       "created_at": "2018-01-19 11:48:43",
-      "updated_at": "2018-03-08 11:56:37",
-      "id": "22b53b5d-0752-48e3-a9d7-fe9241ba544f"
+      "updated_at": "2019-01-21 18:33:10",
+      "id": "22b53b5d-0752-48e3-a9d7-fe9241ba544f",
+      "files": [
+        "racine_et_shakespeare.html",
+        "racine_et_shakespeare.css"
+      ]
     },
     {
       "source": {},
       "styles": {
-        "color": "rgba(108, 79, 61,0.8)",
-        "image": "/books/jean_sbogar/jean_sbogar_cover.jpg",
+        "color": "rgba(134, 103, 70,0.8)",
+        "image": "/books/134_103_70.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -514,13 +554,17 @@
       ],
       "contribs": [],
       "created_at": "2018-01-24 17:08:20",
-      "updated_at": "2018-01-24 17:08:20",
-      "id": "736cc8a1-9f78-4983-9394-8c87ccc64be4"
+      "updated_at": "2019-01-21 20:44:03",
+      "id": "736cc8a1-9f78-4983-9394-8c87ccc64be4",
+      "files": [
+        "jean_sbogar.html",
+        "jean_sbogar.css"
+      ]
     },
     {
       "styles": {
         "color": "rgba(192, 171, 142, 0.8)",
-        "image": "/books/therese_aubert/therese_aubert_cover.jpg",
+        "image": "/books/192_171_142.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -548,8 +592,12 @@
       ],
       "contribs": [],
       "created_at": "2018-01-25 17:00:00",
-      "updated_at": "2018-01-25 17:07:38",
-      "id": "f32d6d6b-c42c-43f4-be0f-d1139c675d78"
+      "updated_at": "2019-01-21 20:46:07",
+      "id": "f32d6d6b-c42c-43f4-be0f-d1139c675d78",
+      "files": [
+        "therese_aubert.html",
+        "therese_aubert.css"
+      ]
     },
     {
       "styles": {
@@ -582,9 +630,13 @@
       ],
       "contribs": [],
       "created_at": "2018-02-06 19:43:33",
-      "updated_at": "2018-06-01 22:26:26",
+      "updated_at": "2019-01-21 18:36:28",
       "id": "91fd0a8f-1260-495b-89b5-552f8539ef2f",
-      "source": {}
+      "source": {},
+      "files": [
+        "mes_amis.html",
+        "mes_amis.css"
+      ]
     },
     {
       "styles": {
@@ -617,9 +669,13 @@
       ],
       "contribs": [],
       "created_at": "2018-02-07 13:44:45",
-      "updated_at": "2018-11-15 19:18:14",
+      "updated_at": "2019-01-21 18:39:47",
       "id": "247eb19f-d72c-4849-a54c-294d71714d3c",
-      "source": {}
+      "source": {},
+      "files": [
+        "armand.html",
+        "armand.css"
+      ]
     },
     {
       "styles": {
@@ -653,9 +709,13 @@
       ],
       "contribs": [],
       "created_at": "2018-02-11 22:29:01",
-      "updated_at": "2018-05-08 13:55:38",
+      "updated_at": "2019-01-21 18:40:55",
       "id": "c395ddde-05ee-4a77-81a3-77af503eb5d4",
-      "source": {}
+      "source": {},
+      "files": [
+        "memoires_de_lacenaire.html",
+        "memoires_de_lacenaire.css"
+      ]
     },
     {
       "styles": {
@@ -688,15 +748,19 @@
       ],
       "contribs": [],
       "created_at": "2018-02-15 14:27:26",
-      "updated_at": "2018-11-15 19:22:10",
+      "updated_at": "2019-01-21 18:41:45",
       "id": "69e4a0c8-126f-49da-b7cd-51e5d9b86749",
-      "source": {}
+      "source": {},
+      "files": [
+        "becon_les_bruyeres.html",
+        "becon_les_bruyeres.css"
+      ]
     },
     {
       "source": {},
       "styles": {
-        "color": "rgba(96, 46, 45, 0.8)",
-        "image": "/books/les_derniers_jours_de_kant/les_derniers_jours_de_kant_cover.jpg",
+        "color": "rgba(101, 52, 55, 0.8)",
+        "image": "/books/101_52_55.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -737,8 +801,12 @@
         }
       ],
       "created_at": "2018-02-25 00:28:10",
-      "updated_at": "2018-05-20 09:31:34",
-      "id": "4310e84a-64a7-4a30-aabd-8a70d33d5732"
+      "updated_at": "2019-01-21 20:55:33",
+      "id": "4310e84a-64a7-4a30-aabd-8a70d33d5732",
+      "files": [
+        "les_derniers_jours_de_kant.html",
+        "les_derniers_jours_de_kant.css"
+      ]
     },
     {
       "source": {},
@@ -772,8 +840,12 @@
       ],
       "contribs": [],
       "created_at": "2018-02-25 00:34:28",
-      "updated_at": "2018-11-15 19:51:32",
-      "id": "4a61340b-04bf-43ff-b468-465423ebe363"
+      "updated_at": "2019-01-21 18:43:31",
+      "id": "4a61340b-04bf-43ff-b468-465423ebe363",
+      "files": [
+        "dans_la_foret.html",
+        "dans_la_foret.css"
+      ]
     },
     {
       "source": {},
@@ -807,8 +879,12 @@
       ],
       "contribs": [],
       "created_at": "2018-02-26 11:29:21",
-      "updated_at": "2018-11-15 19:54:38",
-      "id": "c5a5182b-cb1b-49c2-aef4-f7968b4cdeb8"
+      "updated_at": "2019-01-21 18:44:06",
+      "id": "c5a5182b-cb1b-49c2-aef4-f7968b4cdeb8",
+      "files": [
+        "une_ame.html",
+        "une_ame.css"
+      ]
     },
     {
       "source": {},
@@ -842,8 +918,12 @@
       ],
       "contribs": [],
       "created_at": "2018-02-26 11:36:17",
-      "updated_at": "2018-11-15 19:33:46",
-      "id": "58613751-ed48-4a90-b323-8982e7ced89e"
+      "updated_at": "2019-01-21 18:44:40",
+      "id": "58613751-ed48-4a90-b323-8982e7ced89e",
+      "files": [
+        "comediens_ambulants.html",
+        "comediens_ambulants.css"
+      ]
     },
     {
       "source": {},
@@ -877,8 +957,12 @@
       ],
       "contribs": [],
       "created_at": "2018-05-08 13:10:26",
-      "updated_at": "2018-11-15 19:45:23",
-      "id": "c28483db-6aec-45a1-856e-7fd4c8562c6f"
+      "updated_at": "2019-01-21 18:45:29",
+      "id": "c28483db-6aec-45a1-856e-7fd4c8562c6f",
+      "files": [
+        "de_mazas_a_jerusalem.html",
+        "de_mazas_a_jerusalem.css"
+      ]
     },
     {
       "source": {},
@@ -912,8 +996,12 @@
       ],
       "contribs": [],
       "created_at": "2018-05-08 13:23:03",
-      "updated_at": "2018-05-20 09:33:38",
-      "id": "7b2d8b73-508b-4eb9-8b67-d0e51c664a87"
+      "updated_at": "2019-01-21 18:46:01",
+      "id": "7b2d8b73-508b-4eb9-8b67-d0e51c664a87",
+      "files": [
+        "propos_d_un_intoxique.html",
+        "propos_d_un_intoxique.css"
+      ]
     },
     {
       "source": {},
@@ -947,8 +1035,12 @@
       ],
       "contribs": [],
       "created_at": "2018-05-13 22:53:16",
-      "updated_at": "2018-11-15 20:00:03",
-      "id": "d4bfe0b7-4a71-4900-bf11-5dda26935f90"
+      "updated_at": "2019-01-21 18:46:37",
+      "id": "d4bfe0b7-4a71-4900-bf11-5dda26935f90",
+      "files": [
+        "lizzie_blakeston.html",
+        "lizzie_blakeston.css"
+      ]
     },
     {
       "source": {},
@@ -982,8 +1074,12 @@
       ],
       "contribs": [],
       "created_at": "2018-05-13 23:54:28",
-      "updated_at": "2018-11-15 19:30:40",
-      "id": "161263db-d6e3-490f-8f38-e6f785009780"
+      "updated_at": "2019-01-21 18:47:11",
+      "id": "161263db-d6e3-490f-8f38-e6f785009780",
+      "files": [
+        "colin_maillard.html",
+        "colin_maillard.css"
+      ]
     },
     {
       "source": {},
@@ -1017,8 +1113,12 @@
       ],
       "contribs": [],
       "created_at": "2018-05-14 00:10:29",
-      "updated_at": "2018-11-15 19:20:03",
-      "id": "b6035209-83ca-4b7c-b0be-5f5bd59c35a9"
+      "updated_at": "2019-01-21 18:48:03",
+      "id": "b6035209-83ca-4b7c-b0be-5f5bd59c35a9",
+      "files": [
+        "battling_malone.html",
+        "battling_malone.css"
+      ]
     },
     {
       "source": {},
@@ -1052,14 +1152,18 @@
       ],
       "contribs": [],
       "created_at": "2018-06-01 22:21:22",
-      "updated_at": "2018-11-15 19:49:20",
-      "id": "a3cb7c12-aa0b-4a64-8b08-0eae9ba94087"
+      "updated_at": "2019-01-21 18:48:37",
+      "id": "a3cb7c12-aa0b-4a64-8b08-0eae9ba94087",
+      "files": [
+        "un_soir_chez_blutel.html",
+        "un_soir_chez_blutel.css"
+      ]
     },
     {
       "source": {},
       "styles": {
-        "color": "rgba(236, 151, 135,0.8)",
-        "image": "/books/henri_duchemin/henri_duchemin_cover.jpg",
+        "color": "rgba(160, 70, 92,0.8)",
+        "image": "/books/160_70_92.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -1087,8 +1191,12 @@
       ],
       "contribs": [],
       "created_at": "2018-06-01 22:51:39",
-      "updated_at": "2018-06-17 14:25:25",
-      "id": "9225b74c-4153-4fae-8d11-d98b23ecef0d"
+      "updated_at": "2019-01-21 19:52:26",
+      "id": "9225b74c-4153-4fae-8d11-d98b23ecef0d",
+      "files": [
+        "henri_duchemin.html",
+        "henri_duchemin.css"
+      ]
     },
     {
       "source": {},
@@ -1122,8 +1230,12 @@
       ],
       "contribs": [],
       "created_at": "2018-06-03 20:24:31",
-      "updated_at": "2018-11-15 18:54:52",
-      "id": "8d9c5cc7-9c44-4d76-a058-79e4db1ddf3c"
+      "updated_at": "2019-01-21 18:50:51",
+      "id": "8d9c5cc7-9c44-4d76-a058-79e4db1ddf3c",
+      "files": [
+        "etat_civil.html",
+        "etat_civil.css"
+      ]
     },
     {
       "source": {},
@@ -1157,8 +1269,12 @@
       ],
       "contribs": [],
       "created_at": "2018-06-04 21:17:48",
-      "updated_at": "2018-07-08 20:36:57",
-      "id": "254d32b4-6dcc-4ad9-bdc4-4057b965385b"
+      "updated_at": "2019-01-21 18:51:35",
+      "id": "254d32b4-6dcc-4ad9-bdc4-4057b965385b",
+      "files": [
+        "plainte_contre_inconnu.html",
+        "plainte_contre_inconnu.css"
+      ]
     },
     {
       "source": {},
@@ -1192,8 +1308,12 @@
       ],
       "contribs": [],
       "created_at": "2018-06-27 20:08:56",
-      "updated_at": "2018-11-15 19:26:16",
-      "id": "63f151de-61fe-4d3b-b3d0-f2ac81efcece"
+      "updated_at": "2019-01-21 18:52:20",
+      "id": "63f151de-61fe-4d3b-b3d0-f2ac81efcece",
+      "files": [
+        "coeurs_et_visages.html",
+        "coeurs_et_visages.css"
+      ]
     },
     {
       "source": {},
@@ -1227,8 +1347,12 @@
       ],
       "contribs": [],
       "created_at": "2018-06-27 20:18:20",
-      "updated_at": "2018-07-15 01:00:17",
-      "id": "6616de5d-e399-493b-a40e-908c08e1b618"
+      "updated_at": "2019-01-21 18:52:52",
+      "id": "6616de5d-e399-493b-a40e-908c08e1b618",
+      "files": [
+        "aden_arabie.html",
+        "aden_arabie.css"
+      ]
     },
     {
       "source": {},
@@ -1262,14 +1386,18 @@
       ],
       "contribs": [],
       "created_at": "2018-07-09 21:20:17",
-      "updated_at": "2018-07-16 20:59:20",
-      "id": "71c2adba-8c77-4d51-b799-5f71d2978708"
+      "updated_at": "2019-01-21 18:53:35",
+      "id": "71c2adba-8c77-4d51-b799-5f71d2978708",
+      "files": [
+        "ourika.html",
+        "ourika.css"
+      ]
     },
     {
       "source": {},
       "styles": {
-        "color": "rgba(147, 107, 83, 0.8)",
-        "image": "/books/contes_et_faceties/contes_et_faceties_cover.jpg",
+        "color": "rgba(147, 121, 83, 0.8)",
+        "image": "/books/147_121_83.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -1297,14 +1425,18 @@
       ],
       "contribs": [],
       "created_at": "2018-07-15 08:51:09",
-      "updated_at": "2018-07-21 16:07:31",
-      "id": "727c8777-aea2-4252-9704-56cc5b8d09bc"
+      "updated_at": "2019-01-21 19:32:11",
+      "id": "727c8777-aea2-4252-9704-56cc5b8d09bc",
+      "files": [
+        "contes_et_faceties.html",
+        "contes_et_faceties.css"
+      ]
     },
     {
       "source": {},
       "styles": {
-        "color": "rgba(148, 71, 67, 0.8)",
-        "image": "/books/introduction_a_la_methode_de_leonard_de_vinci/introduction_a_la_methode_de_leonard_de_vinci_cover.jpg",
+        "color": "rgba(151, 78, 84, 0.8)",
+        "image": "/books/151_78_84.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -1332,14 +1464,18 @@
       ],
       "contribs": [],
       "created_at": "2018-07-16 20:55:17",
-      "updated_at": "2018-07-28 17:43:54",
-      "id": "bc843ba3-4940-4846-b52a-6cf70fcb0e09"
+      "updated_at": "2019-01-21 20:40:06",
+      "id": "bc843ba3-4940-4846-b52a-6cf70fcb0e09",
+      "files": [
+        "introduction_a_la_methode_de_leonard_de_vinci.html",
+        "introduction_a_la_methode_de_leonard_de_vinci.css"
+      ]
     },
     {
       "source": {},
       "styles": {
-        "color": "rgba(112, 141, 88, 0.8)",
-        "image": "/books/la_mort_de_dinah/la_mort_de_dinah_cover.jpg",
+        "color": "rgba(100, 125, 79, 0.8)",
+        "image": "/books/100_125_79.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -1368,8 +1504,12 @@
       ],
       "contribs": [],
       "created_at": "2018-07-21 14:44:32",
-      "updated_at": "2018-07-29 00:13:51",
-      "id": "5b50bea6-cdb3-41b6-999f-e5f560aaf221"
+      "updated_at": "2019-01-21 20:49:41",
+      "id": "5b50bea6-cdb3-41b6-999f-e5f560aaf221",
+      "files": [
+        "la_mort_de_dinah.html",
+        "la_mort_de_dinah.css"
+      ]
     },
     {
       "source": {},
@@ -1403,14 +1543,18 @@
       ],
       "contribs": [],
       "created_at": "2018-07-21 15:15:23",
-      "updated_at": "2018-11-17 09:13:58",
-      "id": "c87aa4e8-a313-4346-98d1-da9445470a4d"
+      "updated_at": "2019-01-21 18:56:10",
+      "id": "c87aa4e8-a313-4346-98d1-da9445470a4d",
+      "files": [
+        "les_nuits_d_octobre.html",
+        "les_nuits_d_octobre.css"
+      ]
     },
     {
       "source": {},
       "styles": {
         "color": "rgba(216, 174, 71, 0.8)",
-        "image": "/books/l_amour_de_pierre_neuhart/l_amour_de_pierre_neuhart_cover.jpg",
+        "image": "/books/216_174_71.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -1438,8 +1582,12 @@
       ],
       "contribs": [],
       "created_at": "2018-07-28 23:54:02",
-      "updated_at": "2018-08-04 21:21:56",
-      "id": "6863c09b-9dc8-44dd-acde-707c1480aa3d"
+      "updated_at": "2019-01-21 20:51:44",
+      "id": "6863c09b-9dc8-44dd-acde-707c1480aa3d",
+      "files": [
+        "l_amour_de_pierre_neuhart.html",
+        "l_amour_de_pierre_neuhart.css"
+      ]
     },
     {
       "source": {},
@@ -1474,8 +1622,12 @@
       ],
       "contribs": [],
       "created_at": "2018-08-04 20:27:32",
-      "updated_at": "2018-08-05 20:16:02",
-      "id": "637b6a91-b094-4e4a-854c-4ed987067969"
+      "updated_at": "2019-01-21 18:57:36",
+      "id": "637b6a91-b094-4e4a-854c-4ed987067969",
+      "files": [
+        "un_pere_et_sa_fille.html",
+        "un_pere_et_sa_fille.css"
+      ]
     },
     {
       "source": {},
@@ -1510,14 +1662,18 @@
       ],
       "contribs": [],
       "created_at": "2018-08-04 20:35:20",
-      "updated_at": "2018-11-15 20:10:31",
-      "id": "826c72a6-423b-456c-9a06-8df9b75ed8cd"
+      "updated_at": "2019-01-21 18:58:02",
+      "id": "826c72a6-423b-456c-9a06-8df9b75ed8cd",
+      "files": [
+        "une_fugue.html",
+        "une_fugue.css"
+      ]
     },
     {
       "source": {},
       "styles": {
-        "color": "rgba(118, 111, 87,0.8)",
-        "image": "/books/detours/detours_cover.jpg",
+        "color": "rgba(134, 103, 70,0.8)",
+        "image": "/books/134_103_70.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;position: relative; opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
@@ -1545,8 +1701,12 @@
       ],
       "contribs": [],
       "created_at": "2018-08-04 20:47:55",
-      "updated_at": "2018-08-15 17:11:34",
-      "id": "e2846756-11bd-463e-b19e-8bde5108dd83"
+      "updated_at": "2019-01-21 19:41:35",
+      "id": "e2846756-11bd-463e-b19e-8bde5108dd83",
+      "files": [
+        "detours.html",
+        "detours.css"
+      ]
     },
     {
       "source": {},
@@ -1580,8 +1740,12 @@
       ],
       "contribs": [],
       "created_at": "2018-08-04 20:58:14",
-      "updated_at": "2018-08-16 22:29:02",
-      "id": "5fe8258a-3e0b-497f-b355-c7e69a1ffb0f"
+      "updated_at": "2019-01-21 19:05:23",
+      "id": "5fe8258a-3e0b-497f-b355-c7e69a1ffb0f",
+      "files": [
+        "promenades_et_souvenirs.html",
+        "promenades_et_souvenirs.css"
+      ]
     },
     {
       "source": {},
@@ -1616,14 +1780,20 @@
       ],
       "contribs": [],
       "created_at": "2018-08-12 17:16:32",
-      "updated_at": "2018-12-30 09:59:22",
-      "id": "8c5d207f-dddf-44a2-93b9-cd66be34d22d"
+      "updated_at": "2019-01-21 19:06:57",
+      "id": "8c5d207f-dddf-44a2-93b9-cd66be34d22d",
+      "files": [
+        "traite_de_la_vie_elegante_20181230.html",
+        "traite_de_la_vie_elegante_20181230.css",
+        "traite_de_la_vie_elegante.html",
+        "traite_de_la_vie_elegante.css"
+      ]
     },
     {
       "source": {},
       "styles": {
         "color": "rgba(209, 184, 148, 0.8)",
-        "image": "/books/de_l_education_d_un_homme_sauvage/de_l_education_d_un_homme_sauvage_cover.jpg",
+        "image": "/books/209_184_148.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;",
@@ -1652,14 +1822,18 @@
       ],
       "contribs": [],
       "created_at": "2018-08-12 17:44:35",
-      "updated_at": "2018-09-11 23:30:10",
-      "id": "559262b5-3220-4b05-b803-42ebf9f82f38"
+      "updated_at": "2019-01-21 19:36:55",
+      "id": "559262b5-3220-4b05-b803-42ebf9f82f38",
+      "files": [
+        "de_l_education_d_un_homme_sauvage.html",
+        "de_l_education_d_un_homme_sauvage.css"
+      ]
     },
     {
       "source": {},
       "styles": {
         "color": "rgba(209, 184, 148, 0.8)",
-        "image": "/books/rapport_sur_le_sauvage_de_l_aveyron/rapport_sur_le_sauvage_de_l_aveyron_cover.jpg",
+        "image": "/books/209_184_148.jpg",
         "font": "Noto Serif",
         "cover": "padding: 16px 30px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;",
@@ -1688,8 +1862,12 @@
       ],
       "contribs": [],
       "created_at": "2018-08-12 18:08:00",
-      "updated_at": "2018-09-11 23:35:10",
-      "id": "ef484f5d-70c3-4c6b-8cbe-f112249e9d60"
+      "updated_at": "2019-01-21 19:38:33",
+      "id": "ef484f5d-70c3-4c6b-8cbe-f112249e9d60",
+      "files": [
+        "rapport_sur_le_sauvage_de_l_aveyron.html",
+        "rapport_sur_le_sauvage_de_l_aveyron.css"
+      ]
     },
     {
       "source": {},
@@ -1724,8 +1902,12 @@
       ],
       "contribs": [],
       "created_at": "2018-09-06 19:32:00",
-      "updated_at": "2018-09-15 15:48:13",
-      "id": "6becb5e8-e74e-4b48-84da-6a6ecf9573a7"
+      "updated_at": "2019-01-21 19:09:32",
+      "id": "6becb5e8-e74e-4b48-84da-6a6ecf9573a7",
+      "files": [
+        "monsieur_thorpe.html",
+        "monsieur_thorpe.css"
+      ]
     },
     {
       "source": {},
@@ -1759,8 +1941,12 @@
       ],
       "contribs": [],
       "created_at": "2018-09-06 19:46:46",
-      "updated_at": "2018-11-15 20:07:59",
-      "id": "790dab91-9725-4cd9-940f-aa7a3092111b"
+      "updated_at": "2019-01-21 19:10:01",
+      "id": "790dab91-9725-4cd9-940f-aa7a3092111b",
+      "files": [
+        "petits_contes.html",
+        "petits_contes.css"
+      ]
     },
     {
       "source": {},
@@ -1794,8 +1980,12 @@
       ],
       "contribs": [],
       "created_at": "2018-09-06 20:17:36",
-      "updated_at": "2018-11-15 19:04:40",
-      "id": "a1f1d230-8349-43ba-b291-f1cb5caeb227"
+      "updated_at": "2019-01-21 19:10:35",
+      "id": "a1f1d230-8349-43ba-b291-f1cb5caeb227",
+      "files": [
+        "theorie_de_la_demarche.html",
+        "theorie_de_la_demarche.css"
+      ]
     },
     {
       "source": {},
@@ -1830,8 +2020,12 @@
       ],
       "contribs": [],
       "created_at": "2018-09-16 21:21:18",
-      "updated_at": "2018-11-15 19:07:41",
-      "id": "11103a9c-0d28-4736-a08d-c0da4e883d8e"
+      "updated_at": "2019-01-21 19:11:32",
+      "id": "11103a9c-0d28-4736-a08d-c0da4e883d8e",
+      "files": [
+        "memoires_de_madame_elliott.html",
+        "memoires_de_madame_elliott.css"
+      ]
     },
     {
       "source": {},
@@ -1865,8 +2059,12 @@
       ],
       "contribs": [],
       "created_at": "2018-09-19 20:20:20",
-      "updated_at": "2018-11-15 18:51:03",
-      "id": "4e7dbce2-32c2-493c-9f8c-5412343f8ce5"
+      "updated_at": "2019-01-21 19:12:07",
+      "id": "4e7dbce2-32c2-493c-9f8c-5412343f8ce5",
+      "files": [
+        "mon_corps_et_moi.html",
+        "mon_corps_et_moi.css"
+      ]
     },
     {
       "source": {},
@@ -1900,8 +2098,12 @@
       ],
       "contribs": [],
       "created_at": "2018-10-26 18:19:22",
-      "updated_at": "2018-11-17 09:14:20",
-      "id": "306c55b6-0463-469a-be61-6478f5e8b272"
+      "updated_at": "2019-01-21 19:12:38",
+      "id": "306c55b6-0463-469a-be61-6478f5e8b272",
+      "files": [
+        "petits_chateaux_de_boheme.html",
+        "petits_chateaux_de_boheme.css"
+      ]
     },
     {
       "source": {},
@@ -1974,8 +2176,14 @@
       ],
       "contribs": [],
       "created_at": "2018-11-17 08:42:41",
-      "updated_at": "2019-01-07 20:00:14",
-      "id": "203409c6-502f-4b1f-81b6-86ca2ad16d33"
+      "updated_at": "2019-01-21 19:14:15",
+      "id": "203409c6-502f-4b1f-81b6-86ca2ad16d33",
+      "files": [
+        "le_roi_de_bicetre_20190107.html",
+        "le_roi_de_bicetre_20190107.css",
+        "le_roi_de_bicetre_20181230.html",
+        "le_roi_de_bicetre_20181230.css"
+      ]
     },
     {
       "source": {},
@@ -2009,8 +2217,14 @@
       ],
       "contribs": [],
       "created_at": "2018-11-18 18:02:29",
-      "updated_at": "2019-01-07 20:00:34",
-      "id": "8d8134f3-bbb8-4e7c-a74a-decce76dab9f"
+      "updated_at": "2019-01-21 19:15:03",
+      "id": "8d8134f3-bbb8-4e7c-a74a-decce76dab9f",
+      "files": [
+        "histoire_de_l_abbe_de_bucquoy_20190107.html",
+        "histoire_de_l_abbe_de_bucquoy_20190107.css",
+        "histoire_de_l_abbe_de_bucquoy_20181230.html",
+        "histoire_de_l_abbe_de_bucquoy_20181230.css"
+      ]
     },
     {
       "source": {},
@@ -2044,8 +2258,14 @@
       ],
       "contribs": [],
       "created_at": "2018-11-25 08:27:38",
-      "updated_at": "2019-01-07 20:00:53",
-      "id": "baf76b81-3f18-4dbd-bf0c-5d213b2d6c53"
+      "updated_at": "2019-01-21 19:15:45",
+      "id": "baf76b81-3f18-4dbd-bf0c-5d213b2d6c53",
+      "files": [
+        "les_confidences_de_nicolas_20190107.html",
+        "les_confidences_de_nicolas_20190107.css",
+        "les_confidences_de_nicolas_20181230.html",
+        "les_confidences_de_nicolas_20181230.css"
+      ]
     },
     {
       "source": {},
@@ -2079,8 +2299,12 @@
       ],
       "contribs": [],
       "created_at": "2018-11-25 10:55:38",
-      "updated_at": "2019-01-07 20:06:03",
-      "id": "beb1fdbd-7811-4ba9-b184-5e65ea4c28e7"
+      "updated_at": "2019-01-21 19:17:09",
+      "id": "beb1fdbd-7811-4ba9-b184-5e65ea4c28e7",
+      "files": [
+        "cazotte_20190107.html",
+        "cazotte_20190107.css"
+      ]
     },
     {
       "source": {},
