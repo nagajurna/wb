@@ -26,6 +26,18 @@
 		<span class="error"><%= error %></span>
 		<span class="error" id="modal-error" data-utils-bind="{{ error }}"></span>
 		<div class="border-bottom">
+			<p>
+				<label class="align-left"><b>Fichiers</b> : </label>
+			</p>
+			<ul id="files-list" class="ul">
+			<% if (book.files) {%>
+			<% for(var i=0; i<book.files.length; i++) {%>
+				<li>
+						<span id="<%= i %>"><%- book.files[i] %></span>
+				</li>
+			<% } %>
+			<% } %>
+			</ul>
 			<p><b>Titre : </b><span><%- book.title %></span></p>
 			<p><b>Sous-titre1 : </b><span><%- book.subtitle1 %></span></p>
 			<p><b>Sous-titre2 : </b><span><%- book.subtitle2 %></span></p>

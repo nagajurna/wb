@@ -39,11 +39,16 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 16:54:18",
-      "updated_at": "2018-01-19 09:21:26",
+      "updated_at": "2019-01-20 18:27:14",
       "id": "baf909f9-8f38-4d7f-b678-fb8ed46d41f0",
       "sources": [
         "Du dandysme et de G. Brummel (2<sup>e</sup> éd.), par J.-A. Barbey d' Aurevilly – Librairie de Poulet-Malassis, Paris, 1861.",
         "Œuvres de Barbey d'Aurevilly, vol.&nbsp;13 &ndash;&nbsp;A. Lemerre, Paris, 1878-1889."
+      ],
+      "source": {},
+      "files": [
+        "du_dandysme_et_de_g_brummell.html",
+        "du_dandysme_et_de_g_brummell.css"
       ]
     },
     {
@@ -74,12 +79,16 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:00:53",
-      "updated_at": "2018-05-20 09:26:00",
+      "updated_at": "2019-01-20 18:32:13",
       "id": "b3e3c2e7-305f-4697-867f-3dd2417f71ed",
       "sources": [
         "Un Roman pour les cuisinières, par Émile Cabanon – Eugène Renduel, Paris, 1834."
       ],
-      "source": {}
+      "source": {},
+      "files": [
+        "un_roman_pour_les_cuisinieres.html",
+        "un_roman_pour_les_cuisinieres.css"
+      ]
     },
     {
       "styles": {
@@ -101,7 +110,7 @@
       "language": "français",
       "categories": "",
       "collection": "",
-      "description": "<i>« Si l’on tentait l’art où excellèrent Boswell et Aubrey, il ne faudrait sans doute point décrire minutieusement le plus grand homme de son temps, ou noter la caractéristique des plus célèbres dans le passé, mais raconter avec le même souci les existences </i>uniques<i> des hommes, qu’ils aient été divins, médiocres, ou criminels.&nbsp;»</i>",
+      "description": "<i>« Si l’on tentait l’art où excellèrent Boswell et Aubrey, il ne faudrait sans doute point décrire minutieusement le plus grand homme de son temps, ou noter la caractéristique des plus célèbres dans le passé, mais raconter avec le même souci les existences </i>uniques<i> des hommes, qu’ils aient été divins, médiocres, ou criminels. »</i>",
       "path": "/books/vies_imaginaires/vies_imaginaires",
       "visible": true,
       "authors": [
@@ -109,12 +118,16 @@
       ],
       "contribs": [],
       "created_at": "2017-11-11 17:05:16",
-      "updated_at": "2018-03-08 12:02:30",
+      "updated_at": "2019-01-20 18:36:42",
       "id": "67f99f06-7af1-4dc4-9b8d-9d8f8afdc198",
       "sources": [
         "Vies imaginaires, par Marcel Schwob &ndash;&nbsp;G. Charpentier et E. Fasquelle, Paris, 1896."
       ],
-      "source": {}
+      "source": {},
+      "files": [
+        "vies_imaginaires.html",
+        "vies_imaginaires.css"
+      ]
     },
     {
       "styles": {
@@ -1922,8 +1935,12 @@
       ],
       "contribs": [],
       "created_at": "2018-11-12 23:28:52",
-      "updated_at": "2018-11-18 17:18:34",
-      "id": "e82e9a1d-282e-4d5a-962a-4a8502a84d21"
+      "updated_at": "2019-01-20 18:12:07",
+      "id": "e82e9a1d-282e-4d5a-962a-4a8502a84d21",
+      "files": [
+        "adele.html",
+        "adele.css"
+      ]
     },
     {
       "source": {},
