@@ -2375,6 +2375,43 @@
       "created_at": "2018-11-25 12:27:52",
       "updated_at": "2018-11-25 12:27:52",
       "id": "ef50dd5a-8aa3-442f-b9e2-3be50b4c2c91"
+    },
+    {
+      "styles": {
+        "color": "rgba(209, 184, 148, 0.8)",
+        "image": "/books/209_184_148.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 10%; font-size: 1.2em;letter-spacing: 1px",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Histoire des&nbsp;sociétés&nbsp;secrètes de&nbsp;l'armée",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Charles Nodier",
+      "year": "1815",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Histoire des sociétés secrètes de&nbsp;l'armée et des conspirations militaires qui ont eu pour objet la destruction du gouvernement de Bonaparte&nbsp;– Gide&nbsp;fils, H.&nbsp;Nicolle, Paris, 1815."
+      ],
+      "files": [
+        "histoire_des_societes_secretes_de_l_armee.css"
+      ],
+      "description": "",
+      "path": "/books/histoire_des_societes_secretes_de_l_armée/histoire_des_societes_secretes_de_l_armée",
+      "visible": false,
+      "authors": [
+        "efee890d-6487-47cd-8c2d-48f47512143f"
+      ],
+      "contribs": [],
+      "created_at": "2019-01-22 18:05:47",
+      "updated_at": "2019-01-22 19:11:23",
+      "id": "f43c7543-38ce-4986-9538-24cc9479c020"
     }
   ],
   "authors": [
