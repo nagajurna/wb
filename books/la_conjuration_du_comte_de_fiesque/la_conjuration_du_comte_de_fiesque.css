@@ -3,8 +3,8 @@
 }
 
 [data-wb-text].cover_active {
-	background-color: rgba(127, 65, 69, 0.8);
-	background-image: url("/books/traite_de_la_vie_elegante/traite_de_la_vie_elegante_cover.jpg");
+	background-color: rgba(203, 158, 75,0.8);
+	background-image: url("/books/203_158_75.jpg");
 }
 
 [data-wb-text] #cover {
@@ -13,18 +13,18 @@
 
 [data-wb-text] #cover-author {
 	font-size: 1.2em;
+	font-variant: small-caps;
 	letter-spacing: 1px;
 	opacity: 0.75;
 }
 
-[data-wb-text] #cover-title, [data-wb-text] #title {
+[data-wb-text] #cover-title {
 	margin-top: 1.5em;
 	padding-top: 0%;
-	font-size: 1.8em;
-	font-variant: small-caps;
-	line-height: 1.8em;
-	word-spacing: 0.2em;
-	letter-spacing: 2px;
+	font-size: 1.6em;
+	line-height: 1.6em;
+	word-spacing: 0.25em;
+	letter-spacing: 3px;
 	opacity: 0.75;
 }
 
@@ -58,10 +58,10 @@
 
 @media only screen and (min-height: 568px) {
 
-	[data-wb-text] #cover-title, [data-wb-text] #title {
-		padding-top: 8%;
-		font-size: 1.9em;
-		line-height: 1.9em;
+	[data-wb-text] #cover-title {
+		padding-top: 6%;
+		font-size: 1.8em;
+		line-height: 1.8em;
 		word-spacing: 0.2em;
 		letter-spacing: 3px;
 	}
@@ -75,14 +75,12 @@
 	}
 }
 
-@media only screen and (min-width: 550px) {
+@media only screen and (min-width: 568px) {
 
-	[data-wb-text] #cover-title, [data-wb-text] #title {
+	[data-wb-text] #cover-title {
 		padding-top: 4%;
-		padding-left: 1em;
-		padding-right: 1em;
 		font-size: 1.9em;
-		word-spacing: 0.35em;
+		word-spacing: 0.15em;
 		letter-spacing: 3px;
 	}
 	
@@ -103,26 +101,51 @@
 		letter-spacing: 2px;
 	}
 
-	[data-wb-text] #cover-title, [data-wb-text] #title {
-		padding-top: 10%;
-		font-size: 2em;
-		line-height: 2em;
+	[data-wb-text] #cover-title {
+		padding-top: 8%;
 	}
 }
 
-[data-wb-text] sup {
-	line-height: 1em;
+[data-wb-text] .section-dedicace {
+	padding-top: 1.5em;
+	margin-top: 0px;
+	margin-bottom: 1.5em;
+	text-indent: 0px;
+	font-style: italic;
+	text-align: right;
 }
 
-/*
-PAGE EXERGUE
-*/
-[data-wb-text] div.page-exergue {
-	text-align: left;
-	padding-top: 1.5em;
+[data-wb-text] .section-exergue {
+	text-align: justify;
+	margin-left: 1.5em;
+	text-indent: 1.5em;
 	font-size: 0.9em;
 }
 
+[data-wb-text] .section-signature {
+	text-align: right;
+	font-size: 0.9em;
+	padding-bottom: 1.5em;
+	padding-right: 1.5em
+}
 
+[data-wb-text] p.signature {
+	text-align: right;
+	margin-right: 1.5em;
+}
 
+[data-wb-text] .note a.wb-link {
+	color: #006dcc;
+}
 
+[data-wb-text] .note-section p {
+	font-size: 0.9em;
+}
+
+[data-wb-text] .note-section p.note {
+	margin-top: 1.5em;
+}
+
+[data-wb-text] .note-section p.notes-title {
+	font-size: 1.25em;
+}

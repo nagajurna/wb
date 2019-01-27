@@ -75,7 +75,7 @@ const adminBooksEdit = function(container) {
 			let deleteBtns = form.querySelectorAll('.delete-btn')
 			for(let i=0; i<deleteBtns.length; i++) {
 				deleteBtns[i].addEventListener('click', deleteAuth, false);
-			} 	
+			}
 			
 			//CLEAR ERRORS ON INPUT
 			function onInput(event) {
@@ -271,6 +271,7 @@ const adminBooksEdit = function(container) {
 				}
 			}
 			
+			
 			//ADD SOURCE
 			function addSource(event) {
 				let src = sourceModal.querySelector('[name=source]').value;
@@ -300,7 +301,6 @@ const adminBooksEdit = function(container) {
 			function deleteFile(event) {
 				let index = event.target.parentElement.id;
 				let file = files[index];
-				console.log(file);
 				let options = { method: 'POST', url: '/books/filedelete/', data: JSON.stringify({filename: file}) };
 				utils.ajax(options)
 				.then( res => {
@@ -310,15 +310,21 @@ const adminBooksEdit = function(container) {
 					} else {
 						files.splice(index,1);
 						filesContainer.innerHTML = filesTemplate({ files: files });
-						let deleteFileBtn = filesContainer.querySelectorAll('.delete-file-btn')
+						let deleteFileBtn = filesContainer.querySelectorAll('.delete-file-btn');
 						for(let i=0; i<deleteFileBtn.length; i++) {
 							deleteFileBtn[i].addEventListener('click', deleteFile, false);
 						} 	
 					}
 				});
-				
 			}
 			
+			//attach delefile to form
+			let deletefileBtn = filesContainer.querySelectorAll('.delete-file-btn');
+			for(let i=0; i<deletefileBtn.length; i++) {
+				deletefileBtn[i].addEventListener('click', deleteFile, false);
+			}
+			
+						
 			//UPLOAD FILE
 			function uploadBook(event) {
 				event.preventDefault();
