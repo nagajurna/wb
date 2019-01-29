@@ -1773,14 +1773,14 @@
         "Œuvres complètes de H. de Balzac, tome 20 – Calmann Lévy, Paris, 1870."
       ],
       "description": "<i>Une « étude analytique » inachevée de Balzac.</i>",
-      "path": "/books/traite_de_la_vie_elegante/traite_de_la_vie_elegante_20181230",
+      "path": "/books/traite_de_la_vie_elegante/traite_de_la_vie_elegante",
       "visible": true,
       "authors": [
         "571f3525-aba8-4592-b8ec-c8a51344150b"
       ],
       "contribs": [],
       "created_at": "2018-08-12 17:16:32",
-      "updated_at": "2019-01-27 20:21:31",
+      "updated_at": "2019-01-29 08:16:01",
       "id": "8c5d207f-dddf-44a2-93b9-cd66be34d22d",
       "files": [
         "traite_de_la_vie_elegante.html",
