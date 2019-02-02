@@ -922,6 +922,10 @@ VERSES
 	font-size: 0.9em;
 }
 
+[data-wb-text] .note-section .verses {
+	font-size: 1em;
+}
+
 [data-wb-text] .verses p {
 	text-indent: -1em;
 	text-align: left;
@@ -1219,6 +1223,10 @@ DIVERS
 
 [data-wb-text] .font-small-8 {
 	font-size: 0.8em;
+}
+
+[data-wb-text] .font-small-7 {
+	font-size: 0.7em;
 }
 
 [data-wb-text] no-indent {

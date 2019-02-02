@@ -2408,17 +2408,18 @@
         "Histoire des sociétés secrètes de&nbsp;l'armée et des conspirations militaires qui ont eu pour objet la destruction du gouvernement de Bonaparte&nbsp;– Gide&nbsp;fils, H.&nbsp;Nicolle, Paris, 1815."
       ],
       "files": [
-        "histoire_des_societes_secretes_de_l_armee.css"
+        "histoire_des_societes_secretes_de_l_armee.css",
+        "histoire_des_societes_secretes_de_l_armee.html"
       ],
-      "description": "",
-      "path": "/books/histoire_des_societes_secretes_de_l_armée/histoire_des_societes_secretes_de_l_armée",
-      "visible": false,
+      "description": "<i>« L’histoire que je raconte est celle d’une Société secrète, dont le secret s’est si bien conservé, que son nom même est à peine connu hors de son propre sein, quoiqu’elle ait failli plusieurs fois influer sur le sort du monde. »</i><br><br>Un ouvrage publié anonymement par Charles Nodier, en 1815.",
+      "path": "/books/histoire_des_societes_secretes_de_l_armee/histoire_des_societes_secretes_de_l_armee",
+      "visible": true,
       "authors": [
         "efee890d-6487-47cd-8c2d-48f47512143f"
       ],
       "contribs": [],
       "created_at": "2019-01-22 18:05:47",
-      "updated_at": "2019-01-22 19:11:23",
+      "updated_at": "2019-02-02 08:39:01",
       "id": "f43c7543-38ce-4986-9538-24cc9479c020"
     },
     {
@@ -2458,6 +2459,44 @@
       "created_at": "2019-01-27 20:37:26",
       "updated_at": "2019-01-27 20:49:53",
       "id": "0878b241-933c-417f-ba79-0914674123b2"
+    },
+    {
+      "styles": {
+        "color": "rgba(182, 158, 124, 0.8)",
+        "image": "/books/182_158_124.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 18%; font-size: 1.4em;letter-spacing: 1px",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Un malentendu",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Emmanuel Bove",
+      "year": "1930",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Un malentendu, Emmanuel Bove – Fayard, œuvres libres, n°&nbsp;108, 1930.",
+        "Monsieur Thorpe et autres nouvelles, Emmanuel Bove – Le Castor Astral, 1988."
+      ],
+      "files": [
+        "un_malentendu.css"
+      ],
+      "description": "",
+      "path": "/books/un_malentendu/un_malentendu",
+      "visible": false,
+      "authors": [
+        "9a08c6d7-dc69-4f94-9529-b6e53cf20b41"
+      ],
+      "contribs": [],
+      "created_at": "2019-02-02 09:25:10",
+      "updated_at": "2019-02-02 09:26:53",
+      "id": "e08cee7e-061c-4789-8dd5-f400701fe282"
     }
   ],
   "authors": [
