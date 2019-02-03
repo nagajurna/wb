@@ -2447,17 +2447,18 @@
         "Les trois conjurations – Méquignon-Havard, Paris, 1830."
       ],
       "files": [
-        "la_conjuration_du_comte_de_fiesque.css"
+        "la_conjuration_du_comte_de_fiesque.css",
+        "la_conjuration_du_comte_de_fiesque.html"
       ],
-      "description": "",
-      "path": "/books/la_conjuration_du_comte_de_fiesque",
-      "visible": false,
+      "description": "<i>« ... car je sais qu’une âme aussi délicate que la vôtre et aussi jalouse de sa gloire, aura peine à souffrir de se voir ternie par ces noms terribles de rebelle, de factieux et de traître. Cependant ces fantômes d’infamie, que l’opinion publique a formés pour épouvanter les âmes du vulgaire, ne causent jamais de honte à ceux qui les portent pour des actions éclatantes, quand le succès en est heureux. »</i>",
+      "path": "/books/la_conjuration_du_comte_de_fiesque/la_conjuration_du_comte_de_fiesque",
+      "visible": true,
       "authors": [
         "105b5c83-d76a-4500-bb85-e202bf97dd1d"
       ],
       "contribs": [],
       "created_at": "2019-01-27 20:37:26",
-      "updated_at": "2019-01-27 20:49:53",
+      "updated_at": "2019-02-03 20:53:43",
       "id": "0878b241-933c-417f-ba79-0914674123b2"
     },
     {
@@ -2497,6 +2498,42 @@
       "created_at": "2019-02-02 09:25:10",
       "updated_at": "2019-02-02 09:26:53",
       "id": "e08cee7e-061c-4789-8dd5-f400701fe282"
+    },
+    {
+      "styles": {
+        "color": "rgba(163, 135, 92, 0.8)",
+        "image": "/books/163_135_92.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 18%; font-size: 1.4em;letter-spacing: 1px",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Une illusion",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Emmanuel Bove",
+      "year": "1930",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Une illusion, Emmanuel Bove – La Revue européenne, 1929/1930.",
+        "Monsieur Thorpe et autres nouvelles, Emmanuel Bove – Le Castor Astral, 1988."
+      ],
+      "files": [],
+      "description": "",
+      "path": "/books/une_illusion/une_illusion",
+      "visible": false,
+      "authors": [
+        "9a08c6d7-dc69-4f94-9529-b6e53cf20b41"
+      ],
+      "contribs": [],
+      "created_at": "2019-02-03 21:01:10",
+      "updated_at": "2019-02-03 21:01:10",
+      "id": "204423e3-9804-4b98-b2c5-3d334010bb82"
     }
   ],
   "authors": [
