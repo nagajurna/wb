@@ -2409,17 +2409,19 @@
       ],
       "files": [
         "histoire_des_societes_secretes_de_l_armee.css",
-        "histoire_des_societes_secretes_de_l_armee.html"
+        "histoire_des_societes_secretes_de_l_armee.html",
+        "histoire_des_societes_secretes_de_l_armee_20190402.html",
+        "histoire_des_societes_secretes_de_l_armee_20190402.css"
       ],
       "description": "<i>« L’histoire que je raconte est celle d’une Société secrète, dont le secret s’est si bien conservé, que son nom même est à peine connu hors de son propre sein, quoiqu’elle ait failli plusieurs fois influer sur le sort du monde. »</i><br><br>Un ouvrage publié anonymement par Charles Nodier, en 1815.",
-      "path": "/books/histoire_des_societes_secretes_de_l_armee/histoire_des_societes_secretes_de_l_armee",
+      "path": "/books/histoire_des_societes_secretes_de_l_armee/histoire_des_societes_secretes_de_l_armee_20190402",
       "visible": true,
       "authors": [
         "efee890d-6487-47cd-8c2d-48f47512143f"
       ],
       "contribs": [],
       "created_at": "2019-01-22 18:05:47",
-      "updated_at": "2019-02-02 08:39:01",
+      "updated_at": "2019-02-04 19:54:53",
       "id": "f43c7543-38ce-4986-9538-24cc9479c020"
     },
     {
@@ -2534,6 +2536,42 @@
       "created_at": "2019-02-03 21:01:10",
       "updated_at": "2019-02-03 21:01:10",
       "id": "204423e3-9804-4b98-b2c5-3d334010bb82"
+    },
+    {
+      "styles": {
+        "color": "rgba(134, 103, 70, 0.8)",
+        "image": "/books/134_103_70.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 10%; font-size: 1.3em;letter-spacing: 1px",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "La conspiration de&nbsp;Valstein",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Jean-François Sarasin",
+      "year": "1656",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Les Œuvres de monsieur Sarasin – Augustin Courbé, Rouen, 1658.",
+        "Les trois conjurations – Méquignon-Havard, Paris, 1830."
+      ],
+      "files": [],
+      "description": "",
+      "path": "/books/la_conspiration_de_valstein/la_conspiration_de_valstein",
+      "visible": false,
+      "authors": [
+        "b4a011e2-70d1-4531-8b27-27995e4d261f"
+      ],
+      "contribs": [],
+      "created_at": "2019-02-04 20:07:07",
+      "updated_at": "2019-02-04 20:08:01",
+      "id": "46b71ea8-5072-48b6-ad43-a3bf0e31f492"
     }
   ],
   "authors": [
@@ -2811,6 +2849,17 @@
       "created_at": "2019-01-27 20:26:44",
       "updated_at": "2019-01-27 20:26:44",
       "id": "105b5c83-d76a-4500-bb85-e202bf97dd1d"
+    },
+    {
+      "name": "Jean-François Sarasin",
+      "nameAlpha": "sarasin",
+      "birth": "1614",
+      "death": "1654",
+      "description": "",
+      "visible": true,
+      "created_at": "2019-02-04 20:01:05",
+      "updated_at": "2019-02-04 20:01:05",
+      "id": "b4a011e2-70d1-4531-8b27-27995e4d261f"
     }
   ],
   "tables": [
