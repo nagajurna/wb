@@ -2488,54 +2488,19 @@
         "Monsieur Thorpe et autres nouvelles, Emmanuel Bove – Le Castor Astral, 1988."
       ],
       "files": [
-        "un_malentendu.css"
+        "un_malentendu.css",
+        "un_malentendu.html"
       ],
       "description": "",
       "path": "/books/un_malentendu/un_malentendu",
-      "visible": false,
+      "visible": true,
       "authors": [
         "9a08c6d7-dc69-4f94-9529-b6e53cf20b41"
       ],
       "contribs": [],
       "created_at": "2019-02-02 09:25:10",
-      "updated_at": "2019-02-02 09:26:53",
+      "updated_at": "2019-02-06 20:56:26",
       "id": "e08cee7e-061c-4789-8dd5-f400701fe282"
-    },
-    {
-      "styles": {
-        "color": "rgba(163, 135, 92, 0.8)",
-        "image": "/books/163_135_92.jpg",
-        "font": "Noto Serif",
-        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
-        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
-        "title": "padding-top: 18%; font-size: 1.4em;letter-spacing: 1px",
-        "subtitle1": "",
-        "subtitle2": "",
-        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
-      },
-      "title": "Une illusion",
-      "subtitle1": "",
-      "subtitle2": "",
-      "authorDisplay": "Emmanuel Bove",
-      "year": "1930",
-      "language": "français",
-      "categories": "",
-      "collection": "",
-      "sources": [
-        "Une illusion, Emmanuel Bove – La Revue européenne, 1929/1930.",
-        "Monsieur Thorpe et autres nouvelles, Emmanuel Bove – Le Castor Astral, 1988."
-      ],
-      "files": [],
-      "description": "",
-      "path": "/books/une_illusion/une_illusion",
-      "visible": false,
-      "authors": [
-        "9a08c6d7-dc69-4f94-9529-b6e53cf20b41"
-      ],
-      "contribs": [],
-      "created_at": "2019-02-03 21:01:10",
-      "updated_at": "2019-02-03 21:01:10",
-      "id": "204423e3-9804-4b98-b2c5-3d334010bb82"
     },
     {
       "styles": {
@@ -2572,6 +2537,42 @@
       "created_at": "2019-02-04 20:07:07",
       "updated_at": "2019-02-04 20:08:01",
       "id": "46b71ea8-5072-48b6-ad43-a3bf0e31f492"
+    },
+    {
+      "styles": {
+        "color": "rgba(163, 135, 92, 0.8)",
+        "image": "/books/163_135_92.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px 30px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;",
+        "title": "padding-top: 10%; font-size: 1em;letter-spacing: 1.1px;font-variant: small-caps;",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em;"
+      },
+      "title": "Conjuration des&nbsp;espagnols contre la&nbsp;République&nbsp;de&nbspVenise en&nbsp;l'année&nbsp;1618",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Saint-Réal",
+      "year": "1674",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Conspiration des espagnols contre la République de&nbsp;Venise en l'année&nbsp;1618 – Claude Barbin, Paris, 1674.",
+        "Les trois conjurations – Méquignon-Havard, Paris, 1830."
+      ],
+      "files": [],
+      "description": "",
+      "path": "/books/conjuration_des_espagnols_contre_venise/conjuration_des_espagnols_contre_venise",
+      "visible": false,
+      "authors": [
+        "3d6e35e1-018f-4537-96cf-b17294b6f846"
+      ],
+      "contribs": [],
+      "created_at": "2019-02-06 17:49:42",
+      "updated_at": "2019-02-06 19:03:01",
+      "id": "62180161-6c9f-452c-a536-5d872db61b65"
     }
   ],
   "authors": [
@@ -2860,6 +2861,17 @@
       "created_at": "2019-02-04 20:01:05",
       "updated_at": "2019-02-04 20:01:05",
       "id": "b4a011e2-70d1-4531-8b27-27995e4d261f"
+    },
+    {
+      "name": "César de Saint-Réal",
+      "nameAlpha": "saint-réal",
+      "birth": "1643",
+      "death": "1692",
+      "description": "",
+      "visible": true,
+      "created_at": "2019-02-06 17:39:02",
+      "updated_at": "2019-02-06 17:39:02",
+      "id": "3d6e35e1-018f-4537-96cf-b17294b6f846"
     }
   ],
   "tables": [
