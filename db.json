@@ -2446,7 +2446,7 @@
       "collection": "",
       "sources": [
         "La conjuration du comte Jean-Louis de&nbsp;Fiesque – Claude Barbin, Paris, 1665.",
-        "Les trois conjurations – Méquignon-Havard, Paris, 1830."
+        "Les trois conjurations. Conjuration du Cte de Fiesque, le Cardinal de Retz. Conjuration de Valstein, Sarrazin. Conjuration des Espagnols contre Venise en 1618, Saint-Réal – Méquignon-Havard, Paris, 1830."
       ],
       "files": [
         "la_conjuration_du_comte_de_fiesque.css",
@@ -2460,7 +2460,7 @@
       ],
       "contribs": [],
       "created_at": "2019-01-27 20:37:26",
-      "updated_at": "2019-02-03 20:53:43",
+      "updated_at": "2019-02-10 11:51:41",
       "id": "0878b241-933c-417f-ba79-0914674123b2"
     },
     {
@@ -2524,18 +2524,21 @@
       "collection": "",
       "sources": [
         "Les Œuvres de monsieur Sarasin – Augustin Courbé, Rouen, 1658.",
-        "Les trois conjurations – Méquignon-Havard, Paris, 1830."
+        "Les trois conjurations. Conjuration du Cte de Fiesque, le Cardinal de Retz. Conjuration de Valstein, Sarrazin. Conjuration des Espagnols contre Venise en 1618, Saint-Réal – Méquignon-Havard, Paris, 1830."
       ],
-      "files": [],
-      "description": "",
+      "files": [
+        "la_conspiration_de_valstein.html",
+        "la_conspiration_de_valstein.css"
+      ],
+      "description": "Le récit de la vie d'Albrecht von Wallenstein (1583-1634) que Jean-François Sarasin n'acheva jamais.",
       "path": "/books/la_conspiration_de_valstein/la_conspiration_de_valstein",
-      "visible": false,
+      "visible": true,
       "authors": [
         "b4a011e2-70d1-4531-8b27-27995e4d261f"
       ],
       "contribs": [],
       "created_at": "2019-02-04 20:07:07",
-      "updated_at": "2019-02-04 20:08:01",
+      "updated_at": "2019-02-10 12:07:46",
       "id": "46b71ea8-5072-48b6-ad43-a3bf0e31f492"
     },
     {
@@ -2543,24 +2546,24 @@
         "color": "rgba(163, 135, 92, 0.8)",
         "image": "/books/163_135_92.jpg",
         "font": "Noto Serif",
-        "cover": "padding: 16px 30px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
+        "cover": "padding: 16px 22px;opacity: 0.85;position: relative; font-family: 'Noto Serif', 'Georgia', serif",
         "author": "font-size: 1em;letter-spacing: 1px;",
-        "title": "padding-top: 10%; font-size: 1em;letter-spacing: 1.1px;font-variant: small-caps;",
+        "title": "padding-top: 10%; font-size: 1em;letter-spacing: 1.1px;font-variant: small-caps",
         "subtitle1": "",
         "subtitle2": "",
         "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em;"
       },
-      "title": "Conjuration des&nbsp;espagnols contre la&nbsp;République&nbsp;de&nbspVenise en&nbsp;l'année&nbsp;1618",
+      "title": "Conjuration&nbsp;des&nbsp;espagnols contre la&nbsp;République&nbsp;de&nbspVenise en&nbsp;l'année&nbsp;1618",
       "subtitle1": "",
       "subtitle2": "",
-      "authorDisplay": "Saint-Réal",
+      "authorDisplay": "Abbé de Saint-Réal",
       "year": "1674",
       "language": "français",
       "categories": "",
       "collection": "",
       "sources": [
         "Conspiration des espagnols contre la République de&nbsp;Venise en l'année&nbsp;1618 – Claude Barbin, Paris, 1674.",
-        "Les trois conjurations – Méquignon-Havard, Paris, 1830."
+        "Les trois conjurations. Conjuration du Cte de Fiesque, le Cardinal de Retz. Conjuration de Valstein, Sarrazin. Conjuration des Espagnols contre Venise en 1618, Saint-Réal – Méquignon-Havard, Paris, 1830."
       ],
       "files": [],
       "description": "",
@@ -2571,8 +2574,45 @@
       ],
       "contribs": [],
       "created_at": "2019-02-06 17:49:42",
-      "updated_at": "2019-02-06 19:03:01",
+      "updated_at": "2019-02-10 12:26:40",
       "id": "62180161-6c9f-452c-a536-5d872db61b65"
+    },
+    {
+      "styles": {
+        "color": "rgba(203, 158, 75, 0.8)",
+        "image": "/books/203_158_75.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 10px 54px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "",
+        "title": "font-size: 1.2em;letter-spacing: 1px; line-height: 1.5em",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Voyage de&nbsp;Messieurs de&nbsp;Bachaumont et&nbsp;de la&nbsp;Chapelle",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "&ensp;",
+      "year": "1661",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Voyage de Messieurs de Bachaumont et de La Chapelle ; avec un mélange de piéces fugitives tirées du Cabinet de Monsieur de Monsieur de Saint Evremont – Chez François Galma, Utrecht, 1697.",
+        "Œuvres de Chapelle et de Bachaumont – Pierre Jannet, Paris, 1854."
+      ],
+      "files": [],
+      "description": "",
+      "path": "/books/voyage_de_chapelle_et_bachaumont/voyage_de_chapelle_et_bachaumont",
+      "visible": false,
+      "authors": [
+        "a4433314-55d6-475a-9030-2ee164ab6514",
+        "e348f6c7-68e4-47aa-bf4c-2728a90fb5b7"
+      ],
+      "contribs": [],
+      "created_at": "2019-02-10 13:22:28",
+      "updated_at": "2019-02-10 15:24:38",
+      "id": "ede27379-b7a8-44b2-ac05-142a9f299678"
     }
   ],
   "authors": [
@@ -2863,15 +2903,37 @@
       "id": "b4a011e2-70d1-4531-8b27-27995e4d261f"
     },
     {
-      "name": "César de Saint-Réal",
+      "name": "César de&nbsp;Saint-Réal",
       "nameAlpha": "saint-réal",
       "birth": "1643",
       "death": "1692",
       "description": "",
       "visible": true,
       "created_at": "2019-02-06 17:39:02",
-      "updated_at": "2019-02-06 17:39:02",
+      "updated_at": "2019-02-10 12:30:24",
       "id": "3d6e35e1-018f-4537-96cf-b17294b6f846"
+    },
+    {
+      "name": "Claude-Emmanuel Lhuillier dit La&nbsp;Chapelle",
+      "nameAlpha": "chapelle",
+      "birth": "1626",
+      "death": "1686",
+      "description": "",
+      "visible": true,
+      "created_at": "2019-02-10 13:03:36",
+      "updated_at": "2019-02-10 15:16:43",
+      "id": "a4433314-55d6-475a-9030-2ee164ab6514"
+    },
+    {
+      "name": "François Le Coigneux de Bachaumont",
+      "nameAlpha": "bachaumont",
+      "birth": "1624",
+      "death": "1702",
+      "description": "",
+      "visible": true,
+      "created_at": "2019-02-10 13:05:31",
+      "updated_at": "2019-02-10 13:05:31",
+      "id": "e348f6c7-68e4-47aa-bf4c-2728a90fb5b7"
     }
   ],
   "tables": [

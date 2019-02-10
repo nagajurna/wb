@@ -16,19 +16,31 @@ const authors = function(container) {
 	let sas = as.filter(function(a) { return a.nameAlpha.split("")[0].toUpperCase()===search  });
 	//get books
 	let ws = dataStore.getData('books');
+	
 	let works = [];
-	let bs, cs;
+	let bs = [];
+	let cs = [];
 	for(let i=0; i<sas.length; i++) {
 		let author = sas[i];
 		//books
-		bs = ws.filter(function(w) { 
-			for(let i=0; i<w.authors.length; i++) {
-					return w.authors[i].id===author.id;
+		//bs = ws.filter(function(w) { 
+			//for(let i=0; i<w.authors.length; i++) {
+					//return w.authors[i].id===author.id;
+					//break;
+				//}
+			//});
+			
+		for(let j=0; j<ws.length; j++) {
+			let b = ws[j];
+			for(let k=0; k<b.authors.length; k++) {
+				if(b.authors[k].id===author.id) {
+					works.push(b);
 					break;
 				}
-			});
-		
-		works = works.concat(bs);
+			}
+		}
+			
+		//works = works.concat(bs);
 		
 		//contribs
 		cs = ws.filter(function(w) { 
