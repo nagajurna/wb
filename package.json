@@ -9,6 +9,7 @@
     "build": "webpack --mode production ./src/index.js --output ./public/equivoques.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "heroku-run-build-script": true,
   "keywords": [
     "web-book",
     "reading"
