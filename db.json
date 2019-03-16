@@ -2651,6 +2651,44 @@
       "created_at": "2019-02-19 18:15:59",
       "updated_at": "2019-02-19 18:16:41",
       "id": "1b7eed93-681d-4b95-a860-1cb0485bc43e"
+    },
+    {
+      "styles": {
+        "color": "rgba(163, 135, 92, 0.8)",
+        "image": "/books/163_135_92.jpg",
+        "font": "Noto Serif",
+        "cover": "padding: 16px;position: relative;opacity: 0.85; font-family: 'Noto Serif', 'Georgia', serif",
+        "author": "font-size: 1em;letter-spacing: 1px;font-variant: small-caps",
+        "title": "padding-top: 10%; font-size: 1.3em;letter-spacing: 1px",
+        "subtitle1": "",
+        "subtitle2": "",
+        "logo": "position: absolute;bottom: 1em;left: 0px;width: 100%;text-align: center;letter-spacing: 2px;font-size: 1em"
+      },
+      "title": "Essai sur&nbsp;les&nbsp;privilèges",
+      "subtitle1": "",
+      "subtitle2": "",
+      "authorDisplay": "Emmanuel-Joseph Sieyès",
+      "year": "1788",
+      "language": "français",
+      "categories": "",
+      "collection": "",
+      "sources": [
+        "Essai sur les privilèges. Nouvelle édition – 1789."
+      ],
+      "files": [
+        "essai_sur_les_privileges.html",
+        "essai_sur_les_privileges.css"
+      ],
+      "description": "",
+      "path": "/books/essai_sur_les_privileges/essai_sur_les_privileges",
+      "visible": true,
+      "authors": [
+        "ccc3bfc6-8d56-4d45-af1d-9711d3a82229"
+      ],
+      "contribs": [],
+      "created_at": "2019-03-16 08:45:32",
+      "updated_at": "2019-03-16 08:45:32",
+      "id": "8c7beaa6-063e-41cb-9834-a7f690c00eb1"
     }
   ],
   "authors": [
@@ -2972,6 +3010,17 @@
       "created_at": "2019-02-10 13:05:31",
       "updated_at": "2019-02-10 13:05:31",
       "id": "e348f6c7-68e4-47aa-bf4c-2728a90fb5b7"
+    },
+    {
+      "name": "Emmanuel-Joseph Sieyès",
+      "nameAlpha": "sieyes",
+      "birth": "1748",
+      "death": "1836",
+      "description": "",
+      "visible": true,
+      "created_at": "2019-03-16 08:29:37",
+      "updated_at": "2019-03-16 09:25:12",
+      "id": "ccc3bfc6-8d56-4d45-af1d-9711d3a82229"
     }
   ],
   "tables": [
